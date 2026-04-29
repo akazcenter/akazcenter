@@ -144,22 +144,41 @@ select {
 
 <script>
 
-    function preventDuplicate(select) {
+function preventDuplicate(select) {
     const selectedName = select.value;
+
     if (selectedName === "—") {
         colorCell(select);
         return;
     }
 
-    const cell = select.closest("td");
-    const selectsInSameDay = cell.querySelectorAll("select");
+    const currentCell = select.closest("td");
+    const row = currentCell.parentElement;
+    const cellIndex = Array.from(row.children).indexOf(currentCell);
+
+    const allTables = document.querySelectorAll("table");
 
     let count = 0;
 
-    selectsInSameDay.forEach(s => {
-        if (s.value === selectedName) {
-            count++;
-        }
+    allTables.forEach(table => {
+        const rows = table.querySelectorAll("tr");
+
+        rows.forEach((r, rowIndex) => {
+            if (rowIndex === 0) return;
+
+            const cells = r.children;
+            const sameDayCell = cells[cellIndex];
+
+            if (sameDayCell) {
+                const selects = sameDayCell.querySelectorAll("select");
+
+                selects.forEach(s => {
+                    if (s.value === selectedName) {
+                        count++;
+                    }
+                });
+            }
+        });
     });
 
     if (count > 1) {
