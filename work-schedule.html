@@ -218,6 +218,12 @@ function renderAllTables() {
 }
 
 function buildTable(title, rows) {
+    let slots = {
+        men: 2,
+        women: 3,
+        reception: 1
+    };
+
     let html = `
     <div class="schedule-box">
         <div class="box-title">${title}</div>
@@ -240,7 +246,16 @@ function buildTable(title, rows) {
         `;
 
         days.forEach(() => {
-            html += `<td>${createDropdown()}</td>`;
+            html += `<td>`;
+
+            for (let i = 0; i < slots[currentSection]; i++) {
+                html += `
+                <div style="margin-bottom:5px;">
+                    ${createDropdown()}
+                </div>`;
+            }
+
+            html += `</td>`;
         });
 
         html += "</tr>";
@@ -253,7 +268,6 @@ function buildTable(title, rows) {
 
     return html;
 }
-
 function createDropdown() {
     let options = "";
     for (let name in employees[currentSection]) {
