@@ -18,7 +18,20 @@ body {
     color: white;
     padding: 18px 30px;
     text-align: center;
-    font-size: 26px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.home-btn {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: white;
+    color: #005b9f;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: bold;
 }
 
@@ -26,21 +39,16 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin: 25px 0;
+    margin: 20px;
 }
 
 button {
-    padding: 12px 30px;
+    padding: 10px 25px;
     border: none;
     background: #005b9f;
     color: white;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;
-}
-
-button:hover {
-    background: #00457a;
 }
 
 .table-wrap {
@@ -53,50 +61,40 @@ table {
     width: 100%;
     border-collapse: collapse;
     background: white;
-    table-layout: fixed;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 th {
     background: #005b9f;
     color: white;
-    padding: 12px;
-    font-size: 17px;
+    padding: 10px;
 }
 
 td {
-    border: 1px solid #b8c7d6;
+    border: 1px solid #ccc;
     height: 55px;
     text-align: center;
-    font-size: 16px;
 }
 
 .time {
     background: #dbeafe;
     font-weight: bold;
-    width: 90px;
+    width: 120px;
 }
 
 select {
-    width: 95%;
-    height: 38px;
-    border: 1px solid #cbd5e1;
+    width: 98%;
+    height: 40px;
     border-radius: 6px;
-    text-align: center;
-    font-size: 15px;
-    background: white;
-}
-
-.footer-note {
-    color: red;
-    text-align: center;
-    margin: 18px;
+    font-size: 16px;
     font-weight: bold;
+    text-align: center;
 }
 </style>
 </head>
 
 <body>
+
+<button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
 
 <div class="header">حجز غرف الأطفال</div>
 
@@ -105,17 +103,17 @@ select {
     <button onclick="switchFloor(2)">الدور الثاني</button>
 </div>
 
-<h2 id="floorTitle" style="text-align:center;">الدور الأول</h2>
+<h3 id="floorTitle" style="text-align:center;">الدور الأول</h3>
 
 <div class="table-wrap">
     <table id="schedule"></table>
 </div>
 
-<div class="footer-note">
-    يرجى تحديث الجدول أسبوعيًا قبل بداية الأسبوع الجديد
-</div>
-
 <script>
+
+function goHome() {
+    window.location.href = "index.html";
+}
 
 const therapists = {
     "—": "#ffffff",
@@ -132,21 +130,13 @@ const therapists = {
 };
 
 const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+
 const times = [
-    "09:00 AM",
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "01:00 PM",
-    "02:00 PM",
-    "03:00 PM",
-    "04:00 PM",
-    "05:00 PM",
-    "06:00 PM",
-    "07:00 PM",
-    "08:00 PM",
-    "09:00 PM"
+    "09:00 AM","10:00 AM","11:00 AM","12:00 PM",
+    "01:00 PM","02:00 PM","03:00 PM","04:00 PM",
+    "05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"
 ];
+
 function buildTable() {
     let table = document.getElementById("schedule");
     table.innerHTML = "";
@@ -185,15 +175,10 @@ function colorCell(select) {
 
     if (select.value !== "—") {
         select.style.fontWeight = "bold";
-        select.style.color = "#000";
     } else {
-        select.style.fontWeight = "normal";
-        select.style.color = "#0f172a";
         cell.style.background = "#ffffff";
     }
 }
-
-buildTable();
 
 function switchFloor(floor) {
     document.getElementById("floorTitle").innerText =
@@ -207,4 +192,3 @@ buildTable();
 
 </body>
 </html>
-}
