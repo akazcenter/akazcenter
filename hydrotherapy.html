@@ -82,7 +82,7 @@ td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;verti
 
     <button class="save-btn" onclick="addBooking()">إضافة الحجز</button>
 
-    <div class="note">يمكنك حجز اكثر من موعد في نفس الساعه والتاريخ </div>
+    <div class="note">يسمح بأكثر من مريض في نفس الساعة — والمواعيد القديمة لا تظهر تلقائيًا</div>
   </div>
 
   <div class="card">
@@ -98,8 +98,26 @@ td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;verti
 
 </div>
 
-<script>
-function goHome(){window.location.href="index.html"}
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const bookingsRef = collection(db, "hydroBookings");
+
+window.goHome = function(){
+  window.location.href="index.html";
+};
 
 const dayNamesArabic=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
 const dayNamesEnglish=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
@@ -130,19 +148,9 @@ const femaleTherapists=[
 ];
 
 const times=[
-  "09:00 AM",
-  "10:00 AM",
-  "11:00 AM",
-  "12:00 PM",
-  "01:00 PM",
-  "02:00 PM",
-  "03:00 PM",
-  "04:00 PM",
-  "05:00 PM",
-  "06:00 PM",
-  "07:00 PM",
-  "08:00 PM",
-  "09:00 PM"
+  "09:00 AM","10:00 AM","11:00 AM","12:00 PM",
+  "01:00 PM","02:00 PM","03:00 PM","04:00 PM",
+  "05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"
 ];
 
 let bookings=[];
@@ -163,15 +171,17 @@ function getArabicDay(dateString){
   return dayNamesArabic[d.getDay()];
 }
 
-function isOldBooking(booking){
-  return booking.date < todayISO();
+function updateTherapists(gender){
+  const select=document.getElementById("therapist");
+  select.innerHTML="";
+  const list=gender==="Male" ? maleTherapists : femaleTherapists;
+
+  list.forEach(name=>{
+    select.innerHTML+=`<option>${name}</option>`;
+  });
 }
 
-function cleanOldBookings(){
-  bookings=bookings.filter(b=>!isOldBooking(b));
-}
-
-function updateByDate(){
+window.updateByDate = function(){
   const date=document.getElementById("date").value;
   const dayEn=getEnglishDay(date);
   const dayAr=getArabicDay(date);
@@ -190,17 +200,7 @@ function updateByDate(){
   document.getElementById("gender").value=gender;
   updateTherapists(gender);
   buildTable();
-}
-
-function updateTherapists(gender){
-  const select=document.getElementById("therapist");
-  select.innerHTML="";
-  const list=gender==="Male" ? maleTherapists : femaleTherapists;
-
-  list.forEach(name=>{
-    select.innerHTML+=`<option>${name}</option>`;
-  });
-}
+};
 
 function fillTimes(){
   const select=document.getElementById("time");
@@ -233,8 +233,6 @@ function getWeekDates(){
 }
 
 function buildTable(){
-  cleanOldBookings();
-
   const table=document.getElementById("schedule");
   const week=getWeekDates();
   table.innerHTML="";
@@ -251,7 +249,7 @@ function buildTable(){
     let row=`<tr><td class="time">${time}</td>`;
 
     week.forEach(day=>{
-      const list=bookings.filter(b=>b.date===day.date && b.time===time);
+      const list=bookings.filter(b=>b.date===day.date && b.time===time && b.date>=todayISO());
 
       if(list.length>0){
         row+=`<td>`;
@@ -273,7 +271,7 @@ function buildTable(){
   });
 }
 
-function addBooking(){
+window.addBooking = async function(){
   const date=document.getElementById("date").value;
   const dayEn=getEnglishDay(date);
   const gender=hydroDays[dayEn];
@@ -301,16 +299,35 @@ function addBooking(){
     return;
   }
 
-  bookings.push({date,day:dayEn,gender,time,therapist,patient});
+  await addDoc(bookingsRef,{
+    date,
+    day:dayEn,
+    gender,
+    time,
+    therapist,
+    patient,
+    createdAt:new Date()
+  });
 
   document.getElementById("patient").value="";
-  buildTable();
+};
+
+function listenBookings(){
+  const q=query(bookingsRef, orderBy("createdAt"));
+
+  onSnapshot(q,(snapshot)=>{
+    bookings=[];
+    snapshot.forEach(doc=>{
+      bookings.push({ id:doc.id, ...doc.data() });
+    });
+    buildTable();
+  });
 }
 
 fillTimes();
 document.getElementById("date").value=todayISO();
-updateByDate();
-buildTable();
+window.updateByDate();
+listenBookings();
 </script>
 
 </body>
