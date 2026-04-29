@@ -9,117 +9,174 @@ body {
     margin: 0;
     font-family: Tahoma, Arial;
     direction: rtl;
-    background: #eef3f8;
+    background: linear-gradient(135deg, #eef6ff, #f8fafc);
+    color: #0f172a;
 }
 
-.header {
-    background: linear-gradient(90deg, #005b9f, #0077c8);
+.hero {
+    background: linear-gradient(135deg, #005b9f, #0077c8);
     color: white;
-    padding: 18px 35px;
+    padding: 35px 50px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.hero-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 30px;
 }
 
-.logo-box {
+.brand {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 22px;
 }
 
-.logo-box img {
-    width: 75px;
-    height: 75px;
+.logo {
+    width: 135px;
+    height: 135px;
     object-fit: contain;
     background: white;
-    border-radius: 14px;
-    padding: 5px;
+    border-radius: 28px;
+    padding: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
-.title h1 {
+.brand h1 {
     margin: 0;
-    font-size: 26px;
+    font-size: 34px;
 }
 
-.title p {
-    margin: 5px 0 0;
-    font-size: 14px;
-    opacity: 0.9;
+.brand p {
+    margin: 8px 0 0;
+    font-size: 17px;
+    opacity: 0.95;
 }
 
 .date-box {
+    background: rgba(255,255,255,0.16);
+    padding: 18px 25px;
+    border-radius: 18px;
     text-align: center;
-    font-size: 18px;
+    min-width: 150px;
+}
+
+.date-box div:first-child {
+    font-size: 22px;
     font-weight: bold;
 }
 
 .main {
-    padding: 40px;
+    width: 92%;
+    margin: 35px auto;
 }
 
-.welcome {
-    background: white;
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+.section-title {
+    text-align: center;
     margin-bottom: 30px;
 }
 
-.welcome h2 {
-    margin-top: 0;
+.section-title h2 {
     color: #005b9f;
+    font-size: 30px;
+    margin: 0;
+}
+
+.section-title p {
+    color: #64748b;
+    margin-top: 8px;
+    font-size: 16px;
 }
 
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
+    gap: 26px;
 }
 
 .card {
     background: white;
-    border-radius: 20px;
-    padding: 30px 20px;
-    min-height: 160px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+    border-radius: 24px;
+    padding: 30px;
+    min-height: 210px;
     cursor: pointer;
+    box-shadow: 0 8px 22px rgba(15,23,42,0.08);
     transition: 0.25s;
-    border-top: 6px solid #f59e0b;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 7px;
+    background: #f59e0b;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.14);
+    transform: translateY(-8px);
+    box-shadow: 0 14px 35px rgba(15,23,42,0.16);
+}
+
+.icon {
+    width: 62px;
+    height: 62px;
+    background: #eef6ff;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 20px;
 }
 
 .card h3 {
+    margin: 0;
     color: #005b9f;
-    font-size: 23px;
-    margin: 0 0 12px;
+    font-size: 25px;
+}
+
+.card h4 {
+    margin: 7px 0 15px;
+    color: #f59e0b;
+    font-size: 16px;
+    direction: ltr;
+    text-align: right;
 }
 
 .card p {
-    color: #555;
+    color: #475569;
+    line-height: 1.9;
     font-size: 15px;
-    line-height: 1.8;
+    margin: 0;
 }
 
 .footer {
     text-align: center;
-    color: #777;
-    margin-top: 35px;
+    color: #64748b;
+    margin: 35px 0 20px;
     font-size: 14px;
 }
 
-@media (max-width: 900px) {
-    .cards {
-        grid-template-columns: 1fr;
+@media (max-width: 950px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
     }
 
-    .header {
+    .brand {
         flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -127,49 +184,57 @@ body {
 
 <body>
 
-<div class="header">
-    <div class="logo-box">
-        <img src="logo.png" alt="شعار مركز عكاز">
-        <div class="title">
-            <h1>مركز عكاز للعلاج الطبيعي</h1>
-            <p>نظام مواعيد وجداول المركز</p>
+<div class="hero">
+    <div class="hero-content">
+        <div class="brand">
+            <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+            <div>
+                <h1>بوابة مركز عكاز للعلاج الطبيعي</h1>
+                <p>نظام إدارة الجداول والمواعيد الداخلية للمركز</p>
+            </div>
         </div>
-    </div>
 
-    <div class="date-box">
-        <div id="dayName"></div>
-        <div id="dateToday"></div>
+        <div class="date-box">
+            <div id="dayName"></div>
+            <div id="dateToday"></div>
+        </div>
     </div>
 </div>
 
 <div class="main">
 
-    <div class="welcome">
+    <div class="section-title">
         <h2>لوحة التحكم الرئيسية</h2>
-        <p>اختر القسم المطلوب لإدارة الجداول والمواعيد الداخلية للمركز.</p>
+        <p>اختر القسم المطلوب لإدارة العمليات اليومية داخل المركز</p>
     </div>
 
     <div class="cards">
 
         <div class="card" onclick="go('work-schedule.html')">
+            <div class="icon">📅</div>
             <h3>جدول دوام الموظفين</h3>
-            <p>إدارة دوام قسم الرجال، قسم النساء، والاستقبال بنظام الشفتات.</p>
+            <h4>Staff Work Schedule</h4>
+            <p>إدارة دوام قسم الرجال، قسم النساء، والاستقبال بنظام شفت واحد أو شفتين.</p>
         </div>
 
         <div class="card" onclick="go('kids-rooms.html')">
+            <div class="icon">🧸</div>
             <h3>حجز غرف الأطفال</h3>
-            <p>جدول أسبوعي لحجز غرفة الأطفال في الدور الأول والدور الثاني.</p>
+            <h4>Pediatric Rooms Booking</h4>
+            <p>تنظيم حجز غرف الأطفال في الدور الأول والدور الثاني حسب الأيام والأوقات.</p>
         </div>
 
         <div class="card" onclick="go('hydrotherapy.html')">
-            <h3>العلاج المائي</h3>
-            <p>حجز مواعيد العلاج المائي وظهورها تلقائيًا في الجدول.</p>
+            <div class="icon">💧</div>
+            <h3>جدول العلاج المائي</h3>
+            <h4>Hydrotherapy Appointments</h4>
+            <p>حجز مواعيد العلاج المائي حسب أيام الرجال والنساء مع ظهورها في الجدول.</p>
         </div>
 
     </div>
 
     <div class="footer">
-        مركز عكاز للعلاج الطبيعي ©
+        مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
     </div>
 
 </div>
