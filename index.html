@@ -49,6 +49,52 @@ body{
   overflow:hidden;
 }
 
+  .theme-btn{
+  background:white;
+  color:#005b9f;
+  border:none;
+  padding:10px 14px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:18px;
+  font-weight:bold;
+}
+
+body.dark{
+  background:#0f172a !important;
+  color:#e2e8f0 !important;
+}
+
+body.dark .card,
+body.dark .schedule-box,
+body.dark .controls-card{
+  background:#1e293b !important;
+  border-color:#334155 !important;
+}
+
+body.dark table{
+  background:#1e293b !important;
+}
+
+body.dark td{
+  background:#1e293b !important;
+  border-color:#334155 !important;
+}
+
+body.dark th{
+  background:#020617 !important;
+}
+
+body.dark select,
+body.dark input{
+  background:#0f172a !important;
+  color:#e2e8f0 !important;
+  border-color:#475569 !important;
+}
+
+body.dark .topbar{
+  background:linear-gradient(135deg,#020617,#1e3a8a) !important;
+}
 .hero::before{
   content:"";
   position:absolute;
@@ -567,6 +613,6 @@ updateClock();
 rotateQuotes();
 setInterval(rotateQuotes,9000);
 </script>
-
+<script src="theme.js"></script>
 </body>
 </html>
