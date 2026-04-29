@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>غرف الأطفال</title>
 
+<style>
+body {
+    font-family: Arial;
+    direction: rtl;
+    text-align: center;
+    background: #f5f7fa;
+}
+
+h1 {
+    color: #1e3a8a;
+    margin-top: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #1e3a8a;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    background: white;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    min-width: 80px;
+    cursor: pointer;
+}
+
+th {
+    background: #1e3a8a;
+    color: white;
+}
+
+.time {
+    background: #eee;
+    cursor: default;
+}
+
+td:hover {
+    background: #dbeafe;
+}
+</style>
+</head>
+
+<body>
+
+<h1>حجز غرف الأطفال</h1>
+
+<button onclick="switchFloor(1)">الدور الأول</button>
+<button onclick="switchFloor(2)">الدور الثاني</button>
+
+<h3 id="floorTitle">الدور الأول</h3>
+
+<table id="schedule"></table>
+
+<script>
+
+let currentFloor = 1;
+
+const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+const times = ["9","10","11","12","4","5","6","7","8"];
+
+function buildTable() {
+    let table = document.getElementById("schedule");
+    table.innerHTML = "";
+
+    let header = "<tr><th>الوقت</th>";
+    days.forEach(d => header += `<th>${d}</th>`);
+    header += "</tr>";
+    table.innerHTML += header;
+
+    times.forEach(time => {
+        let row = `<tr><td class="time">${time}</td>`;
+
+        days.forEach(day => {
+            row += `<td onclick="editCell(this)"></td>`;
+        });
+
+        row += "</tr>";
+        table.innerHTML += row;
+    });
+}
+
+function editCell(cell) {
+    let name = prompt("اكتب اسم الأخصائي:");
+    if(name !== null) {
+        cell.innerText = name;
+    }
+}
+
+function switchFloor(floor) {
+    currentFloor = floor;
+    document.getElementById("floorTitle").innerText =
+        floor === 1 ? "الدور الأول" : "الدور الثاني";
+    buildTable();
+}
+
+buildTable();
+
+</script>
+
+</body>
+</html>
