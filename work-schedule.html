@@ -111,7 +111,11 @@ const shiftTimes={
   }
 };
 
-const slotsCount={men:2,women:3,reception:2};
+const slotsCount={
+  men:{single:2,split:2},
+  women:{single:3,split:3},
+  reception:{single:1,split:2}
+};
   
 const employees={
   men:{
@@ -174,8 +178,8 @@ function buildTable(title,shift,label,time){
 
   days.forEach(day=>{
     html+=`<td>`;
-    for(let i=0;i<slotsCount[currentSection];i++){
-      const id=makeId(currentSection,shift,day,i);
+for(let i=0;i<slotsCount[currentSection][shift];i++){
+  const id=makeId(currentSection,shift,day,i);
       const value=savedData[id]?.employee || "—";
       html+=createSelect(id,value);
     }
