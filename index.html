@@ -2,68 +2,174 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>بوابة مركز عكاز</title>
+<title>بوابة مركز عكاز الداخلية</title>
 
 <style>
 body {
-    font-family: Arial;
+    margin: 0;
+    font-family: Tahoma, Arial;
     direction: rtl;
-    text-align: center;
-    background: #f3f6fb;
+    background: #eef3f8;
 }
 
-h1 {
-    margin-top: 40px;
-    color: #1e3a8a;
-}
-
-.container {
+.header {
+    background: linear-gradient(90deg, #005b9f, #0077c8);
+    color: white;
+    padding: 18px 35px;
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 50px;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-box img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    background: white;
+    border-radius: 14px;
+    padding: 5px;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.title p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.date-box {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.main {
+    padding: 40px;
+}
+
+.welcome {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.welcome h2 {
+    margin-top: 0;
+    color: #005b9f;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 
 .card {
-    width: 220px;
-    height: 150px;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+    border-radius: 20px;
+    padding: 30px 20px;
+    min-height: 160px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.25s;
+    border-top: 6px solid #f59e0b;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    background: #1e3a8a;
-    color: white;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.14);
+}
+
+.card h3 {
+    color: #005b9f;
+    font-size: 23px;
+    margin: 0 0 12px;
+}
+
+.card p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.footer {
+    text-align: center;
+    color: #777;
+    margin-top: 35px;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>بوابة مركز عكاز</h1>
-
-<div class="container">
-
-    <div class="card" onclick="go('work-schedule.html')">
-        جدول الدوام
+<div class="header">
+    <div class="logo-box">
+        <img src="logo.png" alt="شعار مركز عكاز">
+        <div class="title">
+            <h1>بوابة مركز عكاز الداخلية</h1>
+            <p>نظام مواعيد وجداول المركز</p>
+        </div>
     </div>
 
-    <div class="card" onclick="go('kids-rooms.html')">
-        غرف الأطفال
+    <div class="date-box">
+        <div id="dayName"></div>
+        <div id="dateToday"></div>
+    </div>
+</div>
+
+<div class="main">
+
+    <div class="welcome">
+        <h2>لوحة التحكم الرئيسية</h2>
+        <p>اختر القسم المطلوب لإدارة الجداول والمواعيد الداخلية للمركز.</p>
     </div>
 
-    <div class="card" onclick="go('hydrotherapy.html')">
-        العلاج المائي
+    <div class="cards">
+
+        <div class="card" onclick="go('work-schedule.html')">
+            <h3>جدول دوام الموظفين</h3>
+            <p>إدارة دوام قسم الرجال، قسم النساء، والاستقبال بنظام الشفتات.</p>
+        </div>
+
+        <div class="card" onclick="go('kids-rooms.html')">
+            <h3>حجز غرف الأطفال</h3>
+            <p>جدول أسبوعي لحجز غرفة الأطفال في الدور الأول والدور الثاني.</p>
+        </div>
+
+        <div class="card" onclick="go('hydrotherapy.html')">
+            <h3>العلاج المائي</h3>
+            <p>حجز مواعيد العلاج المائي وظهورها تلقائيًا في الجدول.</p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        مركز عكاز للعلاج الطبيعي ©
     </div>
 
 </div>
@@ -72,6 +178,12 @@ h1 {
 function go(page) {
     window.location.href = page;
 }
+
+const days = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+const today = new Date();
+
+document.getElementById("dayName").innerText = days[today.getDay()];
+document.getElementById("dateToday").innerText = today.toLocaleDateString("ar-SA");
 </script>
 
 </body>
