@@ -11,15 +11,11 @@
   --blue2:#0077c8;
   --dark:#08345f;
   --orange:#f59e0b;
-  --light:#f4f8fc;
   --text:#0f172a;
   --muted:#64748b;
-  --card:#ffffff;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -31,40 +27,15 @@ body{
   color:var(--text);
 }
 
-/* HERO */
 .hero{
   position:relative;
   min-height:360px;
-  background:
-    linear-gradient(135deg,rgba(0,91,159,.98),rgba(0,119,200,.95)),
-    url("");
+  background:linear-gradient(135deg,rgba(0,91,159,.98),rgba(0,119,200,.95));
   color:white;
   overflow:hidden;
   border-bottom-left-radius:42px;
   border-bottom-right-radius:42px;
   box-shadow:0 18px 45px rgba(8,52,95,.22);
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:520px;
-  height:520px;
-  background:rgba(255,255,255,.08);
-  border-radius:50%;
-  top:-260px;
-  right:-160px;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  left:-160px;
-  bottom:-220px;
-  width:420px;
-  height:420px;
-  background:rgba(245,158,11,.16);
-  border-radius:50%;
 }
 
 .hero-inner{
@@ -80,17 +51,38 @@ body{
   align-items:center;
 }
 
-/* CLOCK */
+.theme-btn{
+  position:absolute;
+  top:22px;
+  left:28px;
+  z-index:10;
+  background:white;
+  color:var(--blue);
+  border:none;
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  cursor:pointer;
+  font-size:22px;
+  font-weight:bold;
+  box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
 .clock-card{
   background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.22);
   border-radius:30px;
-  padding:20px;
+  padding:18px;
   text-align:center;
   backdrop-filter:blur(10px);
   box-shadow:0 18px 35px rgba(0,0,0,.18);
-}
 
+  /* أهم شيء */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
 .clock-circle{
   width:158px;
   height:158px;
@@ -102,11 +94,11 @@ body{
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  box-shadow:
-    inset 0 0 0 8px rgba(255,255,255,.08),
-    0 16px 35px rgba(0,0,0,.26);
+  box-shadow:inset 0 0 0 8px rgba(255,255,255,.08),0 16px 35px rgba(0,0,0,.26);
 }
-
+.clock-card{
+  justify-self:start; /* يخليها يسار */
+}
 #clockTime{
   direction:ltr;
   font-size:29px;
@@ -134,28 +126,54 @@ body{
   color:#dbeafe;
 }
 
-/* BRAND */
+.brand{
+  text-align:center;
+}
+
 .brand-header{
   display:flex;
   align-items:center;
   gap:18px;
+  margin-bottom:10px;
 }
 
 .logo{
-  width:70px;
-  height:70px;
+  width:120px;
+  height:120px;
   object-fit:contain;
-  background:white;
-  border-radius:18px;
-  padding:6px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
+  display:block;
+  margin:auto;
 }
 
-.brand h1{
-  font-size:34px;
-  margin:0;
+  .logo-box{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
 }
-/* QUOTE */
+  
+.brand h1{
+  font-size:38px;
+  margin:0;
+  line-height:1.4;
+  font-weight:900;
+}
+
+.brand .subtitle{
+  max-width:760px;
+  margin:12px 0 0;
+  color:#eaf6ff;
+  font-size:17px;
+  line-height:1.9;
+}
+
+.brand .subtitle-en{
+  margin-top:8px;
+  color:#ffcf7a;
+  font-size:14px;
+  direction:ltr;
+  text-align:right;
+}
+
 .quote-strip{
   width:92%;
   max-width:1250px;
@@ -194,7 +212,6 @@ body{
   text-align:center;
 }
 
-/* CARDS */
 .main{
   width:92%;
   max-width:1450px;
@@ -246,21 +263,9 @@ body{
   background:linear-gradient(90deg,var(--orange),#ffbd4a);
 }
 
-.card::after{
-  content:"";
-  position:absolute;
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  background:rgba(0,91,159,.06);
-  left:-40px;
-  bottom:-40px;
-}
-
 .card:hover{
   transform:translateY(-9px);
   box-shadow:0 26px 55px rgba(15,23,42,.16);
-  border-color:#cfe0ee;
 }
 
 .icon{
@@ -273,7 +278,6 @@ body{
   justify-content:center;
   font-size:33px;
   margin-bottom:22px;
-  box-shadow:inset 0 0 0 1px #e2e8f0;
 }
 
 .card h3{
@@ -308,6 +312,54 @@ body{
   font-size:14px;
 }
 
+/* DARK MODE */
+body.dark{
+  background:linear-gradient(180deg,#020617,#0f172a);
+  color:#e2e8f0;
+}
+
+body.dark .hero{
+  background:linear-gradient(135deg,#020617,#1e3a8a);
+}
+
+body.dark .clock-card{
+  background:rgba(15,23,42,.65);
+  border-color:#334155;
+}
+
+body.dark .clock-circle{
+  background:linear-gradient(145deg,#020617,#1e40af);
+}
+
+body.dark .quote-strip,
+body.dark .card{
+  background:#1e293b;
+  border-color:#334155;
+  box-shadow:0 18px 35px rgba(0,0,0,.25);
+}
+
+body.dark #dailyQuote,
+body.dark .card h3,
+body.dark .section-head h2{
+  color:#93c5fd;
+}
+
+body.dark .section-head p,
+body.dark .card p,
+body.dark .footer{
+  color:#cbd5e1;
+}
+
+body.dark .icon{
+  background:#0f172a;
+}
+
+body.dark .theme-btn{
+  background:#0f172a;
+  color:#fbbf24;
+  border:1px solid #334155;
+}
+
 /* RESPONSIVE */
 @media(max-width:1150px){
   .hero-inner{
@@ -317,15 +369,16 @@ body{
   .brand{
     text-align:center;
   }
+  .brand-header{
+    justify-content:center;
+    flex-direction:column;
+  }
   .brand .subtitle{
     margin-left:auto;
     margin-right:auto;
   }
   .brand .subtitle-en{
     text-align:center;
-  }
-  .logo-wrap{
-    margin:auto;
   }
   .cards{
     grid-template-columns:repeat(2,1fr);
@@ -337,12 +390,16 @@ body{
     border-bottom-left-radius:26px;
     border-bottom-right-radius:26px;
   }
-  .hero-inner{
-    padding:28px 0 48px;
-  }
-  .clock-card{
-    order:3;
-  }
+.hero-inner{
+  width:94%;
+  max-width:1450px;
+  margin:auto;
+  padding:42px 0 58px;
+  display:grid;
+  grid-template-columns: 260px 1fr 200px; /* يسار - وسط - يمين */
+  align-items:center;
+  gap:20px;
+}
   .brand h1{
     font-size:25px;
   }
@@ -350,8 +407,8 @@ body{
     font-size:14px;
   }
   .logo{
-    width:95px;
-    height:95px;
+    width:75px;
+    height:75px;
   }
   .clock-circle{
     width:135px;
@@ -377,6 +434,9 @@ body{
 <body>
 
 <header class="hero">
+
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+
   <div class="hero-inner">
 
     <div class="clock-card">
@@ -389,7 +449,11 @@ body{
     </div>
 
     <div class="brand">
-      <h1>بوابة مركز عكاز الداخلية</h1>
+      <div class="brand-header">
+        <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+        <h1>بوابة مركز عكاز الداخلية</h1>
+      </div>
+
       <p class="subtitle">
         بوابة داخلية متكاملة تجمع أنظمة مركز عكاز لإدارة الجداول، المواعيد، والعمليات اليومية بكل سهولة ووضوح
       </p>
@@ -397,11 +461,6 @@ body{
         A unified internal portal for schedules, appointments, home visits, and daily workflow management
       </p>
     </div>
-
-<div class="brand-header">
-  <img src="logo.png" class="logo">
-  <h1>بوابة مركز عكاز الداخلية</h1>
-</div>
 
   </div>
 </header>
@@ -459,6 +518,21 @@ body{
 <script>
 function go(page){
   window.location.href = page;
+}
+
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  localStorage.setItem("akazTheme", isDark ? "dark" : "light");
+  document.getElementById("themeBtn").innerText = isDark ? "☀️" : "🌙";
+}
+
+function loadTheme(){
+  const saved = localStorage.getItem("akazTheme");
+  if(saved === "dark"){
+    document.body.classList.add("dark");
+    document.getElementById("themeBtn").innerText = "☀️";
+  }
 }
 
 function updateClock(){
@@ -539,6 +613,7 @@ function rotateQuotes(){
   },350);
 }
 
+loadTheme();
 setInterval(updateClock,1000);
 updateClock();
 
