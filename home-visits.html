@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الزيارات المنزلية</title>
 
+<style>
+body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
+.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
+.brand h2{margin:0;font-size:24px}
+.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
+.home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+
+.main{width:96%;margin:25px auto}
+.therapists{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+.therapist-card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:16px;text-align:center;cursor:pointer;font-weight:bold;color:#005b9f;box-shadow:0 5px 15px #0001}
+.therapist-card.active{background:#005b9f;color:white}
+
+.panel{display:grid;grid-template-columns:340px 1fr;gap:22px}
+.card{background:white;border-radius:18px;padding:20px;box-shadow:0 6px 20px #0001;border:1px solid #e2e8f0}
+.card h3{margin-top:0;color:#005b9f;border-bottom:2px solid #e2e8f0;padding-bottom:10px}
+label{display:block;margin-bottom:6px;font-weight:bold}
+input,select,textarea{width:100%;margin-bottom:13px;padding:11px;font-size:15px;border:1px solid #cbd5e1;border-radius:9px;box-sizing:border-box;font-family:Tahoma,Arial}
+textarea{height:75px;resize:vertical}
+.save-btn{width:100%;padding:13px;background:#005b9f;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:bold;font-size:16px}
+
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:900px}
+th{background:#005b9f;color:white;padding:11px}
+td{border:1px solid #d7dee8;padding:9px;text-align:center;background:white}
+.badge{padding:6px 10px;border-radius:999px;font-weight:bold;font-size:13px}
+.inside{background:#dcfce7;color:#166534}
+.outside{background:#fee2e2;color:#991b1b}
+.delete-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:bold}
+.selected-title{text-align:center;color:#005b9f;margin:0 0 18px}
+@media(max-width:950px){
+.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.home-btn{width:100%}
+.therapists{grid-template-columns:1fr 1fr}.panel{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo">
+    <div>
+      <h2>الزيارات المنزلية</h2>
+      <p>Home Visits</p>
+    </div>
+  </div>
+  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+</div>
+
+<div class="main">
+
+  <div class="therapists" id="therapistsList"></div>
+
+  <h2 id="selectedTitle" class="selected-title"></h2>
+
+  <div class="panel">
+    <div class="card">
+      <h3>إضافة زيارة</h3>
+
+      <label>التاريخ</label>
+      <input type="date" id="visitDate">
+
+      <label>اسم المريض</label>
+      <input type="text" id="patientName" placeholder="اسم المريض">
+
+      <label>رقم الملف</label>
+      <input type="text" id="fileNumber" placeholder="رقم الملف">
+
+      <label>بداية الجلسة</label>
+      <input type="time" id="startTime">
+
+      <label>نهاية الجلسة</label>
+      <input type="time" id="endTime">
+
+      <label>حالة الدوام</label>
+      <select id="workStatus">
+        <option value="داخل الدوام">داخل الدوام</option>
+        <option value="خارج الدوام">خارج الدوام</option>
+      </select>
+
+      <label>ملاحظات</label>
+      <textarea id="notes" placeholder="اختياري"></textarea>
+
+      <button class="save-btn" onclick="addVisit()">إضافة الزيارة</button>
+    </div>
+
+    <div class="card">
+      <h3>جدول الزيارات</h3>
+      <div class="table-wrap">
+        <table id="visitsTable"></table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const visitsRef = collection(db,"homeVisits");
+
+const therapists=[
+  "د. حاتم الاحمدي",
+  "د. عبدالرحمن السويداء",
+  "د. عبدالرحمن السليمي",
+  "د. عبدالعزيز الحمدان",
+  "د. ريناد حميد",
+  "د. ابتسام سويلم",
+  "د. سلمى فرحان",
+  "د. هند فهيد",
+  "د. أسماء فهيد",
+  "د. مها فريح"
+];
+
+let selectedTherapist=therapists[0];
+let visits=[];
+
+function todayISO(){
+  const d=new Date();
+  d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  return d.toISOString().split("T")[0];
+}
+
+function renderTherapists(){
+  const box=document.getElementById("therapistsList");
+  box.innerHTML="";
+
+  therapists.forEach(name=>{
+    const active=name===selectedTherapist ? "active" : "";
+    box.innerHTML+=`<div class="therapist-card ${active}" onclick="selectTherapist('${name}')">${name}</div>`;
+  });
+}
+
+window.selectTherapist=function(name){
+  selectedTherapist=name;
+  renderTherapists();
+  renderVisits();
+};
+
+window.addVisit=async function(){
+  const visitDate=document.getElementById("visitDate").value;
+  const patientName=document.getElementById("patientName").value.trim();
+  const fileNumber=document.getElementById("fileNumber").value.trim();
+  const startTime=document.getElementById("startTime").value;
+  const endTime=document.getElementById("endTime").value;
+  const workStatus=document.getElementById("workStatus").value;
+  const notes=document.getElementById("notes").value.trim();
+
+  if(!visitDate || !patientName || !fileNumber || !startTime || !endTime){
+    alert("عبّئ البيانات الأساسية");
+    return;
+  }
+
+  await addDoc(visitsRef,{
+    therapist:selectedTherapist,
+    visitDate,
+    patientName,
+    fileNumber,
+    startTime,
+    endTime,
+    workStatus,
+    notes,
+    createdAt:new Date()
+  });
+
+  document.getElementById("patientName").value="";
+  document.getElementById("fileNumber").value="";
+  document.getElementById("startTime").value="";
+  document.getElementById("endTime").value="";
+  document.getElementById("notes").value="";
+};
+
+window.deleteVisit=async function(id){
+  if(confirm("تأكيد حذف الزيارة؟")){
+    await deleteDoc(doc(db,"homeVisits",id));
+  }
+};
+
+function renderVisits(){
+  document.getElementById("selectedTitle").innerText=selectedTherapist;
+
+  const table=document.getElementById("visitsTable");
+  const list=visits.filter(v=>v.therapist===selectedTherapist);
+
+  table.innerHTML=`
+    <tr>
+      <th>التاريخ</th>
+      <th>المريض</th>
+      <th>رقم الملف</th>
+      <th>البداية</th>
+      <th>النهاية</th>
+      <th>الحالة</th>
+      <th>ملاحظات</th>
+      <th>حذف</th>
+    </tr>
+  `;
+
+  if(list.length===0){
+    table.innerHTML+=`<tr><td colspan="8">لا توجد زيارات مسجلة لهذا الأخصائي</td></tr>`;
+    return;
+  }
+
+  list.forEach(v=>{
+    const badgeClass=v.workStatus==="خارج الدوام" ? "outside" : "inside";
+    table.innerHTML+=`
+      <tr>
+        <td>${v.visitDate}</td>
+        <td>${v.patientName}</td>
+        <td>${v.fileNumber}</td>
+        <td>${v.startTime}</td>
+        <td>${v.endTime}</td>
+        <td><span class="badge ${badgeClass}">${v.workStatus}</span></td>
+        <td>${v.notes || "-"}</td>
+        <td><button class="delete-btn" onclick="deleteVisit('${v.id}')">حذف</button></td>
+      </tr>
+    `;
+  });
+}
+
+function listenVisits(){
+  const q=query(visitsRef,orderBy("visitDate","desc"));
+
+  onSnapshot(q,(snap)=>{
+    visits=[];
+    snap.forEach(item=>{
+      visits.push({id:item.id,...item.data()});
+    });
+    renderVisits();
+  });
+}
+
+document.getElementById("visitDate").value=todayISO();
+renderTherapists();
+listenVisits();
+</script>
+
+</body>
+</html>
