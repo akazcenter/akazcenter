@@ -205,18 +205,20 @@ function renderAllTables() {
     const area = document.getElementById("tablesArea");
     area.innerHTML = "";
 
-    // شفت واحد
     area.innerHTML += buildTable("دوام شفت واحد", [
-        { label: "شفت واحد", time: shiftSettings[currentSection].single }
+        { 
+            label: "شفت واحد", 
+            time: shiftSettings[currentSection].single 
+        }
     ]);
 
-    // شفتين
     area.innerHTML += buildTable("دوام شفتين", [
-        { label: "الشفت الأول", time: shiftSettings[currentSection].splitFirst },
-        { label: "الشفت الثاني", time: shiftSettings[currentSection].splitSecond }
+        { 
+            label: "شفتين", 
+            time: shiftSettings[currentSection].splitFirst + " / " + shiftSettings[currentSection].splitSecond
+        }
     ]);
 }
-
 function buildTable(title, rows) {
     let slots = {
         men: 2,
