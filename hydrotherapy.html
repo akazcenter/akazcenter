@@ -2,184 +2,44 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>العلاج المائي</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جدول العلاج المائي</title>
 
 <style>
-body {
-    font-family: Tahoma, Arial;
-    direction: rtl;
-    background: #f1f5f9;
-    margin: 0;
-    color: #0f172a;
-}
+body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
+.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 8px 20px #0002}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
+.brand h1{margin:0;font-size:24px}
+.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
+.home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
 
-.topbar {
-    background: linear-gradient(90deg, #005b9f, #0077c8);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 26px;
-    font-weight: bold;
-    position: relative;
-}
+.container{width:96%;margin:25px auto;display:grid;grid-template-columns:340px 1fr;gap:22px}
+.card{background:white;border-radius:18px;padding:20px;box-shadow:0 6px 20px #0f172a14;border:1px solid #e2e8f0}
+.card h3{margin-top:0;color:#005b9f;border-bottom:2px solid #e2e8f0;padding-bottom:10px}
+label{display:block;margin-bottom:6px;font-weight:bold}
+input,select{width:100%;margin-bottom:14px;padding:11px;font-size:15px;border:1px solid #cbd5e1;border-radius:9px;box-sizing:border-box;font-family:Tahoma,Arial}
+input[readonly]{background:#f1f5f9;font-weight:bold}
+.save-btn{width:100%;padding:13px;background:#005b9f;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:bold;font-size:16px}
+.save-btn:hover{background:#00457a}
 
-.home-btn {
-    position: absolute;
-    top: 16px;
-    left: 20px;
-    background: white;
-    color: #005b9f;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.container {
-    width: 96%;
-    margin: 25px auto;
-    display: grid;
-    grid-template-columns: 330px 1fr;
-    gap: 22px;
-}
-
-.card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-}
-
-.card h3 {
-    margin-top: 0;
-    color: #005b9f;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 10px;
-}
-
-label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    margin-bottom: 14px;
-    padding: 11px;
-    font-size: 15px;
-    border: 1px solid #cbd5e1;
-    border-radius: 9px;
-    box-sizing: border-box;
-    font-family: Tahoma, Arial;
-}
-
-input[readonly] {
-    background: #f1f5f9;
-    font-weight: bold;
-}
-
-.save-btn {
-    width: 100%;
-    padding: 13px;
-    background: #005b9f;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.table-wrap {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-th {
-    background: #005b9f;
-    color: white;
-    padding: 12px;
-    font-size: 15px;
-}
-
-td {
-    border: 1px solid #d7dee8;
-    height: 58px;
-    text-align: center;
-    background: white;
-    vertical-align: middle;
-}
-
-.time {
-    background: #eef6ff;
-    font-weight: bold;
-    width: 105px;
-    color: #005b9f;
-}
-
-.male-day {
-    background: #e0f2fe;
-    color: #075985;
-    font-weight: bold;
-}
-
-.female-day {
-    background: #fce7f3;
-    color: #9d174d;
-    font-weight: bold;
-}
-
-.booking {
-    background: #f8fafc;
-    border-right: 5px solid #005b9f;
-    border-radius: 10px;
-    padding: 7px;
-    font-size: 14px;
-    line-height: 1.7;
-    font-weight: bold;
-}
-
-.booking small {
-    color: #475569;
-    font-weight: normal;
-}
-
-.legend {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.badge {
-    padding: 8px 14px;
-    border-radius: 999px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.badge.male {
-    background: #e0f2fe;
-    color: #075985;
-}
-
-.badge.female {
-    background: #fce7f3;
-    color: #9d174d;
-}
-
-@media (max-width: 900px) {
-    .container {
-        grid-template-columns: 1fr;
-    }
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:950px}
+th{background:#005b9f;color:white;padding:12px;font-size:15px}
+td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;vertical-align:middle;padding:7px}
+.time{background:#eef6ff;font-weight:bold;width:105px;color:#005b9f;direction:ltr}
+.male-day{background:#e0f2fe!important;color:#075985!important;font-weight:bold}
+.female-day{background:#fce7f3!important;color:#9d174d!important;font-weight:bold}
+.booking{background:#f8fafc;border-right:5px solid #005b9f;border-radius:10px;padding:7px;font-size:14px;line-height:1.7;font-weight:bold}
+.booking small{color:#475569;font-weight:normal}
+.legend{display:flex;gap:12px;justify-content:center;margin-bottom:15px;flex-wrap:wrap}
+.badge{padding:8px 14px;border-radius:999px;font-weight:bold;font-size:14px}
+.badge.male{background:#e0f2fe;color:#075985}
+.badge.female{background:#fce7f3;color:#9d174d}
+.note{text-align:center;color:#64748b;font-size:14px;margin-top:10px}
+@media(max-width:900px){
+.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.brand h1{font-size:21px}.home-btn{width:100%}
+.container{grid-template-columns:1fr;width:98%}table{min-width:1050px}
 }
 </style>
 </head>
@@ -187,193 +47,263 @@ td {
 <body>
 
 <div class="topbar">
-    <button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
-    جدول العلاج المائي
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>جدول العلاج المائي</h1>
+      <p>Hydrotherapy Appointments</p>
+    </div>
+  </div>
+  <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
 </div>
 
 <div class="container">
 
-    <div class="card">
-        <h3>إضافة حجز</h3>
+  <div class="card">
+    <h3>إضافة حجز</h3>
 
-        <label>اليوم</label>
-        <select id="day" onchange="updateGender()">
-            <option value="Saturday">Saturday</option>
-            <option value="Sunday">Sunday</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-        </select>
+    <label>التاريخ</label>
+    <input type="date" id="date" onchange="updateByDate()">
 
-        <label>القسم</label>
-        <input type="text" id="gender" readonly>
+    <label>اليوم</label>
+    <input type="text" id="dayName" readonly>
 
-        <label>الوقت</label>
-        <select id="time"></select>
+    <label>القسم</label>
+    <input type="text" id="gender" readonly>
 
-        <label>الأخصائي</label>
-        <select id="therapist"></select>
+    <label>الوقت</label>
+    <select id="time"></select>
 
-        <label>اسم المريض / رقم الملف</label>
-        <input type="text" id="patient" placeholder="مثال: محمد / 1025">
+    <label>الأخصائي</label>
+    <select id="therapist"></select>
 
-        <button class="save-btn" onclick="addBooking()">إضافة الحجز</button>
+    <label>اسم المريض / رقم الملف</label>
+    <input type="text" id="patient" placeholder="مثال: محمد / 1025">
+
+    <button class="save-btn" onclick="addBooking()">إضافة الحجز</button>
+
+    <div class="note">المواعيد القديمة لا تظهر في الجدول تلقائيًا</div>
+  </div>
+
+  <div class="card">
+    <div class="legend">
+      <div class="badge male">Male Days</div>
+      <div class="badge female">Female Days</div>
     </div>
 
-    <div class="card">
-        <div class="legend">
-            <div class="badge male">Male Days</div>
-            <div class="badge female">Female Days</div>
-        </div>
-
-        <div class="table-wrap">
-            <table id="schedule"></table>
-        </div>
+    <div class="table-wrap">
+      <table id="schedule"></table>
     </div>
+  </div>
 
 </div>
 
 <script>
-function goHome() {
-    window.location.href = "index.html";
-}
+function goHome(){window.location.href="index.html"}
 
-const hydroDays = {
-    "Saturday": "Male",
-    "Sunday": "Female",
-    "Monday": "Male",
-    "Tuesday": "Female",
-    "Wednesday": "Male",
-    "Thursday": "Female"
+const dayNamesArabic=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+const dayNamesEnglish=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+const hydroDays={
+  "Saturday":"Male",
+  "Sunday":"Female",
+  "Monday":"Male",
+  "Tuesday":"Female",
+  "Wednesday":"Male",
+  "Thursday":"Female"
 };
 
-const maleTherapists = [
-    "د. حاتم الاحمدي",
-    "د. عبدالرحمن السويداء",
-    "د. عبدالرحمن السليمي",
-    "د. عبدالعزيز الحمدان"
+const maleTherapists=[
+  "د. حاتم الاحمدي",
+  "د. عبدالرحمن السويداء",
+  "د. عبدالرحمن السليمي",
+  "د. عبدالعزيز الحمدان"
 ];
 
-const femaleTherapists = [
-    "د. ريناد حميد",
-    "د. ابتسام سويلم",
-    "د. سلمى فرحان",
-    "د. هند فهيد",
-    "د. أسماء فهيد",
-    "د. مها فريح"
+const femaleTherapists=[
+  "د. ريناد حميد",
+  "د. ابتسام سويلم",
+  "د. سلمى فرحان",
+  "د. هند فهيد",
+  "د. أسماء فهيد",
+  "د. مها فريح"
 ];
 
-const days = ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"];
-
-const times = [
-    "09:00 AM","09:30 AM","10:00 AM","10:30 AM",
-    "11:00 AM","11:30 AM","12:00 PM","12:30 PM",
-    "01:00 PM","01:30 PM","02:00 PM","02:30 PM",
-    "03:00 PM","03:30 PM","04:00 PM","04:30 PM",
-    "05:00 PM","05:30 PM","06:00 PM","06:30 PM",
-    "07:00 PM","07:30 PM","08:00 PM","08:30 PM",
-    "09:00 PM"
+const times=[
+  "09:00 AM","09:30 AM","10:00 AM","10:30 AM",
+  "11:00 AM","11:30 AM","12:00 PM","12:30 PM",
+  "01:00 PM","01:30 PM","02:00 PM","02:30 PM",
+  "03:00 PM","03:30 PM","04:00 PM","04:30 PM",
+  "05:00 PM","05:30 PM","06:00 PM","06:30 PM",
+  "07:00 PM","07:30 PM","08:00 PM","08:30 PM",
+  "09:00 PM"
 ];
 
-let bookings = [];
+let bookings=[];
 
-function updateGender() {
-    const day = document.getElementById("day").value;
-    document.getElementById("gender").value = hydroDays[day];
-    updateTherapists();
+function todayISO(){
+  const d=new Date();
+  d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  return d.toISOString().split("T")[0];
 }
 
-function updateTherapists() {
-    const day = document.getElementById("day").value;
-    const gender = hydroDays[day];
-    const select = document.getElementById("therapist");
-
-    select.innerHTML = "";
-
-    const list = gender === "Male" ? maleTherapists : femaleTherapists;
-
-    list.forEach(name => {
-        select.innerHTML += `<option>${name}</option>`;
-    });
+function getEnglishDay(dateString){
+  const d=new Date(dateString+"T12:00:00");
+  return dayNamesEnglish[d.getDay()];
 }
 
-function fillTimes() {
-    const select = document.getElementById("time");
-    select.innerHTML = "";
-
-    times.forEach(t => {
-        select.innerHTML += `<option>${t}</option>`;
-    });
+function getArabicDay(dateString){
+  const d=new Date(dateString+"T12:00:00");
+  return dayNamesArabic[d.getDay()];
 }
 
-function buildTable() {
-    const table = document.getElementById("schedule");
-    table.innerHTML = "";
-
-    let header = "<tr><th>Time</th>";
-
-    days.forEach(day => {
-        const type = hydroDays[day];
-        const className = type === "Male" ? "male-day" : "female-day";
-        header += `<th class="${className}">${day}<br>${type}</th>`;
-    });
-
-    header += "</tr>";
-    table.innerHTML += header;
-
-    times.forEach(time => {
-        let row = `<tr><td class="time">${time}</td>`;
-
-        days.forEach(day => {
-            const booking = bookings.find(b => b.day === day && b.time === time);
-
-            if (booking) {
-                row += `
-                    <td>
-                        <div class="booking">
-                            ${booking.patient}<br>
-                            <small>${booking.therapist}</small>
-                        </div>
-                    </td>
-                `;
-            } else {
-                row += "<td></td>";
-            }
-        });
-
-        row += "</tr>";
-        table.innerHTML += row;
-    });
+function isOldBooking(booking){
+  return booking.date < todayISO();
 }
 
-function addBooking() {
-    const day = document.getElementById("day").value;
-    const gender = document.getElementById("gender").value;
-    const time = document.getElementById("time").value;
-    const therapist = document.getElementById("therapist").value;
-    const patient = document.getElementById("patient").value.trim();
+function cleanOldBookings(){
+  bookings=bookings.filter(b=>!isOldBooking(b));
+}
 
-    if (!patient) {
-        alert("اكتب اسم المريض أو رقم الملف");
-        return;
-    }
+function updateByDate(){
+  const date=document.getElementById("date").value;
+  const dayEn=getEnglishDay(date);
+  const dayAr=getArabicDay(date);
 
-    const exists = bookings.some(b => b.day === day && b.time === time);
+  document.getElementById("dayName").value=dayAr + " - " + dayEn;
 
-    if (exists) {
-        alert("هذا الوقت محجوز مسبقًا");
-        return;
-    }
+  const gender=hydroDays[dayEn];
 
-    bookings.push({ day, gender, time, therapist, patient });
+  if(!gender){
+    document.getElementById("gender").value="غير مخصص للعلاج المائي";
+    document.getElementById("therapist").innerHTML="";
+    return;
+  }
 
-    document.getElementById("patient").value = "";
-    buildTable();
+  document.getElementById("gender").value=gender;
+  updateTherapists(gender);
+}
+
+function updateTherapists(gender){
+  const select=document.getElementById("therapist");
+  select.innerHTML="";
+  const list=gender==="Male" ? maleTherapists : femaleTherapists;
+
+  list.forEach(name=>{
+    select.innerHTML+=`<option>${name}</option>`;
+  });
+}
+
+function fillTimes(){
+  const select=document.getElementById("time");
+  select.innerHTML="";
+  times.forEach(t=>select.innerHTML+=`<option>${t}</option>`);
+}
+
+function getWeekDates(){
+  const selected=document.getElementById("date").value || todayISO();
+  const d=new Date(selected+"T12:00:00");
+  const day=d.getDay(); 
+  const diffToSaturday=(day+1)%7;
+  const saturday=new Date(d);
+  saturday.setDate(d.getDate()-diffToSaturday);
+
+  const week=[];
+  for(let i=0;i<6;i++){
+    const x=new Date(saturday);
+    x.setDate(saturday.getDate()+i);
+    const iso=x.toISOString().split("T")[0];
+    week.push({
+      date:iso,
+      en:getEnglishDay(iso),
+      ar:getArabicDay(iso),
+      gender:hydroDays[getEnglishDay(iso)]
+    });
+  }
+  return week;
+}
+
+function buildTable(){
+  cleanOldBookings();
+
+  const table=document.getElementById("schedule");
+  const week=getWeekDates();
+  table.innerHTML="";
+
+  let header="<tr><th>Time</th>";
+  week.forEach(day=>{
+    const cls=day.gender==="Male" ? "male-day" : "female-day";
+    header+=`<th class="${cls}">${day.ar}<br>${day.date}<br>${day.gender}</th>`;
+  });
+  header+="</tr>";
+  table.innerHTML+=header;
+
+  times.forEach(time=>{
+    let row=`<tr><td class="time">${time}</td>`;
+
+    week.forEach(day=>{
+      const booking=bookings.find(b=>b.date===day.date && b.time===time);
+
+      if(booking){
+        row+=`
+        <td>
+          <div class="booking">
+            ${booking.patient}<br>
+            <small>${booking.therapist}</small>
+          </div>
+        </td>`;
+      }else{
+        row+="<td></td>";
+      }
+    });
+
+    row+="</tr>";
+    table.innerHTML+=row;
+  });
+}
+
+function addBooking(){
+  const date=document.getElementById("date").value;
+  const dayEn=getEnglishDay(date);
+  const gender=hydroDays[dayEn];
+  const time=document.getElementById("time").value;
+  const therapist=document.getElementById("therapist").value;
+  const patient=document.getElementById("patient").value.trim();
+
+  if(!date){
+    alert("اختر التاريخ");
+    return;
+  }
+
+  if(!gender){
+    alert("هذا اليوم غير مخصص للعلاج المائي");
+    return;
+  }
+
+  if(!patient){
+    alert("اكتب اسم المريض أو رقم الملف");
+    return;
+  }
+
+  if(date < todayISO()){
+    alert("لا يمكن إضافة حجز بتاريخ قديم");
+    return;
+  }
+
+  const exists=bookings.some(b=>b.date===date && b.time===time);
+  if(exists){
+    alert("هذا الوقت محجوز مسبقًا");
+    return;
+  }
+
+  bookings.push({date,day:dayEn,gender,time,therapist,patient});
+  document.getElementById("patient").value="";
+  buildTable();
 }
 
 fillTimes();
-updateGender();
+document.getElementById("date").value=todayISO();
+updateByDate();
 buildTable();
 </script>
 
