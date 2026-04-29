@@ -7,23 +7,37 @@
 
 <style>
 body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
-.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between}
+.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px}
 .brand{display:flex;align-items:center;gap:14px}
-.logo{width:70px;height:70px;background:white;border-radius:16px;padding:7px}
+.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
+.brand h2{margin:0;font-size:24px}
+.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
 .home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
-.controls{display:flex;justify-content:center;gap:12px;margin:20px}
-.controls button{padding:10px 20px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer}
-.section-title{text-align:center;color:#005b9f;margin:10px}
-.schedule-box{width:96%;margin:20px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001}
-.box-title{background:#f59e0b;color:white;padding:12px;font-size:18px;font-weight:bold;display:flex;justify-content:space-between;align-items:center}
-.clear-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:bold}
+
+.controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
+.controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
+
+.section-title{text-align:center;color:#005b9f;margin:15px 0}
+.schedule-box{width:96%;margin:24px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001;overflow:hidden;border:1px solid #e2e8f0}
+.box-title{background:#f59e0b;color:white;padding:14px 18px;font-size:21px;font-weight:bold;display:flex;justify-content:space-between;align-items:center}
+.clear-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
+
 .table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse}
-th{background:#005b9f;color:white;padding:10px}
-td{border:1px solid #ddd;padding:6px;text-align:center}
-.shift-label{background:#eef6ff;font-weight:bold}
-.slot{margin-bottom:6px;border-radius:6px}
-select{width:95%;height:38px;border-radius:6px;font-weight:bold}
+table{width:100%;border-collapse:collapse;min-width:950px}
+th{background:#005b9f;color:white;padding:12px;font-size:16px}
+td{border:1px solid #d7dee8;padding:8px;text-align:center;background:white}
+
+.shift-label{background:#eef6ff;width:240px;color:#005b9f;font-weight:bold}
+.shift-name{display:block;font-size:20px;margin-bottom:7px}
+.shift-time{display:block;direction:ltr;font-size:16px;color:#334155;font-weight:bold;line-height:1.7}
+
+.slot{margin-bottom:7px;border-radius:9px;padding:4px}
+select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-size:15px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;background:white;color:#0f172a}
+
+.note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+@media(max-width:800px){
+.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.home-btn{width:100%}table{min-width:1050px}
+}
 </style>
 </head>
 
@@ -32,20 +46,25 @@ select{width:95%;height:38px;border-radius:6px;font-weight:bold}
 <div class="topbar">
   <div class="brand">
     <img src="logo.png" class="logo">
-    <h2>جدول دوام الموظفين</h2>
+    <div>
+      <h2>جدول دوام الموظفين</h2>
+      <p>Staff Work Schedule</p>
+    </div>
   </div>
-  <button class="home-btn" onclick="location.href='index.html'">الرئيسية</button>
+  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
 </div>
 
 <div class="controls">
-  <button onclick="switchSection('men')">رجال</button>
-  <button onclick="switchSection('women')">نساء</button>
-  <button onclick="switchSection('reception')">استقبال</button>
+  <button onclick="switchSection('men')">قسم الرجال</button>
+  <button onclick="switchSection('women')">قسم النساء</button>
+  <button onclick="switchSection('reception')">الاستقبال</button>
 </div>
 
 <h2 id="sectionTitle" class="section-title">قسم الرجال</h2>
 
 <div id="tablesArea"></div>
+
+<div class="note">أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
@@ -75,42 +94,84 @@ const sectionTitles={
   reception:"الاستقبال"
 };
 
+const shiftTimes={
+  men:{
+    single:"01:00 PM - 09:00 PM",
+    split:"09:00 AM - 12:00 PM<br>04:00 PM - 08:00 PM"
+  },
+  women:{
+    single:"12:00 PM - 08:00 PM",
+    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
+  },
+  reception:{
+    single:"12:00 PM - 08:00 PM",
+    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
+  }
+};
+
 const slotsCount={men:2,women:3,reception:1};
 
 const employees={
-  men:["—","حاتم","السويداء","السليمي","عبدالعزيز"],
-  women:["—","ريناد","ابتسام","سلمى","هند","أسماء","مها"],
-  reception:["—","مرام","أشواق","شهد"]
+  men:{
+    "—":"#ffffff",
+    "د. حاتم الاحمدي":"#c7d2fe",
+    "د. عبدالرحمن السويداء":"#ddd6fe",
+    "د. عبدالرحمن السليمي":"#fbcfe8",
+    "د. عبدالعزيز الحمدان":"#fecaca"
+  },
+  women:{
+    "—":"#ffffff",
+    "د. ريناد حميد":"#fca5a5",
+    "د. ابتسام سويلم":"#fdba74",
+    "د. سلمى فرحان":"#fde68a",
+    "د. هند فهيد":"#bbf7d0",
+    "د. أسماء فهيد":"#a5f3fc",
+    "د. مها فريح":"#bfdbfe"
+  },
+  reception:{
+    "—":"#ffffff",
+    "أ. مرام ناصر":"#bae6fd",
+    "أ. أشواق سعود":"#bbf7d0",
+    "أ. شهد خلف":"#fde68a"
+  }
 };
 
 function makeId(section,shift,day,slot){
-  return `${section}_${shift}_${day}_${slot}`;
+  return `${section}_${shift}_${day}_${slot}`.replaceAll(" ","_");
 }
 
 function renderTables(){
   const area=document.getElementById("tablesArea");
   area.innerHTML="";
-  area.innerHTML+=buildTable("شفت واحد","single");
-  area.innerHTML+=buildTable("شفتين","split");
+  area.innerHTML+=buildTable("دوام شفت واحد","single","شفت واحد",shiftTimes[currentSection].single);
+  area.innerHTML+=buildTable("دوام شفتين","split","شفتين",shiftTimes[currentSection].split);
+
+  document.querySelectorAll("select").forEach(s=>colorCell(s));
 }
 
-function buildTable(title,shift){
-  let html=`<div class="schedule-box">
-  <div class="box-title">
-    ${title}
-    <button class="clear-btn" onclick="clearSchedule('${shift}')">🗑️ حذف</button>
-  </div>
-  <div class="table-wrap">
-  <table><tr><th>الشفت</th>`;
+function buildTable(title,shift,label,time){
+  let html=`
+  <div class="schedule-box">
+    <div class="box-title">
+      <span>${title}</span>
+      <button class="clear-btn" onclick="clearSchedule('${shift}')">🗑️ حذف هذا الجدول</button>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>نوع الدوام</th>`;
 
   days.forEach(d=>html+=`<th>${d}</th>`);
-  html+=`</tr><tr><td class="shift-label">${title}</td>`;
+  html+=`</tr><tr>
+    <td class="shift-label">
+      <span class="shift-name">${label}</span>
+      <span class="shift-time">${time}</span>
+    </td>`;
 
   days.forEach(day=>{
     html+=`<td>`;
     for(let i=0;i<slotsCount[currentSection];i++){
       const id=makeId(currentSection,shift,day,i);
-      const value=savedData[id]?.employee||"—";
+      const value=savedData[id]?.employee || "—";
       html+=createSelect(id,value);
     }
     html+=`</td>`;
@@ -122,15 +183,60 @@ function buildTable(title,shift){
 
 function createSelect(id,value){
   let opt="";
-  employees[currentSection].forEach(n=>{
-    opt+=`<option ${n===value?"selected":""}>${n}</option>`;
-  });
+  for(let name in employees[currentSection]){
+    opt+=`<option value="${name}" ${name===value?"selected":""}>${name}</option>`;
+  }
   return `<div class="slot"><select data-id="${id}" onchange="save(this)">${opt}</select></div>`;
+}
+
+function colorCell(select){
+  const wrapper=select.parentElement;
+  const color=employees[currentSection][select.value] || "#ffffff";
+  wrapper.style.background=color;
+
+  if(select.value==="—"){
+    wrapper.style.background="#ffffff";
+    select.style.color="#0f172a";
+  }else{
+    select.style.color="#000";
+    select.style.fontWeight="bold";
+  }
+}
+
+function isDuplicateInSameDay(select){
+  const selected=select.value;
+  if(selected==="—") return false;
+
+  const td=select.closest("td");
+  const row=td.parentElement;
+  const dayIndex=Array.from(row.children).indexOf(td);
+  let count=0;
+
+  document.querySelectorAll("table tr").forEach(r=>{
+    const cells=r.children;
+    if(cells.length>dayIndex){
+      cells[dayIndex].querySelectorAll("select").forEach(s=>{
+        if(s.value===selected) count++;
+      });
+    }
+  });
+
+  return count>1;
 }
 
 window.save=async function(el){
   const id=el.dataset.id;
   const val=el.value;
+
+  if(isDuplicateInSameDay(el)){
+    alert("هذا الاسم موجود مسبقًا في نفس اليوم");
+    el.value="—";
+    colorCell(el);
+    await deleteDoc(doc(db,"workSchedule",id));
+    return;
+  }
+
+  colorCell(el);
 
   if(val==="—"){
     await deleteDoc(doc(db,"workSchedule",id));
@@ -140,19 +246,20 @@ window.save=async function(el){
   await setDoc(doc(db,"workSchedule",id),{
     id,
     section:currentSection,
-    employee:val
+    employee:val,
+    updatedAt:new Date()
   });
 };
 
 window.clearSchedule=async function(shift){
-  if(!confirm("متأكد؟")) return;
+  if(!confirm("متأكد تبغى تحذف هذا الجدول بالكامل؟")) return;
 
   const snap=await getDocs(workRef);
-
   const deletes=[];
-  snap.forEach(docu=>{
-    if(docu.id.includes(currentSection+"_"+shift)){
-      deletes.push(deleteDoc(doc(db,"workSchedule",docu.id)));
+
+  snap.forEach(item=>{
+    if(item.id.includes(`${currentSection}_${shift}_`)){
+      deletes.push(deleteDoc(doc(db,"workSchedule",item.id)));
     }
   });
 
