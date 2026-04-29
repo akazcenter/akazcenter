@@ -39,16 +39,14 @@ body{
 }
 
 .hero-inner{
-  position:relative;
-  z-index:2;
   width:94%;
   max-width:1450px;
   margin:auto;
   padding:42px 0 58px;
   display:grid;
-  grid-template-columns:260px 1fr 170px;
-  gap:34px;
+  grid-template-columns: 260px 1fr 200px; /* يسار - وسط - يمين */
   align-items:center;
+  gap:20px;
 }
 
 .theme-btn{
@@ -72,12 +70,23 @@ body{
   background:rgba(255,255,255,.12);
   border:1px solid rgba(255,255,255,.22);
   border-radius:30px;
-  padding:20px;
+  padding:18px;
   text-align:center;
   backdrop-filter:blur(10px);
   box-shadow:0 18px 35px rgba(0,0,0,.18);
+
+  /* أهم شيء */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
+ .clock-card{
+  margin-right:0;
+  margin-left:10px;
+}
+  
 .clock-circle{
   width:158px;
   height:158px;
@@ -131,15 +140,18 @@ body{
 }
 
 .logo{
-  width:78px;
-  height:78px;
+  width:120px;
+  height:120px;
   object-fit:contain;
-  background:white;
-  border-radius:20px;
-  padding:7px;
-  box-shadow:0 10px 25px rgba(0,0,0,.20);
+  display:block;
+  margin:auto;
 }
 
+  .logo-box{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}
 .brand h1{
   font-size:38px;
   margin:0;
@@ -419,16 +431,20 @@ body.dark .theme-btn{
 
   <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 
-  <div class="hero-inner">
+<div class="hero-inner">
 
-    <div class="clock-card">
-      <div class="clock-circle">
-        <div id="clockTime">00:00:00</div>
-        <div class="live-label">Live Time</div>
-      </div>
-      <div id="clockDateAr">--</div>
-      <div id="clockDateEn">--</div>
-    </div>
+  <!-- يسار -->
+  <div class="clock-card">...</div>
+
+  <!-- وسط -->
+  <div class="brand">...</div>
+
+  <!-- يمين -->
+  <div class="logo-box">
+    <img src="logo.png" class="logo">
+  </div>
+
+</div>
 
     <div class="brand">
       <div class="brand-header">
