@@ -57,6 +57,10 @@ select{width:98%;height:44px;border-radius:9px;border:1px solid #cbd5e1;font-siz
 
 <div class="schedule-box">
   <div class="box-title">جدول حجز الغرفة الأسبوعي</div>
+  <div class="table-actions">
+  <button onclick="copySmart('السبت')">نسخ السبت (اثنين + أربعاء)</button>
+  <button onclick="copySmart('الأحد')">نسخ الأحد (ثلاثاء + خميس)</button>
+</div>
   <div class="table-wrap">
     <table id="schedule"></table>
   </div>
@@ -67,7 +71,21 @@ select{width:98%;height:44px;border-radius:9px;border:1px solid #cbd5e1;font-siz
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+.table-actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin-top:10px;
+}
 
+.table-actions button{
+  padding:8px 14px;
+  border:none;
+  background:#e0f2fe;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   authDomain: "akazcenter-89c17.firebaseapp.com",
@@ -138,7 +156,7 @@ function buildTable(){
     days.forEach(day=>{
       const cellId=makeId(currentFloor,day,time);
       const value=savedData[cellId]?.therapist || "—";
-      row+=`<td>${createDropdown(cellId,value)}</td>`;
+row += `<td>${createDropdown(cellId, value)}</td>`;
     });
 
     row+="</tr>";
@@ -211,7 +229,48 @@ function listenRooms(){
     buildTable();
   });
 }
+window.copySmart = async function(day){
+  let targets = [];
 
+  if(day === "السبت"){
+    targets = ["الاثنين","الأربعاء"];
+  }else if(day === "الأحد"){
+    targets = ["الثلاثاء","الخميس"];
+  }
+
+  const writes = [];
+
+  for(const time of times){
+
+    for(let i=1;i<=2;i++){
+
+      const baseId = makeId(currentFloor, day, time)+"_"+i;
+      const value = savedData[baseId]?.therapist || "—";
+
+      for(const targetDay of targets){
+        const targetId = makeId(currentFloor, targetDay, time)+"_"+i;
+
+        if(value === "—"){
+          writes.push(deleteDoc(doc(db,"kidsRooms",targetId)));
+        }else{
+          writes.push(setDoc(doc(db,"kidsRooms",targetId),{
+            id:targetId,
+            floor:currentFloor,
+            therapist:value,
+            updatedAt:new Date()
+          }));
+        }
+      }
+
+    }
+
+  }
+
+  await Promise.all(writes);
+
+  alert("تم النسخ بنجاح");
+};
+  
 buildLegend();
 listenRooms();
 </script>
