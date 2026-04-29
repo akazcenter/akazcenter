@@ -2,332 +2,206 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>جدول دوام الموظفين</title>
 
 <style>
-body {
-    font-family: Tahoma, Arial;
-    direction: rtl;
-    background: #eef3f8;
-    margin: 0;
-}
-
-.header {
-    background: #005b9f;
-    color: white;
-    padding: 18px 30px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.home-btn {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    background: white;
-    color: #005b9f;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 22px;
-    flex-wrap: wrap;
-}
-
-button {
-    padding: 10px 26px;
-    border: none;
-    background: #005b9f;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: #00457a;
-}
-
-.section-title {
-    text-align: center;
-    color: #005b9f;
-    margin-bottom: 20px;
-}
-
-.schedule-box {
-    width: 96%;
-    margin: 25px auto;
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-    overflow: hidden;
-}
-
-.box-title {
-    background: #f59e0b;
-    color: white;
-    padding: 12px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.table-wrap {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th {
-    background: #005b9f;
-    color: white;
-    padding: 11px;
-}
-
-td {
-    border: 1px solid #cbd5e1;
-    height: 58px;
-    text-align: center;
-}
-
-.shift-label {
-    background: #dbeafe;
-    font-weight: bold;
-    width: 200px;
-}
-
-.shift-time {
-    display: block;
-    font-size: 14px;
-    color: #334155;
-    margin-top: 4px;
-}
-
-select {
-    width: 96%;
-    height: 42px;
-    border-radius: 7px;
-    border: 1px solid #94a3b8;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
+.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 8px 20px #0002}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
+.brand h1{margin:0;font-size:24px}
+.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
+.home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+.controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
+.controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
+.controls button:hover{background:#00457a}
+.section-title{text-align:center;color:#005b9f;margin:10px 0 18px}
+.schedule-box{width:96%;margin:25px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0f172a14;overflow:hidden;border:1px solid #e2e8f0}
+.box-title{background:#f59e0b;color:white;padding:13px;font-size:20px;font-weight:bold;text-align:center}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:850px}
+th{background:#005b9f;color:white;padding:12px;font-size:15px}
+td{border:1px solid #d7dee8;min-height:60px;text-align:center;padding:8px;background:white}
+.shift-label{background:#eef6ff;font-weight:bold;width:210px;color:#005b9f}
+.shift-time{display:block;font-size:14px;color:#334155;margin-top:5px;direction:ltr}
+.slot{margin-bottom:7px}
+select{width:96%;height:42px;border-radius:9px;border:1px solid #cbd5e1;font-size:15px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;background:white;color:#0f172a}
+.note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+@media(max-width:800px){
+.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.brand h1{font-size:21px}.home-btn{width:100%}.schedule-box{width:98%}table{min-width:950px}
 }
 </style>
 </head>
 
 <body>
 
-<button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
-
-<div class="header">جدول دوام الموظفين</div>
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>جدول دوام الموظفين</h1>
+      <p>Staff Work Schedule</p>
+    </div>
+  </div>
+  <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
+</div>
 
 <div class="controls">
-    <button onclick="switchSection('men')">قسم الرجال</button>
-    <button onclick="switchSection('women')">قسم النساء</button>
-    <button onclick="switchSection('reception')">الاستقبال</button>
+  <button onclick="switchSection('men')">قسم الرجال</button>
+  <button onclick="switchSection('women')">قسم النساء</button>
+  <button onclick="switchSection('reception')">الاستقبال</button>
 </div>
 
 <h2 id="sectionTitle" class="section-title">قسم الرجال</h2>
 
 <div id="tablesArea"></div>
 
+<div class="note">يتم تحديث جدول الدوام أسبوعيًا حسب احتياج القسم</div>
+
 <script>
+function goHome(){window.location.href="index.html"}
 
-function preventDuplicate(select) {
-    const selectedName = select.value;
+let currentSection="men";
+const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-    if (selectedName === "—") {
-        colorCell(select);
-        return;
+const sectionTitles={
+  men:"قسم الرجال",
+  women:"قسم النساء",
+  reception:"الاستقبال"
+};
+
+const shiftSettings={
+  men:{
+    single:"01:00 PM - 09:00 PM",
+    split:"09:00 AM - 12:00 PM / 04:00 PM - 08:00 PM"
+  },
+  women:{
+    single:"12:00 PM - 08:00 PM",
+    split:"09:00 AM - 12:00 PM / 04:00 PM - 09:00 PM"
+  },
+  reception:{
+    single:"12:00 PM - 08:00 PM",
+    split:"09:00 AM - 12:00 PM / 04:00 PM - 09:00 PM"
+  }
+};
+
+const slotsCount={
+  men:2,
+  women:3,
+  reception:1
+};
+
+const employees={
+  men:{
+    "—":"#ffffff",
+    "د. حاتم الاحمدي":"#c7d2fe",
+    "د. عبدالرحمن السويداء":"#ddd6fe",
+    "د. عبدالرحمن السليمي":"#fbcfe8",
+    "د. عبدالعزيز الحمدان":"#fecaca"
+  },
+  women:{
+    "—":"#ffffff",
+    "د. ريناد حميد":"#fca5a5",
+    "د. ابتسام سويلم":"#fdba74",
+    "د. سلمى فرحان":"#fde68a",
+    "د. هند فهيد":"#bbf7d0",
+    "د. أسماء فهيد":"#a5f3fc",
+    "د. مها فريح":"#bfdbfe"
+  },
+  reception:{
+    "—":"#ffffff",
+    "أ. مرام ناصر":"#bae6fd",
+    "أ. أشواق سعود":"#bbf7d0",
+    "أ. شهد خلف":"#fde68a"
+  }
+};
+
+function renderAllTables(){
+  const area=document.getElementById("tablesArea");
+  area.innerHTML="";
+  area.innerHTML+=buildTable("دوام شفت واحد","شفت واحد",shiftSettings[currentSection].single);
+  area.innerHTML+=buildTable("دوام شفتين","شفتين",shiftSettings[currentSection].split);
+}
+
+function buildTable(title,label,time){
+  let html=`
+  <div class="schedule-box">
+    <div class="box-title">${title}</div>
+    <div class="table-wrap">
+      <table>
+        <tr><th>نوع الشفت</th>`;
+
+  days.forEach(day=>html+=`<th>${day}</th>`);
+  html+=`</tr><tr>
+    <td class="shift-label">${label}<span class="shift-time">${time}</span></td>`;
+
+  days.forEach(()=> {
+    html+=`<td>`;
+    for(let i=0;i<slotsCount[currentSection];i++){
+      html+=`<div class="slot">${createDropdown()}</div>`;
     }
+    html+=`</td>`;
+  });
 
-    const currentTd = select.closest("td");
-    const currentRow = currentTd.parentElement;
-    const dayIndex = Array.from(currentRow.children).indexOf(currentTd);
+  html+=`</tr></table></div></div>`;
+  return html;
+}
 
-    let count = 0;
+function createDropdown(){
+  let options="";
+  for(let name in employees[currentSection]){
+    options+=`<option value="${name}">${name}</option>`;
+  }
+  return `<select onchange="preventDuplicate(this)">${options}</select>`;
+}
 
-    document.querySelectorAll("table tr").forEach(row => {
-        const cells = row.children;
+function colorCell(select){
+  const color=employees[currentSection][select.value];
+  const wrapper=select.parentElement;
+  wrapper.style.background=color;
+  wrapper.style.borderRadius="8px";
+  wrapper.style.padding="3px";
+}
 
-        if (cells.length > dayIndex) {
-            const sameDayCell = cells[dayIndex];
-
-            sameDayCell.querySelectorAll("select").forEach(s => {
-                if (s.value === selectedName) {
-                    count++;
-                }
-            });
-        }
-    });
-
-    if (count > 1) {
-        alert("هذا الاسم موجود مسبقًا في نفس اليوم");
-        select.value = "—";
-    }
-
+function preventDuplicate(select){
+  const selectedName=select.value;
+  if(selectedName==="—"){
     colorCell(select);
-}
-function goHome() {
-    window.location.href = "index.html";
-}
+    return;
+  }
 
-let currentSection = "men";
+  const currentTd=select.closest("td");
+  const currentRow=currentTd.parentElement;
+  const dayIndex=Array.from(currentRow.children).indexOf(currentTd);
 
-const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+  let count=0;
 
-const sectionTitles = {
-    men: "قسم الرجال",
-    women: "قسم النساء",
-    reception: "الاستقبال"
-};
-
-const shiftSettings = {
-    men: {
-        single: "01:00 PM - 09:00 PM",
-        splitFirst: "09:00 AM - 01:00 PM",
-        splitSecond: "04:00 PM - 08:00 PM"
-    },
-    women: {
-        single: "12:00 PM - 08:00 PM",
-        splitFirst: "09:00 AM - 12:00 PM",
-        splitSecond: "04:00 PM - 09:00 PM"
-    },
-    reception: {
-        single: "12:00 PM - 08:00 PM",
-        splitFirst: "09:00 AM - 12:00 PM",
-        splitSecond: "04:00 PM - 09:00 PM"
+  document.querySelectorAll("table tr").forEach(row=>{
+    const cells=row.children;
+    if(cells.length>dayIndex){
+      const sameDayCell=cells[dayIndex];
+      sameDayCell.querySelectorAll("select").forEach(s=>{
+        if(s.value===selectedName){count++;}
+      });
     }
-};
+  });
 
-const employees = {
-    men: {
-        "—": "#ffffff",
-        "د. حاتم الاحمدي": "#c7d2fe",
-        "د. عبدالرحمن السويداء": "#ddd6fe",
-        "د. عبدالرحمن السليمي": "#fbcfe8",
-        "د. عبدالعزيز الحمدان": "#fecaca"
-    },
-    women: {
-        "—": "#ffffff",
-        "د. ريناد حميد": "#fca5a5",
-        "د. ابتسام سويلم": "#fdba74",
-        "د. سلمى فرحان": "#fde68a",
-        "د. هند فهيد": "#bbf7d0",
-        "د. أسماء فهيد": "#a5f3fc",
-        "د. مها فريح": "#bfdbfe"
-    },
-reception: {
-    "—": "#ffffff",
-    "أ. مرام ناصر": "#bae6fd",
-    "أ. أشواق سعود": "#bbf7d0",
-    "أ. شهد خلف": "#fde68a"
-}
-};
+  if(count>1){
+    alert("هذا الاسم موجود مسبقًا في نفس اليوم");
+    select.value="—";
+  }
 
-function renderAllTables() {
-    const area = document.getElementById("tablesArea");
-    area.innerHTML = "";
-
-    area.innerHTML += buildTable("دوام شفت واحد", [
-        { 
-            label: "شفت واحد", 
-            time: shiftSettings[currentSection].single 
-        }
-    ]);
-
-    area.innerHTML += buildTable("دوام شفتين", [
-        { 
-            label: "شفتين", 
-            time: shiftSettings[currentSection].splitFirst + " / " + shiftSettings[currentSection].splitSecond
-        }
-    ]);
-}
-function buildTable(title, rows) {
-    let slots = {
-        men: 2,
-        women: 3,
-        reception: 1
-    };
-
-    let html = `
-    <div class="schedule-box">
-        <div class="box-title">${title}</div>
-        <div class="table-wrap">
-            <table>
-                <tr>
-                    <th>نوع الشفت</th>
-    `;
-
-    days.forEach(day => html += `<th>${day}</th>`);
-    html += "</tr>";
-
-    rows.forEach(row => {
-        html += `
-        <tr>
-            <td class="shift-label">
-                ${row.label}
-                <span class="shift-time">${row.time}</span>
-            </td>
-        `;
-
-        days.forEach(() => {
-            html += `<td>`;
-
-            for (let i = 0; i < slots[currentSection]; i++) {
-                html += `
-                <div style="margin-bottom:5px;">
-                    ${createDropdown()}
-                </div>`;
-            }
-
-            html += `</td>`;
-        });
-
-        html += "</tr>";
-    });
-
-    html += `
-            </table>
-        </div>
-    </div>`;
-
-    return html;
-}
-function createDropdown() {
-    let options = "";
-    for (let name in employees[currentSection]) {
-        options += `<option value="${name}">${name}</option>`;
-    }
-
-return `<select onchange="preventDuplicate(this)">${options}</select>`;}
-
-function colorCell(select) {
-    const color = employees[currentSection][select.value];
-    const cell = select.parentElement;
-
-    cell.style.background = color;
+  colorCell(select);
 }
 
-function switchSection(section) {
-    currentSection = section;
-    document.getElementById("sectionTitle").innerText = sectionTitles[section];
-    renderAllTables();
+function switchSection(section){
+  currentSection=section;
+  document.getElementById("sectionTitle").innerText=sectionTitles[section];
+  renderAllTables();
 }
 
 renderAllTables();
-
 </script>
 
 </body>
