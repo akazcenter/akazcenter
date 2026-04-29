@@ -1,1 +1,206 @@
 
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>العلاج المائي</title>
+
+<style>
+body {
+    font-family: Tahoma;
+    direction: rtl;
+    background: #eef3f8;
+    margin: 0;
+}
+
+.header {
+    background: #005b9f;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.home-btn {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    background: white;
+    color: #005b9f;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.container {
+    width: 95%;
+    margin: 25px auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+.form-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.form-box input, .form-box select {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 8px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background: #005b9f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.table-box {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background: #005b9f;
+    color: white;
+}
+
+.time {
+    background: #dbeafe;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
+
+<div class="header">جدول العلاج المائي</div>
+
+<div class="container">
+
+<div class="form-box">
+<h3>حجز موعد</h3>
+
+<select id="day">
+    <option>السبت</option>
+    <option>الأحد</option>
+    <option>الاثنين</option>
+    <option>الثلاثاء</option>
+    <option>الأربعاء</option>
+    <option>الخميس</option>
+</select>
+
+<select id="time"></select>
+
+<select id="therapist">
+    <option>د. عبدالرحمن السويداء</option>
+    <option>د. عبدالرحمن السليمي</option>
+    <option>د. عبدالعزيز الحمدان</option>
+</select>
+
+<input type="text" id="patient" placeholder="اسم المريض أو رقم الملف">
+
+<button onclick="addBooking()">حجز</button>
+</div>
+
+<div class="table-box">
+<table id="schedule"></table>
+</div>
+
+</div>
+
+<script>
+
+function goHome() {
+    window.location.href = "index.html";
+}
+
+const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+
+const times = [
+"09:00 AM","10:00 AM","11:00 AM","12:00 PM",
+"01:00 PM","02:00 PM","03:00 PM","04:00 PM",
+"05:00 PM","06:00 PM","07:00 PM","08:00 PM"
+];
+
+let bookings = [];
+
+function buildTable() {
+    let table = document.getElementById("schedule");
+    table.innerHTML = "";
+
+    let header = "<tr><th>الوقت</th>";
+    days.forEach(d => header += `<th>${d}</th>`);
+    header += "</tr>";
+    table.innerHTML += header;
+
+    times.forEach(time => {
+        let row = `<tr><td class="time">${time}</td>`;
+
+        days.forEach(day => {
+            let cellData = bookings
+                .filter(b => b.day === day && b.time === time)
+                .map(b => `${b.patient}<br>${b.therapist}`)
+                .join("<hr>");
+
+            row += `<td>${cellData}</td>`;
+        });
+
+        row += "</tr>";
+        table.innerHTML += row;
+    });
+}
+
+function fillTimes() {
+    let select = document.getElementById("time");
+    times.forEach(t => {
+        select.innerHTML += `<option>${t}</option>`;
+    });
+}
+
+function addBooking() {
+    let day = document.getElementById("day").value;
+    let time = document.getElementById("time").value;
+    let therapist = document.getElementById("therapist").value;
+    let patient = document.getElementById("patient").value;
+
+    if (!patient) {
+        alert("اكتب اسم المريض");
+        return;
+    }
+
+    bookings.push({day, time, therapist, patient});
+    buildTable();
+}
+
+fillTimes();
+buildTable();
+
+</script>
+
+</body>
+</html>
