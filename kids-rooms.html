@@ -117,19 +117,19 @@ select {
 
 <script>
 
-const names = [
-    "—",
-    "د. ريناد حميد",
-    "د. ابتسام سويلم",
-    "د. سلمى فرحان",
-    "د. هند فهيد",
-    "د. أسماء فهيد",
-    "د. مها فريح",
-    "د. حاتم الاحمدي",
-    "د. عبدالرحمن السويداء",
-    "د. عبدالرحمن السليمي",
-    "د. عبدالعزيز الحمدان"
-];
+const therapists = {
+    "—": "#ffffff",
+    "د. ريناد حميد": "#fca5a5",
+    "د. ابتسام سويلم": "#fdba74",
+    "د. سلمى فرحان": "#fde68a",
+    "د. هند فهيد": "#bbf7d0",
+    "د. أسماء فهيد": "#a5f3fc",
+    "د. مها فريح": "#bfdbfe",
+    "د. حاتم الاحمدي": "#c7d2fe",
+    "د. عبدالرحمن السويداء": "#ddd6fe",
+    "د. عبدالرحمن السليمي": "#fbcfe8",
+    "د. عبدالعزيز الحمدان": "#fecaca"
+};
 
 const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 const times = [
@@ -170,11 +170,11 @@ function buildTable() {
 
 function createDropdown() {
     let options = "";
-    names.forEach(n => {
-        options += `<option value="${n}">${n}</option>`;
-    });
+    for (let name in therapists) {
+        options += `<option value="${name}">${name}</option>`;
+    }
 
-    return `<select>${options}</select>`;
+    return `<select onchange="colorCell(this)">${options}</select>`;
 }
 
 function switchFloor(floor) {
@@ -189,3 +189,16 @@ buildTable();
 
 </body>
 </html>
+function colorCell(select) {
+    const color = therapists[select.value];
+    const cell = select.parentElement;
+
+    cell.style.background = color;
+
+    if (select.value !== "—") {
+        select.style.fontWeight = "bold";
+        select.style.color = "#000";
+    } else {
+        select.style.fontWeight = "normal";
+    }
+}
