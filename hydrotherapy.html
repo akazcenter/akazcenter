@@ -248,7 +248,7 @@ function buildTable(){
     let row=`<tr><td class="time">${time}</td>`;
 
     week.forEach(day=>{
-      const booking=bookings.find(b=>b.date===day.date && b.time===time);
+const list = bookings.filter(b => b.date === day.date && b.time === time);
 
       if(booking){
         row+=`
