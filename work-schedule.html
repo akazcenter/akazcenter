@@ -17,6 +17,22 @@
   --line:#d7dee8;
 }
 
+  .table-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.copy-btn{
+  background:#e0f2fe;
+  color:#075985;
+  border:1px solid #bae6fd;
+  padding:7px 13px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold;
+}
+  
 *{box-sizing:border-box}
 
 body{
@@ -384,8 +400,10 @@ function buildTable(title,shift,label,time){
   <div class="schedule-box">
     <div class="box-title">
       <h3>${title}</h3>
-      <button class="clear-btn" onclick="clearSchedule('${shift}')">🗑️ حذف هذا الجدول</button>
-    </div>
+<div class="table-actions">
+  <button class="copy-btn" onclick="copySaturday('${shift}')">نسخ الاسم لباقي الأسبوع</button>
+  <button class="clear-btn" onclick="clearSchedule('${shift}')">🗑️ حذف هذا الجدول</button>
+</div>    </div>
     <div class="table-wrap">
       <table>
         <tr><th>نوع الدوام</th>`;
@@ -511,7 +529,35 @@ onSnapshot(workRef,(snap)=>{
   savedData={};
   snap.forEach(d=>{
     savedData[d.id]=d.data();
-  });
+  window.copySaturday = async function(shift){
+  if(!confirm("نسخ أسماء يوم السبت لباقي أيام الأسبوع؟")) return;
+
+  const saturday = "السبت";
+  const otherDays = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+  const writes = [];
+
+  for(let i=0; i<slotsCount[currentSection]; i++){
+    const saturdayId = makeId(currentSection, shift, saturday, i);
+    const employee = savedData[saturdayId]?.employee || "—";
+
+    for(const day of otherDays){
+      const targetId = makeId(currentSection, shift, day, i);
+
+      if(employee === "—"){
+        writes.push(deleteDoc(doc(db,"workSchedule",targetId)));
+      }else{
+        writes.push(setDoc(doc(db,"workSchedule",targetId),{
+          id:targetId,
+          section:currentSection,
+          employee,
+          updatedAt:new Date()
+        }));
+      }
+    }
+  }
+
+  await Promise.all(writes);
+};
   renderTables();
 });
 </script>
