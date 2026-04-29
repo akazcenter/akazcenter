@@ -13,7 +13,6 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 .brand h1{margin:0;font-size:24px}
 .brand p{margin:4px 0 0;font-size:13px;opacity:.9}
 .home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
-
 .container{width:96%;margin:25px auto;display:grid;grid-template-columns:340px 1fr;gap:22px}
 .card{background:white;border-radius:18px;padding:20px;box-shadow:0 6px 20px #0f172a14;border:1px solid #e2e8f0}
 .card h3{margin-top:0;color:#005b9f;border-bottom:2px solid #e2e8f0;padding-bottom:10px}
@@ -21,8 +20,6 @@ label{display:block;margin-bottom:6px;font-weight:bold}
 input,select{width:100%;margin-bottom:14px;padding:11px;font-size:15px;border:1px solid #cbd5e1;border-radius:9px;box-sizing:border-box;font-family:Tahoma,Arial}
 input[readonly]{background:#f1f5f9;font-weight:bold}
 .save-btn{width:100%;padding:13px;background:#005b9f;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:bold;font-size:16px}
-.save-btn:hover{background:#00457a}
-
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:950px}
 th{background:#005b9f;color:white;padding:12px;font-size:15px}
@@ -30,7 +27,8 @@ td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;verti
 .time{background:#eef6ff;font-weight:bold;width:105px;color:#005b9f;direction:ltr;vertical-align:middle}
 .male-day{background:#e0f2fe!important;color:#075985!important;font-weight:bold}
 .female-day{background:#fce7f3!important;color:#9d174d!important;font-weight:bold}
-.booking{background:#f8fafc;border-right:5px solid #005b9f;border-radius:10px;padding:7px;font-size:14px;line-height:1.7;font-weight:bold;margin-bottom:6px}
+.booking{background:#f8fafc;border-right:5px solid #005b9f;border-radius:10px;padding:20px 8px 8px;font-size:14px;line-height:1.7;font-weight:bold;margin-bottom:6px;position:relative}
+.delete-btn{position:absolute;top:4px;left:6px;background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;border-radius:50%;width:22px;height:22px;line-height:18px;cursor:pointer;font-weight:bold;font-size:13px}
 .booking small{color:#475569;font-weight:normal}
 .legend{display:flex;gap:12px;justify-content:center;margin-bottom:15px;flex-wrap:wrap}
 .badge{padding:8px 14px;border-radius:999px;font-weight:bold;font-size:14px}
@@ -58,7 +56,6 @@ td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;verti
 </div>
 
 <div class="container">
-
   <div class="card">
     <h3>إضافة حجز</h3>
 
@@ -95,12 +92,11 @@ td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;verti
       <table id="schedule"></table>
     </div>
   </div>
-
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -256,6 +252,7 @@ function buildTable(){
         list.forEach(b=>{
           row+=`
           <div class="booking">
+            <button class="delete-btn" onclick="deleteBooking('${b.id}')">×</button>
             ${b.patient}<br>
             <small>${b.therapist}</small>
           </div>`;
@@ -312,13 +309,19 @@ window.addBooking = async function(){
   document.getElementById("patient").value="";
 };
 
+window.deleteBooking = async function(id){
+  if(confirm("تأكيد حذف الموعد؟")){
+    await deleteDoc(doc(db, "hydroBookings", id));
+  }
+};
+
 function listenBookings(){
   const q=query(bookingsRef, orderBy("createdAt"));
 
   onSnapshot(q,(snapshot)=>{
     bookings=[];
-    snapshot.forEach(doc=>{
-      bookings.push({ id:doc.id, ...doc.data() });
+    snapshot.forEach(docItem=>{
+      bookings.push({ id:docItem.id, ...docItem.data() });
     });
     buildTable();
   });
