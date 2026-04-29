@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>مركز عكاز - جدول الدوام</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b4f8a, #0878bd);
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #e0f2fe;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 25px auto;
+      padding: 0 15px 40px;
+    }
+
+    .top-card {
+      background: white;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 22px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .date-box {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0b4f8a;
+    }
+
+    .section {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 26px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .section-title {
+      background: #0b4f8a;
+      color: white;
+      padding: 14px;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .sub-title {
+      background: #f58220;
+      color: white;
+      padding: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th {
+      background: #eaf2fb;
+      padding: 11px;
+      border: 1px solid #cbd5e1;
+      font-size: 15px;
+      color: #0b4f8a;
+    }
+
+    td {
+      border: 1px solid #cbd5e1;
+      padding: 7px;
+      text-align: center;
+      min-width: 130px;
+    }
+
+    .time {
+      background: #f3f4f6;
+      font-weight: bold;
+      color: #0b4f8a;
+      width: 140px;
+    }
+
+    .today {
+      background: #d9f99d !important;
+      color: #365314;
+      font-weight: bold;
+    }
+
+    select {
+      width: 100%;
+      padding: 9px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      background: #fff;
+      font-size: 14px;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 25px 0;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+      background: #0b4f8a;
+      font-family: Tahoma, Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    button.orange {
+      background: #f58220;
+    }
+
+    button.gray {
+      background: #6b7280;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-right: 5px solid #f58220;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #9a3412;
+      text-align: center;
+    }
+
+    @media print {
+      button, .note {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .section {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>مركز عكاز للعلاج الطبيعي</h1>
+    <p>جدول الدوام الداخلي للموظفين</p>
+  </header>
+
+  <div class="container">
+
+    <div class="top-card">
+      <div class="date-box" id="todayText"></div>
+      <div>آخر حفظ: <span id="lastSaved">لم يتم الحفظ بعد</span></div>
+    </div>
+
+    <!-- قسم النساء -->
+    <div class="section">
+      <div class="section-title">قسم النساء</div>
+
+      <div class="sub-title">دوام شفتين: 9 ص - 12 م / 4 م - 9 م</div>
+      <table class="schedule-table">
+        <tr>
+          <th>الوقت</th>
+          <th data-day="6">السبت</th>
+          <th data-day="0">الأحد</th>
+          <th data-day="1">الإثنين</th>
+          <th data-day="2">الثلاثاء</th>
+          <th data-day="3">الأربعاء</th>
+          <th data-day="4">الخميس</th>
+        </tr>
+        <tr>
+          <td class="time">9 ص - 12 م</td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+        </tr>
+        <tr>
+          <td class="time">4 م - 9 م</td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+        </tr>
+      </table>
+
+      <div class="sub-title">دوام شفت واحد: 12 م - 8 م</div>
+      <table class="schedule-table">
+        <tr>
+          <th>الوقت</th>
+          <th data-day="6">السبت</th>
+          <th data-day="0">الأحد</th>
+          <th data-day="1">الإثنين</th>
+          <th data-day="2">الثلاثاء</th>
+          <th data-day="3">الأربعاء</th>
+          <th data-day="4">الخميس</th>
+        </tr>
+        <tr>
+          <td class="time">12 م - 8 م</td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+          <td><select class="female"></select></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- قسم الرجال -->
+    <div class="section">
+      <div class="section-title">قسم الرجال</div>
+
+      <div class="sub-title">دوام شفتين: 9 ص - 1 م / 4 م - 8 م</div>
+      <table class="schedule-table">
+        <tr>
+          <th>الوقت</th>
+          <th data-day="6">السبت</th>
+          <th data-day="0">الأحد</th>
+          <th data-day="1">الإثنين</th>
+          <th data-day="2">الثلاثاء</th>
+          <th data-day="3">الأربعاء</th>
+          <th data-day="4">الخميس</th>
+        </tr>
+        <tr>
+          <td class="time">9 ص - 1 م</td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+        </tr>
+        <tr>
+          <td class="time">4 م - 8 م</td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+        </tr>
+      </table>
+
+      <div class="sub-title">دوام شفت واحد: 1 م - 9 م</div>
+      <table class="schedule-table">
+        <tr>
+          <th>الوقت</th>
+          <th data-day="6">السبت</th>
+          <th data-day="0">الأحد</th>
+          <th data-day="1">الإثنين</th>
+          <th data-day="2">الثلاثاء</th>
+          <th data-day="3">الأربعاء</th>
+          <th data-day="4">الخميس</th>
+        </tr>
+        <tr>
+          <td class="time">1 م - 9 م</td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+          <td><select class="male"></select></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- الاستقبال -->
+    <div class="section">
+      <div class="section-title">الاستقبال</div>
+
+      <div class="sub-title">دوام شفتين: 9 ص - 12 م / 4 م - 9 م</div>
+      <table class="schedule-table">
+        <tr>
+          <th>الوقت</th>
+          <th data-day="6">السبت</th>
+          <th data-day="0">الأحد</th>
+          <th data-day="1">الإثنين</th>
+          <th data-day="2">الثلاثاء</th>
+          <th data-day="3">الأربعاء</th>
+          <th data-day="4">الخميس</th>
+        </tr>
+        <tr>
+          <td class="time">9 ص - 12 م</td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+        </tr>
+        <tr>
+          <td class="time">4 م - 9 م</td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+        </tr>
+      </table>
+
+      <div class="sub-title">دوام شفت واحد: 12 م - 8 م</div>
+      <table class="schedule-table">
+        <tr>
+          <th>الوقت</th>
+          <th data-day="6">السبت</th>
+          <th data-day="0">الأحد</th>
+          <th data-day="1">الإثنين</th>
+          <th data-day="2">الثلاثاء</th>
+          <th data-day="3">الأربعاء</th>
+          <th data-day="4">الخميس</th>
+        </tr>
+        <tr>
+          <td class="time">12 م - 8 م</td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+          <td><select class="reception"></select></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="actions">
+      <button onclick="saveSchedule()">حفظ الجدول</button>
+      <button class="orange" onclick="window.print()">طباعة</button>
+      <button class="gray" onclick="clearSchedule()">مسح الجدول</button>
+    </div>
+
+    <div class="note">
+      تنبيه: يتم تحديث جدول الدوام قبل نهاية يوم الخميس استعدادًا للأسبوع الجديد.
+    </div>
+
+  </div>
+
+  <script>
+    const femaleNames = [
+      "د. ريناد حميد",
+      "د. ابتسام سويلم",
+      "د. سلمى فرحان",
+      "د. هند فهيد",
+      "د. أسماء فهيد",
+      "د. مها فريح"
+    ];
+
+    const maleNames = [
+      "د. حاتم الأحمدي",
+      "د. عبدالرحمن السويداء",
+      "د. عبدالرحمن السليمي",
+      "د. عبدالعزيز الحمدان"
+    ];
+
+    const receptionNames = [
+      "أ. مرام ناصر",
+      "أ. أشواق سعود",
+      "أ. شهد خلف"
+    ];
+
+    function fillSelects(className, names) {
+      document.querySelectorAll("." + className).forEach(select => {
+        select.innerHTML = `<option value="">اختر الاسم</option>`;
+        names.forEach(name => {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          select.appendChild(option);
+        });
+      });
+    }
+
+    function highlightToday() {
+      const today = new Date().getDay();
+      document.querySelectorAll("th[data-day]").forEach(th => {
+        if (Number(th.dataset.day) === today) {
+          th.classList.add("today");
+        }
+      });
+
+      const days = ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+      const todayText = document.getElementById("todayText");
+      todayText.textContent = "اليوم: " + days[today];
+    }
+
+    function saveSchedule() {
+      const selects = document.querySelectorAll("select");
+      const data = [];
+
+      selects.forEach(select => {
+        data.push(select.value);
+      });
+
+      localStorage.setItem("akaz_working_hours", JSON.stringify(data));
+
+      const now = new Date().toLocaleString("ar-SA");
+      localStorage.setItem("akaz_last_saved", now);
+
+      document.getElementById("lastSaved").textContent = now;
+      alert("تم حفظ جدول الدوام على هذا الجهاز.");
+    }
+
+    function loadSchedule() {
+      const saved = JSON.parse(localStorage.getItem("akaz_working_hours") || "[]");
+      const selects = document.querySelectorAll("select");
+
+      selects.forEach((select, index) => {
+        if (saved[index]) {
+          select.value = saved[index];
+        }
+      });
+
+      const lastSaved = localStorage.getItem("akaz_last_saved");
+      if (lastSaved) {
+        document.getElementById("lastSaved").textContent = lastSaved;
+      }
+    }
+
+    function clearSchedule() {
+      if (confirm("هل أنت متأكد من مسح جدول الدوام؟")) {
+        localStorage.removeItem("akaz_working_hours");
+        localStorage.removeItem("akaz_last_saved");
+        document.querySelectorAll("select").forEach(select => select.value = "");
+        document.getElementById("lastSaved").textContent = "لم يتم الحفظ بعد";
+      }
+    }
+
+    fillSelects("female", femaleNames);
+    fillSelects("male", maleNames);
+    fillSelects("reception", receptionNames);
+    highlightToday();
+    loadSchedule();
+  </script>
+
+</body>
+</html>
