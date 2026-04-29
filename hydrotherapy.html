@@ -8,82 +8,92 @@
 body {
     font-family: Tahoma, Arial;
     direction: rtl;
-    background: #eef3f8;
+    background: #f1f5f9;
     margin: 0;
+    color: #0f172a;
 }
 
-.header {
-    background: #005b9f;
+.topbar {
+    background: linear-gradient(90deg, #005b9f, #0077c8);
     color: white;
-    padding: 18px;
+    padding: 20px;
     text-align: center;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
+    position: relative;
 }
 
 .home-btn {
     position: absolute;
-    top: 15px;
+    top: 16px;
     left: 20px;
     background: white;
     color: #005b9f;
     border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
+    padding: 10px 18px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
 }
 
 .container {
-    width: 95%;
+    width: 96%;
     margin: 25px auto;
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 20px;
+    grid-template-columns: 330px 1fr;
+    gap: 22px;
 }
 
-.form-box, .table-box {
+.card {
     background: white;
-    padding: 18px;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
 }
 
-.form-box h3 {
-    color: #005b9f;
+.card h3 {
     margin-top: 0;
+    color: #005b9f;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
     font-weight: bold;
 }
 
 input, select {
     width: 100%;
-    margin-bottom: 12px;
-    padding: 9px;
+    margin-bottom: 14px;
+    padding: 11px;
     font-size: 15px;
-    border: 1px solid #94a3b8;
-    border-radius: 7px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
     box-sizing: border-box;
+    font-family: Tahoma, Arial;
 }
 
 input[readonly] {
-    background: #e2e8f0;
+    background: #f1f5f9;
     font-weight: bold;
 }
 
-button {
+.save-btn {
     width: 100%;
-    padding: 11px;
+    padding: 13px;
     background: #005b9f;
     color: white;
     border: none;
-    border-radius: 7px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
+}
+
+.table-wrap {
+    overflow-x: auto;
 }
 
 table {
@@ -92,54 +102,99 @@ table {
     table-layout: fixed;
 }
 
-td, th {
-    border: 1px solid #cbd5e1;
-    padding: 8px;
-    text-align: center;
-    min-height: 45px;
-}
-
 th {
     background: #005b9f;
     color: white;
+    padding: 12px;
+    font-size: 15px;
+}
+
+td {
+    border: 1px solid #d7dee8;
+    height: 58px;
+    text-align: center;
+    background: white;
+    vertical-align: middle;
 }
 
 .time {
-    background: #dbeafe;
+    background: #eef6ff;
     font-weight: bold;
-    width: 100px;
+    width: 105px;
+    color: #005b9f;
 }
 
-.male {
-    background: #dbeafe;
+.male-day {
+    background: #e0f2fe;
+    color: #075985;
     font-weight: bold;
 }
 
-.female {
+.female-day {
     background: #fce7f3;
+    color: #9d174d;
     font-weight: bold;
 }
 
 .booking {
-    background: #fff7ed;
-    border-radius: 8px;
-    padding: 6px;
+    background: #f8fafc;
+    border-right: 5px solid #005b9f;
+    border-radius: 10px;
+    padding: 7px;
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: bold;
+}
+
+.booking small {
+    color: #475569;
+    font-weight: normal;
+}
+
+.legend {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.badge.male {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+.badge.female {
+    background: #fce7f3;
+    color: #9d174d;
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
-
-<div class="header">جدول العلاج المائي</div>
+<div class="topbar">
+    <button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
+    جدول العلاج المائي
+</div>
 
 <div class="container">
 
-    <div class="form-box">
-        <h3>حجز موعد</h3>
+    <div class="card">
+        <h3>إضافة حجز</h3>
 
         <label>اليوم</label>
         <select id="day" onchange="updateGender()">
@@ -158,27 +213,23 @@ th {
         <select id="time"></select>
 
         <label>الأخصائي</label>
-        <select id="therapist">
-            <option>د. حاتم الاحمدي</option>
-            <option>د. عبدالرحمن السويداء</option>
-            <option>د. عبدالرحمن السليمي</option>
-            <option>د. عبدالعزيز الحمدان</option>
-            <option>د. ريناد حميد</option>
-            <option>د. ابتسام سويلم</option>
-            <option>د. سلمى فرحان</option>
-            <option>د. هند فهيد</option>
-            <option>د. أسماء فهيد</option>
-            <option>د. مها فريح</option>
-        </select>
+        <select id="therapist"></select>
 
         <label>اسم المريض / رقم الملف</label>
-        <input type="text" id="patient" placeholder="مثال: محمد أو 1025">
+        <input type="text" id="patient" placeholder="مثال: محمد / 1025">
 
-        <button onclick="addBooking()">إضافة الحجز</button>
+        <button class="save-btn" onclick="addBooking()">إضافة الحجز</button>
     </div>
 
-    <div class="table-box">
-        <table id="schedule"></table>
+    <div class="card">
+        <div class="legend">
+            <div class="badge male">Male Days</div>
+            <div class="badge female">Female Days</div>
+        </div>
+
+        <div class="table-wrap">
+            <table id="schedule"></table>
+        </div>
     </div>
 
 </div>
@@ -197,6 +248,22 @@ const hydroDays = {
     "Thursday": "Female"
 };
 
+const maleTherapists = [
+    "د. حاتم الاحمدي",
+    "د. عبدالرحمن السويداء",
+    "د. عبدالرحمن السليمي",
+    "د. عبدالعزيز الحمدان"
+];
+
+const femaleTherapists = [
+    "د. ريناد حميد",
+    "د. ابتسام سويلم",
+    "د. سلمى فرحان",
+    "د. هند فهيد",
+    "د. أسماء فهيد",
+    "د. مها فريح"
+];
+
 const days = ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"];
 
 const times = [
@@ -214,11 +281,27 @@ let bookings = [];
 function updateGender() {
     const day = document.getElementById("day").value;
     document.getElementById("gender").value = hydroDays[day];
+    updateTherapists();
+}
+
+function updateTherapists() {
+    const day = document.getElementById("day").value;
+    const gender = hydroDays[day];
+    const select = document.getElementById("therapist");
+
+    select.innerHTML = "";
+
+    const list = gender === "Male" ? maleTherapists : femaleTherapists;
+
+    list.forEach(name => {
+        select.innerHTML += `<option>${name}</option>`;
+    });
 }
 
 function fillTimes() {
     const select = document.getElementById("time");
     select.innerHTML = "";
+
     times.forEach(t => {
         select.innerHTML += `<option>${t}</option>`;
     });
@@ -229,11 +312,13 @@ function buildTable() {
     table.innerHTML = "";
 
     let header = "<tr><th>Time</th>";
+
     days.forEach(day => {
         const type = hydroDays[day];
-        const className = type === "Male" ? "male" : "female";
+        const className = type === "Male" ? "male-day" : "female-day";
         header += `<th class="${className}">${day}<br>${type}</th>`;
     });
+
     header += "</tr>";
     table.innerHTML += header;
 
@@ -248,9 +333,10 @@ function buildTable() {
                     <td>
                         <div class="booking">
                             ${booking.patient}<br>
-                            ${booking.therapist}
+                            <small>${booking.therapist}</small>
                         </div>
-                    </td>`;
+                    </td>
+                `;
             } else {
                 row += "<td></td>";
             }
@@ -280,13 +366,7 @@ function addBooking() {
         return;
     }
 
-    bookings.push({
-        day,
-        gender,
-        time,
-        therapist,
-        patient
-    });
+    bookings.push({ day, gender, time, therapist, patient });
 
     document.getElementById("patient").value = "";
     buildTable();
