@@ -177,6 +177,24 @@ function createDropdown() {
     return `<select onchange="colorCell(this)">${options}</select>`;
 }
 
+function colorCell(select) {
+    const color = therapists[select.value];
+    const cell = select.parentElement;
+
+    cell.style.background = color;
+
+    if (select.value !== "—") {
+        select.style.fontWeight = "bold";
+        select.style.color = "#000";
+    } else {
+        select.style.fontWeight = "normal";
+        select.style.color = "#0f172a";
+        cell.style.background = "#ffffff";
+    }
+}
+
+buildTable();
+
 function switchFloor(floor) {
     document.getElementById("floorTitle").innerText =
         floor === 1 ? "الدور الأول" : "الدور الثاني";
@@ -189,16 +207,4 @@ buildTable();
 
 </body>
 </html>
-function colorCell(select) {
-    const color = therapists[select.value];
-    const cell = select.parentElement;
-
-    cell.style.background = color;
-
-    if (select.value !== "—") {
-        select.style.fontWeight = "bold";
-        select.style.color = "#000";
-    } else {
-        select.style.fontWeight = "normal";
-    }
 }
