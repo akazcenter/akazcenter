@@ -26,11 +26,11 @@ input[readonly]{background:#f1f5f9;font-weight:bold}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:950px}
 th{background:#005b9f;color:white;padding:12px;font-size:15px}
-td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;vertical-align:middle;padding:7px}
-.time{background:#eef6ff;font-weight:bold;width:105px;color:#005b9f;direction:ltr}
+td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;vertical-align:top;padding:7px}
+.time{background:#eef6ff;font-weight:bold;width:105px;color:#005b9f;direction:ltr;vertical-align:middle}
 .male-day{background:#e0f2fe!important;color:#075985!important;font-weight:bold}
 .female-day{background:#fce7f3!important;color:#9d174d!important;font-weight:bold}
-.booking{background:#f8fafc;border-right:5px solid #005b9f;border-radius:10px;padding:7px;font-size:14px;line-height:1.7;font-weight:bold}
+.booking{background:#f8fafc;border-right:5px solid #005b9f;border-radius:10px;padding:7px;font-size:14px;line-height:1.7;font-weight:bold;margin-bottom:6px}
 .booking small{color:#475569;font-weight:normal}
 .legend{display:flex;gap:12px;justify-content:center;margin-bottom:15px;flex-wrap:wrap}
 .badge{padding:8px 14px;border-radius:999px;font-weight:bold;font-size:14px}
@@ -82,7 +82,7 @@ td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;verti
 
     <button class="save-btn" onclick="addBooking()">إضافة الحجز</button>
 
-    <div class="note">المواعيد القديمة لا تظهر في الجدول تلقائيًا</div>
+    <div class="note">يسمح بأكثر من مريض في نفس الساعة — والمواعيد القديمة لا تظهر تلقائيًا</div>
   </div>
 
   <div class="card">
@@ -129,20 +129,20 @@ const femaleTherapists=[
   "د. مها فريح"
 ];
 
-const times = [
-    "09:00 AM",
-    "10:00 AM",
-    "11:00 AM",
-    "12:00 PM",
-    "01:00 PM",
-    "02:00 PM",
-    "03:00 PM",
-    "04:00 PM",
-    "05:00 PM",
-    "06:00 PM",
-    "07:00 PM",
-    "08:00 PM",
-    "09:00 PM"
+const times=[
+  "09:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "01:00 PM",
+  "02:00 PM",
+  "03:00 PM",
+  "04:00 PM",
+  "05:00 PM",
+  "06:00 PM",
+  "07:00 PM",
+  "08:00 PM",
+  "09:00 PM"
 ];
 
 let bookings=[];
@@ -176,18 +176,20 @@ function updateByDate(){
   const dayEn=getEnglishDay(date);
   const dayAr=getArabicDay(date);
 
-  document.getElementById("dayName").value=dayAr + " - " + dayEn;
+  document.getElementById("dayName").value=dayAr+" - "+dayEn;
 
   const gender=hydroDays[dayEn];
 
   if(!gender){
     document.getElementById("gender").value="غير مخصص للعلاج المائي";
     document.getElementById("therapist").innerHTML="";
+    buildTable();
     return;
   }
 
   document.getElementById("gender").value=gender;
   updateTherapists(gender);
+  buildTable();
 }
 
 function updateTherapists(gender){
@@ -209,7 +211,7 @@ function fillTimes(){
 function getWeekDates(){
   const selected=document.getElementById("date").value || todayISO();
   const d=new Date(selected+"T12:00:00");
-  const day=d.getDay(); 
+  const day=d.getDay();
   const diffToSaturday=(day+1)%7;
   const saturday=new Date(d);
   saturday.setDate(d.getDate()-diffToSaturday);
@@ -219,11 +221,12 @@ function getWeekDates(){
     const x=new Date(saturday);
     x.setDate(saturday.getDate()+i);
     const iso=x.toISOString().split("T")[0];
+    const en=getEnglishDay(iso);
     week.push({
       date:iso,
-      en:getEnglishDay(iso),
+      en:en,
       ar:getArabicDay(iso),
-      gender:hydroDays[getEnglishDay(iso)]
+      gender:hydroDays[en]
     });
   }
   return week;
@@ -248,16 +251,18 @@ function buildTable(){
     let row=`<tr><td class="time">${time}</td>`;
 
     week.forEach(day=>{
-const list = bookings.filter(b => b.date === day.date && b.time === time);
+      const list=bookings.filter(b=>b.date===day.date && b.time===time);
 
-      if(booking){
-        row+=`
-        <td>
+      if(list.length>0){
+        row+=`<td>`;
+        list.forEach(b=>{
+          row+=`
           <div class="booking">
-            ${booking.patient}<br>
-            <small>${booking.therapist}</small>
-          </div>
-        </td>`;
+            ${b.patient}<br>
+            <small>${b.therapist}</small>
+          </div>`;
+        });
+        row+=`</td>`;
       }else{
         row+="<td></td>";
       }
@@ -296,13 +301,8 @@ function addBooking(){
     return;
   }
 
-  const exists=bookings.some(b=>b.date===date && b.time===time);
-  if(exists){
-    alert("هذا الوقت محجوز مسبقًا");
-    return;
-  }
-
   bookings.push({date,day:dayEn,gender,time,therapist,patient});
+
   document.getElementById("patient").value="";
   buildTable();
 }
