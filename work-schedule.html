@@ -38,12 +38,12 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin: 20px;
+    margin: 22px;
     flex-wrap: wrap;
 }
 
 button {
-    padding: 10px 25px;
+    padding: 10px 26px;
     border: none;
     background: #005b9f;
     color: white;
@@ -59,36 +59,59 @@ button:hover {
 .section-title {
     text-align: center;
     color: #005b9f;
+    margin-bottom: 20px;
+}
+
+.schedule-box {
+    width: 96%;
+    margin: 25px auto;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.box-title {
+    background: #f59e0b;
+    color: white;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .table-wrap {
-    width: 96%;
-    margin: auto;
     overflow-x: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
 }
 
 th {
     background: #005b9f;
     color: white;
-    padding: 10px;
+    padding: 11px;
 }
 
 td {
-    border: 1px solid #ccc;
+    border: 1px solid #cbd5e1;
     height: 58px;
     text-align: center;
 }
 
-.time {
+.shift-label {
     background: #dbeafe;
     font-weight: bold;
-    width: 170px;
+    width: 200px;
+}
+
+.shift-time {
+    display: block;
+    font-size: 14px;
+    color: #334155;
+    margin-top: 4px;
 }
 
 select {
@@ -98,17 +121,7 @@ select {
     border: 1px solid #94a3b8;
     font-size: 16px;
     font-weight: bold;
-    font-family: Tahoma, Arial;
     text-align: center;
-    background: white;
-    color: #0f172a;
-}
-
-.note {
-    text-align: center;
-    color: #b91c1c;
-    font-weight: bold;
-    margin: 18px;
 }
 </style>
 </head>
@@ -127,15 +140,10 @@ select {
 
 <h2 id="sectionTitle" class="section-title">قسم الرجال</h2>
 
-<div class="table-wrap">
-    <table id="schedule"></table>
-</div>
-
-<div class="note">
-    يتم تحديث جدول الدوام أسبوعيًا حسب احتياج القسم
-</div>
+<div id="tablesArea"></div>
 
 <script>
+
 function goHome() {
     window.location.href = "index.html";
 }
@@ -144,22 +152,28 @@ let currentSection = "men";
 
 const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-const shifts = {
-    men: [
-        "09:00 AM - 01:00 PM",
-        "04:00 PM - 08:00 PM",
-        "01:00 PM - 09:00 PM"
-    ],
-    women: [
-        "09:00 AM - 12:00 PM",
-        "04:00 PM - 09:00 PM",
-        "12:00 PM - 08:00 PM"
-    ],
-    reception: [
-        "09:00 AM - 12:00 PM",
-        "04:00 PM - 09:00 PM",
-        "12:00 PM - 08:00 PM"
-    ]
+const sectionTitles = {
+    men: "قسم الرجال",
+    women: "قسم النساء",
+    reception: "الاستقبال"
+};
+
+const shiftSettings = {
+    men: {
+        single: "01:00 PM - 09:00 PM",
+        splitFirst: "09:00 AM - 12:00 PM",
+        splitSecond: "04:00 PM - 08:00 PM"
+    },
+    women: {
+        single: "12:00 PM - 08:00 PM",
+        splitFirst: "09:00 AM - 12:00 PM",
+        splitSecond: "04:00 PM - 09:00 PM"
+    },
+    reception: {
+        single: "12:00 PM - 08:00 PM",
+        splitFirst: "09:00 AM - 12:00 PM",
+        splitSecond: "04:00 PM - 09:00 PM"
+    }
 };
 
 const employees = {
@@ -187,25 +201,57 @@ const employees = {
     }
 };
 
-function buildTable() {
-    let table = document.getElementById("schedule");
-    table.innerHTML = "";
+function renderAllTables() {
+    const area = document.getElementById("tablesArea");
+    area.innerHTML = "";
 
-    let header = "<tr><th>وقت الدوام</th>";
-    days.forEach(day => header += `<th>${day}</th>`);
-    header += "</tr>";
-    table.innerHTML += header;
+    // شفت واحد
+    area.innerHTML += buildTable("دوام شفت واحد", [
+        { label: "شفت واحد", time: shiftSettings[currentSection].single }
+    ]);
 
-    shifts[currentSection].forEach(shift => {
-        let row = `<tr><td class="time">${shift}</td>`;
+    // شفتين
+    area.innerHTML += buildTable("دوام شفتين", [
+        { label: "الشفت الأول", time: shiftSettings[currentSection].splitFirst },
+        { label: "الشفت الثاني", time: shiftSettings[currentSection].splitSecond }
+    ]);
+}
+
+function buildTable(title, rows) {
+    let html = `
+    <div class="schedule-box">
+        <div class="box-title">${title}</div>
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th>نوع الشفت</th>
+    `;
+
+    days.forEach(day => html += `<th>${day}</th>`);
+    html += "</tr>";
+
+    rows.forEach(row => {
+        html += `
+        <tr>
+            <td class="shift-label">
+                ${row.label}
+                <span class="shift-time">${row.time}</span>
+            </td>
+        `;
 
         days.forEach(() => {
-            row += `<td>${createDropdown()}</td>`;
+            html += `<td>${createDropdown()}</td>`;
         });
 
-        row += "</tr>";
-        table.innerHTML += row;
+        html += "</tr>";
     });
+
+    html += `
+            </table>
+        </div>
+    </div>`;
+
+    return html;
 }
 
 function createDropdown() {
@@ -222,30 +268,16 @@ function colorCell(select) {
     const cell = select.parentElement;
 
     cell.style.background = color;
-
-    if (select.value !== "—") {
-        select.style.fontWeight = "bold";
-        select.style.color = "#000";
-    } else {
-        cell.style.background = "#ffffff";
-        select.style.color = "#0f172a";
-    }
 }
 
 function switchSection(section) {
     currentSection = section;
-
-    const titles = {
-        men: "قسم الرجال",
-        women: "قسم النساء",
-        reception: "الاستقبال"
-    };
-
-    document.getElementById("sectionTitle").innerText = titles[section];
-    buildTable();
+    document.getElementById("sectionTitle").innerText = sectionTitles[section];
+    renderAllTables();
 }
 
-buildTable();
+renderAllTables();
+
 </script>
 
 </body>
