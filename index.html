@@ -9,109 +9,129 @@
 :root{
   --blue:#005b9f;
   --blue2:#0077c8;
-  --dark:#08345f;
+  --dark:#073763;
   --orange:#f59e0b;
-  --light:#f4f8fc;
+  --soft:#f4f8fc;
   --text:#0f172a;
   --muted:#64748b;
-  --card:#ffffff;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
   direction:rtl;
-  background:
-    radial-gradient(circle at top right, rgba(0,119,200,.13), transparent 35%),
-    linear-gradient(180deg,#f8fbff,#eef4f9);
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
 }
 
-/* HERO */
 .hero{
-  position:relative;
-  min-height:360px;
+  min-height:350px;
   background:
-    linear-gradient(135deg,rgba(0,91,159,.98),rgba(0,119,200,.95)),
-    url("");
+    radial-gradient(circle at 15% 10%,rgba(255,255,255,.18),transparent 28%),
+    linear-gradient(135deg,#004b87,#0077c8);
   color:white;
-  overflow:hidden;
-  border-bottom-left-radius:42px;
-  border-bottom-right-radius:42px;
+  border-bottom-left-radius:46px;
+  border-bottom-right-radius:46px;
   box-shadow:0 18px 45px rgba(8,52,95,.22);
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:520px;
-  height:520px;
-  background:rgba(255,255,255,.08);
-  border-radius:50%;
-  top:-260px;
-  right:-160px;
+  position:relative;
+  overflow:hidden;
 }
 
 .hero::after{
   content:"";
   position:absolute;
-  left:-160px;
-  bottom:-220px;
-  width:420px;
-  height:420px;
-  background:rgba(245,158,11,.16);
+  width:520px;
+  height:520px;
   border-radius:50%;
+  background:rgba(245,158,11,.13);
+  left:-190px;
+  bottom:-260px;
 }
 
 .hero-inner{
   position:relative;
   z-index:2;
-  width:94%;
+  width:92%;
   max-width:1450px;
   margin:auto;
-  padding:42px 0 58px;
+  padding:42px 0 70px;
   display:grid;
-  grid-template-columns:260px 1fr 170px;
+  grid-template-columns:180px 1fr 250px;
   gap:34px;
   align-items:center;
 }
 
-/* CLOCK */
+.logo-card{
+  width:165px;
+  height:165px;
+  background:white;
+  border-radius:34px;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 18px 38px rgba(0,0,0,.25);
+}
+
+.logo-card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.brand h1{
+  margin:0;
+  font-size:42px;
+  font-weight:900;
+  line-height:1.4;
+}
+
+.brand .subtitle{
+  margin:12px 0 0;
+  max-width:780px;
+  font-size:17px;
+  line-height:1.9;
+  color:#eaf6ff;
+}
+
+.brand .subtitle-en{
+  margin:8px 0 0;
+  direction:ltr;
+  text-align:right;
+  color:#ffd28a;
+  font-size:14px;
+}
+
 .clock-card{
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.24);
   border-radius:30px;
-  padding:20px;
+  padding:22px;
   text-align:center;
   backdrop-filter:blur(10px);
   box-shadow:0 18px 35px rgba(0,0,0,.18);
 }
 
 .clock-circle{
-  width:158px;
-  height:158px;
-  margin:auto;
+  width:155px;
+  height:155px;
+  margin:0 auto 14px;
   border-radius:50%;
-  background:linear-gradient(145deg,#063b72,#0077c8);
+  background:linear-gradient(145deg,#073763,#005b9f);
   border:3px solid rgba(255,255,255,.22);
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
-  box-shadow:
-    inset 0 0 0 8px rgba(255,255,255,.08),
-    0 16px 35px rgba(0,0,0,.26);
+  box-shadow:inset 0 0 0 8px rgba(255,255,255,.08),0 16px 35px rgba(0,0,0,.25);
 }
 
 #clockTime{
   direction:ltr;
-  font-size:29px;
+  font-size:28px;
   font-weight:900;
-  letter-spacing:1px;
 }
 
 .live-label{
@@ -122,7 +142,7 @@ body{
 }
 
 #clockDateAr{
-  margin-top:16px;
+  margin-top:12px;
   font-weight:bold;
   font-size:15px;
 }
@@ -134,98 +154,55 @@ body{
   color:#dbeafe;
 }
 
-/* BRAND */
-.brand{
-  text-align:right;
-}
-
-.brand h1{
-  font-size:40px;
-  margin:0;
-  line-height:1.4;
-  font-weight:900;
-}
-
-.brand .subtitle{
-  max-width:720px;
-  margin:12px 0 0;
-  color:#eaf6ff;
-  font-size:17px;
-  line-height:1.9;
-}
-
-.brand .subtitle-en{
-  margin-top:8px;
-  color:#ffcf7a;
-  font-size:14px;
-  direction:ltr;
-  text-align:right;
-}
-
-.brand-header{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.logo{
-  width:70px;
-  height:70px;
-  object-fit:contain;
-  background:white;
-  border-radius:18px;
-  padding:6px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.2);
-}
-
-.brand h1{
-  font-size:34px;
-  margin:0;
-}
-/* QUOTE */
-.quote-strip{
+.quote-card{
   width:92%;
-  max-width:1250px;
-  margin:-35px auto 28px;
+  max-width:1180px;
+  margin:-42px auto 32px;
   position:relative;
   z-index:5;
   background:white;
-  border-radius:24px;
-  padding:24px 30px;
-  box-shadow:0 18px 45px rgba(15,23,42,.12);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:16px;
+  border-radius:28px;
+  padding:26px 34px;
+  box-shadow:0 18px 45px rgba(15,23,42,.13);
   border:1px solid #e2e8f0;
+  display:grid;
+  grid-template-columns:70px 1fr;
+  gap:20px;
+  align-items:center;
 }
 
 .quote-icon{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:#fff7ed;
+  width:62px;
+  height:62px;
+  border-radius:22px;
+  background:linear-gradient(145deg,#fff7ed,#ffffff);
   color:var(--orange);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:24px;
+  font-size:32px;
+  box-shadow:inset 0 0 0 1px #fed7aa;
+}
+
+.quote-content small{
+  color:var(--orange);
+  font-weight:bold;
+  letter-spacing:.5px;
 }
 
 #dailyQuote{
-  margin:0;
+  margin:8px 0 0;
   color:var(--dark);
-  font-size:24px;
+  font-size:25px;
   font-weight:900;
+  line-height:1.7;
   transition:.35s;
-  text-align:center;
 }
 
-/* CARDS */
 .main{
   width:92%;
   max-width:1450px;
-  margin:0 auto 28px;
+  margin:0 auto 30px;
 }
 
 .section-head{
@@ -234,14 +211,14 @@ body{
 }
 
 .section-head h2{
-  color:var(--blue);
   margin:0;
-  font-size:28px;
+  color:var(--blue);
+  font-size:30px;
 }
 
 .section-head p{
   color:var(--muted);
-  margin-top:8px;
+  margin:8px 0 0;
 }
 
 .cards{
@@ -251,16 +228,16 @@ body{
 }
 
 .card{
-  position:relative;
-  background:linear-gradient(180deg,#ffffff,#fbfdff);
+  background:linear-gradient(180deg,#fff,#fbfdff);
   border:1px solid #e2e8f0;
   border-radius:28px;
   padding:30px 26px;
   min-height:230px;
   cursor:pointer;
   overflow:hidden;
+  position:relative;
   box-shadow:0 18px 35px rgba(15,23,42,.08);
-  transition:.28s ease;
+  transition:.28s;
 }
 
 .card::before{
@@ -268,41 +245,41 @@ body{
   position:absolute;
   top:0;
   right:0;
-  height:7px;
   width:100%;
+  height:7px;
   background:linear-gradient(90deg,var(--orange),#ffbd4a);
-}
-
-.card::after{
-  content:"";
-  position:absolute;
-  width:110px;
-  height:110px;
-  border-radius:50%;
-  background:rgba(0,91,159,.06);
-  left:-40px;
-  bottom:-40px;
 }
 
 .card:hover{
   transform:translateY(-9px);
   box-shadow:0 26px 55px rgba(15,23,42,.16);
-  border-color:#cfe0ee;
 }
 
 .icon{
   width:70px;
   height:70px;
   border-radius:22px;
-  background:linear-gradient(145deg,#eef6ff,#ffffff);
+  background:#eef6ff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:33px;
+  font-size:34px;
   margin-bottom:22px;
-  box-shadow:inset 0 0 0 1px #e2e8f0;
 }
 
+  .card{
+  text-align:center;
+}
+
+.card h3{
+  margin-top:10px;
+}
+
+.card h4{
+  margin-top:6px;
+  opacity:0.7;
+}
+  
 .card h3{
   color:var(--blue);
   font-size:24px;
@@ -335,68 +312,45 @@ body{
   font-size:14px;
 }
 
-/* RESPONSIVE */
 @media(max-width:1150px){
   .hero-inner{
     grid-template-columns:1fr;
     text-align:center;
   }
-  .brand{
-    text-align:center;
+
+  .logo-card{
+    margin:auto;
   }
+
   .brand .subtitle{
     margin-left:auto;
     margin-right:auto;
   }
+
   .brand .subtitle-en{
     text-align:center;
   }
-  .logo-wrap{
-    margin:auto;
-  }
+
   .cards{
     grid-template-columns:repeat(2,1fr);
   }
 }
 
 @media(max-width:650px){
-  .hero{
-    border-bottom-left-radius:26px;
-    border-bottom-right-radius:26px;
-  }
-  .hero-inner{
-    padding:28px 0 48px;
-  }
-  .clock-card{
-    order:3;
-  }
-  .brand h1{
-    font-size:25px;
-  }
-  .brand .subtitle{
-    font-size:14px;
-  }
-  .logo{
-    width:95px;
-    height:95px;
-  }
-  .clock-circle{
-    width:135px;
-    height:135px;
-  }
-  #clockTime{
-    font-size:24px;
-  }
-  .quote-strip{
-    flex-direction:column;
-    padding:20px;
-  }
-  #dailyQuote{
-    font-size:19px;
-  }
-  .cards{
+  .hero-inner{padding:28px 0 64px}
+  .brand h1{font-size:26px}
+  .brand .subtitle{font-size:14px}
+  .logo-card{width:115px;height:115px;border-radius:24px}
+  .clock-circle{width:135px;height:135px}
+  #clockTime{font-size:24px}
+  .quote-card{
     grid-template-columns:1fr;
+    text-align:center;
+    padding:22px;
   }
+  .quote-icon{margin:auto}
+  #dailyQuote{font-size:19px}
+  .cards{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -405,6 +359,20 @@ body{
 
 <header class="hero">
   <div class="hero-inner">
+
+    <div class="logo-card">
+      <img src="logo.png" alt="شعار مركز عكاز">
+    </div>
+
+    <div class="brand">
+      <h1>مركز عكاز للعلاج الطبيعي</h1>
+      <p class="subtitle">
+        بوابة داخلية متكاملة تجمع أنظمة المركز لإدارة الجداول، المواعيد، الزيارات المنزلية، والعمليات اليومية 
+      </p>
+      <p class="subtitle-en">
+        A unified internal portal for schedules, appointments, home visits, and daily workflow management.
+      </p>
+    </div>
 
     <div class="clock-card">
       <div class="clock-circle">
@@ -415,65 +383,51 @@ body{
       <div id="clockDateEn">--</div>
     </div>
 
-    <div class="brand">
-      <h1> مركز عكاز للعلاج الطبيعي</h1>
-      <p class="subtitle">
-         تجمع أنظمة مركز عكاز لإدارة الجداول، المواعيد، والعمليات اليومية 
-      </p>
-      
-    </div>
-
-    <div class="brand-header">
-  <img src="logo.png" class="logo">
-  <h1>مركز عكاز للعلاج الطبيعي</h1>
-</div>
-
   </div>
 </header>
 
-<section class="quote-strip">
+<section class="quote-card">
   <div class="quote-icon">💙</div>
-  <h2 id="dailyQuote">نحن هنا لنخفف الألم ونصنع الفرق</h2>
+  <div class="quote-content">
+    <small>رسالة اليوم</small>
+    <h2 id="dailyQuote">نحن هنا لنخفف الألم ونصنع الفرق</h2>
+  </div>
 </section>
 
 <main class="main">
 
   <div class="section-head">
     <h2>الأقسام</h2>
-    <p>اختر القسم المطلوب </p>
+    <p>اختر القسم المطلوب</p>
   </div>
 
-  <div class="cards">
+ <div class="cards">
 
-    <div class="card" onclick="go('work-schedule.html')">
-      <div class="icon">📋</div>
-      <h3>جدول الدوام</h3>
-      <h4>Work Schedule</h4>
-      <p>تنظيم دوام الموظفين والشفتات حسب الأقسام، مع حفظ تلقائي ومشاركة مباشرة.</p>
-    </div>
-
-    <div class="card" onclick="go('kids-rooms.html')">
-      <div class="icon">👶</div>
-      <h3>غرف الأطفال</h3>
-      <h4>Pediatric Rooms</h4>
-      <p>حجز غرف الأطفال في الدور الأول والثاني بطريقة واضحة وسهلة لجميع الأخصائيين.</p>
-    </div>
-
-    <div class="card" onclick="go('hydrotherapy.html')">
-      <div class="icon">💧</div>
-      <h3>العلاج المائي</h3>
-      <h4>Hydrotherapy</h4>
-      <p>تنظيم مواعيد العلاج المائي حسب التاريخ والقسم، مع عرض أسبوعي مباشر.</p>
-    </div>
-
-    <div class="card" onclick="go('home-visits.html')">
-      <div class="icon">🏠</div>
-      <h3>الزيارات المنزلية</h3>
-      <h4>Home Visits</h4>
-      <p>تسجيل الزيارات المنزلية حسب الأخصائي ودورة الرواتب من 21 إلى 20.</p>
-    </div>
-
+  <div class="card" onclick="go('work-schedule.html')">
+    <div class="icon">📋</div>
+    <h3>جدول الدوام</h3>
+    <h4>Work Schedule</h4>
   </div>
+
+  <div class="card" onclick="go('kids-rooms.html')">
+    <div class="icon">👶</div>
+    <h3>غرف الأطفال</h3>
+    <h4>Pediatric Rooms</h4>
+  </div>
+
+  <div class="card" onclick="go('hydrotherapy.html')">
+    <div class="icon">💧</div>
+    <h3>العلاج المائي</h3>
+    <h4>Hydrotherapy</h4>
+  </div>
+
+  <div class="card" onclick="go('home-visits.html')">
+    <div class="icon">🏠</div>
+    <h3>الزيارات المنزلية</h3>
+    <h4>Home Visits</h4>
+  </div>
+
+</div>
 
 </main>
 
