@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> مركز عكاز للعلاج الطبيعي</title>
+<title>بوابة مركز عكاز</title>
 
 <style>
 :root{
   --blue:#005b9f;
   --blue2:#0077c8;
-  --dark:#08345f;
   --orange:#f59e0b;
-  --text:#0f172a;
+  --dark:#0f172a;
+  --card:#ffffff;
   --muted:#64748b;
 }
 
@@ -21,91 +21,81 @@ body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
   direction:rtl;
-  background:
-    radial-gradient(circle at top right, rgba(0,119,200,.13), transparent 35%),
-    linear-gradient(180deg,#f8fbff,#eef4f9);
-  color:var(--text);
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:#0f172a;
 }
 
+/* HEADER */
 .hero{
   position:relative;
-  min-height:360px;
-  background:linear-gradient(135deg,rgba(0,91,159,.98),rgba(0,119,200,.95));
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.13),transparent 28%),
+    linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
-  overflow:hidden;
-  border-bottom-left-radius:42px;
-  border-bottom-right-radius:42px;
+  min-height:330px;
+  border-bottom-left-radius:40px;
+  border-bottom-right-radius:40px;
   box-shadow:0 18px 45px rgba(8,52,95,.22);
+  overflow:hidden;
+}
+
+.theme-btn{
+  position:absolute;
+  top:20px;
+  left:24px;
+  z-index:10;
+  width:48px;
+  height:48px;
+  border-radius:16px;
+  border:none;
+  background:white;
+  color:var(--blue);
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.20);
 }
 
 .hero-inner{
   width:94%;
   max-width:1450px;
   margin:auto;
-  padding:42px 0 58px;
+  padding:55px 0;
   display:grid;
-  grid-template-columns: 260px 1fr 200px; /* يسار - وسط - يمين */
+  grid-template-columns:260px 1fr 260px;
   align-items:center;
-  gap:20px;
-}
-
-.theme-btn{
-  position:absolute;
-  top:22px;
-  left:28px;
-  z-index:10;
-  background:white;
-  color:var(--blue);
-  border:none;
-  width:48px;
-  height:48px;
-  border-radius:16px;
-  cursor:pointer;
-  font-size:22px;
-  font-weight:bold;
-  box-shadow:0 10px 25px rgba(0,0,0,.18);
+  gap:30px;
 }
 
 .clock-card{
-  background:rgba(255,255,255,.12);
-  border:1px solid rgba(255,255,255,.22);
+  justify-self:start;
+  width:230px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
   border-radius:30px;
-  padding:18px;
+  padding:20px;
   text-align:center;
   backdrop-filter:blur(10px);
   box-shadow:0 18px 35px rgba(0,0,0,.18);
-
-  /* أهم شيء */
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
 }
 
- .clock-card{
-  margin-right:0;
-  margin-left:10px;
-}
-  
 .clock-circle{
-  width:158px;
-  height:158px;
+  width:165px;
+  height:165px;
   margin:auto;
   border-radius:50%;
   background:linear-gradient(145deg,#063b72,#0077c8);
-  border:3px solid rgba(255,255,255,.22);
+  border:3px solid rgba(255,255,255,.25);
   display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
-  box-shadow:inset 0 0 0 8px rgba(255,255,255,.08),0 16px 35px rgba(0,0,0,.26);
+  box-shadow:inset 0 0 0 8px rgba(255,255,255,.08),0 16px 35px rgba(0,0,0,.25);
 }
 
 #clockTime{
   direction:ltr;
-  font-size:29px;
+  font-size:30px;
   font-weight:900;
-  letter-spacing:1px;
 }
 
 .live-label{
@@ -116,123 +106,101 @@ body{
 }
 
 #clockDateAr{
-  margin-top:16px;
-  font-weight:bold;
+  margin-top:15px;
   font-size:15px;
+  font-weight:bold;
 }
 
 #clockDateEn{
-  margin-top:4px;
   direction:ltr;
-  font-size:13px;
+  margin-top:4px;
   color:#dbeafe;
+  font-size:13px;
 }
 
-.brand{
-  text-align:right;
+.center-title{
+  text-align:center;
 }
 
-.brand-header{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  margin-bottom:10px;
-}
-
-.logo{
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  display:block;
-  margin:auto;
-}
-
-  .logo-box{
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-}
-.brand h1{
-  font-size:38px;
+.center-title h1{
   margin:0;
-  line-height:1.4;
+  font-size:42px;
   font-weight:900;
+  line-height:1.5;
 }
 
-.brand .subtitle{
-  max-width:760px;
-  margin:12px 0 0;
+.center-title p{
+  margin:12px auto 0;
+  max-width:700px;
+  font-size:16px;
   color:#eaf6ff;
-  font-size:17px;
   line-height:1.9;
 }
 
-.brand .subtitle-en{
-  margin-top:8px;
-  color:#ffcf7a;
-  font-size:14px;
-  direction:ltr;
-  text-align:right;
+.logo-box{
+  justify-self:end;
+  background:white;
+  border-radius:34px;
+  padding:18px;
+  box-shadow:0 18px 35px rgba(0,0,0,.25);
 }
 
+.logo{
+  width:155px;
+  height:155px;
+  object-fit:contain;
+  display:block;
+}
+
+/* QUOTE */
 .quote-strip{
-  width:92%;
-  max-width:1250px;
-  margin:-35px auto 28px;
+  width:88%;
+  max-width:1050px;
+  margin:-35px auto 34px;
   position:relative;
-  z-index:5;
+  z-index:4;
   background:white;
-  border-radius:24px;
-  padding:24px 30px;
-  box-shadow:0 18px 45px rgba(15,23,42,.12);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:16px;
   border:1px solid #e2e8f0;
+  border-radius:24px;
+  padding:22px 28px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  box-shadow:0 18px 45px rgba(15,23,42,.12);
 }
 
 .quote-icon{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:#fff7ed;
   color:var(--orange);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
+  font-size:25px;
 }
 
 #dailyQuote{
   margin:0;
-  color:var(--dark);
-  font-size:24px;
+  color:#08345f;
+  font-size:23px;
   font-weight:900;
-  transition:.35s;
   text-align:center;
+  transition:.35s;
 }
 
+/* MAIN */
 .main{
-  width:92%;
-  max-width:1450px;
-  margin:0 auto 28px;
+  width:90%;
+  max-width:1250px;
+  margin:auto;
 }
 
 .section-head{
   text-align:center;
-  margin-bottom:26px;
+  margin-bottom:24px;
 }
 
 .section-head h2{
   color:var(--blue);
   margin:0;
-  font-size:28px;
-}
-
-.section-head p{
-  color:var(--muted);
-  margin-top:8px;
+  font-size:30px;
+  font-weight:900;
 }
 
 .cards{
@@ -242,16 +210,17 @@ body{
 }
 
 .card{
-  position:relative;
   background:linear-gradient(180deg,#ffffff,#fbfdff);
   border:1px solid #e2e8f0;
   border-radius:28px;
-  padding:30px 26px;
-  min-height:230px;
+  padding:30px 20px;
+  min-height:185px;
   cursor:pointer;
-  overflow:hidden;
+  text-align:center;
   box-shadow:0 18px 35px rgba(15,23,42,.08);
-  transition:.28s ease;
+  transition:.25s;
+  position:relative;
+  overflow:hidden;
 }
 
 .card::before{
@@ -259,61 +228,55 @@ body{
   position:absolute;
   top:0;
   right:0;
-  height:7px;
   width:100%;
+  height:7px;
   background:linear-gradient(90deg,var(--orange),#ffbd4a);
 }
 
 .card:hover{
-  transform:translateY(-9px);
+  transform:translateY(-8px);
   box-shadow:0 26px 55px rgba(15,23,42,.16);
 }
 
 .icon{
-  width:70px;
-  height:70px;
+  width:66px;
+  height:66px;
+  margin:0 auto 18px;
   border-radius:22px;
-  background:linear-gradient(145deg,#eef6ff,#ffffff);
+  background:#eef6ff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:33px;
-  margin-bottom:22px;
+  font-size:32px;
 }
 
 .card h3{
-  color:var(--blue);
-  font-size:24px;
   margin:0;
+  color:var(--blue);
+  font-size:23px;
+  font-weight:900;
 }
 
 .card h4{
+  margin:8px 0 0;
   color:var(--orange);
+  font-size:14px;
   direction:ltr;
-  text-align:right;
-  font-size:15px;
-  margin:8px 0 14px;
 }
 
-.card p{
-  color:#536174;
-  line-height:1.9;
-  margin:0;
-  font-size:15px;
-}
-
+/* FOOTER */
 .footer{
-  width:92%;
-  max-width:1450px;
-  margin:34px auto 20px;
+  width:90%;
+  max-width:1250px;
+  margin:38px auto 22px;
   padding-top:18px;
   border-top:1px solid #dbe4ee;
   text-align:center;
-  color:#7b8796;
+  color:#64748b;
   font-size:14px;
 }
 
-/* DARK MODE */
+/* DARK */
 body.dark{
   background:linear-gradient(180deg,#020617,#0f172a);
   color:#e2e8f0;
@@ -323,30 +286,18 @@ body.dark .hero{
   background:linear-gradient(135deg,#020617,#1e3a8a);
 }
 
-body.dark .clock-card{
-  background:rgba(15,23,42,.65);
-  border-color:#334155;
-}
-
-body.dark .clock-circle{
-  background:linear-gradient(145deg,#020617,#1e40af);
-}
-
 body.dark .quote-strip,
 body.dark .card{
   background:#1e293b;
   border-color:#334155;
-  box-shadow:0 18px 35px rgba(0,0,0,.25);
 }
 
 body.dark #dailyQuote,
-body.dark .card h3,
-body.dark .section-head h2{
+body.dark .section-head h2,
+body.dark .card h3{
   color:#93c5fd;
 }
 
-body.dark .section-head p,
-body.dark .card p,
 body.dark .footer{
   color:#cbd5e1;
 }
@@ -362,64 +313,54 @@ body.dark .theme-btn{
 }
 
 /* RESPONSIVE */
-@media(max-width:1150px){
+@media(max-width:1100px){
   .hero-inner{
     grid-template-columns:1fr;
     text-align:center;
   }
-  .brand{
-    text-align:center;
+
+  .clock-card,
+  .logo-box{
+    justify-self:center;
   }
-  .brand-header{
-    justify-content:center;
-    flex-direction:column;
+
+  .logo{
+    width:120px;
+    height:120px;
   }
-  .brand .subtitle{
-    margin-left:auto;
-    margin-right:auto;
+
+  .center-title h1{
+    font-size:32px;
   }
-  .brand .subtitle-en{
-    text-align:center;
-  }
+
   .cards{
     grid-template-columns:repeat(2,1fr);
   }
 }
 
 @media(max-width:650px){
-  .hero{
-    border-bottom-left-radius:26px;
-    border-bottom-right-radius:26px;
-  }
   .hero-inner{
-    padding:80px 0 48px;
+    padding:80px 0 50px;
   }
-  .brand h1{
+
+  .center-title h1{
     font-size:25px;
   }
-  .brand .subtitle{
+
+  .center-title p{
     font-size:14px;
   }
-  .logo{
-    width:75px;
-    height:75px;
-  }
-  .clock-circle{
-    width:135px;
-    height:135px;
-  }
-  #clockTime{
-    font-size:24px;
-  }
-  .quote-strip{
-    flex-direction:column;
-    padding:20px;
-  }
-  #dailyQuote{
-    font-size:19px;
-  }
+
   .cards{
     grid-template-columns:1fr;
+  }
+
+  #dailyQuote{
+    font-size:18px;
+  }
+
+  .quote-strip{
+    width:92%;
   }
 }
 </style>
@@ -431,40 +372,36 @@ body.dark .theme-btn{
 
   <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 
-<div class="hero-inner">
+  <div class="hero-inner">
 
-  <!-- يسار -->
-  <div class="clock-card">...</div>
-
-  <!-- وسط -->
-  <div class="brand">...</div>
-
-  <!-- يمين -->
-  <div class="logo-box">
-    <img src="logo.png" class="logo">
-  </div>
-
-</div>
-
-    <div class="brand">
-      <div class="brand-header">
-        <img src="logo.png" class="logo" alt="شعار مركز عكاز">
-        <h1>مركز عكاز للعلاج الطبيعي</h1>
+    <!-- الساعة يسار -->
+    <div class="clock-card">
+      <div class="clock-circle">
+        <div id="clockTime">00:00:00</div>
+        <div class="live-label">Live Time</div>
       </div>
+      <div id="clockDateAr">--</div>
+      <div id="clockDateEn">--</div>
+    </div>
 
-      <p class="subtitle">
-        بوابة داخلية متكاملة تجمع أنظمة مركز عكاز لإدارة الجداول، المواعيد، والعمليات اليومية بكل سهولة ووضوح
+    <!-- العنوان وسط -->
+    <div class="center-title">
+      <h1>مركز عكاز للعلاج الطبيعي</h1>
+      <p>
+        بوابة داخلية متكاملة لإدارة أنظمة المركز اليومية بكل سهولة ووضوح
       </p>
-      <p class="subtitle-en">
-        A unified internal portal for schedules, appointments, home visits, and daily workflow management
-      </p>
+    </div>
+
+    <!-- اللوقو يمين -->
+    <div class="logo-box">
+      <img src="logo.png" class="logo" alt="شعار مركز عكاز">
     </div>
 
   </div>
 </header>
 
 <section class="quote-strip">
-  <div class="quote-icon">💙</div>
+  <span class="quote-icon">💙</span>
   <h2 id="dailyQuote">نحن هنا لنخفف الألم ونصنع الفرق</h2>
 </section>
 
@@ -472,7 +409,6 @@ body.dark .theme-btn{
 
   <div class="section-head">
     <h2>أقسام المركز</h2>
-    <p>اختر القسم المطلوب </p>
   </div>
 
   <div class="cards">
@@ -481,28 +417,24 @@ body.dark .theme-btn{
       <div class="icon">📋</div>
       <h3>جدول الدوام</h3>
       <h4>Work Schedule</h4>
-      <p>تنظيم دوام الموظفين والشفتات حسب الأقسام، مع حفظ تلقائي ومشاركة مباشرة.</p>
     </div>
 
     <div class="card" onclick="go('kids-rooms.html')">
       <div class="icon">👶</div>
       <h3>غرف الأطفال</h3>
       <h4>Pediatric Rooms</h4>
-      <p>حجز غرف الأطفال في الدور الأول والثاني .</p>
     </div>
 
     <div class="card" onclick="go('hydrotherapy.html')">
       <div class="icon">💧</div>
       <h3>العلاج المائي</h3>
       <h4>Hydrotherapy</h4>
-      <p>تنظيم مواعيد العلاج المائي حسب التاريخ والقسم،.</p>
     </div>
 
     <div class="card" onclick="go('home-visits.html')">
       <div class="icon">🏠</div>
       <h3>الزيارات المنزلية</h3>
       <h4>Home Visits</h4>
-      <p>تسجيل الزيارات المنزلية حسب الأخصائي من 21 إلى 20.</p>
     </div>
 
   </div>
@@ -566,35 +498,12 @@ const quotes = [
   "ساعد المريض اليوم… واصنع أثرًا يبقى",
   "التعامل الإنساني هو أساس العلاج",
   "أنت سبب في عودة الأمل لمريض",
-  "كل مريض له قصة… كن جزءًا من نهايتها الجميلة",
   "نحن لا نعالج فقط… نحن نعيد جودة الحياة",
   "راحة المريض هي نجاحك الحقيقي",
   "استمع للمريض… نصف العلاج في الفهم",
   "كل خطوة تقدمها للمريض لها قيمة",
-  "كن لطيفًا… فالمريض يحتاجك أكثر مما تتوقع",
-  "الألم يمر… لكن أثر تعاملك يبقى",
-  "كل جلسة فرصة لتخفيف معاناة",
   "العلاج مهارة… والإنسانية فن",
   "المريض يثق بك… لا تخذل ثقته",
-  "اجعل المريض يشعر بالأمان معك",
-  "أنت اليوم سبب راحة إنسان",
-  "العناية بالتفاصيل تصنع فرقًا كبيرًا للمريض",
-  "كل تحسن صغير للمريض هو إنجاز",
-  "هدفنا ليس فقط العلاج… بل تحسين الحياة",
-  "المريض يحتاج اهتمامك قبل جهازك",
-  "التشجيع للمريض نصف الشفاء",
-  "كل يوم نقترب من شفاء شخص",
-  "المريض لا يبحث عن علاج فقط… يبحث عن من يفهمه",
-  "كل لمسة اهتمام تصنع فرق",
-  "العلاج يبدأ من طريقة تعاملك",
-  "كن صبورًا… فالمريض يمر بتحدي",
-  "كل كلمة إيجابية ترفع معنويات المريض",
-  "نحن هنا لنصنع راحة حقيقية",
-  "المريض يراك أملًا… كن عند ظنه",
-  "لا تقلل من تأثيرك في حياة المرضى",
-  "كل جلسة تترك أثر",
-  "اهتمامك هو أول خطوة للعلاج",
-  "التفهم هو أساس العلاقة مع المريض",
   "كل يوم فرصة لمساعدة شخص على الوقوف مجددًا"
 ];
 
