@@ -139,6 +139,7 @@ body{
   box-shadow:0 16px 38px rgba(15,23,42,.10);
   overflow:hidden;
   border:1px solid #e2e8f0;
+  margin-bottom:22px;
 }
 
 .box-title{
@@ -171,63 +172,66 @@ body{
 }
 
 .table-wrap{
-  overflow-x:auto;
+  width:100%;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  table-layout:auto;
+  table-layout:fixed;
+  background:white;
 }
 
 th{
   background:var(--blue);
   color:white;
-  padding:13px;
-  font-size:15px;
+  padding:12px 6px;
+  font-size:14px;
   border:1px solid #0b66a9;
 }
 
 td{
   border:1px solid #d7dee8;
-  min-width:140px;
+  height:76px;
+  text-align:center;
+  background:white;
   padding:6px;
+  vertical-align:middle;
+}
+
+.day{
+  background:#eef6ff;
+  font-weight:900;
+  width:95px;
+  color:var(--blue);
+  font-size:15px;
 }
 
 .time{
-  background:#eef6ff;
-  font-weight:900;
-  width:120px;
-  color:var(--blue);
   direction:ltr;
+  font-size:13px;
 }
 
 .slot{
-  margin-bottom:6px;
+  margin-bottom:5px;
   border-radius:10px;
   padding:3px;
 }
-.day{
-  background:#eef6ff;
-  font-weight:bold;
-  width:110px;
-  color:#005b9f;
-}
 
-.time{
-  font-size:13px;
-  direction:ltr;
-}
 select{
   width:100%;
-  height:38px;
-  border-radius:10px;
+  height:34px;
+  border-radius:9px;
   border:1px solid #cbd5e1;
-  font-size:14px;
+  font-size:13px;
   font-weight:bold;
-  text-align:right;
-  padding:0 6px;
+  font-family:Tahoma,Arial;
+  text-align:center;
+  background:white;
+  color:#0f172a;
+  cursor:pointer;
 }
+
 .footer-note{
   text-align:center;
   color:#b91c1c;
@@ -255,7 +259,11 @@ select{
   }
 
   table{
-    min-width:1050px;
+    min-width:900px;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
   }
 }
 </style>
@@ -296,9 +304,7 @@ select{
       <button onclick="copySmart('الأحد')">نسخ الأحد إلى الثلاثاء والخميس</button>
     </div>
 
-    <div class="table-wrap">
-      <table id="schedule"></table>
-    </div>
+    <div id="tablesArea"></div>
   </div>
 
   <div class="footer-note">
@@ -347,11 +353,26 @@ const therapists = {
 
 const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-const times = [
-  "09:00 AM","10:00 AM","11:00 AM","12:00 PM",
-  "01:00 PM","02:00 PM","03:00 PM","04:00 PM",
-  "05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"
+const morningTimes = [
+  "09:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "01:00 PM",
+  "02:00 PM"
 ];
+
+const eveningTimes = [
+  "03:00 PM",
+  "04:00 PM",
+  "05:00 PM",
+  "06:00 PM",
+  "07:00 PM",
+  "08:00 PM",
+  "09:00 PM"
+];
+
+const allTimes = [...morningTimes, ...eveningTimes];
 
 function makeId(floor, day, time, slot){
   return `floor${floor}_${day}_${time}_${slot}`
@@ -369,40 +390,61 @@ function buildLegend(){
   }
 }
 
-function buildTable(){
-  const table = document.getElementById("schedule");
-  table.innerHTML = "";
+function buildTables(){
+  const area = document.getElementById("tablesArea");
+  area.innerHTML = "";
 
-  // الهيدر (الأوقات فوق)
-  let header = "<tr><th>اليوم</th>";
-  times.forEach(time => header += `<th class="time">${time}</th>`);
-  header += "</tr>";
-  table.innerHTML += header;
-
-  // الأيام كصفوف
-  days.forEach(day => {
-    let row = `<tr><td class="day">${day}</td>`;
-
-    times.forEach(time => {
-      row += `<td>`;
-
-      for(let slot = 1; slot <= 2; slot++){
-        const cellId = makeId(currentFloor, day, time, slot);
-        const value = savedData[cellId]?.therapist || "—";
-        row += `<div class="slot">${createDropdown(cellId, value)}</div>`;
-      }
-
-      row += `</td>`;
-    });
-
-    row += "</tr>";
-    table.innerHTML += row;
-  });
+  area.innerHTML += buildTableSection("الفترة الصباحية", morningTimes);
+  area.innerHTML += buildTableSection("الفترة المسائية", eveningTimes);
 
   document.querySelectorAll("select").forEach(select => {
     colorCell(select);
   });
 }
+
+function buildTableSection(title, timeList){
+  let html = `
+    <div class="box-title" style="margin-top:0;background:linear-gradient(90deg,#005b9f,#0077c8);font-size:18px;">
+      ${title}
+    </div>
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th class="day">اليوم</th>
+  `;
+
+  timeList.forEach(time => {
+    html += `<th class="time">${time}</th>`;
+  });
+
+  html += `</tr>`;
+
+  days.forEach(day => {
+    html += `<tr><td class="day">${day}</td>`;
+
+    timeList.forEach(time => {
+      html += `<td>`;
+
+      for(let slot = 1; slot <= 2; slot++){
+        const cellId = makeId(currentFloor, day, time, slot);
+        const value = savedData[cellId]?.therapist || "—";
+        html += `<div class="slot">${createDropdown(cellId, value)}</div>`;
+      }
+
+      html += `</td>`;
+    });
+
+    html += `</tr>`;
+  });
+
+  html += `
+      </table>
+    </div>
+  `;
+
+  return html;
+}
+
 function createDropdown(cellId, value){
   let options = "";
 
@@ -464,7 +506,7 @@ window.copySmart = async function(sourceDay){
 
   const writes = [];
 
-  for(const time of times){
+  for(const time of allTimes){
     for(let slot = 1; slot <= 2; slot++){
       const sourceId = makeId(currentFloor, sourceDay, time, slot);
       const therapist = savedData[sourceId]?.therapist || "—";
@@ -496,7 +538,7 @@ window.switchFloor = function(floor){
   document.getElementById("floorTitle").innerText =
     floor === 1 ? "غرفة الدور الأول" : "غرفة الدور الثاني";
 
-  buildTable();
+  buildTables();
 };
 
 function listenRooms(){
@@ -507,7 +549,7 @@ function listenRooms(){
       savedData[item.id] = item.data();
     });
 
-    buildTable();
+    buildTables();
   });
 }
 
