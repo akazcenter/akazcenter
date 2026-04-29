@@ -2,192 +2,153 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>حجز غرف الأطفال</title>
 
 <style>
-body {
-    font-family: Tahoma, Arial;
-    direction: rtl;
-    background: #eef3f8;
-    margin: 0;
-    padding: 0;
-}
-
-.header {
-    background: #005b9f;
-    color: white;
-    padding: 18px 30px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.home-btn {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    background: white;
-    color: #005b9f;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px;
-}
-
-button {
-    padding: 10px 25px;
-    border: none;
-    background: #005b9f;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.table-wrap {
-    width: 96%;
-    margin: auto;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-}
-
-th {
-    background: #005b9f;
-    color: white;
-    padding: 10px;
-}
-
-td {
-    border: 1px solid #ccc;
-    height: 55px;
-    text-align: center;
-}
-
-.time {
-    background: #dbeafe;
-    font-weight: bold;
-    width: 120px;
-}
-
-select {
-    width: 98%;
-    height: 40px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
+.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px;box-shadow:0 8px 20px #0002}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
+.brand h1{margin:0;font-size:24px}
+.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
+.home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+.controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
+.controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
+.controls button:hover{background:#00457a}
+.floor-title{text-align:center;color:#005b9f;margin:10px 0 18px}
+.schedule-box{width:96%;margin:25px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0f172a14;overflow:hidden;border:1px solid #e2e8f0}
+.box-title{background:#f59e0b;color:white;padding:13px;font-size:20px;font-weight:bold;text-align:center}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:950px}
+th{background:#005b9f;color:white;padding:12px;font-size:15px}
+td{border:1px solid #d7dee8;height:58px;text-align:center;background:white;padding:7px}
+.time{background:#eef6ff;font-weight:bold;width:120px;color:#005b9f;direction:ltr}
+select{width:98%;height:44px;border-radius:9px;border:1px solid #cbd5e1;font-size:16px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;background:white;color:#0f172a}
+.footer-note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+.legend{width:96%;margin:10px auto 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.legend-item{padding:8px 12px;border-radius:999px;font-size:13px;font-weight:bold;border:1px solid #e2e8f0}
+@media(max-width:800px){
+.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.brand h1{font-size:21px}.home-btn{width:100%}.schedule-box{width:98%}table{min-width:1050px}
 }
 </style>
 </head>
 
 <body>
 
-<button onclick="goHome()" class="home-btn">🏠 الرئيسية</button>
-
-<div class="header">حجز غرف الأطفال</div>
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>حجز غرف الأطفال</h1>
+      <p>Pediatric Rooms Booking</p>
+    </div>
+  </div>
+  <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
+</div>
 
 <div class="controls">
-    <button onclick="switchFloor(1)">الدور الأول</button>
-    <button onclick="switchFloor(2)">الدور الثاني</button>
+  <button onclick="switchFloor(1)">غرفة الدور الأول</button>
+  <button onclick="switchFloor(2)">غرفة الدور الثاني</button>
 </div>
 
-<h3 id="floorTitle" style="text-align:center;">الدور الأول</h3>
+<h2 id="floorTitle" class="floor-title">غرفة الدور الأول</h2>
 
-<div class="table-wrap">
+<div class="legend" id="legend"></div>
+
+<div class="schedule-box">
+  <div class="box-title">جدول حجز الغرفة الأسبوعي</div>
+  <div class="table-wrap">
     <table id="schedule"></table>
+  </div>
 </div>
+
+<div class="footer-note">يرجى تحديث جدول غرف الأطفال أسبوعيًا قبل بداية الأسبوع الجديد</div>
 
 <script>
+function goHome(){window.location.href="index.html"}
 
-function goHome() {
-    window.location.href = "index.html";
-}
+let currentFloor=1;
 
-const therapists = {
-    "—": "#ffffff",
-    "د. ريناد حميد": "#fca5a5",
-    "د. ابتسام سويلم": "#fdba74",
-    "د. سلمى فرحان": "#fde68a",
-    "د. هند فهيد": "#bbf7d0",
-    "د. أسماء فهيد": "#a5f3fc",
-    "د. مها فريح": "#bfdbfe",
-    "د. حاتم الاحمدي": "#c7d2fe",
-    "د. عبدالرحمن السويداء": "#ddd6fe",
-    "د. عبدالرحمن السليمي": "#fbcfe8",
-    "د. عبدالعزيز الحمدان": "#fecaca"
+const therapists={
+  "—":"#ffffff",
+  "د. ريناد حميد":"#fca5a5",
+  "د. ابتسام سويلم":"#fdba74",
+  "د. سلمى فرحان":"#fde68a",
+  "د. هند فهيد":"#bbf7d0",
+  "د. أسماء فهيد":"#a5f3fc",
+  "د. مها فريح":"#bfdbfe",
+  "د. حاتم الاحمدي":"#c7d2fe",
+  "د. عبدالرحمن السويداء":"#ddd6fe",
+  "د. عبدالرحمن السليمي":"#fbcfe8",
+  "د. عبدالعزيز الحمدان":"#fecaca"
 };
 
-const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-const times = [
-    "09:00 AM","10:00 AM","11:00 AM","12:00 PM",
-    "01:00 PM","02:00 PM","03:00 PM","04:00 PM",
-    "05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"
+const times=[
+  "09:00 AM","10:00 AM","11:00 AM","12:00 PM",
+  "01:00 PM","02:00 PM","03:00 PM","04:00 PM",
+  "05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"
 ];
 
-function buildTable() {
-    let table = document.getElementById("schedule");
-    table.innerHTML = "";
-
-    let header = "<tr><th>الوقت</th>";
-    days.forEach(d => header += `<th>${d}</th>`);
-    header += "</tr>";
-    table.innerHTML += header;
-
-    times.forEach(time => {
-        let row = `<tr><td class="time">${time}</td>`;
-
-        days.forEach(() => {
-            row += `<td>${createDropdown()}</td>`;
-        });
-
-        row += "</tr>";
-        table.innerHTML += row;
-    });
+function buildLegend(){
+  const legend=document.getElementById("legend");
+  legend.innerHTML="";
+  for(let name in therapists){
+    if(name==="—") continue;
+    legend.innerHTML+=`<div class="legend-item" style="background:${therapists[name]}">${name}</div>`;
+  }
 }
 
-function createDropdown() {
-    let options = "";
-    for (let name in therapists) {
-        options += `<option value="${name}">${name}</option>`;
-    }
+function buildTable(){
+  const table=document.getElementById("schedule");
+  table.innerHTML="";
 
-    return `<select onchange="colorCell(this)">${options}</select>`;
+  let header="<tr><th>الوقت</th>";
+  days.forEach(day=>header+=`<th>${day}</th>`);
+  header+="</tr>";
+  table.innerHTML+=header;
+
+  times.forEach(time=>{
+    let row=`<tr><td class="time">${time}</td>`;
+    days.forEach(()=>row+=`<td>${createDropdown()}</td>`);
+    row+="</tr>";
+    table.innerHTML+=row;
+  });
 }
 
-function colorCell(select) {
-    const color = therapists[select.value];
-    const cell = select.parentElement;
-
-    cell.style.background = color;
-
-    if (select.value !== "—") {
-        select.style.fontWeight = "bold";
-    } else {
-        cell.style.background = "#ffffff";
-    }
+function createDropdown(){
+  let options="";
+  for(let name in therapists){
+    options+=`<option value="${name}">${name}</option>`;
+  }
+  return `<select onchange="colorCell(this)">${options}</select>`;
 }
 
-function switchFloor(floor) {
-    document.getElementById("floorTitle").innerText =
-        floor === 1 ? "الدور الأول" : "الدور الثاني";
-    buildTable();
+function colorCell(select){
+  const color=therapists[select.value];
+  const cell=select.parentElement;
+  cell.style.background=color;
+
+  if(select.value==="—"){
+    cell.style.background="#ffffff";
+    select.style.color="#0f172a";
+  }else{
+    select.style.color="#000";
+    select.style.fontWeight="bold";
+  }
 }
 
+function switchFloor(floor){
+  currentFloor=floor;
+  document.getElementById("floorTitle").innerText=
+    floor===1 ? "غرفة الدور الأول" : "غرفة الدور الثاني";
+  buildTable();
+}
+
+buildLegend();
 buildTable();
-
 </script>
 
 </body>
