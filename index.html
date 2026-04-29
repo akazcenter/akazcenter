@@ -84,19 +84,25 @@ body{
   height:155px;
   margin:0 auto 12px;
   border-radius:50%;
-  background:radial-gradient(circle,#ffffff 0%,#f8fafc 65%,#e0f2fe 100%);
-  color:#005b9f;
+  
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  box-shadow:inset 0 0 0 8px rgba(0,91,159,.12),0 8px 18px rgba(0,0,0,.18);
+
+  box-shadow:
+    inset 0 0 0 6px rgba(255,255,255,0.2),
+    0 10px 25px rgba(0,0,0,0.25);
 }
 
 #clockTime{
-  font-size:28px;
-  font-weight:900;
+  font-size:30px;
+  font-weight:bold;
   direction:ltr;
+  color:white;
 }
 
 .clock-label{
@@ -107,16 +113,19 @@ body{
 
 #clockDateAr{
   font-size:15px;
-  font-weight:bold;
   margin-top:8px;
+  color:white;
 }
 
 #clockDateEn{
   font-size:13px;
-  opacity:.85;
+  opacity:0.8;
   direction:ltr;
+  color:white;
 }
 
+  border:2px solid #f59e0b;
+  
 .quote-box{
   width:92%;
   margin:28px auto 0;
