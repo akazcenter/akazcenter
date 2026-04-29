@@ -2,71 +2,118 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>غرف الأطفال</title>
+<title>حجز غرف الأطفال</title>
 
 <style>
 body {
-    font-family: Arial;
+    font-family: Tahoma, Arial;
     direction: rtl;
-    text-align: center;
-    background: #f5f7fa;
+    background: #eef3f8;
+    margin: 0;
+    padding: 0;
 }
 
-h1 {
-    color: #1e3a8a;
+.header {
+    background: #005b9f;
+    color: white;
+    padding: 18px 30px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
 }
 
 button {
-    margin: 10px;
-    padding: 10px 20px;
+    padding: 12px 30px;
     border: none;
-    background: #1e3a8a;
+    background: #005b9f;
     color: white;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background: #00457a;
+}
+
+.table-wrap {
+    width: 96%;
+    margin: auto;
+    overflow-x: auto;
 }
 
 table {
+    width: 100%;
     border-collapse: collapse;
-    margin: 20px auto;
     background: white;
-}
-
-td, th {
-    border: 1px solid #ccc;
-    padding: 8px;
-    min-width: 90px;
+    table-layout: fixed;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
 th {
-    background: #1e3a8a;
+    background: #005b9f;
     color: white;
+    padding: 12px;
+    font-size: 17px;
+}
+
+td {
+    border: 1px solid #b8c7d6;
+    height: 55px;
+    text-align: center;
+    font-size: 16px;
 }
 
 .time {
-    background: #eee;
+    background: #dbeafe;
+    font-weight: bold;
+    width: 90px;
 }
 
 select {
-    width: 100%;
-    border: none;
+    width: 95%;
+    height: 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
     text-align: center;
-    background: transparent;
-    font-size: 14px;
+    font-size: 15px;
+    background: white;
+}
+
+.footer-note {
+    color: red;
+    text-align: center;
+    margin: 18px;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<h1>حجز غرف الأطفال</h1>
+<div class="header">حجز غرف الأطفال</div>
 
-<button onclick="switchFloor(1)">الدور الأول</button>
-<button onclick="switchFloor(2)">الدور الثاني</button>
+<div class="controls">
+    <button onclick="switchFloor(1)">الدور الأول</button>
+    <button onclick="switchFloor(2)">الدور الثاني</button>
+</div>
 
-<h3 id="floorTitle">الدور الأول</h3>
+<h2 id="floorTitle" style="text-align:center;">الدور الأول</h2>
 
-<table id="schedule"></table>
+<div class="table-wrap">
+    <table id="schedule"></table>
+</div>
+
+<div class="footer-note">
+    يرجى تحديث الجدول أسبوعيًا قبل بداية الأسبوع الجديد
+</div>
 
 <script>
 
@@ -83,6 +130,7 @@ const names = [
     "د. عبدالرحمن السليمي",
     "د. عبدالعزيز الحمدان"
 ];
+
 const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 const times = ["9","10","11","12","4","5","6","7","8"];
 
