@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -7,7 +6,7 @@
 
 <style>
 body {
-    font-family: Tahoma;
+    font-family: Tahoma, Arial;
     direction: rtl;
     background: #eef3f8;
     margin: 0;
@@ -39,47 +38,65 @@ body {
     width: 95%;
     margin: 25px auto;
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 20px;
 }
 
-.form-box {
+.form-box, .table-box {
     background: white;
-    padding: 20px;
+    padding: 18px;
     border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
-.form-box input, .form-box select {
+.form-box h3 {
+    color: #005b9f;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
     width: 100%;
     margin-bottom: 12px;
-    padding: 8px;
+    padding: 9px;
     font-size: 15px;
+    border: 1px solid #94a3b8;
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+input[readonly] {
+    background: #e2e8f0;
+    font-weight: bold;
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 11px;
     background: #005b9f;
     color: white;
     border: none;
+    border-radius: 7px;
     cursor: pointer;
-}
-
-.table-box {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
+    font-weight: bold;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 td, th {
-    border: 1px solid #ccc;
+    border: 1px solid #cbd5e1;
     padding: 8px;
     text-align: center;
+    min-height: 45px;
 }
 
 th {
@@ -90,6 +107,25 @@ th {
 .time {
     background: #dbeafe;
     font-weight: bold;
+    width: 100px;
+}
+
+.male {
+    background: #dbeafe;
+    font-weight: bold;
+}
+
+.female {
+    background: #fce7f3;
+    font-weight: bold;
+}
+
+.booking {
+    background: #fff7ed;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+    line-height: 1.6;
 }
 </style>
 </head>
@@ -102,59 +138,102 @@ th {
 
 <div class="container">
 
-<div class="form-box">
-<h3>حجز موعد</h3>
+    <div class="form-box">
+        <h3>حجز موعد</h3>
 
-<select id="day">
-    <option>السبت</option>
-    <option>الأحد</option>
-    <option>الاثنين</option>
-    <option>الثلاثاء</option>
-    <option>الأربعاء</option>
-    <option>الخميس</option>
-</select>
+        <label>اليوم</label>
+        <select id="day" onchange="updateGender()">
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+        </select>
 
-<select id="time"></select>
+        <label>القسم</label>
+        <input type="text" id="gender" readonly>
 
-<select id="therapist">
-    <option>د. عبدالرحمن السويداء</option>
-    <option>د. عبدالرحمن السليمي</option>
-    <option>د. عبدالعزيز الحمدان</option>
-</select>
+        <label>الوقت</label>
+        <select id="time"></select>
 
-<input type="text" id="patient" placeholder="اسم المريض أو رقم الملف">
+        <label>الأخصائي</label>
+        <select id="therapist">
+            <option>د. حاتم الاحمدي</option>
+            <option>د. عبدالرحمن السويداء</option>
+            <option>د. عبدالرحمن السليمي</option>
+            <option>د. عبدالعزيز الحمدان</option>
+            <option>د. ريناد حميد</option>
+            <option>د. ابتسام سويلم</option>
+            <option>د. سلمى فرحان</option>
+            <option>د. هند فهيد</option>
+            <option>د. أسماء فهيد</option>
+            <option>د. مها فريح</option>
+        </select>
 
-<button onclick="addBooking()">حجز</button>
-</div>
+        <label>اسم المريض / رقم الملف</label>
+        <input type="text" id="patient" placeholder="مثال: محمد أو 1025">
 
-<div class="table-box">
-<table id="schedule"></table>
-</div>
+        <button onclick="addBooking()">إضافة الحجز</button>
+    </div>
+
+    <div class="table-box">
+        <table id="schedule"></table>
+    </div>
 
 </div>
 
 <script>
-
 function goHome() {
     window.location.href = "index.html";
 }
 
-const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+const hydroDays = {
+    "Saturday": "Male",
+    "Sunday": "Female",
+    "Monday": "Male",
+    "Tuesday": "Female",
+    "Wednesday": "Male",
+    "Thursday": "Female"
+};
+
+const days = ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"];
 
 const times = [
-"09:00 AM","10:00 AM","11:00 AM","12:00 PM",
-"01:00 PM","02:00 PM","03:00 PM","04:00 PM",
-"05:00 PM","06:00 PM","07:00 PM","08:00 PM"
+    "09:00 AM","09:30 AM","10:00 AM","10:30 AM",
+    "11:00 AM","11:30 AM","12:00 PM","12:30 PM",
+    "01:00 PM","01:30 PM","02:00 PM","02:30 PM",
+    "03:00 PM","03:30 PM","04:00 PM","04:30 PM",
+    "05:00 PM","05:30 PM","06:00 PM","06:30 PM",
+    "07:00 PM","07:30 PM","08:00 PM","08:30 PM",
+    "09:00 PM"
 ];
 
 let bookings = [];
 
+function updateGender() {
+    const day = document.getElementById("day").value;
+    document.getElementById("gender").value = hydroDays[day];
+}
+
+function fillTimes() {
+    const select = document.getElementById("time");
+    select.innerHTML = "";
+    times.forEach(t => {
+        select.innerHTML += `<option>${t}</option>`;
+    });
+}
+
 function buildTable() {
-    let table = document.getElementById("schedule");
+    const table = document.getElementById("schedule");
     table.innerHTML = "";
 
-    let header = "<tr><th>الوقت</th>";
-    days.forEach(d => header += `<th>${d}</th>`);
+    let header = "<tr><th>Time</th>";
+    days.forEach(day => {
+        const type = hydroDays[day];
+        const className = type === "Male" ? "male" : "female";
+        header += `<th class="${className}">${day}<br>${type}</th>`;
+    });
     header += "</tr>";
     table.innerHTML += header;
 
@@ -162,12 +241,19 @@ function buildTable() {
         let row = `<tr><td class="time">${time}</td>`;
 
         days.forEach(day => {
-            let cellData = bookings
-                .filter(b => b.day === day && b.time === time)
-                .map(b => `${b.patient}<br>${b.therapist}`)
-                .join("<hr>");
+            const booking = bookings.find(b => b.day === day && b.time === time);
 
-            row += `<td>${cellData}</td>`;
+            if (booking) {
+                row += `
+                    <td>
+                        <div class="booking">
+                            ${booking.patient}<br>
+                            ${booking.therapist}
+                        </div>
+                    </td>`;
+            } else {
+                row += "<td></td>";
+            }
         });
 
         row += "</tr>";
@@ -175,31 +261,40 @@ function buildTable() {
     });
 }
 
-function fillTimes() {
-    let select = document.getElementById("time");
-    times.forEach(t => {
-        select.innerHTML += `<option>${t}</option>`;
-    });
-}
-
 function addBooking() {
-    let day = document.getElementById("day").value;
-    let time = document.getElementById("time").value;
-    let therapist = document.getElementById("therapist").value;
-    let patient = document.getElementById("patient").value;
+    const day = document.getElementById("day").value;
+    const gender = document.getElementById("gender").value;
+    const time = document.getElementById("time").value;
+    const therapist = document.getElementById("therapist").value;
+    const patient = document.getElementById("patient").value.trim();
 
     if (!patient) {
-        alert("اكتب اسم المريض");
+        alert("اكتب اسم المريض أو رقم الملف");
         return;
     }
 
-    bookings.push({day, time, therapist, patient});
+    const exists = bookings.some(b => b.day === day && b.time === time);
+
+    if (exists) {
+        alert("هذا الوقت محجوز مسبقًا");
+        return;
+    }
+
+    bookings.push({
+        day,
+        gender,
+        time,
+        therapist,
+        patient
+    });
+
+    document.getElementById("patient").value = "";
     buildTable();
 }
 
 fillTimes();
+updateGender();
 buildTable();
-
 </script>
 
 </body>
