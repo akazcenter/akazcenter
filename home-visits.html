@@ -10,15 +10,15 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 .topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px}
 .brand{display:flex;align-items:center;gap:14px}
 .logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
-.brand h2{margin:0;font-size:24px}
-.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
 .home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
-
 .main{width:96%;margin:25px auto}
+.period-box,.stats{background:white;border-radius:16px;padding:15px;margin-bottom:18px;box-shadow:0 5px 15px #0001;text-align:center}
+.period-box button{margin:5px;padding:9px 18px;border:none;border-radius:9px;background:#005b9f;color:white;font-weight:bold;cursor:pointer}
+.stats span{display:inline-block;margin:6px;padding:9px 16px;border-radius:999px;font-weight:bold}
+.total{background:#e0f2fe;color:#075985}.inside{background:#dcfce7;color:#166534}.outside{background:#fee2e2;color:#991b1b}
 .therapists{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
 .therapist-card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:16px;text-align:center;cursor:pointer;font-weight:bold;color:#005b9f;box-shadow:0 5px 15px #0001}
 .therapist-card.active{background:#005b9f;color:white}
-
 .panel{display:grid;grid-template-columns:340px 1fr;gap:22px}
 .card{background:white;border-radius:18px;padding:20px;box-shadow:0 6px 20px #0001;border:1px solid #e2e8f0}
 .card h3{margin-top:0;color:#005b9f;border-bottom:2px solid #e2e8f0;padding-bottom:10px}
@@ -26,14 +26,11 @@ label{display:block;margin-bottom:6px;font-weight:bold}
 input,select,textarea{width:100%;margin-bottom:13px;padding:11px;font-size:15px;border:1px solid #cbd5e1;border-radius:9px;box-sizing:border-box;font-family:Tahoma,Arial}
 textarea{height:75px;resize:vertical}
 .save-btn{width:100%;padding:13px;background:#005b9f;color:white;border:none;border-radius:10px;cursor:pointer;font-weight:bold;font-size:16px}
-
 .table-wrap{overflow:auto}
 table{width:100%;border-collapse:collapse;min-width:900px}
 th{background:#005b9f;color:white;padding:11px}
 td{border:1px solid #d7dee8;padding:9px;text-align:center;background:white}
 .badge{padding:6px 10px;border-radius:999px;font-weight:bold;font-size:13px}
-.inside{background:#dcfce7;color:#166534}
-.outside{background:#fee2e2;color:#991b1b}
 .delete-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;border-radius:8px;padding:6px 10px;cursor:pointer;font-weight:bold}
 .selected-title{text-align:center;color:#005b9f;margin:0 0 18px}
 @media(max-width:950px){
@@ -58,9 +55,21 @@ td{border:1px solid #d7dee8;padding:9px;text-align:center;background:white}
 
 <div class="main">
 
+  <div class="period-box">
+    <strong id="periodText"></strong><br>
+    <button onclick="setCurrentPeriod()">الدورة الحالية</button>
+    <button onclick="setPreviousPeriod()">الدورة السابقة</button>
+  </div>
+
   <div class="therapists" id="therapistsList"></div>
 
   <h2 id="selectedTitle" class="selected-title"></h2>
+
+  <div class="stats">
+    <span class="total" id="totalCount">الإجمالي: 0</span>
+    <span class="inside" id="insideCount">داخل الدوام: 0</span>
+    <span class="outside" id="outsideCount">خارج الدوام: 0</span>
+  </div>
 
   <div class="panel">
     <div class="card">
@@ -94,7 +103,7 @@ td{border:1px solid #d7dee8;padding:9px;text-align:center;background:white}
     </div>
 
     <div class="card">
-      <h3>جدول الزيارات</h3>
+      <h3>جدول الزيارات حسب دورة 21 إلى 20</h3>
       <div class="table-wrap">
         <table id="visitsTable"></table>
       </div>
@@ -121,34 +130,52 @@ const db = getFirestore(app);
 const visitsRef = collection(db,"homeVisits");
 
 const therapists=[
-  "د. حاتم الاحمدي",
-  "د. عبدالرحمن السويداء",
-  "د. عبدالرحمن السليمي",
-  "د. عبدالعزيز الحمدان",
-  "د. ريناد حميد",
-  "د. ابتسام سويلم",
-  "د. سلمى فرحان",
-  "د. هند فهيد",
-  "د. أسماء فهيد",
-  "د. مها فريح"
+  "د. حاتم الاحمدي","د. عبدالرحمن السويداء","د. عبدالرحمن السليمي","د. عبدالعزيز الحمدان",
+  "د. ريناد حميد","د. ابتسام سويلم","د. سلمى فرحان","د. هند فهيد","د. أسماء فهيد","د. مها فريح"
 ];
 
 let selectedTherapist=therapists[0];
 let visits=[];
+let periodStart="";
+let periodEnd="";
 
-function todayISO(){
-  const d=new Date();
+function iso(d){
   d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
   return d.toISOString().split("T")[0];
 }
 
+function getPayrollPeriod(offset=0){
+  const now=new Date();
+  let y=now.getFullYear();
+  let m=now.getMonth()+offset;
+
+  if(now.getDate()<21) m-=1;
+
+  const start=new Date(y,m,21);
+  const end=new Date(y,m+1,20);
+
+  return {start:iso(start),end:iso(end)};
+}
+
+window.setCurrentPeriod=function(){
+  const p=getPayrollPeriod(0);
+  periodStart=p.start;
+  periodEnd=p.end;
+  renderVisits();
+};
+
+window.setPreviousPeriod=function(){
+  const p=getPayrollPeriod(-1);
+  periodStart=p.start;
+  periodEnd=p.end;
+  renderVisits();
+};
+
 function renderTherapists(){
   const box=document.getElementById("therapistsList");
   box.innerHTML="";
-
   therapists.forEach(name=>{
-    const active=name===selectedTherapist ? "active" : "";
-    box.innerHTML+=`<div class="therapist-card ${active}" onclick="selectTherapist('${name}')">${name}</div>`;
+    box.innerHTML+=`<div class="therapist-card ${name===selectedTherapist?"active":""}" onclick="selectTherapist('${name}')">${name}</div>`;
   });
 }
 
@@ -172,23 +199,9 @@ window.addVisit=async function(){
     return;
   }
 
-  await addDoc(visitsRef,{
-    therapist:selectedTherapist,
-    visitDate,
-    patientName,
-    fileNumber,
-    startTime,
-    endTime,
-    workStatus,
-    notes,
-    createdAt:new Date()
-  });
+  await addDoc(visitsRef,{therapist:selectedTherapist,visitDate,patientName,fileNumber,startTime,endTime,workStatus,notes,createdAt:new Date()});
 
-  document.getElementById("patientName").value="";
-  document.getElementById("fileNumber").value="";
-  document.getElementById("startTime").value="";
-  document.getElementById("endTime").value="";
-  document.getElementById("notes").value="";
+  patientName.value="";
 };
 
 window.deleteVisit=async function(id){
@@ -199,25 +212,27 @@ window.deleteVisit=async function(id){
 
 function renderVisits(){
   document.getElementById("selectedTitle").innerText=selectedTherapist;
+  document.getElementById("periodText").innerText=`الفترة المعروضة: ${periodStart} إلى ${periodEnd}`;
+
+  const list=visits.filter(v =>
+    v.therapist===selectedTherapist &&
+    v.visitDate>=periodStart &&
+    v.visitDate<=periodEnd
+  );
+
+  document.getElementById("totalCount").innerText=`الإجمالي: ${list.length}`;
+  document.getElementById("insideCount").innerText=`داخل الدوام: ${list.filter(v=>v.workStatus==="داخل الدوام").length}`;
+  document.getElementById("outsideCount").innerText=`خارج الدوام: ${list.filter(v=>v.workStatus==="خارج الدوام").length}`;
 
   const table=document.getElementById("visitsTable");
-  const list=visits.filter(v=>v.therapist===selectedTherapist);
-
   table.innerHTML=`
     <tr>
-      <th>التاريخ</th>
-      <th>المريض</th>
-      <th>رقم الملف</th>
-      <th>البداية</th>
-      <th>النهاية</th>
-      <th>الحالة</th>
-      <th>ملاحظات</th>
-      <th>حذف</th>
-    </tr>
-  `;
+      <th>التاريخ</th><th>المريض</th><th>رقم الملف</th>
+      <th>البداية</th><th>النهاية</th><th>الحالة</th><th>ملاحظات</th><th>حذف</th>
+    </tr>`;
 
   if(list.length===0){
-    table.innerHTML+=`<tr><td colspan="8">لا توجد زيارات مسجلة لهذا الأخصائي</td></tr>`;
+    table.innerHTML+=`<tr><td colspan="8">لا توجد زيارات في هذه الدورة</td></tr>`;
     return;
   }
 
@@ -233,24 +248,21 @@ function renderVisits(){
         <td><span class="badge ${badgeClass}">${v.workStatus}</span></td>
         <td>${v.notes || "-"}</td>
         <td><button class="delete-btn" onclick="deleteVisit('${v.id}')">حذف</button></td>
-      </tr>
-    `;
+      </tr>`;
   });
 }
 
 function listenVisits(){
   const q=query(visitsRef,orderBy("visitDate","desc"));
-
   onSnapshot(q,(snap)=>{
     visits=[];
-    snap.forEach(item=>{
-      visits.push({id:item.id,...item.data()});
-    });
+    snap.forEach(item=>visits.push({id:item.id,...item.data()}));
     renderVisits();
   });
 }
 
-document.getElementById("visitDate").value=todayISO();
+document.getElementById("visitDate").value=iso(new Date());
+setCurrentPeriod();
 renderTherapists();
 listenVisits();
 </script>
