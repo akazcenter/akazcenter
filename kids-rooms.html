@@ -15,7 +15,6 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 .home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
 .controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
 .controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
-.controls button:hover{background:#00457a}
 .floor-title{text-align:center;color:#005b9f;margin:10px 0 18px}
 .schedule-box{width:96%;margin:25px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0f172a14;overflow:hidden;border:1px solid #e2e8f0}
 .box-title{background:#f59e0b;color:white;padding:13px;font-size:20px;font-weight:bold;text-align:center}
@@ -63,12 +62,31 @@ select{width:98%;height:44px;border-radius:9px;border:1px solid #cbd5e1;font-siz
   </div>
 </div>
 
-<div class="footer-note">يرجى تحديث الجدول في حال عدم وجود بيشنت</div>
+<div class="footer-note">أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين</div>
 
-<script>
-function goHome(){window.location.href="index.html"}
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const roomsRef = collection(db, "kidsRooms");
+
+window.goHome = function(){
+  window.location.href="index.html";
+};
 
 let currentFloor=1;
+let savedData={};
 
 const therapists={
   "—":"#ffffff",
@@ -92,6 +110,10 @@ const times=[
   "05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"
 ];
 
+function makeId(floor, day, time){
+  return `floor${floor}_${day}_${time}`.replaceAll(" ","_").replaceAll(":","-");
+}
+
 function buildLegend(){
   const legend=document.getElementById("legend");
   legend.innerHTML="";
@@ -112,22 +134,34 @@ function buildTable(){
 
   times.forEach(time=>{
     let row=`<tr><td class="time">${time}</td>`;
-    days.forEach(()=>row+=`<td>${createDropdown()}</td>`);
+
+    days.forEach(day=>{
+      const cellId=makeId(currentFloor,day,time);
+      const value=savedData[cellId]?.therapist || "—";
+      row+=`<td>${createDropdown(cellId,value)}</td>`;
+    });
+
     row+="</tr>";
     table.innerHTML+=row;
   });
+
+  document.querySelectorAll("select").forEach(select=>{
+    colorCell(select);
+  });
 }
 
-function createDropdown(){
+function createDropdown(cellId,value){
   let options="";
   for(let name in therapists){
-    options+=`<option value="${name}">${name}</option>`;
+    const selected=name===value ? "selected" : "";
+    options+=`<option value="${name}" ${selected}>${name}</option>`;
   }
-  return `<select onchange="colorCell(this)">${options}</select>`;
+
+  return `<select data-id="${cellId}" onchange="saveRoomBooking(this)">${options}</select>`;
 }
 
 function colorCell(select){
-  const color=therapists[select.value];
+  const color=therapists[select.value] || "#ffffff";
   const cell=select.parentElement;
   cell.style.background=color;
 
@@ -140,15 +174,46 @@ function colorCell(select){
   }
 }
 
-function switchFloor(floor){
+window.saveRoomBooking = async function(select){
+  const id=select.dataset.id;
+  const therapist=select.value;
+
+  colorCell(select);
+
+  if(therapist==="—"){
+    await deleteDoc(doc(db,"kidsRooms",id));
+    return;
+  }
+
+  await setDoc(doc(db,"kidsRooms",id),{
+    id,
+    floor:currentFloor,
+    therapist,
+    updatedAt:new Date()
+  });
+};
+
+window.switchFloor = function(floor){
   currentFloor=floor;
   document.getElementById("floorTitle").innerText=
     floor===1 ? "غرفة الدور الأول" : "غرفة الدور الثاني";
   buildTable();
+};
+
+function listenRooms(){
+  onSnapshot(roomsRef,(snapshot)=>{
+    savedData={};
+
+    snapshot.forEach(item=>{
+      savedData[item.id]=item.data();
+    });
+
+    buildTable();
+  });
 }
 
 buildLegend();
-buildTable();
+listenRooms();
 </script>
 
 </body>
