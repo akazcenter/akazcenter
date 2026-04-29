@@ -152,37 +152,28 @@ function preventDuplicate(select) {
         return;
     }
 
-    const currentCell = select.closest("td");
-    const row = currentCell.parentElement;
-    const cellIndex = Array.from(row.children).indexOf(currentCell);
-
-    const allTables = document.querySelectorAll("table");
+    const currentTd = select.closest("td");
+    const currentRow = currentTd.parentElement;
+    const dayIndex = Array.from(currentRow.children).indexOf(currentTd);
 
     let count = 0;
 
-    allTables.forEach(table => {
-        const rows = table.querySelectorAll("tr");
+    document.querySelectorAll("table tr").forEach(row => {
+        const cells = row.children;
 
-        rows.forEach((r, rowIndex) => {
-            if (rowIndex === 0) return;
+        if (cells.length > dayIndex) {
+            const sameDayCell = cells[dayIndex];
 
-            const cells = r.children;
-            const sameDayCell = cells[cellIndex];
-
-            if (sameDayCell) {
-                const selects = sameDayCell.querySelectorAll("select");
-
-                selects.forEach(s => {
-                    if (s.value === selectedName) {
-                        count++;
-                    }
-                });
-            }
-        });
+            sameDayCell.querySelectorAll("select").forEach(s => {
+                if (s.value === selectedName) {
+                    count++;
+                }
+            });
+        }
     });
 
     if (count > 1) {
-        alert("هذا الاسم مختار مسبقًا في نفس اليوم");
+        alert("هذا الاسم موجود مسبقًا في نفس اليوم");
         select.value = "—";
     }
 
