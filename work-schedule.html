@@ -144,6 +144,31 @@ select {
 
 <script>
 
+    function preventDuplicate(select) {
+    const selectedName = select.value;
+    if (selectedName === "—") {
+        colorCell(select);
+        return;
+    }
+
+    const cell = select.closest("td");
+    const selectsInSameDay = cell.querySelectorAll("select");
+
+    let count = 0;
+
+    selectsInSameDay.forEach(s => {
+        if (s.value === selectedName) {
+            count++;
+        }
+    });
+
+    if (count > 1) {
+        alert("هذا الاسم مختار مسبقًا في نفس اليوم");
+        select.value = "—";
+    }
+
+    colorCell(select);
+}
 function goHome() {
     window.location.href = "index.html";
 }
@@ -276,8 +301,7 @@ function createDropdown() {
         options += `<option value="${name}">${name}</option>`;
     }
 
-    return `<select onchange="colorCell(this)">${options}</select>`;
-}
+return `<select onchange="preventDuplicate(this)">${options}</select>`;}
 
 function colorCell(select) {
     const color = employees[currentSection][select.value];
