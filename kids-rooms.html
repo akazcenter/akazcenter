@@ -177,35 +177,63 @@ body{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:0;
-  table-layout:fixed;
+  min-width:980px;
   background:white;
 }
 
 th{
-  padding:10px 6px;
-  font-size:14px;
+  background:var(--blue);
+  color:white;
+  padding:13px;
+  font-size:15px;
+  border:1px solid #0b66a9;
 }
 
 td{
-  height:52px;
-  padding:4px;
+  border:1px solid #d7dee8;
+  min-height:70px;
+  text-align:center;
+  background:white;
+  padding:7px;
+  vertical-align:middle;
 }
 
 .time{
-  width:95px;
-  font-size:13px;
+  background:#eef6ff;
+  font-weight:900;
+  width:120px;
+  color:var(--blue);
+  direction:ltr;
 }
 
 .slot{
-  margin-bottom:3px;
-  padding:2px;
+  margin-bottom:6px;
+  border-radius:10px;
+  padding:3px;
+}
+.day{
+  background:#eef6ff;
+  font-weight:bold;
+  width:110px;
+  color:#005b9f;
 }
 
-select{
-  height:32px;
+.time{
   font-size:13px;
-  border-radius:7px;
+  direction:ltr;
+}
+select{
+  width:98%;
+  height:40px;
+  border-radius:10px;
+  border:1px solid #cbd5e1;
+  font-size:15px;
+  font-weight:bold;
+  font-family:Tahoma,Arial;
+  text-align:center;
+  background:white;
+  color:#0f172a;
+  cursor:pointer;
 }
 
 .footer-note{
@@ -258,10 +286,10 @@ select{
 <div class="main">
 
   <div class="controls-card">
-    <h2 id="floorTitle" class="floor-title">غرفة الدور الأرضي</h2>
+    <h2 id="floorTitle" class="floor-title">غرفة الدور الأول</h2>
 
     <div class="controls">
-      <button onclick="switchFloor(1)">غرفة الدور الأرضي</button>
+      <button onclick="switchFloor(1)">غرفة الدور الأول</button>
       <button onclick="switchFloor(2)">غرفة الدور الثاني</button>
     </div>
   </div>
@@ -353,15 +381,17 @@ function buildTable(){
   const table = document.getElementById("schedule");
   table.innerHTML = "";
 
-  let header = "<tr><th>الوقت</th>";
-  days.forEach(day => header += `<th>${day}</th>`);
+  // الهيدر (الأوقات فوق)
+  let header = "<tr><th>اليوم</th>";
+  times.forEach(time => header += `<th class="time">${time}</th>`);
   header += "</tr>";
   table.innerHTML += header;
 
-  times.forEach(time => {
-    let row = `<tr><td class="time">${time}</td>`;
+  // الأيام كصفوف
+  days.forEach(day => {
+    let row = `<tr><td class="day">${day}</td>`;
 
-    days.forEach(day => {
+    times.forEach(time => {
       row += `<td>`;
 
       for(let slot = 1; slot <= 2; slot++){
@@ -381,7 +411,6 @@ function buildTable(){
     colorCell(select);
   });
 }
-
 function createDropdown(cellId, value){
   let options = "";
 
