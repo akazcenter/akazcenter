@@ -3,263 +3,393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بوابة مركز عكاز للعلاج الطبيعي</title>
+<title>بوابة مركز عكاز الداخلية</title>
 
 <style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --dark:#08345f;
+  --orange:#f59e0b;
+  --light:#f4f8fc;
+  --text:#0f172a;
+  --muted:#64748b;
+  --card:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
-  font-family:Tahoma,Arial;
+  font-family:Tahoma,Arial,sans-serif;
   direction:rtl;
-  background:linear-gradient(135deg,#eef6ff,#f8fafc);
-  color:#0f172a;
+  background:
+    radial-gradient(circle at top right, rgba(0,119,200,.13), transparent 35%),
+    linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
 }
 
-  .subtitle{
-  margin-top:10px;
-  font-size:16px;
-  opacity:0.95;
-}
-
-.subtitle-en{
-  font-size:13px;
-  opacity:0.75;
-  margin-top:5px;
-  direction:ltr;
-}
+/* HERO */
 .hero{
-  background:linear-gradient(135deg,#005b9f,#0077c8);
+  position:relative;
+  min-height:360px;
+  background:
+    linear-gradient(135deg,rgba(0,91,159,.98),rgba(0,119,200,.95)),
+    url("");
   color:white;
-  padding:35px 30px;
-  border-bottom-left-radius:35px;
-  border-bottom-right-radius:35px;
-  box-shadow:0 10px 28px rgba(0,0,0,.18);
+  overflow:hidden;
+  border-bottom-left-radius:42px;
+  border-bottom-right-radius:42px;
+  box-shadow:0 18px 45px rgba(8,52,95,.22);
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  background:rgba(255,255,255,.08);
+  border-radius:50%;
+  top:-260px;
+  right:-160px;
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  left:-160px;
+  bottom:-220px;
+  width:420px;
+  height:420px;
+  background:rgba(245,158,11,.16);
+  border-radius:50%;
 }
 
 .hero-inner{
+  position:relative;
+  z-index:2;
+  width:94%;
+  max-width:1450px;
+  margin:auto;
+  padding:42px 0 58px;
   display:grid;
-  grid-template-columns:1fr 260px;
-  gap:25px;
+  grid-template-columns:260px 1fr 170px;
+  gap:34px;
   align-items:center;
 }
 
-.brand{
+/* CLOCK */
+.clock-card{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:30px;
+  padding:20px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  box-shadow:0 18px 35px rgba(0,0,0,.18);
+}
+
+.clock-circle{
+  width:158px;
+  height:158px;
+  margin:auto;
+  border-radius:50%;
+  background:linear-gradient(145deg,#063b72,#0077c8);
+  border:3px solid rgba(255,255,255,.22);
   display:flex;
   align-items:center;
-  gap:22px;
+  justify-content:center;
+  flex-direction:column;
+  box-shadow:
+    inset 0 0 0 8px rgba(255,255,255,.08),
+    0 16px 35px rgba(0,0,0,.26);
+}
+
+#clockTime{
+  direction:ltr;
+  font-size:29px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.live-label{
+  color:#fbbf24;
+  font-size:12px;
+  margin-top:5px;
+  font-weight:bold;
+}
+
+#clockDateAr{
+  margin-top:16px;
+  font-weight:bold;
+  font-size:15px;
+}
+
+#clockDateEn{
+  margin-top:4px;
+  direction:ltr;
+  font-size:13px;
+  color:#dbeafe;
+}
+
+/* BRAND */
+.brand{
+  text-align:right;
+}
+
+.brand h1{
+  font-size:40px;
+  margin:0;
+  line-height:1.4;
+  font-weight:900;
+}
+
+.brand .subtitle{
+  max-width:720px;
+  margin:12px 0 0;
+  color:#eaf6ff;
+  font-size:17px;
+  line-height:1.9;
+}
+
+.brand .subtitle-en{
+  margin-top:8px;
+  color:#ffcf7a;
+  font-size:14px;
+  direction:ltr;
+  text-align:right;
+}
+
+.logo-wrap{
+  background:white;
+  border-radius:32px;
+  padding:16px;
+  box-shadow:0 18px 35px rgba(0,0,0,.24);
 }
 
 .logo{
   width:135px;
   height:135px;
   object-fit:contain;
+  display:block;
+}
+
+/* QUOTE */
+.quote-strip{
+  width:92%;
+  max-width:1250px;
+  margin:-35px auto 28px;
+  position:relative;
+  z-index:5;
   background:white;
-  border-radius:30px;
-  padding:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.22);
-}
-
-.brand h1{
-  margin:0;
-  font-size:34px;
-}
-
-.brand p{
-  margin:8px 0 0;
-  font-size:17px;
-  opacity:.95;
-}
-
-.clock-card{
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:28px;
-  padding:22px;
-  text-align:center;
-  backdrop-filter:blur(8px);
-  box-shadow:0 8px 20px rgba(0,0,0,.14);
-}
-
-.clock-circle{
-  width:155px;
-  height:155px;
-  margin:0 auto 12px;
-  border-radius:50%;
-  
-  background:linear-gradient(135deg,#005b9f,#0077c8);
-  color:white;
-
+  border-radius:24px;
+  padding:24px 30px;
+  box-shadow:0 18px 45px rgba(15,23,42,.12);
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-
-  box-shadow:
-    inset 0 0 0 6px rgba(255,255,255,0.2),
-    0 10px 25px rgba(0,0,0,0.25);
+  gap:16px;
+  border:1px solid #e2e8f0;
 }
 
-#clockTime{
-  font-size:30px;
-  font-weight:bold;
-  direction:ltr;
-  color:white;
-}
-
-.clock-label{
-  font-size:12px;
-  margin-top:5px;
-  color:#64748b;
-}
-
-#clockDateAr{
-  font-size:15px;
-  margin-top:8px;
-  color:white;
-}
-
-#clockDateEn{
-  font-size:13px;
-  opacity:0.8;
-  direction:ltr;
-  color:white;
-}
-
-  border:2px solid #f59e0b;
-  
-.quote-box{
-  width:92%;
-  margin:28px auto 0;
-  background:white;
-  border-radius:22px;
-  padding:22px;
-  text-align:center;
-  box-shadow:0 8px 22px rgba(15,23,42,.08);
-  border-right:7px solid #f59e0b;
-}
-
-.quote-box h2{
-  margin:0;
-  color:#005b9f;
+.quote-icon{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:#fff7ed;
+  color:var(--orange);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:24px;
 }
 
-.quote-box p{
-  margin:8px 0 0;
-  color:#64748b;
-  font-size:14px;
+#dailyQuote{
+  margin:0;
+  color:var(--dark);
+  font-size:24px;
+  font-weight:900;
+  transition:.35s;
+  text-align:center;
+}
+
+/* CARDS */
+.main{
+  width:92%;
+  max-width:1450px;
+  margin:0 auto 28px;
+}
+
+.section-head{
+  text-align:center;
+  margin-bottom:26px;
+}
+
+.section-head h2{
+  color:var(--blue);
+  margin:0;
+  font-size:28px;
+}
+
+.section-head p{
+  color:var(--muted);
+  margin-top:8px;
 }
 
 .cards{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:22px;
-  width:92%;
-  margin:30px auto;
+  gap:24px;
 }
 
 .card{
-  background:white;
-  border-radius:24px;
-  padding:26px 20px;
-  min-height:180px;
-  cursor:pointer;
-  box-shadow:0 8px 22px rgba(15,23,42,.08);
-  transition:.25s;
-  border:1px solid #e2e8f0;
   position:relative;
+  background:linear-gradient(180deg,#ffffff,#fbfdff);
+  border:1px solid #e2e8f0;
+  border-radius:28px;
+  padding:30px 26px;
+  min-height:230px;
+  cursor:pointer;
   overflow:hidden;
+  box-shadow:0 18px 35px rgba(15,23,42,.08);
+  transition:.28s ease;
 }
 
-.card:before{
+.card::before{
   content:"";
   position:absolute;
   top:0;
   right:0;
-  width:100%;
   height:7px;
-  background:#f59e0b;
+  width:100%;
+  background:linear-gradient(90deg,var(--orange),#ffbd4a);
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:rgba(0,91,159,.06);
+  left:-40px;
+  bottom:-40px;
 }
 
 .card:hover{
-  transform:translateY(-7px);
-  box-shadow:0 14px 35px rgba(15,23,42,.16);
+  transform:translateY(-9px);
+  box-shadow:0 26px 55px rgba(15,23,42,.16);
+  border-color:#cfe0ee;
 }
 
 .icon{
-  width:58px;
-  height:58px;
-  background:#eef6ff;
-  border-radius:18px;
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  background:linear-gradient(145deg,#eef6ff,#ffffff);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:30px;
-  margin-bottom:18px;
+  font-size:33px;
+  margin-bottom:22px;
+  box-shadow:inset 0 0 0 1px #e2e8f0;
 }
 
 .card h3{
+  color:var(--blue);
+  font-size:24px;
   margin:0;
-  color:#005b9f;
-  font-size:22px;
 }
 
 .card h4{
-  margin:7px 0 12px;
-  color:#f59e0b;
-  font-size:14px;
+  color:var(--orange);
   direction:ltr;
   text-align:right;
+  font-size:15px;
+  margin:8px 0 14px;
 }
 
 .card p{
-  color:#475569;
-  line-height:1.8;
-  font-size:14px;
+  color:#536174;
+  line-height:1.9;
   margin:0;
+  font-size:15px;
 }
 
 .footer{
+  width:92%;
+  max-width:1450px;
+  margin:34px auto 20px;
+  padding-top:18px;
+  border-top:1px solid #dbe4ee;
   text-align:center;
-  color:#64748b;
-  margin:35px 0 20px;
+  color:#7b8796;
   font-size:14px;
 }
 
-@media(max-width:1000px){
+/* RESPONSIVE */
+@media(max-width:1150px){
   .hero-inner{
     grid-template-columns:1fr;
     text-align:center;
   }
-
   .brand{
-    flex-direction:column;
+    text-align:center;
   }
-
+  .brand .subtitle{
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .brand .subtitle-en{
+    text-align:center;
+  }
+  .logo-wrap{
+    margin:auto;
+  }
   .cards{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
 @media(max-width:650px){
   .hero{
-    padding:25px 15px;
+    border-bottom-left-radius:26px;
+    border-bottom-right-radius:26px;
   }
-
+  .hero-inner{
+    padding:28px 0 48px;
+  }
+  .clock-card{
+    order:3;
+  }
+  .brand h1{
+    font-size:25px;
+  }
+  .brand .subtitle{
+    font-size:14px;
+  }
   .logo{
     width:95px;
     height:95px;
   }
-
-  .brand h1{
-    font-size:23px;
+  .clock-circle{
+    width:135px;
+    height:135px;
   }
-
+  #clockTime{
+    font-size:24px;
+  }
+  .quote-strip{
+    flex-direction:column;
+    padding:20px;
+  }
+  #dailyQuote{
+    font-size:19px;
+  }
   .cards{
     grid-template-columns:1fr;
-  }
-
-  .quote-box h2{
-    font-size:20px;
   }
 }
 </style>
@@ -267,73 +397,84 @@ body{
 
 <body>
 
-<div class="hero">
+<header class="hero">
   <div class="hero-inner">
-
-    <div class="brand">
-      <img src="logo.png" class="logo" alt="شعار مركز عكاز">
-      <div><h1>بوابة مركز عكاز للعلاج الطبيعي</h1>
-
-<p class="subtitle">
-بوابة داخلية متكاملة تجمع أنظمة المركز لإدارة الجداول، المواعيد، والعمليات اليومية 
-</p>
-
-
-      </div>
-    </div>
 
     <div class="clock-card">
       <div class="clock-circle">
         <div id="clockTime">00:00:00</div>
-        <div class="clock-label">Live Time</div>
+        <div class="live-label">Live Time</div>
       </div>
       <div id="clockDateAr">--</div>
       <div id="clockDateEn">--</div>
     </div>
 
+    <div class="brand">
+      <h1>بوابة مركز عكاز الداخلية</h1>
+      <p class="subtitle">
+        بوابة داخلية متكاملة تجمع أنظمة مركز عكاز لإدارة الجداول، المواعيد، والعمليات اليومية بكل سهولة ووضوح
+      </p>
+      <p class="subtitle-en">
+        A unified internal portal for schedules, appointments, home visits, and daily workflow management
+      </p>
+    </div>
+
+    <div class="logo-wrap">
+      <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+    </div>
+
   </div>
-</div>
+</header>
 
-<div class="quote-box">
-  <h2 id="dailyQuote">كل يوم نصنع أملًا جديدًا</h2>
-  <p>رسالة اليوم  </p>
-</div>
+<section class="quote-strip">
+  <div class="quote-icon">💙</div>
+  <h2 id="dailyQuote">نحن هنا لنخفف الألم ونصنع الفرق</h2>
+</section>
 
-<div class="cards">
+<main class="main">
 
-  <div class="card" onclick="go('work-schedule.html')">
-    <div class="icon">📋</div>
-    <h3>جدول الدوام</h3>
-    <h4>Work Schedule</h4>
-    <p>تنظيم دوام الموظفين والشفتات حسب الأقسام.</p>
-  </div>
-
-  <div class="card" onclick="go('kids-rooms.html')">
-    <div class="icon">👶</div>
-    <h3>غرف الأطفال</h3>
-    <h4>Pediatric Rooms</h4>
-    <p>حجز غرف الأطفال في الدور الأول والثاني.</p>
-  </div>
-
-  <div class="card" onclick="go('hydrotherapy.html')">
-    <div class="icon">💧</div>
-    <h3>العلاج المائي</h3>
-    <h4>Hydrotherapy</h4>
-    <p>تنظيم مواعيد العلاج المائي حسب التاريخ والقسم.</p>
+  <div class="section-head">
+    <h2>أنظمة المركز</h2>
+    <p>اختر القسم المطلوب لإدارة العمليات الداخلية</p>
   </div>
 
-  <div class="card" onclick="go('home-visits.html')">
-    <div class="icon">🏠</div>
-    <h3>الزيارات المنزلية</h3>
-    <h4>Home Visits</h4>
-    <p>تسجيل زيارات المرضى المنزلية حسب الأخصائي.</p>
+  <div class="cards">
+
+    <div class="card" onclick="go('work-schedule.html')">
+      <div class="icon">📋</div>
+      <h3>جدول الدوام</h3>
+      <h4>Work Schedule</h4>
+      <p>تنظيم دوام الموظفين والشفتات حسب الأقسام، مع حفظ تلقائي ومشاركة مباشرة.</p>
+    </div>
+
+    <div class="card" onclick="go('kids-rooms.html')">
+      <div class="icon">👶</div>
+      <h3>غرف الأطفال</h3>
+      <h4>Pediatric Rooms</h4>
+      <p>حجز غرف الأطفال في الدور الأول والثاني بطريقة واضحة وسهلة لجميع الأخصائيين.</p>
+    </div>
+
+    <div class="card" onclick="go('hydrotherapy.html')">
+      <div class="icon">💧</div>
+      <h3>العلاج المائي</h3>
+      <h4>Hydrotherapy</h4>
+      <p>تنظيم مواعيد العلاج المائي حسب التاريخ والقسم، مع عرض أسبوعي مباشر.</p>
+    </div>
+
+    <div class="card" onclick="go('home-visits.html')">
+      <div class="icon">🏠</div>
+      <h3>الزيارات المنزلية</h3>
+      <h4>Home Visits</h4>
+      <p>تسجيل الزيارات المنزلية حسب الأخصائي ودورة الرواتب من 21 إلى 20.</p>
+    </div>
+
   </div>
 
-</div>
+</main>
 
-<div class="footer">
+<footer class="footer">
   مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
-</div>
+</footer>
 
 <script>
 function go(page){
@@ -344,78 +485,85 @@ function updateClock(){
   const now = new Date();
 
   document.getElementById("clockTime").innerText =
-    now.toLocaleTimeString('en-GB');
+    now.toLocaleTimeString("en-GB");
 
   document.getElementById("clockDateAr").innerText =
-    now.toLocaleDateString('ar-SA',{
-      weekday:'long',
-      year:'numeric',
-      month:'long',
-      day:'numeric'
+    now.toLocaleDateString("ar-SA",{
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
     });
 
   document.getElementById("clockDateEn").innerText =
-    now.toLocaleDateString('en-GB',{
-      weekday:'long',
-      year:'numeric',
-      month:'long',
-      day:'numeric'
+    now.toLocaleDateString("en-GB",{
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
     });
 }
 
 const quotes = [
-"نحن هنا لنخفف الألم ونصنع الفرق",
-"كل مريض يدخل… هو أمانة في رقبتك",
-"هدفنا راحة المريض قبل كل شيء",
-"العلاج الحقيقي يبدأ بالاهتمام",
-"ابتسامتك للمريض جزء من العلاج",
-"كل جلسة فرصة لتغيير حياة",
-"ساعد المريض اليوم… وتذكره غدًا",
-"التعامل الإنساني هو أساس العلاج",
-"أنت سبب في عودة الأمل لمريض",
-"كل مريض له قصة… كن جزءًا من نهايتها الجميلة",
-"نحن لا نعالج فقط… نحن نُعيد الحياة",
-"راحة المريض هي نجاحك الحقيقي",
-"استمع للمريض… نصف العلاج في الفهم",
-"كل خطوة تقدمها للمريض لها قيمة",
-"كن لطيفًا… فالمريض يحتاجك أكثر مما تتوقع",
-"الألم يمر… لكن أثر تعاملك يبقى",
-"ساعدهم يتحسنون… لا تكتفي بالعلاج",
-"كل جلسة فرصة لتخفيف معاناة",
-"العلاج مهارة… والإنسانية فن",
-"المريض يثق بك… لا تخذل ثقته",
-"اجعل المريض يشعر بالأمان معك",
-"أنت اليوم سبب راحة إنسان",
-"العناية بالتفاصيل تصنع فرق كبير للمريض",
-"كل تحسن صغير للمريض هو إنجاز",
-"هدفنا ليس فقط العلاج… بل تحسين الحياة",
-"المريض يحتاج اهتمامك قبل جهازك",
-"التشجيع للمريض نصف الشفاء",
-"كل يوم نقترب من شفاء شخص",
-"المريض لا يبحث عن علاج فقط… يبحث عن من يفهمه",
-"كل لمسة اهتمام تصنع فرق",
-"العلاج يبدأ من طريقة تعاملك",
-"كن صبورًا… فالمريض يمر بتحدي",
-"كل كلمة إيجابية ترفع معنويات المريض",
-"نحن هنا لنصنع راحة حقيقية",
-"المريض يراك أمل… كن عند ظنه",
-"لا تقلل من تأثيرك في حياة المرضى",
-"كل جلسة تترك أثر",
-"اهتمامك هو أول خطوة للعلاج",
-"التفهم هو أساس العلاقة مع المريض",
-"كل يوم فرصة لمساعدة شخص على الوقوف مجددًا"
+  "نحن هنا لنخفف الألم ونصنع الفرق",
+  "كل مريض يدخل… هو أمانة ومسؤولية",
+  "هدفنا راحة المريض قبل كل شيء",
+  "العلاج الحقيقي يبدأ بالاهتمام",
+  "ابتسامتك للمريض جزء من العلاج",
+  "كل جلسة فرصة لتغيير حياة",
+  "ساعد المريض اليوم… واصنع أثرًا يبقى",
+  "التعامل الإنساني هو أساس العلاج",
+  "أنت سبب في عودة الأمل لمريض",
+  "كل مريض له قصة… كن جزءًا من نهايتها الجميلة",
+  "نحن لا نعالج فقط… نحن نعيد جودة الحياة",
+  "راحة المريض هي نجاحك الحقيقي",
+  "استمع للمريض… نصف العلاج في الفهم",
+  "كل خطوة تقدمها للمريض لها قيمة",
+  "كن لطيفًا… فالمريض يحتاجك أكثر مما تتوقع",
+  "الألم يمر… لكن أثر تعاملك يبقى",
+  "كل جلسة فرصة لتخفيف معاناة",
+  "العلاج مهارة… والإنسانية فن",
+  "المريض يثق بك… لا تخذل ثقته",
+  "اجعل المريض يشعر بالأمان معك",
+  "أنت اليوم سبب راحة إنسان",
+  "العناية بالتفاصيل تصنع فرقًا كبيرًا للمريض",
+  "كل تحسن صغير للمريض هو إنجاز",
+  "هدفنا ليس فقط العلاج… بل تحسين الحياة",
+  "المريض يحتاج اهتمامك قبل جهازك",
+  "التشجيع للمريض نصف الشفاء",
+  "كل يوم نقترب من شفاء شخص",
+  "المريض لا يبحث عن علاج فقط… يبحث عن من يفهمه",
+  "كل لمسة اهتمام تصنع فرق",
+  "العلاج يبدأ من طريقة تعاملك",
+  "كن صبورًا… فالمريض يمر بتحدي",
+  "كل كلمة إيجابية ترفع معنويات المريض",
+  "نحن هنا لنصنع راحة حقيقية",
+  "المريض يراك أملًا… كن عند ظنه",
+  "لا تقلل من تأثيرك في حياة المرضى",
+  "كل جلسة تترك أثر",
+  "اهتمامك هو أول خطوة للعلاج",
+  "التفهم هو أساس العلاقة مع المريض",
+  "كل يوم فرصة لمساعدة شخص على الوقوف مجددًا"
 ];
 
-function updateQuote(){
-  const today = new Date();
-  const dayNumber = Math.floor(today.getTime() / (1000 * 60 * 60 * 24));
-  const quote = quotes[dayNumber % quotes.length];
-  document.getElementById("dailyQuote").innerText = quote;
+let quoteIndex = 0;
+
+function rotateQuotes(){
+  const el = document.getElementById("dailyQuote");
+  el.style.opacity = 0;
+
+  setTimeout(()=>{
+    el.innerText = quotes[quoteIndex];
+    el.style.opacity = 1;
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+  },350);
 }
 
 setInterval(updateClock,1000);
 updateClock();
-updateQuote();
+
+rotateQuotes();
+setInterval(rotateQuotes,9000);
 </script>
 
 </body>
