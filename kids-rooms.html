@@ -182,7 +182,7 @@ th{
 
 td{
   border:1px solid #d7dee8;
-  height:84px;
+  height:105px;
   text-align:center;
   background:white;
   padding:6px;
@@ -208,12 +208,6 @@ td{
   padding:4px;
 }
 
-.slot-row{
-  display:flex;
-  gap:4px;
-  align-items:center;
-}
-
 select{
   width:100%;
   height:34px;
@@ -228,20 +222,39 @@ select{
   cursor:pointer;
 }
 
-.copy-cell-btn{
-  width:34px;
-  height:34px;
+.cell-buttons{
+  display:flex;
+  gap:4px;
+  margin-top:4px;
+}
+
+.copy-cell-btn,
+.delete-cell-btn{
+  width:100%;
+  height:26px;
   border:none;
-  border-radius:9px;
-  background:#e0f2fe;
-  color:#075985;
+  border-radius:8px;
   cursor:pointer;
   font-weight:bold;
-  flex:0 0 34px;
+  font-size:12px;
+}
+
+.copy-cell-btn{
+  background:#e0f2fe;
+  color:#075985;
 }
 
 .copy-cell-btn:hover{
   background:#bae6fd;
+}
+
+.delete-cell-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.delete-cell-btn:hover{
+  background:#fecaca;
 }
 
 .footer-note{
@@ -312,7 +325,7 @@ select{
     <div class="box-title">جدول حجز الغرفة الأسبوعي</div>
 
     <div class="table-actions">
-      زر النسخ بجانب كل خانة ينسخ نفس الحجز فقط: السبت إلى الاثنين والأربعاء، والأحد إلى الثلاثاء والخميس
+      زر النسخ والحذف يظهر فقط في السبت والأحد — ويطبق على نفس الخانة فقط
     </div>
 
     <div id="tablesArea"></div>
@@ -463,7 +476,7 @@ function buildTableSection(title, timeList){
   return html;
 }
 
-function canCopyDay(day){
+function canControlDay(day){
   return day === "السبت" || day === "الأحد";
 }
 
@@ -476,16 +489,22 @@ function createDropdown(cellId, value){
   }
 
   const info = parseId(cellId);
-  const copyButton = canCopyDay(info.day)
-    ? `<button class="copy-cell-btn" onclick="copySingleCell('${cellId}')" title="نسخ هذه الخانة فقط">⧉</button>`
+
+  const buttons = canControlDay(info.day)
+    ? `
+      <div class="cell-buttons">
+        <button class="copy-cell-btn" onclick="copySingleCell('${cellId}')" title="نسخ هذه الخانة فقط">نسخ</button>
+        <button class="delete-cell-btn" onclick="deleteSingleCell('${cellId}')" title="حذف هذه الخانة فقط">حذف</button>
+      </div>
+    `
     : "";
 
   return `
-    <div class="slot-row">
+    <div>
       <select data-id="${cellId}" onchange="saveRoomBooking(this)">
         ${options}
       </select>
-      ${copyButton}
+      ${buttons}
     </div>
   `;
 }
@@ -547,7 +566,7 @@ window.copySingleCell = async function(sourceId){
     return;
   }
 
-  if(!confirm(`نسخ ${therapist} من ${source.day} ${source.time} إلى ${targetDays.join(" و ")}؟`)){
+  if(!confirm(`تأكيد النسخ؟\n\nسيتم نسخ:\n${therapist}\nمن ${source.day} الساعة ${source.time}\nإلى ${targetDays.join(" و ")} فقط.`)){
     return;
   }
 
@@ -566,6 +585,47 @@ window.copySingleCell = async function(sourceId){
 
   await Promise.all(writes);
   alert("تم نسخ هذه الخانة فقط");
+};
+
+window.deleteSingleCell = async function(sourceId){
+  const source = parseId(sourceId);
+  const therapist = savedData[sourceId]?.therapist || "—";
+
+  if(therapist === "—"){
+    alert("الخانة فاضية ولا يوجد شيء لحذفه");
+    return;
+  }
+
+  let targetDays = [];
+
+  if(source.day === "السبت"){
+    targetDays = ["الاثنين","الأربعاء"];
+  }
+
+  if(source.day === "الأحد"){
+    targetDays = ["الثلاثاء","الخميس"];
+  }
+
+  if(targetDays.length === 0){
+    alert("الحذف الذكي متاح فقط من السبت أو الأحد");
+    return;
+  }
+
+  if(!confirm(`تأكيد الحذف؟\n\nسيتم حذف:\n${therapist}\nمن ${source.day} الساعة ${source.time}\nومن ${targetDays.join(" و ")} لنفس الخانة فقط.`)){
+    return;
+  }
+
+  const deletes = [];
+
+  deletes.push(deleteDoc(doc(db, "kidsRooms", sourceId)));
+
+  for(const targetDay of targetDays){
+    const targetId = makeId(currentFloor, targetDay, source.time, source.slot);
+    deletes.push(deleteDoc(doc(db, "kidsRooms", targetId)));
+  }
+
+  await Promise.all(deletes);
+  alert("تم حذف هذه الخانة والخانات المرتبطة بها فقط");
 };
 
 window.switchFloor = function(floor){
