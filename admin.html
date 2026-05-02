@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة الإدارة</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Tahoma,Arial;
+  direction:rtl;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:#0f172a;
+}
+.topbar{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  padding:20px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+}
+.home-btn{
+  background:white;
+  color:#005b9f;
+  border:none;
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.main{
+  width:92%;
+  max-width:1100px;
+  margin:35px auto;
+}
+.login-box,.panel{
+  background:white;
+  border-radius:24px;
+  padding:25px;
+  box-shadow:0 16px 40px rgba(15,23,42,.10);
+  border:1px solid #e2e8f0;
+}
+.login-box{
+  max-width:450px;
+  margin:60px auto;
+}
+input{
+  width:100%;
+  padding:13px;
+  border-radius:12px;
+  border:1px solid #cbd5e1;
+  font-size:16px;
+  margin-top:10px;
+}
+button{
+  width:100%;
+  margin-top:15px;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  background:#005b9f;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+.panel{display:none}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-bottom:25px;
+}
+.card{
+  background:#f8fbff;
+  border:1px solid #e2e8f0;
+  border-radius:20px;
+  padding:20px;
+}
+.card h3{
+  margin:0 0 10px;
+  color:#005b9f;
+}
+.number{
+  font-size:34px;
+  font-weight:900;
+  color:#f59e0b;
+}
+.section-title{
+  color:#005b9f;
+  margin:28px 0 14px;
+}
+.item{
+  background:#f8fbff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
+}
+.item b{color:#005b9f}
+.bad{
+  color:#b91c1c;
+  font-weight:bold;
+}
+.good{
+  color:#166534;
+  font-weight:bold;
+}
+.link-btn{
+  display:inline-block;
+  margin-top:10px;
+  background:#eef6ff;
+  color:#005b9f;
+  padding:9px 13px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <h2>لوحة الإدارة</h2>
+  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+</div>
+
+<div class="main">
+
+  <div id="loginBox" class="login-box">
+    <h2>دخول الإدارة</h2>
+    <input type="password" id="adminCode" placeholder="ادخل الرمز السري">
+    <button onclick="login()">دخول</button>
+  </div>
+
+  <div id="panel" class="panel">
+
+    <div class="cards">
+      <div class="card">
+        <h3>طلبات الشفت الجديدة</h3>
+        <div class="number" id="newShiftCount">0</div>
+        <a class="link-btn" href="work-schedule.html">فتح جدول الدوام</a>
+      </div>
+
+      <div class="card">
+        <h3>اقتراحات الموظفين</h3>
+        <div class="number" id="suggestionsCount">0</div>
+        <a class="link-btn" href="suggestions.html">فتح الاقتراحات</a>
+      </div>
+
+      <div class="card">
+        <h3>زيارات منزلية</h3>
+        <div class="number" id="homeVisitsCount">0</div>
+      </div>
+
+      <div class="card">
+        <h3>تنبيه الزيارات</h3>
+        <div id="homeVisitAlert">—</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">حالة اعتماد الجداول</h2>
+    <div id="approvalStatus"></div>
+
+    <h2 class="section-title">آخر التحديثات</h2>
+    <div id="activityList"></div>
+
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const ADMIN_CODE = "1234";
+
+let activities = [];
+
+window.login = function(){
+  const code = document.getElementById("adminCode").value;
+
+  if(code !== ADMIN_CODE){
+    alert("الرمز غير صحيح");
+    return;
+  }
+
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("panel").style.display = "block";
+  loadAdminData();
+};
+
+function toDate(value){
+  if(!value) return new Date(0);
+  if(value.seconds) return new Date(value.seconds * 1000);
+  return new Date(value);
+}
+
+function addActivity(type,text,date){
+  activities.push({
+    type,
+    text,
+    date:toDate(date)
+  });
+}
+
+function renderActivities(){
+  const list = document.getElementById("activityList");
+
+  const sorted = activities
+    .sort((a,b)=>b.date-a.date)
+    .slice(0,12);
+
+  if(sorted.length === 0){
+    list.innerHTML = `<div class="item">لا توجد تحديثات حتى الآن</div>`;
+    return;
+  }
+
+  list.innerHTML = "";
+
+  sorted.forEach(a=>{
+    list.innerHTML += `
+      <div class="item">
+        <b>${a.type}</b><br>
+        ${a.text}<br>
+        <small>${a.date.toLocaleString("ar-SA")}</small>
+      </div>
+    `;
+  });
+}
+
+function loadAdminData(){
+  activities = [];
+
+  const today = new Date();
+  const day = today.getDate();
+
+  document.getElementById("homeVisitAlert").innerHTML =
+    day === 20
+    ? `<span class="bad">اليوم موعد رفع الزيارات المنزلية</span>`
+    : `<span class="good">لا يوجد تنبيه اليوم</span>`;
+
+  onSnapshot(collection(db,"shiftRequests"), snap=>{
+    let count = 0;
+    snap.forEach(d=>{
+      const x = d.data();
+      if(x.status === "new") count++;
+
+      addActivity(
+        "طلب تعديل شفت",
+        `${x.employee || ""} - ${x.type || ""} - ${x.section || ""}`,
+        x.createdAt
+      );
+    });
+
+    document.getElementById("newShiftCount").innerText = count;
+    renderActivities();
+  });
+
+  onSnapshot(collection(db,"suggestions"), snap=>{
+    document.getElementById("suggestionsCount").innerText = snap.size;
+
+    snap.forEach(d=>{
+      const x = d.data();
+      addActivity(
+        "اقتراح",
+        `${x.name || "موظف"} أرسل اقتراح`,
+        x.createdAt
+      );
+    });
+
+    renderActivities();
+  });
+
+  onSnapshot(collection(db,"homeVisits"), snap=>{
+    document.getElementById("homeVisitsCount").innerText = snap.size;
+
+    snap.forEach(d=>{
+      const x = d.data();
+      addActivity(
+        "زيارة منزلية",
+        `${x.therapist || x.employee || "تم تسجيل زيارة منزلية"}`,
+        x.createdAt || x.updatedAt || x.date
+      );
+    });
+
+    renderActivities();
+  });
+
+  onSnapshot(collection(db,"workScheduleSettings"), snap=>{
+    const box = document.getElementById("approvalStatus");
+    box.innerHTML = "";
+
+    if(snap.empty){
+      box.innerHTML = `<div class="item">لا توجد جداول معتمدة</div>`;
+      return;
+    }
+
+    snap.forEach(d=>{
+      const x = d.data();
+      const sectionName =
+        x.section === "men" ? "قسم الرجال" :
+        x.section === "women" ? "قسم النساء" :
+        x.section === "reception" ? "الاستقبال" :
+        x.section || "قسم";
+
+      box.innerHTML += `
+        <div class="item">
+          <b>${sectionName}</b><br>
+          ${
+            x.approved
+            ? `<span class="good">معتمد من ${x.startDate} إلى ${x.endDate}</span>`
+            : `<span class="bad">غير معتمد</span>`
+          }
+        </div>
+      `;
+
+      addActivity(
+        "اعتماد جدول",
+        `${sectionName} ${x.approved ? "تم اعتماده" : "غير معتمد"}`,
+        x.updatedAt
+      );
+    });
+
+    renderActivities();
+  });
+
+  onSnapshot(collection(db,"kidsRooms"), snap=>{
+    snap.forEach(d=>{
+      const x = d.data();
+      addActivity(
+        "غرف الأطفال",
+        `${x.therapist || ""} - تم تحديث حجز غرفة`,
+        x.updatedAt
+      );
+    });
+
+    renderActivities();
+  });
+
+  onSnapshot(collection(db,"workSchedule"), snap=>{
+    snap.forEach(d=>{
+      const x = d.data();
+      addActivity(
+        "جدول الدوام",
+        `${x.employee || ""} - ${x.section || ""}`,
+        x.updatedAt
+      );
+    });
+
+    renderActivities();
+  });
+}
+</script>
+
+</body>
+</html>
