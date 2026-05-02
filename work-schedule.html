@@ -14,6 +14,54 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 .brand p{margin:4px 0 0;font-size:13px;opacity:.9}
 .home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
 
+.section-selector{
+  width:96%;
+  margin:40px auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.section-card{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:22px;
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(15,23,42,.08);
+  transition:.25s;
+  color:#005b9f;
+  font-weight:bold;
+}
+
+.section-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 20px 45px rgba(15,23,42,.14);
+  background:#eef6ff;
+}
+
+.section-card .icon{
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.section-card h3{
+  margin:0;
+  font-size:22px;
+}
+
+.section-card p{
+  margin:7px 0 0;
+  color:#f59e0b;
+  direction:ltr;
+}
+
+.workspace{display:none}
+
 .controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
 .controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
 .controls button.active{background:#f59e0b}
@@ -35,55 +83,14 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
   flex-wrap:wrap;
 }
 
-.approval-fields{
-  display:flex;
-  align-items:end;
-  gap:12px;
-  flex-wrap:wrap;
-}
+.approval-fields{display:flex;align-items:end;gap:12px;flex-wrap:wrap}
+.approval-fields label{font-weight:bold;color:#005b9f;display:block;margin-bottom:5px}
+.approval-fields input{height:40px;border:1px solid #cbd5e1;border-radius:9px;padding:0 10px;font-family:Tahoma,Arial}
 
-.approval-fields label{
-  font-weight:bold;
-  color:#005b9f;
-  display:block;
-  margin-bottom:5px;
-}
+.approve-btn{background:#dcfce7;color:#166534;border:1px solid #86efac;padding:10px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
+.cancel-approve-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:10px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
 
-.approval-fields input{
-  height:40px;
-  border:1px solid #cbd5e1;
-  border-radius:9px;
-  padding:0 10px;
-  font-family:Tahoma,Arial;
-}
-
-.approve-btn{
-  background:#dcfce7;
-  color:#166534;
-  border:1px solid #86efac;
-  padding:10px 15px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.cancel-approve-btn{
-  background:#fee2e2;
-  color:#b91c1c;
-  border:1px solid #fecaca;
-  padding:10px 15px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.approval-status{
-  font-weight:bold;
-  padding:10px 15px;
-  border-radius:999px;
-  background:#eef6ff;
-  color:#005b9f;
-}
+.approval-status{font-weight:bold;padding:10px 15px;border-radius:999px;background:#eef6ff;color:#005b9f}
 
 .schedule-box{width:96%;margin:24px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001;overflow:hidden;border:1px solid #e2e8f0}
 .box-title{background:#f59e0b;color:white;padding:14px 18px;font-size:21px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;gap:12px}
@@ -104,8 +111,16 @@ td{border:1px solid #d7dee8;padding:8px;text-align:center;background:white}
 select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-size:15px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;background:white;color:#0f172a}
 
 .note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+
 @media(max-width:800px){
-.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.home-btn{width:100%}table{min-width:1050px}.box-title{flex-direction:column}.approval-card{justify-content:center;text-align:center}
+.topbar{flex-direction:column;text-align:center}
+.brand{flex-direction:column}
+.logo{width:85px;height:85px}
+.home-btn{width:100%}
+.section-selector{grid-template-columns:1fr}
+table{min-width:1050px}
+.box-title{flex-direction:column}
+.approval-card{justify-content:center;text-align:center}
 }
 </style>
 </head>
@@ -123,38 +138,60 @@ select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-siz
   <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
 </div>
 
-<div class="controls">
-  <button id="menBtn" onclick="switchSection('men')">قسم الرجال</button>
-  <button id="womenBtn" onclick="switchSection('women')">قسم النساء</button>
-  <button id="receptionBtn" onclick="switchSection('reception')">الاستقبال</button>
-</div>
-
-<h2 id="sectionTitle" class="section-title">قسم الرجال</h2>
-
-<div class="approval-card">
-  <div class="approval-fields">
-    <div>
-      <label>بداية اعتماد الجدول</label>
-      <input type="date" id="approvalStart">
-    </div>
-
-    <div>
-      <label>نهاية اعتماد الجدول</label>
-      <input type="date" id="approvalEnd">
-    </div>
-
-    <button class="approve-btn" onclick="approveSchedule()">اعتماد الجدول</button>
-    <button class="cancel-approve-btn" onclick="cancelApproval()">إلغاء الاعتماد</button>
+<div id="sectionSelector" class="section-selector">
+  <div class="section-card" onclick="openSection('men')">
+    <div class="icon">👨‍⚕️</div>
+    <h3>قسم الرجال</h3>
+    <p>Men Department</p>
   </div>
 
-  <div id="approvalStatus" class="approval-status">
-    الجدول غير معتمد
+  <div class="section-card" onclick="openSection('women')">
+    <div class="icon">👩‍⚕️</div>
+    <h3>قسم النساء</h3>
+    <p>Women Department</p>
+  </div>
+
+  <div class="section-card" onclick="openSection('reception')">
+    <div class="icon">🛎️</div>
+    <h3>الاستقبال</h3>
+    <p>Reception</p>
   </div>
 </div>
 
-<div id="tablesArea"></div>
+<div id="workspace" class="workspace">
 
-<div class="note">أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين</div>
+  <div class="controls">
+    <button id="menBtn" onclick="switchSection('men')">قسم الرجال</button>
+    <button id="womenBtn" onclick="switchSection('women')">قسم النساء</button>
+    <button id="receptionBtn" onclick="switchSection('reception')">الاستقبال</button>
+  </div>
+
+  <h2 id="sectionTitle" class="section-title"></h2>
+
+  <div class="approval-card">
+    <div class="approval-fields">
+      <div>
+        <label>بداية اعتماد الجدول</label>
+        <input type="date" id="approvalStart">
+      </div>
+
+      <div>
+        <label>نهاية اعتماد الجدول</label>
+        <input type="date" id="approvalEnd">
+      </div>
+
+      <button class="approve-btn" onclick="approveSchedule()">اعتماد الجدول</button>
+      <button class="cancel-approve-btn" onclick="cancelApproval()">إلغاء الاعتماد</button>
+    </div>
+
+    <div id="approvalStatus" class="approval-status">الجدول غير معتمد</div>
+  </div>
+
+  <div id="tablesArea"></div>
+
+  <div class="note">أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين</div>
+
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
@@ -175,7 +212,7 @@ const db = getFirestore(app);
 const workRef = collection(db,"workSchedule");
 const settingsRef = collection(db,"workScheduleSettings");
 
-let currentSection="men";
+let currentSection="";
 let savedData={};
 let settingsData={};
 
@@ -277,6 +314,8 @@ function getApprovalText(section=currentSection){
 }
 
 function updateApprovalUI(){
+  if(!currentSection) return;
+
   const s = settingsData[currentSection];
 
   document.getElementById("approvalStart").value = s?.startDate || "";
@@ -291,6 +330,8 @@ function warnIfApproved(actionText){
 }
 
 function renderTables(){
+  if(!currentSection) return;
+
   const area=document.getElementById("tablesArea");
   area.innerHTML="";
   area.innerHTML+=buildTable("دوام شفت واحد","single","شفت واحد",shiftTimes[currentSection].single);
@@ -459,14 +500,12 @@ window.clearSchedule=async function(shift){
 
   snap.forEach(item=>{
     const id = item.id;
-
     if(id.startsWith(`${currentSection}_${shift}_`)){
       deletes.push(deleteDoc(doc(db,"workSchedule",id)));
     }
   });
 
   await Promise.all(deletes);
-
   alert("تم حذف الجدول المحدد فقط");
 };
 
@@ -511,6 +550,12 @@ window.cancelApproval = async function(){
   alert("تم إلغاء الاعتماد");
 };
 
+window.openSection=function(sec){
+  document.getElementById("sectionSelector").style.display="none";
+  document.getElementById("workspace").style.display="block";
+  switchSection(sec);
+};
+
 window.switchSection=function(sec){
   currentSection=sec;
 
@@ -540,10 +585,7 @@ onSnapshot(settingsRef,(snap)=>{
 
   updateApprovalUI();
 });
-
-switchSection("men");
 </script>
 
 </body>
 </html>
-```
