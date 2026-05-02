@@ -11,10 +11,7 @@
   --blue2:#0077c8;
   --navy:#06345d;
   --orange:#f59e0b;
-  --bg:#f4f8fc;
   --text:#0f172a;
-  --muted:#64748b;
-  --white:#fff;
 }
 
 *{box-sizing:border-box}
@@ -31,7 +28,6 @@ body{
   min-height:100vh;
 }
 
-/* HEADER */
 .hero{
   position:relative;
   overflow:hidden;
@@ -81,6 +77,10 @@ body{
   box-shadow:0 10px 22px rgba(0,0,0,.18);
 }
 
+.admin-mini-btn{
+  left:68px;
+}
+
 .hero-inner{
   position:relative;
   z-index:2;
@@ -92,7 +92,6 @@ body{
   gap:34px;
 }
 
-/* LOGO */
 .logo-box{
   justify-self:end;
   width:176px;
@@ -112,7 +111,6 @@ body{
   object-fit:contain;
 }
 
-/* TITLE */
 .center-title{
   text-align:center;
 }
@@ -144,7 +142,6 @@ body{
   line-height:1.9;
 }
 
-/* CLOCK */
 .clock-card{
   justify-self:start;
   width:176px;
@@ -200,7 +197,6 @@ body{
   color:#dbeafe;
 }
 
-/* QUOTE */
 .quote-strip{
   width:88%;
   max-width:1050px;
@@ -231,7 +227,6 @@ body{
   transition:.35s;
 }
 
-/* MAIN */
 .main{
   width:90%;
   max-width:1220px;
@@ -250,7 +245,6 @@ body{
   font-weight:900;
 }
 
-/* CARDS */
 .cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -335,23 +329,6 @@ body{
   font-weight:900;
 }
 
-/* تنبيه الزيارات المنزلية يوم 20 فقط */
-.badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#dc2626;
-  color:white;
-  font-size:12px;
-  font-weight:900;
-  padding:5px 9px;
-  border-radius:50px;
-  display:none;
-  z-index:10;
-  box-shadow:0 8px 18px rgba(220,38,38,.28);
-}
-
-/* CARD TOOLTIP - يظهر تحت الكرت */
 .card-tooltip{
   position:absolute;
   top:105%;
@@ -390,6 +367,20 @@ body{
   transform:translateX(50%) translateY(0);
 }
 
+.badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#dc2626;
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  padding:5px 9px;
+  border-radius:50px;
+  display:none;
+  z-index:5;
+}
+
 .footer{
   width:90%;
   max-width:1220px;
@@ -401,7 +392,6 @@ body{
   font-size:14px;
 }
 
-/* DARK */
 body.dark{
   background:
     radial-gradient(circle at 90% 8%, rgba(30,64,175,.22), transparent 28%),
@@ -440,7 +430,6 @@ body.dark .theme-btn{
   border:1px solid #334155;
 }
 
-/* RESPONSIVE */
 @media(max-width:1100px){
   .hero-inner{
     grid-template-columns:1fr;
@@ -501,10 +490,6 @@ body.dark .theme-btn{
     font-size:18px;
   }
 
-  .cards{
-    grid-template-columns:1fr;
-  }
-
   .card-tooltip{
     display:none;
   }
@@ -515,6 +500,7 @@ body.dark .theme-btn{
 <body>
 
 <header class="hero">
+  <button class="theme-btn admin-mini-btn" onclick="go('admin.html')">🔐</button>
   <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
 
   <div class="hero-inner">
@@ -549,6 +535,7 @@ body.dark .theme-btn{
   
 <main class="main">
   <div class="section-head">
+    <h2>أقسام المركز</h2>
   </div>
 
   <div class="cards">
@@ -598,14 +585,7 @@ body.dark .theme-btn{
         مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض داخل المركز.
       </div>
     </div>
-<div class="card" onclick="go('admin.html')">
-  <div class="icon">🔐</div>
-  <h3>الإدارة</h3>
-  <h4>Admin Panel</h4>
-  <div class="card-tooltip">
-    لوحة خاصة للإدارة تعرض آخر التحديثات والتنبيهات وطلبات الشفتات.
-  </div>
-</div>
+
   </div>
 </main>
 
@@ -633,16 +613,6 @@ function loadTheme(){
   }
 }
 
-function checkHomeVisitsAlert(){
-  const today = new Date();
-  const day = today.getDate();
-  const badge = document.getElementById("homeVisitsBadge");
-
-  if(!badge) return;
-
-  badge.style.display = day === 20 ? "block" : "none";
-}
-
 function updateClock(){
   const now = new Date();
 
@@ -664,6 +634,20 @@ function updateClock(){
       month:"long",
       day:"numeric"
     });
+}
+
+function checkHomeVisitsAlert(){
+  const today = new Date();
+  const day = today.getDate();
+  const badge = document.getElementById("homeVisitsBadge");
+
+  if(!badge) return;
+
+  if(day === 20){
+    badge.style.display = "block";
+  }else{
+    badge.style.display = "none";
+  }
 }
 
 const quotes = [
@@ -699,9 +683,10 @@ function rotateQuotes(){
 }
 
 loadTheme();
-checkHomeVisitsAlert();
 setInterval(updateClock,1000);
 updateClock();
+
+checkHomeVisitsAlert();
 
 rotateQuotes();
 setInterval(rotateQuotes,9000);
