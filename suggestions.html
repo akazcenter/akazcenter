@@ -165,6 +165,12 @@ input:focus{
   box-shadow:0 0 0 4px rgba(0,119,200,.12);
 }
 
+.file-note{
+  color:#64748b;
+  font-size:13px;
+  margin-top:7px;
+}
+
 .submit-btn,
 .admin-btn,
 .back-btn{
@@ -185,6 +191,11 @@ input:focus{
   box-shadow:0 12px 25px rgba(0,91,159,.18);
 }
 
+.submit-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
 .back-btn{
   background:#eef6ff;
   color:var(--blue);
@@ -202,12 +213,26 @@ input:focus{
   color:var(--blue);
   font-weight:900;
   margin-bottom:8px;
+  line-height:1.8;
 }
 
 .suggestion-text{
   color:#0f172a;
   line-height:1.9;
   white-space:pre-wrap;
+  margin-bottom:12px;
+}
+
+.attachment-btn{
+  display:inline-block;
+  background:#e0f2fe;
+  color:#075985;
+  border:1px solid #bae6fd;
+  padding:9px 13px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+  margin-top:8px;
 }
 
 .empty{
@@ -299,7 +324,11 @@ input:focus{
     <label>الاقتراح</label>
     <textarea id="suggestionText" placeholder="اكتب اقتراحك هنا..."></textarea>
 
-    <button class="submit-btn" onclick="sendSuggestion()">إرسال الاقتراح</button>
+    <label>إرفاق صورة أو ملف / اختياري</label>
+    <input type="file" id="attachmentFile" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx">
+    <div class="file-note">يمكن رفع صورة أو PDF أو ملف Word/Excel.</div>
+
+    <button id="sendBtn" class="submit-btn" onclick="sendSuggestion()">إرسال الاقتراح</button>
     <button class="back-btn" onclick="backHome()">رجوع</button>
   </div>
 
@@ -328,6 +357,7 @@ input:focus{
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -340,9 +370,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
+
 const suggestionsRef = collection(db, "suggestions");
 
-const ADMIN_CODE = "164321";
+const ADMIN_CODE = "1234";
 
 let suggestionsData = [];
 
@@ -371,6 +403,9 @@ window.showAdminLogin = function(){
 window.sendSuggestion = async function(){
   const name = document.getElementById("employeeName").value;
   const text = document.getElementById("suggestionText").value.trim();
+  const fileInput = document.getElementById("attachmentFile");
+  const file = fileInput.files[0];
+  const sendBtn = document.getElementById("sendBtn");
 
   if(!name){
     alert("اختر اسمك أولاً");
@@ -382,16 +417,58 @@ window.sendSuggestion = async function(){
     return;
   }
 
-  await addDoc(suggestionsRef, {
-    name,
-    text,
-    createdAt: new Date()
-  });
+  try{
+    sendBtn.disabled = true;
+    sendBtn.innerText = "جاري الإرسال...";
 
-  alert("تم إرسال الاقتراح، شكرًا لك");
-  document.getElementById("employeeName").value = "";
-  document.getElementById("suggestionText").value = "";
-  backHome();
+    let attachmentUrl = "";
+    let attachmentName = "";
+    let attachmentType = "";
+
+    if(file){
+      const maxSize = 10 * 1024 * 1024;
+
+      if(file.size > maxSize){
+        alert("حجم الملف كبير. الحد الأقصى 10MB");
+        sendBtn.disabled = false;
+        sendBtn.innerText = "إرسال الاقتراح";
+        return;
+      }
+
+      const safeName = file.name.replace(/[^\u0600-\u06FFa-zA-Z0-9._-]/g, "_");
+      const filePath = `suggestions/${Date.now()}_${safeName}`;
+      const fileRef = ref(storage, filePath);
+
+      await uploadBytes(fileRef, file);
+
+      attachmentUrl = await getDownloadURL(fileRef);
+      attachmentName = file.name;
+      attachmentType = file.type || "file";
+    }
+
+    await addDoc(suggestionsRef, {
+      name,
+      text,
+      attachmentUrl,
+      attachmentName,
+      attachmentType,
+      createdAt: new Date()
+    });
+
+    alert("تم إرسال الاقتراح، شكرًا لك");
+    document.getElementById("employeeName").value = "";
+    document.getElementById("suggestionText").value = "";
+    document.getElementById("attachmentFile").value = "";
+
+    backHome();
+
+  }catch(error){
+    console.error(error);
+    alert("صار خطأ أثناء الإرسال. تأكد من تفعيل Storage في Firebase.");
+  }finally{
+    sendBtn.disabled = false;
+    sendBtn.innerText = "إرسال الاقتراح";
+  }
 };
 
 window.adminLogin = function(){
@@ -428,12 +505,22 @@ function renderSuggestions(){
   list.innerHTML = "";
 
   suggestionsData.forEach(item=>{
+    const attachment = item.attachmentUrl
+      ? `<a class="attachment-btn" href="${item.attachmentUrl}" target="_blank" download>📎 تحميل المرفق: ${item.attachmentName || "مرفق"}</a>`
+      : `<div style="color:#64748b;font-size:13px;">لا يوجد مرفق</div>`;
+
     list.innerHTML += `
       <div class="suggestion-card">
         <div class="suggestion-meta">
-          ${item.name} — ${formatDate(item.createdAt)}
+          الاسم: ${item.name}<br>
+          تاريخ ووقت الإرسال: ${formatDate(item.createdAt)}
         </div>
+
         <div class="suggestion-text">${item.text}</div>
+
+        ${attachment}
+
+        <br>
         <button class="delete-btn" onclick="deleteSuggestion('${item.id}')">حذف</button>
       </div>
     `;
