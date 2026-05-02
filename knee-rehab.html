@@ -2,161 +2,683 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Knee Rehab Progress</title>
 <link rel="icon" href="logo.png">
 
 <style>
-body{font-family:tahoma;background:#f5f7fa;margin:0}
-.container{max-width:1100px;margin:auto;padding:20px}
-
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --green:#166534;
+  --yellow:#92400e;
+  --red:#b91c1c;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
+}
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:18px 32px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+  box-shadow:0 14px 35px rgba(8,52,95,.20);
+}
+.brand{display:flex;align-items:center;gap:16px}
+.logo{
+  width:72px;height:72px;object-fit:contain;background:white;
+  border-radius:18px;padding:7px;
+}
+.brand h1{margin:0;font-size:24px;font-weight:900}
+.brand p{margin:5px 0 0;direction:ltr;font-size:13px;color:#dbeafe}
+.home-btn{
+  background:white;color:var(--blue);border:none;padding:11px 18px;
+  border-radius:12px;cursor:pointer;font-weight:bold;
+}
+.main{width:94%;max-width:1250px;margin:26px auto}
 .card{
-background:#fff;
-padding:20px;
-border-radius:20px;
-margin-bottom:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.05)
+  background:white;border:1px solid var(--line);border-radius:22px;
+  padding:20px;box-shadow:0 12px 30px rgba(15,23,42,.07);margin-bottom:20px;
 }
-
-.title{color:#005b9f;font-weight:bold;margin-bottom:10px}
-
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-input,select{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:1px solid #ccc
+.card-title{margin:0 0 16px;color:var(--blue);font-size:22px;font-weight:900}
+.intro{line-height:1.9;color:#334155}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.field label{display:block;color:#334155;font-size:13px;font-weight:900;margin-bottom:7px}
+input,select,textarea{
+  width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:12px;
+  font-family:Tahoma,Arial,sans-serif;font-size:14px;outline:none;background:white;
 }
-
-.result{
-text-align:center;
-font-size:30px;
-font-weight:bold;
-color:#005b9f
+textarea{height:105px;resize:vertical;line-height:1.8}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.12);
 }
-
-button{
-width:100%;
-padding:14px;
-background:#005b9f;
-color:#fff;
-border:none;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer
+.metric-box{
+  background:#f8fbff;border:1px solid var(--line);border-radius:18px;padding:16px;
 }
+.metric-head{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;
+}
+.metric-head strong{color:var(--blue);font-size:15px}
+.help-btn{
+  width:28px;height:28px;border-radius:50%;border:none;background:#eef6ff;
+  color:var(--blue);font-weight:900;cursor:pointer;
+}
+.help-text{
+  display:none;background:#0f172a;color:white;border-radius:12px;padding:11px;
+  font-size:12px;line-height:1.7;direction:ltr;text-align:left;margin-bottom:10px;
+}
+.result-line{
+  margin-top:10px;text-align:center;font-weight:900;border-radius:12px;
+  padding:9px;background:#eef6ff;color:var(--blue);direction:ltr;
+}
+.result-card{
+  display:grid;grid-template-columns:1fr 2fr;gap:18px;align-items:stretch;
+}
+.score-box{
+  background:linear-gradient(135deg,#005b9f,#0077c8);color:white;
+  border-radius:22px;padding:25px;text-align:center;display:flex;
+  flex-direction:column;justify-content:center;
+}
+.score{font-size:52px;font-weight:900;direction:ltr}
+.score-label{margin-top:8px;font-size:15px;color:#dbeafe}
+.readiness{
+  background:#f8fbff;border:1px solid var(--line);border-radius:22px;padding:20px;
+}
+.badge{
+  display:inline-block;padding:8px 14px;border-radius:999px;
+  font-weight:900;font-size:13px;margin-bottom:12px;
+}
+.good{background:#dcfce7;color:var(--green)}
+.mid{background:#fef3c7;color:var(--yellow)}
+.bad{background:#fee2e2;color:var(--red)}
+.action-row{display:flex;gap:12px;flex-wrap:wrap}
+.action-row button{flex:1;min-width:190px}
+.primary-btn,.secondary-btn{
+  border:none;border-radius:14px;padding:14px 18px;font-weight:900;cursor:pointer;font-size:15px;
+}
+.primary-btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.secondary-btn{background:#eef6ff;color:var(--blue)}
 
-.print{display:none}
-
+/* PRINT */
+#printArea{display:none}
 @media print{
-body *{visibility:hidden}
-.print, .print *{visibility:visible}
-.print{display:block;position:absolute;top:0;width:100%}
+  @page{size:A4;margin:12mm}
+  body *{visibility:hidden}
+  #printArea,#printArea *{visibility:visible}
+  #printArea{position:absolute;top:0;right:0;width:100%;display:block!important}
+  .no-print{display:none!important}
+}
+.print-page{background:white;color:#0f172a;font-family:Tahoma,Arial,sans-serif;direction:rtl}
+.print-header{
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:3px solid #005b9f;padding-bottom:12px;margin-bottom:16px;
+}
+.print-logo{width:115px;height:auto;object-fit:contain}
+.print-title{text-align:center;flex:1}
+.print-title h1{margin:0;color:#005b9f;font-size:21px;font-weight:900}
+.print-title h2{margin:6px 0 0;color:#f59e0b;font-size:15px;direction:ltr}
+.print-meta{direction:ltr;text-align:left;font-size:11px;color:#64748b}
+.print-section{
+  border:1px solid #dbe4ee;border-radius:12px;padding:12px;margin-bottom:12px;
+}
+.print-section h3{margin:0 0 10px;color:#005b9f;font-size:15px}
+.print-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:12px;line-height:1.7;
+}
+.print-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.print-table th{
+  background:#005b9f;color:white;padding:7px;border:1px solid #005b9f;
+}
+.print-table td{border:1px solid #dbe4ee;padding:7px;text-align:center}
+.print-summary{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center}
+.print-score{
+  background:#eef6ff;border:1px solid #bfdbfe;color:#005b9f;
+  border-radius:16px;text-align:center;padding:18px;
+}
+.print-score strong{display:block;direction:ltr;font-size:34px;font-weight:900}
+.print-note{font-size:12px;line-height:1.8;white-space:pre-wrap}
+.disclaimer{
+  margin-top:12px;border-top:1px solid #e2e8f0;padding-top:10px;
+  font-size:10.5px;color:#475569;line-height:1.7;
+}
+@media(max-width:900px){
+  .grid,.grid-3,.result-card{grid-template-columns:1fr}
+  .topbar{flex-direction:column;text-align:center}
+  .brand{flex-direction:column}
+  .home-btn{width:100%}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<div class="card">
-<div class="title">بيانات المريض</div>
-<div class="grid">
-<input id="name" placeholder="اسم المريض">
-<input id="date" type="date">
-</div>
-</div>
-
-<div class="card">
-<div class="title">قبل العلاج (Before)</div>
-<div class="grid">
-
-<input id="pain_b" placeholder="Pain (0-10)">
-<input id="rom_b" placeholder="ROM (مثال 90)">
-
-<input id="balance_b" placeholder="Balance (sec)">
-<input id="sit_b" placeholder="Sit to Stand">
-
-</div>
+<div class="topbar no-print">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>تقييم تقدم تأهيل الركبة</h1>
+      <p>Knee Functional Progress Assessment</p>
+    </div>
+  </div>
+  <button class="home-btn" onclick="location.href='functional-assessments.html'">رجوع</button>
 </div>
 
-<div class="card">
-<div class="title">بعد العلاج (After)</div>
-<div class="grid">
+<div class="main no-print">
 
-<input id="pain_a" placeholder="Pain (0-10)">
-<input id="rom_a" placeholder="ROM">
+  <div class="card intro">
+    <h2 class="card-title">Knee Rehab Progress</h2>
+    <p>
+      نموذج عملي لمتابعة تقدم حالات الركبة غير المخصصة للرباط الصليبي، يعتمد على مقارنة قبل/بعد في الألم، مدى الحركة، التوازن، القوة الوظيفية، المشي، والدرج.
+    </p>
+  </div>
 
-<input id="balance_a" placeholder="Balance (sec)">
-<input id="sit_a" placeholder="Sit to Stand">
+  <div class="card">
+    <h2 class="card-title">بيانات المريض | Patient Information</h2>
+    <div class="grid">
+      <div class="field">
+        <label>اسم المريض | Patient Name</label>
+        <input id="patientName" placeholder="اكتب اسم المريض">
+      </div>
+      <div class="field">
+        <label>الأخصائي | Therapist</label>
+        <select id="therapist">
+          <option value="">اختر الأخصائي</option>
+          <option>د. حاتم الأحمدي</option>
+          <option>د. عبدالرحمن السويداء</option>
+          <option>د. عبدالرحمن السليمي</option>
+          <option>د. عبدالعزيز الحمدان</option>
+          <option>د. ريناد حميد</option>
+          <option>د. ابتسام سويلم</option>
+          <option>د. سلمى فرحان</option>
+          <option>د. هند فهيد</option>
+          <option>د. أسماء فهيد</option>
+          <option>د. مها فريح</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>الحالة | Condition</label>
+        <input id="condition" placeholder="مثال: Meniscus / Knee pain / PFPS">
+      </div>
+      <div class="field">
+        <label>الجهة المصابة | Affected Side</label>
+        <select id="side">
+          <option>Right</option>
+          <option>Left</option>
+          <option>Bilateral</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>تاريخ التقييم | Assessment Date</label>
+        <input type="date" id="assessmentDate">
+      </div>
+      <div class="field">
+        <label>عدد الجلسات | Sessions</label>
+        <input type="number" id="sessions" placeholder="مثال: 8">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">المقارنة الوظيفية | Before / Current Comparison</h2>
+
+    <div class="grid-3">
+
+      <div class="metric-box">
+        <div class="metric-head">
+          <strong>Pain During Activity</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">Scale 0-10. Lower score is better. Compare initial pain with current pain during activity.</div>
+        <div class="grid">
+          <div class="field"><label>Before</label><input type="number" id="painBefore" min="0" max="10" oninput="calculateAll()"></div>
+          <div class="field"><label>Current</label><input type="number" id="painNow" min="0" max="10" oninput="calculateAll()"></div>
+        </div>
+        <div class="result-line" id="painResult">—</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-head">
+          <strong>Knee Flexion ROM</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">Measure knee flexion in degrees. Higher flexion usually indicates better functional range.</div>
+        <div class="grid">
+          <div class="field"><label>Before °</label><input type="number" id="flexBefore" oninput="calculateAll()"></div>
+          <div class="field"><label>Current °</label><input type="number" id="flexNow" oninput="calculateAll()"></div>
+        </div>
+        <div class="result-line" id="flexResult">—</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-head">
+          <strong>Extension Lag</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">Record extension lag in degrees. Lower number is better. Goal is close to 0°.</div>
+        <div class="grid">
+          <div class="field"><label>Before °</label><input type="number" id="extBefore" oninput="calculateAll()"></div>
+          <div class="field"><label>Current °</label><input type="number" id="extNow" oninput="calculateAll()"></div>
+        </div>
+        <div class="result-line" id="extResult">—</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-head">
+          <strong>30s Sit-to-Stand</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">Count repetitions in 30 seconds. Higher number reflects better lower limb functional strength.</div>
+        <div class="grid">
+          <div class="field"><label>Before Reps</label><input type="number" id="stsBefore" oninput="calculateAll()"></div>
+          <div class="field"><label>Current Reps</label><input type="number" id="stsNow" oninput="calculateAll()"></div>
+        </div>
+        <div class="result-line" id="stsResult">—</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-head">
+          <strong>Single Leg Balance</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">Measure balance time in seconds. Higher time indicates better control and stability.</div>
+        <div class="grid">
+          <div class="field"><label>Before sec</label><input type="number" id="balanceBefore" oninput="calculateAll()"></div>
+          <div class="field"><label>Current sec</label><input type="number" id="balanceNow" oninput="calculateAll()"></div>
+        </div>
+        <div class="result-line" id="balanceResult">—</div>
+      </div>
+
+      <div class="metric-box">
+        <div class="metric-head">
+          <strong>Walking Tolerance</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">Record comfortable walking tolerance in minutes. Higher duration indicates better function.</div>
+        <div class="grid">
+          <div class="field"><label>Before min</label><input type="number" id="walkBefore" oninput="calculateAll()"></div>
+          <div class="field"><label>Current min</label><input type="number" id="walkNow" oninput="calculateAll()"></div>
+        </div>
+        <div class="result-line" id="walkResult">—</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">التقييم السريري | Clinical Status</h2>
+    <div class="grid">
+      <div class="field">
+        <label>Swelling / Effusion</label>
+        <select id="swelling" onchange="calculateAll()">
+          <option value="no">No swelling</option>
+          <option value="mild">Mild</option>
+          <option value="yes">Moderate / Significant</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Movement Quality</label>
+        <select id="quality" onchange="calculateAll()">
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label>Clinical Notes | ملاحظات الأخصائي</label>
+      <textarea id="clinicalNotes" placeholder="مثال: تحسن واضح في المشي، ما زال يحتاج تقوية في النزول من الدرج..."></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">النتيجة | Result</h2>
+    <div class="result-card">
+      <div class="score-box">
+        <div class="score" id="overallScore">0%</div>
+        <div class="score-label">Functional Progress Score</div>
+      </div>
+
+      <div class="readiness">
+        <div id="readinessBadge" class="badge bad">Needs Further Rehab</div>
+        <p id="readinessText" style="line-height:1.9;color:#334155;margin:0">
+          أدخل نتائج المقارنة لحساب التقدم الوظيفي.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">إصدار التقرير | Generate Report</h2>
+    <div class="action-row">
+      <button class="primary-btn" onclick="generateReport()">معاينة وطباعة التقرير</button>
+      <button class="secondary-btn" onclick="calculateAll()">تحديث الحساب</button>
+    </div>
+  </div>
 
 </div>
-</div>
 
-<div class="card">
-<div class="title">النتيجة</div>
-<div class="result" id="score">0%</div>
-</div>
+<div id="printArea">
+  <div class="print-page">
 
-<div class="card">
-<button onclick="calc()">حساب</button>
-</div>
+    <div class="print-header">
+      <img src="logo.png" class="print-logo" alt="Akaz Logo">
 
-<div class="card">
-<button onclick="printReport()">طباعة التقرير</button>
-</div>
+      <div class="print-title">
+        <h1>تقرير تقدم تأهيل الركبة</h1>
+        <h2>Knee Functional Progress Report</h2>
+      </div>
 
-</div>
+      <div class="print-meta">
+        AKAZ Physiotherapy Center<br>
+        مركز عكاز للعلاج الطبيعي
+      </div>
+    </div>
 
-<div class="print" id="printArea">
+    <div class="print-section">
+      <h3>بيانات المريض | Patient Information</h3>
+      <div class="print-grid">
+        <div><b>اسم المريض:</b> <span id="prPatientName"></span></div>
+        <div><b>Patient:</b> <span id="prPatientNameEn"></span></div>
+        <div><b>الأخصائي:</b> <span id="prTherapist"></span></div>
+        <div><b>Therapist:</b> <span id="prTherapistEn"></span></div>
+        <div><b>الحالة:</b> <span id="prCondition"></span></div>
+        <div><b>Affected Side:</b> <span id="prSide"></span></div>
+        <div><b>تاريخ التقييم:</b> <span id="prDate"></span></div>
+        <div><b>Sessions:</b> <span id="prSessions"></span></div>
+      </div>
+    </div>
 
-<h2 style="text-align:center">Knee Rehab Progress Report</h2>
+    <div class="print-section">
+      <h3>المقارنة الوظيفية | Before / Current</h3>
+      <table class="print-table">
+        <tr>
+          <th>Measure</th>
+          <th>Before</th>
+          <th>Current</th>
+          <th>Change</th>
+          <th>Status</th>
+        </tr>
+        <tr><td>Pain During Activity</td><td id="prPainB"></td><td id="prPainN"></td><td id="prPainC"></td><td id="prPainS"></td></tr>
+        <tr><td>Knee Flexion ROM</td><td id="prFlexB"></td><td id="prFlexN"></td><td id="prFlexC"></td><td id="prFlexS"></td></tr>
+        <tr><td>Extension Lag</td><td id="prExtB"></td><td id="prExtN"></td><td id="prExtC"></td><td id="prExtS"></td></tr>
+        <tr><td>30s Sit-to-Stand</td><td id="prStsB"></td><td id="prStsN"></td><td id="prStsC"></td><td id="prStsS"></td></tr>
+        <tr><td>Single Leg Balance</td><td id="prBalB"></td><td id="prBalN"></td><td id="prBalC"></td><td id="prBalS"></td></tr>
+        <tr><td>Walking Tolerance</td><td id="prWalkB"></td><td id="prWalkN"></td><td id="prWalkC"></td><td id="prWalkS"></td></tr>
+      </table>
+    </div>
 
-<p><b>Patient:</b> <span id="p_name"></span></p>
+    <div class="print-section">
+      <h3>ملخص التقدم | Progress Summary</h3>
+      <div class="print-summary">
+        <div class="print-score">
+          <strong id="prOverallScore">0%</strong>
+          Progress Score
+        </div>
+        <div class="print-note">
+          <b id="prReadinessTitle"></b>
+          <p id="prReadinessText"></p>
+        </div>
+      </div>
+    </div>
 
-<hr>
+    <div class="print-section">
+      <h3>ملاحظات الأخصائي | Clinical Notes</h3>
+      <div class="print-note" id="prNotes"></div>
+    </div>
 
-<p><b>Before vs After:</b></p>
+    <div class="disclaimer">
+      <b>English:</b>
+      This report reflects the patient’s current functional progress based on the measures recorded during assessment. Progression should be guided by the treating therapist and adjusted according to symptoms.
+      <br>
+      <b>العربية:</b>
+      يعكس هذا التقرير مستوى التقدم الوظيفي الحالي بناءً على القياسات المسجلة أثناء التقييم، ويتم تحديد التدرج العلاجي بواسطة الأخصائي المعالج حسب الأعراض والاستجابة.
+    </div>
 
-<p>Pain: <span id="p_pain"></span></p>
-<p>ROM: <span id="p_rom"></span></p>
-<p>Balance: <span id="p_balance"></span></p>
-
-<hr>
-
-<p><b>Improvement:</b> <span id="p_score"></span></p>
-
+  </div>
 </div>
 
 <script>
-
-function calc(){
-
-let p = 10 - (pain_a.value / pain_b.value * 10)
-let rom = rom_a.value / rom_b.value
-let bal = balance_a.value / balance_b.value
-
-let avg = ((p + rom + bal) / 3) * 100
-
-score.innerText = Math.round(avg) + "%"
-
+function toggleHelp(btn){
+  const box = btn.closest(".metric-box").querySelector(".help-text");
+  box.style.display = box.style.display === "block" ? "none" : "block";
 }
 
-function printReport(){
-
-p_name.innerText = name.value
-
-p_pain.innerText = pain_b.value + " → " + pain_a.value
-p_rom.innerText = rom_b.value + " → " + rom_a.value
-p_balance.innerText = balance_b.value + " → " + balance_a.value
-
-p_score.innerText = score.innerText
-
-window.print()
-
+function num(id){
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
 }
 
+function clamp(v){
+  return Math.max(0, Math.min(100, Math.round(v)));
+}
+
+function higherScore(now, goal){
+  if(!now) return 0;
+  return clamp((now / goal) * 100);
+}
+
+function lowerScore(now, max, goal){
+  if(now === 0 && goal === 0) return 100;
+  if(!now && now !== 0) return 0;
+  return clamp(((max - now) / (max - goal)) * 100);
+}
+
+function changeHigher(before, now){
+  if(!before && !now) return "—";
+  const diff = now - before;
+  return diff > 0 ? "+" + diff : String(diff);
+}
+
+function changeLower(before, now){
+  if(!before && !now) return "—";
+  const diff = before - now;
+  return diff > 0 ? "-" + diff : String(now - before);
+}
+
+function statusFromScore(score){
+  if(score >= 90) return "Excellent";
+  if(score >= 75) return "Good";
+  if(score >= 60) return "Fair";
+  if(score > 0) return "Needs Improvement";
+  return "—";
+}
+
+function colorResult(el,score){
+  el.style.background="#eef6ff";
+  el.style.color="#005b9f";
+
+  if(score >= 90){
+    el.style.background="#dcfce7";
+    el.style.color="#166534";
+  }else if(score >= 75){
+    el.style.background="#fef3c7";
+    el.style.color="#92400e";
+  }else if(score > 0){
+    el.style.background="#fee2e2";
+    el.style.color="#b91c1c";
+  }
+}
+
+function getScores(){
+  const pain = lowerScore(num("painNow"),10,2);
+  const flex = higherScore(num("flexNow"),125);
+  const ext = lowerScore(num("extNow"),20,0);
+  const sts = higherScore(num("stsNow"),12);
+  const balance = higherScore(num("balanceNow"),30);
+  const walk = higherScore(num("walkNow"),30);
+
+  const arr = [pain,flex,ext,sts,balance,walk].filter(x=>x>0);
+  const avg = arr.length ? Math.round(arr.reduce((a,b)=>a+b,0)/arr.length) : 0;
+
+  return {pain,flex,ext,sts,balance,walk,avg};
+}
+
+function hasWarning(){
+  return (
+    document.getElementById("swelling").value === "yes" ||
+    document.getElementById("quality").value === "poor"
+  );
+}
+
+function getReadiness(avg){
+  if(hasWarning()){
+    return {
+      cls:"bad",
+      title:"Clinical Caution",
+      ar:"توجد ملاحظات سريرية تستدعي الحذر، ويُنصح بالاستمرار في التأهيل ومراجعة الأعراض قبل رفع مستوى النشاط.",
+      en:"Clinical caution is advised due to swelling or poor movement quality."
+    };
+  }
+
+  if(avg >= 90){
+    return {
+      cls:"good",
+      title:"Excellent Functional Progress",
+      ar:"يظهر المريض تقدمًا وظيفيًا ممتازًا مقارنة بالبداية، مع إمكانية التدرج في الأنشطة حسب قرار الأخصائي.",
+      en:"The patient demonstrates excellent functional progress compared with baseline."
+    };
+  }
+
+  if(avg >= 75){
+    return {
+      cls:"mid",
+      title:"Good Functional Progress",
+      ar:"يظهر المريض تقدمًا جيدًا، مع الحاجة للاستمرار في التأهيل لتحسين القوة والتحكم الوظيفي.",
+      en:"The patient demonstrates good progress and should continue rehabilitation."
+    };
+  }
+
+  if(avg >= 60){
+    return {
+      cls:"mid",
+      title:"Moderate Progress",
+      ar:"يوجد تحسن متوسط، وما زال المريض بحاجة إلى متابعة وتأهيل قبل رفع مستوى النشاط.",
+      en:"Moderate progress noted; continued rehabilitation is recommended."
+    };
+  }
+
+  return {
+    cls:"bad",
+    title:"Needs Further Rehab",
+    ar:"النتائج الحالية تشير إلى الحاجة لاستمرار التأهيل وتحسين الوظيفة قبل التدرج في النشاط.",
+    en:"Current results indicate the need for further rehabilitation."
+  };
+}
+
+function calculateAll(){
+  const s = getScores();
+
+  const fields = [
+    ["painResult",s.pain,"Pain"],
+    ["flexResult",s.flex,"Flexion"],
+    ["extResult",s.ext,"Extension"],
+    ["stsResult",s.sts,"Sit-to-Stand"],
+    ["balanceResult",s.balance,"Balance"],
+    ["walkResult",s.walk,"Walking"]
+  ];
+
+  fields.forEach(([id,score,label])=>{
+    const el=document.getElementById(id);
+    el.innerText = score ? `${label}: ${score}% - ${statusFromScore(score)}` : "—";
+    colorResult(el,score);
+  });
+
+  document.getElementById("overallScore").innerText=s.avg+"%";
+
+  const r=getReadiness(s.avg);
+  const badge=document.getElementById("readinessBadge");
+  badge.className="badge "+r.cls;
+  badge.innerText=r.title;
+  document.getElementById("readinessText").innerText=r.ar+" / "+r.en;
+}
+
+function setText(id,value){
+  document.getElementById(id).innerText=value || "—";
+}
+
+function fillPrint(){
+  const s=getScores();
+  const r=getReadiness(s.avg);
+
+  setText("prPatientName",patientName.value);
+  setText("prPatientNameEn",patientName.value);
+  setText("prTherapist",therapist.value);
+  setText("prTherapistEn",therapist.value);
+  setText("prCondition",condition.value);
+  setText("prSide",side.value);
+  setText("prDate",assessmentDate.value);
+  setText("prSessions",sessions.value);
+
+  setText("prPainB",painBefore.value);
+  setText("prPainN",painNow.value);
+  setText("prPainC",changeLower(num("painBefore"),num("painNow")));
+  setText("prPainS",statusFromScore(s.pain));
+
+  setText("prFlexB",flexBefore.value+"°");
+  setText("prFlexN",flexNow.value+"°");
+  setText("prFlexC",changeHigher(num("flexBefore"),num("flexNow"))+"°");
+  setText("prFlexS",statusFromScore(s.flex));
+
+  setText("prExtB",extBefore.value+"°");
+  setText("prExtN",extNow.value+"°");
+  setText("prExtC",changeLower(num("extBefore"),num("extNow"))+"°");
+  setText("prExtS",statusFromScore(s.ext));
+
+  setText("prStsB",stsBefore.value);
+  setText("prStsN",stsNow.value);
+  setText("prStsC",changeHigher(num("stsBefore"),num("stsNow")));
+  setText("prStsS",statusFromScore(s.sts));
+
+  setText("prBalB",balanceBefore.value+" sec");
+  setText("prBalN",balanceNow.value+" sec");
+  setText("prBalC",changeHigher(num("balanceBefore"),num("balanceNow"))+" sec");
+  setText("prBalS",statusFromScore(s.balance));
+
+  setText("prWalkB",walkBefore.value+" min");
+  setText("prWalkN",walkNow.value+" min");
+  setText("prWalkC",changeHigher(num("walkBefore"),num("walkNow"))+" min");
+  setText("prWalkS",statusFromScore(s.walk));
+
+  setText("prOverallScore",s.avg+"%");
+  setText("prReadinessTitle",r.title);
+  setText("prReadinessText",r.ar+"\n"+r.en);
+  setText("prNotes",clinicalNotes.value || "لا توجد ملاحظات إضافية.");
+}
+
+function generateReport(){
+  if(!patientName.value.trim()){
+    alert("اكتب اسم المريض أولاً");
+    return;
+  }
+  if(!therapist.value){
+    alert("اختر الأخصائي أولاً");
+    return;
+  }
+
+  calculateAll();
+  fillPrint();
+  printArea.style.display="block";
+  window.print();
+}
+
+assessmentDate.valueAsDate=new Date();
+calculateAll();
 </script>
 
 </body>
