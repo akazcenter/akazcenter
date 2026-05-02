@@ -230,26 +230,28 @@ select{
 
 <div class="main">
 
-  <div id="choicePage" class="choice-grid">
-    <div class="choice-card" onclick="openBooking(1)">
-      <div class="choice-icon">🏢</div>
-      <h3>الدور الأرضي</h3>
-      <p>Ground Floor</p>
-    </div>
+<div id="choicePage" class="choice-grid">
 
-    <div class="choice-card" onclick="openBooking(2)">
-      <div class="choice-icon">🏥</div>
-      <h3>الدور الثاني</h3>
-      <p>Second Floor</p>
-    </div>
-
-    <div class="choice-card" onclick="openViewMode()">
-      <div class="choice-icon">📊</div>
-      <h3>عرض الجدول</h3>
-      <p>Weekly View</p>
-    </div>
+  <div class="choice-card" onclick="openBooking(1)">
+    <div class="choice-icon">🏢</div>
+    <h3>حجز غرفة الدور الأرضي</h3>
+    <p>Ground Floor Booking</p>
   </div>
 
+  <div class="choice-card" onclick="openBooking(2)">
+    <div class="choice-icon">🏥</div>
+    <h3>حجز غرفة الدور الثاني</h3>
+    <p>Second Floor Booking</p>
+  </div>
+
+  <div class="choice-card" onclick="openViewMode()">
+    <div class="choice-icon">📊</div>
+    <h3>عرض الجدول</h3>
+    <p>Weekly Schedule View</p>
+  </div>
+
+</div>
+  
   <div id="bookingPage" class="page-section">
     <div class="controls-card">
       <h2 id="floorTitle" class="floor-title">غرفة الدور الأرضي</h2>
