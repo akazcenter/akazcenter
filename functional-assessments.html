@@ -1,1 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقييمات الوظيفية</title>
 
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  direction:rtl;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(0,119,200,.12), transparent 28%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
+  color:var(--text);
+  min-height:100vh;
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:20px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  box-shadow:0 14px 35px rgba(8,52,95,.20);
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  background:white;
+  border-radius:18px;
+  padding:7px;
+  box-shadow:0 10px 22px rgba(0,0,0,.20);
+}
+
+.brand h1{
+  margin:0;
+  font-size:26px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  direction:ltr;
+  font-size:13px;
+  color:#dbeafe;
+}
+
+.home-btn{
+  background:white;
+  color:var(--blue);
+  border:none;
+  padding:11px 18px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.main{
+  width:92%;
+  max-width:1150px;
+  margin:34px auto;
+}
+
+.intro{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:26px;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 16px 40px rgba(15,23,42,.08);
+  margin-bottom:26px;
+}
+
+.intro h2{
+  margin:0;
+  color:var(--blue);
+  font-size:30px;
+  font-weight:900;
+}
+
+.intro p{
+  margin:12px auto 0;
+  color:#64748b;
+  line-height:1.9;
+  max-width:720px;
+  font-size:15px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:22px;
+}
+
+.card{
+  position:relative;
+  min-height:190px;
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:26px;
+  padding:28px 18px;
+  text-align:center;
+  cursor:pointer;
+  overflow:hidden;
+  box-shadow:0 16px 38px rgba(15,23,42,.09);
+  transition:.25s ease;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg,var(--orange),#ffd28a);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 28px 58px rgba(15,23,42,.16);
+  background:#f8fbff;
+}
+
+.icon{
+  width:70px;
+  height:70px;
+  margin:0 auto 16px;
+  border-radius:24px;
+  background:linear-gradient(145deg,#eef6ff,#ffffff);
+  box-shadow:inset 0 0 0 1px #e2e8f0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+}
+
+.card h3{
+  margin:0;
+  color:var(--blue);
+  font-size:22px;
+  font-weight:900;
+}
+
+.card h4{
+  margin:8px 0 10px;
+  direction:ltr;
+  color:var(--orange);
+  font-size:13px;
+  font-weight:900;
+}
+
+.card p{
+  margin:0;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.soon{
+  opacity:.62;
+  cursor:not-allowed;
+}
+
+.soon::after{
+  content:"قريبًا";
+  position:absolute;
+  top:14px;
+  left:14px;
+  background:#eef6ff;
+  color:var(--blue);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.note{
+  margin-top:24px;
+  text-align:center;
+  color:#64748b;
+  font-size:13px;
+}
+
+@media(max-width:700px){
+  .topbar{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .brand{
+    flex-direction:column;
+  }
+
+  .home-btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>التقييمات الوظيفية</h1>
+      <p>Functional Assessments</p>
+    </div>
+  </div>
+
+  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+</div>
+
+<div class="main">
+
+  <div class="intro">
+    <h2>نماذج التقييم الوظيفي</h2>
+    <p>
+      نماذج تساعد الأخصائي على تقييم أداء المريض وظيفيًا، وحساب مؤشرات التقدم، وإصدار تقرير إرشادي احترافي للمريض عند الحاجة.
+    </p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card" onclick="location.href='acl-return.html'">
+      <div class="icon">🦵</div>
+      <h3>تقييم العودة بعد الرباط الصليبي</h3>
+      <h4>ACL Return-to-Sport</h4>
+      <p>اختبارات وظيفية وحساب LSI مع تقرير إرشادي للمريض.</p>
+    </div>
+
+    <div class="card soon">
+      <div class="icon">🦿</div>
+      <h3>تقييم تقدم تأهيل الركبة</h3>
+      <h4>Knee Rehab Progress</h4>
+      <p>نموذج عام لمتابعة إصابات الركبة غير الرباط الصليبي.</p>
+    </div>
+
+    <div class="card soon">
+      <div class="icon">🏋️</div>
+      <h3>تقييم الكتف والعودة للنشاط</h3>
+      <h4>Shoulder Return-to-Activity</h4>
+      <p>تقييم القوة والحركة والتحكم الوظيفي للكتف.</p>
+    </div>
+
+    <div class="card soon">
+      <div class="icon">🧍</div>
+      <h3>تقييم أسفل الظهر</h3>
+      <h4>Low Back Functional Progress</h4>
+      <p>متابعة الألم والحركة والوظيفة وخطة التدرج.</p>
+    </div>
+
+    <div class="card soon">
+      <div class="icon">📋</div>
+      <h3>تقييم تأهيلي عام</h3>
+      <h4>General Rehab Progress</h4>
+      <p>نموذج مرن لأي حالة تحتاج متابعة وظيفية مختصرة.</p>
+    </div>
+
+  </div>
+
+  <div class="note">
+    يتم تطوير النماذج تدريجيًا حسب احتياج المركز والأخصائيين.
+  </div>
+
+</div>
+
+</body>
+</html>
