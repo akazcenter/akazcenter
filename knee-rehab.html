@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Knee Rehab Progress</title>
+<link rel="icon" href="logo.png">
+
+<style>
+body{font-family:tahoma;background:#f5f7fa;margin:0}
+.container{max-width:1100px;margin:auto;padding:20px}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.05)
+}
+
+.title{color:#005b9f;font-weight:bold;margin-bottom:10px}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+input,select{
+width:100%;
+padding:10px;
+border-radius:10px;
+border:1px solid #ccc
+}
+
+.result{
+text-align:center;
+font-size:30px;
+font-weight:bold;
+color:#005b9f
+}
+
+button{
+width:100%;
+padding:14px;
+background:#005b9f;
+color:#fff;
+border:none;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer
+}
+
+.print{display:none}
+
+@media print{
+body *{visibility:hidden}
+.print, .print *{visibility:visible}
+.print{display:block;position:absolute;top:0;width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+<div class="title">بيانات المريض</div>
+<div class="grid">
+<input id="name" placeholder="اسم المريض">
+<input id="date" type="date">
+</div>
+</div>
+
+<div class="card">
+<div class="title">قبل العلاج (Before)</div>
+<div class="grid">
+
+<input id="pain_b" placeholder="Pain (0-10)">
+<input id="rom_b" placeholder="ROM (مثال 90)">
+
+<input id="balance_b" placeholder="Balance (sec)">
+<input id="sit_b" placeholder="Sit to Stand">
+
+</div>
+</div>
+
+<div class="card">
+<div class="title">بعد العلاج (After)</div>
+<div class="grid">
+
+<input id="pain_a" placeholder="Pain (0-10)">
+<input id="rom_a" placeholder="ROM">
+
+<input id="balance_a" placeholder="Balance (sec)">
+<input id="sit_a" placeholder="Sit to Stand">
+
+</div>
+</div>
+
+<div class="card">
+<div class="title">النتيجة</div>
+<div class="result" id="score">0%</div>
+</div>
+
+<div class="card">
+<button onclick="calc()">حساب</button>
+</div>
+
+<div class="card">
+<button onclick="printReport()">طباعة التقرير</button>
+</div>
+
+</div>
+
+<div class="print" id="printArea">
+
+<h2 style="text-align:center">Knee Rehab Progress Report</h2>
+
+<p><b>Patient:</b> <span id="p_name"></span></p>
+
+<hr>
+
+<p><b>Before vs After:</b></p>
+
+<p>Pain: <span id="p_pain"></span></p>
+<p>ROM: <span id="p_rom"></span></p>
+<p>Balance: <span id="p_balance"></span></p>
+
+<hr>
+
+<p><b>Improvement:</b> <span id="p_score"></span></p>
+
+</div>
+
+<script>
+
+function calc(){
+
+let p = 10 - (pain_a.value / pain_b.value * 10)
+let rom = rom_a.value / rom_b.value
+let bal = balance_a.value / balance_b.value
+
+let avg = ((p + rom + bal) / 3) * 100
+
+score.innerText = Math.round(avg) + "%"
+
+}
+
+function printReport(){
+
+p_name.innerText = name.value
+
+p_pain.innerText = pain_b.value + " → " + pain_a.value
+p_rom.innerText = rom_b.value + " → " + rom_a.value
+p_balance.innerText = balance_b.value + " → " + balance_a.value
+
+p_score.innerText = score.innerText
+
+window.print()
+
+}
+
+</script>
+
+</body>
+</html>
