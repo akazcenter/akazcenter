@@ -1,3 +1,15 @@
+تمام. هذا كود `work-schedule.html` كامل بعد التعديلات:
+
+* الأقسام مستقلة.
+* الشفت الواحد مستقل عن الشفتين.
+* النسخ آمن.
+* الحذف آمن.
+* اعتماد جدول بتاريخ بداية ونهاية للقسم كامل.
+* التعديل مسموح، لكن إذا الجدول معتمد يطلع تنبيه.
+
+انسخه كامل:
+
+```html
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -16,8 +28,75 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 
 .controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
 .controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
+.controls button.active{background:#f59e0b}
 
 .section-title{text-align:center;color:#005b9f;margin:15px 0}
+
+.approval-card{
+  width:96%;
+  margin:15px auto 20px;
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  box-shadow:0 6px 20px #0001;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.approval-fields{
+  display:flex;
+  align-items:end;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.approval-fields label{
+  font-weight:bold;
+  color:#005b9f;
+  display:block;
+  margin-bottom:5px;
+}
+
+.approval-fields input{
+  height:40px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  padding:0 10px;
+  font-family:Tahoma,Arial;
+}
+
+.approve-btn{
+  background:#dcfce7;
+  color:#166534;
+  border:1px solid #86efac;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.cancel-approve-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+  border:1px solid #fecaca;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.approval-status{
+  font-weight:bold;
+  padding:10px 15px;
+  border-radius:999px;
+  background:#eef6ff;
+  color:#005b9f;
+}
+
 .schedule-box{width:96%;margin:24px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001;overflow:hidden;border:1px solid #e2e8f0}
 .box-title{background:#f59e0b;color:white;padding:14px 18px;font-size:21px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;gap:12px}
 .table-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
@@ -38,7 +117,7 @@ select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-siz
 
 .note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
 @media(max-width:800px){
-.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.home-btn{width:100%}table{min-width:1050px}.box-title{flex-direction:column}
+.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.home-btn{width:100%}table{min-width:1050px}.box-title{flex-direction:column}.approval-card{justify-content:center;text-align:center}
 }
 </style>
 </head>
@@ -57,12 +136,33 @@ select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-siz
 </div>
 
 <div class="controls">
-  <button onclick="switchSection('men')">قسم الرجال</button>
-  <button onclick="switchSection('women')">قسم النساء</button>
-  <button onclick="switchSection('reception')">الاستقبال</button>
+  <button id="menBtn" onclick="switchSection('men')">قسم الرجال</button>
+  <button id="womenBtn" onclick="switchSection('women')">قسم النساء</button>
+  <button id="receptionBtn" onclick="switchSection('reception')">الاستقبال</button>
 </div>
 
 <h2 id="sectionTitle" class="section-title">قسم الرجال</h2>
+
+<div class="approval-card">
+  <div class="approval-fields">
+    <div>
+      <label>بداية اعتماد الجدول</label>
+      <input type="date" id="approvalStart">
+    </div>
+
+    <div>
+      <label>نهاية اعتماد الجدول</label>
+      <input type="date" id="approvalEnd">
+    </div>
+
+    <button class="approve-btn" onclick="approveSchedule()">اعتماد الجدول</button>
+    <button class="cancel-approve-btn" onclick="cancelApproval()">إلغاء الاعتماد</button>
+  </div>
+
+  <div id="approvalStatus" class="approval-status">
+    الجدول غير معتمد
+  </div>
+</div>
 
 <div id="tablesArea"></div>
 
@@ -83,10 +183,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
 const workRef = collection(db,"workSchedule");
+const settingsRef = collection(db,"workScheduleSettings");
 
 let currentSection="men";
 let savedData={};
+let settingsData={};
 
 const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
@@ -94,6 +197,11 @@ const sectionTitles={
   men:"قسم الرجال",
   women:"قسم النساء",
   reception:"الاستقبال"
+};
+
+const shiftNames={
+  single:"شفت واحد",
+  split:"شفتين"
 };
 
 const shiftTimes={
@@ -116,7 +224,7 @@ const slotsCount={
   women:{single:3,split:3},
   reception:{single:1,split:2}
 };
-  
+
 const employees={
   men:{
     "—":"#ffffff",
@@ -142,8 +250,56 @@ const employees={
   }
 };
 
+function todayISO(){
+  const d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().split("T")[0];
+}
+
 function makeId(section,shift,day,slot){
   return `${section}_${shift}_${day}_${slot}`.replaceAll(" ","_");
+}
+
+function isSectionApproved(section=currentSection){
+  const s = settingsData[section];
+  if(!s || !s.approved || !s.startDate || !s.endDate) return false;
+
+  const today = todayISO();
+  return today >= s.startDate && today <= s.endDate;
+}
+
+function getApprovalText(section=currentSection){
+  const s = settingsData[section];
+
+  if(!s || !s.approved || !s.startDate || !s.endDate){
+    return "الجدول غير معتمد";
+  }
+
+  const today = todayISO();
+
+  if(today < s.startDate){
+    return `جدول ${sectionTitles[section]} معتمد ويبدأ من ${s.startDate} إلى ${s.endDate}`;
+  }
+
+  if(today > s.endDate){
+    return `انتهى اعتماد جدول ${sectionTitles[section]} بتاريخ ${s.endDate}`;
+  }
+
+  return `جدول ${sectionTitles[section]} معتمد من ${s.startDate} إلى ${s.endDate}`;
+}
+
+function updateApprovalUI(){
+  const s = settingsData[currentSection];
+
+  document.getElementById("approvalStart").value = s?.startDate || "";
+  document.getElementById("approvalEnd").value = s?.endDate || "";
+  document.getElementById("approvalStatus").innerText = getApprovalText(currentSection);
+}
+
+function warnIfApproved(actionText){
+  if(!isSectionApproved(currentSection)) return true;
+
+  return confirm(`جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد ${actionText}؟`);
 }
 
 function renderTables(){
@@ -178,8 +334,8 @@ function buildTable(title,shift,label,time){
 
   days.forEach(day=>{
     html+=`<td>`;
-for(let i=0;i<slotsCount[currentSection][shift];i++){
-  const id=makeId(currentSection,shift,day,i);
+    for(let i=0;i<slotsCount[currentSection][shift];i++){
+      const id=makeId(currentSection,shift,day,i);
       const value=savedData[id]?.employee || "—";
       html+=createSelect(id,value);
     }
@@ -235,7 +391,17 @@ function isDuplicateInSameDay(select){
 
 window.save=async function(el){
   const id=el.dataset.id;
+  const oldValue = savedData[id]?.employee || "—";
   const val=el.value;
+
+  if(isSectionApproved(currentSection) && val !== oldValue){
+    const ok = confirm(`جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد تعديل هذه الخانة؟`);
+    if(!ok){
+      el.value = oldValue;
+      colorCell(el);
+      return;
+    }
+  }
 
   if(isDuplicateInSameDay(el)){
     alert("هذا الاسم موجود مسبقًا في نفس اليوم");
@@ -255,19 +421,22 @@ window.save=async function(el){
   await setDoc(doc(db,"workSchedule",id),{
     id,
     section:currentSection,
+    shift:id.includes("_single_") ? "single" : "split",
     employee:val,
     updatedAt:new Date()
   });
 };
 
 window.copySaturday = async function(shift){
-  if(!confirm("هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع؟")) return;
+  if(!warnIfApproved(`نسخ السبت لباقي الأسبوع في ${shiftNames[shift]}`)) return;
+
+  if(!confirm(`هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع في ${sectionTitles[currentSection]} - ${shiftNames[shift]}؟`)) return;
 
   const saturday = "السبت";
   const otherDays = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
   const writes = [];
 
-  for(let i = 0; i < slotsCount[currentSection]; i++){
+  for(let i = 0; i < slotsCount[currentSection][shift]; i++){
     const saturdayId = makeId(currentSection, shift, saturday, i);
     const employee = savedData[saturdayId]?.employee || "—";
 
@@ -280,7 +449,8 @@ window.copySaturday = async function(shift){
         writes.push(setDoc(doc(db, "workSchedule", targetId), {
           id: targetId,
           section: currentSection,
-          employee: employee,
+          shift,
+          employee,
           updatedAt: new Date()
         }));
       }
@@ -292,23 +462,77 @@ window.copySaturday = async function(shift){
 };
 
 window.clearSchedule=async function(shift){
-  if(!confirm("متأكد تبغى تحذف هذا الجدول بالكامل؟")) return;
+  if(!warnIfApproved(`حذف جدول ${shiftNames[shift]}`)) return;
+
+  if(!confirm(`متأكد تبغى تحذف جدول ${sectionTitles[currentSection]} - ${shiftNames[shift]} فقط؟`)) return;
 
   const snap=await getDocs(workRef);
   const deletes=[];
 
   snap.forEach(item=>{
-    if(item.id.includes(`${currentSection}_${shift}_`)){
-      deletes.push(deleteDoc(doc(db,"workSchedule",item.id)));
+    const id = item.id;
+
+    if(id.startsWith(`${currentSection}_${shift}_`)){
+      deletes.push(deleteDoc(doc(db,"workSchedule",id)));
     }
   });
 
   await Promise.all(deletes);
+
+  alert("تم حذف الجدول المحدد فقط");
+};
+
+window.approveSchedule = async function(){
+  const startDate = document.getElementById("approvalStart").value;
+  const endDate = document.getElementById("approvalEnd").value;
+
+  if(!startDate || !endDate){
+    alert("حدد تاريخ البداية والنهاية");
+    return;
+  }
+
+  if(endDate < startDate){
+    alert("تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية");
+    return;
+  }
+
+  if(!confirm(`اعتماد جدول ${sectionTitles[currentSection]} من ${startDate} إلى ${endDate}؟`)) return;
+
+  await setDoc(doc(db,"workScheduleSettings",currentSection),{
+    section:currentSection,
+    approved:true,
+    startDate,
+    endDate,
+    updatedAt:new Date()
+  });
+
+  alert("تم اعتماد الجدول");
+};
+
+window.cancelApproval = async function(){
+  if(!confirm(`إلغاء اعتماد جدول ${sectionTitles[currentSection]}؟`)) return;
+
+  await setDoc(doc(db,"workScheduleSettings",currentSection),{
+    section:currentSection,
+    approved:false,
+    startDate:"",
+    endDate:"",
+    updatedAt:new Date()
+  });
+
+  alert("تم إلغاء الاعتماد");
 };
 
 window.switchSection=function(sec){
   currentSection=sec;
+
   document.getElementById("sectionTitle").innerText=sectionTitles[sec];
+
+  document.getElementById("menBtn").classList.toggle("active", sec==="men");
+  document.getElementById("womenBtn").classList.toggle("active", sec==="women");
+  document.getElementById("receptionBtn").classList.toggle("active", sec==="reception");
+
+  updateApprovalUI();
   renderTables();
 };
 
@@ -319,7 +543,19 @@ onSnapshot(workRef,(snap)=>{
   });
   renderTables();
 });
+
+onSnapshot(settingsRef,(snap)=>{
+  settingsData={};
+  snap.forEach(d=>{
+    settingsData[d.id]=d.data();
+  });
+
+  updateApprovalUI();
+});
+
+switchSection("men");
 </script>
 
 </body>
 </html>
+```
