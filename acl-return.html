@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ACL Return-to-Sport Assessment</title>
+<title>ACL Functional Assessment</title>
+
+<link rel="icon" href="logo.png">
 
 <style>
 :root{
@@ -23,7 +25,6 @@
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  direction:rtl;
   background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
 }
@@ -33,12 +34,12 @@ body{
   color:white;
   padding:18px 32px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:18px;
-  box-shadow:0 14px 35px rgba(8,52,95,.20);
   border-bottom-left-radius:28px;
   border-bottom-right-radius:28px;
+  box-shadow:0 14px 35px rgba(8,52,95,.20);
 }
 
 .brand{
@@ -54,7 +55,6 @@ body{
   background:white;
   border-radius:18px;
   padding:7px;
-  box-shadow:0 10px 22px rgba(0,0,0,.20);
 }
 
 .brand h1{
@@ -86,28 +86,6 @@ body{
   margin:26px auto;
 }
 
-.intro{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:22px;
-  box-shadow:0 14px 34px rgba(15,23,42,.08);
-  margin-bottom:20px;
-}
-
-.intro h2{
-  margin:0;
-  color:var(--blue);
-  font-size:28px;
-  font-weight:900;
-}
-
-.intro p{
-  margin:10px 0 0;
-  color:var(--muted);
-  line-height:1.9;
-}
-
 .card{
   background:white;
   border:1px solid var(--line);
@@ -122,9 +100,11 @@ body{
   color:var(--blue);
   font-size:22px;
   font-weight:900;
-  display:flex;
-  align-items:center;
-  gap:8px;
+}
+
+.intro{
+  line-height:1.9;
+  color:#334155;
 }
 
 .grid{
@@ -155,7 +135,6 @@ input,select,textarea{
   font-family:Tahoma,Arial,sans-serif;
   font-size:14px;
   outline:none;
-  background:white;
 }
 
 textarea{
@@ -190,8 +169,8 @@ input:focus,select:focus,textarea:focus{
 }
 
 .help-btn{
-  width:26px;
-  height:26px;
+  width:28px;
+  height:28px;
   border-radius:50%;
   border:none;
   background:#eef6ff;
@@ -213,7 +192,7 @@ input:focus,select:focus,textarea:focus{
   margin-bottom:10px;
 }
 
-.lsi-result{
+.result-line{
   margin-top:10px;
   text-align:center;
   font-weight:900;
@@ -221,6 +200,7 @@ input:focus,select:focus,textarea:focus{
   padding:9px;
   background:#eef6ff;
   color:var(--blue);
+  direction:ltr;
 }
 
 .status-row{
@@ -316,7 +296,6 @@ input:focus,select:focus,textarea:focus{
 .primary-btn{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
-  box-shadow:0 12px 25px rgba(0,91,159,.18);
 }
 
 .secondary-btn{
@@ -362,7 +341,6 @@ input:focus,select:focus,textarea:focus{
   color:#0f172a;
   font-family:Tahoma,Arial,sans-serif;
   direction:rtl;
-  padding:0;
 }
 
 .print-header{
@@ -388,14 +366,14 @@ input:focus,select:focus,textarea:focus{
 .print-title h1{
   margin:0;
   color:#005b9f;
-  font-size:22px;
+  font-size:21px;
   font-weight:900;
 }
 
 .print-title h2{
   margin:6px 0 0;
   color:#f59e0b;
-  font-size:16px;
+  font-size:15px;
   direction:ltr;
 }
 
@@ -472,33 +450,7 @@ input:focus,select:focus,textarea:focus{
 .print-note{
   font-size:12px;
   line-height:1.8;
-}
-
-.print-plan{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
-
-.plan-box{
-  border:1px solid #dbe4ee;
-  border-radius:10px;
-  padding:10px;
-  font-size:11.5px;
-  line-height:1.7;
-}
-
-.signature{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin-top:18px;
-}
-
-.signature-box{
-  border-top:1px solid #94a3b8;
-  padding-top:8px;
-  font-size:12px;
+  white-space:pre-wrap;
 }
 
 .disclaimer{
@@ -538,7 +490,7 @@ input:focus,select:focus,textarea:focus{
     <img src="logo.png" class="logo" alt="Akaz Logo">
     <div>
       <h1>تقييم العودة للرياضة بعد الرباط الصليبي</h1>
-      <p>ACL Return-to-Sport Assessment</p>
+      <p>Practical ACL Functional Assessment</p>
     </div>
   </div>
 
@@ -547,52 +499,10 @@ input:focus,select:focus,textarea:focus{
 
 <div class="main no-print">
 
-  <div class="intro">
-    <div class="card">
-  <h2 class="card-title">📊 المعايير المرجعية | Reference Criteria</h2>
-
-  <div style="line-height:1.9;color:#334155;font-size:14px">
-
-    <p><b>Return-to-Sport Criteria:</b></p>
-
-    <ul style="padding-right:18px">
-      <li>
-        <b>LSI ≥ 90%</b> in hop tests  
-        <br>نسبة التماثل بين الطرفين لا تقل عن 90٪ في اختبارات القفز
-      </li>
-
-      <li>
-        Adequate <b>quadriceps strength</b> compared to the uninjured side  
-        <br>قوة العضلة الرباعية قريبة من الطرف السليم
-      </li>
-
-      <li>
-        Good <b>movement quality</b> (no valgus or instability)  
-        <br>جودة حركة جيدة بدون انحراف أو عدم ثبات
-      </li>
-
-      <li>
-        No <b>pain, swelling, or instability</b> during or after testing  
-        <br>عدم وجود ألم أو تورم أو عدم ثبات أثناء أو بعد الاختبارات
-      </li>
-    </ul>
-
-    <hr style="margin:15px 0">
-
-    <p><b>LSI Interpretation:</b></p>
-
-    <ul style="padding-right:18px">
-      <li>≥ 90% → Excellent</li>
-      <li>80–89% → Good</li>
-      <li>70–79% → Fair</li>
-      <li>&lt; 70% → Needs Improvement</li>
-    </ul>
-
-  </div>
-</div>
-    <h2>ACL Return-to-Sport Assessment</h2>
+  <div class="card intro">
+    <h2 class="card-title">ACL Functional Assessment</h2>
     <p>
-      نموذج وظيفي للأخصائي يساعد في مقارنة أداء الطرف المصاب بالطرف غير المصاب باستخدام LSI، مع مراعاة الألم والتورم وجودة الحركة قبل إصدار تقرير إرشادي للمريض.
+      نموذج عملي مناسب للتطبيق داخل المركز بدون أجهزة معقدة. يعتمد على اختبارات قوة وتحكم وقفز وتوازن يمكن تنفيذها باستخدام مساحة آمنة، شريط قياس، لاصق أرضي، وساعة توقيت عند الحاجة.
     </p>
   </div>
 
@@ -624,7 +534,7 @@ input:focus,select:focus,textarea:focus{
 
       <div class="field">
         <label>نوع الإصابة | Injury</label>
-        <input id="injury" value="ACL Reconstruction / تأهيل الرباط الصليبي">
+        <input id="injury" value="ACL Rehabilitation / تأهيل الرباط الصليبي">
       </div>
 
       <div class="field">
@@ -645,112 +555,177 @@ input:focus,select:focus,textarea:focus{
   </div>
 
   <div class="card">
-    <h2 class="card-title">اختبارات القفز | Hop Tests</h2>
+    <h2 class="card-title">اختبارات القوة والتحكم | Strength & Control Tests</h2>
 
     <div class="grid-3">
+
       <div class="test-box">
         <div class="test-head">
-          <strong>Single Hop Test</strong>
+          <strong>Single Leg Squat</strong>
           <button class="help-btn" onclick="toggleHelp(this)">?</button>
         </div>
         <div class="help-text">
-          Purpose: Assess single-leg power and limb symmetry. Measure the best distance for injured and uninjured limbs, then calculate LSI.
+Purpose: Assess single-leg strength, knee control, and movement quality.
+How: Count controlled repetitions on each leg.
+Tools: No equipment required.
         </div>
         <div class="grid">
           <div class="field">
-            <label>Injured</label>
+            <label>Injured Reps</label>
+            <input type="number" id="squatInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured Reps</label>
+            <input type="number" id="squatUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="result-line" id="squatResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Single Leg Bridge</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Purpose: Assess posterior chain endurance, mainly glutes and hamstrings.
+How: Count controlled single-leg bridge repetitions.
+Tools: Treatment bed or mat.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured Reps</label>
+            <input type="number" id="bridgeInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured Reps</label>
+            <input type="number" id="bridgeUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="result-line" id="bridgeResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Single Leg Calf Raise</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Purpose: Assess calf strength and endurance.
+How: Count controlled calf raises on each leg using wall support if needed.
+Tools: Wall or stable support.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured Reps</label>
+            <input type="number" id="calfInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured Reps</label>
+            <input type="number" id="calfUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="result-line" id="calfResult">LSI: —</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">اختبارات القفز والتوازن | Hop & Balance Tests</h2>
+
+    <div class="grid-3">
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Single Hop</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Purpose: Assess single-leg forward power and landing control.
+How: Measure the best forward hop distance for each leg.
+Tools: Tape measure and floor mark.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured Distance</label>
             <input type="number" id="singleInjured" oninput="calculateAll()">
           </div>
           <div class="field">
-            <label>Uninjured</label>
+            <label>Uninjured Distance</label>
             <input type="number" id="singleUninjured" oninput="calculateAll()">
           </div>
         </div>
-        <div class="lsi-result" id="singleResult">LSI: —</div>
+        <div class="result-line" id="singleResult">LSI: —</div>
       </div>
 
       <div class="test-box">
         <div class="test-head">
-          <strong>Triple Hop Test</strong>
+          <strong>Triple Hop</strong>
           <button class="help-btn" onclick="toggleHelp(this)">?</button>
         </div>
         <div class="help-text">
-          Purpose: Evaluate repeated power, dynamic control, and landing consistency over three consecutive hops.
+Purpose: Assess repeated power and dynamic control.
+How: Measure total distance of three consecutive hops on each leg.
+Tools: Tape measure and clear floor space.
         </div>
         <div class="grid">
           <div class="field">
-            <label>Injured</label>
+            <label>Injured Distance</label>
             <input type="number" id="tripleInjured" oninput="calculateAll()">
           </div>
           <div class="field">
-            <label>Uninjured</label>
+            <label>Uninjured Distance</label>
             <input type="number" id="tripleUninjured" oninput="calculateAll()">
           </div>
         </div>
-        <div class="lsi-result" id="tripleResult">LSI: —</div>
+        <div class="result-line" id="tripleResult">LSI: —</div>
       </div>
 
       <div class="test-box">
         <div class="test-head">
-          <strong>Crossover Hop Test</strong>
+          <strong>Crossover Hop</strong>
           <button class="help-btn" onclick="toggleHelp(this)">?</button>
         </div>
         <div class="help-text">
-          Purpose: Assess dynamic knee stability and control during directional change across a straight line.
+Purpose: Assess dynamic knee control during direction change.
+How: Hop forward while crossing over a straight taped line.
+Tools: Tape line and tape measure.
         </div>
         <div class="grid">
           <div class="field">
-            <label>Injured</label>
+            <label>Injured Distance</label>
             <input type="number" id="crossInjured" oninput="calculateAll()">
           </div>
           <div class="field">
-            <label>Uninjured</label>
+            <label>Uninjured Distance</label>
             <input type="number" id="crossUninjured" oninput="calculateAll()">
           </div>
         </div>
-        <div class="lsi-result" id="crossResult">LSI: —</div>
+        <div class="result-line" id="crossResult">LSI: —</div>
       </div>
 
       <div class="test-box">
         <div class="test-head">
-          <strong>6m Timed Hop</strong>
+          <strong>Y-Balance</strong>
           <button class="help-btn" onclick="toggleHelp(this)">?</button>
         </div>
         <div class="help-text">
-          Purpose: Measure functional speed and coordination. For timed tests, lower time is better, so LSI is calculated as uninjured time ÷ injured time × 100.
+Purpose: Assess dynamic balance and reach control.
+How: Use floor tape in Y directions. Record total/composite reach score for each leg.
+Tools: Floor tape and tape measure.
         </div>
         <div class="grid">
           <div class="field">
-            <label>Injured Time</label>
-            <input type="number" id="timedInjured" oninput="calculateAll()">
-          </div>
-          <div class="field">
-            <label>Uninjured Time</label>
-            <input type="number" id="timedUninjured" oninput="calculateAll()">
-          </div>
-        </div>
-        <div class="lsi-result" id="timedResult">LSI: —</div>
-      </div>
-
-      <div class="test-box">
-        <div class="test-head">
-          <strong>Y-Balance / Control</strong>
-          <button class="help-btn" onclick="toggleHelp(this)">?</button>
-        </div>
-        <div class="help-text">
-          Purpose: Assess dynamic balance and side-to-side control. Enter composite or best measured score for each limb.
-        </div>
-        <div class="grid">
-          <div class="field">
-            <label>Injured</label>
+            <label>Injured Score</label>
             <input type="number" id="balanceInjured" oninput="calculateAll()">
           </div>
           <div class="field">
-            <label>Uninjured</label>
+            <label>Uninjured Score</label>
             <input type="number" id="balanceUninjured" oninput="calculateAll()">
           </div>
         </div>
-        <div class="lsi-result" id="balanceResult">LSI: —</div>
+        <div class="result-line" id="balanceResult">LSI: —</div>
       </div>
 
       <div class="test-box">
@@ -759,7 +734,8 @@ input:focus,select:focus,textarea:focus{
           <button class="help-btn" onclick="toggleHelp(this)">?</button>
         </div>
         <div class="help-text">
-          Purpose: Clinical observation of knee valgus, trunk control, landing stability, and confidence during movement.
+Purpose: Clinical observation during all tests.
+Look for: knee valgus, poor landing, trunk compensation, fear, instability, or loss of balance.
         </div>
         <div class="field">
           <label>Quality Rating</label>
@@ -769,8 +745,9 @@ input:focus,select:focus,textarea:focus{
             <option value="poor">Poor</option>
           </select>
         </div>
-        <div class="lsi-result">Clinical Observation</div>
+        <div class="result-line">Clinical Observation</div>
       </div>
+
     </div>
   </div>
 
@@ -779,7 +756,7 @@ input:focus,select:focus,textarea:focus{
 
     <div class="status-row">
       <div class="status-box">
-        <label>Pain أثناء/بعد الاختبار</label>
+        <label>Pain</label>
         <select id="pain" onchange="calculateAll()">
           <option value="no">No Pain</option>
           <option value="mild">Mild Pain</option>
@@ -788,7 +765,7 @@ input:focus,select:focus,textarea:focus{
       </div>
 
       <div class="status-box">
-        <label>Swelling بعد الجهد</label>
+        <label>Swelling</label>
         <select id="swelling" onchange="calculateAll()">
           <option value="no">No Swelling</option>
           <option value="yes">Swelling Present</option>
@@ -814,7 +791,7 @@ input:focus,select:focus,textarea:focus{
 
     <div class="field" style="margin-top:14px">
       <label>Clinical Notes | ملاحظات الأخصائي</label>
-      <textarea id="clinicalNotes" placeholder="اكتب ملاحظاتك السريرية المختصرة هنا..."></textarea>
+      <textarea id="clinicalNotes" placeholder="مثال: تحكم جيد، يحتاج تحسين في الهبوط، لا يوجد ألم بعد الاختبار..."></textarea>
     </div>
   </div>
 
@@ -847,7 +824,7 @@ input:focus,select:focus,textarea:focus{
 </div>
 
 <div id="printArea">
-  <div class="print-page" id="printPage">
+  <div class="print-page">
 
     <div class="print-header">
       <img src="logo.png" class="print-logo" alt="Akaz Logo">
@@ -887,41 +864,13 @@ input:focus,select:focus,textarea:focus{
           <th>LSI%</th>
           <th>Rating</th>
         </tr>
-        <tr>
-          <td>Single Hop</td>
-          <td id="prSingleI"></td>
-          <td id="prSingleU"></td>
-          <td id="prSingleLsi"></td>
-          <td id="prSingleRate"></td>
-        </tr>
-        <tr>
-          <td>Triple Hop</td>
-          <td id="prTripleI"></td>
-          <td id="prTripleU"></td>
-          <td id="prTripleLsi"></td>
-          <td id="prTripleRate"></td>
-        </tr>
-        <tr>
-          <td>Crossover Hop</td>
-          <td id="prCrossI"></td>
-          <td id="prCrossU"></td>
-          <td id="prCrossLsi"></td>
-          <td id="prCrossRate"></td>
-        </tr>
-        <tr>
-          <td>6m Timed Hop</td>
-          <td id="prTimedI"></td>
-          <td id="prTimedU"></td>
-          <td id="prTimedLsi"></td>
-          <td id="prTimedRate"></td>
-        </tr>
-        <tr>
-          <td>Y-Balance / Control</td>
-          <td id="prBalanceI"></td>
-          <td id="prBalanceU"></td>
-          <td id="prBalanceLsi"></td>
-          <td id="prBalanceRate"></td>
-        </tr>
+        <tr><td>Single Leg Squat</td><td id="prSquatI"></td><td id="prSquatU"></td><td id="prSquatLsi"></td><td id="prSquatRate"></td></tr>
+        <tr><td>Single Leg Bridge</td><td id="prBridgeI"></td><td id="prBridgeU"></td><td id="prBridgeLsi"></td><td id="prBridgeRate"></td></tr>
+        <tr><td>Single Leg Calf Raise</td><td id="prCalfI"></td><td id="prCalfU"></td><td id="prCalfLsi"></td><td id="prCalfRate"></td></tr>
+        <tr><td>Single Hop</td><td id="prSingleI"></td><td id="prSingleU"></td><td id="prSingleLsi"></td><td id="prSingleRate"></td></tr>
+        <tr><td>Triple Hop</td><td id="prTripleI"></td><td id="prTripleU"></td><td id="prTripleLsi"></td><td id="prTripleRate"></td></tr>
+        <tr><td>Crossover Hop</td><td id="prCrossI"></td><td id="prCrossU"></td><td id="prCrossLsi"></td><td id="prCrossRate"></td></tr>
+        <tr><td>Y-Balance</td><td id="prBalanceI"></td><td id="prBalanceU"></td><td id="prBalanceLsi"></td><td id="prBalanceRate"></td></tr>
       </table>
     </div>
 
@@ -940,40 +889,8 @@ input:focus,select:focus,textarea:focus{
     </div>
 
     <div class="print-section">
-      <h3>خطة العودة التدريجية | Gradual Return Plan</h3>
-      <div class="print-plan">
-        <div class="plan-box">
-          <b>Week 1–2</b><br>
-          جري خفيف، تمارين توازن، تمارين قوة أساسية بدون احتكاك.<br>
-          Light running, balance and basic strength work.
-        </div>
-        <div class="plan-box">
-          <b>Week 3–4</b><br>
-          تغيير اتجاه تدريجي، تمارين سرعة، رفع مستوى الحمل حسب الأعراض.<br>
-          Progressive agility, speed drills and load progression.
-        </div>
-        <div class="plan-box">
-          <b>Week 5+</b><br>
-          عودة تدريجية للتمارين الجماعية حسب استجابة الركبة وتوصية الأخصائي.<br>
-          Gradual sport-specific participation as tolerated.
-        </div>
-      </div>
-    </div>
-
-    <div class="print-section">
       <h3>ملاحظات الأخصائي | Clinical Notes</h3>
       <div class="print-note" id="prNotes"></div>
-    </div>
-
-    <div class="signature">
-      <div class="signature-box">
-        اسم الأخصائي / Therapist Name:<br>
-        <span id="prSignatureName"></span>
-      </div>
-
-      <div class="signature-box">
-        التوقيع والختم / Signature & Stamp:
-      </div>
     </div>
 
     <div class="disclaimer">
@@ -998,14 +915,9 @@ function num(id){
   return isNaN(v) ? 0 : v;
 }
 
-function lsiHigherBetter(injured, uninjured){
+function lsi(injured, uninjured){
   if(!injured || !uninjured) return 0;
   return Math.round((injured / uninjured) * 100);
-}
-
-function lsiTimed(injuredTime, uninjuredTime){
-  if(!injuredTime || !uninjuredTime) return 0;
-  return Math.round((uninjuredTime / injuredTime) * 100);
 }
 
 function ratePercent(value){
@@ -1033,16 +945,18 @@ function colorResult(el,value){
 }
 
 function getResults(){
-  const single = lsiHigherBetter(num("singleInjured"), num("singleUninjured"));
-  const triple = lsiHigherBetter(num("tripleInjured"), num("tripleUninjured"));
-  const cross = lsiHigherBetter(num("crossInjured"), num("crossUninjured"));
-  const timed = lsiTimed(num("timedInjured"), num("timedUninjured"));
-  const balance = lsiHigherBetter(num("balanceInjured"), num("balanceUninjured"));
+  const squat = lsi(num("squatInjured"), num("squatUninjured"));
+  const bridge = lsi(num("bridgeInjured"), num("bridgeUninjured"));
+  const calf = lsi(num("calfInjured"), num("calfUninjured"));
+  const single = lsi(num("singleInjured"), num("singleUninjured"));
+  const triple = lsi(num("tripleInjured"), num("tripleUninjured"));
+  const cross = lsi(num("crossInjured"), num("crossUninjured"));
+  const balance = lsi(num("balanceInjured"), num("balanceUninjured"));
 
-  const arr = [single,triple,cross,timed,balance].filter(x => x > 0);
+  const arr = [squat,bridge,calf,single,triple,cross,balance].filter(x => x > 0);
   const avg = arr.length ? Math.round(arr.reduce((a,b)=>a+b,0) / arr.length) : 0;
 
-  return {single,triple,cross,timed,balance,avg};
+  return {squat,bridge,calf,single,triple,cross,balance,avg};
 }
 
 function hasClinicalWarning(){
@@ -1056,9 +970,7 @@ function hasClinicalWarning(){
 }
 
 function getReadiness(avg){
-  const warning = hasClinicalWarning();
-
-  if(warning){
+  if(hasClinicalWarning()){
     return {
       cls:"bad",
       title:"Needs Clinical Caution",
@@ -1106,10 +1018,12 @@ function calculateAll(){
   const r = getResults();
 
   const fields = [
+    ["squatResult",r.squat],
+    ["bridgeResult",r.bridge],
+    ["calfResult",r.calf],
     ["singleResult",r.single],
     ["tripleResult",r.triple],
     ["crossResult",r.cross],
-    ["timedResult",r.timed],
     ["balanceResult",r.balance]
   ];
 
@@ -1130,40 +1044,43 @@ function calculateAll(){
     readiness.ar + " / " + readiness.en;
 }
 
+function setText(id,value){
+  document.getElementById(id).innerText = value || "—";
+}
+
+function fillRow(prefix, injuredId, uninjuredId, lsiValue){
+  setText(`pr${prefix}I`, document.getElementById(injuredId).value);
+  setText(`pr${prefix}U`, document.getElementById(uninjuredId).value);
+  setText(`pr${prefix}Lsi`, lsiValue ? lsiValue + "%" : "—");
+  setText(`pr${prefix}Rate`, ratePercent(lsiValue));
+}
+
 function fillPrint(){
   const r = getResults();
   const readiness = getReadiness(r.avg);
 
-  document.getElementById("prPatientName").innerText = document.getElementById("patientName").value || "—";
-  document.getElementById("prPatientNameEn").innerText = document.getElementById("patientName").value || "—";
-  document.getElementById("prTherapist").innerText = document.getElementById("therapist").value || "—";
-  document.getElementById("prTherapistEn").innerText = document.getElementById("therapist").value || "—";
-  document.getElementById("prInjury").innerText = document.getElementById("injury").value || "—";
-  document.getElementById("prSport").innerText = document.getElementById("sport").value || "—";
-  document.getElementById("prDate").innerText = document.getElementById("assessmentDate").value || "—";
-  document.getElementById("prWeeks").innerText = document.getElementById("weeks").value || "—";
+  setText("prPatientName", document.getElementById("patientName").value);
+  setText("prPatientNameEn", document.getElementById("patientName").value);
+  setText("prTherapist", document.getElementById("therapist").value);
+  setText("prTherapistEn", document.getElementById("therapist").value);
+  setText("prInjury", document.getElementById("injury").value);
+  setText("prSport", document.getElementById("sport").value);
+  setText("prDate", document.getElementById("assessmentDate").value);
+  setText("prWeeks", document.getElementById("weeks").value);
 
-  const rows = [
-    ["Single", "singleInjured", "singleUninjured", r.single],
-    ["Triple", "tripleInjured", "tripleUninjured", r.triple],
-    ["Cross", "crossInjured", "crossUninjured", r.cross],
-    ["Timed", "timedInjured", "timedUninjured", r.timed],
-    ["Balance", "balanceInjured", "balanceUninjured", r.balance]
-  ];
+  fillRow("Squat","squatInjured","squatUninjured",r.squat);
+  fillRow("Bridge","bridgeInjured","bridgeUninjured",r.bridge);
+  fillRow("Calf","calfInjured","calfUninjured",r.calf);
+  fillRow("Single","singleInjured","singleUninjured",r.single);
+  fillRow("Triple","tripleInjured","tripleUninjured",r.triple);
+  fillRow("Cross","crossInjured","crossUninjured",r.cross);
+  fillRow("Balance","balanceInjured","balanceUninjured",r.balance);
 
-  rows.forEach(([name,inj,un,lsi])=>{
-    document.getElementById(`pr${name}I`).innerText = document.getElementById(inj).value || "—";
-    document.getElementById(`pr${name}U`).innerText = document.getElementById(un).value || "—";
-    document.getElementById(`pr${name}Lsi`).innerText = lsi ? lsi + "%" : "—";
-    document.getElementById(`pr${name}Rate`).innerText = ratePercent(lsi);
-  });
+  setText("prOverallScore", r.avg + "%");
+  setText("prReadinessTitle", readiness.title);
+  setText("prReadinessText", readiness.ar + "\n" + readiness.en);
 
-  document.getElementById("prOverallScore").innerText = r.avg + "%";
-  document.getElementById("prReadinessTitle").innerText = readiness.title;
-  document.getElementById("prReadinessText").innerText = readiness.ar + "\n" + readiness.en;
-
-  document.getElementById("prNotes").innerText = document.getElementById("clinicalNotes").value || "لا توجد ملاحظات إضافية.";
-  document.getElementById("prSignatureName").innerText = document.getElementById("therapist").value || "—";
+  setText("prNotes", document.getElementById("clinicalNotes").value || "لا توجد ملاحظات إضافية.");
 }
 
 function generateReport(){
