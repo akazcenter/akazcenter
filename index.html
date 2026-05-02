@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>مركز عكاز للعلاج الطبيعي</title>
+<link rel="icon" href="logo.png">
 
 <style>
 :root{
   --blue:#005b9f;
   --blue2:#0077c8;
-  --navy:#06345d;
   --orange:#f59e0b;
-  --bg:#f4f8fc;
   --text:#0f172a;
   --muted:#64748b;
-  --white:#fff;
+  --line:#e2e8f0;
 }
 
 *{box-sizing:border-box}
@@ -24,20 +23,20 @@ body{
   font-family:Tahoma,Arial,sans-serif;
   direction:rtl;
   background:
-    radial-gradient(circle at 90% 8%, rgba(0,119,200,.14), transparent 28%),
-    radial-gradient(circle at 8% 68%, rgba(245,158,11,.12), transparent 25%),
+    radial-gradient(circle at 90% 8%, rgba(0,119,200,.13), transparent 28%),
+    radial-gradient(circle at 8% 68%, rgba(245,158,11,.11), transparent 25%),
     linear-gradient(180deg,#f9fcff,#eef4f9);
   color:var(--text);
   min-height:100vh;
 }
 
-/* HEADER */
+/* HERO */
 .hero{
   position:relative;
-  overflow:hidden;
-  min-height:340px;
-  background:linear-gradient(135deg, rgba(0,70,125,.98), rgba(0,119,200,.94));
+  min-height:335px;
+  background:linear-gradient(135deg,#00467d,#0077c8);
   color:white;
+  overflow:hidden;
   border-bottom-left-radius:42px;
   border-bottom-right-radius:42px;
   box-shadow:0 24px 55px rgba(6,43,79,.25);
@@ -46,39 +45,43 @@ body{
 .hero::before{
   content:"";
   position:absolute;
-  width:420px;
-  height:420px;
+  width:430px;
+  height:430px;
   border-radius:50%;
   background:rgba(255,255,255,.07);
-  right:-160px;
+  right:-170px;
   top:-190px;
 }
 
 .hero::after{
   content:"";
   position:absolute;
-  width:360px;
-  height:360px;
+  width:370px;
+  height:370px;
   border-radius:50%;
-  background:rgba(245,158,11,.13);
-  left:-150px;
+  background:rgba(245,158,11,.14);
+  left:-160px;
   bottom:-190px;
 }
 
-.theme-btn{
+.top-btn{
   position:absolute;
   top:20px;
   left:24px;
   z-index:10;
-  width:36px;
-  height:36px;
-  border-radius:12px;
+  width:38px;
+  height:38px;
+  border-radius:13px;
   border:1px solid rgba(255,255,255,.45);
   background:rgba(255,255,255,.92);
   color:var(--blue);
   cursor:pointer;
   font-size:16px;
   box-shadow:0 10px 22px rgba(0,0,0,.18);
+}
+
+.admin-btn{
+  left:70px;
 }
 
 .hero-inner{
@@ -92,7 +95,6 @@ body{
   gap:34px;
 }
 
-/* LOGO */
 .logo-box{
   justify-self:end;
   width:176px;
@@ -112,12 +114,11 @@ body{
   object-fit:contain;
 }
 
-/* TITLE */
 .center-title{
   text-align:center;
 }
 
-.center-title .eyebrow{
+.eyebrow{
   display:inline-block;
   background:rgba(255,255,255,.13);
   border:1px solid rgba(255,255,255,.24);
@@ -144,7 +145,6 @@ body{
   line-height:1.9;
 }
 
-/* CLOCK */
 .clock-card{
   justify-self:start;
   width:176px;
@@ -169,9 +169,7 @@ body{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  box-shadow:
-    inset 0 0 0 7px rgba(255,255,255,.08),
-    0 12px 26px rgba(0,0,0,.25);
+  box-shadow:inset 0 0 0 7px rgba(255,255,255,.08),0 12px 26px rgba(0,0,0,.25);
 }
 
 #clockTime{
@@ -202,14 +200,14 @@ body{
 
 /* QUOTE */
 .quote-strip{
-  width:88%;
-  max-width:1050px;
-  margin:-36px auto 32px;
+  width:73%;
+  max-width:1030px;
+  margin:-38px auto 32px;
   position:relative;
   z-index:5;
   background:rgba(255,255,255,.96);
   border:1px solid rgba(226,232,240,.95);
-  border-radius:26px;
+  border-radius:24px;
   padding:22px 28px;
   display:flex;
   align-items:center;
@@ -218,29 +216,29 @@ body{
   box-shadow:0 20px 48px rgba(15,23,42,.12);
 }
 
-.heart{
-  font-size:23px;
-}
-
 #dailyQuote{
   margin:0;
-  color:var(--navy);
+  color:#06345d;
   font-size:23px;
   font-weight:900;
   text-align:center;
   transition:.35s;
 }
 
+.heart{
+  font-size:22px;
+}
+
 /* MAIN */
 .main{
-  width:90%;
+  width:92%;
   max-width:1220px;
   margin:0 auto 30px;
 }
 
 .section-head{
   text-align:center;
-  margin:6px 0 24px;
+  margin:12px 0 24px;
 }
 
 .section-head h2{
@@ -250,20 +248,26 @@ body{
   font-weight:900;
 }
 
-/* CARDS */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(5,1fr);
   gap:22px;
+  align-items:stretch;
+}
+
+.cards.secondary{
+  margin-top:26px;
+  grid-template-columns:repeat(2,250px);
+  justify-content:center;
 }
 
 .card{
   position:relative;
-  min-height:168px;
+  min-height:178px;
   background:rgba(255,255,255,.94);
   border:1px solid rgba(226,232,240,.95);
   border-radius:28px;
-  padding:26px 18px;
+  padding:24px 16px 22px;
   cursor:pointer;
   text-align:center;
   overflow:visible;
@@ -302,58 +306,67 @@ body{
 
 .icon,
 .card h3,
-.card h4{
+.card h4,
+.card p{
   position:relative;
   z-index:2;
 }
 
 .icon{
-  width:66px;
-  height:66px;
-  margin:0 auto 16px;
+  width:64px;
+  height:64px;
+  margin:0 auto 14px;
   border-radius:22px;
   background:linear-gradient(145deg,#eef6ff,#ffffff);
   box-shadow:inset 0 0 0 1px #e2e8f0;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:31px;
+  font-size:30px;
 }
 
 .card h3{
   margin:0;
   color:var(--blue);
-  font-size:22px;
+  font-size:21px;
   font-weight:900;
+  line-height:1.35;
 }
 
 .card h4{
-  margin:8px 0 0;
+  margin:7px 0 7px;
   direction:ltr;
   color:var(--orange);
-  font-size:13px;
+  font-size:12.5px;
   font-weight:900;
 }
 
-/* CARD TOOLTIP - يظهر تحت الكرت */
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+/* TOOLTIP - يظهر تحت الكرت */
 .card-tooltip{
   position:absolute;
-  top:105%;
+  top:calc(100% + 12px);
   right:50%;
-  transform:translateX(50%) translateY(-8px);
-  width:285px;
+  transform:translateX(50%) translateY(-6px);
+  width:300px;
   background:#0f172a;
   color:white;
-  padding:12px 14px;
+  padding:13px 15px;
   border-radius:14px;
   font-size:12.5px;
   line-height:1.8;
   text-align:right;
-  box-shadow:0 18px 36px rgba(15,23,42,.25);
+  box-shadow:0 18px 36px rgba(15,23,42,.28);
   opacity:0;
   visibility:hidden;
   transition:.22s ease;
-  z-index:50;
+  z-index:9999;
   pointer-events:none;
 }
 
@@ -374,10 +387,26 @@ body{
   transform:translateX(50%) translateY(0);
 }
 
+/* Badge */
+.badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#dc2626;
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  padding:5px 9px;
+  border-radius:999px;
+  display:none;
+  z-index:5;
+}
+
+/* FOOTER */
 .footer{
   width:90%;
   max-width:1220px;
-  margin:50px auto 22px;
+  margin:95px auto 22px;
   padding-top:18px;
   border-top:1px solid #dbe4ee;
   text-align:center;
@@ -414,14 +443,14 @@ body.dark .icon{
   background:#0f172a;
 }
 
-body.dark .footer{
-  color:#cbd5e1;
-}
-
-body.dark .theme-btn{
+body.dark .top-btn{
   background:#0f172a;
   color:#fbbf24;
   border:1px solid #334155;
+}
+
+body.dark .footer{
+  color:#cbd5e1;
 }
 
 /* RESPONSIVE */
@@ -440,52 +469,32 @@ body.dark .theme-btn{
   .center-title h1{
     font-size:34px;
   }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .cards.secondary{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:650px){
-  .hero{
-    border-bottom-left-radius:28px;
-    border-bottom-right-radius:28px;
-  }
-
   .center-title h1{
     font-size:26px;
   }
 
-  .center-title p{
-    font-size:13px;
-  }
-
-  .logo-box,
-  .clock-card{
-    width:155px;
-    height:155px;
-  }
-
-  .logo{
-    width:124px;
-    height:124px;
-  }
-
-  .clock-circle{
-    width:96px;
-    height:96px;
-  }
-
-  #clockTime{
-    font-size:18px;
-  }
-
   .quote-strip{
     width:92%;
-    padding:19px;
+    padding:18px;
   }
 
   #dailyQuote{
     font-size:18px;
   }
 
-  .cards{
+  .cards,
+  .cards.secondary{
     grid-template-columns:1fr;
   }
 
@@ -499,7 +508,8 @@ body.dark .theme-btn{
 <body>
 
 <header class="hero">
-  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+  <button class="top-btn admin-btn" onclick="go('admin.html')" title="الإدارة">🔐</button>
+  <button class="top-btn" onclick="toggleTheme()" id="themeBtn" title="الوضع الليلي">🌙</button>
 
   <div class="hero-inner">
 
@@ -527,13 +537,14 @@ body.dark .theme-btn{
 
 <section class="quote-strip">
   <span class="heart">💙</span>
-  <h2 id="dailyQuote">نحن هنا لنخفف الألم ونصنع الفرق</h2>
+  <h2 id="dailyQuote">كل مريض يدخل... هو أمانة ومسؤولية</h2>
   <span class="heart">💙</span>
 </section>
-  
+
 <main class="main">
+
   <div class="section-head">
-    <h2>الأقسام</h2>
+    <h2>أقسام المركز</h2>
   </div>
 
   <div class="cards">
@@ -542,8 +553,9 @@ body.dark .theme-btn{
       <div class="icon">📋</div>
       <h3>جدول الدوام</h3>
       <h4>Work Schedule</h4>
+      <p>إدارة جداول الدوام واعتمادها.</p>
       <div class="card-tooltip">
-        يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام "غير محدد" في نظام اكتفاء ولا يتم الاعتماد عليه.
+        يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام "غير محدد" في نظام اكتفاء.
       </div>
     </div>
 
@@ -551,8 +563,9 @@ body.dark .theme-btn{
       <div class="icon">👶</div>
       <h3>غرف الأطفال</h3>
       <h4>Pediatric Rooms</h4>
+      <p>حجز غرف الأطفال حسب الدور والوقت.</p>
       <div class="card-tooltip">
-        يتم الحجز حسب الوقت والأخصائي، ويجب تحديث الحجز مباشرة داخل النظام ليظهر للجميع بدون الرجوع لأي جدول خارجي.
+        يتم الحجز حسب الوقت والأخصائي، مع إمكانية عرض الجدول الأسبوعي كاملًا والتصفية باسم الأخصائي.
       </div>
     </div>
 
@@ -560,15 +573,18 @@ body.dark .theme-btn{
       <div class="icon">💧</div>
       <h3>العلاج المائي</h3>
       <h4>Hydrotherapy</h4>
+      <p>تنظيم حجوزات العلاج المائي.</p>
       <div class="card-tooltip">
-        يتم تنظيم الحجز داخل النظام حسب الوقت والأيام المحددة، وأي تعديل يتم تحديثه مباشرة ليكون واضحًا للجميع.
+        يتم تنظيم الحجز داخل النظام حسب الأيام والأوقات المحددة، وأي تعديل يظهر مباشرة للجميع.
       </div>
     </div>
 
     <div class="card" onclick="go('home-visits.html')">
+      <div class="badge" id="homeVisitsBadge">20</div>
       <div class="icon">🏠</div>
       <h3>الزيارات المنزلية</h3>
       <h4>Home Visits</h4>
+      <p>تسجيل الزيارات للفترة الشهرية.</p>
       <div class="card-tooltip">
         يتم تسجيل جميع الزيارات داخل النظام مباشرة للفترة من 21 إلى 20، ولن يتم اعتماد أي ملفات خارجية أو إكسل.
       </div>
@@ -578,12 +594,38 @@ body.dark .theme-btn{
       <div class="icon">💡</div>
       <h3>الاقتراحات</h3>
       <h4>Suggestions</h4>
+      <p>إرسال اقتراحات تطوير العمل.</p>
       <div class="card-tooltip">
-        مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض داخل المركز.
+        مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض.
       </div>
     </div>
 
   </div>
+
+  <div class="cards secondary">
+
+    <div class="card" onclick="go('functional-assessments.html')">
+      <div class="icon">📈</div>
+      <h3>التقييمات الوظيفية</h3>
+      <h4>Functional Assessments</h4>
+      <p>نماذج تقييم وتأهيل احترافية.</p>
+      <div class="card-tooltip">
+        نماذج تقييم وظيفي تساعد الأخصائي في توثيق التقدم وإصدار تقرير إرشادي للمريض عند الحاجة.
+      </div>
+    </div>
+
+    <div class="card" onclick="go('shift-requests.html')">
+      <div class="icon">🔁</div>
+      <h3>طلبات تعديل الشفت</h3>
+      <h4>Shift Requests</h4>
+      <p>رفع طلبات التبديل والتعديل.</p>
+      <div class="card-tooltip">
+        أي تعديل بعد اعتماد الجدول يتم عبر طلب تعديل شفت، وتقوم الإدارة بمراجعته واعتماده.
+      </div>
+    </div>
+
+  </div>
+
 </main>
 
 <footer class="footer">
@@ -633,23 +675,24 @@ function updateClock(){
     });
 }
 
+function checkHomeVisitsAlert(){
+  const today = new Date();
+  const day = today.getDate();
+  const badge = document.getElementById("homeVisitsBadge");
+
+  if(!badge) return;
+
+  badge.style.display = day === 20 ? "block" : "none";
+}
+
 const quotes = [
-  "نحن هنا لنخفف الألم ونصنع الفرق",
-  "كل مريض يدخل… هو أمانة ومسؤولية",
+  "كل مريض يدخل... هو أمانة ومسؤولية",
   "هدفنا راحة المريض قبل كل شيء",
   "العلاج الحقيقي يبدأ بالاهتمام",
-  "ابتسامتك للمريض جزء من العلاج",
-  "كل جلسة فرصة لتغيير حياة",
-  "ساعد المريض اليوم… واصنع أثرًا يبقى",
   "التعامل الإنساني هو أساس العلاج",
-  "أنت سبب في عودة الأمل لمريض",
-  "نحن لا نعالج فقط… نحن نعيد جودة الحياة",
+  "كل جلسة فرصة لتغيير حياة",
   "راحة المريض هي نجاحك الحقيقي",
-  "استمع للمريض… نصف العلاج في الفهم",
-  "كل خطوة تقدمها للمريض لها قيمة",
-  "العلاج مهارة… والإنسانية فن",
-  "المريض يثق بك… لا تخذل ثقته",
-  "كل يوم فرصة لمساعدة شخص على الوقوف مجددًا"
+  "استمع للمريض... نصف العلاج في الفهم"
 ];
 
 let quoteIndex = 0;
@@ -666,8 +709,10 @@ function rotateQuotes(){
 }
 
 loadTheme();
-setInterval(updateClock,1000);
 updateClock();
+setInterval(updateClock,1000);
+
+checkHomeVisitsAlert();
 
 rotateQuotes();
 setInterval(rotateQuotes,9000);
