@@ -242,22 +242,30 @@ select{
   <!-- عرض الجدول -->
   <div id="choicePage" class="choice-grid">
 
-  <div class="choice-card view-card" onclick="openViewMode()">
+<div id="choicePage">
+
+  <!-- عرض الجدول -->
+  <div class="choice-card" onclick="openViewMode()" style="margin-bottom:20px">
     <div class="choice-icon">📊</div>
     <h3>عرض الجدول</h3>
     <p>Weekly Schedule View</p>
   </div>
 
-  <div class="choice-card" onclick="openBooking(1)">
-    <div class="choice-icon">🏢</div>
-    <h3>حجز غرفة الدور الأرضي</h3>
-    <p>Ground Floor Booking</p>
-  </div>
+  <!-- الحجز -->
+  <div class="choice-grid">
 
-  <div class="choice-card" onclick="openBooking(2)">
-    <div class="choice-icon">🏥</div>
-    <h3>حجز غرفة الدور الثاني</h3>
-    <p>Second Floor Booking</p>
+    <div class="choice-card" onclick="openBooking(1)">
+      <div class="choice-icon">🏢</div>
+      <h3>حجز غرفة الدور الأرضي</h3>
+      <p>Ground Floor Booking</p>
+    </div>
+
+    <div class="choice-card" onclick="openBooking(2)">
+      <div class="choice-icon">🏥</div>
+      <h3>حجز غرفة الدور الثاني</h3>
+      <p>Second Floor Booking</p>
+    </div>
+
   </div>
 
 </div>
