@@ -18,11 +18,12 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
   width:96%;
   margin:40px auto;
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:22px;
 }
 
 .section-card{
+  position:relative;
   background:white;
   border:1px solid #e2e8f0;
   border-radius:22px;
@@ -44,31 +45,35 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
   background:#eef6ff;
 }
 
-.section-card .icon{
-  font-size:38px;
-  margin-bottom:12px;
+.section-card .icon{font-size:38px;margin-bottom:12px}
+.section-card h3{margin:0;font-size:22px}
+.section-card p{margin:7px 0 0;color:#f59e0b;direction:ltr}
+
+.badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#dc2626;
+  color:white;
+  min-width:28px;
+  height:28px;
+  border-radius:999px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:900;
+  padding:0 8px;
 }
 
-.section-card h3{
-  margin:0;
-  font-size:22px;
-}
-
-.section-card p{
-  margin:7px 0 0;
-  color:#f59e0b;
-  direction:ltr;
-}
-
-.workspace{display:none}
+.workspace,.requests-workspace{display:none}
 
 .controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
 .controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
 .controls button.active{background:#f59e0b}
-
 .section-title{text-align:center;color:#005b9f;margin:15px 0}
 
-.approval-card{
+.approval-card,.request-box{
   width:96%;
   margin:15px auto 20px;
   background:white;
@@ -76,20 +81,14 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
   border-radius:18px;
   box-shadow:0 6px 20px #0001;
   padding:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  flex-wrap:wrap;
 }
 
+.approval-card{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
 .approval-fields{display:flex;align-items:end;gap:12px;flex-wrap:wrap}
 .approval-fields label{font-weight:bold;color:#005b9f;display:block;margin-bottom:5px}
 .approval-fields input{height:40px;border:1px solid #cbd5e1;border-radius:9px;padding:0 10px;font-family:Tahoma,Arial}
-
 .approve-btn{background:#dcfce7;color:#166534;border:1px solid #86efac;padding:10px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
 .cancel-approve-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:10px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
-
 .approval-status{font-weight:bold;padding:10px 15px;border-radius:999px;background:#eef6ff;color:#005b9f}
 
 .schedule-box{width:96%;margin:24px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001;overflow:hidden;border:1px solid #e2e8f0}
@@ -97,30 +96,66 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 .table-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .copy-btn{background:#e0f2fe;color:#075985;border:1px solid #bae6fd;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
 .clear-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
-
 .table-wrap{overflow:auto}
 table{width:100%;border-collapse:collapse;min-width:950px}
 th{background:#005b9f;color:white;padding:12px;font-size:16px}
 td{border:1px solid #d7dee8;padding:8px;text-align:center;background:white}
-
 .shift-label{background:#eef6ff;width:240px;color:#005b9f;font-weight:bold}
 .shift-name{display:block;font-size:20px;margin-bottom:7px}
 .shift-time{display:block;direction:ltr;font-size:16px;color:#334155;font-weight:bold;line-height:1.7}
-
 .slot{margin-bottom:7px;border-radius:9px;padding:4px}
-select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-size:15px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;background:white;color:#0f172a}
-
+select,input,textarea{width:96%;border-radius:9px;border:1px solid #cbd5e1;font-size:15px;font-weight:bold;font-family:Tahoma,Arial;background:white;color:#0f172a}
+select{height:43px;text-align:center}
+input{height:43px;padding:0 10px}
+textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
 .note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+
+.request-choice{
+  width:96%;
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+}
+
+.request-card{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:22px;
+  padding:34px 20px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(15,23,42,.08);
+  transition:.25s;
+}
+
+.request-card:hover{transform:translateY(-6px);background:#eef6ff}
+.request-card .icon{font-size:40px;margin-bottom:12px}
+.request-card h3{color:#005b9f;font-size:24px;margin:0}
+.request-card p{color:#64748b;margin:8px 0 0}
+
+.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:12px}
+.request-box h2{color:#005b9f;text-align:center;margin-top:0}
+.request-box label{display:block;color:#005b9f;font-weight:bold;margin:12px 0 6px}
+.main-btn{width:100%;border:none;background:#005b9f;color:white;padding:13px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:14px}
+.back-btn{width:100%;border:none;background:#eef6ff;color:#005b9f;padding:13px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px}
+.request-item{background:#f8fbff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;margin-bottom:12px;cursor:pointer}
+.request-item.new{border-color:#fecaca;background:#fff7f7}
+.request-meta{color:#005b9f;font-weight:900;line-height:1.8}
+.request-text{color:#334155;line-height:1.8;margin-top:8px;white-space:pre-wrap}
+.delete-request{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:10px}
+.empty{text-align:center;color:#64748b;background:#f8fafc;border-radius:14px;padding:20px}
 
 @media(max-width:800px){
 .topbar{flex-direction:column;text-align:center}
 .brand{flex-direction:column}
 .logo{width:85px;height:85px}
 .home-btn{width:100%}
-.section-selector{grid-template-columns:1fr}
+.section-selector,.request-choice{grid-template-columns:1fr}
 table{min-width:1050px}
 .box-title{flex-direction:column}
 .approval-card{justify-content:center;text-align:center}
+.form-row{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -156,10 +191,16 @@ table{min-width:1050px}
     <h3>الاستقبال</h3>
     <p>Reception</p>
   </div>
+
+  <div class="section-card" onclick="openShiftRequests()">
+    <div class="badge" id="shiftRequestsBadge">0</div>
+    <div class="icon">🔁</div>
+    <h3>طلبات تعديل الشفتات</h3>
+    <p>Shift Requests</p>
+  </div>
 </div>
 
 <div id="workspace" class="workspace">
-
   <div class="controls">
     <button id="menBtn" onclick="switchSection('men')">قسم الرجال</button>
     <button id="womenBtn" onclick="switchSection('women')">قسم النساء</button>
@@ -188,14 +229,120 @@ table{min-width:1050px}
   </div>
 
   <div id="tablesArea"></div>
-
   <div class="note">أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين</div>
+</div>
 
+<div id="requestsWorkspace" class="requests-workspace">
+  <div id="requestChoice" class="request-choice">
+    <div class="request-card" onclick="showEmployeeRequest()">
+      <div class="icon">👨‍⚕️</div>
+      <h3>الموظفين</h3>
+      <p>إرسال طلب تعديل أو تبديل شفت</p>
+    </div>
+
+    <div class="request-card" onclick="showAdminRequestLogin()">
+      <div class="icon">🔐</div>
+      <h3>الإدارة</h3>
+      <p>عرض ومتابعة طلبات التعديل</p>
+    </div>
+  </div>
+
+  <div id="employeeRequestBox" class="request-box" style="display:none">
+    <h2>طلب تعديل شفت</h2>
+
+    <div class="form-row">
+      <div>
+        <label>اسم الموظف</label>
+        <select id="requestEmployee">
+          <option value="">اختر اسمك</option>
+          <option>د. حاتم الاحمدي</option>
+          <option>د. عبدالرحمن السويداء</option>
+          <option>د. عبدالرحمن السليمي</option>
+          <option>د. عبدالعزيز الحمدان</option>
+          <option>د. ريناد حميد</option>
+          <option>د. ابتسام سويلم</option>
+          <option>د. سلمى فرحان</option>
+          <option>د. هند فهيد</option>
+          <option>د. أسماء فهيد</option>
+          <option>د. مها فريح</option>
+          <option>أ. مرام ناصر</option>
+          <option>أ. أشواق سعود</option>
+          <option>أ. شهد خلف</option>
+        </select>
+      </div>
+
+      <div>
+        <label>القسم</label>
+        <select id="requestSection">
+          <option value="">اختر القسم</option>
+          <option>قسم الرجال</option>
+          <option>قسم النساء</option>
+          <option>الاستقبال</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label>تاريخ الشفت</label>
+        <input type="date" id="requestDate">
+      </div>
+
+      <div>
+        <label>نوع الطلب</label>
+        <select id="requestType">
+          <option value="">اختر نوع الطلب</option>
+          <option>تبديل شفت</option>
+          <option>تعديل وقت</option>
+          <option>تغطية شفت</option>
+          <option>ملاحظة دوام</option>
+        </select>
+      </div>
+    </div>
+
+    <label>الموظف الآخر / اختياري</label>
+    <select id="requestSecondEmployee">
+      <option value="">لا يوجد</option>
+      <option>د. حاتم الاحمدي</option>
+      <option>د. عبدالرحمن السويداء</option>
+      <option>د. عبدالرحمن السليمي</option>
+      <option>د. عبدالعزيز الحمدان</option>
+      <option>د. ريناد حميد</option>
+      <option>د. ابتسام سويلم</option>
+      <option>د. سلمى فرحان</option>
+      <option>د. هند فهيد</option>
+      <option>د. أسماء فهيد</option>
+      <option>د. مها فريح</option>
+      <option>أ. مرام ناصر</option>
+      <option>أ. أشواق سعود</option>
+      <option>أ. شهد خلف</option>
+    </select>
+
+    <label>تفاصيل الطلب</label>
+    <textarea id="requestDetails" placeholder="مثال: أرغب بتبديل شفت يوم الاثنين مع د. فلان بسبب..."></textarea>
+
+    <button class="main-btn" onclick="sendShiftRequest()">إرسال الطلب للإدارة</button>
+    <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
+  </div>
+
+  <div id="adminRequestLoginBox" class="request-box" style="display:none">
+    <h2>دخول الإدارة</h2>
+    <label>الرمز السري</label>
+    <input type="password" id="requestAdminCode" placeholder="ادخل الرمز السري">
+    <button class="main-btn" onclick="adminShiftLogin()">دخول</button>
+    <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
+  </div>
+
+  <div id="adminRequestsBox" class="request-box" style="display:none">
+    <h2>طلبات تعديل الشفتات</h2>
+    <div id="shiftRequestsList"></div>
+    <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
+  </div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getFirestore, collection, doc, setDoc, deleteDoc, updateDoc, addDoc, onSnapshot, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -211,37 +358,25 @@ const db = getFirestore(app);
 
 const workRef = collection(db,"workSchedule");
 const settingsRef = collection(db,"workScheduleSettings");
+const shiftRequestsRef = collection(db,"shiftRequests");
+
+const ADMIN_CODE = "1234";
 
 let currentSection="";
 let savedData={};
 let settingsData={};
+let shiftRequestsData=[];
+let shiftAdminLogged=false;
 
 const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-const sectionTitles={
-  men:"قسم الرجال",
-  women:"قسم النساء",
-  reception:"الاستقبال"
-};
-
-const shiftNames={
-  single:"شفت واحد",
-  split:"شفتين"
-};
+const sectionTitles={men:"قسم الرجال",women:"قسم النساء",reception:"الاستقبال"};
+const shiftNames={single:"شفت واحد",split:"شفتين"};
 
 const shiftTimes={
-  men:{
-    single:"01:00 PM - 09:00 PM",
-    split:"09:00 AM - 01:00 PM<br>04:00 PM - 08:00 PM"
-  },
-  women:{
-    single:"12:00 PM - 08:00 PM",
-    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
-  },
-  reception:{
-    single:"12:00 PM - 08:00 PM",
-    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
-  }
+  men:{single:"01:00 PM - 09:00 PM",split:"09:00 AM - 01:00 PM<br>04:00 PM - 08:00 PM"},
+  women:{single:"12:00 PM - 08:00 PM",split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"},
+  reception:{single:"12:00 PM - 08:00 PM",split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"}
 };
 
 const slotsCount={
@@ -252,26 +387,13 @@ const slotsCount={
 
 const employees={
   men:{
-    "—":"#ffffff",
-    "د. حاتم الاحمدي":"#c7d2fe",
-    "د. عبدالرحمن السويداء":"#ddd6fe",
-    "د. عبدالرحمن السليمي":"#fbcfe8",
-    "د. عبدالعزيز الحمدان":"#fecaca"
+    "—":"#ffffff","د. حاتم الاحمدي":"#c7d2fe","د. عبدالرحمن السويداء":"#ddd6fe","د. عبدالرحمن السليمي":"#fbcfe8","د. عبدالعزيز الحمدان":"#fecaca"
   },
   women:{
-    "—":"#ffffff",
-    "د. ريناد حميد":"#fca5a5",
-    "د. ابتسام سويلم":"#fdba74",
-    "د. سلمى فرحان":"#fde68a",
-    "د. هند فهيد":"#bbf7d0",
-    "د. أسماء فهيد":"#a5f3fc",
-    "د. مها فريح":"#bfdbfe"
+    "—":"#ffffff","د. ريناد حميد":"#fca5a5","د. ابتسام سويلم":"#fdba74","د. سلمى فرحان":"#fde68a","د. هند فهيد":"#bbf7d0","د. أسماء فهيد":"#a5f3fc","د. مها فريح":"#bfdbfe"
   },
   reception:{
-    "—":"#ffffff",
-    "أ. مرام ناصر":"#bae6fd",
-    "أ. أشواق سعود":"#bbf7d0",
-    "أ. شهد خلف":"#fde68a"
+    "—":"#ffffff","أ. مرام ناصر":"#bae6fd","أ. أشواق سعود":"#bbf7d0","أ. شهد خلف":"#fde68a"
   }
 };
 
@@ -288,36 +410,24 @@ function makeId(section,shift,day,slot){
 function isSectionApproved(section=currentSection){
   const s = settingsData[section];
   if(!s || !s.approved || !s.startDate || !s.endDate) return false;
-
   const today = todayISO();
   return today >= s.startDate && today <= s.endDate;
 }
 
 function getApprovalText(section=currentSection){
   const s = settingsData[section];
-
-  if(!s || !s.approved || !s.startDate || !s.endDate){
-    return "الجدول غير معتمد";
-  }
+  if(!s || !s.approved || !s.startDate || !s.endDate) return "الجدول غير معتمد";
 
   const today = todayISO();
 
-  if(today < s.startDate){
-    return `جدول ${sectionTitles[section]} معتمد ويبدأ من ${s.startDate} إلى ${s.endDate}`;
-  }
-
-  if(today > s.endDate){
-    return `انتهى اعتماد جدول ${sectionTitles[section]} بتاريخ ${s.endDate}`;
-  }
-
+  if(today < s.startDate) return `جدول ${sectionTitles[section]} معتمد ويبدأ من ${s.startDate} إلى ${s.endDate}`;
+  if(today > s.endDate) return `انتهى اعتماد جدول ${sectionTitles[section]} بتاريخ ${s.endDate}`;
   return `جدول ${sectionTitles[section]} معتمد من ${s.startDate} إلى ${s.endDate}`;
 }
 
 function updateApprovalUI(){
   if(!currentSection) return;
-
   const s = settingsData[currentSection];
-
   document.getElementById("approvalStart").value = s?.startDate || "";
   document.getElementById("approvalEnd").value = s?.endDate || "";
   document.getElementById("approvalStatus").innerText = getApprovalText(currentSection);
@@ -325,19 +435,16 @@ function updateApprovalUI(){
 
 function warnIfApproved(actionText){
   if(!isSectionApproved(currentSection)) return true;
-
   return confirm(`جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد ${actionText}؟`);
 }
 
 function renderTables(){
   if(!currentSection) return;
-
   const area=document.getElementById("tablesArea");
   area.innerHTML="";
   area.innerHTML+=buildTable("دوام شفت واحد","single","شفت واحد",shiftTimes[currentSection].single);
   area.innerHTML+=buildTable("دوام شفتين","split","شفتين",shiftTimes[currentSection].split);
-
-  document.querySelectorAll("select").forEach(s=>colorCell(s));
+  document.querySelectorAll("#tablesArea select").forEach(s=>colorCell(s));
 }
 
 function buildTable(title,shift,label,time){
@@ -387,26 +494,19 @@ function colorCell(select){
   const wrapper=select.parentElement;
   const color=employees[currentSection][select.value] || "#ffffff";
   wrapper.style.background=color;
-
-  if(select.value==="—"){
-    wrapper.style.background="#ffffff";
-    select.style.color="#0f172a";
-  }else{
-    select.style.color="#000";
-    select.style.fontWeight="bold";
-  }
+  select.style.color = select.value==="—" ? "#0f172a" : "#000";
+  select.style.fontWeight="bold";
 }
 
 function isDuplicateInSameDay(select){
   const selected=select.value;
   if(selected==="—") return false;
-
   const td=select.closest("td");
   const row=td.parentElement;
   const dayIndex=Array.from(row.children).indexOf(td);
   let count=0;
 
-  document.querySelectorAll("table tr").forEach(r=>{
+  document.querySelectorAll("#tablesArea table tr").forEach(r=>{
     const cells=r.children;
     if(cells.length>dayIndex){
       cells[dayIndex].querySelectorAll("select").forEach(s=>{
@@ -414,7 +514,6 @@ function isDuplicateInSameDay(select){
       });
     }
   });
-
   return count>1;
 }
 
@@ -425,11 +524,7 @@ window.save=async function(el){
 
   if(isSectionApproved(currentSection) && val !== oldValue){
     const ok = confirm(`جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد تعديل هذه الخانة؟`);
-    if(!ok){
-      el.value = oldValue;
-      colorCell(el);
-      return;
-    }
+    if(!ok){ el.value = oldValue; colorCell(el); return; }
   }
 
   if(isDuplicateInSameDay(el)){
@@ -458,7 +553,6 @@ window.save=async function(el){
 
 window.copySaturday = async function(shift){
   if(!warnIfApproved(`نسخ السبت لباقي الأسبوع في ${shiftNames[shift]}`)) return;
-
   if(!confirm(`هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع في ${sectionTitles[currentSection]} - ${shiftNames[shift]}؟`)) return;
 
   const saturday = "السبت";
@@ -471,18 +565,8 @@ window.copySaturday = async function(shift){
 
     for(const day of otherDays){
       const targetId = makeId(currentSection, shift, day, i);
-
-      if(employee === "—"){
-        writes.push(deleteDoc(doc(db, "workSchedule", targetId)));
-      } else {
-        writes.push(setDoc(doc(db, "workSchedule", targetId), {
-          id: targetId,
-          section: currentSection,
-          shift,
-          employee,
-          updatedAt: new Date()
-        }));
-      }
+      if(employee === "—") writes.push(deleteDoc(doc(db, "workSchedule", targetId)));
+      else writes.push(setDoc(doc(db, "workSchedule", targetId), {id: targetId,section: currentSection,shift,employee,updatedAt: new Date()}));
     }
   }
 
@@ -492,7 +576,6 @@ window.copySaturday = async function(shift){
 
 window.clearSchedule=async function(shift){
   if(!warnIfApproved(`حذف جدول ${shiftNames[shift]}`)) return;
-
   if(!confirm(`متأكد تبغى تحذف جدول ${sectionTitles[currentSection]} - ${shiftNames[shift]} فقط؟`)) return;
 
   const snap=await getDocs(workRef);
@@ -513,16 +596,8 @@ window.approveSchedule = async function(){
   const startDate = document.getElementById("approvalStart").value;
   const endDate = document.getElementById("approvalEnd").value;
 
-  if(!startDate || !endDate){
-    alert("حدد تاريخ البداية والنهاية");
-    return;
-  }
-
-  if(endDate < startDate){
-    alert("تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية");
-    return;
-  }
-
+  if(!startDate || !endDate){ alert("حدد تاريخ البداية والنهاية"); return; }
+  if(endDate < startDate){ alert("تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية"); return; }
   if(!confirm(`اعتماد جدول ${sectionTitles[currentSection]} من ${startDate} إلى ${endDate}؟`)) return;
 
   await setDoc(doc(db,"workScheduleSettings",currentSection),{
@@ -552,38 +627,189 @@ window.cancelApproval = async function(){
 
 window.openSection=function(sec){
   document.getElementById("sectionSelector").style.display="none";
+  document.getElementById("requestsWorkspace").style.display="none";
   document.getElementById("workspace").style.display="block";
   switchSection(sec);
 };
 
+window.openShiftRequests=function(){
+  document.getElementById("sectionSelector").style.display="none";
+  document.getElementById("workspace").style.display="none";
+  document.getElementById("requestsWorkspace").style.display="block";
+  backToRequestsChoice();
+};
+
 window.switchSection=function(sec){
   currentSection=sec;
-
   document.getElementById("sectionTitle").innerText=sectionTitles[sec];
-
   document.getElementById("menBtn").classList.toggle("active", sec==="men");
   document.getElementById("womenBtn").classList.toggle("active", sec==="women");
   document.getElementById("receptionBtn").classList.toggle("active", sec==="reception");
-
   updateApprovalUI();
   renderTables();
 };
 
+window.showEmployeeRequest=function(){
+  document.getElementById("requestChoice").style.display="none";
+  document.getElementById("employeeRequestBox").style.display="block";
+  document.getElementById("adminRequestLoginBox").style.display="none";
+  document.getElementById("adminRequestsBox").style.display="none";
+};
+
+window.showAdminRequestLogin=function(){
+  document.getElementById("requestChoice").style.display="none";
+  document.getElementById("employeeRequestBox").style.display="none";
+  document.getElementById("adminRequestLoginBox").style.display="block";
+  document.getElementById("adminRequestsBox").style.display="none";
+};
+
+window.backToRequestsChoice=function(){
+  document.getElementById("requestChoice").style.display="grid";
+  document.getElementById("employeeRequestBox").style.display="none";
+  document.getElementById("adminRequestLoginBox").style.display="none";
+  document.getElementById("adminRequestsBox").style.display="none";
+};
+
+window.sendShiftRequest=async function(){
+  const employee=document.getElementById("requestEmployee").value;
+  const section=document.getElementById("requestSection").value;
+  const date=document.getElementById("requestDate").value;
+  const type=document.getElementById("requestType").value;
+  const secondEmployee=document.getElementById("requestSecondEmployee").value;
+  const details=document.getElementById("requestDetails").value.trim();
+
+  if(!employee || !section || !date || !type || !details){
+    alert("أكمل بيانات الطلب");
+    return;
+  }
+
+  if(!confirm("بعد إرسال الطلب سيظهر للإدارة ولا يمكن تعديله. هل تريد الإرسال؟")) return;
+
+  await addDoc(shiftRequestsRef,{
+    employee,
+    section,
+    date,
+    type,
+    secondEmployee,
+    details,
+    status:"new",
+    createdAt:new Date()
+  });
+
+  alert("تم إرسال الطلب للإدارة");
+  document.getElementById("requestEmployee").value="";
+  document.getElementById("requestSection").value="";
+  document.getElementById("requestDate").value="";
+  document.getElementById("requestType").value="";
+  document.getElementById("requestSecondEmployee").value="";
+  document.getElementById("requestDetails").value="";
+  backToRequestsChoice();
+};
+
+window.adminShiftLogin=async function(){
+  const code=document.getElementById("requestAdminCode").value;
+
+  if(code !== ADMIN_CODE){
+    alert("الرمز غير صحيح");
+    return;
+  }
+
+  shiftAdminLogged=true;
+
+  document.getElementById("requestChoice").style.display="none";
+  document.getElementById("employeeRequestBox").style.display="none";
+  document.getElementById("adminRequestLoginBox").style.display="none";
+  document.getElementById("adminRequestsBox").style.display="block";
+
+  renderShiftRequests();
+  await markShiftRequestsSeen();
+};
+
+function formatDate(createdAt){
+  if(!createdAt) return "";
+  if(createdAt.seconds) return new Date(createdAt.seconds * 1000).toLocaleString("ar-SA");
+  return "";
+}
+
+function renderShiftRequests(){
+  const list=document.getElementById("shiftRequestsList");
+
+  if(shiftRequestsData.length===0){
+    list.innerHTML=`<div class="empty">لا توجد طلبات تعديل حتى الآن</div>`;
+    return;
+  }
+
+  list.innerHTML="";
+
+  shiftRequestsData.forEach(item=>{
+    list.innerHTML+=`
+      <div class="request-item ${item.status === "new" ? "new" : ""}">
+        <div class="request-meta">
+          ${item.status === "new" ? "🔴 طلب جديد<br>" : ""}
+          الموظف: ${item.employee}<br>
+          القسم: ${item.section}<br>
+          التاريخ: ${item.date}<br>
+          نوع الطلب: ${item.type}<br>
+          الموظف الآخر: ${item.secondEmployee || "لا يوجد"}<br>
+          وقت الإرسال: ${formatDate(item.createdAt)}
+        </div>
+        <div class="request-text">${item.details}</div>
+        <button class="delete-request" onclick="deleteShiftRequest('${item.id}')">حذف الطلب</button>
+      </div>
+    `;
+  });
+}
+
+async function markShiftRequestsSeen(){
+  const updates=[];
+  shiftRequestsData.forEach(item=>{
+    if(item.status==="new"){
+      updates.push(updateDoc(doc(db,"shiftRequests",item.id),{status:"seen"}));
+    }
+  });
+  await Promise.all(updates);
+}
+
+window.deleteShiftRequest=async function(id){
+  if(!confirm("سيتم حذف الطلب نهائيًا، هل أنت متأكد؟")) return;
+  await deleteDoc(doc(db,"shiftRequests",id));
+};
+
+function updateShiftBadge(){
+  const count=shiftRequestsData.filter(x=>x.status==="new").length;
+  const badge=document.getElementById("shiftRequestsBadge");
+
+  if(count>0){
+    badge.style.display="flex";
+    badge.innerText=count;
+  }else{
+    badge.style.display="none";
+  }
+}
+
 onSnapshot(workRef,(snap)=>{
   savedData={};
-  snap.forEach(d=>{
-    savedData[d.id]=d.data();
-  });
+  snap.forEach(d=>{ savedData[d.id]=d.data(); });
   renderTables();
 });
 
 onSnapshot(settingsRef,(snap)=>{
   settingsData={};
+  snap.forEach(d=>{ settingsData[d.id]=d.data(); });
+  updateApprovalUI();
+});
+
+const shiftQ=query(shiftRequestsRef,orderBy("createdAt","desc"));
+onSnapshot(shiftQ,(snap)=>{
+  shiftRequestsData=[];
   snap.forEach(d=>{
-    settingsData[d.id]=d.data();
+    shiftRequestsData.push({id:d.id,...d.data()});
   });
 
-  updateApprovalUI();
+  updateShiftBadge();
+
+  const adminVisible=document.getElementById("adminRequestsBox").style.display==="block";
+  if(adminVisible) renderShiftRequests();
 });
 </script>
 
