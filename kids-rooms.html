@@ -3,42 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>جدول دوام الموظفين</title>
+<title>حجز غرف الأطفال</title>
 
 <style>
-body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
-.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.brand{display:flex;align-items:center;gap:14px}
-.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
-.brand h2{margin:0;font-size:24px}
-.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
-.home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --navy:#06345d;
+  --orange:#f59e0b;
+  --bg:#f4f8fc;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border:#e2e8f0;
+}
 
-.controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
-.controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
+*{box-sizing:border-box}
 
-.section-title{text-align:center;color:#005b9f;margin:15px 0}
-.schedule-box{width:96%;margin:24px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001;overflow:hidden;border:1px solid #e2e8f0}
-.box-title{background:#f59e0b;color:white;padding:14px 18px;font-size:21px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.table-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.copy-btn{background:#e0f2fe;color:#075985;border:1px solid #bae6fd;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
-.clear-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  direction:rtl;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(0,119,200,.12), transparent 28%),
+    radial-gradient(circle at 10% 70%, rgba(245,158,11,.10), transparent 25%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
+  color:var(--text);
+}
 
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:950px}
-th{background:#005b9f;color:white;padding:12px;font-size:16px}
-td{border:1px solid #d7dee8;padding:8px;text-align:center;background:white}
+/* HEADER */
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:20px 36px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  box-shadow:0 18px 42px rgba(8,52,95,.22);
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+}
 
-.shift-label{background:#eef6ff;width:240px;color:#005b9f;font-weight:bold}
-.shift-name{display:block;font-size:20px;margin-bottom:7px}
-.shift-time{display:block;direction:ltr;font-size:16px;color:#334155;font-weight:bold;line-height:1.7}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
 
-.slot{margin-bottom:7px;border-radius:9px;padding:4px}
-select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-size:15px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;background:white;color:#0f172a}
+.logo{
+  width:76px;
+  height:76px;
+  object-fit:contain;
+  background:white;
+  border-radius:20px;
+  padding:8px;
+  box-shadow:0 12px 26px rgba(0,0,0,.20);
+}
 
-.note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
-@media(max-width:800px){
-.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.logo{width:85px;height:85px}.home-btn{width:100%}table{min-width:1050px}.box-title{flex-direction:column}
+.brand h1{
+  margin:0;
+  font-size:27px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  direction:ltr;
+  font-size:13px;
+  color:#dbeafe;
+}
+
+.home-btn{
+  background:white;
+  color:var(--blue);
+  border:none;
+  padding:12px 20px;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:900;
+  box-shadow:0 10px 22px rgba(0,0,0,.14);
+}
+
+/* LAYOUT */
+.main{
+  width:96%;
+  max-width:1500px;
+  margin:26px auto;
+}
+
+.controls-card{
+  background:rgba(255,255,255,.92);
+  border-radius:24px;
+  padding:18px 20px;
+  box-shadow:0 14px 34px rgba(15,23,42,.08);
+  border:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.floor-title{
+  margin:0;
+  color:var(--blue);
+  font-size:24px;
+  font-weight:900;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.controls button{
+  padding:11px 22px;
+  border:none;
+  background:#eef6ff;
+  color:var(--blue);
+  border:1px solid #cfe8ff;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:900;
+  transition:.2s;
+}
+
+.controls button.active,
+.controls button:hover{
+  background:var(--blue);
+  color:white;
+}
+
+/* LEGEND */
+.legend{
+  margin:18px 0;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.legend-item{
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+  border:1px solid rgba(15,23,42,.08);
+  box-shadow:0 5px 12px rgba(15,23,42,.06);
+}
+
+/* SCHEDULE */
+.schedule-box{
+  background:white;
+  border-radius:26px;
+  box-shadow:0 18px 44px rgba(15,23,42,.10);
+  overflow:hidden;
+  border:1px solid var(--border);
+  margin-bottom:22px;
+}
+
+.box-title{
+  background:linear-gradient(90deg,var(--orange),#ffbd4a);
+  color:white;
+  padding:16px 22px;
+  font-size:21px;
+  font-weight:900;
+  text-align:center;
+}
+
+.table-actions{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:14px;
+  background:#fff8ed;
+  border-bottom:1px solid #fed7aa;
+}
+
+.table-actions button{
+  padding:10px 16px;
+  border:none;
+  background:white;
+  color:#075985;
+  border:1px solid #bae6fd;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:900;
+  box-shadow:0 5px 12px rgba(15,23,42,.06);
+}
+
+.period-title{
+  background:linear-gradient(90deg,var(--blue),var(--blue2));
+  color:white;
+  padding:13px 18px;
+  font-size:18px;
+  font-weight:900;
+  text-align:center;
+}
+
+.table-wrap{
+  width:100%;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:white;
+}
+
+th{
+  background:#f8fbff;
+  color:var(--blue);
+  padding:12px 6px;
+  font-size:14px;
+  border:1px solid #d7e3ef;
+  font-weight:900;
+}
+
+td{
+  border:1px solid #d7e3ef;
+  height:78px;
+  text-align:center;
+  background:white;
+  padding:6px;
+  vertical-align:middle;
+}
+
+.day{
+  background:#eef6ff;
+  font-weight:900;
+  width:95px;
+  color:var(--blue);
+  font-size:15px;
+}
+
+.time{
+  direction:ltr;
+  font-size:13px;
+  color:var(--navy);
+}
+
+.slot{
+  margin-bottom:5px;
+  border-radius:10px;
+  padding:3px;
+  transition:.2s;
+}
+
+select{
+  width:100%;
+  height:34px;
+  border-radius:9px;
+  border:1px solid #cbd5e1;
+  font-size:13px;
+  font-weight:900;
+  font-family:Tahoma,Arial;
+  text-align:center;
+  background:white;
+  color:#0f172a;
+  cursor:pointer;
+}
+
+.footer-note{
+  text-align:center;
+  color:#64748b;
+  font-weight:900;
+  margin:18px;
+}
+
+@media(max-width:850px){
+  .topbar{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .brand{
+    flex-direction:column;
+  }
+
+  .home-btn{
+    width:100%;
+  }
+
+  .controls-card{
+    justify-content:center;
+    text-align:center;
+  }
+
+  table{
+    min-width:900px;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
+  }
 }
 </style>
 </head>
@@ -47,30 +308,49 @@ select{width:96%;height:43px;border-radius:9px;border:1px solid #cbd5e1;font-siz
 
 <div class="topbar">
   <div class="brand">
-    <img src="logo.png" class="logo">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
     <div>
-      <h2>جدول دوام الموظفين</h2>
-      <p>Staff Work Schedule</p>
+      <h1>حجز غرف الأطفال</h1>
+      <p>Pediatric Rooms Booking</p>
     </div>
   </div>
-  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+
+  <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
 </div>
 
-<div class="controls">
-  <button onclick="switchSection('men')">قسم الرجال</button>
-  <button onclick="switchSection('women')">قسم النساء</button>
-  <button onclick="switchSection('reception')">الاستقبال</button>
+<div class="main">
+
+  <div class="controls-card">
+    <h2 id="floorTitle" class="floor-title">غرفة الدور الأول</h2>
+
+    <div class="controls">
+      <button id="floor1Btn" class="active" onclick="switchFloor(1)">غرفة الدور الأول</button>
+      <button id="floor2Btn" onclick="switchFloor(2)">غرفة الدور الثاني</button>
+    </div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="schedule-box">
+    <div class="box-title">جدول حجز الغرفة الأسبوعي</div>
+
+    <div class="table-actions">
+      <button onclick="copySmart('السبت')">نسخ السبت إلى الاثنين والأربعاء</button>
+      <button onclick="copySmart('الأحد')">نسخ الأحد إلى الثلاثاء والخميس</button>
+    </div>
+
+    <div id="tablesArea"></div>
+  </div>
+
+  <div class="footer-note">
+    كل وقت يسمح بأخصائيين — وأي تعديل يتم حفظه تلقائيًا ويظهر للجميع
+  </div>
+
 </div>
-
-<h2 id="sectionTitle" class="section-title">قسم الرجال</h2>
-
-<div id="tablesArea"></div>
-
-<div class="note">أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDocs } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -83,242 +363,234 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const workRef = collection(db,"workSchedule");
+const roomsRef = collection(db, "kidsRooms");
 
-let currentSection="men";
-let savedData={};
-
-const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
-
-const sectionTitles={
-  men:"قسم الرجال",
-  women:"قسم النساء",
-  reception:"الاستقبال"
+window.goHome = function(){
+  window.location.href = "index.html";
 };
 
-const shiftTimes={
-  men:{
-    single:"01:00 PM - 09:00 PM",
-    split:"09:00 AM - 01:00 PM<br>04:00 PM - 08:00 PM"
-  },
-  women:{
-    single:"12:00 PM - 08:00 PM",
-    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
-  },
-  reception:{
-    single:"12:00 PM - 08:00 PM",
-    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
-  }
+let currentFloor = 1;
+let savedData = {};
+
+const therapists = {
+  "—":"#ffffff",
+  "د. ريناد حميد":"#fca5a5",
+  "د. ابتسام سويلم":"#fdba74",
+  "د. سلمى فرحان":"#fde68a",
+  "د. هند فهيد":"#bbf7d0",
+  "د. أسماء فهيد":"#a5f3fc",
+  "د. مها فريح":"#bfdbfe",
+  "د. حاتم الاحمدي":"#c7d2fe",
+  "د. عبدالرحمن السويداء":"#ddd6fe",
+  "د. عبدالرحمن السليمي":"#fbcfe8",
+  "د. عبدالعزيز الحمدان":"#fecaca"
 };
 
-const slotsCount={
-  men:{single:2,split:2},
-  women:{single:3,split:3},
-  reception:{single:1,split:2}
-};
-  
-const employees={
-  men:{
-    "—":"#ffffff",
-    "د. حاتم الاحمدي":"#c7d2fe",
-    "د. عبدالرحمن السويداء":"#ddd6fe",
-    "د. عبدالرحمن السليمي":"#fbcfe8",
-    "د. عبدالعزيز الحمدان":"#fecaca"
-  },
-  women:{
-    "—":"#ffffff",
-    "د. ريناد حميد":"#fca5a5",
-    "د. ابتسام سويلم":"#fdba74",
-    "د. سلمى فرحان":"#fde68a",
-    "د. هند فهيد":"#bbf7d0",
-    "د. أسماء فهيد":"#a5f3fc",
-    "د. مها فريح":"#bfdbfe"
-  },
-  reception:{
-    "—":"#ffffff",
-    "أ. مرام ناصر":"#bae6fd",
-    "أ. أشواق سعود":"#bbf7d0",
-    "أ. شهد خلف":"#fde68a"
-  }
-};
+const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-function makeId(section,shift,day,slot){
-  return `${section}_${shift}_${day}_${slot}`.replaceAll(" ","_");
+const morningTimes = [
+  "09:00 AM",
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "01:00 PM",
+  "02:00 PM"
+];
+
+const eveningTimes = [
+  "03:00 PM",
+  "04:00 PM",
+  "05:00 PM",
+  "06:00 PM",
+  "07:00 PM",
+  "08:00 PM",
+  "09:00 PM"
+];
+
+const allTimes = [...morningTimes, ...eveningTimes];
+
+function makeId(floor, day, time, slot){
+  return `floor${floor}_${day}_${time}_${slot}`
+    .replaceAll(" ","_")
+    .replaceAll(":","-");
 }
 
-function renderTables(){
-  const area=document.getElementById("tablesArea");
-  area.innerHTML="";
-  area.innerHTML+=buildTable("دوام شفت واحد","single","شفت واحد",shiftTimes[currentSection].single);
-  area.innerHTML+=buildTable("دوام شفتين","split","شفتين",shiftTimes[currentSection].split);
+function buildLegend(){
+  const legend = document.getElementById("legend");
+  legend.innerHTML = "";
 
-  document.querySelectorAll("select").forEach(s=>colorCell(s));
+  for(let name in therapists){
+    if(name === "—") continue;
+    legend.innerHTML += `<div class="legend-item" style="background:${therapists[name]}">${name}</div>`;
+  }
 }
 
-function buildTable(title,shift,label,time){
-  let html=`
-  <div class="schedule-box">
-    <div class="box-title">
-      <span>${title}</span>
-      <div class="table-actions">
-        <button class="copy-btn" onclick="copySaturday('${shift}')">نسخ السبت لباقي الأسبوع</button>
-        <button class="clear-btn" onclick="clearSchedule('${shift}')">🗑️ حذف هذا الجدول</button>
-      </div>
-    </div>
+function buildTables(){
+  const area = document.getElementById("tablesArea");
+  area.innerHTML = "";
+
+  area.innerHTML += buildTableSection("الفترة الصباحية", morningTimes);
+  area.innerHTML += buildTableSection("الفترة المسائية", eveningTimes);
+
+  document.querySelectorAll("select").forEach(select => {
+    colorCell(select);
+  });
+}
+
+function buildTableSection(title, timeList){
+  let html = `
+    <div class="period-title">${title}</div>
     <div class="table-wrap">
       <table>
-        <tr><th>نوع الدوام</th>`;
+        <tr>
+          <th class="day">اليوم</th>
+  `;
 
-  days.forEach(d=>html+=`<th>${d}</th>`);
-  html+=`</tr><tr>
-    <td class="shift-label">
-      <span class="shift-name">${label}</span>
-      <span class="shift-time">${time}</span>
-    </td>`;
-
-  days.forEach(day=>{
-    html+=`<td>`;
-for(let i=0;i<slotsCount[currentSection][shift];i++){
-  const id=makeId(currentSection,shift,day,i);
-      const value=savedData[id]?.employee || "—";
-      html+=createSelect(id,value);
-    }
-    html+=`</td>`;
+  timeList.forEach(time => {
+    html += `<th class="time">${time}</th>`;
   });
 
-  html+=`</tr></table></div></div>`;
+  html += `</tr>`;
+
+  days.forEach(day => {
+    html += `<tr><td class="day">${day}</td>`;
+
+    timeList.forEach(time => {
+      html += `<td>`;
+
+      for(let slot = 1; slot <= 2; slot++){
+        const cellId = makeId(currentFloor, day, time, slot);
+        const value = savedData[cellId]?.therapist || "—";
+        html += `<div class="slot">${createDropdown(cellId, value)}</div>`;
+      }
+
+      html += `</td>`;
+    });
+
+    html += `</tr>`;
+  });
+
+  html += `
+      </table>
+    </div>
+  `;
+
   return html;
 }
 
-function createSelect(id,value){
-  let opt="";
-  for(let name in employees[currentSection]){
-    opt+=`<option value="${name}" ${name===value?"selected":""}>${name}</option>`;
+function createDropdown(cellId, value){
+  let options = "";
+
+  for(let name in therapists){
+    const selected = name === value ? "selected" : "";
+    options += `<option value="${name}" ${selected}>${name}</option>`;
   }
-  return `<div class="slot"><select data-id="${id}" onchange="save(this)">${opt}</select></div>`;
+
+  return `<select data-id="${cellId}" onchange="saveRoomBooking(this)">${options}</select>`;
 }
 
 function colorCell(select){
-  const wrapper=select.parentElement;
-  const color=employees[currentSection][select.value] || "#ffffff";
-  wrapper.style.background=color;
+  const color = therapists[select.value] || "#ffffff";
+  const slot = select.parentElement;
+  slot.style.background = color;
 
-  if(select.value==="—"){
-    wrapper.style.background="#ffffff";
-    select.style.color="#0f172a";
+  if(select.value === "—"){
+    slot.style.background = "#ffffff";
+    select.style.color = "#0f172a";
   }else{
-    select.style.color="#000";
-    select.style.fontWeight="bold";
+    select.style.color = "#000";
+    select.style.fontWeight = "900";
   }
 }
 
-function isDuplicateInSameDay(select){
-  const selected=select.value;
-  if(selected==="—") return false;
+window.saveRoomBooking = async function(select){
+  const id = select.dataset.id;
+  const therapist = select.value;
 
-  const td=select.closest("td");
-  const row=td.parentElement;
-  const dayIndex=Array.from(row.children).indexOf(td);
-  let count=0;
+  colorCell(select);
 
-  document.querySelectorAll("table tr").forEach(r=>{
-    const cells=r.children;
-    if(cells.length>dayIndex){
-      cells[dayIndex].querySelectorAll("select").forEach(s=>{
-        if(s.value===selected) count++;
-      });
-    }
-  });
-
-  return count>1;
-}
-
-window.save=async function(el){
-  const id=el.dataset.id;
-  const val=el.value;
-
-  if(isDuplicateInSameDay(el)){
-    alert("هذا الاسم موجود مسبقًا في نفس اليوم");
-    el.value="—";
-    colorCell(el);
-    await deleteDoc(doc(db,"workSchedule",id));
+  if(therapist === "—"){
+    await deleteDoc(doc(db, "kidsRooms", id));
     return;
   }
 
-  colorCell(el);
-
-  if(val==="—"){
-    await deleteDoc(doc(db,"workSchedule",id));
-    return;
-  }
-
-  await setDoc(doc(db,"workSchedule",id),{
+  await setDoc(doc(db, "kidsRooms", id), {
     id,
-    section:currentSection,
-    employee:val,
-    updatedAt:new Date()
+    floor: currentFloor,
+    therapist,
+    updatedAt: new Date()
   });
 };
 
-window.copySaturday = async function(shift){
-  if(!confirm("هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع؟")) return;
+window.copySmart = async function(sourceDay){
+  let targetDays = [];
 
-  const saturday = "السبت";
-  const otherDays = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+  if(sourceDay === "السبت"){
+    targetDays = ["الاثنين","الأربعاء"];
+  }
+
+  if(sourceDay === "الأحد"){
+    targetDays = ["الثلاثاء","الخميس"];
+  }
+
+  if(targetDays.length === 0) return;
+
+  if(!confirm(`هل تريد نسخ حجوزات ${sourceDay} إلى ${targetDays.join(" و ")}؟`)) return;
+
   const writes = [];
 
-  for(let i = 0; i < slotsCount[currentSection]; i++){
-    const saturdayId = makeId(currentSection, shift, saturday, i);
-    const employee = savedData[saturdayId]?.employee || "—";
+  for(const time of allTimes){
+    for(let slot = 1; slot <= 2; slot++){
+      const sourceId = makeId(currentFloor, sourceDay, time, slot);
+      const therapist = savedData[sourceId]?.therapist || "—";
 
-    for(const day of otherDays){
-      const targetId = makeId(currentSection, shift, day, i);
+      for(const targetDay of targetDays){
+        const targetId = makeId(currentFloor, targetDay, time, slot);
 
-      if(employee === "—"){
-        writes.push(deleteDoc(doc(db, "workSchedule", targetId)));
-      } else {
-        writes.push(setDoc(doc(db, "workSchedule", targetId), {
-          id: targetId,
-          section: currentSection,
-          employee: employee,
-          updatedAt: new Date()
-        }));
+        if(therapist === "—"){
+          writes.push(deleteDoc(doc(db, "kidsRooms", targetId)));
+        }else{
+          writes.push(setDoc(doc(db, "kidsRooms", targetId), {
+            id: targetId,
+            floor: currentFloor,
+            therapist,
+            updatedAt: new Date()
+          }));
+        }
       }
     }
   }
 
   await Promise.all(writes);
-  alert("تم نسخ يوم السبت لباقي أيام الأسبوع");
+  alert("تم النسخ بنجاح");
 };
 
-window.clearSchedule=async function(shift){
-  if(!confirm("متأكد تبغى تحذف هذا الجدول بالكامل؟")) return;
+window.switchFloor = function(floor){
+  currentFloor = floor;
 
-  const snap=await getDocs(workRef);
-  const deletes=[];
+  document.getElementById("floorTitle").innerText =
+    floor === 1 ? "غرفة الدور الأول" : "غرفة الدور الثاني";
 
-  snap.forEach(item=>{
-    if(item.id.includes(`${currentSection}_${shift}_`)){
-      deletes.push(deleteDoc(doc(db,"workSchedule",item.id)));
-    }
+  document.getElementById("floor1Btn").classList.toggle("active", floor === 1);
+  document.getElementById("floor2Btn").classList.toggle("active", floor === 2);
+
+  buildTables();
+};
+
+function listenRooms(){
+  onSnapshot(roomsRef, (snapshot) => {
+    savedData = {};
+
+    snapshot.forEach(item => {
+      savedData[item.id] = item.data();
+    });
+
+    buildTables();
   });
+}
 
-  await Promise.all(deletes);
-};
-
-window.switchSection=function(sec){
-  currentSection=sec;
-  document.getElementById("sectionTitle").innerText=sectionTitles[sec];
-  renderTables();
-};
-
-onSnapshot(workRef,(snap)=>{
-  savedData={};
-  snap.forEach(d=>{
-    savedData[d.id]=d.data();
-  });
-  renderTables();
-});
+buildLegend();
+listenRooms();
 </script>
 
 </body>
