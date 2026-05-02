@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACL Return-to-Sport Assessment</title>
+
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --green:#166534;
+  --yellow:#92400e;
+  --red:#b91c1c;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  direction:rtl;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:18px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  box-shadow:0 14px 35px rgba(8,52,95,.20);
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  background:white;
+  border-radius:18px;
+  padding:7px;
+  box-shadow:0 10px 22px rgba(0,0,0,.20);
+}
+
+.brand h1{
+  margin:0;
+  font-size:24px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  direction:ltr;
+  font-size:13px;
+  color:#dbeafe;
+}
+
+.home-btn{
+  background:white;
+  color:var(--blue);
+  border:none;
+  padding:11px 18px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.main{
+  width:94%;
+  max-width:1250px;
+  margin:26px auto;
+}
+
+.intro{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  box-shadow:0 14px 34px rgba(15,23,42,.08);
+  margin-bottom:20px;
+}
+
+.intro h2{
+  margin:0;
+  color:var(--blue);
+  font-size:28px;
+  font-weight:900;
+}
+
+.intro p{
+  margin:10px 0 0;
+  color:var(--muted);
+  line-height:1.9;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+  margin-bottom:20px;
+}
+
+.card-title{
+  margin:0 0 16px;
+  color:var(--blue);
+  font-size:22px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.field label{
+  display:block;
+  color:#334155;
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:7px;
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:12px;
+  font-family:Tahoma,Arial,sans-serif;
+  font-size:14px;
+  outline:none;
+  background:white;
+}
+
+textarea{
+  height:105px;
+  resize:vertical;
+  line-height:1.8;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.12);
+}
+
+.test-box{
+  background:#f8fbff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+}
+
+.test-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.test-head strong{
+  color:var(--blue);
+  font-size:15px;
+}
+
+.help-btn{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  border:none;
+  background:#eef6ff;
+  color:var(--blue);
+  font-weight:900;
+  cursor:pointer;
+}
+
+.help-text{
+  display:none;
+  background:#0f172a;
+  color:white;
+  border-radius:12px;
+  padding:11px;
+  font-size:12px;
+  line-height:1.7;
+  direction:ltr;
+  text-align:left;
+  margin-bottom:10px;
+}
+
+.lsi-result{
+  margin-top:10px;
+  text-align:center;
+  font-weight:900;
+  border-radius:12px;
+  padding:9px;
+  background:#eef6ff;
+  color:var(--blue);
+}
+
+.status-row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.status-box{
+  background:#f8fbff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+}
+
+.status-box label{
+  color:var(--blue);
+  font-weight:900;
+  display:block;
+  margin-bottom:8px;
+}
+
+.result-card{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:18px;
+  align-items:stretch;
+}
+
+.score-box{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  border-radius:22px;
+  padding:25px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.score{
+  font-size:52px;
+  font-weight:900;
+  direction:ltr;
+}
+
+.score-label{
+  margin-top:8px;
+  font-size:15px;
+  color:#dbeafe;
+}
+
+.readiness{
+  background:#f8fbff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px;
+}
+
+.badge{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.good{background:#dcfce7;color:var(--green)}
+.mid{background:#fef3c7;color:var(--yellow)}
+.bad{background:#fee2e2;color:var(--red)}
+
+.action-row{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.action-row button{
+  flex:1;
+  min-width:190px;
+}
+
+.primary-btn,.secondary-btn{
+  border:none;
+  border-radius:14px;
+  padding:14px 18px;
+  font-weight:900;
+  cursor:pointer;
+  font-size:15px;
+}
+
+.primary-btn{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  box-shadow:0 12px 25px rgba(0,91,159,.18);
+}
+
+.secondary-btn{
+  background:#eef6ff;
+  color:var(--blue);
+}
+
+/* PRINT */
+#printArea{
+  display:none;
+}
+
+@media print{
+  @page{
+    size:A4;
+    margin:12mm;
+  }
+
+  body *{
+    visibility:hidden;
+  }
+
+  #printArea,
+  #printArea *{
+    visibility:visible;
+  }
+
+  #printArea{
+    position:absolute;
+    top:0;
+    right:0;
+    width:100%;
+    display:block !important;
+  }
+
+  .no-print{
+    display:none !important;
+  }
+}
+
+.print-page{
+  background:white;
+  color:#0f172a;
+  font-family:Tahoma,Arial,sans-serif;
+  direction:rtl;
+  padding:0;
+}
+
+.print-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:3px solid #005b9f;
+  padding-bottom:12px;
+  margin-bottom:16px;
+}
+
+.print-logo{
+  width:115px;
+  height:auto;
+  object-fit:contain;
+}
+
+.print-title{
+  text-align:center;
+  flex:1;
+}
+
+.print-title h1{
+  margin:0;
+  color:#005b9f;
+  font-size:22px;
+  font-weight:900;
+}
+
+.print-title h2{
+  margin:6px 0 0;
+  color:#f59e0b;
+  font-size:16px;
+  direction:ltr;
+}
+
+.print-meta{
+  direction:ltr;
+  text-align:left;
+  font-size:11px;
+  color:#64748b;
+}
+
+.print-section{
+  border:1px solid #dbe4ee;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+.print-section h3{
+  margin:0 0 10px;
+  color:#005b9f;
+  font-size:15px;
+}
+
+.print-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.print-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:11.5px;
+}
+
+.print-table th{
+  background:#005b9f;
+  color:white;
+  padding:7px;
+  border:1px solid #005b9f;
+}
+
+.print-table td{
+  border:1px solid #dbe4ee;
+  padding:7px;
+  text-align:center;
+}
+
+.print-summary{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:12px;
+  align-items:center;
+}
+
+.print-score{
+  background:#eef6ff;
+  border:1px solid #bfdbfe;
+  color:#005b9f;
+  border-radius:16px;
+  text-align:center;
+  padding:18px;
+}
+
+.print-score strong{
+  display:block;
+  direction:ltr;
+  font-size:34px;
+  font-weight:900;
+}
+
+.print-note{
+  font-size:12px;
+  line-height:1.8;
+}
+
+.print-plan{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.plan-box{
+  border:1px solid #dbe4ee;
+  border-radius:10px;
+  padding:10px;
+  font-size:11.5px;
+  line-height:1.7;
+}
+
+.signature{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:18px;
+}
+
+.signature-box{
+  border-top:1px solid #94a3b8;
+  padding-top:8px;
+  font-size:12px;
+}
+
+.disclaimer{
+  margin-top:12px;
+  border-top:1px solid #e2e8f0;
+  padding-top:10px;
+  font-size:10.5px;
+  color:#475569;
+  line-height:1.7;
+}
+
+@media(max-width:900px){
+  .grid,.grid-3,.status-row,.result-card{
+    grid-template-columns:1fr;
+  }
+
+  .topbar{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .brand{
+    flex-direction:column;
+  }
+
+  .home-btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar no-print">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>تقييم العودة للرياضة بعد الرباط الصليبي</h1>
+      <p>ACL Return-to-Sport Assessment</p>
+    </div>
+  </div>
+
+  <button class="home-btn" onclick="location.href='functional-assessments.html'">رجوع</button>
+</div>
+
+<div class="main no-print">
+
+  <div class="intro">
+    <h2>ACL Return-to-Sport Assessment</h2>
+    <p>
+      نموذج وظيفي للأخصائي يساعد في مقارنة أداء الطرف المصاب بالطرف غير المصاب باستخدام LSI، مع مراعاة الألم والتورم وجودة الحركة قبل إصدار تقرير إرشادي للمريض.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">بيانات المريض | Patient Information</h2>
+
+    <div class="grid">
+      <div class="field">
+        <label>اسم المريض | Patient Name</label>
+        <input id="patientName" placeholder="اكتب اسم المريض">
+      </div>
+
+      <div class="field">
+        <label>الأخصائي | Therapist</label>
+        <select id="therapist">
+          <option value="">اختر الأخصائي</option>
+          <option>د. حاتم الأحمدي</option>
+          <option>د. عبدالرحمن السويداء</option>
+          <option>د. عبدالرحمن السليمي</option>
+          <option>د. عبدالعزيز الحمدان</option>
+          <option>د. ريناد حميد</option>
+          <option>د. ابتسام سويلم</option>
+          <option>د. سلمى فرحان</option>
+          <option>د. هند فهيد</option>
+          <option>د. أسماء فهيد</option>
+          <option>د. مها فريح</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>نوع الإصابة | Injury</label>
+        <input id="injury" value="ACL Reconstruction / تأهيل الرباط الصليبي">
+      </div>
+
+      <div class="field">
+        <label>الرياضة | Sport</label>
+        <input id="sport" placeholder="مثال: كرة قدم">
+      </div>
+
+      <div class="field">
+        <label>تاريخ التقييم | Assessment Date</label>
+        <input type="date" id="assessmentDate">
+      </div>
+
+      <div class="field">
+        <label>عدد الأسابيع بعد العملية/الإصابة | Weeks Post-op/Injury</label>
+        <input type="number" id="weeks" placeholder="مثال: 24">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">اختبارات القفز | Hop Tests</h2>
+
+    <div class="grid-3">
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Single Hop Test</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+          Purpose: Assess single-leg power and limb symmetry. Measure the best distance for injured and uninjured limbs, then calculate LSI.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured</label>
+            <input type="number" id="singleInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured</label>
+            <input type="number" id="singleUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="lsi-result" id="singleResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Triple Hop Test</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+          Purpose: Evaluate repeated power, dynamic control, and landing consistency over three consecutive hops.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured</label>
+            <input type="number" id="tripleInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured</label>
+            <input type="number" id="tripleUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="lsi-result" id="tripleResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Crossover Hop Test</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+          Purpose: Assess dynamic knee stability and control during directional change across a straight line.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured</label>
+            <input type="number" id="crossInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured</label>
+            <input type="number" id="crossUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="lsi-result" id="crossResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>6m Timed Hop</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+          Purpose: Measure functional speed and coordination. For timed tests, lower time is better, so LSI is calculated as uninjured time ÷ injured time × 100.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured Time</label>
+            <input type="number" id="timedInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured Time</label>
+            <input type="number" id="timedUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="lsi-result" id="timedResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Y-Balance / Control</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+          Purpose: Assess dynamic balance and side-to-side control. Enter composite or best measured score for each limb.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Injured</label>
+            <input type="number" id="balanceInjured" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Uninjured</label>
+            <input type="number" id="balanceUninjured" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="lsi-result" id="balanceResult">LSI: —</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Movement Quality</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+          Purpose: Clinical observation of knee valgus, trunk control, landing stability, and confidence during movement.
+        </div>
+        <div class="field">
+          <label>Quality Rating</label>
+          <select id="movementQuality" onchange="calculateAll()">
+            <option value="good">Good</option>
+            <option value="fair">Fair</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+        <div class="lsi-result">Clinical Observation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">الحالة السريرية | Clinical Status</h2>
+
+    <div class="status-row">
+      <div class="status-box">
+        <label>Pain أثناء/بعد الاختبار</label>
+        <select id="pain" onchange="calculateAll()">
+          <option value="no">No Pain</option>
+          <option value="mild">Mild Pain</option>
+          <option value="yes">Pain Present</option>
+        </select>
+      </div>
+
+      <div class="status-box">
+        <label>Swelling بعد الجهد</label>
+        <select id="swelling" onchange="calculateAll()">
+          <option value="no">No Swelling</option>
+          <option value="yes">Swelling Present</option>
+        </select>
+      </div>
+
+      <div class="status-box">
+        <label>ROM</label>
+        <select id="rom" onchange="calculateAll()">
+          <option value="full">Full / Symmetrical</option>
+          <option value="limited">Limited</option>
+        </select>
+      </div>
+
+      <div class="status-box">
+        <label>Stability</label>
+        <select id="stability" onchange="calculateAll()">
+          <option value="stable">Stable</option>
+          <option value="unstable">Instability Reported</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label>Clinical Notes | ملاحظات الأخصائي</label>
+      <textarea id="clinicalNotes" placeholder="اكتب ملاحظاتك السريرية المختصرة هنا..."></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">النتيجة | Result</h2>
+
+    <div class="result-card">
+      <div class="score-box">
+        <div class="score" id="overallScore">0%</div>
+        <div class="score-label">Overall Functional Score</div>
+      </div>
+
+      <div class="readiness">
+        <div id="readinessBadge" class="badge bad">Continue Rehab</div>
+        <p id="readinessText" style="line-height:1.9;color:#334155;margin:0">
+          أدخل نتائج الاختبارات لحساب التقييم.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">إصدار التقرير | Generate Report</h2>
+    <div class="action-row">
+      <button class="primary-btn" onclick="generateReport()">معاينة وطباعة التقرير</button>
+      <button class="secondary-btn" onclick="calculateAll()">تحديث الحساب</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="printArea">
+  <div class="print-page" id="printPage">
+
+    <div class="print-header">
+      <img src="logo.png" class="print-logo" alt="Akaz Logo">
+
+      <div class="print-title">
+        <h1>تقرير إرشادي للعودة التدريجية للنشاط الرياضي</h1>
+        <h2>Return-to-Sport Guidance Report</h2>
+      </div>
+
+      <div class="print-meta">
+        AKAZ Physiotherapy Center<br>
+        مركز عكاز للعلاج الطبيعي
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>بيانات المريض | Patient Information</h3>
+      <div class="print-grid">
+        <div><b>اسم المريض:</b> <span id="prPatientName"></span></div>
+        <div><b>Patient:</b> <span id="prPatientNameEn"></span></div>
+        <div><b>الأخصائي:</b> <span id="prTherapist"></span></div>
+        <div><b>Therapist:</b> <span id="prTherapistEn"></span></div>
+        <div><b>الإصابة:</b> <span id="prInjury"></span></div>
+        <div><b>Sport:</b> <span id="prSport"></span></div>
+        <div><b>تاريخ التقييم:</b> <span id="prDate"></span></div>
+        <div><b>Weeks:</b> <span id="prWeeks"></span></div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>نتائج الاختبارات | Functional Test Results</h3>
+      <table class="print-table">
+        <tr>
+          <th>Test</th>
+          <th>Injured</th>
+          <th>Uninjured</th>
+          <th>LSI%</th>
+          <th>Rating</th>
+        </tr>
+        <tr>
+          <td>Single Hop</td>
+          <td id="prSingleI"></td>
+          <td id="prSingleU"></td>
+          <td id="prSingleLsi"></td>
+          <td id="prSingleRate"></td>
+        </tr>
+        <tr>
+          <td>Triple Hop</td>
+          <td id="prTripleI"></td>
+          <td id="prTripleU"></td>
+          <td id="prTripleLsi"></td>
+          <td id="prTripleRate"></td>
+        </tr>
+        <tr>
+          <td>Crossover Hop</td>
+          <td id="prCrossI"></td>
+          <td id="prCrossU"></td>
+          <td id="prCrossLsi"></td>
+          <td id="prCrossRate"></td>
+        </tr>
+        <tr>
+          <td>6m Timed Hop</td>
+          <td id="prTimedI"></td>
+          <td id="prTimedU"></td>
+          <td id="prTimedLsi"></td>
+          <td id="prTimedRate"></td>
+        </tr>
+        <tr>
+          <td>Y-Balance / Control</td>
+          <td id="prBalanceI"></td>
+          <td id="prBalanceU"></td>
+          <td id="prBalanceLsi"></td>
+          <td id="prBalanceRate"></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="print-section">
+      <h3>ملخص التقييم | Assessment Summary</h3>
+      <div class="print-summary">
+        <div class="print-score">
+          <strong id="prOverallScore">0%</strong>
+          Overall Score
+        </div>
+        <div class="print-note">
+          <b id="prReadinessTitle"></b>
+          <p id="prReadinessText"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>خطة العودة التدريجية | Gradual Return Plan</h3>
+      <div class="print-plan">
+        <div class="plan-box">
+          <b>Week 1–2</b><br>
+          جري خفيف، تمارين توازن، تمارين قوة أساسية بدون احتكاك.<br>
+          Light running, balance and basic strength work.
+        </div>
+        <div class="plan-box">
+          <b>Week 3–4</b><br>
+          تغيير اتجاه تدريجي، تمارين سرعة، رفع مستوى الحمل حسب الأعراض.<br>
+          Progressive agility, speed drills and load progression.
+        </div>
+        <div class="plan-box">
+          <b>Week 5+</b><br>
+          عودة تدريجية للتمارين الجماعية حسب استجابة الركبة وتوصية الأخصائي.<br>
+          Gradual sport-specific participation as tolerated.
+        </div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>ملاحظات الأخصائي | Clinical Notes</h3>
+      <div class="print-note" id="prNotes"></div>
+    </div>
+
+    <div class="signature">
+      <div class="signature-box">
+        اسم الأخصائي / Therapist Name:<br>
+        <span id="prSignatureName"></span>
+      </div>
+
+      <div class="signature-box">
+        التوقيع والختم / Signature & Stamp:
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <b>English:</b>
+      Based on the functional tests performed, the patient shows an appropriate level for a gradual return to sport. Progression should follow the recommended plan and be adjusted according to symptoms.
+      <br>
+      <b>العربية:</b>
+      بناءً على الاختبارات الوظيفية المنفذة، يظهر المريض مستوى مناسبًا للعودة التدريجية للنشاط الرياضي، مع ضرورة الالتزام بالخطة ومراقبة الأعراض.
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleHelp(btn){
+  const box = btn.closest(".test-box").querySelector(".help-text");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function num(id){
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+
+function lsiHigherBetter(injured, uninjured){
+  if(!injured || !uninjured) return 0;
+  return Math.round((injured / uninjured) * 100);
+}
+
+function lsiTimed(injuredTime, uninjuredTime){
+  if(!injuredTime || !uninjuredTime) return 0;
+  return Math.round((uninjuredTime / injuredTime) * 100);
+}
+
+function ratePercent(value){
+  if(value >= 90) return "Excellent";
+  if(value >= 80) return "Good";
+  if(value >= 70) return "Fair";
+  if(value > 0) return "Needs Improvement";
+  return "—";
+}
+
+function colorResult(el,value){
+  el.style.background = "#eef6ff";
+  el.style.color = "#005b9f";
+
+  if(value >= 90){
+    el.style.background = "#dcfce7";
+    el.style.color = "#166534";
+  }else if(value >= 80){
+    el.style.background = "#fef3c7";
+    el.style.color = "#92400e";
+  }else if(value > 0){
+    el.style.background = "#fee2e2";
+    el.style.color = "#b91c1c";
+  }
+}
+
+function getResults(){
+  const single = lsiHigherBetter(num("singleInjured"), num("singleUninjured"));
+  const triple = lsiHigherBetter(num("tripleInjured"), num("tripleUninjured"));
+  const cross = lsiHigherBetter(num("crossInjured"), num("crossUninjured"));
+  const timed = lsiTimed(num("timedInjured"), num("timedUninjured"));
+  const balance = lsiHigherBetter(num("balanceInjured"), num("balanceUninjured"));
+
+  const arr = [single,triple,cross,timed,balance].filter(x => x > 0);
+  const avg = arr.length ? Math.round(arr.reduce((a,b)=>a+b,0) / arr.length) : 0;
+
+  return {single,triple,cross,timed,balance,avg};
+}
+
+function hasClinicalWarning(){
+  return (
+    document.getElementById("pain").value === "yes" ||
+    document.getElementById("swelling").value === "yes" ||
+    document.getElementById("rom").value === "limited" ||
+    document.getElementById("stability").value === "unstable" ||
+    document.getElementById("movementQuality").value === "poor"
+  );
+}
+
+function getReadiness(avg){
+  const warning = hasClinicalWarning();
+
+  if(warning){
+    return {
+      cls:"bad",
+      title:"Needs Clinical Caution",
+      ar:"توجد عوامل سريرية تستدعي الحذر. لا يُنصح بالانتقال للمرحلة التالية إلا بعد مراجعة الأخصائي واستقرار الأعراض.",
+      en:"Clinical caution is advised due to symptoms or movement quality findings."
+    };
+  }
+
+  if(avg >= 90){
+    return {
+      cls:"good",
+      title:"Advanced Gradual Return",
+      ar:"المريض يظهر مستوى وظيفيًا مناسبًا للعودة التدريجية المتقدمة للنشاط الرياضي مع الالتزام بالخطة ومراقبة الأعراض.",
+      en:"The patient demonstrates an appropriate functional level for advanced gradual return to sport."
+    };
+  }
+
+  if(avg >= 80){
+    return {
+      cls:"mid",
+      title:"Progressive Return with Caution",
+      ar:"المريض مناسب للعودة التدريجية بحذر مع الاستمرار في تقوية الطرف المصاب ومراقبة الأعراض.",
+      en:"The patient may progress gradually with caution and continued strengthening."
+    };
+  }
+
+  if(avg >= 70){
+    return {
+      cls:"mid",
+      title:"Continue Rehabilitation",
+      ar:"المريض يحتاج استمرار التأهيل قبل الانتقال لمراحل رياضية أعلى.",
+      en:"The patient should continue rehabilitation before higher-level sport progression."
+    };
+  }
+
+  return {
+    cls:"bad",
+    title:"Not Ready for Sport Progression",
+    ar:"النتائج الحالية لا تدعم العودة للنشاط الرياضي، ويُنصح بالاستمرار في التأهيل.",
+    en:"Current results do not support sport progression at this stage."
+  };
+}
+
+function calculateAll(){
+  const r = getResults();
+
+  const fields = [
+    ["singleResult",r.single],
+    ["tripleResult",r.triple],
+    ["crossResult",r.cross],
+    ["timedResult",r.timed],
+    ["balanceResult",r.balance]
+  ];
+
+  fields.forEach(([id,val])=>{
+    const el = document.getElementById(id);
+    el.innerText = val ? `LSI: ${val}% - ${ratePercent(val)}` : "LSI: —";
+    colorResult(el,val);
+  });
+
+  document.getElementById("overallScore").innerText = r.avg + "%";
+
+  const readiness = getReadiness(r.avg);
+  const badge = document.getElementById("readinessBadge");
+  badge.className = "badge " + readiness.cls;
+  badge.innerText = readiness.title;
+
+  document.getElementById("readinessText").innerText =
+    readiness.ar + " / " + readiness.en;
+}
+
+function fillPrint(){
+  const r = getResults();
+  const readiness = getReadiness(r.avg);
+
+  document.getElementById("prPatientName").innerText = document.getElementById("patientName").value || "—";
+  document.getElementById("prPatientNameEn").innerText = document.getElementById("patientName").value || "—";
+  document.getElementById("prTherapist").innerText = document.getElementById("therapist").value || "—";
+  document.getElementById("prTherapistEn").innerText = document.getElementById("therapist").value || "—";
+  document.getElementById("prInjury").innerText = document.getElementById("injury").value || "—";
+  document.getElementById("prSport").innerText = document.getElementById("sport").value || "—";
+  document.getElementById("prDate").innerText = document.getElementById("assessmentDate").value || "—";
+  document.getElementById("prWeeks").innerText = document.getElementById("weeks").value || "—";
+
+  const rows = [
+    ["Single", "singleInjured", "singleUninjured", r.single],
+    ["Triple", "tripleInjured", "tripleUninjured", r.triple],
+    ["Cross", "crossInjured", "crossUninjured", r.cross],
+    ["Timed", "timedInjured", "timedUninjured", r.timed],
+    ["Balance", "balanceInjured", "balanceUninjured", r.balance]
+  ];
+
+  rows.forEach(([name,inj,un,lsi])=>{
+    document.getElementById(`pr${name}I`).innerText = document.getElementById(inj).value || "—";
+    document.getElementById(`pr${name}U`).innerText = document.getElementById(un).value || "—";
+    document.getElementById(`pr${name}Lsi`).innerText = lsi ? lsi + "%" : "—";
+    document.getElementById(`pr${name}Rate`).innerText = ratePercent(lsi);
+  });
+
+  document.getElementById("prOverallScore").innerText = r.avg + "%";
+  document.getElementById("prReadinessTitle").innerText = readiness.title;
+  document.getElementById("prReadinessText").innerText = readiness.ar + "\n" + readiness.en;
+
+  document.getElementById("prNotes").innerText = document.getElementById("clinicalNotes").value || "لا توجد ملاحظات إضافية.";
+  document.getElementById("prSignatureName").innerText = document.getElementById("therapist").value || "—";
+}
+
+function generateReport(){
+  if(!document.getElementById("patientName").value.trim()){
+    alert("اكتب اسم المريض أولاً");
+    return;
+  }
+
+  if(!document.getElementById("therapist").value){
+    alert("اختر الأخصائي أولاً");
+    return;
+  }
+
+  calculateAll();
+  fillPrint();
+
+  document.getElementById("printArea").style.display = "block";
+  window.print();
+}
+
+document.getElementById("assessmentDate").valueAsDate = new Date();
+calculateAll();
+</script>
+
+</body>
+</html>
