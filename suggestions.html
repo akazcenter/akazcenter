@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاقتراحات</title>
+<style>
+body{
+  margin:0;
+  font-family:Tahoma,Arial;
+  direction:rtl;
+  background:#f4f8fc;
+  color:#0f172a;
+}
 
+.topbar{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  padding:20px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.home-btn{
+  background:white;
+  color:#005b9f;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.box{
+  width:90%;
+  max-width:700px;
+  margin:40px auto;
+  background:white;
+  border-radius:22px;
+  padding:25px;
+  box-shadow:0 12px 30px rgba(15,23,42,.10);
+}
+
+h1{
+  color:#005b9f;
+  margin-top:0;
+}
+
+label{
+  display:block;
+  margin-top:15px;
+  font-weight:bold;
+  color:#005b9f;
+}
+
+select,textarea{
+  width:100%;
+  margin-top:8px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:12px;
+  font-family:Tahoma,Arial;
+  font-size:15px;
+}
+
+textarea{
+  height:150px;
+  resize:vertical;
+}
+
+.submit-btn{
+  margin-top:20px;
+  width:100%;
+  background:#005b9f;
+  color:white;
+  border:none;
+  padding:14px;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <h2>الاقتراحات</h2>
+  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+</div>
+
+<div class="box">
+  <h1>عندك فكرة؟</h1>
+  <p>اكتب أي اقتراح يساعد في تطوير العمل أو تحسين تجربة المريض داخل المركز.</p>
+
+  <label>الاسم</label>
+  <select>
+    <option>اختياري</option>
+    <option>د. حاتم الأحمدي</option>
+    <option>د. عبدالرحمن السويداء</option>
+    <option>د. عبدالرحمن السليمي</option>
+    <option>د. ريناد حميد</option>
+    <option>د. ابتسام سويلم</option>
+    <option>د. سلمى فرحان</option>
+    <option>د. هند فهيد</option>
+    <option>د. أسماء فهيد</option>
+    <option>د. مها فريح</option>
+    <option>الاستقبال</option>
+  </select>
+
+  <label>الاقتراح</label>
+  <textarea placeholder="اكتب اقتراحك هنا..."></textarea>
+
+  <button class="submit-btn">إرسال الاقتراح</button>
+</div>
+
+</body>
+</html>
