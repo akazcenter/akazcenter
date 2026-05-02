@@ -344,18 +344,26 @@ body{
 }
 
 .help-btn{
-  width:32px;
-  height:32px;
+  width:30px;
+  height:30px;
   border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#eef6ff;
-  color:#075985;
-  border:1px solid #cfe8ff;
-  font-size:16px;
+  background:#ffffff;
+  color:#005b9f;
+  border:1px solid #dbeafe;
+  font-size:15px;
+  font-weight:900;
   transition:.25s;
-  box-shadow:0 6px 14px rgba(0,0,0,.08);
+  box-shadow:0 6px 14px rgba(0,91,159,.12);
+}
+
+.help-btn::before{
+  content:"i";
+  font-family:Arial,sans-serif;
+  font-style:normal;
+  font-weight:900;
 }
 
 .help-wrap:hover .help-btn{
