@@ -48,9 +48,16 @@ body{
 /* first choice */
 .choice-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(2,1fr);
   gap:22px;
   margin:40px auto;
+}
+
+.choice-card.view-card{
+  grid-column:1 / -1;
+  max-width:520px;
+  width:100%;
+  margin:0 auto;
 }
 .choice-card{
   background:white;
