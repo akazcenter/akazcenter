@@ -12,9 +12,7 @@
   --orange:#f59e0b;
   --text:#0f172a;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
@@ -22,7 +20,6 @@ body{
   background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
 }
-
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
@@ -35,51 +32,50 @@ body{
   border-bottom-left-radius:28px;
   border-bottom-right-radius:28px;
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
+.brand{display:flex;align-items:center;gap:16px}
 .logo{
-  width:72px;
-  height:72px;
-  object-fit:contain;
-  background:white;
-  border-radius:18px;
-  padding:7px;
-  box-shadow:0 10px 22px rgba(0,0,0,.20);
+  width:72px;height:72px;object-fit:contain;background:white;
+  border-radius:18px;padding:7px;box-shadow:0 10px 22px rgba(0,0,0,.20);
 }
-
-.brand h1{
-  margin:0;
-  font-size:26px;
-  font-weight:900;
-}
-
-.brand p{
-  margin:5px 0 0;
-  direction:ltr;
-  font-size:13px;
-  color:#dbeafe;
-}
-
+.brand h1{margin:0;font-size:26px;font-weight:900}
+.brand p{margin:5px 0 0;direction:ltr;font-size:13px;color:#dbeafe}
 .home-btn{
-  background:white;
-  color:var(--blue);
-  border:none;
-  padding:11px 18px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:bold;
+  background:white;color:var(--blue);border:none;padding:11px 18px;
+  border-radius:12px;cursor:pointer;font-weight:bold;
 }
+.main{width:96%;max-width:1500px;margin:26px auto}
 
-.main{
-  width:96%;
-  max-width:1500px;
-  margin:26px auto;
+/* first choice */
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+  margin:40px auto;
 }
+.choice-card{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:24px;
+  min-height:170px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 14px 34px rgba(15,23,42,.09);
+  transition:.25s;
+  text-align:center;
+}
+.choice-card:hover{
+  transform:translateY(-7px);
+  background:#eef6ff;
+  box-shadow:0 22px 48px rgba(15,23,42,.15);
+}
+.choice-icon{font-size:42px;margin-bottom:12px}
+.choice-card h3{margin:0;color:var(--blue);font-size:24px;font-weight:900}
+.choice-card p{margin:8px 0 0;color:var(--orange);font-weight:bold;direction:ltr}
+
+.page-section{display:none}
 
 .controls-card{
   background:white;
@@ -93,203 +89,128 @@ body{
   gap:15px;
   flex-wrap:wrap;
 }
-
-.floor-title{
-  margin:0;
-  color:var(--blue);
-  font-size:24px;
-  font-weight:900;
-}
-
-.controls{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
+.floor-title{margin:0;color:var(--blue);font-size:24px;font-weight:900}
+.controls{display:flex;gap:10px;flex-wrap:wrap}
 .controls button{
-  padding:11px 24px;
-  border:none;
-  background:var(--blue);
-  color:white;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:bold;
+  padding:11px 24px;border:none;background:var(--blue);color:white;
+  border-radius:12px;cursor:pointer;font-weight:bold;
 }
-
+.controls .back-btn{background:#eef6ff;color:var(--blue)}
 .legend{
-  margin:18px 0;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
+  margin:18px 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
 }
-
 .legend-item{
-  padding:8px 13px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:bold;
+  padding:8px 13px;border-radius:999px;font-size:13px;font-weight:bold;
   border:1px solid #e2e8f0;
 }
-
 .schedule-box{
-  background:white;
-  border-radius:24px;
-  box-shadow:0 16px 38px rgba(15,23,42,.10);
-  overflow:hidden;
-  border:1px solid #e2e8f0;
-  margin-bottom:22px;
+  background:white;border-radius:24px;box-shadow:0 16px 38px rgba(15,23,42,.10);
+  overflow:hidden;border:1px solid #e2e8f0;margin-bottom:22px;
 }
-
 .box-title{
   background:linear-gradient(90deg,var(--orange),#ffbd4a);
-  color:white;
-  padding:15px 20px;
-  font-size:21px;
-  font-weight:900;
-  text-align:center;
+  color:white;padding:15px 20px;font-size:21px;font-weight:900;text-align:center;
 }
-
 .table-actions{
-  padding:13px;
-  background:#fff7ed;
-  border-bottom:1px solid #fed7aa;
-  text-align:center;
-  color:#9a3412;
-  font-weight:bold;
-  font-size:14px;
+  padding:13px;background:#fff7ed;border-bottom:1px solid #fed7aa;
+  text-align:center;color:#9a3412;font-weight:bold;font-size:14px;
 }
-
-.table-wrap{
-  width:100%;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  table-layout:fixed;
-  background:white;
-}
-
+.table-wrap{width:100%;overflow:auto}
+table{width:100%;border-collapse:collapse;table-layout:fixed;background:white}
 th{
-  background:var(--blue);
-  color:white;
-  padding:12px 6px;
-  font-size:14px;
+  background:var(--blue);color:white;padding:12px 6px;font-size:14px;
   border:1px solid #0b66a9;
 }
-
 td{
-  border:1px solid #d7dee8;
-  height:105px;
-  text-align:center;
-  background:white;
-  padding:6px;
-  vertical-align:middle;
+  border:1px solid #d7dee8;height:105px;text-align:center;background:white;
+  padding:6px;vertical-align:middle;
 }
-
 .day{
-  background:#eef6ff;
-  font-weight:900;
-  width:95px;
-  color:var(--blue);
-  font-size:15px;
+  background:#eef6ff;font-weight:900;width:95px;color:var(--blue);font-size:15px;
 }
-
-.time{
-  direction:ltr;
-  font-size:13px;
-}
-
-.slot{
-  margin-bottom:6px;
-  border-radius:10px;
-  padding:4px;
-}
-
+.time{direction:ltr;font-size:13px}
+.slot{margin-bottom:6px;border-radius:10px;padding:4px}
 select{
-  width:100%;
-  height:34px;
-  border-radius:9px;
-  border:1px solid #cbd5e1;
-  font-size:13px;
-  font-weight:bold;
-  font-family:Tahoma,Arial;
-  text-align:center;
+  width:100%;height:34px;border-radius:9px;border:1px solid #cbd5e1;
+  font-size:13px;font-weight:bold;font-family:Tahoma,Arial;text-align:center;
+  background:white;color:#0f172a;cursor:pointer;
+}
+.cell-buttons{display:flex;gap:4px;margin-top:4px}
+.copy-cell-btn,.delete-cell-btn{
+  width:100%;height:26px;border:none;border-radius:8px;cursor:pointer;
+  font-weight:bold;font-size:12px;
+}
+.copy-cell-btn{background:#e0f2fe;color:#075985}
+.copy-cell-btn:hover{background:#bae6fd}
+.delete-cell-btn{background:#fee2e2;color:#b91c1c}
+.delete-cell-btn:hover{background:#fecaca}
+.footer-note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+
+/* view mode */
+.view-tools{
   background:white;
-  color:#0f172a;
-  cursor:pointer;
+  border:1px solid #e2e8f0;
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
+  display:grid;
+  grid-template-columns:1fr 1fr auto;
+  gap:14px;
+  align-items:end;
+  margin-bottom:18px;
 }
-
-.cell-buttons{
-  display:flex;
-  gap:4px;
-  margin-top:4px;
+.view-tools label{
+  display:block;
+  color:var(--blue);
+  font-weight:900;
+  margin-bottom:7px;
 }
-
-.copy-cell-btn,
-.delete-cell-btn{
-  width:100%;
-  height:26px;
+.view-tools select{
+  height:43px;
+}
+.view-tools button{
+  height:43px;
   border:none;
-  border-radius:8px;
+  border-radius:12px;
+  background:#eef6ff;
+  color:var(--blue);
+  font-weight:900;
   cursor:pointer;
-  font-weight:bold;
+  padding:0 20px;
+}
+.view-table td{
+  height:70px;
+}
+.view-cell{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.view-name{
+  border-radius:10px;
+  padding:6px;
   font-size:12px;
+  font-weight:900;
 }
-
-.copy-cell-btn{
-  background:#e0f2fe;
-  color:#075985;
-}
-
-.copy-cell-btn:hover{
-  background:#bae6fd;
-}
-
-.delete-cell-btn{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.delete-cell-btn:hover{
-  background:#fecaca;
-}
-
-.footer-note{
-  text-align:center;
-  color:#b91c1c;
+.empty-cell{
+  color:#94a3b8;
   font-weight:bold;
-  margin:18px;
+}
+.view-summary{
+  text-align:center;
+  color:#64748b;
+  font-weight:bold;
+  margin:12px 0 18px;
 }
 
 @media(max-width:850px){
-  .topbar{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .brand{
-    flex-direction:column;
-  }
-
-  .home-btn{
-    width:100%;
-  }
-
-  .controls-card{
-    justify-content:center;
-    text-align:center;
-  }
-
-  table{
-    min-width:900px;
-  }
-
-  .table-wrap{
-    overflow-x:auto;
-  }
+  .topbar{flex-direction:column;text-align:center}
+  .brand{flex-direction:column}
+  .home-btn{width:100%}
+  .choice-grid{grid-template-columns:1fr}
+  .controls-card{justify-content:center;text-align:center}
+  table{min-width:1100px}
+  .view-tools{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -304,35 +225,87 @@ select{
       <p>Pediatric Rooms Booking</p>
     </div>
   </div>
-
   <button class="home-btn" onclick="goHome()">🏠 الرئيسية</button>
 </div>
 
 <div class="main">
 
-  <div class="controls-card">
-    <h2 id="floorTitle" class="floor-title">غرفة الدور الأول</h2>
+  <div id="choicePage" class="choice-grid">
+    <div class="choice-card" onclick="openBooking(1)">
+      <div class="choice-icon">🏢</div>
+      <h3>الدور الأرضي</h3>
+      <p>Ground Floor</p>
+    </div>
 
-    <div class="controls">
-      <button onclick="switchFloor(1)">غرفة الدور الأول</button>
-      <button onclick="switchFloor(2)">غرفة الدور الثاني</button>
+    <div class="choice-card" onclick="openBooking(2)">
+      <div class="choice-icon">🏥</div>
+      <h3>الدور الثاني</h3>
+      <p>Second Floor</p>
+    </div>
+
+    <div class="choice-card" onclick="openViewMode()">
+      <div class="choice-icon">📊</div>
+      <h3>عرض الجدول</h3>
+      <p>Weekly View</p>
     </div>
   </div>
 
-  <div class="legend" id="legend"></div>
+  <div id="bookingPage" class="page-section">
+    <div class="controls-card">
+      <h2 id="floorTitle" class="floor-title">غرفة الدور الأرضي</h2>
 
-  <div class="schedule-box">
-    <div class="box-title">جدول حجز الغرفة الأسبوعي</div>
-
-    <div class="table-actions">
-      زر النسخ والحذف يظهر فقط في السبت والأحد — ويطبق على نفس الخانة فقط
+      <div class="controls">
+        <button onclick="switchFloor(1)">الدور الأرضي</button>
+        <button onclick="switchFloor(2)">الدور الثاني</button>
+        <button class="back-btn" onclick="backToChoice()">رجوع</button>
+      </div>
     </div>
 
-    <div id="tablesArea"></div>
+    <div class="legend" id="legend"></div>
+
+    <div class="schedule-box">
+      <div class="box-title">جدول حجز الغرفة الأسبوعي</div>
+      <div class="table-actions">
+        زر النسخ والحذف يظهر فقط في السبت والأحد — ويطبق على نفس الخانة فقط
+      </div>
+      <div id="tablesArea"></div>
+    </div>
+
+    <div class="footer-note">
+      كل وقت يسمح بأخصائيين — وأي تعديل يتم حفظه تلقائيًا ويظهر للجميع
+    </div>
   </div>
 
-  <div class="footer-note">
-    كل وقت يسمح بأخصائيين — وأي تعديل يتم حفظه تلقائيًا ويظهر للجميع
+  <div id="viewPage" class="page-section">
+    <div class="controls-card">
+      <h2 class="floor-title">عرض جدول غرف الأطفال</h2>
+      <div class="controls">
+        <button class="back-btn" onclick="backToChoice()">رجوع</button>
+      </div>
+    </div>
+
+    <div class="view-tools">
+      <div>
+        <label>اختر الدور</label>
+        <select id="viewFloor" onchange="buildViewTable()">
+          <option value="1">الدور الأرضي</option>
+          <option value="2">الدور الثاني</option>
+        </select>
+      </div>
+
+      <div>
+        <label>تصفية حسب الأخصائي</label>
+        <select id="therapistFilter" onchange="buildViewTable()"></select>
+      </div>
+
+      <button onclick="clearFilter()">إظهار الكل</button>
+    </div>
+
+    <div class="schedule-box">
+      <div class="box-title">الجدول الأسبوعي الكامل</div>
+      <div class="view-summary" id="viewSummary"></div>
+      <div class="table-wrap" id="viewTableArea"></div>
+    </div>
   </div>
 
 </div>
@@ -377,24 +350,33 @@ const therapists = {
 
 const days = ["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
-const morningTimes = [
-  "09:00 AM",
-  "10:00 AM",
-  "11:00 AM",
-  "12:00 PM",
-  "01:00 PM",
-  "02:00 PM"
-];
+const morningTimes = ["09:00 AM","10:00 AM","11:00 AM","12:00 PM","01:00 PM","02:00 PM"];
+const eveningTimes = ["03:00 PM","04:00 PM","05:00 PM","06:00 PM","07:00 PM","08:00 PM","09:00 PM"];
+const allTimes = [...morningTimes, ...eveningTimes];
 
-const eveningTimes = [
-  "03:00 PM",
-  "04:00 PM",
-  "05:00 PM",
-  "06:00 PM",
-  "07:00 PM",
-  "08:00 PM",
-  "09:00 PM"
-];
+function hideAll(){
+  document.getElementById("choicePage").style.display = "none";
+  document.getElementById("bookingPage").style.display = "none";
+  document.getElementById("viewPage").style.display = "none";
+}
+
+window.backToChoice = function(){
+  hideAll();
+  document.getElementById("choicePage").style.display = "grid";
+};
+
+window.openBooking = function(floor){
+  currentFloor = floor;
+  hideAll();
+  document.getElementById("bookingPage").style.display = "block";
+  switchFloor(floor);
+};
+
+window.openViewMode = function(){
+  hideAll();
+  document.getElementById("viewPage").style.display = "block";
+  buildViewTable();
+};
 
 function makeId(floor, day, time, slot){
   return `floor${floor}_${day}_${time}_${slot}`
@@ -421,14 +403,23 @@ function buildLegend(){
   }
 }
 
+function buildTherapistFilter(){
+  const filter = document.getElementById("therapistFilter");
+  filter.innerHTML = `<option value="all">كل الأخصائيين</option>`;
+
+  for(let name in therapists){
+    if(name === "—") continue;
+    filter.innerHTML += `<option value="${name}">${name}</option>`;
+  }
+}
+
 function buildTables(){
   const area = document.getElementById("tablesArea");
   area.innerHTML = "";
-
   area.innerHTML += buildTableSection("الفترة الصباحية", morningTimes);
   area.innerHTML += buildTableSection("الفترة المسائية", eveningTimes);
 
-  document.querySelectorAll("select").forEach(select => {
+  document.querySelectorAll("#tablesArea select").forEach(select => {
     colorCell(select);
   });
 }
@@ -468,11 +459,7 @@ function buildTableSection(title, timeList){
     html += `</tr>`;
   });
 
-  html += `
-      </table>
-    </div>
-  `;
-
+  html += `</table></div>`;
   return html;
 }
 
@@ -616,7 +603,6 @@ window.deleteSingleCell = async function(sourceId){
   }
 
   const deletes = [];
-
   deletes.push(deleteDoc(doc(db, "kidsRooms", sourceId)));
 
   for(const targetDay of targetDays){
@@ -632,9 +618,77 @@ window.switchFloor = function(floor){
   currentFloor = floor;
 
   document.getElementById("floorTitle").innerText =
-    floor === 1 ? "غرفة الدور الأول" : "غرفة الدور الثاني";
+    floor === 1 ? "غرفة الدور الأرضي" : "غرفة الدور الثاني";
 
   buildTables();
+};
+
+window.clearFilter = function(){
+  document.getElementById("therapistFilter").value = "all";
+  buildViewTable();
+};
+
+window.buildViewTable = function(){
+  const floor = document.getElementById("viewFloor")?.value || "1";
+  const filter = document.getElementById("therapistFilter")?.value || "all";
+  const area = document.getElementById("viewTableArea");
+  const summary = document.getElementById("viewSummary");
+
+  let total = 0;
+
+  let html = `
+    <table class="view-table">
+      <tr>
+        <th class="day">اليوم</th>
+  `;
+
+  allTimes.forEach(time=>{
+    html += `<th class="time">${time}</th>`;
+  });
+
+  html += `</tr>`;
+
+  days.forEach(day=>{
+    html += `<tr><td class="day">${day}</td>`;
+
+    allTimes.forEach(time=>{
+      html += `<td><div class="view-cell">`;
+
+      let found = 0;
+
+      for(let slot = 1; slot <= 2; slot++){
+        const id = makeId(floor, day, time, slot);
+        const therapist = savedData[id]?.therapist || "—";
+
+        if(therapist !== "—" && (filter === "all" || therapist === filter)){
+          found++;
+          total++;
+          html += `
+            <div class="view-name" style="background:${therapists[therapist] || "#eef6ff"}">
+              ${therapist}
+            </div>
+          `;
+        }
+      }
+
+      if(found === 0){
+        html += `<div class="empty-cell">—</div>`;
+      }
+
+      html += `</div></td>`;
+    });
+
+    html += `</tr>`;
+  });
+
+  html += `</table>`;
+
+  area.innerHTML = html;
+
+  const floorText = floor === "1" ? "الدور الأرضي" : "الدور الثاني";
+  const filterText = filter === "all" ? "كل الأخصائيين" : filter;
+
+  summary.innerText = `${floorText} — ${filterText} — عدد الحجوزات الظاهرة: ${total}`;
 };
 
 function listenRooms(){
@@ -646,11 +700,17 @@ function listenRooms(){
     });
 
     buildTables();
+
+    if(document.getElementById("viewPage").style.display === "block"){
+      buildViewTable();
+    }
   });
 }
 
 buildLegend();
+buildTherapistFilter();
 listenRooms();
+backToChoice();
 </script>
 
 </body>
