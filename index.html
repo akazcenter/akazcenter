@@ -253,7 +253,7 @@ body{
 /* CARDS */
 .cards{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:22px;
 }
 
@@ -335,12 +335,12 @@ body{
   font-weight:900;
 }
 
-/* CARD TOOLTIP - يظهر عند تمرير الماوس على الكرت */
+/* CARD TOOLTIP - يظهر تحت الكرت */
 .card-tooltip{
   position:absolute;
-  bottom:105%;
+  top:105%;
   right:50%;
-  transform:translateX(50%) translateY(8px);
+  transform:translateX(50%) translateY(-8px);
   width:285px;
   background:#0f172a;
   color:white;
@@ -360,12 +360,12 @@ body{
 .card-tooltip::after{
   content:"";
   position:absolute;
-  bottom:-8px;
+  top:-8px;
   right:50%;
   transform:translateX(50%);
-  border-width:8px 8px 0 8px;
+  border-width:0 8px 8px 8px;
   border-style:solid;
-  border-color:#0f172a transparent transparent transparent;
+  border-color:transparent transparent #0f172a transparent;
 }
 
 .card:hover .card-tooltip{
@@ -377,7 +377,7 @@ body{
 .footer{
   width:90%;
   max-width:1220px;
-  margin:36px auto 22px;
+  margin:50px auto 22px;
   padding-top:18px;
   border-top:1px solid #dbe4ee;
   text-align:center;
@@ -439,10 +439,6 @@ body.dark .theme-btn{
 
   .center-title h1{
     font-size:34px;
-  }
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
   }
 }
 
@@ -575,6 +571,15 @@ body.dark .theme-btn{
       <h4>Home Visits</h4>
       <div class="card-tooltip">
         يتم تسجيل جميع الزيارات داخل النظام مباشرة للفترة من 21 إلى 20، ولن يتم اعتماد أي ملفات خارجية أو إكسل.
+      </div>
+    </div>
+
+    <div class="card" onclick="go('suggestions.html')">
+      <div class="icon">💡</div>
+      <h3>الاقتراحات</h3>
+      <h4>Suggestions</h4>
+      <div class="card-tooltip">
+        مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض داخل المركز.
       </div>
     </div>
 
