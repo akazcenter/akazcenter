@@ -335,6 +335,22 @@ body{
   font-weight:900;
 }
 
+/* تنبيه الزيارات المنزلية يوم 20 فقط */
+.badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:#dc2626;
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  padding:5px 9px;
+  border-radius:50px;
+  display:none;
+  z-index:10;
+  box-shadow:0 8px 18px rgba(220,38,38,.28);
+}
+
 /* CARD TOOLTIP - يظهر تحت الكرت */
 .card-tooltip{
   position:absolute;
@@ -565,6 +581,7 @@ body.dark .theme-btn{
     </div>
 
     <div class="card" onclick="go('home-visits.html')">
+      <div class="badge" id="homeVisitsBadge">20</div>
       <div class="icon">🏠</div>
       <h3>الزيارات المنزلية</h3>
       <h4>Home Visits</h4>
@@ -607,6 +624,16 @@ function loadTheme(){
     document.body.classList.add("dark");
     document.getElementById("themeBtn").innerText = "☀️";
   }
+}
+
+function checkHomeVisitsAlert(){
+  const today = new Date();
+  const day = today.getDate();
+  const badge = document.getElementById("homeVisitsBadge");
+
+  if(!badge) return;
+
+  badge.style.display = day === 20 ? "block" : "none";
 }
 
 function updateClock(){
@@ -665,6 +692,7 @@ function rotateQuotes(){
 }
 
 loadTheme();
+checkHomeVisitsAlert();
 setInterval(updateClock,1000);
 updateClock();
 
