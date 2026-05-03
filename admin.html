@@ -10,131 +10,190 @@ body{
   margin:0;
   font-family:Tahoma;
   direction:rtl;
-  background:#f4f8fc;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
 }
+
+/* الهيدر */
 .topbar{
-  background:#005b9f;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
-  padding:18px;
-  display:flex;
-  justify-content:space-between;
+  padding:22px;
+  text-align:center;
+  font-size:22px;
+  font-weight:900;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
 }
-.main{width:92%;margin:30px auto;}
-.box{
+
+/* المحتوى */
+.main{
+  width:92%;
+  max-width:1200px;
+  margin:30px auto;
+}
+
+/* تسجيل الدخول */
+.login{
   background:white;
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:20px;
+  padding:25px;
+  border-radius:20px;
+  max-width:400px;
+  margin:80px auto;
+  text-align:center;
+  box-shadow:0 15px 35px rgba(0,0,0,.1);
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
-.card{
-  background:#eef6ff;
-  padding:15px;
-  border-radius:12px;
-}
-.number{
-  font-size:28px;
-  font-weight:bold;
-  color:#f59e0b;
-}
-.btn{
-  background:#005b9f;
-  color:white;
-  padding:10px;
+
+button{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
   border:none;
   border-radius:10px;
+  background:#005b9f;
+  color:white;
+  font-weight:bold;
   cursor:pointer;
+}
+
+/* الكروت */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  text-align:center;
+}
+
+.card h3{
+  margin:0;
+  color:#005b9f;
+}
+
+.number{
+  font-size:36px;
+  font-weight:900;
+  color:#f59e0b;
   margin-top:10px;
 }
-.link{
-  display:block;
-  background:#eef6ff;
+
+/* التنبيه */
+.alert{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#92400e;
   padding:12px;
-  border-radius:10px;
+  border-radius:12px;
+  margin-bottom:20px;
+  text-align:center;
+  font-weight:bold;
+}
+
+/* الروابط */
+.links{
+  margin-top:30px;
+}
+
+.link{
+  background:white;
+  padding:16px;
+  border-radius:14px;
   margin-bottom:10px;
   cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.05);
+  transition:.2s;
 }
+
+.link:hover{
+  transform:translateY(-3px);
+}
+
+.link b{
+  color:#005b9f;
+}
+
+/* النشاط */
+.activity{
+  margin-top:30px;
+}
+
 .item{
-  background:#f8fbff;
-  padding:10px;
-  border-radius:10px;
+  background:white;
+  padding:12px;
+  border-radius:12px;
   margin-bottom:8px;
+  box-shadow:0 5px 15px rgba(0,0,0,.05);
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">
-  <h3>لوحة التحكم</h3>
-  <button onclick="location.href='index.html'">الرئيسية</button>
-</div>
+<div class="topbar">لوحة التحكم - مركز عكاز</div>
 
 <div class="main">
 
-<div id="loginBox" class="box">
+<div id="login" class="login">
   <h3>دخول الإدارة</h3>
   <input id="code" placeholder="الرمز">
-  <button class="btn" onclick="login()">دخول</button>
+  <button onclick="login()">دخول</button>
 </div>
 
 <div id="panel" style="display:none">
 
+<div class="alert">
+الوضع مستقر — لا توجد مشاكل حالياً
+</div>
+
 <!-- الإحصائيات -->
-<div class="box grid">
+<div class="grid">
   <div class="card">
-    الأجهزة الآن
-    <div class="number" id="devicesCount">0</div>
+    <h3>الجلسات اليوم</h3>
+    <div class="number" id="sessions">0</div>
   </div>
 
   <div class="card">
-    اقتراحات
-    <div class="number" id="suggestionsCount">0</div>
+    <h3>كشف جديد</h3>
+    <div class="number" id="newCases">0</div>
   </div>
 
   <div class="card">
-    زيارات منزلية
-    <div class="number" id="homeCount">0</div>
+    <h3>بالاسم</h3>
+    <div class="number" id="byName">0</div>
   </div>
 
   <div class="card">
-    أكثر ضغط
+    <h3>أعلى ضغط</h3>
     <div class="number" id="topTherapist">—</div>
   </div>
 </div>
 
-<!-- روابط -->
-<div class="box">
-  <h3>تشغيل سريع</h3>
-
-  <div class="link" onclick="go('work-schedule.html')">📋 جدول الدوام</div>
-  <div class="link" onclick="go('therapist-planners.html')">📅 جدول الأخصائيين</div>
-  <div class="link" onclick="go('new-assessment-entry.html')">🩺 توزيع الكشف</div>
-  <div class="link" onclick="go('home-visits.html')">🏠 الزيارات المنزلية</div>
-  <div class="link" onclick="go('functional-assessments.html')">📊 التقييمات</div>
-
+<!-- تشغيل سريع -->
+<div class="links">
+  <div class="link" onclick="go('work-schedule.html')"><b>📋 جدول الدوام</b></div>
+  <div class="link" onclick="go('therapist-planners.html')"><b>📅 جدول الأخصائيين</b></div>
+  <div class="link" onclick="go('new-assessment-entry.html')"><b>🩺 توزيع الكشف</b></div>
+  <div class="link" onclick="go('home-visits.html')"><b>🏠 الزيارات المنزلية</b></div>
+  <div class="link" onclick="go('functional-assessments.html')"><b>📊 التقييمات</b></div>
 </div>
 
-<!-- التحكم -->
-<div class="box">
-  <h3>تحكم مباشر</h3>
-
-  <button class="btn" onclick="resetQueue('men')">تصفير دور الرجال</button>
-  <button class="btn" onclick="resetQueue('women')">تصفير دور النساء</button>
-
-  <button class="btn" onclick="clearToday()">حذف كشف اليوم</button>
-
-  <button class="btn" onclick="cleanDevices()">تنظيف الأجهزة القديمة</button>
-</div>
-
-<!-- الأجهزة -->
-<div class="box">
-  <h3>الأجهزة المتصلة</h3>
-  <div id="devicesList"></div>
+<!-- النشاط -->
+<div class="activity">
+  <h3 style="color:#005b9f">آخر النشاط</h3>
+  <div id="activity"></div>
 </div>
 
 </div>
@@ -143,149 +202,75 @@ body{
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
-  authDomain: "akazcenter-89c17.firebaseapp.com",
-  projectId: "akazcenter-89c17"
-};
+const app = initializeApp({
+  apiKey:"AIzaSy...",
+  projectId:"akazcenter-89c17"
+});
 
-const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const CODE = "164321";
+const CODE="164321";
 
-window.login = function(){
-  if(document.getElementById("code").value !== CODE){
+window.login=()=>{
+  if(document.getElementById("code").value!==CODE){
     alert("خطأ");
     return;
   }
-
-  document.getElementById("loginBox").style.display="none";
+  document.getElementById("login").style.display="none";
   document.getElementById("panel").style.display="block";
   load();
 };
 
-window.go = function(p){
-  location.href=p;
-};
-
-function toDate(v){
-  if(!v) return new Date(0);
-  if(v.seconds) return new Date(v.seconds*1000);
-  return new Date(v);
-}
+window.go=p=>location.href=p;
 
 function load(){
 
-  // الأجهزة
-  onSnapshot(collection(db,"activeDevices"), snap=>{
-    let now = new Date();
-    let active=[];
-
-    snap.forEach(d=>{
-      let x=d.data();
-      let last=toDate(x.lastSeen);
-      let diff=(now-last)/1000;
-
-      if(diff<60){
-        active.push({...x,diff});
-      }
-    });
-
-    document.getElementById("devicesCount").innerText=active.length;
-
-    let box=document.getElementById("devicesList");
-    box.innerHTML="";
-
-    active.forEach((x,i)=>{
-      box.innerHTML+=`
-      <div class="item">
-      جهاز ${i+1} - ${x.page}<br>
-      ${Math.floor(x.diff)} ثانية
-      </div>`;
-    });
-  });
-
-  // اقتراحات
-  onSnapshot(collection(db,"suggestions"), snap=>{
-    document.getElementById("suggestionsCount").innerText=snap.size;
-  });
-
-  // زيارات
-  onSnapshot(collection(db,"homeVisits"), snap=>{
-    document.getElementById("homeCount").innerText=snap.size;
-  });
-
-  // ضغط
+  // الجلسات
   onSnapshot(collection(db,"therapistSchedules"), snap=>{
-    let count={};
+    document.getElementById("sessions").innerText=snap.size;
 
+    let count={};
     snap.forEach(d=>{
       let t=d.data().therapist;
-      if(!t) return;
+      if(!t)return;
       count[t]=(count[t]||0)+1;
     });
 
     let max=0,name="—";
     for(let k in count){
-      if(count[k]>max){
-        max=count[k];
-        name=k;
-      }
+      if(count[k]>max){max=count[k];name=k;}
     }
 
     document.getElementById("topTherapist").innerText=name;
   });
 
+  // الكشف
+  onSnapshot(collection(db,"newAssessments"), snap=>{
+    let total=0,byName=0;
+
+    snap.forEach(d=>{
+      total++;
+      if(d.data().type==="name") byName++;
+    });
+
+    document.getElementById("newCases").innerText=total;
+    document.getElementById("byName").innerText=byName;
+  });
+
+  // النشاط
+  onSnapshot(collection(db,"homeVisits"), snap=>{
+    let html="";
+    snap.forEach(d=>{
+      let x=d.data();
+      html+=`<div class="item">${x.therapist || "زيارة منزلية"}</div>`;
+    });
+    document.getElementById("activity").innerHTML=html || "لا يوجد نشاط";
+  });
+
 }
-
-// 🔴 التحكم
-
-window.resetQueue = async function(section){
-  if(!confirm("تأكيد تصفير الدور؟")) return;
-
-  await setDoc(doc(db,"newAssessmentQueueState",section),{
-    section,
-    index:0,
-    updatedAt:new Date()
-  });
-
-  alert("تم التصفير");
-};
-
-window.clearToday = async function(){
-  if(!confirm("حذف كل كشف اليوم؟")) return;
-
-  let snap = await getDocs(collection(db,"newAssessments"));
-
-  snap.forEach(async d=>{
-    await deleteDoc(d.ref);
-  });
-
-  alert("تم الحذف");
-};
-
-window.cleanDevices = async function(){
-  let snap = await getDocs(collection(db,"activeDevices"));
-  let now=new Date();
-
-  snap.forEach(async d=>{
-    let x=d.data();
-    let last=toDate(x.lastSeen);
-
-    if((now-last)/1000 > 120){
-      await deleteDoc(d.ref);
-    }
-  });
-
-  alert("تم تنظيف الأجهزة");
-};
-
 </script>
-
-<script type="module" src="tracker.js"></script>
 
 </body>
 </html>
