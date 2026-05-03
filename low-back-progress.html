@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Low Back Functional Progress</title>
+<link rel="icon" href="logo.png">
+
+<style>
+:root{
+  --blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;
+  --text:#0f172a;--muted:#64748b;--line:#e2e8f0;
+  --green:#166534;--yellow:#92400e;--red:#b91c1c;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
+.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;gap:18px;border-bottom-left-radius:28px;border-bottom-right-radius:28px;box-shadow:0 14px 35px rgba(8,52,95,.20)}
+.brand{display:flex;align-items:center;gap:16px}
+.logo{width:72px;height:72px;object-fit:contain;background:white;border-radius:18px;padding:7px}
+.brand h1{margin:0;font-size:24px;font-weight:900}
+.brand p{margin:5px 0 0;direction:ltr;font-size:13px;color:#dbeafe}
+.home-btn{background:white;color:var(--blue);border:none;padding:11px 18px;border-radius:12px;cursor:pointer;font-weight:bold}
+.main{width:94%;max-width:1250px;margin:26px auto}
+.card{background:white;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 12px 30px rgba(15,23,42,.07);margin-bottom:20px}
+.card-title{margin:0 0 16px;color:var(--blue);font-size:22px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.field label{display:block;color:#334155;font-size:13px;font-weight:900;margin-bottom:7px}
+input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:12px;font-family:Tahoma,Arial,sans-serif;font-size:14px;outline:none;background:white}
+textarea{height:105px;resize:vertical;line-height:1.8}
+input:focus,select:focus,textarea:focus{border-color:var(--blue2);box-shadow:0 0 0 4px rgba(0,119,200,.12)}
+.test-box{background:#f8fbff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.test-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.test-head strong{color:var(--blue);font-size:15px}
+.help-btn{width:28px;height:28px;border-radius:50%;border:none;background:#eef6ff;color:var(--blue);font-weight:900;cursor:pointer}
+.help-text{display:none;background:#0f172a;color:white;border-radius:12px;padding:11px;font-size:12px;line-height:1.7;direction:ltr;text-align:left;margin-bottom:10px}
+.result-line{margin-top:10px;text-align:center;font-weight:900;border-radius:12px;padding:9px;background:#eef6ff;color:var(--blue);direction:ltr}
+.result-card{display:grid;grid-template-columns:1fr 2fr;gap:18px;align-items:stretch}
+.score-box{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;border-radius:22px;padding:25px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.score{font-size:52px;font-weight:900;direction:ltr}
+.score-label{margin-top:8px;font-size:15px;color:#dbeafe}
+.readiness{background:#f8fbff;border:1px solid var(--line);border-radius:22px;padding:20px}
+.badge{display:inline-block;padding:8px 14px;border-radius:999px;font-weight:900;font-size:13px;margin-bottom:12px}
+.good{background:#dcfce7;color:var(--green)}
+.mid{background:#fef3c7;color:var(--yellow)}
+.bad{background:#fee2e2;color:var(--red)}
+.action-row{display:flex;gap:12px;flex-wrap:wrap}
+.action-row button{flex:1;min-width:190px}
+.primary-btn,.secondary-btn{border:none;border-radius:14px;padding:14px 18px;font-weight:900;cursor:pointer;font-size:15px}
+.primary-btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.secondary-btn{background:#eef6ff;color:var(--blue)}
+
+#printArea{display:none}
+@media print{
+  @page{size:A4;margin:12mm}
+  body *{visibility:hidden}
+  #printArea,#printArea *{visibility:visible}
+  #printArea{position:absolute;top:0;right:0;width:100%;display:block!important}
+  .no-print{display:none!important}
+}
+.print-page{background:white;color:#0f172a;font-family:Tahoma,Arial,sans-serif;direction:rtl}
+.print-header{display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #005b9f;padding-bottom:12px;margin-bottom:16px}
+.print-logo{width:115px;height:auto;object-fit:contain}
+.print-title{text-align:center;flex:1}
+.print-title h1{margin:0;color:#005b9f;font-size:21px;font-weight:900}
+.print-title h2{margin:6px 0 0;color:#f59e0b;font-size:15px;direction:ltr}
+.print-meta{direction:ltr;text-align:left;font-size:11px;color:#64748b}
+.print-section{border:1px solid #dbe4ee;border-radius:12px;padding:12px;margin-bottom:12px}
+.print-section h3{margin:0 0 10px;color:#005b9f;font-size:15px}
+.print-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:12px;line-height:1.7}
+.print-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.print-table th{background:#005b9f;color:white;padding:7px;border:1px solid #005b9f}
+.print-table td{border:1px solid #dbe4ee;padding:7px;text-align:center}
+.print-summary{display:grid;grid-template-columns:140px 1fr;gap:12px;align-items:center}
+.print-score{background:#eef6ff;border:1px solid #bfdbfe;color:#005b9f;border-radius:16px;text-align:center;padding:18px}
+.print-score strong{display:block;direction:ltr;font-size:34px;font-weight:900}
+.print-note{font-size:12px;line-height:1.8;white-space:pre-wrap}
+.disclaimer{margin-top:12px;border-top:1px solid #e2e8f0;padding-top:10px;font-size:10.5px;color:#475569;line-height:1.7}
+@media(max-width:900px){
+  .grid,.grid-3,.result-card{grid-template-columns:1fr}
+  .topbar{flex-direction:column;text-align:center}
+  .brand{flex-direction:column}
+  .home-btn{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar no-print">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>تقييم أسفل الظهر</h1>
+      <p>Low Back Functional Progress</p>
+    </div>
+  </div>
+  <button class="home-btn" onclick="location.href='functional-assessments.html'">رجوع</button>
+</div>
+
+<div class="main no-print">
+
+  <div class="card">
+    <h2 class="card-title">بيانات المريض | Patient Information</h2>
+    <div class="grid">
+      <div class="field">
+        <label>اسم المريض | Patient Name</label>
+        <input id="patientName" placeholder="اكتب اسم المريض">
+      </div>
+
+      <div class="field">
+        <label>الأخصائي | Therapist</label>
+        <select id="therapist">
+          <option value="">اختر الأخصائي</option>
+          <option>د. حاتم الأحمدي</option>
+          <option>د. عبدالرحمن السويداء</option>
+          <option>د. عبدالرحمن السليمي</option>
+          <option>د. عبدالعزيز الحمدان</option>
+          <option>د. ريناد حميد</option>
+          <option>د. ابتسام سويلم</option>
+          <option>د. سلمى فرحان</option>
+          <option>د. هند فهيد</option>
+          <option>د. أسماء فهيد</option>
+          <option>د. مها فريح</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>نوع الحالة | Condition</label>
+        <input id="condition" placeholder="مثال: Low back pain / Disc / Post-op">
+      </div>
+
+      <div class="field">
+        <label>مستوى النشاط | Activity Level</label>
+        <input id="activity" placeholder="مثال: عمل مكتبي / رياضة / أعمال منزلية">
+      </div>
+
+      <div class="field">
+        <label>تاريخ التقييم | Assessment Date</label>
+        <input type="date" id="assessmentDate">
+      </div>
+
+      <div class="field">
+        <label>مدة الأعراض | Symptom Duration</label>
+        <input id="durationSymptoms" placeholder="مثال: أسبوعين / 3 أشهر">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">اختبارات أسفل الظهر | Low Back Functional Tests</h2>
+
+    <div class="grid-3">
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Pain Level</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Pain scale 0-10. Lower score is better. Use current pain or pain during main functional activity.
+        </div>
+        <div class="field">
+          <label>Pain Score 0-10</label>
+          <input type="number" id="pain" min="0" max="10" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="painResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Lumbar Flexion ROM</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Assess forward bending tolerance. Use percentage of expected movement or fingertip-to-floor score converted clinically.
+        </div>
+        <div class="field">
+          <label>Score 0-100%</label>
+          <input type="number" id="flexion" min="0" max="100" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="flexionResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Lumbar Extension ROM</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Assess backward bending tolerance and symptom response. Enter clinical score from 0-100%.
+        </div>
+        <div class="field">
+          <label>Score 0-100%</label>
+          <input type="number" id="extension" min="0" max="100" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="extensionResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Sit to Stand</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Count controlled sit-to-stand repetitions in 30 seconds, or enter functional tolerance score based on clinic standard.
+        </div>
+        <div class="field">
+          <label>Repetitions</label>
+          <input type="number" id="sitStand" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="sitStandResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Plank Hold</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Measure hold time in seconds. Assesses trunk endurance and symptom tolerance.
+        </div>
+        <div class="field">
+          <label>Seconds</label>
+          <input type="number" id="plank" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="plankResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Single Leg Balance</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Measure best single-leg balance time in seconds. Useful for control and confidence.
+        </div>
+        <div class="field">
+          <label>Seconds</label>
+          <input type="number" id="balance" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="balanceResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Walking Tolerance</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Enter walking tolerance score 0-100% based on symptoms, endurance, and functional limitation.
+        </div>
+        <div class="field">
+          <label>Score 0-100%</label>
+          <input type="number" id="walking" min="0" max="100" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="walkingResult">—</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Functional Movement Quality</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Observe bending, lifting, transitions, fear avoidance, guarding, compensation, and movement confidence.
+        </div>
+        <div class="field">
+          <label>Quality Rating</label>
+          <select id="movementQuality" onchange="calculateAll()">
+            <option value="good">Good</option>
+            <option value="fair">Fair</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+        <div class="result-line">Clinical Observation</div>
+      </div>
+
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Patient Confidence</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Patient-reported confidence during daily activity. 0 = no confidence, 10 = full confidence.
+        </div>
+        <div class="field">
+          <label>Confidence 0-10</label>
+          <input type="number" id="confidence" min="0" max="10" oninput="calculateAll()">
+        </div>
+        <div class="result-line" id="confidenceResult">—</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">ملاحظات سريرية | Clinical Notes</h2>
+    <textarea id="clinicalNotes" placeholder="مثال: الألم يقل مع الحركة، يحتاج تقوية core، يوجد خوف من الانحناء، تحسن في المشي..."></textarea>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">النتيجة | Result</h2>
+    <div class="result-card">
+      <div class="score-box">
+        <div class="score" id="overallScore">0%</div>
+        <div class="score-label">Overall Low Back Functional Score</div>
+      </div>
+      <div class="readiness">
+        <div id="readinessBadge" class="badge bad">Continue Rehab</div>
+        <p id="readinessText" style="line-height:1.9;color:#334155;margin:0">
+          أدخل نتائج الاختبارات لحساب التقييم.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="card-title">إصدار التقرير | Generate Report</h2>
+    <div class="action-row">
+      <button class="primary-btn" onclick="generateReport()">معاينة وطباعة التقرير</button>
+      <button class="secondary-btn" onclick="calculateAll()">تحديث الحساب</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="printArea">
+  <div class="print-page">
+
+    <div class="print-header">
+      <img src="logo.png" class="print-logo" alt="Akaz Logo">
+      <div class="print-title">
+        <h1>تقرير إرشادي لتقدم وظيفة أسفل الظهر</h1>
+        <h2>Low Back Functional Progress Report</h2>
+      </div>
+      <div class="print-meta">
+        AKAZ Physiotherapy Center<br>
+        مركز عكاز للعلاج الطبيعي
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>بيانات المريض | Patient Information</h3>
+      <div class="print-grid">
+        <div><b>اسم المريض:</b> <span id="prPatientName"></span></div>
+        <div><b>Patient:</b> <span id="prPatientNameEn"></span></div>
+        <div><b>الأخصائي:</b> <span id="prTherapist"></span></div>
+        <div><b>Therapist:</b> <span id="prTherapistEn"></span></div>
+        <div><b>الحالة:</b> <span id="prCondition"></span></div>
+        <div><b>Activity:</b> <span id="prActivity"></span></div>
+        <div><b>تاريخ التقييم:</b> <span id="prDate"></span></div>
+        <div><b>Symptom Duration:</b> <span id="prDurationSymptoms"></span></div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>نتائج الاختبارات | Functional Test Results</h3>
+      <table class="print-table">
+        <tr>
+          <th>Measure</th>
+          <th>Result</th>
+          <th>Goal / Reference</th>
+          <th>Score</th>
+          <th>Rating</th>
+        </tr>
+        <tr><td>Pain Level</td><td id="prPain"></td><td>0-2 preferred</td><td id="prPainScore"></td><td id="prPainRate"></td></tr>
+        <tr><td>Lumbar Flexion ROM</td><td id="prFlexion"></td><td>Functional / Symptom-free</td><td id="prFlexionScore"></td><td id="prFlexionRate"></td></tr>
+        <tr><td>Lumbar Extension ROM</td><td id="prExtension"></td><td>Functional / Symptom-free</td><td id="prExtensionScore"></td><td id="prExtensionRate"></td></tr>
+        <tr><td>Sit to Stand</td><td id="prSitStand"></td><td>15+ reps</td><td id="prSitStandScore"></td><td id="prSitStandRate"></td></tr>
+        <tr><td>Plank Hold</td><td id="prPlank"></td><td>45+ sec</td><td id="prPlankScore"></td><td id="prPlankRate"></td></tr>
+        <tr><td>Single Leg Balance</td><td id="prBalance"></td><td>30+ sec</td><td id="prBalanceScore"></td><td id="prBalanceRate"></td></tr>
+        <tr><td>Walking Tolerance</td><td id="prWalking"></td><td>Functional tolerance</td><td id="prWalkingScore"></td><td id="prWalkingRate"></td></tr>
+        <tr><td>Movement Quality</td><td colspan="4" id="prMovementQuality"></td></tr>
+        <tr><td>Patient Confidence</td><td id="prConfidence"></td><td>8-10 preferred</td><td id="prConfidenceScore"></td><td id="prConfidenceRate"></td></tr>
+      </table>
+    </div>
+
+    <div class="print-section">
+      <h3>ملخص التقييم | Assessment Summary</h3>
+      <div class="print-summary">
+        <div class="print-score">
+          <strong id="prOverallScore">0%</strong>
+          Overall Score
+        </div>
+        <div class="print-note">
+          <b id="prReadinessTitle"></b>
+          <p id="prReadinessText"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3>ملاحظات الأخصائي | Clinical Notes</h3>
+      <div class="print-note" id="prNotes"></div>
+    </div>
+
+    <div class="disclaimer">
+      هذا التقرير إرشادي ويعكس نتائج التقييم الوظيفي وقت الفحص فقط، ولا يُعد تقريرًا طبيًا نهائيًا أو تصريحًا مباشرًا للعودة للنشاط. القرار النهائي يعتمد على تقييم الأخصائي المعالج والحالة السريرية للمريض.
+      <br><br>
+      This report is for guidance only and reflects the functional assessment findings at the time of testing. It is not a final medical report or direct clearance to return to activity. Final decisions should be made by the treating physiotherapist based on the patient’s full clinical status.
+    </div>
+
+  </div>
+</div>
+
+<script>
+function toggleHelp(btn){
+  const box = btn.closest(".test-box").querySelector(".help-text");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function num(id){
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? 0 : v;
+}
+
+function clamp(v){
+  return Math.max(0, Math.min(100, Math.round(v)));
+}
+
+function directScore(value){
+  if(!value) return 0;
+  return clamp(value);
+}
+
+function higherScore(value, goal){
+  if(!value) return 0;
+  return clamp((value / goal) * 100);
+}
+
+function painScore(value){
+  if(value === 0) return 100;
+  if(!value) return 0;
+  return clamp(((10 - value) / 10) * 100);
+}
+
+function confidenceScore(value){
+  if(!value) return 0;
+  return clamp((value / 10) * 100);
+}
+
+function ratePercent(value){
+  if(value >= 90) return "Excellent";
+  if(value >= 80) return "Good";
+  if(value >= 70) return "Fair";
+  if(value > 0) return "Needs Improvement";
+  return "—";
+}
+
+function colorResult(el,value){
+  el.style.background = "#eef6ff";
+  el.style.color = "#005b9f";
+  if(value >= 90){
+    el.style.background = "#dcfce7";
+    el.style.color = "#166534";
+  }else if(value >= 80){
+    el.style.background = "#fef3c7";
+    el.style.color = "#92400e";
+  }else if(value > 0){
+    el.style.background = "#fee2e2";
+    el.style.color = "#b91c1c";
+  }
+}
+
+function getResults(){
+  const pain = painScore(num("pain"));
+  const flexion = directScore(num("flexion"));
+  const extension = directScore(num("extension"));
+  const sitStand = higherScore(num("sitStand"), 15);
+  const plank = higherScore(num("plank"), 45);
+  const balance = higherScore(num("balance"), 30);
+  const walking = directScore(num("walking"));
+  const confidence = confidenceScore(num("confidence"));
+
+  const arr = [pain, flexion, extension, sitStand, plank, balance, walking, confidence].filter(x => x > 0);
+  const avg = arr.length ? Math.round(arr.reduce((a,b)=>a+b,0) / arr.length) : 0;
+
+  return {pain, flexion, extension, sitStand, plank, balance, walking, confidence, avg};
+}
+
+function hasWarning(){
+  return (
+    document.getElementById("movementQuality").value === "poor" ||
+    num("pain") >= 5
+  );
+}
+
+function getReadiness(avg){
+  if(hasWarning()){
+    return {
+      cls:"bad",
+      title:"Needs Clinical Caution",
+      ar:"توجد ملاحظات سريرية تستدعي الحذر، ويُنصح بالاستمرار في التأهيل ومراجعة الألم وجودة الحركة قبل رفع مستوى النشاط.",
+      en:"Clinical caution is advised due to pain or poor movement quality."
+    };
+  }
+
+  if(avg >= 90){
+    return {
+      cls:"good",
+      title:"Excellent Functional Progress",
+      ar:"المريض يظهر تقدمًا وظيفيًا ممتازًا في أسفل الظهر، ويمكن التدرج في النشاط حسب قرار الأخصائي ومراقبة الأعراض.",
+      en:"The patient demonstrates excellent low back functional progress."
+    };
+  }
+
+  if(avg >= 80){
+    return {
+      cls:"mid",
+      title:"Good Functional Progress",
+      ar:"المريض يظهر تقدمًا جيدًا، مع الحاجة لاستكمال تقوية الجذع والتحكم الحركي قبل رفع مستوى النشاط بشكل أكبر.",
+      en:"The patient demonstrates good progress and should continue trunk strengthening and movement control."
+    };
+  }
+
+  if(avg >= 70){
+    return {
+      cls:"mid",
+      title:"Continue Rehabilitation",
+      ar:"يوجد تحسن مقبول، لكن المريض يحتاج استمرار التأهيل قبل العودة لمستويات أعلى من النشاط.",
+      en:"Fair progress noted; continued rehabilitation is recommended before higher activity levels."
+    };
+  }
+
+  return {
+    cls:"bad",
+    title:"Needs Further Rehab",
+    ar:"النتائج الحالية تشير إلى الحاجة لاستمرار التأهيل وتحسين الألم، الحركة، التحمل، والتحكم الوظيفي.",
+    en:"Current results indicate the need for further rehabilitation."
+  };
+}
+
+function calculateAll(){
+  const r = getResults();
+
+  const fields = [
+    ["painResult", r.pain, "Pain"],
+    ["flexionResult", r.flexion, "Flexion"],
+    ["extensionResult", r.extension, "Extension"],
+    ["sitStandResult", r.sitStand, "Sit to Stand"],
+    ["plankResult", r.plank, "Plank"],
+    ["balanceResult", r.balance, "Balance"],
+    ["walkingResult", r.walking, "Walking"],
+    ["confidenceResult", r.confidence, "Confidence"]
+  ];
+
+  fields.forEach(([id,val,label])=>{
+    const el = document.getElementById(id);
+    el.innerText = val ? `${label}: ${val}% - ${ratePercent(val)}` : "—";
+    colorResult(el,val);
+  });
+
+  document.getElementById("overallScore").innerText = r.avg + "%";
+
+  const readiness = getReadiness(r.avg);
+  const badge = document.getElementById("readinessBadge");
+  badge.className = "badge " + readiness.cls;
+  badge.innerText = readiness.title;
+
+  document.getElementById("readinessText").innerText =
+    readiness.ar + " / " + readiness.en;
+}
+
+function setText(id,value){
+  document.getElementById(id).innerText = value || "—";
+}
+
+function fillPrint(){
+  const r = getResults();
+  const readiness = getReadiness(r.avg);
+
+  setText("prPatientName", patientName.value);
+  setText("prPatientNameEn", patientName.value);
+  setText("prTherapist", therapist.value);
+  setText("prTherapistEn", therapist.value);
+  setText("prCondition", condition.value);
+  setText("prActivity", activity.value);
+  setText("prDate", assessmentDate.value);
+  setText("prDurationSymptoms", durationSymptoms.value);
+
+  setText("prPain", pain.value + "/10");
+  setText("prPainScore", r.pain ? r.pain + "%" : "—");
+  setText("prPainRate", ratePercent(r.pain));
+
+  setText("prFlexion", flexion.value + "%");
+  setText("prFlexionScore", r.flexion ? r.flexion + "%" : "—");
+  setText("prFlexionRate", ratePercent(r.flexion));
+
+  setText("prExtension", extension.value + "%");
+  setText("prExtensionScore", r.extension ? r.extension + "%" : "—");
+  setText("prExtensionRate", ratePercent(r.extension));
+
+  setText("prSitStand", sitStand.value + " reps");
+  setText("prSitStandScore", r.sitStand ? r.sitStand + "%" : "—");
+  setText("prSitStandRate", ratePercent(r.sitStand));
+
+  setText("prPlank", plank.value + " sec");
+  setText("prPlankScore", r.plank ? r.plank + "%" : "—");
+  setText("prPlankRate", ratePercent(r.plank));
+
+  setText("prBalance", balance.value + " sec");
+  setText("prBalanceScore", r.balance ? r.balance + "%" : "—");
+  setText("prBalanceRate", ratePercent(r.balance));
+
+  setText("prWalking", walking.value + "%");
+  setText("prWalkingScore", r.walking ? r.walking + "%" : "—");
+  setText("prWalkingRate", ratePercent(r.walking));
+
+  setText("prMovementQuality", movementQuality.value);
+
+  setText("prConfidence", confidence.value + "/10");
+  setText("prConfidenceScore", r.confidence ? r.confidence + "%" : "—");
+  setText("prConfidenceRate", ratePercent(r.confidence));
+
+  setText("prOverallScore", r.avg + "%");
+  setText("prReadinessTitle", readiness.title);
+  setText("prReadinessText", readiness.ar + "\n" + readiness.en);
+  setText("prNotes", clinicalNotes.value || "لا توجد ملاحظات إضافية.");
+}
+
+function generateReport(){
+  if(!patientName.value.trim()){
+    alert("اكتب اسم المريض أولاً");
+    return;
+  }
+
+  if(!therapist.value){
+    alert("اختر الأخصائي أولاً");
+    return;
+  }
+
+  calculateAll();
+  fillPrint();
+
+  document.getElementById("printArea").style.display = "block";
+  window.print();
+}
+
+assessmentDate.valueAsDate = new Date();
+calculateAll();
+</script>
+
+</body>
+</html>
