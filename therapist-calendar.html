@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جدول الأخصائي</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
+
+<style>
+body{
+  margin:0;
+  font-family:Tahoma;
+  background:#f8fbff;
+}
+
+.top{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.top h1{
+  margin:0;
+  font-size:22px;
+}
+
+.top button{
+  background:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+#calendar{
+  width:90%;
+  margin:30px auto;
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+  <h1 id="title"></h1>
+  <button onclick="location.href='therapist-planners.html'">رجوع</button>
+</div>
+
+<div id="calendar"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+<script>
+
+// اسم الأخصائي من الرابط
+const params = new URLSearchParams(window.location.search);
+const therapist = params.get("name");
+
+document.getElementById("title").innerText = "جدول: " + therapist;
+
+// الألوان حسب الحالة
+function getColor(type){
+  if(type === "عظام") return "#2563eb";
+  if(type === "أعصاب") return "#9333ea";
+  if(type === "رياضي") return "#16a34a";
+  if(type === "أطفال") return "#f59e0b";
+  return "#64748b";
+}
+
+let calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+  initialView: 'timeGridWeek',
+  locale: 'ar',
+  selectable: true,
+  editable: true,
+  eventOverlap: true,
+
+  headerToolbar:{
+    left:'prev,next today',
+    center:'title',
+    right:'timeGridDay,timeGridWeek,dayGridMonth'
+  },
+
+  select: function(info){
+
+    let patient = prompt("اسم المريض:");
+    if(!patient) return;
+
+    let type = prompt("نوع الحالة (عظام / أعصاب / رياضي / أطفال):");
+    let duration = prompt("مدة الجلسة بالدقائق (30 / 45 / 60 / 90):");
+
+    duration = parseInt(duration);
+
+    let end = new Date(info.start);
+    end.setMinutes(end.getMinutes() + duration);
+
+    calendar.addEvent({
+      title: patient,
+      start: info.start,
+      end: end,
+      color: getColor(type)
+    });
+  },
+
+  eventClick:function(info){
+    if(confirm("حذف الجلسة؟")){
+      info.event.remove();
+    }
+  }
+
+});
+
+calendar.render();
+
+</script>
+
+</body>
+</html>
