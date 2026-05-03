@@ -11,8 +11,8 @@ body{
   font-family:Tahoma,Arial;
   direction:rtl;
   background:linear-gradient(180deg,#f8fbff,#eef4f9);
-  color:#0f172a;
 }
+
 .topbar{
   background:linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
@@ -23,6 +23,7 @@ body{
   border-bottom-left-radius:28px;
   border-bottom-right-radius:28px;
 }
+
 .home-btn{
   background:white;
   color:#005b9f;
@@ -32,81 +33,94 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
+
 .main{
   width:92%;
   max-width:1200px;
   margin:35px auto;
 }
+
 .login-box,.panel{
   background:white;
   border-radius:24px;
   padding:25px;
   box-shadow:0 16px 40px rgba(15,23,42,.10);
-  border:1px solid #e2e8f0;
 }
+
 .login-box{
-  max-width:450px;
-  margin:60px auto;
+  max-width:400px;
+  margin:80px auto;
 }
+
 input{
   width:100%;
-  padding:13px;
-  border-radius:12px;
-  border:1px solid #cbd5e1;
-  font-size:16px;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
   margin-top:10px;
 }
+
 button{
   width:100%;
   margin-top:15px;
-  padding:13px;
+  padding:12px;
   border:none;
-  border-radius:12px;
+  border-radius:10px;
   background:#005b9f;
   color:white;
   font-weight:bold;
   cursor:pointer;
 }
+
 .panel{display:none}
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-  margin-bottom:25px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
 }
+
 .card{
-  background:#f8fbff;
-  border:1px solid #e2e8f0;
-  border-radius:20px;
-  padding:20px;
+  background:#f1f5f9;
+  border-radius:16px;
+  padding:18px;
 }
+
 .card h3{
-  margin:0 0 10px;
+  margin:0;
   color:#005b9f;
 }
+
 .number{
-  font-size:34px;
-  font-weight:900;
+  font-size:30px;
+  font-weight:bold;
   color:#f59e0b;
 }
-.section-title{
-  color:#005b9f;
-  margin:28px 0 14px;
+
+.section{
+  margin-top:30px;
 }
+
 .item{
-  background:#f8fbff;
+  background:#f8fafc;
   border:1px solid #e2e8f0;
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:10px;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:8px;
 }
+
 .small{
-  color:#64748b;
   font-size:12px;
+  color:#666;
 }
-.bad{color:#b91c1c;font-weight:bold;}
-.good{color:#166534;font-weight:bold;}
+
+.alert{
+  background:#fee2e2;
+  padding:12px;
+  border-radius:10px;
+  color:#b91c1c;
+  margin-bottom:15px;
+}
 </style>
 </head>
 
@@ -121,23 +135,18 @@ button{
 
   <div id="loginBox" class="login-box">
     <h2>دخول الإدارة</h2>
-    <input type="password" id="adminCode" placeholder="ادخل الرمز السري">
+    <input type="password" id="code" placeholder="الرمز">
     <button onclick="login()">دخول</button>
   </div>
 
   <div id="panel" class="panel">
 
-    <!-- الكروت -->
+    <div id="alertBox"></div>
+
     <div class="cards">
       <div class="card">
-        <h3>الأجهزة النشطة الآن</h3>
-        <div class="number" id="activeDevicesCount">0</div>
-        <div class="small">آخر 60 ثانية</div>
-      </div>
-
-      <div class="card">
-        <h3>طلبات الشفت</h3>
-        <div class="number" id="newShiftCount">0</div>
+        <h3>الأجهزة الآن</h3>
+        <div class="number" id="devicesCount">0</div>
       </div>
 
       <div class="card">
@@ -147,13 +156,19 @@ button{
 
       <div class="card">
         <h3>زيارات منزلية</h3>
-        <div class="number" id="homeVisitsCount">0</div>
+        <div class="number" id="homeCount">0</div>
+      </div>
+
+      <div class="card">
+        <h3>أكثر ضغط</h3>
+        <div class="number" id="topTherapist">—</div>
       </div>
     </div>
 
-    <!-- الأجهزة -->
-    <h2 class="section-title">الأجهزة المتصلة</h2>
-    <div id="devicesList"></div>
+    <div class="section">
+      <h3>الأجهزة المتصلة</h3>
+      <div id="devicesList"></div>
+    </div>
 
   </div>
 
@@ -172,19 +187,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const ADMIN_CODE = "164321";
+const CODE = "164321";
 
 window.login = function(){
-  const code = document.getElementById("adminCode").value;
-
-  if(code !== ADMIN_CODE){
+  if(document.getElementById("code").value !== CODE){
     alert("خطأ");
     return;
   }
 
-  document.getElementById("loginBox").style.display = "none";
-  document.getElementById("panel").style.display = "block";
-
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("panel").style.display="block";
   load();
 };
 
@@ -199,34 +211,29 @@ function load(){
   // الأجهزة
   onSnapshot(collection(db,"activeDevices"), snap=>{
     const now = new Date();
-    let active = [];
+    let active=[];
 
     snap.forEach(d=>{
       const x = d.data();
       const last = toDate(x.lastSeen);
-      const diff = Math.floor((now - last)/1000);
+      const diff = (now-last)/1000;
 
-      if(diff <= 60){
+      if(diff < 60){
         active.push({...x,diff});
       }
     });
 
-    document.getElementById("activeDevicesCount").innerText = active.length;
+    document.getElementById("devicesCount").innerText = active.length;
 
     const box = document.getElementById("devicesList");
-    box.innerHTML = "";
-
-    if(active.length === 0){
-      box.innerHTML = `<div class="item">لا يوجد أحد داخل الآن</div>`;
-      return;
-    }
+    box.innerHTML="";
 
     active.forEach((x,i)=>{
       box.innerHTML += `
         <div class="item">
-          <b>جهاز ${i+1}</b><br>
+          جهاز ${i+1}<br>
           الصفحة: ${x.page}<br>
-          <span class="small">قبل ${x.diff} ثانية</span>
+          <span class="small">${Math.floor(x.diff)} ثانية</span>
         </div>
       `;
     });
@@ -239,22 +246,40 @@ function load(){
 
   // زيارات
   onSnapshot(collection(db,"homeVisits"), snap=>{
-    document.getElementById("homeVisitsCount").innerText = snap.size;
+    document.getElementById("homeCount").innerText = snap.size;
   });
 
-  // شفت
-  onSnapshot(collection(db,"shiftRequests"), snap=>{
-    let count = 0;
+  // أكثر ضغط
+  onSnapshot(collection(db,"therapistSchedules"), snap=>{
+    let count={};
+
     snap.forEach(d=>{
-      if(d.data().status === "new") count++;
+      const t = d.data().therapist;
+      if(!t) return;
+      count[t]=(count[t]||0)+1;
     });
-    document.getElementById("newShiftCount").innerText = count;
+
+    let max=0,name="—";
+    for(let k in count){
+      if(count[k]>max){
+        max=count[k];
+        name=k;
+      }
+    }
+
+    document.getElementById("topTherapist").innerText=name;
   });
+
+  // تنبيه بسيط
+  const today = new Date().getDate();
+  if(today===20){
+    document.getElementById("alertBox").innerHTML =
+      `<div class="alert">اليوم موعد رفع الزيارات المنزلية</div>`;
+  }
 
 }
 </script>
 
-<!-- مهم جداً -->
 <script type="module" src="tracker.js"></script>
 
 </body>
