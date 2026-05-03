@@ -25,9 +25,7 @@ body{
 .logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
 .brand h1{margin:0;font-size:26px;font-weight:900}
 .brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
-.btn{
-  border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer;
-}
+.btn{border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer}
 .btn-white{background:white;color:var(--blue)}
 .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
 .btn-light{background:#eef6ff;color:var(--blue)}
@@ -44,64 +42,32 @@ input,select,textarea{
   width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;
   font-family:Tahoma,Arial,sans-serif;font-size:14px;background:white;
 }
-.stats{
-  display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;
-}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
 .stat{
   flex:1;min-width:170px;background:#f8fbff;border:1px solid var(--line);
   border-radius:16px;padding:13px;text-align:center;font-weight:900;color:var(--blue);
 }
-.table-wrap{
-  overflow:auto;
-  border-radius:18px;
-  border:1px solid var(--line);
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:white;
-  min-width:1150px;
-  table-layout:fixed;
-}
+.table-wrap{overflow:auto;border-radius:18px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;background:white;min-width:1150px;table-layout:fixed}
 th{
   background:#06345d;color:white;padding:12px;font-size:13px;border:1px solid #17456f;
   text-align:center;white-space:nowrap;
 }
 td{
-  border:1px solid #e2e8f0;
-  min-width:110px;
-  height:105px;
-  vertical-align:top;
-  padding:8px;
-  background:#fbfdff;
-  overflow:visible;
-  position:relative;
+  border:1px solid #e2e8f0;min-width:110px;height:105px;vertical-align:top;
+  padding:8px;background:#fbfdff;overflow:visible;position:relative;
 }
 .day-cell{
   background:#eef6ff;color:var(--blue);font-weight:900;text-align:center;min-width:90px;
 }
 .session{
-  direction:rtl;
-  text-align:right;
-  border-radius:12px;
-  padding:8px;
-  margin-bottom:6px;
-  color:white;
-  font-size:12px;
-  line-height:1.6;
-  cursor:pointer;
-  box-shadow:0 8px 14px rgba(0,0,0,.12);
-  position:relative;
-  z-index:5;
-  min-width:80px;
+  direction:rtl;text-align:right;border-radius:12px;padding:8px;margin-bottom:6px;color:white;
+  font-size:12px;line-height:1.6;cursor:pointer;box-shadow:0 8px 14px rgba(0,0,0,.12);
+  position:relative;z-index:5;min-width:80px;
 }
 .session b{display:block;font-size:12.5px}
 .session.done{opacity:.75}
-.session.cancelled{
-  opacity:.55;
-  text-decoration:line-through;
-  filter:grayscale(.35);
-}
+.session.cancelled{opacity:.55;text-decoration:line-through;filter:grayscale(.35)}
 .type-neuro{background:#7c3aed}
 .type-ortho{background:#2563eb}
 .type-sport{background:#16a34a}
@@ -109,11 +75,8 @@ td{
 .type-postop{background:#0f766e}
 .type-other{background:#64748b}
 .empty{color:#94a3b8;text-align:center;margin-top:30px}
-.note{
-  margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center;
-}
+.note{margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center}
 
-/* MODAL */
 .modal{
   display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);
   z-index:9999;align-items:center;justify-content:center;padding:18px;
@@ -269,13 +232,30 @@ textarea{height:90px;resize:vertical}
   </div>
 </div>
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const sessionsRef = collection(db, "therapistSchedules");
+
 const params = new URLSearchParams(location.search);
 const therapist = params.get("name") || "الأخصائي";
+
 document.getElementById("pageTitle").innerText = "جدول: " + therapist;
 document.getElementById("therapistName").value = therapist;
 
-const storageKey = "akaz_therapist_sessions_" + therapist;
+let sessionsData = [];
 
 const hours = [
   "09:00","10:00","11:00","12:00","13:00",
@@ -285,17 +265,8 @@ const hours = [
 
 const daysAr = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
 
-function getSessions(){
-  return JSON.parse(localStorage.getItem(storageKey) || "[]");
-}
-
-function setSessions(data){
-  localStorage.setItem(storageKey, JSON.stringify(data));
-}
-
 function todayISO(){
-  const d = new Date();
-  return toISO(d);
+  return toISO(new Date());
 }
 
 function toISO(d){
@@ -361,18 +332,17 @@ function initWeek(){
   document.getElementById("weekStart").value = toISO(getSunday(new Date()));
 }
 
-function moveWeek(days){
+window.moveWeek = function(days){
   const current = new Date(document.getElementById("weekStart").value);
   document.getElementById("weekStart").value = toISO(addDays(current,days));
   render();
-}
+};
 
-function render(){
+window.render = function(){
   const table = document.getElementById("scheduleTable");
   const start = new Date(document.getElementById("weekStart").value);
   const weeks = document.getElementById("viewMode").value === "two" ? 14 : 7;
   const dates = Array.from({length:weeks},(_,i)=>addDays(start,i));
-  const sessions = getSessions();
 
   let html = `<tr><th>اليوم</th>`;
   hours.forEach(h => html += `<th>${h}</th>`);
@@ -388,7 +358,8 @@ function render(){
       const from = timeToMinutes(h);
       const to = from + 60;
 
-      const cellSessions = sessions.filter(s=>{
+      const cellSessions = sessionsData.filter(s=>{
+        if(s.therapist !== therapist) return false;
         if(s.date !== date) return false;
         const st = timeToMinutes(s.startTime);
         return st >= from && st < to;
@@ -427,22 +398,23 @@ function render(){
 
   table.innerHTML = html;
   updateStats(dates.map(toISO));
-}
+};
 
 function updateStats(rangeDates){
-  const sessions = getSessions();
-  const rangeSessions = sessions.filter(s => rangeDates.includes(s.date));
+  const therapistSessions = sessionsData.filter(s => s.therapist === therapist);
+  const rangeSessions = therapistSessions.filter(s => rangeDates.includes(s.date));
+
   document.getElementById("totalSessions").innerText = rangeSessions.length;
 
   const today = todayISO();
-  const todaySessions = sessions.filter(s=>s.date===today);
+  const todaySessions = therapistSessions.filter(s=>s.date===today);
 
   document.getElementById("todaySessions").innerText = todaySessions.length;
   document.getElementById("cancelledToday").innerText = todaySessions.filter(s=>(s.attendance || "scheduled")==="cancelled").length;
   document.getElementById("doneToday").innerText = todaySessions.filter(s=>(s.attendance || "scheduled")==="done").length;
 
   const now = new Date();
-  const future = sessions
+  const future = therapistSessions
     .filter(s => (s.attendance || "scheduled") !== "cancelled")
     .map(s => ({...s, dt:new Date(s.date+"T"+s.startTime)}))
     .filter(s => s.dt >= now)
@@ -451,7 +423,7 @@ function updateStats(rangeDates){
   document.getElementById("nextSession").innerText = future ? `${future.patient} - ${future.date} ${future.startTime}` : "—";
 }
 
-function openModal(date="", time=""){
+window.openModal = function(date="", time=""){
   document.getElementById("modalTitle").innerText = "إضافة جلسة | Add Session";
   document.getElementById("editId").value = "";
   document.getElementById("patient").value = "";
@@ -463,13 +435,13 @@ function openModal(date="", time=""){
   document.getElementById("notes").value = "";
   document.getElementById("deleteBtn").style.display = "none";
   document.getElementById("modal").style.display = "flex";
-}
+};
 
-function closeModal(){
+window.closeModal = function(){
   document.getElementById("modal").style.display = "none";
-}
+};
 
-function saveSession(){
+window.saveSession = async function(){
   const patient = document.getElementById("patient").value.trim();
   if(!patient){
     alert("اكتب اسم المريض");
@@ -477,7 +449,6 @@ function saveSession(){
   }
 
   const id = document.getElementById("editId").value || Date.now().toString();
-  const sessions = getSessions();
 
   const obj = {
     id,
@@ -489,20 +460,15 @@ function saveSession(){
     duration: document.getElementById("duration").value,
     attendance: document.getElementById("attendance").value,
     notes: document.getElementById("notes").value.trim(),
-    updatedAt: new Date().toISOString()
+    updatedAt: new Date()
   };
 
-  const exists = sessions.findIndex(s=>s.id===id);
-  if(exists >= 0) sessions[exists] = obj;
-  else sessions.push(obj);
-
-  setSessions(sessions);
+  await setDoc(doc(db, "therapistSchedules", id), obj);
   closeModal();
-  render();
-}
+};
 
-function editSession(id){
-  const s = getSessions().find(x=>x.id===id);
+window.editSession = function(id){
+  const s = sessionsData.find(x=>x.id===id);
   if(!s) return;
 
   document.getElementById("modalTitle").innerText = "تعديل جلسة | Edit Session";
@@ -516,18 +482,31 @@ function editSession(id){
   document.getElementById("notes").value = s.notes || "";
   document.getElementById("deleteBtn").style.display = "block";
   document.getElementById("modal").style.display = "flex";
-}
+};
 
-function deleteSession(){
+window.deleteSession = async function(){
   const id = document.getElementById("editId").value;
   if(!confirm("حذف الجلسة؟")) return;
-  setSessions(getSessions().filter(s=>s.id!==id));
+
+  await deleteDoc(doc(db, "therapistSchedules", id));
   closeModal();
-  render();
+};
+
+function listenSessions(){
+  onSnapshot(sessionsRef, (snapshot) => {
+    sessionsData = [];
+    snapshot.forEach(item => {
+      sessionsData.push({
+        id:item.id,
+        ...item.data()
+      });
+    });
+    render();
+  });
 }
 
 initWeek();
-render();
+listenSessions();
 </script>
 
 </body>
