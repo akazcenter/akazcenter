@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جدول الأخصائيين</title>
 
+<link rel="icon" href="logo.png">
+
+<style>
+body{
+  margin:0;
+  font-family:Tahoma,Arial;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+}
+
+/* HEADER */
+.top{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  padding:30px;
+  text-align:center;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+}
+
+.top h1{
+  margin:0;
+  font-size:26px;
+}
+
+.top p{
+  margin:8px 0 0;
+  color:#dbeafe;
+}
+
+/* CONTAINER */
+.container{
+  width:90%;
+  max-width:1100px;
+  margin:30px auto;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.icon{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.name{
+  font-weight:bold;
+  font-size:16px;
+  color:#0f172a;
+}
+
+/* BACK BUTTON */
+.back{
+  margin-top:20px;
+  text-align:center;
+}
+
+.back button{
+  background:#eef6ff;
+  border:none;
+  padding:12px 20px;
+  border-radius:12px;
+  cursor:pointer;
+  color:#005b9f;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+  <h1>جدول الأخصائيين</h1>
+  <p>Therapist Schedule</p>
+</div>
+
+<div class="container">
+
+  <div class="grid">
+
+    <div class="card" onclick="go('حاتم الأحمدي')">
+      <div class="icon">👨‍⚕️</div>
+      <div class="name">د. حاتم الأحمدي</div>
+    </div>
+
+    <div class="card" onclick="go('عبدالرحمن السويداء')">
+      <div class="icon">👨‍⚕️</div>
+      <div class="name">د. عبدالرحمن السويداء</div>
+    </div>
+
+    <div class="card" onclick="go('عبدالرحمن السليمي')">
+      <div class="icon">👨‍⚕️</div>
+      <div class="name">د. عبدالرحمن السليمي</div>
+    </div>
+
+    <div class="card" onclick="go('عبدالعزيز الحمدان')">
+      <div class="icon">👨‍⚕️</div>
+      <div class="name">د. عبدالعزيز الحمدان</div>
+    </div>
+
+    <div class="card" onclick="go('ريناد حميد')">
+      <div class="icon">👩‍⚕️</div>
+      <div class="name">د. ريناد حميد</div>
+    </div>
+
+    <div class="card" onclick="go('ابتسام سويلم')">
+      <div class="icon">👩‍⚕️</div>
+      <div class="name">د. ابتسام سويلم</div>
+    </div>
+
+    <div class="card" onclick="go('سلمى فرحان')">
+      <div class="icon">👩‍⚕️</div>
+      <div class="name">د. سلمى فرحان</div>
+    </div>
+
+    <div class="card" onclick="go('هند فهيد')">
+      <div class="icon">👩‍⚕️</div>
+      <div class="name">د. هند فهيد</div>
+    </div>
+
+    <div class="card" onclick="go('أسماء فهيد')">
+      <div class="icon">👩‍⚕️</div>
+      <div class="name">د. أسماء فهيد</div>
+    </div>
+
+    <div class="card" onclick="go('مها فريح')">
+      <div class="icon">👩‍⚕️</div>
+      <div class="name">د. مها فريح</div>
+    </div>
+
+  </div>
+
+  <div class="back">
+    <button onclick="location.href='index.html'">رجوع</button>
+  </div>
+
+</div>
+
+<script>
+function go(name){
+  window.location.href = "therapist-calendar.html?name=" + encodeURIComponent(name);
+}
+</script>
+
+</body>
+</html>
