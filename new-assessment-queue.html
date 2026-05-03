@@ -5,238 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>توزيع الكشف الجديد</title>
 <link rel="icon" href="logo.png">
-
 <style>
-:root{
-  --blue:#005b9f;
-  --blue2:#0077c8;
-  --orange:#f59e0b;
-  --text:#0f172a;
-  --muted:#64748b;
-  --line:#e2e8f0;
-}
+:root{--blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;--text:#0f172a;--muted:#64748b;--line:#e2e8f0}
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:linear-gradient(180deg,#f8fbff,#eef4f9);
-  color:var(--text);
-}
-.topbar{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:22px 34px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom-left-radius:28px;
-  box-shadow:0 16px 38px rgba(8,52,95,.22);
-}
-.brand{display:flex;align-items:center;gap:16px}
-.logo{
-  width:72px;
-  height:72px;
-  background:white;
-  object-fit:contain;
-  border-radius:18px;
-  padding:7px;
-}
-.brand h1{margin:0;font-size:27px;font-weight:900}
-.brand p{
-  margin:5px 0 0;
-  direction:ltr;
-  color:#dbeafe;
-  font-size:13px;
-  font-weight:700;
-}
-.btn{
-  border:none;
-  border-radius:12px;
-  padding:11px 16px;
-  font-weight:900;
-  cursor:pointer;
-  font-family:Tahoma,Arial;
-}
-.btn-white{background:white;color:var(--blue)}
-.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
-.btn-light{background:#eef6ff;color:var(--blue)}
-.btn-red{background:#fee2e2;color:#b91c1c}
-.main{
-  width:94%;
-  max-width:1300px;
-  margin:28px auto;
-}
-.intro{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 12px 30px rgba(15,23,42,.07);
-  margin-bottom:20px;
-}
-.intro h2{margin:0;color:var(--blue);font-size:26px}
-.intro p{margin:10px 0 0;color:var(--muted);line-height:1.8}
-.sections{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-.panel{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  overflow:hidden;
-  box-shadow:0 12px 30px rgba(15,23,42,.07);
-}
-.panel-head{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:16px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.panel-head h3{margin:0;font-size:22px}
-.next-box{
-  background:rgba(255,255,255,.14);
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:14px;
-  padding:9px 13px;
-  font-weight:900;
-}
-.panel-body{padding:18px}
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  margin-bottom:14px;
-}
-.field label{
-  display:block;
-  font-size:13px;
-  font-weight:900;
-  color:#334155;
-  margin-bottom:7px;
-}
-input,select{
-  width:100%;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  padding:11px;
-  font-family:Tahoma,Arial;
-  font-size:14px;
-  background:white;
-}
-.full{grid-column:1/-1}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin:15px 0;
-}
-.stat{
-  background:#f8fbff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:13px;
-  text-align:center;
-  color:var(--blue);
-  font-weight:900;
-}
-.stat span{
-  display:block;
-  direction:ltr;
-  font-size:24px;
-  margin-top:5px;
-}
-.table-wrap{
-  overflow:auto;
-  border:1px solid var(--line);
-  border-radius:16px;
-  margin-top:14px;
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:560px;
-}
-th{
-  background:#06345d;
-  color:white;
-  padding:10px;
-  font-size:13px;
-  border:1px solid #17456f;
-}
-td{
-  border:1px solid #e2e8f0;
-  padding:9px;
-  text-align:center;
-  font-size:13px;
-}
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-}
-.by-queue{background:#dcfce7;color:#166534}
-.by-name{background:#fef3c7;color:#92400e}
-.list-title{
-  margin:18px 0 10px;
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
-}
-.history{
-  margin-top:20px;
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:18px;
-  box-shadow:0 12px 30px rgba(15,23,42,.07);
-}
-.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}
-.actions{display:flex;gap:10px;flex-wrap:wrap}
-.actions button{flex:1}
-.empty{color:#94a3b8;font-weight:900}
-.note{
-  margin-top:12px;
-  color:#64748b;
-  font-size:13px;
-  line-height:1.8;
-  text-align:center;
-}
-@media(max-width:1000px){.sections{grid-template-columns:1fr}}
-@media(max-width:650px){
-  .topbar{flex-direction:column;text-align:center}
-  .brand{flex-direction:column}
-  .form-grid,.stats{grid-template-columns:1fr}
-}
+body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
+.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:28px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
+.brand{display:flex;align-items:center;gap:16px}.logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
+.brand h1{margin:0;font-size:27px;font-weight:900}.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
+.btn{border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer;font-family:Tahoma,Arial}
+.btn-white{background:white;color:var(--blue)}.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}.btn-light{background:#eef6ff;color:var(--blue)}.btn-red{background:#fee2e2;color:#b91c1c}
+.main{width:94%;max-width:1300px;margin:28px auto}
+.intro,.history,.panel{background:white;border:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.intro{border-radius:24px;padding:20px;text-align:center;margin-bottom:20px}.intro h2{margin:0;color:var(--blue);font-size:26px}.intro p{margin:10px 0 0;color:var(--muted);line-height:1.8}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{border-radius:24px;overflow:hidden}
+.panel-head{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.panel-head h3{margin:0;font-size:22px}
+.next-box{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 13px;font-weight:900}
+.panel-body{padding:18px}.fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:16px;padding:13px;margin-bottom:14px;font-weight:900;text-align:center;line-height:1.8}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}.full{grid-column:1/-1}
+.field label{display:block;font-size:13px;font-weight:900;color:#334155;margin-bottom:7px}
+input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-family:Tahoma,Arial;font-size:14px;background:white}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{flex:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}.stat{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:13px;text-align:center;color:var(--blue);font-weight:900}.stat span{display:block;direction:ltr;font-size:24px;margin-top:5px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;margin-top:14px}table{width:100%;border-collapse:collapse;min-width:560px;background:white}th{background:#06345d;color:white;padding:10px;font-size:13px;border:1px solid #17456f}td{border:1px solid #e2e8f0;padding:9px;text-align:center;font-size:13px}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900}.by-queue{background:#dcfce7;color:#166534}.by-name{background:#fef3c7;color:#92400e}.priority{background:#dcfce7;color:#166534}.normal{background:#eef6ff;color:#005b9f}.high{background:#fee2e2;color:#b91c1c}
+.list-title{margin:18px 0 10px;color:var(--blue);font-size:18px;font-weight:900}
+.history{margin-top:20px;border-radius:24px;padding:18px}.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}.empty{color:#94a3b8;font-weight:900}.note{margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center}
+@media(max-width:1000px){.sections{grid-template-columns:1fr}}@media(max-width:650px){.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.form-grid,.stats{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
 
 <div class="topbar">
   <div class="brand">
     <img src="logo.png" class="logo" alt="Akaz Logo">
-    <div>
-      <h1>توزيع الكشف الجديد</h1>
-      <p>New Assessment Queue</p>
-    </div>
+    <div><h1>توزيع الكشف الجديد</h1><p>New Assessment Queue</p></div>
   </div>
   <button class="btn btn-white" onclick="location.href='index.html'">الرئيسية</button>
 </div>
 
 <div class="main">
-
   <div class="intro">
     <h2>نظام توزيع حالات الكشف الجديد</h2>
-    <p>
-      كل كشف جديد يُحسب في الإحصائيات ويحرك الدور، سواء كان التوزيع بالدور أو باختيار المريض لأخصائي محدد.
-    </p>
+    <p>التوزيع يعتمد على الأقل عددًا خلال الدورة الشهرية من 21 إلى 20. الحالات بالاسم وبالدور كلها تُحسب في التوازن.</p>
   </div>
 
   <div class="sections">
@@ -244,110 +54,52 @@ td{
     <div class="panel">
       <div class="panel-head">
         <h3>قسم الرجال</h3>
-        <div class="next-box">الدور الآن: <span id="menNext">—</span></div>
+        <div class="next-box">الأولوية الآن: <span id="menNext">—</span></div>
       </div>
-
       <div class="panel-body">
+        <div class="fair-box" id="menFairNote">—</div>
         <div class="form-grid">
-          <div class="field full">
-            <label>اسم المريض | Patient Name</label>
-            <input id="menPatient" placeholder="اكتب اسم المريض">
-          </div>
-
-          <div class="field">
-            <label>طريقة التوزيع</label>
-            <select id="menMethod" onchange="toggleNamed('men')">
-              <option value="queue">بالدور</option>
-              <option value="name">اختيار بالاسم</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>الأخصائي</label>
-            <select id="menTherapist" disabled></select>
-          </div>
+          <div class="field full"><label>اسم المريض | Patient Name</label><input id="menPatient" placeholder="اكتب اسم المريض"></div>
+          <div class="field"><label>طريقة التوزيع</label><select id="menMethod" onchange="toggleNamed('men')"><option value="queue">حسب الأقل عددًا</option><option value="name">اختيار بالاسم</option></select></div>
+          <div class="field"><label>الأخصائي</label><select id="menTherapist" disabled></select></div>
         </div>
-
         <div class="actions">
           <button class="btn btn-blue" onclick="addAssessment('men')">إضافة كشف جديد</button>
-          <button class="btn btn-light" onclick="skipTurn('men')">تخطي الدور الحالي</button>
+          <button class="btn btn-light" onclick="skipTurn('men')">تجاوز مؤقت</button>
         </div>
-
         <div class="stats">
-          <div class="stat">إجمالي اليوم <span id="menTotalToday">0</span></div>
+          <div class="stat">إجمالي الدورة <span id="menTotalToday">0</span></div>
           <div class="stat">بالدور <span id="menQueueToday">0</span></div>
           <div class="stat">بالاسم <span id="menNameToday">0</span></div>
         </div>
-
-        <div class="list-title">إحصائيات الأخصائيين</div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>الأخصائي</th>
-                <th>بالدور</th>
-                <th>بالاسم</th>
-                <th>الإجمالي</th>
-              </tr>
-            </thead>
-            <tbody id="menStatsTable"></tbody>
-          </table>
-        </div>
+        <div class="list-title">إحصائيات الدورة الحالية 21–20</div>
+        <div class="table-wrap"><table><thead><tr><th>الأخصائي</th><th>بالدور</th><th>بالاسم</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody id="menStatsTable"></tbody></table></div>
       </div>
     </div>
 
     <div class="panel">
       <div class="panel-head">
         <h3>قسم النساء</h3>
-        <div class="next-box">الدور الآن: <span id="womenNext">—</span></div>
+        <div class="next-box">الأولوية الآن: <span id="womenNext">—</span></div>
       </div>
-
       <div class="panel-body">
+        <div class="fair-box" id="womenFairNote">—</div>
         <div class="form-grid">
-          <div class="field full">
-            <label>اسم المريض | Patient Name</label>
-            <input id="womenPatient" placeholder="اكتب اسم المريض">
-          </div>
-
-          <div class="field">
-            <label>طريقة التوزيع</label>
-            <select id="womenMethod" onchange="toggleNamed('women')">
-              <option value="queue">بالدور</option>
-              <option value="name">اختيار بالاسم</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>الأخصائي</label>
-            <select id="womenTherapist" disabled></select>
-          </div>
+          <div class="field full"><label>اسم المريض | Patient Name</label><input id="womenPatient" placeholder="اكتب اسم المريض"></div>
+          <div class="field"><label>طريقة التوزيع</label><select id="womenMethod" onchange="toggleNamed('women')"><option value="queue">حسب الأقل عددًا</option><option value="name">اختيار بالاسم</option></select></div>
+          <div class="field"><label>الأخصائي</label><select id="womenTherapist" disabled></select></div>
         </div>
-
         <div class="actions">
           <button class="btn btn-blue" onclick="addAssessment('women')">إضافة كشف جديد</button>
-          <button class="btn btn-light" onclick="skipTurn('women')">تخطي الدور الحالي</button>
+          <button class="btn btn-light" onclick="skipTurn('women')">تجاوز مؤقت</button>
         </div>
-
         <div class="stats">
-          <div class="stat">إجمالي اليوم <span id="womenTotalToday">0</span></div>
+          <div class="stat">إجمالي الدورة <span id="womenTotalToday">0</span></div>
           <div class="stat">بالدور <span id="womenQueueToday">0</span></div>
           <div class="stat">بالاسم <span id="womenNameToday">0</span></div>
         </div>
-
-        <div class="list-title">إحصائيات الأخصائيين</div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>الأخصائي</th>
-                <th>بالدور</th>
-                <th>بالاسم</th>
-                <th>الإجمالي</th>
-              </tr>
-            </thead>
-            <tbody id="womenStatsTable"></tbody>
-          </table>
-        </div>
+        <div class="list-title">إحصائيات الدورة الحالية 21–20</div>
+        <div class="table-wrap"><table><thead><tr><th>الأخصائي</th><th>بالدور</th><th>بالاسم</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody id="womenStatsTable"></tbody></table></div>
       </div>
     </div>
 
@@ -356,388 +108,132 @@ td{
   <div class="history">
     <h3>سجل اليوم | Today Log</h3>
     <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>الوقت</th>
-            <th>القسم</th>
-            <th>المريض</th>
-            <th>الأخصائي</th>
-            <th>الطريقة</th>
-            <th>إجراء</th>
-          </tr>
-        </thead>
-        <tbody id="todayLog"></tbody>
-      </table>
+      <table><thead><tr><th>الوقت</th><th>القسم</th><th>المريض</th><th>الأخصائي</th><th>الطريقة</th><th>إجراء</th></tr></thead><tbody id="todayLog"></tbody></table>
     </div>
-    <div class="note">
-      الدور مستمر ولا يتم تصفيره. الإحصائيات المعروضة محسوبة تلقائيًا لليوم الحالي فقط.
-    </div>
+    <div class="note">الإحصائيات بالأعلى لدورة 21 إلى 20، وسجل الأسفل يعرض اليوم فقط.</div>
   </div>
-
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
-  authDomain: "akazcenter-89c17.firebaseapp.com",
-  projectId: "akazcenter-89c17",
-  storageBucket: "akazcenter-89c17.firebasestorage.app",
-  messagingSenderId: "576111794528",
-  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+const firebaseConfig={apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",authDomain:"akazcenter-89c17.firebaseapp.com",projectId:"akazcenter-89c17",storageBucket:"akazcenter-89c17.firebasestorage.app",messagingSenderId:"576111794528",appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"};
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const assessmentsRef=collection(db,"newAssessments");
+const queueStateRef=collection(db,"newAssessmentQueueState");
+
+const menList=["د: حاتم الاحمدي","د: عبدالرحمن السويداء","د: عبدالرحمن السليمي","د: عبدالعزيز الحمدان"];
+const womenList=["د: ريناد حميد","د: ابتسام سويلم","د: سلمى فرحان","د: أسماء فهيد","د: هند فهيد","د: مها فريح"];
+
+const nameAliases={
+"د: حاتم الاحمدي":["د: حاتم الاحمدي","د: حاتم الأحمدي","د. حاتم الأحمدي","حاتم","حاتم الاحمدي","حاتم الأحمدي"],
+"د: عبدالرحمن السويداء":["د: عبدالرحمن السويداء","د : عبدالرحمن السويداء","د. عبدالرحمن السويداء","عبدالرحمن السويداء","السويداء"],
+"د: عبدالرحمن السليمي":["د: عبدالرحمن السليمي","د. عبدالرحمن السليمي","عبدالرحمن السليمي","السليمي"],
+"د: عبدالعزيز الحمدان":["د: عبدالعزيز الحمدان","د. عبدالعزيز الحمدان","عبدالعزيز الحمدان","الحمدان"],
+"د: ريناد حميد":["د: ريناد حميد","د. ريناد حميد","ريناد","ريناد حميد"],
+"د: ابتسام سويلم":["د: ابتسام سويلم","د. ابتسام سويلم","ابتسام","ابتسام سويلم","التسام"],
+"د: سلمى فرحان":["د: سلمى فرحان","د. سلمى فرحان","سلمى","سلمى فرحان"],
+"د: أسماء فهيد":["د: أسماء فهيد","د. أسماء فهيد","أسماء","اسماء","أسماء فهيد","اسماء فهيد"],
+"د: هند فهيد":["د: هند فهيد","د. هند فهيد","هند","هند فهيد"],
+"د: مها فريح":["د: مها فريح","د. مها فريح","مها","مها فريح"]
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let assessments=[]; let queueState={men:0,women:0};
 
-const assessmentsRef = collection(db, "newAssessments");
-const queueStateRef = collection(db, "newAssessmentQueueState");
+function normalizeName(v){return (v||"").toString().trim().replaceAll("أ","ا").replaceAll("إ","ا").replaceAll("آ","ا").replaceAll("ة","ه").replaceAll(".",":").replace(/\s+/g," ")}
+function sameTherapist(saved,current){const s=normalizeName(saved),c=normalizeName(current);if(s===c)return true;return (nameAliases[current]||[current]).some(a=>normalizeName(a)===s)}
+function todayISO(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
+function cycleStartISO(){const d=new Date();const day=d.getDate();if(day<21)d.setMonth(d.getMonth()-1);d.setDate(21);d.setHours(0,0,0,0);return todayISOFromDate(d)}
+function cycleEndISO(){const d=new Date(cycleStartISO());d.setMonth(d.getMonth()+1);d.setDate(20);return todayISOFromDate(d)}
+function todayISOFromDate(d){const x=new Date(d);x.setMinutes(x.getMinutes()-x.getTimezoneOffset());return x.toISOString().slice(0,10)}
+function inCycle(a){const s=cycleStartISO(),e=cycleEndISO();return a.date>=s && a.date<=e}
+function timeNow(){return new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}
+function getList(section){return section==="men"?menList:womenList}
+function getCurrentTherapist(section){const list=getList(section);return list[(queueState[section]||0)%list.length]}
 
-const menList = [
-  "د: حاتم الاحمدي",
-  "د: عبدالرحمن السويداء",
-  "د: عبدالرحمن السليمي",
-  "د: عبدالعزيز الحمدان"
-];
-
-const womenList = [
-  "د: ريناد حميد",
-  "د: ابتسام سويلم",
-  "د: سلمى فرحان",
-  "د: أسماء فهيد",
-  "د: هند فهيد",
-  "د: مها فريح"
-];
-
-/* مهم:
-   هذا يحل مشكلة اختلاف شكل الاسم القديم والجديد.
-   أي اسم قديم ينحسب تحت الاسم الجديد.
-*/
-const nameAliases = {
-  "د: حاتم الاحمدي": [
-    "د: حاتم الاحمدي",
-    "د: حاتم الأحمدي",
-    "د. حاتم الأحمدي",
-    "حاتم",
-    "حاتم الاحمدي",
-    "حاتم الأحمدي"
-  ],
-  "د: عبدالرحمن السويداء": [
-    "د: عبدالرحمن السويداء",
-    "د : عبدالرحمن السويداء",
-    "د. عبدالرحمن السويداء",
-    "عبدالرحمن السويداء",
-    "السويداء"
-  ],
-  "د: عبدالرحمن السليمي": [
-    "د: عبدالرحمن السليمي",
-    "د. عبدالرحمن السليمي",
-    "عبدالرحمن السليمي",
-    "السليمي"
-  ],
-  "د: عبدالعزيز الحمدان": [
-    "د: عبدالعزيز الحمدان",
-    "د. عبدالعزيز الحمدان",
-    "عبدالعزيز الحمدان",
-    "الحمدان"
-  ],
-  "د: ريناد حميد": [
-    "د: ريناد حميد",
-    "د. ريناد حميد",
-    "ريناد",
-    "ريناد حميد"
-  ],
-  "د: ابتسام سويلم": [
-    "د: ابتسام سويلم",
-    "د. ابتسام سويلم",
-    "ابتسام",
-    "ابتسام سويلم",
-    "التسام"
-  ],
-  "د: سلمى فرحان": [
-    "د: سلمى فرحان",
-    "د. سلمى فرحان",
-    "سلمى",
-    "سلمى فرحان"
-  ],
-  "د: أسماء فهيد": [
-    "د: أسماء فهيد",
-    "د. أسماء فهيد",
-    "أسماء",
-    "اسماء",
-    "أسماء فهيد",
-    "اسماء فهيد"
-  ],
-  "د: هند فهيد": [
-    "د: هند فهيد",
-    "د. هند فهيد",
-    "هند",
-    "هند فهيد"
-  ],
-  "د: مها فريح": [
-    "د: مها فريح",
-    "د. مها فريح",
-    "مها",
-    "مها فريح"
-  ]
-};
-
-let assessments = [];
-let queueState = {
-  men: 0,
-  women: 0
-};
-
-function normalizeName(value){
-  return (value || "")
-    .toString()
-    .trim()
-    .replaceAll("أ", "ا")
-    .replaceAll("إ", "ا")
-    .replaceAll("آ", "ا")
-    .replaceAll("ة", "ه")
-    .replaceAll(".", ":")
-    .replace(/\s+/g, " ");
+function getCycleItems(section){return assessments.filter(a=>a.section===section && inCycle(a))}
+function countFor(name,items,method=null){return items.filter(a=>sameTherapist(a.therapist,name) && (!method || a.method===method)).length}
+function getRecommendedTherapist(section){
+  const list=getList(section), items=getCycleItems(section);
+  let min=Math.min(...list.map(n=>countFor(n,items)));
+  const tied=list.filter(n=>countFor(n,items)===min);
+  const start=queueState[section]||0;
+  for(let i=0;i<list.length;i++){const n=list[(start+i)%list.length];if(tied.includes(n))return n}
+  return tied[0]||list[0];
 }
-
-function sameTherapist(savedName, currentName){
-  const saved = normalizeName(savedName);
-  const current = normalizeName(currentName);
-
-  if(saved === current) return true;
-
-  const aliases = nameAliases[currentName] || [currentName];
-
-  return aliases.some(alias => normalizeName(alias) === saved);
+function setQueueAfter(section,name){
+  const list=getList(section); const idx=list.indexOf(name);
+  queueState[section]=idx>=0?(idx+1)%list.length:((queueState[section]||0)+1)%list.length;
+  return setDoc(doc(db,"newAssessmentQueueState",section),{section,index:queueState[section],updatedAt:new Date()});
 }
-
-function todayISO(){
-  const d = new Date();
-  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-  return d.toISOString().slice(0,10);
-}
-
-function timeNow(){
-  return new Date().toLocaleTimeString("en-GB", {
-    hour:"2-digit",
-    minute:"2-digit"
-  });
-}
-
-function getList(section){
-  return section === "men" ? menList : womenList;
-}
-
-function getCurrentTherapist(section){
-  const list = getList(section);
-  const index = queueState[section] || 0;
-  return list[index % list.length];
-}
-
-function advanceQueue(section){
-  const list = getList(section);
-  queueState[section] = ((queueState[section] || 0) + 1) % list.length;
-  return setDoc(doc(db, "newAssessmentQueueState", section), {
-    section,
-    index: queueState[section],
-    updatedAt: new Date()
-  });
-}
-
 function fillTherapists(){
-  const menSelect = document.getElementById("menTherapist");
-  const womenSelect = document.getElementById("womenTherapist");
-
-  menSelect.innerHTML = menList.map(n => `<option value="${n}">${n}</option>`).join("");
-  womenSelect.innerHTML = womenList.map(n => `<option value="${n}">${n}</option>`).join("");
+  menTherapist.innerHTML=menList.map(n=>`<option value="${n}">${n}</option>`).join("");
+  womenTherapist.innerHTML=womenList.map(n=>`<option value="${n}">${n}</option>`).join("");
 }
-
-window.toggleNamed = function(section){
-  const method = document.getElementById(section + "Method").value;
-  const select = document.getElementById(section + "Therapist");
-
-  select.disabled = method !== "name";
-
-  if(method === "queue"){
-    select.value = getCurrentTherapist(section);
-  }
+window.toggleNamed=function(section){
+  const method=document.getElementById(section+"Method").value;
+  const select=document.getElementById(section+"Therapist");
+  select.disabled=method!=="name";
+  if(method==="queue")select.value=getRecommendedTherapist(section);
 };
-
-window.addAssessment = async function(section){
-  const patientInput = document.getElementById(section + "Patient");
-  const method = document.getElementById(section + "Method").value;
-  const therapistSelect = document.getElementById(section + "Therapist");
-
-  const patient = patientInput.value.trim();
-  if(!patient){
-    alert("اكتب اسم المريض");
-    return;
-  }
-
-  let therapist = "";
-
-  if(method === "queue"){
-    therapist = getCurrentTherapist(section);
-  }else{
-    therapist = therapistSelect.value;
-  }
-
-  const id = Date.now().toString();
-
-  await setDoc(doc(db, "newAssessments", id), {
-    id,
-    section,
-    patient,
-    therapist,
-    method,
-    date: todayISO(),
-    time: timeNow(),
-    createdAt: new Date()
-  });
-
-  await advanceQueue(section);
-
-  patientInput.value = "";
-  document.getElementById(section + "Method").value = "queue";
-  toggleNamed(section);
+window.addAssessment=async function(section){
+  const patientInput=document.getElementById(section+"Patient");
+  const method=document.getElementById(section+"Method").value;
+  const patient=patientInput.value.trim();
+  if(!patient){alert("اكتب اسم المريض");return}
+  const therapist=method==="queue"?getRecommendedTherapist(section):document.getElementById(section+"Therapist").value;
+  const id=Date.now().toString();
+  await setDoc(doc(db,"newAssessments",id),{id,section,patient,therapist,method,date:todayISO(),time:timeNow(),createdAt:new Date()});
+  await setQueueAfter(section,therapist);
+  patientInput.value="";document.getElementById(section+"Method").value="queue";toggleNamed(section);
 };
-
-window.skipTurn = async function(section){
-  const current = getCurrentTherapist(section);
-  if(!confirm(`تخطي الدور الحالي؟\n\nالأخصائي الحالي: ${current}`)) return;
-  await advanceQueue(section);
+window.skipTurn=async function(section){
+  const current=getRecommendedTherapist(section);
+  if(!confirm(`تجاوز مؤقت؟\n\nالأولوية الحالية: ${current}`))return;
+  await setQueueAfter(section,current);
 };
-
-window.deleteAssessment = async function(id){
-  if(!confirm("حذف هذا الكشف من سجل اليوم؟")) return;
-  await deleteDoc(doc(db, "newAssessments", id));
-};
+window.deleteAssessment=async function(id){if(!confirm("حذف هذا الكشف من سجل اليوم؟"))return;await deleteDoc(doc(db,"newAssessments",id))};
 
 function render(){
-  document.getElementById("menNext").innerText = getCurrentTherapist("men");
-  document.getElementById("womenNext").innerText = getCurrentTherapist("women");
-
-  document.getElementById("menTherapist").value = getCurrentTherapist("men");
-  document.getElementById("womenTherapist").value = getCurrentTherapist("women");
-
-  renderStats("men");
-  renderStats("women");
-  renderTodayLog();
+  menNext.innerText=getRecommendedTherapist("men");
+  womenNext.innerText=getRecommendedTherapist("women");
+  menTherapist.value=getRecommendedTherapist("men");
+  womenTherapist.value=getRecommendedTherapist("women");
+  renderStats("men");renderStats("women");renderTodayLog();
 }
-
 function renderStats(section){
-  const list = getList(section);
-  const today = todayISO();
-
-  const todayItems = assessments.filter(a => a.section === section && a.date === today);
-
-  const queueCount = todayItems.filter(a => a.method === "queue").length;
-  const nameCount = todayItems.filter(a => a.method === "name").length;
-
-  document.getElementById(section + "TotalToday").innerText = todayItems.length;
-  document.getElementById(section + "QueueToday").innerText = queueCount;
-  document.getElementById(section + "NameToday").innerText = nameCount;
-
-  const tbody = document.getElementById(section + "StatsTable");
-  tbody.innerHTML = "";
-
+  const list=getList(section), items=getCycleItems(section);
+  const queueCount=items.filter(a=>a.method==="queue").length;
+  const nameCount=items.filter(a=>a.method==="name").length;
+  document.getElementById(section+"TotalToday").innerText=items.length;
+  document.getElementById(section+"QueueToday").innerText=queueCount;
+  document.getElementById(section+"NameToday").innerText=nameCount;
+  const totals=list.map(n=>countFor(n,items)); const min=Math.min(...totals);
+  const recommended=getRecommendedTherapist(section);
+  document.getElementById(section+"FairNote").innerText=`الدورة الحالية: ${cycleStartISO()} إلى ${cycleEndISO()} — الأفضل الآن: ${recommended} لأنه الأقل عددًا أو الأقرب للتوازن.`;
+  const tbody=document.getElementById(section+"StatsTable");tbody.innerHTML="";
   list.forEach(name=>{
-    const queue = todayItems.filter(a =>
-      sameTherapist(a.therapist, name) && a.method === "queue"
-    ).length;
-
-    const byName = todayItems.filter(a =>
-      sameTherapist(a.therapist, name) && a.method === "name"
-    ).length;
-
-    const total = queue + byName;
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${name}</td>
-        <td>${queue}</td>
-        <td>${byName}</td>
-        <td><b>${total}</b></td>
-      </tr>
-    `;
+    const q=countFor(name,items,"queue"), n=countFor(name,items,"name"), total=q+n, diff=total-min;
+    let badge=diff===0?`<span class="badge priority">أولوية</span>`:diff<=1?`<span class="badge normal">قريب</span>`:`<span class="badge high">أعلى +${diff}</span>`;
+    tbody.innerHTML+=`<tr><td>${name}</td><td>${q}</td><td>${n}</td><td><b>${total}</b></td><td>${badge}</td></tr>`;
   });
 }
-
 function renderTodayLog(){
-  const today = todayISO();
-  const tbody = document.getElementById("todayLog");
-
-  const items = assessments
-    .filter(a => a.date === today)
-    .sort((a,b)=>(b.time || "").localeCompare(a.time || ""));
-
-  if(items.length === 0){
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="6" class="empty">لا توجد حالات كشف جديدة اليوم</td>
-      </tr>
-    `;
-    return;
-  }
-
-  tbody.innerHTML = "";
-
+  const today=todayISO(); const items=assessments.filter(a=>a.date===today).sort((a,b)=>(b.time||"").localeCompare(a.time||""));
+  if(!items.length){todayLog.innerHTML=`<tr><td colspan="6" class="empty">لا توجد حالات كشف جديدة اليوم</td></tr>`;return}
+  todayLog.innerHTML="";
   items.forEach(a=>{
-    const sectionText = a.section === "men" ? "رجال" : "نساء";
-    const methodText = a.method === "queue"
-      ? `<span class="badge by-queue">بالدور</span>`
-      : `<span class="badge by-name">بالاسم</span>`;
-
-    tbody.innerHTML += `
-      <tr>
-        <td>${a.time || "—"}</td>
-        <td>${sectionText}</td>
-        <td>${a.patient}</td>
-        <td>${a.therapist}</td>
-        <td>${methodText}</td>
-        <td>
-          <button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button>
-        </td>
-      </tr>
-    `;
+    const sectionText=a.section==="men"?"رجال":"نساء";
+    const methodText=a.method==="queue"?`<span class="badge by-queue">بالدور</span>`:`<span class="badge by-name">بالاسم</span>`;
+    todayLog.innerHTML+=`<tr><td>${a.time||"—"}</td><td>${sectionText}</td><td>${a.patient}</td><td>${a.therapist}</td><td>${methodText}</td><td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td></tr>`;
   });
 }
-
-function listenAssessments(){
-  onSnapshot(assessmentsRef, snapshot=>{
-    assessments = [];
-    snapshot.forEach(item=>{
-      assessments.push({
-        id:item.id,
-        ...item.data()
-      });
-    });
-    render();
-  });
-}
-
-function listenQueueState(){
-  onSnapshot(queueStateRef, snapshot=>{
-    snapshot.forEach(item=>{
-      const data = item.data();
-      if(data.section === "men") queueState.men = data.index || 0;
-      if(data.section === "women") queueState.women = data.index || 0;
-    });
-    render();
-  });
-}
-
-fillTherapists();
-toggleNamed("men");
-toggleNamed("women");
-listenAssessments();
-listenQueueState();
-render();
+onSnapshot(assessmentsRef,snapshot=>{assessments=[];snapshot.forEach(item=>assessments.push({id:item.id,...item.data()}));render()});
+onSnapshot(queueStateRef,snapshot=>{snapshot.forEach(item=>{const d=item.data();if(d.section==="men")queueState.men=d.index||0;if(d.section==="women")queueState.women=d.index||0});render()});
+fillTherapists();toggleNamed("men");toggleNamed("women");render();
 </script>
-
 <script type="module" src="tracker.js"></script>
 </body>
 </html>
