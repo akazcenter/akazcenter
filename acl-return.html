@@ -1,12 +1,12 @@
+تفضل، انسخه كامل بدل ملف acl-return.html:
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ACL Functional Assessment</title>
-
 <link rel="icon" href="logo.png">
-
 <style>
 :root{
   --blue:#005b9f;
@@ -19,16 +19,13 @@
   --yellow:#92400e;
   --red:#b91c1c;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
   background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
 }
-
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
@@ -41,13 +38,11 @@ body{
   border-bottom-right-radius:28px;
   box-shadow:0 14px 35px rgba(8,52,95,.20);
 }
-
 .brand{
   display:flex;
   align-items:center;
   gap:16px;
 }
-
 .logo{
   width:72px;
   height:72px;
@@ -56,20 +51,17 @@ body{
   border-radius:18px;
   padding:7px;
 }
-
 .brand h1{
   margin:0;
   font-size:24px;
   font-weight:900;
 }
-
 .brand p{
   margin:5px 0 0;
   direction:ltr;
   font-size:13px;
   color:#dbeafe;
 }
-
 .home-btn{
   background:white;
   color:var(--blue);
@@ -79,13 +71,11 @@ body{
   cursor:pointer;
   font-weight:bold;
 }
-
 .main{
   width:94%;
   max-width:1250px;
   margin:26px auto;
 }
-
 .card{
   background:white;
   border:1px solid var(--line);
@@ -94,31 +84,22 @@ body{
   box-shadow:0 12px 30px rgba(15,23,42,.07);
   margin-bottom:20px;
 }
-
 .card-title{
   margin:0 0 16px;
   color:var(--blue);
   font-size:22px;
   font-weight:900;
 }
-
-.intro{
-  line-height:1.9;
-  color:#334155;
-}
-
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:14px;
 }
-
 .grid-3{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:14px;
 }
-
 .field label{
   display:block;
   color:#334155;
@@ -126,7 +107,6 @@ body{
   font-weight:900;
   margin-bottom:7px;
 }
-
 input,select,textarea{
   width:100%;
   border:1px solid #cbd5e1;
@@ -136,25 +116,21 @@ input,select,textarea{
   font-size:14px;
   outline:none;
 }
-
 textarea{
   height:105px;
   resize:vertical;
   line-height:1.8;
 }
-
 input:focus,select:focus,textarea:focus{
   border-color:var(--blue2);
   box-shadow:0 0 0 4px rgba(0,119,200,.12);
 }
-
 .test-box{
   background:#f8fbff;
   border:1px solid var(--line);
   border-radius:18px;
   padding:16px;
 }
-
 .test-head{
   display:flex;
   justify-content:space-between;
@@ -162,12 +138,10 @@ input:focus,select:focus,textarea:focus{
   gap:8px;
   margin-bottom:10px;
 }
-
 .test-head strong{
   color:var(--blue);
   font-size:15px;
 }
-
 .help-btn{
   width:28px;
   height:28px;
@@ -178,7 +152,6 @@ input:focus,select:focus,textarea:focus{
   font-weight:900;
   cursor:pointer;
 }
-
 .help-text{
   display:none;
   background:#0f172a;
@@ -191,7 +164,6 @@ input:focus,select:focus,textarea:focus{
   text-align:left;
   margin-bottom:10px;
 }
-
 .result-line{
   margin-top:10px;
   text-align:center;
@@ -202,34 +174,29 @@ input:focus,select:focus,textarea:focus{
   color:var(--blue);
   direction:ltr;
 }
-
 .status-row{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px;
 }
-
 .status-box{
   background:#f8fbff;
   border:1px solid var(--line);
   border-radius:16px;
   padding:14px;
 }
-
 .status-box label{
   color:var(--blue);
   font-weight:900;
   display:block;
   margin-bottom:8px;
 }
-
 .result-card{
   display:grid;
   grid-template-columns:1fr 2fr;
   gap:18px;
   align-items:stretch;
 }
-
 .score-box{
   background:linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
@@ -240,26 +207,22 @@ input:focus,select:focus,textarea:focus{
   flex-direction:column;
   justify-content:center;
 }
-
 .score{
   font-size:52px;
   font-weight:900;
   direction:ltr;
 }
-
 .score-label{
   margin-top:8px;
   font-size:15px;
   color:#dbeafe;
 }
-
 .readiness{
   background:#f8fbff;
   border:1px solid var(--line);
   border-radius:22px;
   padding:20px;
 }
-
 .badge{
   display:inline-block;
   padding:8px 14px;
@@ -268,22 +231,18 @@ input:focus,select:focus,textarea:focus{
   font-size:13px;
   margin-bottom:12px;
 }
-
 .good{background:#dcfce7;color:var(--green)}
 .mid{background:#fef3c7;color:var(--yellow)}
 .bad{background:#fee2e2;color:var(--red)}
-
 .action-row{
   display:flex;
   gap:12px;
   flex-wrap:wrap;
 }
-
 .action-row button{
   flex:1;
   min-width:190px;
 }
-
 .primary-btn,.secondary-btn{
   border:none;
   border-radius:14px;
@@ -292,37 +251,30 @@ input:focus,select:focus,textarea:focus{
   cursor:pointer;
   font-size:15px;
 }
-
 .primary-btn{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
 }
-
 .secondary-btn{
   background:#eef6ff;
   color:var(--blue);
 }
-
 /* PRINT */
 #printArea{
   display:none;
 }
-
 @media print{
   @page{
     size:A4;
     margin:12mm;
   }
-
   body *{
     visibility:hidden;
   }
-
   #printArea,
   #printArea *{
     visibility:visible;
   }
-
   #printArea{
     position:absolute;
     top:0;
@@ -330,19 +282,16 @@ input:focus,select:focus,textarea:focus{
     width:100%;
     display:block !important;
   }
-
   .no-print{
     display:none !important;
   }
 }
-
 .print-page{
   background:white;
   color:#0f172a;
   font-family:Tahoma,Arial,sans-serif;
   direction:rtl;
 }
-
 .print-header{
   display:flex;
   align-items:center;
@@ -351,52 +300,44 @@ input:focus,select:focus,textarea:focus{
   padding-bottom:12px;
   margin-bottom:16px;
 }
-
 .print-logo{
   width:115px;
   height:auto;
   object-fit:contain;
 }
-
 .print-title{
   text-align:center;
   flex:1;
 }
-
 .print-title h1{
   margin:0;
   color:#005b9f;
   font-size:21px;
   font-weight:900;
 }
-
 .print-title h2{
   margin:6px 0 0;
   color:#f59e0b;
   font-size:15px;
   direction:ltr;
 }
-
 .print-meta{
   direction:ltr;
   text-align:left;
   font-size:11px;
   color:#64748b;
 }
-
 .print-section{
   border:1px solid #dbe4ee;
   border-radius:12px;
   padding:12px;
   margin-bottom:12px;
 }
-
 .print-section h3{
   margin:0 0 10px;
   color:#005b9f;
   font-size:15px;
 }
-
 .print-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -404,33 +345,28 @@ input:focus,select:focus,textarea:focus{
   font-size:12px;
   line-height:1.7;
 }
-
 .print-table{
   width:100%;
   border-collapse:collapse;
   font-size:11.5px;
 }
-
 .print-table th{
   background:#005b9f;
   color:white;
   padding:7px;
   border:1px solid #005b9f;
 }
-
 .print-table td{
   border:1px solid #dbe4ee;
   padding:7px;
   text-align:center;
 }
-
 .print-summary{
   display:grid;
   grid-template-columns:140px 1fr;
   gap:12px;
   align-items:center;
 }
-
 .print-score{
   background:#eef6ff;
   border:1px solid #bfdbfe;
@@ -439,52 +375,35 @@ input:focus,select:focus,textarea:focus{
   text-align:center;
   padding:18px;
 }
-
 .print-score strong{
   display:block;
   direction:ltr;
   font-size:34px;
   font-weight:900;
 }
-
 .print-note{
   font-size:12px;
   line-height:1.8;
   white-space:pre-wrap;
 }
-
-.disclaimer{
-  margin-top:12px;
-  border-top:1px solid #e2e8f0;
-  padding-top:10px;
-  font-size:10.5px;
-  color:#475569;
-  line-height:1.7;
-}
-
 @media(max-width:900px){
   .grid,.grid-3,.status-row,.result-card{
     grid-template-columns:1fr;
   }
-
   .topbar{
     flex-direction:column;
     text-align:center;
   }
-
   .brand{
     flex-direction:column;
   }
-
   .home-btn{
     width:100%;
   }
 }
 </style>
 </head>
-
 <body>
-
 <div class="topbar no-print">
   <div class="brand">
     <img src="logo.png" class="logo" alt="Akaz Logo">
@@ -493,21 +412,16 @@ input:focus,select:focus,textarea:focus{
       <p>Practical ACL Functional Assessment</p>
     </div>
   </div>
-
   <button class="home-btn" onclick="location.href='functional-assessments.html'">رجوع</button>
 </div>
-
-
-
+<div class="main no-print">
   <div class="card">
     <h2 class="card-title">بيانات المريض | Patient Information</h2>
-
     <div class="grid">
       <div class="field">
         <label>اسم المريض | Patient Name</label>
         <input id="patientName" placeholder="اكتب اسم المريض">
       </div>
-
       <div class="field">
         <label>الأخصائي | Therapist</label>
         <select id="therapist">
@@ -524,34 +438,27 @@ input:focus,select:focus,textarea:focus{
           <option>د. مها فريح</option>
         </select>
       </div>
-
       <div class="field">
         <label>نوع الإصابة | Injury</label>
         <input id="injury" value="ACL Rehabilitation / تأهيل الرباط الصليبي">
       </div>
-
       <div class="field">
         <label>الرياضة | Sport</label>
         <input id="sport" placeholder="مثال: كرة قدم">
       </div>
-
       <div class="field">
         <label>تاريخ التقييم | Assessment Date</label>
         <input type="date" id="assessmentDate">
       </div>
-
       <div class="field">
         <label>عدد الأسابيع بعد العملية/الإصابة | Weeks Post-op/Injury</label>
         <input type="number" id="weeks" placeholder="مثال: 24">
       </div>
     </div>
   </div>
-
   <div class="card">
     <h2 class="card-title">اختبارات القوة والتحكم | Strength & Control Tests</h2>
-
     <div class="grid-3">
-
       <div class="test-box">
         <div class="test-head">
           <strong>Single Leg Squat</strong>
@@ -574,7 +481,6 @@ Tools: No equipment required.
         </div>
         <div class="result-line" id="squatResult">LSI: —</div>
       </div>
-
       <div class="test-box">
         <div class="test-head">
           <strong>Single Leg Bridge</strong>
@@ -597,7 +503,6 @@ Tools: Treatment bed or mat.
         </div>
         <div class="result-line" id="bridgeResult">LSI: —</div>
       </div>
-
       <div class="test-box">
         <div class="test-head">
           <strong>Single Leg Calf Raise</strong>
@@ -620,15 +525,11 @@ Tools: Wall or stable support.
         </div>
         <div class="result-line" id="calfResult">LSI: —</div>
       </div>
-
     </div>
   </div>
-
   <div class="card">
     <h2 class="card-title">اختبارات القفز والتوازن | Hop & Balance Tests</h2>
-
     <div class="grid-3">
-
       <div class="test-box">
         <div class="test-head">
           <strong>Single Hop</strong>
@@ -651,7 +552,6 @@ Tools: Tape measure and floor mark.
         </div>
         <div class="result-line" id="singleResult">LSI: —</div>
       </div>
-
       <div class="test-box">
         <div class="test-head">
           <strong>Triple Hop</strong>
@@ -674,7 +574,6 @@ Tools: Tape measure and clear floor space.
         </div>
         <div class="result-line" id="tripleResult">LSI: —</div>
       </div>
-
       <div class="test-box">
         <div class="test-head">
           <strong>Crossover Hop</strong>
@@ -697,7 +596,28 @@ Tools: Tape line and tape measure.
         </div>
         <div class="result-line" id="crossResult">LSI: —</div>
       </div>
-
+      <div class="test-box">
+        <div class="test-head">
+          <strong>6m Timed Hop</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Purpose: Assess single-leg hopping speed over 6 meters.
+Formula: Non-operative time ÷ Operative time × 100.
+Lower time is better.
+        </div>
+        <div class="grid">
+          <div class="field">
+            <label>Operative Time (sec)</label>
+            <input type="number" id="timedOperative" oninput="calculateAll()">
+          </div>
+          <div class="field">
+            <label>Non-operative Time (sec)</label>
+            <input type="number" id="timedNonOperative" oninput="calculateAll()">
+          </div>
+        </div>
+        <div class="result-line" id="timedResult">LSI: —</div>
+      </div>
       <div class="test-box">
         <div class="test-head">
           <strong>Y-Balance</strong>
@@ -720,7 +640,6 @@ Tools: Floor tape and tape measure.
         </div>
         <div class="result-line" id="balanceResult">LSI: —</div>
       </div>
-
       <div class="test-box">
         <div class="test-head">
           <strong>Movement Quality</strong>
@@ -740,13 +659,29 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
         </div>
         <div class="result-line">Clinical Observation</div>
       </div>
-
+      <div class="test-box">
+        <div class="test-head">
+          <strong>Landing Quality</strong>
+          <button class="help-btn" onclick="toggleHelp(this)">?</button>
+        </div>
+        <div class="help-text">
+Purpose: Assess landing control after hopping tests.
+Rating: Good / Fair / Poor based on knee alignment, balance, trunk control, and confidence.
+        </div>
+        <div class="field">
+          <label>Landing Quality</label>
+          <select id="landingQuality" onchange="calculateAll()">
+            <option value="good">Good</option>
+            <option value="fair">Fair</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+        <div class="result-line">Clinical Observation</div>
+      </div>
     </div>
   </div>
-
   <div class="card">
     <h2 class="card-title">الحالة السريرية | Clinical Status</h2>
-
     <div class="status-row">
       <div class="status-box">
         <label>Pain</label>
@@ -756,7 +691,6 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
           <option value="yes">Pain Present</option>
         </select>
       </div>
-
       <div class="status-box">
         <label>Swelling</label>
         <select id="swelling" onchange="calculateAll()">
@@ -764,7 +698,6 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
           <option value="yes">Swelling Present</option>
         </select>
       </div>
-
       <div class="status-box">
         <label>ROM</label>
         <select id="rom" onchange="calculateAll()">
@@ -772,7 +705,6 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
           <option value="limited">Limited</option>
         </select>
       </div>
-
       <div class="status-box">
         <label>Stability</label>
         <select id="stability" onchange="calculateAll()">
@@ -781,22 +713,18 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
         </select>
       </div>
     </div>
-
     <div class="field" style="margin-top:14px">
       <label>Clinical Notes | ملاحظات الأخصائي</label>
       <textarea id="clinicalNotes" placeholder="مثال: تحكم جيد، يحتاج تحسين في الهبوط، لا يوجد ألم بعد الاختبار..."></textarea>
     </div>
   </div>
-
   <div class="card">
     <h2 class="card-title">النتيجة | Result</h2>
-
     <div class="result-card">
       <div class="score-box">
         <div class="score" id="overallScore">0%</div>
         <div class="score-label">Overall Functional Score</div>
       </div>
-
       <div class="readiness">
         <div id="readinessBadge" class="badge bad">Continue Rehab</div>
         <p id="readinessText" style="line-height:1.9;color:#334155;margin:0">
@@ -805,7 +733,6 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
       </div>
     </div>
   </div>
-
   <div class="card">
     <h2 class="card-title">إصدار التقرير | Generate Report</h2>
     <div class="action-row">
@@ -813,26 +740,20 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
       <button class="secondary-btn" onclick="calculateAll()">تحديث الحساب</button>
     </div>
   </div>
-
 </div>
-
 <div id="printArea">
   <div class="print-page">
-
     <div class="print-header">
       <img src="logo.png" class="print-logo" alt="Akaz Logo">
-
       <div class="print-title">
         <h1>تقرير إرشادي للعودة التدريجية للنشاط الرياضي</h1>
         <h2>Return-to-Sport Guidance Report</h2>
       </div>
-
       <div class="print-meta">
         AKAZ Physiotherapy Center<br>
         مركز عكاز للعلاج الطبيعي
       </div>
     </div>
-
     <div class="print-section">
       <h3>بيانات المريض | Patient Information</h3>
       <div class="print-grid">
@@ -846,14 +767,13 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
         <div><b>Weeks:</b> <span id="prWeeks"></span></div>
       </div>
     </div>
-
     <div class="print-section">
       <h3>نتائج الاختبارات | Functional Test Results</h3>
       <table class="print-table">
         <tr>
           <th>Test</th>
-          <th>Injured</th>
-          <th>Uninjured</th>
+          <th>Injured / Operative</th>
+          <th>Uninjured / Non-operative</th>
           <th>LSI%</th>
           <th>Rating</th>
         </tr>
@@ -863,10 +783,11 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
         <tr><td>Single Hop</td><td id="prSingleI"></td><td id="prSingleU"></td><td id="prSingleLsi"></td><td id="prSingleRate"></td></tr>
         <tr><td>Triple Hop</td><td id="prTripleI"></td><td id="prTripleU"></td><td id="prTripleLsi"></td><td id="prTripleRate"></td></tr>
         <tr><td>Crossover Hop</td><td id="prCrossI"></td><td id="prCrossU"></td><td id="prCrossLsi"></td><td id="prCrossRate"></td></tr>
+        <tr><td>6m Timed Hop</td><td id="prTimedI"></td><td id="prTimedU"></td><td id="prTimedLsi"></td><td id="prTimedRate"></td></tr>
         <tr><td>Y-Balance</td><td id="prBalanceI"></td><td id="prBalanceU"></td><td id="prBalanceLsi"></td><td id="prBalanceRate"></td></tr>
+        <tr><td>Landing Quality</td><td colspan="4" id="prLandingQuality"></td></tr>
       </table>
     </div>
-
     <div class="print-section">
       <h3>ملخص التقييم | Assessment Summary</h3>
       <div class="print-summary">
@@ -880,31 +801,29 @@ Look for: knee valgus, poor landing, trunk compensation, fear, instability, or l
         </div>
       </div>
     </div>
-
     <div class="print-section">
       <h3>ملاحظات الأخصائي | Clinical Notes</h3>
       <div class="print-note" id="prNotes"></div>
     </div>
-
- 
+  </div>
 </div>
-
 <script>
 function toggleHelp(btn){
   const box = btn.closest(".test-box").querySelector(".help-text");
   box.style.display = box.style.display === "block" ? "none" : "block";
 }
-
 function num(id){
   const v = parseFloat(document.getElementById(id).value);
   return isNaN(v) ? 0 : v;
 }
-
 function lsi(injured, uninjured){
   if(!injured || !uninjured) return 0;
   return Math.round((injured / uninjured) * 100);
 }
-
+function lsiTimed(operativeTime, nonOperativeTime){
+  if(!operativeTime || !nonOperativeTime) return 0;
+  return Math.round((nonOperativeTime / operativeTime) * 100);
+}
 function ratePercent(value){
   if(value >= 90) return "Excellent";
   if(value >= 80) return "Good";
@@ -912,11 +831,9 @@ function ratePercent(value){
   if(value > 0) return "Needs Improvement";
   return "—";
 }
-
 function colorResult(el,value){
   el.style.background = "#eef6ff";
   el.style.color = "#005b9f";
-
   if(value >= 90){
     el.style.background = "#dcfce7";
     el.style.color = "#166534";
@@ -928,7 +845,6 @@ function colorResult(el,value){
     el.style.color = "#b91c1c";
   }
 }
-
 function getResults(){
   const squat = lsi(num("squatInjured"), num("squatUninjured"));
   const bridge = lsi(num("bridgeInjured"), num("bridgeUninjured"));
@@ -936,34 +852,31 @@ function getResults(){
   const single = lsi(num("singleInjured"), num("singleUninjured"));
   const triple = lsi(num("tripleInjured"), num("tripleUninjured"));
   const cross = lsi(num("crossInjured"), num("crossUninjured"));
+  const timed = lsiTimed(num("timedOperative"), num("timedNonOperative"));
   const balance = lsi(num("balanceInjured"), num("balanceUninjured"));
-
-  const arr = [squat,bridge,calf,single,triple,cross,balance].filter(x => x > 0);
+  const arr = [squat,bridge,calf,single,triple,cross,timed,balance].filter(x => x > 0);
   const avg = arr.length ? Math.round(arr.reduce((a,b)=>a+b,0) / arr.length) : 0;
-
-  return {squat,bridge,calf,single,triple,cross,balance,avg};
+  return {squat,bridge,calf,single,triple,cross,timed,balance,avg};
 }
-
 function hasClinicalWarning(){
   return (
     document.getElementById("pain").value === "yes" ||
     document.getElementById("swelling").value === "yes" ||
     document.getElementById("rom").value === "limited" ||
     document.getElementById("stability").value === "unstable" ||
-    document.getElementById("movementQuality").value === "poor"
+    document.getElementById("movementQuality").value === "poor" ||
+    document.getElementById("landingQuality").value === "poor"
   );
 }
-
 function getReadiness(avg){
   if(hasClinicalWarning()){
     return {
       cls:"bad",
       title:"Needs Clinical Caution",
       ar:"توجد عوامل سريرية تستدعي الحذر. لا يُنصح بالانتقال للمرحلة التالية إلا بعد مراجعة الأخصائي واستقرار الأعراض.",
-      en:"Clinical caution is advised due to symptoms or movement quality findings."
+      en:"Clinical caution is advised due to symptoms, landing quality, or movement quality findings."
     };
   }
-
   if(avg >= 90){
     return {
       cls:"good",
@@ -972,7 +885,6 @@ function getReadiness(avg){
       en:"The patient demonstrates an appropriate functional level for advanced gradual return to sport."
     };
   }
-
   if(avg >= 80){
     return {
       cls:"mid",
@@ -981,7 +893,6 @@ function getReadiness(avg){
       en:"The patient may progress gradually with caution and continued strengthening."
     };
   }
-
   if(avg >= 70){
     return {
       cls:"mid",
@@ -990,7 +901,6 @@ function getReadiness(avg){
       en:"The patient should continue rehabilitation before higher-level sport progression."
     };
   }
-
   return {
     cls:"bad",
     title:"Not Ready for Sport Progression",
@@ -998,10 +908,8 @@ function getReadiness(avg){
     en:"Current results do not support sport progression at this stage."
   };
 }
-
 function calculateAll(){
   const r = getResults();
-
   const fields = [
     ["squatResult",r.squat],
     ["bridgeResult",r.bridge],
@@ -1009,41 +917,34 @@ function calculateAll(){
     ["singleResult",r.single],
     ["tripleResult",r.triple],
     ["crossResult",r.cross],
+    ["timedResult",r.timed],
     ["balanceResult",r.balance]
   ];
-
   fields.forEach(([id,val])=>{
     const el = document.getElementById(id);
     el.innerText = val ? `LSI: ${val}% - ${ratePercent(val)}` : "LSI: —";
     colorResult(el,val);
   });
-
   document.getElementById("overallScore").innerText = r.avg + "%";
-
   const readiness = getReadiness(r.avg);
   const badge = document.getElementById("readinessBadge");
   badge.className = "badge " + readiness.cls;
   badge.innerText = readiness.title;
-
   document.getElementById("readinessText").innerText =
     readiness.ar + " / " + readiness.en;
 }
-
 function setText(id,value){
   document.getElementById(id).innerText = value || "—";
 }
-
 function fillRow(prefix, injuredId, uninjuredId, lsiValue){
   setText(`pr${prefix}I`, document.getElementById(injuredId).value);
   setText(`pr${prefix}U`, document.getElementById(uninjuredId).value);
   setText(`pr${prefix}Lsi`, lsiValue ? lsiValue + "%" : "—");
   setText(`pr${prefix}Rate`, ratePercent(lsiValue));
 }
-
 function fillPrint(){
   const r = getResults();
   const readiness = getReadiness(r.avg);
-
   setText("prPatientName", document.getElementById("patientName").value);
   setText("prPatientNameEn", document.getElementById("patientName").value);
   setText("prTherapist", document.getElementById("therapist").value);
@@ -1052,43 +953,36 @@ function fillPrint(){
   setText("prSport", document.getElementById("sport").value);
   setText("prDate", document.getElementById("assessmentDate").value);
   setText("prWeeks", document.getElementById("weeks").value);
-
   fillRow("Squat","squatInjured","squatUninjured",r.squat);
   fillRow("Bridge","bridgeInjured","bridgeUninjured",r.bridge);
   fillRow("Calf","calfInjured","calfUninjured",r.calf);
   fillRow("Single","singleInjured","singleUninjured",r.single);
   fillRow("Triple","tripleInjured","tripleUninjured",r.triple);
   fillRow("Cross","crossInjured","crossUninjured",r.cross);
+  fillRow("Timed","timedOperative","timedNonOperative",r.timed);
   fillRow("Balance","balanceInjured","balanceUninjured",r.balance);
-
+  setText("prLandingQuality", document.getElementById("landingQuality").value);
   setText("prOverallScore", r.avg + "%");
   setText("prReadinessTitle", readiness.title);
   setText("prReadinessText", readiness.ar + "\n" + readiness.en);
-
   setText("prNotes", document.getElementById("clinicalNotes").value || "لا توجد ملاحظات إضافية.");
 }
-
 function generateReport(){
   if(!document.getElementById("patientName").value.trim()){
     alert("اكتب اسم المريض أولاً");
     return;
   }
-
   if(!document.getElementById("therapist").value){
     alert("اختر الأخصائي أولاً");
     return;
   }
-
   calculateAll();
   fillPrint();
-
   document.getElementById("printArea").style.display = "block";
   window.print();
 }
-
 document.getElementById("assessmentDate").valueAsDate = new Date();
 calculateAll();
 </script>
-
 </body>
 </html>
