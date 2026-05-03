@@ -15,16 +15,13 @@
   --muted:#64748b;
   --line:#e2e8f0;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
   background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
 }
-
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
@@ -35,13 +32,7 @@ body{
   border-bottom-left-radius:28px;
   box-shadow:0 16px 38px rgba(8,52,95,.22);
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
-
+.brand{display:flex;align-items:center;gap:16px}
 .logo{
   width:72px;
   height:72px;
@@ -50,13 +41,7 @@ body{
   border-radius:18px;
   padding:7px;
 }
-
-.brand h1{
-  margin:0;
-  font-size:27px;
-  font-weight:900;
-}
-
+.brand h1{margin:0;font-size:27px;font-weight:900}
 .brand p{
   margin:5px 0 0;
   direction:ltr;
@@ -64,7 +49,6 @@ body{
   font-size:13px;
   font-weight:700;
 }
-
 .btn{
   border:none;
   border-radius:12px;
@@ -73,18 +57,12 @@ body{
   cursor:pointer;
   font-family:Tahoma,Arial;
 }
-
-.btn-white{
-  background:white;
-  color:var(--blue);
-}
-
+.btn-white{background:white;color:var(--blue)}
 .main{
   width:94%;
   max-width:1300px;
   margin:28px auto;
 }
-
 .intro{
   background:white;
   border:1px solid var(--line);
@@ -94,25 +72,13 @@ body{
   box-shadow:0 12px 30px rgba(15,23,42,.07);
   margin-bottom:20px;
 }
-
-.intro h2{
-  margin:0;
-  color:var(--blue);
-  font-size:26px;
-}
-
-.intro p{
-  margin:10px 0 0;
-  color:var(--muted);
-  line-height:1.8;
-}
-
+.intro h2{margin:0;color:var(--blue);font-size:26px}
+.intro p{margin:10px 0 0;color:var(--muted);line-height:1.8}
 .sections{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:20px;
 }
-
 .panel{
   background:white;
   border:1px solid var(--line);
@@ -120,7 +86,6 @@ body{
   overflow:hidden;
   box-shadow:0 12px 30px rgba(15,23,42,.07);
 }
-
 .panel-head{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
@@ -129,12 +94,7 @@ body{
   justify-content:space-between;
   align-items:center;
 }
-
-.panel-head h3{
-  margin:0;
-  font-size:22px;
-}
-
+.panel-head h3{margin:0;font-size:22px}
 .next-box{
   background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.25);
@@ -142,18 +102,13 @@ body{
   padding:9px 13px;
   font-weight:900;
 }
-
-.panel-body{
-  padding:18px;
-}
-
+.panel-body{padding:18px}
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
   margin-bottom:15px;
 }
-
 .stat{
   background:#f8fbff;
   border:1px solid var(--line);
@@ -163,27 +118,23 @@ body{
   color:var(--blue);
   font-weight:900;
 }
-
 .stat span{
   display:block;
   direction:ltr;
   font-size:24px;
   margin-top:5px;
 }
-
 .table-wrap{
   overflow:auto;
   border:1px solid var(--line);
   border-radius:16px;
 }
-
 table{
   width:100%;
   border-collapse:collapse;
   min-width:560px;
   background:white;
 }
-
 th{
   background:#06345d;
   color:white;
@@ -191,14 +142,12 @@ th{
   font-size:13px;
   border:1px solid #17456f;
 }
-
 td{
   border:1px solid #e2e8f0;
   padding:9px;
   text-align:center;
   font-size:13px;
 }
-
 .badge{
   display:inline-block;
   padding:5px 9px;
@@ -206,17 +155,8 @@ td{
   font-size:12px;
   font-weight:900;
 }
-
-.by-queue{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.by-name{
-  background:#fef3c7;
-  color:#92400e;
-}
-
+.by-queue{background:#dcfce7;color:#166534}
+.by-name{background:#fef3c7;color:#92400e}
 .history{
   margin-top:20px;
   background:white;
@@ -225,18 +165,8 @@ td{
   padding:18px;
   box-shadow:0 12px 30px rgba(15,23,42,.07);
 }
-
-.history h3{
-  margin:0 0 14px;
-  color:var(--blue);
-  font-size:22px;
-}
-
-.empty{
-  color:#94a3b8;
-  font-weight:900;
-}
-
+.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}
+.empty{color:#94a3b8;font-weight:900}
 .note{
   margin-top:12px;
   color:#64748b;
@@ -244,27 +174,11 @@ td{
   line-height:1.8;
   text-align:center;
 }
-
-@media(max-width:1000px){
-  .sections{
-    grid-template-columns:1fr;
-  }
-}
-
+@media(max-width:1000px){.sections{grid-template-columns:1fr}}
 @media(max-width:650px){
-  .topbar{
-    flex-direction:column;
-    text-align:center;
-    gap:14px;
-  }
-
-  .brand{
-    flex-direction:column;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-  }
+  .topbar{flex-direction:column;text-align:center;gap:14px}
+  .brand{flex-direction:column}
+  .stats{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -400,14 +314,118 @@ const db = getFirestore(app);
 const assessmentsRef = collection(db, "newAssessments");
 const queueStateRef = collection(db, "newAssessmentQueueState");
 
-const menList = ["حاتم", "السويداء", "السليمي", "الحمدان"];
-const womenList = ["ريناد", "ابتسام", "سلمى", "أسماء", "هند", "مها"];
+const menList = [
+  "د: حاتم الاحمدي",
+  "د: عبدالرحمن السويداء",
+  "د: عبدالرحمن السليمي",
+  "د: عبدالعزيز الحمدان"
+];
+
+const womenList = [
+  "د: ريناد حميد",
+  "د: ابتسام سويلم",
+  "د: سلمى فرحان",
+  "د: أسماء فهيد",
+  "د: هند فهيد",
+  "د: مها فريح"
+];
+
+const nameAliases = {
+  "د: حاتم الاحمدي": [
+    "د: حاتم الاحمدي",
+    "د: حاتم الأحمدي",
+    "د. حاتم الأحمدي",
+    "حاتم",
+    "حاتم الاحمدي",
+    "حاتم الأحمدي"
+  ],
+  "د: عبدالرحمن السويداء": [
+    "د: عبدالرحمن السويداء",
+    "د : عبدالرحمن السويداء",
+    "د. عبدالرحمن السويداء",
+    "عبدالرحمن السويداء",
+    "السويداء"
+  ],
+  "د: عبدالرحمن السليمي": [
+    "د: عبدالرحمن السليمي",
+    "د. عبدالرحمن السليمي",
+    "عبدالرحمن السليمي",
+    "السليمي"
+  ],
+  "د: عبدالعزيز الحمدان": [
+    "د: عبدالعزيز الحمدان",
+    "د. عبدالعزيز الحمدان",
+    "عبدالعزيز الحمدان",
+    "الحمدان"
+  ],
+  "د: ريناد حميد": [
+    "د: ريناد حميد",
+    "د. ريناد حميد",
+    "ريناد",
+    "ريناد حميد"
+  ],
+  "د: ابتسام سويلم": [
+    "د: ابتسام سويلم",
+    "د. ابتسام سويلم",
+    "ابتسام",
+    "ابتسام سويلم",
+    "التسام"
+  ],
+  "د: سلمى فرحان": [
+    "د: سلمى فرحان",
+    "د. سلمى فرحان",
+    "سلمى",
+    "سلمى فرحان"
+  ],
+  "د: أسماء فهيد": [
+    "د: أسماء فهيد",
+    "د. أسماء فهيد",
+    "أسماء",
+    "اسماء",
+    "أسماء فهيد",
+    "اسماء فهيد"
+  ],
+  "د: هند فهيد": [
+    "د: هند فهيد",
+    "د. هند فهيد",
+    "هند",
+    "هند فهيد"
+  ],
+  "د: مها فريح": [
+    "د: مها فريح",
+    "د. مها فريح",
+    "مها",
+    "مها فريح"
+  ]
+};
 
 let assessments = [];
 let queueState = {
   men: 0,
   women: 0
 };
+
+function normalizeName(value){
+  return (value || "")
+    .toString()
+    .trim()
+    .replaceAll("أ", "ا")
+    .replaceAll("إ", "ا")
+    .replaceAll("آ", "ا")
+    .replaceAll("ة", "ه")
+    .replaceAll(".", ":")
+    .replace(/\s+/g, " ");
+}
+
+function sameTherapist(savedName, currentName){
+  const saved = normalizeName(savedName);
+  const current = normalizeName(currentName);
+
+  if(saved === current) return true;
+
+  const aliases = nameAliases[currentName] || [currentName];
+  return aliases.some(alias => normalizeName(alias) === saved);
+}
 
 function todayISO(){
   const d = new Date();
@@ -451,8 +469,14 @@ function renderStats(section){
   tbody.innerHTML = "";
 
   list.forEach(name=>{
-    const queue = todayItems.filter(a => a.therapist === name && a.method === "queue").length;
-    const byName = todayItems.filter(a => a.therapist === name && a.method === "name").length;
+    const queue = todayItems.filter(a =>
+      sameTherapist(a.therapist, name) && a.method === "queue"
+    ).length;
+
+    const byName = todayItems.filter(a =>
+      sameTherapist(a.therapist, name) && a.method === "name"
+    ).length;
+
     const total = queue + byName;
 
     tbody.innerHTML += `
@@ -525,6 +549,7 @@ onSnapshot(queueStateRef, snapshot=>{
 
 render();
 </script>
+
 <script type="module" src="tracker.js"></script>
 </body>
 </html>
