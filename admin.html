@@ -13,42 +13,47 @@
   --bg:#f8fbff;
   --card:#ffffff;
   --line:#e2e8f0;
+  --muted:#64748b;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Tahoma;
+  font-family:Tahoma,Arial;
   direction:rtl;
   background:linear-gradient(180deg,#f9fcff,#eef4f9);
 }
 
+/* HEADER */
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
   color:white;
-  padding:25px;
+  padding:26px;
   text-align:center;
-  font-size:24px;
   font-weight:900;
-  border-bottom-left-radius:30px;
-  border-bottom-right-radius:30px;
+  font-size:24px;
+  border-bottom-left-radius:32px;
+  border-bottom-right-radius:32px;
+  box-shadow:0 20px 45px rgba(0,0,0,.15);
 }
 
+/* MAIN */
 .main{
   width:92%;
   max-width:1300px;
   margin:30px auto;
 }
 
+/* LOGIN */
 .login{
-  background:white;
-  padding:25px;
+  background:var(--card);
+  padding:28px;
   border-radius:20px;
-  max-width:400px;
-  margin:80px auto;
+  max-width:420px;
+  margin:90px auto;
   text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,.1);
+  box-shadow:0 15px 40px rgba(0,0,0,.12);
 }
 
 input,button{
@@ -66,6 +71,19 @@ button{
   cursor:pointer;
 }
 
+/* ALERT */
+.alert{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#92400e;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:20px;
+  font-weight:bold;
+  text-align:center;
+}
+
+/* CARDS */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -73,10 +91,11 @@ button{
 }
 
 .card{
-  background:white;
+  background:var(--card);
   border-radius:18px;
   padding:20px;
   box-shadow:0 12px 30px rgba(0,0,0,.08);
+  text-align:center;
 }
 
 .card h3{
@@ -85,41 +104,22 @@ button{
 }
 
 .number{
-  font-size:34px;
+  font-size:36px;
   font-weight:900;
   color:var(--orange);
+  margin-top:10px;
 }
 
-.section{
-  margin-top:25px;
-}
-
-.item{
-  background:#f8fbff;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:8px;
-  border:1px solid var(--line);
-}
-
-.alert{
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:15px;
-  font-weight:bold;
-}
-
+/* TABS */
 .tabs{
   display:flex;
   gap:10px;
-  margin-bottom:15px;
+  margin-top:25px;
   flex-wrap:wrap;
 }
 
 .tab{
-  padding:10px 15px;
+  padding:10px 16px;
   border-radius:10px;
   background:#eef6ff;
   cursor:pointer;
@@ -129,6 +129,46 @@ button{
 .tab.active{
   background:var(--blue);
   color:white;
+}
+
+/* SECTION */
+.section{
+  margin-top:15px;
+  background:var(--card);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.06);
+}
+
+/* ITEMS */
+.item{
+  background:#f8fbff;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:8px;
+  border:1px solid var(--line);
+}
+
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  border:1px solid var(--line);
+  padding:10px;
+  text-align:center;
+}
+
+th{
+  background:var(--blue);
+  color:white;
+}
+
+.small{
+  color:var(--muted);
+  font-size:12px;
 }
 </style>
 </head>
@@ -147,9 +187,9 @@ button{
 
 <div id="panel" style="display:none">
 
-<div id="alertBox"></div>
+<div id="alertBox" class="alert">جاري التحميل...</div>
 
-<!-- إحصائيات -->
+<!-- STATS -->
 <div class="grid">
   <div class="card">
     <h3>الجلسات اليوم</h3>
@@ -162,8 +202,8 @@ button{
   </div>
 
   <div class="card">
-    <h3>اقتراحات</h3>
-    <div class="number" id="suggestions">0</div>
+    <h3>بالاسم</h3>
+    <div class="number" id="byName">0</div>
   </div>
 
   <div class="card">
@@ -172,32 +212,18 @@ button{
   </div>
 </div>
 
-<!-- Tabs -->
-<div class="section">
-  <div class="tabs">
-    <div class="tab active" onclick="showTab('overview')">نظرة عامة</div>
-    <div class="tab" onclick="showTab('schedule')">الدوام</div>
-    <div class="tab" onclick="showTab('rooms')">الأطفال</div>
-    <div class="tab" onclick="showTab('hydro')">المائي</div>
-  </div>
-
-  <div id="tabContent"></div>
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="openTab('overview',this)">نظرة عامة</div>
+  <div class="tab" onclick="openTab('online',this)">المتصلين</div>
+  <div class="tab" onclick="openTab('logs',this)">السجل</div>
+  <div class="tab" onclick="openTab('analytics',this)">الإحصائيات</div>
+  <div class="tab" onclick="openTab('approvals',this)">الاعتمادات</div>
 </div>
 
-<!-- المتصلين -->
-<div class="section">
-  <h3>المتصلين الآن</h3>
-  <div id="online"></div>
-</div>
-
-<!-- النشاط -->
-<div class="section">
-  <h3>آخر الإجراءات</h3>
-  <div id="logs"></div>
-</div>
+<div id="tabContent" class="section"></div>
 
 </div>
-
 </div>
 
 <script type="module">
@@ -210,7 +236,6 @@ const app = initializeApp({
 });
 
 const db = getFirestore(app);
-
 const CODE="164321";
 
 window.login=()=>{
@@ -227,98 +252,89 @@ function load(){
 
 // الجلسات
 onSnapshot(collection(db,"therapistSchedules"), snap=>{
-  document.getElementById("sessions").innerText = snap.size;
+  document.getElementById("sessions").innerText=snap.size;
 
   let count={};
   snap.forEach(d=>{
     let t=d.data().therapist;
-    if(!t)return;
-    count[t]=(count[t]||0)+1;
+    if(t) count[t]=(count[t]||0)+1;
   });
 
   let max=0,name="—";
   for(let k in count){
     if(count[k]>max){max=count[k];name=k;}
   }
-
   document.getElementById("topTherapist").innerText=name;
 });
 
-// الكشف
+// كشف
 onSnapshot(collection(db,"newAssessments"), snap=>{
-  document.getElementById("newCases").innerText=snap.size;
-});
-
-// اقتراحات
-onSnapshot(collection(db,"suggestions"), snap=>{
-  document.getElementById("suggestions").innerText=snap.size;
-});
-
-// المتصلين
-onSnapshot(collection(db,"activeDevices"), snap=>{
-  let html="";
-  let now=new Date();
+  let total=0,byName=0;
 
   snap.forEach(d=>{
-    let x=d.data();
-    let last=new Date(x.lastSeen.seconds*1000);
-    let diff=(now-last)/1000;
-
-    if(diff<60){
-      html+=`<div class="item">${x.page}</div>`;
-    }
+    total++;
+    if(d.data().type==="name") byName++;
   });
 
-  document.getElementById("online").innerHTML = html || "لا يوجد";
+  document.getElementById("newCases").innerText=total;
+  document.getElementById("byName").innerText=byName;
+
+  document.getElementById("alertBox").innerText =
+    total>20 ? "🚨 ضغط عالي اليوم" : "الوضع مستقر";
 });
 
-// النشاط
-onSnapshot(collection(db,"activityLogs"), snap=>{
-  let arr=[];
-  snap.forEach(d=>arr.push(d.data()));
-
-  arr.sort((a,b)=>b.time.seconds - a.time.seconds);
-
-  let html="";
-  arr.slice(0,10).forEach(x=>{
-    html+=`<div class="item">${x.page} - ${x.action}</div>`;
-  });
-
-  document.getElementById("logs").innerHTML = html || "لا يوجد";
-});
-
-// تنبيه
-document.getElementById("alertBox").innerHTML =
-`<div class="alert">الوضع مستقر</div>`;
-
+openTab('overview',document.querySelector('.tab'));
 }
 
-// Tabs
-window.showTab = function(type){
+// TABS
+window.openTab=function(type,el){
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-  event.target.classList.add("active");
+  el.classList.add("active");
 
   let html="";
 
   if(type==="overview"){
-    html="عرض عام للنظام";
+    html="نظرة عامة على النظام";
   }
 
-  if(type==="schedule"){
-    html="حالة جداول الدوام";
+  if(type==="online"){
+    html='<div id="online"></div>';
+    onSnapshot(collection(db,"activeDevices"), snap=>{
+      let out="";
+      snap.forEach(d=>{
+        let x=d.data();
+        out+=`<div class="item">${x.page}</div>`;
+      });
+      document.getElementById("online").innerHTML=out || "لا يوجد";
+    });
   }
 
-  if(type==="rooms"){
-    html="حجوزات غرف الأطفال";
+  if(type==="logs"){
+    html='<div id="logs"></div>';
+    onSnapshot(collection(db,"activityLogs"), snap=>{
+      let arr=[];
+      snap.forEach(d=>arr.push(d.data()));
+      arr.sort((a,b)=>b.time.seconds-a.time.seconds);
+
+      let out="";
+      arr.slice(0,15).forEach(x=>{
+        out+=`<div class="item">${x.page} - ${x.action}</div>`;
+      });
+
+      document.getElementById("logs").innerHTML=out || "لا يوجد";
+    });
   }
 
-  if(type==="hydro"){
-    html="حجوزات العلاج المائي";
+  if(type==="analytics"){
+    html='<div class="item">إحصائيات قادمة</div>';
   }
 
-  document.getElementById("tabContent").innerHTML = html;
+  if(type==="approvals"){
+    html='<div class="item">حالة اعتماد الجداول</div>';
+  }
+
+  document.getElementById("tabContent").innerHTML=html;
 };
-
 </script>
 
 <script type="module" src="tracker.js"></script>
