@@ -534,7 +534,7 @@ function renderStats(section){
     note.innerText = "تم تحقيق التوازن بين الأخصائيين — تم بدء دورة جديدة ويستمر الإشعار حتى نهاية اليوم.";
   }else{
     note.classList.remove("balance-ok");
-    note.innerText = `الأفضل الآن: ${getRecommendedTherapist(section)} لأنه الأقل عددًا أو الأقرب للتوازن.`;
+    note.innerText = `الأولوية الحالية: ${getRecommendedTherapist(section)} لأنه الأقل عددًا أو الأقرب للتوازن.`;
   }
 
   const totals = list.map(n => countFor(n,items));
