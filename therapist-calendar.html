@@ -4,121 +4,461 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>جدول الأخصائي</title>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
+<link rel="icon" href="logo.png">
 
 <style>
+:root{
+  --blue:#005b9f; --blue2:#0077c8; --orange:#f59e0b;
+  --text:#0f172a; --muted:#64748b; --line:#e2e8f0;
+}
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Tahoma;
-  background:#f8fbff;
+  margin:0;font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text);
+}
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom-left-radius:28px;box-shadow:0 16px 38px rgba(8,52,95,.22);
+}
+.brand{display:flex;align-items:center;gap:16px}
+.logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
+.brand h1{margin:0;font-size:26px;font-weight:900}
+.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
+.btn{
+  border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer;
+}
+.btn-white{background:white;color:var(--blue)}
+.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.btn-light{background:#eef6ff;color:var(--blue)}
+.main{width:94%;max-width:1300px;margin:28px auto}
+.card{
+  background:white;border:1px solid var(--line);border-radius:22px;padding:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);margin-bottom:18px;
+}
+.controls{
+  display:grid;grid-template-columns:1fr 1fr 1fr auto auto auto;gap:12px;align-items:end;
+}
+label{font-size:13px;font-weight:900;color:#334155;display:block;margin-bottom:7px}
+input,select,textarea{
+  width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;
+  font-family:Tahoma,Arial,sans-serif;font-size:14px;background:white;
+}
+.stats{
+  display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;
+}
+.stat{
+  flex:1;min-width:170px;background:#f8fbff;border:1px solid var(--line);
+  border-radius:16px;padding:13px;text-align:center;font-weight:900;color:var(--blue);
+}
+.table-wrap{overflow:auto;border-radius:18px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;background:white;min-width:1150px}
+th{
+  background:#06345d;color:white;padding:12px;font-size:13px;border:1px solid #17456f;
+  text-align:center;white-space:nowrap;
+}
+td{
+  border:1px solid #e2e8f0;min-width:110px;height:88px;vertical-align:top;
+  padding:8px;background:#fbfdff;
+}
+.day-cell{
+  background:#eef6ff;color:var(--blue);font-weight:900;text-align:center;min-width:90px;
+}
+.session{
+  direction:rtl;text-align:right;border-radius:12px;padding:8px;margin-bottom:6px;
+  color:white;font-size:12px;line-height:1.6;cursor:pointer;box-shadow:0 8px 14px rgba(0,0,0,.12);
+}
+.session b{display:block;font-size:12.5px}
+.type-neuro{background:#7c3aed}
+.type-ortho{background:#2563eb}
+.type-sport{background:#16a34a}
+.type-peds{background:#f59e0b}
+.type-postop{background:#0f766e}
+.type-other{background:#64748b}
+.empty{color:#94a3b8;text-align:center;margin-top:22px}
+.note{
+  margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center;
 }
 
-.top{
-  background:linear-gradient(135deg,#005b9f,#0077c8);
-  color:white;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+/* MODAL */
+.modal{
+  display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);
+  z-index:9999;align-items:center;justify-content:center;padding:18px;
 }
-
-.top h1{
-  margin:0;
-  font-size:22px;
+.modal-box{
+  background:white;border-radius:24px;width:100%;max-width:720px;padding:20px;
+  box-shadow:0 28px 70px rgba(0,0,0,.25);
 }
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.modal-head h2{margin:0;color:var(--blue);font-size:22px}
+.close{background:#fee2e2;color:#b91c1c;border:none;border-radius:12px;padding:9px 13px;font-weight:900;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+textarea{height:90px;resize:vertical}
+.modal-actions{display:flex;gap:10px;margin-top:14px}
+.modal-actions button{flex:1}
+.delete-btn{background:#fee2e2;color:#b91c1c}
 
-.top button{
-  background:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-#calendar{
-  width:90%;
-  margin:30px auto;
-  background:white;
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+@media(max-width:900px){
+  .topbar{flex-direction:column;text-align:center}
+  .brand{flex-direction:column}
+  .controls,.grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">
-  <h1 id="title"></h1>
-  <button onclick="location.href='therapist-planners.html'">رجوع</button>
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo">
+    <div>
+      <h1 id="pageTitle">جدول الأخصائي</h1>
+      <p>Therapist Weekly Schedule</p>
+    </div>
+  </div>
+  <button class="btn btn-white" onclick="location.href='therapist-planners.html'">رجوع</button>
 </div>
 
-<div id="calendar"></div>
+<div class="main">
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <div class="card">
+    <div class="controls">
+      <div>
+        <label>الأخصائي | Therapist</label>
+        <input id="therapistName" readonly>
+      </div>
+
+      <div>
+        <label>بداية الأسبوع | Week Start</label>
+        <input type="date" id="weekStart" onchange="render()">
+      </div>
+
+      <div>
+        <label>عرض | View</label>
+        <select id="viewMode" onchange="render()">
+          <option value="week">أسبوع | Week</option>
+          <option value="two">أسبوعين | Two Weeks</option>
+        </select>
+      </div>
+
+      <button class="btn btn-light" onclick="moveWeek(-7)">السابق</button>
+      <button class="btn btn-light" onclick="moveWeek(7)">التالي</button>
+      <button class="btn btn-blue" onclick="openModal()">+ إضافة جلسة</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat">جلسات الفترة: <span id="totalSessions">0</span></div>
+      <div class="stat">جلسات اليوم: <span id="todaySessions">0</span></div>
+      <div class="stat">أقرب جلسة: <span id="nextSession">—</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="table-wrap">
+      <table id="scheduleTable"></table>
+    </div>
+    <div class="note">
+      يمكن إضافة أكثر من مريض بنفس الوقت. اضغط على أي جلسة للتعديل أو الحذف.
+    </div>
+  </div>
+
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modalTitle">إضافة جلسة | Add Session</h2>
+      <button class="close" onclick="closeModal()">إغلاق</button>
+    </div>
+
+    <input type="hidden" id="editId">
+
+    <div class="grid">
+      <div>
+        <label>اسم المريض | Patient Name</label>
+        <input id="patient">
+      </div>
+
+      <div>
+        <label>نوع الحالة | Case Type</label>
+        <select id="caseType">
+          <option value="ortho">عظام | Orthopedic</option>
+          <option value="neuro">أعصاب | Neurological</option>
+          <option value="sport">رياضي | Sports</option>
+          <option value="peds">أطفال | Pediatric</option>
+          <option value="postop">بعد عملية | Post-op</option>
+          <option value="other">أخرى | Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label>التاريخ | Date</label>
+        <input type="date" id="sessionDate">
+      </div>
+
+      <div>
+        <label>وقت البداية | Start Time</label>
+        <input type="time" id="startTime" step="900">
+      </div>
+
+      <div>
+        <label>المدة | Duration</label>
+        <select id="duration">
+          <option value="30">30 دقيقة</option>
+          <option value="45">45 دقيقة</option>
+          <option value="60">60 دقيقة</option>
+          <option value="90">90 دقيقة</option>
+          <option value="120">120 دقيقة</option>
+        </select>
+      </div>
+
+      <div>
+        <label>الحضور | Attendance</label>
+        <select id="attendance">
+          <option value="scheduled">مجدولة | Scheduled</option>
+          <option value="done">تمت | Done</option>
+          <option value="cancelled">ملغاة | Cancelled</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:12px">
+      <label>ملاحظة | Note</label>
+      <textarea id="notes"></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-blue" onclick="saveSession()">حفظ</button>
+      <button class="btn delete-btn" id="deleteBtn" onclick="deleteSession()" style="display:none">حذف</button>
+    </div>
+  </div>
+</div>
 
 <script>
+const params = new URLSearchParams(location.search);
+const therapist = params.get("name") || "الأخصائي";
+document.getElementById("pageTitle").innerText = "جدول: " + therapist;
+document.getElementById("therapistName").value = therapist;
 
-// اسم الأخصائي من الرابط
-const params = new URLSearchParams(window.location.search);
-const therapist = params.get("name");
+const storageKey = "akaz_therapist_sessions_" + therapist;
+const hours = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00"];
+const daysAr = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
 
-document.getElementById("title").innerText = "جدول: " + therapist;
-
-// الألوان حسب الحالة
-function getColor(type){
-  if(type === "عظام") return "#2563eb";
-  if(type === "أعصاب") return "#9333ea";
-  if(type === "رياضي") return "#16a34a";
-  if(type === "أطفال") return "#f59e0b";
-  return "#64748b";
+function getSessions(){
+  return JSON.parse(localStorage.getItem(storageKey) || "[]");
 }
 
-let calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-  initialView: 'timeGridWeek',
-  locale: 'ar',
-  selectable: true,
-  editable: true,
-  eventOverlap: true,
+function setSessions(data){
+  localStorage.setItem(storageKey, JSON.stringify(data));
+}
 
-  headerToolbar:{
-    left:'prev,next today',
-    center:'title',
-    right:'timeGridDay,timeGridWeek,dayGridMonth'
-  },
+function todayISO(){
+  const d = new Date();
+  return d.toISOString().slice(0,10);
+}
 
-  select: function(info){
+function toISO(d){
+  const x = new Date(d);
+  x.setMinutes(x.getMinutes() - x.getTimezoneOffset());
+  return x.toISOString().slice(0,10);
+}
 
-    let patient = prompt("اسم المريض:");
-    if(!patient) return;
+function getSunday(date){
+  const d = new Date(date);
+  const day = d.getDay();
+  d.setDate(d.getDate() - day);
+  return d;
+}
 
-    let type = prompt("نوع الحالة (عظام / أعصاب / رياضي / أطفال):");
-    let duration = prompt("مدة الجلسة بالدقائق (30 / 45 / 60 / 90):");
+function addDays(date, days){
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
 
-    duration = parseInt(duration);
+function timeToMinutes(t){
+  const [h,m] = t.split(":").map(Number);
+  return h*60+m;
+}
 
-    let end = new Date(info.start);
-    end.setMinutes(end.getMinutes() + duration);
+function minutesToTime(min){
+  const h = Math.floor(min/60).toString().padStart(2,"0");
+  const m = (min%60).toString().padStart(2,"0");
+  return `${h}:${m}`;
+}
 
-    calendar.addEvent({
-      title: patient,
-      start: info.start,
-      end: end,
-      color: getColor(type)
+function endTime(start,duration){
+  return minutesToTime(timeToMinutes(start)+Number(duration));
+}
+
+function typeClass(type){
+  return "type-" + type;
+}
+
+function typeText(type){
+  const map = {
+    ortho:"عظام | Ortho",
+    neuro:"أعصاب | Neuro",
+    sport:"رياضي | Sport",
+    peds:"أطفال | Peds",
+    postop:"بعد عملية | Post-op",
+    other:"أخرى | Other"
+  };
+  return map[type] || "Other";
+}
+
+function initWeek(){
+  document.getElementById("weekStart").value = toISO(getSunday(new Date()));
+}
+
+function moveWeek(days){
+  const current = new Date(document.getElementById("weekStart").value);
+  document.getElementById("weekStart").value = toISO(addDays(current,days));
+  render();
+}
+
+function render(){
+  const table = document.getElementById("scheduleTable");
+  const start = new Date(document.getElementById("weekStart").value);
+  const weeks = document.getElementById("viewMode").value === "two" ? 14 : 7;
+  const dates = Array.from({length:weeks},(_,i)=>addDays(start,i));
+  const sessions = getSessions();
+
+  let html = `<tr><th>اليوم</th>`;
+  hours.forEach(h => html += `<th>${h}</th>`);
+  html += `</tr>`;
+
+  dates.forEach(dateObj=>{
+    const date = toISO(dateObj);
+    const dayName = daysAr[dateObj.getDay()];
+    html += `<tr>`;
+    html += `<td class="day-cell">${dayName}<br><small>${date}</small></td>`;
+
+    hours.forEach(h=>{
+      const from = timeToMinutes(h);
+      const to = from + 60;
+
+      const cellSessions = sessions.filter(s=>{
+        if(s.date !== date) return false;
+        const st = timeToMinutes(s.startTime);
+        return st >= from && st < to;
+      });
+
+      html += `<td>`;
+      if(cellSessions.length === 0){
+        html += `<div class="empty">—</div>`;
+      }else{
+        cellSessions.forEach(s=>{
+          html += `
+            <div class="session ${typeClass(s.caseType)}" onclick="editSession('${s.id}')">
+              <b>${s.patient}</b>
+              ${s.startTime} - ${endTime(s.startTime,s.duration)}<br>
+              ${typeText(s.caseType)}<br>
+              <small>${s.duration} min</small>
+            </div>
+          `;
+        });
+      }
+      html += `</td>`;
     });
-  },
 
-  eventClick:function(info){
-    if(confirm("حذف الجلسة؟")){
-      info.event.remove();
-    }
-  }
+    html += `</tr>`;
+  });
 
-});
+  table.innerHTML = html;
+  updateStats(dates.map(toISO));
+}
 
-calendar.render();
+function updateStats(rangeDates){
+  const sessions = getSessions();
+  const rangeSessions = sessions.filter(s => rangeDates.includes(s.date));
+  document.getElementById("totalSessions").innerText = rangeSessions.length;
 
+  const today = todayISO();
+  document.getElementById("todaySessions").innerText = sessions.filter(s=>s.date===today).length;
+
+  const now = new Date();
+  const future = sessions
+    .map(s => ({...s, dt:new Date(s.date+"T"+s.startTime)}))
+    .filter(s => s.dt >= now)
+    .sort((a,b)=>a.dt-b.dt)[0];
+
+  document.getElementById("nextSession").innerText = future ? `${future.patient} - ${future.date} ${future.startTime}` : "—";
+}
+
+function openModal(date="", time=""){
+  document.getElementById("modalTitle").innerText = "إضافة جلسة | Add Session";
+  document.getElementById("editId").value = "";
+  document.getElementById("patient").value = "";
+  document.getElementById("caseType").value = "ortho";
+  document.getElementById("sessionDate").value = date || todayISO();
+  document.getElementById("startTime").value = time || "09:00";
+  document.getElementById("duration").value = "45";
+  document.getElementById("attendance").value = "scheduled";
+  document.getElementById("notes").value = "";
+  document.getElementById("deleteBtn").style.display = "none";
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+
+function saveSession(){
+  const patient = document.getElementById("patient").value.trim();
+  if(!patient){ alert("اكتب اسم المريض"); return; }
+
+  const id = document.getElementById("editId").value || Date.now().toString();
+  const sessions = getSessions();
+  const obj = {
+    id,
+    therapist,
+    patient,
+    caseType: document.getElementById("caseType").value,
+    date: document.getElementById("sessionDate").value,
+    startTime: document.getElementById("startTime").value,
+    duration: document.getElementById("duration").value,
+    attendance: document.getElementById("attendance").value,
+    notes: document.getElementById("notes").value.trim(),
+    updatedAt: new Date().toISOString()
+  };
+
+  const exists = sessions.findIndex(s=>s.id===id);
+  if(exists >= 0) sessions[exists] = obj;
+  else sessions.push(obj);
+
+  setSessions(sessions);
+  closeModal();
+  render();
+}
+
+function editSession(id){
+  const s = getSessions().find(x=>x.id===id);
+  if(!s) return;
+
+  document.getElementById("modalTitle").innerText = "تعديل جلسة | Edit Session";
+  document.getElementById("editId").value = s.id;
+  document.getElementById("patient").value = s.patient;
+  document.getElementById("caseType").value = s.caseType;
+  document.getElementById("sessionDate").value = s.date;
+  document.getElementById("startTime").value = s.startTime;
+  document.getElementById("duration").value = s.duration;
+  document.getElementById("attendance").value = s.attendance || "scheduled";
+  document.getElementById("notes").value = s.notes || "";
+  document.getElementById("deleteBtn").style.display = "block";
+  document.getElementById("modal").style.display = "flex";
+}
+
+function deleteSession(){
+  const id = document.getElementById("editId").value;
+  if(!confirm("حذف الجلسة؟")) return;
+  setSessions(getSessions().filter(s=>s.id!==id));
+  closeModal();
+  render();
+}
+
+initWeek();
+render();
 </script>
 
 </body>
