@@ -1,511 +1,159 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة الإدارة | مركز عكاز</title>
-<link rel="icon" href="logo.png">
+<title>لوحة الإدارة</title>
 
 <style>
-:root{
-  --blue:#005b9f;
-  --blue2:#0077c8;
-  --orange:#f59e0b;
-  --text:#0f172a;
-  --muted:#64748b;
-  --line:#e2e8f0;
-  --green:#166534;
-  --red:#b91c1c;
-  --yellow:#92400e;
-}
-
-*{box-sizing:border-box}
-
 body{
   margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 12% 22%, rgba(0,119,200,.08), transparent 25%),
-    radial-gradient(circle at 85% 78%, rgba(245,158,11,.10), transparent 28%),
-    linear-gradient(180deg,#f8fbff,#eef4f9);
-  color:var(--text);
-  min-height:100vh;
+  font-family:Tahoma,Arial;
+  direction:rtl;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:#0f172a;
 }
-
 .topbar{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  background:linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
-  padding:22px 34px;
+  padding:20px 30px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  border-bottom-left-radius:30px;
-  box-shadow:0 18px 42px rgba(8,52,95,.22);
-}
-
-.brand{
-  display:flex;
   align-items:center;
-  gap:16px;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
 }
-
-.logo{
-  width:76px;
-  height:76px;
-  background:white;
-  object-fit:contain;
-  border-radius:18px;
-  padding:7px;
-  box-shadow:0 12px 25px rgba(0,0,0,.18);
-}
-
-.brand h1{
-  margin:0;
-  font-size:28px;
-  font-weight:900;
-}
-
-.brand p{
-  margin:5px 0 0;
-  direction:ltr;
-  color:#dbeafe;
-  font-size:13px;
-  font-weight:700;
-}
-
 .home-btn{
   background:white;
-  color:var(--blue);
+  color:#005b9f;
   border:none;
-  padding:12px 18px;
-  border-radius:14px;
-  font-weight:900;
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:bold;
   cursor:pointer;
 }
-
 .main{
-  width:94%;
-  max-width:1300px;
-  margin:30px auto;
+  width:92%;
+  max-width:1200px;
+  margin:35px auto;
 }
-
-.login-box{
-  max-width:460px;
-  margin:70px auto;
+.login-box,.panel{
   background:white;
-  border:1px solid var(--line);
-  border-radius:26px;
-  padding:28px;
-  box-shadow:0 18px 42px rgba(15,23,42,.10);
+  border-radius:24px;
+  padding:25px;
+  box-shadow:0 16px 40px rgba(15,23,42,.10);
+  border:1px solid #e2e8f0;
 }
-
-.login-box h2{
-  margin:0 0 8px;
-  color:var(--blue);
-  font-size:26px;
+.login-box{
+  max-width:450px;
+  margin:60px auto;
 }
-
-.login-box p{
-  margin:0 0 18px;
-  color:var(--muted);
-  line-height:1.8;
-}
-
 input{
   width:100%;
   padding:13px;
-  border-radius:13px;
+  border-radius:12px;
   border:1px solid #cbd5e1;
   font-size:16px;
-  font-family:Tahoma,Arial;
+  margin-top:10px;
 }
-
 button{
-  font-family:Tahoma,Arial;
-}
-
-.login-btn{
   width:100%;
-  margin-top:14px;
+  margin-top:15px;
   padding:13px;
   border:none;
-  border-radius:13px;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  border-radius:12px;
+  background:#005b9f;
   color:white;
-  font-weight:900;
+  font-weight:bold;
   cursor:pointer;
 }
-
-.panel{
-  display:none;
-}
-
-.hero-card{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:24px;
-  margin-bottom:22px;
-  box-shadow:0 16px 38px rgba(15,23,42,.08);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.hero-card h2{
-  margin:0;
-  color:var(--blue);
-  font-size:28px;
-  font-weight:900;
-}
-
-.hero-card p{
-  margin:8px 0 0;
-  color:var(--muted);
-  line-height:1.8;
-}
-
-.today-box{
-  background:#eef6ff;
-  color:var(--blue);
-  border:1px solid #bfdbfe;
-  border-radius:18px;
-  padding:14px 18px;
-  font-weight:900;
-  text-align:center;
-}
+.panel{display:none}
 
 .cards{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:18px;
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
-
 .card{
-  position:relative;
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:20px;
-  overflow:hidden;
-  box-shadow:0 14px 32px rgba(15,23,42,.08);
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  right:0;
-  width:100%;
-  height:6px;
-  background:linear-gradient(90deg,var(--orange),#ffd28a);
-}
-
-.card h3{
-  margin:0 0 8px;
-  color:var(--blue);
-  font-size:17px;
-}
-
-.number{
-  font-size:38px;
-  font-weight:900;
-  color:var(--orange);
-  direction:ltr;
-}
-
-.small-text{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:6px;
-}
-
-.quick-links{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:14px;
-  margin-bottom:24px;
-}
-
-.link-card{
-  background:white;
-  border:1px solid var(--line);
+  background:#f8fbff;
+  border:1px solid #e2e8f0;
   border-radius:20px;
-  padding:16px;
-  text-align:center;
-  cursor:pointer;
-  box-shadow:0 12px 26px rgba(15,23,42,.07);
-  transition:.2s;
-}
-
-.link-card:hover{
-  transform:translateY(-4px);
-}
-
-.link-card .icon{
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-.link-card b{
-  color:var(--blue);
-  display:block;
-  margin-bottom:5px;
-}
-
-.link-card span{
-  color:var(--orange);
-  direction:ltr;
-  font-size:12px;
-  font-weight:900;
-}
-
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.section{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
   padding:20px;
-  box-shadow:0 14px 32px rgba(15,23,42,.08);
-  margin-bottom:20px;
 }
-
-.section h2{
-  margin:0 0 14px;
-  color:var(--blue);
-  font-size:22px;
+.card h3{
+  margin:0 0 10px;
+  color:#005b9f;
 }
-
+.number{
+  font-size:34px;
+  font-weight:900;
+  color:#f59e0b;
+}
+.section-title{
+  color:#005b9f;
+  margin:28px 0 14px;
+}
 .item{
   background:#f8fbff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:13px;
-  margin-bottom:10px;
-  line-height:1.8;
-}
-
-.item b{color:var(--blue)}
-
-.bad{
-  color:var(--red);
-  font-weight:900;
-}
-
-.good{
-  color:var(--green);
-  font-weight:900;
-}
-
-.warn{
-  color:var(--yellow);
-  font-weight:900;
-}
-
-.table-wrap{
-  overflow:auto;
-  border:1px solid var(--line);
-  border-radius:16px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:600px;
-}
-
-th{
-  background:#06345d;
-  color:white;
-  padding:10px;
-  border:1px solid #17456f;
-  font-size:13px;
-}
-
-td{
   border:1px solid #e2e8f0;
-  padding:10px;
-  text-align:center;
-  font-size:13px;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
 }
-
-.status-badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:999px;
+.small{
+  color:#64748b;
   font-size:12px;
-  font-weight:900;
 }
-
-.status-ok{background:#dcfce7;color:var(--green)}
-.status-bad{background:#fee2e2;color:var(--red)}
-.status-warn{background:#fef3c7;color:var(--yellow)}
-
-@media(max-width:1100px){
-  .cards{grid-template-columns:repeat(2,1fr)}
-  .quick-links{grid-template-columns:repeat(2,1fr)}
-  .grid-2{grid-template-columns:1fr}
-}
-
-@media(max-width:650px){
-  .topbar{
-    flex-direction:column;
-    text-align:center;
-  }
-
-  .brand{
-    flex-direction:column;
-  }
-
-  .home-btn{
-    width:100%;
-  }
-
-  .cards,.quick-links{
-    grid-template-columns:1fr;
-  }
-}
+.bad{color:#b91c1c;font-weight:bold;}
+.good{color:#166534;font-weight:bold;}
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-  <div class="brand">
-    <img src="logo.png" class="logo" alt="Akaz Logo">
-    <div>
-      <h1>لوحة الإدارة</h1>
-      <p>Management Dashboard</p>
-    </div>
-  </div>
-
-  <button class="home-btn" onclick="location.href='index.html'">الرئيسية</button>
+  <h2>لوحة الإدارة</h2>
+  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
 </div>
 
 <div class="main">
 
   <div id="loginBox" class="login-box">
     <h2>دخول الإدارة</h2>
-    <p>هذه الصفحة مخصصة للمالك والإدارة لمتابعة مؤشرات المركز اليومية.</p>
     <input type="password" id="adminCode" placeholder="ادخل الرمز السري">
-    <button class="login-btn" onclick="login()">دخول</button>
+    <button onclick="login()">دخول</button>
   </div>
 
   <div id="panel" class="panel">
 
-    <div class="hero-card">
-      <div>
-        <h2>ملخص المركز اليومي</h2>
-        <p>نظرة سريعة على أهم مؤشرات التشغيل، الجداول، الاقتراحات، الزيارات، وتوزيع الكشف الجديد.</p>
-      </div>
-      <div class="today-box">
-        <div id="todayAr">—</div>
-        <div id="timeNow" style="direction:ltr;margin-top:5px">—</div>
-      </div>
-    </div>
-
+    <!-- الكروت -->
     <div class="cards">
       <div class="card">
-        <h3>طلبات الشفت الجديدة</h3>
+        <h3>الأجهزة النشطة الآن</h3>
+        <div class="number" id="activeDevicesCount">0</div>
+        <div class="small">آخر 60 ثانية</div>
+      </div>
+
+      <div class="card">
+        <h3>طلبات الشفت</h3>
         <div class="number" id="newShiftCount">0</div>
-        <div class="small-text">طلبات تحتاج متابعة</div>
       </div>
 
       <div class="card">
-        <h3>اقتراحات الموظفين</h3>
+        <h3>اقتراحات</h3>
         <div class="number" id="suggestionsCount">0</div>
-        <div class="small-text">إجمالي الاقتراحات المسجلة</div>
       </div>
 
       <div class="card">
-        <h3>الزيارات المنزلية</h3>
+        <h3>زيارات منزلية</h3>
         <div class="number" id="homeVisitsCount">0</div>
-        <div class="small-text">إجمالي الزيارات المسجلة</div>
-      </div>
-
-      <div class="card">
-        <h3>كشف جديد اليوم</h3>
-        <div class="number" id="assessmentsToday">0</div>
-        <div class="small-text">رجال ونساء</div>
       </div>
     </div>
 
-    <div class="quick-links">
-      <div class="link-card" onclick="location.href='work-schedule.html'">
-        <div class="icon">📋</div>
-        <b>جدول الدوام</b>
-        <span>Work Schedule</span>
-      </div>
-
-      <div class="link-card" onclick="location.href='therapist-planners.html'">
-        <div class="icon">📅</div>
-        <b>جدول الأخصائيين</b>
-        <span>Therapist Schedule</span>
-      </div>
-
-      <div class="link-card" onclick="location.href='new-assessment-entry.html'">
-        <div class="icon">🩺</div>
-        <b>توزيع الكشف</b>
-        <span>New Queue</span>
-      </div>
-
-      <div class="link-card" onclick="location.href='home-visits.html'">
-        <div class="icon">🏠</div>
-        <b>الزيارات المنزلية</b>
-        <span>Home Visits</span>
-      </div>
-
-      <div class="link-card" onclick="location.href='suggestions.html'">
-        <div class="icon">💡</div>
-        <b>الاقتراحات</b>
-        <span>Suggestions</span>
-      </div>
-    </div>
-
-    <div class="grid-2">
-
-      <div class="section">
-        <h2>حالة اعتماد الجداول</h2>
-        <div id="approvalStatus"></div>
-      </div>
-
-      <div class="section">
-        <h2>تنبيهات الإدارة</h2>
-        <div id="alertsBox"></div>
-      </div>
-
-    </div>
-
-    <div class="section">
-      <h2>توزيع الكشف الجديد اليوم</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>القسم</th>
-              <th>إجمالي اليوم</th>
-              <th>بالدور</th>
-              <th>بالاسم</th>
-              <th>الدور الحالي</th>
-            </tr>
-          </thead>
-          <tbody id="assessmentSummary"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="section">
-      <h2>آخر التحديثات</h2>
-      <div id="activityList"></div>
-    </div>
+    <!-- الأجهزة -->
+    <h2 class="section-title">الأجهزة المتصلة</h2>
+    <div id="devicesList"></div>
 
   </div>
 
@@ -518,10 +166,7 @@ import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/fi
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   authDomain: "akazcenter-89c17.firebaseapp.com",
-  projectId: "akazcenter-89c17",
-  storageBucket: "akazcenter-89c17.firebasestorage.app",
-  messagingSenderId: "576111794528",
-  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+  projectId: "akazcenter-89c17"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -529,281 +174,88 @@ const db = getFirestore(app);
 
 const ADMIN_CODE = "164321";
 
-let activities = [];
-let newAssessments = [];
-let queueState = {men:0,women:0};
-
-const menList = ["حاتم", "السويداء", "السليمي", "الحمدان"];
-const womenList = ["ريناد", "ابتسام", "سلمى", "أسماء", "هند", "مها"];
-
 window.login = function(){
   const code = document.getElementById("adminCode").value;
 
   if(code !== ADMIN_CODE){
-    alert("الرمز غير صحيح");
+    alert("خطأ");
     return;
   }
 
   document.getElementById("loginBox").style.display = "none";
   document.getElementById("panel").style.display = "block";
-  loadAdminData();
+
+  load();
 };
 
-function todayISO(){
-  const d = new Date();
-  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-  return d.toISOString().slice(0,10);
+function toDate(v){
+  if(!v) return new Date(0);
+  if(v.seconds) return new Date(v.seconds*1000);
+  return new Date(v);
 }
 
-function updateClock(){
-  const now = new Date();
-  document.getElementById("todayAr").innerText =
-    now.toLocaleDateString("ar-SA",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
-  document.getElementById("timeNow").innerText =
-    now.toLocaleTimeString("en-GB");
-}
+function load(){
 
-setInterval(updateClock,1000);
-updateClock();
-
-function toDate(value){
-  if(!value) return new Date(0);
-  if(value.seconds) return new Date(value.seconds * 1000);
-  return new Date(value);
-}
-
-function addActivity(type,text,date){
-  activities.push({
-    type,
-    text,
-    date:toDate(date)
-  });
-}
-
-function renderActivities(){
-  const list = document.getElementById("activityList");
-
-  const sorted = activities
-    .sort((a,b)=>b.date-a.date)
-    .slice(0,15);
-
-  if(sorted.length === 0){
-    list.innerHTML = `<div class="item">لا توجد تحديثات حتى الآن</div>`;
-    return;
-  }
-
-  list.innerHTML = "";
-
-  sorted.forEach(a=>{
-    list.innerHTML += `
-      <div class="item">
-        <b>${a.type}</b><br>
-        ${a.text}<br>
-        <small>${a.date.toLocaleString("ar-SA")}</small>
-      </div>
-    `;
-  });
-}
-
-function getCurrent(section){
-  const list = section === "men" ? menList : womenList;
-  const index = queueState[section] || 0;
-  return list[index % list.length];
-}
-
-function renderAssessmentSummary(){
-  const today = todayISO();
-
-  const menToday = newAssessments.filter(a=>a.section==="men" && a.date===today);
-  const womenToday = newAssessments.filter(a=>a.section==="women" && a.date===today);
-
-  document.getElementById("assessmentsToday").innerText = menToday.length + womenToday.length;
-
-  document.getElementById("assessmentSummary").innerHTML = `
-    <tr>
-      <td>قسم الرجال</td>
-      <td>${menToday.length}</td>
-      <td>${menToday.filter(a=>a.method==="queue").length}</td>
-      <td>${menToday.filter(a=>a.method==="name").length}</td>
-      <td><b>${getCurrent("men")}</b></td>
-    </tr>
-    <tr>
-      <td>قسم النساء</td>
-      <td>${womenToday.length}</td>
-      <td>${womenToday.filter(a=>a.method==="queue").length}</td>
-      <td>${womenToday.filter(a=>a.method==="name").length}</td>
-      <td><b>${getCurrent("women")}</b></td>
-    </tr>
-  `;
-}
-
-function renderAlerts(){
-  const box = document.getElementById("alertsBox");
-  const today = new Date();
-  const day = today.getDate();
-
-  let alerts = "";
-
-  if(day === 20){
-    alerts += `<div class="item"><span class="bad">تنبيه:</span> اليوم موعد متابعة رفع الزيارات المنزلية للفترة الشهرية.</div>`;
-  }
-
-  const todayAssessments = newAssessments.filter(a=>a.date===todayISO()).length;
-  if(todayAssessments === 0){
-    alerts += `<div class="item"><span class="warn">ملاحظة:</span> لا توجد حالات كشف جديدة مسجلة اليوم حتى الآن.</div>`;
-  }
-
-  if(!alerts){
-    alerts = `<div class="item"><span class="good">الوضع جيد:</span> لا توجد تنبيهات إدارية مهمة حاليًا.</div>`;
-  }
-
-  box.innerHTML = alerts;
-}
-
-function loadAdminData(){
-  activities = [];
-
-  onSnapshot(collection(db,"shiftRequests"), snap=>{
-    let count = 0;
-    snap.forEach(d=>{
-      const x = d.data();
-      if(x.status === "new") count++;
-
-      addActivity(
-        "طلب تعديل شفت",
-        `${x.employee || ""} - ${x.type || ""} - ${x.section || ""}`,
-        x.createdAt
-      );
-    });
-
-    document.getElementById("newShiftCount").innerText = count;
-    renderActivities();
-  });
-
-  onSnapshot(collection(db,"suggestions"), snap=>{
-    document.getElementById("suggestionsCount").innerText = snap.size;
+  // الأجهزة
+  onSnapshot(collection(db,"activeDevices"), snap=>{
+    const now = new Date();
+    let active = [];
 
     snap.forEach(d=>{
       const x = d.data();
-      addActivity(
-        "اقتراح",
-        `${x.name || "موظف"} أرسل اقتراح`,
-        x.createdAt
-      );
+      const last = toDate(x.lastSeen);
+      const diff = Math.floor((now - last)/1000);
+
+      if(diff <= 60){
+        active.push({...x,diff});
+      }
     });
 
-    renderActivities();
-  });
+    document.getElementById("activeDevicesCount").innerText = active.length;
 
-  onSnapshot(collection(db,"homeVisits"), snap=>{
-    document.getElementById("homeVisitsCount").innerText = snap.size;
-
-    snap.forEach(d=>{
-      const x = d.data();
-      addActivity(
-        "زيارة منزلية",
-        `${x.therapist || x.employee || "تم تسجيل زيارة منزلية"}`,
-        x.createdAt || x.updatedAt || x.date
-      );
-    });
-
-    renderActivities();
-  });
-
-  onSnapshot(collection(db,"workScheduleSettings"), snap=>{
-    const box = document.getElementById("approvalStatus");
+    const box = document.getElementById("devicesList");
     box.innerHTML = "";
 
-    if(snap.empty){
-      box.innerHTML = `<div class="item"><span class="bad">لا توجد جداول معتمدة</span></div>`;
+    if(active.length === 0){
+      box.innerHTML = `<div class="item">لا يوجد أحد داخل الآن</div>`;
       return;
     }
 
-    snap.forEach(d=>{
-      const x = d.data();
-      const sectionName =
-        x.section === "men" ? "قسم الرجال" :
-        x.section === "women" ? "قسم النساء" :
-        x.section === "reception" ? "الاستقبال" :
-        x.section || "قسم";
-
+    active.forEach((x,i)=>{
       box.innerHTML += `
         <div class="item">
-          <b>${sectionName}</b><br>
-          ${
-            x.approved
-            ? `<span class="status-badge status-ok">معتمد</span> من ${x.startDate || "—"} إلى ${x.endDate || "—"}`
-            : `<span class="status-badge status-bad">غير معتمد</span>`
-          }
+          <b>جهاز ${i+1}</b><br>
+          الصفحة: ${x.page}<br>
+          <span class="small">قبل ${x.diff} ثانية</span>
         </div>
       `;
-
-      addActivity(
-        "اعتماد جدول",
-        `${sectionName} ${x.approved ? "تم اعتماده" : "غير معتمد"}`,
-        x.updatedAt
-      );
     });
-
-    renderActivities();
   });
 
-  onSnapshot(collection(db,"kidsRooms"), snap=>{
+  // اقتراحات
+  onSnapshot(collection(db,"suggestions"), snap=>{
+    document.getElementById("suggestionsCount").innerText = snap.size;
+  });
+
+  // زيارات
+  onSnapshot(collection(db,"homeVisits"), snap=>{
+    document.getElementById("homeVisitsCount").innerText = snap.size;
+  });
+
+  // شفت
+  onSnapshot(collection(db,"shiftRequests"), snap=>{
+    let count = 0;
     snap.forEach(d=>{
-      const x = d.data();
-      addActivity(
-        "غرف الأطفال",
-        `${x.therapist || ""} - تم تحديث حجز غرفة`,
-        x.updatedAt
-      );
+      if(d.data().status === "new") count++;
     });
-
-    renderActivities();
+    document.getElementById("newShiftCount").innerText = count;
   });
 
-  onSnapshot(collection(db,"workSchedule"), snap=>{
-    snap.forEach(d=>{
-      const x = d.data();
-      addActivity(
-        "جدول الدوام",
-        `${x.employee || ""} - ${x.section || ""}`,
-        x.updatedAt
-      );
-    });
-
-    renderActivities();
-  });
-
-  onSnapshot(collection(db,"newAssessments"), snap=>{
-    newAssessments = [];
-
-    snap.forEach(d=>{
-      const x = d.data();
-      newAssessments.push({id:d.id,...x});
-
-      addActivity(
-        "كشف جديد",
-        `${x.section === "men" ? "رجال" : "نساء"} - ${x.patient || ""} مع ${x.therapist || ""}`,
-        x.createdAt
-      );
-    });
-
-    renderAssessmentSummary();
-    renderAlerts();
-    renderActivities();
-  });
-
-  onSnapshot(collection(db,"newAssessmentQueueState"), snap=>{
-    snap.forEach(d=>{
-      const x = d.data();
-      if(x.section === "men") queueState.men = x.index || 0;
-      if(x.section === "women") queueState.women = x.index || 0;
-    });
-
-    renderAssessmentSummary();
-  });
 }
 </script>
+
+<!-- مهم جداً -->
+<script type="module" src="tracker.js"></script>
 
 </body>
 </html>
