@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عرض توزيع الكشف الجديد</title>
+<link rel="icon" href="logo.png">
+
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:22px 34px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:28px;
+  box-shadow:0 16px 38px rgba(8,52,95,.22);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  width:72px;
+  height:72px;
+  background:white;
+  object-fit:contain;
+  border-radius:18px;
+  padding:7px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:27px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  direction:ltr;
+  color:#dbeafe;
+  font-size:13px;
+  font-weight:700;
+}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:11px 16px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:Tahoma,Arial;
+}
+
+.btn-white{
+  background:white;
+  color:var(--blue);
+}
+
+.main{
+  width:94%;
+  max-width:1300px;
+  margin:28px auto;
+}
+
+.intro{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+  margin-bottom:20px;
+}
+
+.intro h2{
+  margin:0;
+  color:var(--blue);
+  font-size:26px;
+}
+
+.intro p{
+  margin:10px 0 0;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.sections{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.panel{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+}
+
+.panel-head{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.panel-head h3{
+  margin:0;
+  font-size:22px;
+}
+
+.next-box{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:14px;
+  padding:9px 13px;
+  font-weight:900;
+}
+
+.panel-body{
+  padding:18px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.stat{
+  background:#f8fbff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:13px;
+  text-align:center;
+  color:var(--blue);
+  font-weight:900;
+}
+
+.stat span{
+  display:block;
+  direction:ltr;
+  font-size:24px;
+  margin-top:5px;
+}
+
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:16px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:560px;
+  background:white;
+}
+
+th{
+  background:#06345d;
+  color:white;
+  padding:10px;
+  font-size:13px;
+  border:1px solid #17456f;
+}
+
+td{
+  border:1px solid #e2e8f0;
+  padding:9px;
+  text-align:center;
+  font-size:13px;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.by-queue{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.by-name{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.history{
+  margin-top:20px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+}
+
+.history h3{
+  margin:0 0 14px;
+  color:var(--blue);
+  font-size:22px;
+}
+
+.empty{
+  color:#94a3b8;
+  font-weight:900;
+}
+
+.note{
+  margin-top:12px;
+  color:#64748b;
+  font-size:13px;
+  line-height:1.8;
+  text-align:center;
+}
+
+@media(max-width:1000px){
+  .sections{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .topbar{
+    flex-direction:column;
+    text-align:center;
+    gap:14px;
+  }
+
+  .brand{
+    flex-direction:column;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>عرض توزيع الكشف الجديد</h1>
+      <p>New Assessment Queue View</p>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-white" onclick="location.href='new-assessment-entry.html'">رجوع</button>
+    <button class="btn btn-white" onclick="location.href='index.html'">الرئيسية</button>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="intro">
+    <h2>عرض فقط</h2>
+    <p>
+      هذه الصفحة مخصصة للاطلاع على الدور الحالي، إحصائيات اليوم، وسجل حالات الكشف الجديد بدون صلاحية تعديل.
+    </p>
+  </div>
+
+  <div class="sections">
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3>قسم الرجال</h3>
+        <div class="next-box">الدور الآن: <span id="menNext">—</span></div>
+      </div>
+
+      <div class="panel-body">
+        <div class="stats">
+          <div class="stat">إجمالي اليوم <span id="menTotalToday">0</span></div>
+          <div class="stat">بالدور <span id="menQueueToday">0</span></div>
+          <div class="stat">بالاسم <span id="menNameToday">0</span></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الأخصائي</th>
+                <th>بالدور</th>
+                <th>بالاسم</th>
+                <th>الإجمالي</th>
+              </tr>
+            </thead>
+            <tbody id="menStatsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h3>قسم النساء</h3>
+        <div class="next-box">الدور الآن: <span id="womenNext">—</span></div>
+      </div>
+
+      <div class="panel-body">
+        <div class="stats">
+          <div class="stat">إجمالي اليوم <span id="womenTotalToday">0</span></div>
+          <div class="stat">بالدور <span id="womenQueueToday">0</span></div>
+          <div class="stat">بالاسم <span id="womenNameToday">0</span></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الأخصائي</th>
+                <th>بالدور</th>
+                <th>بالاسم</th>
+                <th>الإجمالي</th>
+              </tr>
+            </thead>
+            <tbody id="womenStatsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="history">
+    <h3>سجل اليوم | Today Log</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الوقت</th>
+            <th>القسم</th>
+            <th>المريض</th>
+            <th>الأخصائي</th>
+            <th>الطريقة</th>
+          </tr>
+        </thead>
+        <tbody id="todayLog"></tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      يتم عرض بيانات اليوم فقط، والدور مستمر ولا يتم تصفيره.
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const assessmentsRef = collection(db, "newAssessments");
+const queueStateRef = collection(db, "newAssessmentQueueState");
+
+const menList = ["حاتم", "السويداء", "السليمي", "الحمدان"];
+const womenList = ["ريناد", "ابتسام", "سلمى", "أسماء", "هند", "مها"];
+
+let assessments = [];
+let queueState = {
+  men: 0,
+  women: 0
+};
+
+function todayISO(){
+  const d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().slice(0,10);
+}
+
+function getList(section){
+  return section === "men" ? menList : womenList;
+}
+
+function getCurrentTherapist(section){
+  const list = getList(section);
+  const index = queueState[section] || 0;
+  return list[index % list.length];
+}
+
+function render(){
+  document.getElementById("menNext").innerText = getCurrentTherapist("men");
+  document.getElementById("womenNext").innerText = getCurrentTherapist("women");
+
+  renderStats("men");
+  renderStats("women");
+  renderTodayLog();
+}
+
+function renderStats(section){
+  const list = getList(section);
+  const today = todayISO();
+
+  const todayItems = assessments.filter(a => a.section === section && a.date === today);
+
+  const queueCount = todayItems.filter(a => a.method === "queue").length;
+  const nameCount = todayItems.filter(a => a.method === "name").length;
+
+  document.getElementById(section + "TotalToday").innerText = todayItems.length;
+  document.getElementById(section + "QueueToday").innerText = queueCount;
+  document.getElementById(section + "NameToday").innerText = nameCount;
+
+  const tbody = document.getElementById(section + "StatsTable");
+  tbody.innerHTML = "";
+
+  list.forEach(name=>{
+    const queue = todayItems.filter(a => a.therapist === name && a.method === "queue").length;
+    const byName = todayItems.filter(a => a.therapist === name && a.method === "name").length;
+    const total = queue + byName;
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${name}</td>
+        <td>${queue}</td>
+        <td>${byName}</td>
+        <td><b>${total}</b></td>
+      </tr>
+    `;
+  });
+}
+
+function renderTodayLog(){
+  const today = todayISO();
+  const tbody = document.getElementById("todayLog");
+
+  const items = assessments
+    .filter(a => a.date === today)
+    .sort((a,b)=>(b.time || "").localeCompare(a.time || ""));
+
+  if(items.length === 0){
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="5" class="empty">لا توجد حالات كشف جديدة اليوم</td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = "";
+
+  items.forEach(a=>{
+    const sectionText = a.section === "men" ? "رجال" : "نساء";
+    const methodText = a.method === "queue"
+      ? `<span class="badge by-queue">بالدور</span>`
+      : `<span class="badge by-name">بالاسم</span>`;
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${a.time || "—"}</td>
+        <td>${sectionText}</td>
+        <td>${a.patient}</td>
+        <td>${a.therapist}</td>
+        <td>${methodText}</td>
+      </tr>
+    `;
+  });
+}
+
+onSnapshot(assessmentsRef, snapshot=>{
+  assessments = [];
+  snapshot.forEach(item=>{
+    assessments.push({
+      id:item.id,
+      ...item.data()
+    });
+  });
+  render();
+});
+
+onSnapshot(queueStateRef, snapshot=>{
+  snapshot.forEach(item=>{
+    const data = item.data();
+    if(data.section === "men") queueState.men = data.index || 0;
+    if(data.section === "women") queueState.women = data.index || 0;
+  });
+  render();
+});
+
+render();
+</script>
+
+</body>
+</html>
