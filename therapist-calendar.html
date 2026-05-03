@@ -51,31 +51,64 @@ input,select,textarea{
   flex:1;min-width:170px;background:#f8fbff;border:1px solid var(--line);
   border-radius:16px;padding:13px;text-align:center;font-weight:900;color:var(--blue);
 }
-.table-wrap{overflow:auto;border-radius:18px;border:1px solid var(--line)}
-table{width:100%;border-collapse:collapse;background:white;min-width:1150px}
+.table-wrap{
+  overflow:auto;
+  border-radius:18px;
+  border:1px solid var(--line);
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+  min-width:1150px;
+  table-layout:fixed;
+}
 th{
   background:#06345d;color:white;padding:12px;font-size:13px;border:1px solid #17456f;
   text-align:center;white-space:nowrap;
 }
 td{
-  border:1px solid #e2e8f0;min-width:110px;height:88px;vertical-align:top;
-  padding:8px;background:#fbfdff;
+  border:1px solid #e2e8f0;
+  min-width:110px;
+  height:105px;
+  vertical-align:top;
+  padding:8px;
+  background:#fbfdff;
+  overflow:visible;
+  position:relative;
 }
 .day-cell{
   background:#eef6ff;color:var(--blue);font-weight:900;text-align:center;min-width:90px;
 }
 .session{
-  direction:rtl;text-align:right;border-radius:12px;padding:8px;margin-bottom:6px;
-  color:white;font-size:12px;line-height:1.6;cursor:pointer;box-shadow:0 8px 14px rgba(0,0,0,.12);
+  direction:rtl;
+  text-align:right;
+  border-radius:12px;
+  padding:8px;
+  margin-bottom:6px;
+  color:white;
+  font-size:12px;
+  line-height:1.6;
+  cursor:pointer;
+  box-shadow:0 8px 14px rgba(0,0,0,.12);
+  position:relative;
+  z-index:5;
+  min-width:80px;
 }
 .session b{display:block;font-size:12.5px}
+.session.done{opacity:.75}
+.session.cancelled{
+  opacity:.55;
+  text-decoration:line-through;
+  filter:grayscale(.35);
+}
 .type-neuro{background:#7c3aed}
 .type-ortho{background:#2563eb}
 .type-sport{background:#16a34a}
 .type-peds{background:#f59e0b}
 .type-postop{background:#0f766e}
 .type-other{background:#64748b}
-.empty{color:#94a3b8;text-align:center;margin-top:22px}
+.empty{color:#94a3b8;text-align:center;margin-top:30px}
 .note{
   margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center;
 }
@@ -149,6 +182,8 @@ textarea{height:90px;resize:vertical}
     <div class="stats">
       <div class="stat">جلسات الفترة: <span id="totalSessions">0</span></div>
       <div class="stat">جلسات اليوم: <span id="todaySessions">0</span></div>
+      <div class="stat">ملغاة اليوم: <span id="cancelledToday">0</span></div>
+      <div class="stat">تمت اليوم: <span id="doneToday">0</span></div>
       <div class="stat">أقرب جلسة: <span id="nextSession">—</span></div>
     </div>
   </div>
@@ -158,7 +193,7 @@ textarea{height:90px;resize:vertical}
       <table id="scheduleTable"></table>
     </div>
     <div class="note">
-      يمكن إضافة أكثر من مريض بنفس الوقت. اضغط على أي جلسة للتعديل أو الحذف.
+      يمكن إضافة أكثر من مريض بنفس الوقت. الجلسة تمتد بصريًا حسب مدتها، واضغط على أي جلسة للتعديل أو الحذف.
     </div>
   </div>
 
@@ -241,7 +276,13 @@ document.getElementById("pageTitle").innerText = "جدول: " + therapist;
 document.getElementById("therapistName").value = therapist;
 
 const storageKey = "akaz_therapist_sessions_" + therapist;
-const hours = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00"];
+
+const hours = [
+  "09:00","10:00","11:00","12:00","13:00",
+  "14:00","15:00","16:00","17:00","18:00",
+  "19:00","20:00","21:00"
+];
+
 const daysAr = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
 
 function getSessions(){
@@ -254,7 +295,7 @@ function setSessions(data){
 
 function todayISO(){
   const d = new Date();
-  return d.toISOString().slice(0,10);
+  return toISO(d);
 }
 
 function toISO(d){
@@ -307,6 +348,15 @@ function typeText(type){
   return map[type] || "Other";
 }
 
+function attendanceText(value){
+  const map = {
+    scheduled:"مجدولة",
+    done:"تمت",
+    cancelled:"ملغاة"
+  };
+  return map[value] || "مجدولة";
+}
+
 function initWeek(){
   document.getElementById("weekStart").value = toISO(getSunday(new Date()));
 }
@@ -342,23 +392,33 @@ function render(){
         if(s.date !== date) return false;
         const st = timeToMinutes(s.startTime);
         return st >= from && st < to;
-      });
+      }).sort((a,b)=>timeToMinutes(a.startTime)-timeToMinutes(b.startTime));
 
       html += `<td>`;
+
       if(cellSessions.length === 0){
         html += `<div class="empty">—</div>`;
       }else{
         cellSessions.forEach(s=>{
+          const startMin = timeToMinutes(s.startTime);
+          const offset = Math.max(0, ((startMin - from) / 60) * 100);
+          const width = Math.max(45, (Number(s.duration) / 60) * 100);
+          const attend = s.attendance || "scheduled";
+
           html += `
-            <div class="session ${typeClass(s.caseType)}" onclick="editSession('${s.id}')">
+            <div 
+              class="session ${typeClass(s.caseType)} ${attend}"
+              style="width:${width}%; margin-right:${offset}%;"
+              onclick="editSession('${s.id}')">
               <b>${s.patient}</b>
               ${s.startTime} - ${endTime(s.startTime,s.duration)}<br>
               ${typeText(s.caseType)}<br>
-              <small>${s.duration} min</small>
+              <small>${s.duration} min - ${attendanceText(attend)}</small>
             </div>
           `;
         });
       }
+
       html += `</td>`;
     });
 
@@ -375,10 +435,15 @@ function updateStats(rangeDates){
   document.getElementById("totalSessions").innerText = rangeSessions.length;
 
   const today = todayISO();
-  document.getElementById("todaySessions").innerText = sessions.filter(s=>s.date===today).length;
+  const todaySessions = sessions.filter(s=>s.date===today);
+
+  document.getElementById("todaySessions").innerText = todaySessions.length;
+  document.getElementById("cancelledToday").innerText = todaySessions.filter(s=>(s.attendance || "scheduled")==="cancelled").length;
+  document.getElementById("doneToday").innerText = todaySessions.filter(s=>(s.attendance || "scheduled")==="done").length;
 
   const now = new Date();
   const future = sessions
+    .filter(s => (s.attendance || "scheduled") !== "cancelled")
     .map(s => ({...s, dt:new Date(s.date+"T"+s.startTime)}))
     .filter(s => s.dt >= now)
     .sort((a,b)=>a.dt-b.dt)[0];
@@ -406,10 +471,14 @@ function closeModal(){
 
 function saveSession(){
   const patient = document.getElementById("patient").value.trim();
-  if(!patient){ alert("اكتب اسم المريض"); return; }
+  if(!patient){
+    alert("اكتب اسم المريض");
+    return;
+  }
 
   const id = document.getElementById("editId").value || Date.now().toString();
   const sessions = getSessions();
+
   const obj = {
     id,
     therapist,
