@@ -2,66 +2,198 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>لوحة التحكم</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - مركز عكاز</title>
 
 <style>
-body{font-family:Tahoma;margin:0;background:#f4f8fc;direction:rtl}
-.top{background:#005b9f;color:white;padding:20px;text-align:center}
-.main{width:90%;margin:30px auto}
-
-.box{
-background:white;
-padding:20px;
-border-radius:15px;
-margin-bottom:20px;
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --bg:#f8fbff;
+  --card:#ffffff;
+  --line:#e2e8f0;
 }
 
-.item{
-background:#eef6ff;
-padding:10px;
-border-radius:10px;
-margin-bottom:8px;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma;
+  direction:rtl;
+  background:linear-gradient(180deg,#f9fcff,#eef4f9);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:25px;
+  text-align:center;
+  font-size:24px;
+  font-weight:900;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+}
+
+.main{
+  width:92%;
+  max-width:1300px;
+  margin:30px auto;
+}
+
+.login{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  max-width:400px;
+  margin:80px auto;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.1);
 }
 
 input,button{
-width:100%;
-padding:10px;
-margin-top:10px;
-border-radius:10px;
-border:1px solid #ccc;
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
 
 button{
-background:#005b9f;
-color:white;
-font-weight:bold;
-cursor:pointer;
+  background:var(--blue);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.card h3{
+  margin:0;
+  color:var(--blue);
+}
+
+.number{
+  font-size:34px;
+  font-weight:900;
+  color:var(--orange);
+}
+
+.section{
+  margin-top:25px;
+}
+
+.item{
+  background:#f8fbff;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:8px;
+  border:1px solid var(--line);
+}
+
+.alert{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:15px;
+  font-weight:bold;
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+  flex-wrap:wrap;
+}
+
+.tab{
+  padding:10px 15px;
+  border-radius:10px;
+  background:#eef6ff;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.tab.active{
+  background:var(--blue);
+  color:white;
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">لوحة التحكم</div>
+<div class="topbar">لوحة التحكم - مركز عكاز</div>
 
 <div class="main">
 
-<div id="login">
-<h3>دخول</h3>
-<input id="code" placeholder="الرمز">
-<button onclick="login()">دخول</button>
+<div id="login" class="login">
+  <h3>دخول الإدارة</h3>
+  <input id="code" placeholder="الرمز">
+  <button onclick="login()">دخول</button>
 </div>
 
 <div id="panel" style="display:none">
 
-<div class="box">
-<h3>المتصلين الآن</h3>
-<div id="online"></div>
+<div id="alertBox"></div>
+
+<!-- إحصائيات -->
+<div class="grid">
+  <div class="card">
+    <h3>الجلسات اليوم</h3>
+    <div class="number" id="sessions">0</div>
+  </div>
+
+  <div class="card">
+    <h3>كشف جديد</h3>
+    <div class="number" id="newCases">0</div>
+  </div>
+
+  <div class="card">
+    <h3>اقتراحات</h3>
+    <div class="number" id="suggestions">0</div>
+  </div>
+
+  <div class="card">
+    <h3>أعلى ضغط</h3>
+    <div class="number" id="topTherapist">—</div>
+  </div>
 </div>
 
-<div class="box">
-<h3>آخر الإجراءات</h3>
-<div id="logs"></div>
+<!-- Tabs -->
+<div class="section">
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('overview')">نظرة عامة</div>
+    <div class="tab" onclick="showTab('schedule')">الدوام</div>
+    <div class="tab" onclick="showTab('rooms')">الأطفال</div>
+    <div class="tab" onclick="showTab('hydro')">المائي</div>
+  </div>
+
+  <div id="tabContent"></div>
+</div>
+
+<!-- المتصلين -->
+<div class="section">
+  <h3>المتصلين الآن</h3>
+  <div id="online"></div>
+</div>
+
+<!-- النشاط -->
+<div class="section">
+  <h3>آخر الإجراءات</h3>
+  <div id="logs"></div>
 </div>
 
 </div>
@@ -86,13 +218,41 @@ window.login=()=>{
     alert("خطأ");
     return;
   }
-
   document.getElementById("login").style.display="none";
   document.getElementById("panel").style.display="block";
   load();
 };
 
 function load(){
+
+// الجلسات
+onSnapshot(collection(db,"therapistSchedules"), snap=>{
+  document.getElementById("sessions").innerText = snap.size;
+
+  let count={};
+  snap.forEach(d=>{
+    let t=d.data().therapist;
+    if(!t)return;
+    count[t]=(count[t]||0)+1;
+  });
+
+  let max=0,name="—";
+  for(let k in count){
+    if(count[k]>max){max=count[k];name=k;}
+  }
+
+  document.getElementById("topTherapist").innerText=name;
+});
+
+// الكشف
+onSnapshot(collection(db,"newAssessments"), snap=>{
+  document.getElementById("newCases").innerText=snap.size;
+});
+
+// اقتراحات
+onSnapshot(collection(db,"suggestions"), snap=>{
+  document.getElementById("suggestions").innerText=snap.size;
+});
 
 // المتصلين
 onSnapshot(collection(db,"activeDevices"), snap=>{
@@ -105,43 +265,63 @@ onSnapshot(collection(db,"activeDevices"), snap=>{
     let diff=(now-last)/1000;
 
     if(diff<60){
-      html+=`
-      <div class="item">
-      ${x.page}<br>
-      قبل ${Math.floor(diff)} ثانية
-      </div>`;
+      html+=`<div class="item">${x.page}</div>`;
     }
   });
 
   document.getElementById("online").innerHTML = html || "لا يوجد";
 });
 
-
 // النشاط
 onSnapshot(collection(db,"activityLogs"), snap=>{
   let arr=[];
-
-  snap.forEach(d=>{
-    arr.push(d.data());
-  });
+  snap.forEach(d=>arr.push(d.data()));
 
   arr.sort((a,b)=>b.time.seconds - a.time.seconds);
 
   let html="";
-
-  arr.slice(0,15).forEach(x=>{
-    html+=`
-    <div class="item">
-    ${x.page} — ${x.action}<br>
-    <small>${new Date(x.time.seconds*1000).toLocaleTimeString()}</small>
-    </div>`;
+  arr.slice(0,10).forEach(x=>{
+    html+=`<div class="item">${x.page} - ${x.action}</div>`;
   });
 
   document.getElementById("logs").innerHTML = html || "لا يوجد";
 });
 
+// تنبيه
+document.getElementById("alertBox").innerHTML =
+`<div class="alert">الوضع مستقر</div>`;
+
 }
+
+// Tabs
+window.showTab = function(type){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  event.target.classList.add("active");
+
+  let html="";
+
+  if(type==="overview"){
+    html="عرض عام للنظام";
+  }
+
+  if(type==="schedule"){
+    html="حالة جداول الدوام";
+  }
+
+  if(type==="rooms"){
+    html="حجوزات غرف الأطفال";
+  }
+
+  if(type==="hydro"){
+    html="حجوزات العلاج المائي";
+  }
+
+  document.getElementById("tabContent").innerHTML = html;
+};
+
 </script>
+
+<script type="module" src="tracker.js"></script>
 
 </body>
 </html>
