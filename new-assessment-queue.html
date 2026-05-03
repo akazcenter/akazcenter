@@ -14,8 +14,6 @@
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
-  --green:#16a34a;
-  --red:#dc2626;
 }
 *{box-sizing:border-box}
 body{
@@ -34,11 +32,7 @@ body{
   border-bottom-left-radius:28px;
   box-shadow:0 16px 38px rgba(8,52,95,.22);
 }
-.brand{
-  display:flex;
-  align-items:center;
-  gap:16px;
-}
+.brand{display:flex;align-items:center;gap:16px}
 .logo{
   width:72px;
   height:72px;
@@ -47,11 +41,7 @@ body{
   border-radius:18px;
   padding:7px;
 }
-.brand h1{
-  margin:0;
-  font-size:27px;
-  font-weight:900;
-}
+.brand h1{margin:0;font-size:27px;font-weight:900}
 .brand p{
   margin:5px 0 0;
   direction:ltr;
@@ -85,16 +75,8 @@ body{
   box-shadow:0 12px 30px rgba(15,23,42,.07);
   margin-bottom:20px;
 }
-.intro h2{
-  margin:0;
-  color:var(--blue);
-  font-size:26px;
-}
-.intro p{
-  margin:10px 0 0;
-  color:var(--muted);
-  line-height:1.8;
-}
+.intro h2{margin:0;color:var(--blue);font-size:26px}
+.intro p{margin:10px 0 0;color:var(--muted);line-height:1.8}
 .sections{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -115,10 +97,7 @@ body{
   justify-content:space-between;
   align-items:center;
 }
-.panel-head h3{
-  margin:0;
-  font-size:22px;
-}
+.panel-head h3{margin:0;font-size:22px}
 .next-box{
   background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.25);
@@ -126,9 +105,7 @@ body{
   padding:9px 13px;
   font-weight:900;
 }
-.panel-body{
-  padding:18px;
-}
+.panel-body{padding:18px}
 .form-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -220,21 +197,10 @@ td{
   padding:18px;
   box-shadow:0 12px 30px rgba(15,23,42,.07);
 }
-.history h3{
-  margin:0 0 14px;
-  color:var(--blue);
-  font-size:22px;
-}
-.actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
+.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
 .actions button{flex:1}
-.empty{
-  color:#94a3b8;
-  font-weight:900;
-}
+.empty{color:#94a3b8;font-weight:900}
 .note{
   margin-top:12px;
   color:#64748b;
@@ -242,20 +208,11 @@ td{
   line-height:1.8;
   text-align:center;
 }
-@media(max-width:1000px){
-  .sections{grid-template-columns:1fr}
-}
+@media(max-width:1000px){.sections{grid-template-columns:1fr}}
 @media(max-width:650px){
-  .topbar{
-    flex-direction:column;
-    text-align:center;
-  }
-  .brand{
-    flex-direction:column;
-  }
-  .form-grid,.stats{
-    grid-template-columns:1fr;
-  }
+  .topbar{flex-direction:column;text-align:center}
+  .brand{flex-direction:column}
+  .form-grid,.stats{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -439,14 +396,123 @@ const db = getFirestore(app);
 const assessmentsRef = collection(db, "newAssessments");
 const queueStateRef = collection(db, "newAssessmentQueueState");
 
-const menList = ["د: حاتم الاحمدي", "د : عبدالرحمن السويداء", "د: عبدالرحمن السليمي", "د: عبدالعزيز الحمدان"];
-const womenList = ["د: ريناد حميد", "د: ابتسام سويلم", "د: سلمى فرحان", "د: أسماء فهيد", "د: هند فهيد", "د: مها فريح"];
+const menList = [
+  "د: حاتم الاحمدي",
+  "د: عبدالرحمن السويداء",
+  "د: عبدالرحمن السليمي",
+  "د: عبدالعزيز الحمدان"
+];
+
+const womenList = [
+  "د: ريناد حميد",
+  "د: ابتسام سويلم",
+  "د: سلمى فرحان",
+  "د: أسماء فهيد",
+  "د: هند فهيد",
+  "د: مها فريح"
+];
+
+/* مهم:
+   هذا يحل مشكلة اختلاف شكل الاسم القديم والجديد.
+   أي اسم قديم ينحسب تحت الاسم الجديد.
+*/
+const nameAliases = {
+  "د: حاتم الاحمدي": [
+    "د: حاتم الاحمدي",
+    "د: حاتم الأحمدي",
+    "د. حاتم الأحمدي",
+    "حاتم",
+    "حاتم الاحمدي",
+    "حاتم الأحمدي"
+  ],
+  "د: عبدالرحمن السويداء": [
+    "د: عبدالرحمن السويداء",
+    "د : عبدالرحمن السويداء",
+    "د. عبدالرحمن السويداء",
+    "عبدالرحمن السويداء",
+    "السويداء"
+  ],
+  "د: عبدالرحمن السليمي": [
+    "د: عبدالرحمن السليمي",
+    "د. عبدالرحمن السليمي",
+    "عبدالرحمن السليمي",
+    "السليمي"
+  ],
+  "د: عبدالعزيز الحمدان": [
+    "د: عبدالعزيز الحمدان",
+    "د. عبدالعزيز الحمدان",
+    "عبدالعزيز الحمدان",
+    "الحمدان"
+  ],
+  "د: ريناد حميد": [
+    "د: ريناد حميد",
+    "د. ريناد حميد",
+    "ريناد",
+    "ريناد حميد"
+  ],
+  "د: ابتسام سويلم": [
+    "د: ابتسام سويلم",
+    "د. ابتسام سويلم",
+    "ابتسام",
+    "ابتسام سويلم",
+    "التسام"
+  ],
+  "د: سلمى فرحان": [
+    "د: سلمى فرحان",
+    "د. سلمى فرحان",
+    "سلمى",
+    "سلمى فرحان"
+  ],
+  "د: أسماء فهيد": [
+    "د: أسماء فهيد",
+    "د. أسماء فهيد",
+    "أسماء",
+    "اسماء",
+    "أسماء فهيد",
+    "اسماء فهيد"
+  ],
+  "د: هند فهيد": [
+    "د: هند فهيد",
+    "د. هند فهيد",
+    "هند",
+    "هند فهيد"
+  ],
+  "د: مها فريح": [
+    "د: مها فريح",
+    "د. مها فريح",
+    "مها",
+    "مها فريح"
+  ]
+};
 
 let assessments = [];
 let queueState = {
   men: 0,
   women: 0
 };
+
+function normalizeName(value){
+  return (value || "")
+    .toString()
+    .trim()
+    .replaceAll("أ", "ا")
+    .replaceAll("إ", "ا")
+    .replaceAll("آ", "ا")
+    .replaceAll("ة", "ه")
+    .replaceAll(".", ":")
+    .replace(/\s+/g, " ");
+}
+
+function sameTherapist(savedName, currentName){
+  const saved = normalizeName(savedName);
+  const current = normalizeName(currentName);
+
+  if(saved === current) return true;
+
+  const aliases = nameAliases[currentName] || [currentName];
+
+  return aliases.some(alias => normalizeName(alias) === saved);
+}
 
 function todayISO(){
   const d = new Date();
@@ -579,8 +645,14 @@ function renderStats(section){
   tbody.innerHTML = "";
 
   list.forEach(name=>{
-    const queue = todayItems.filter(a => a.therapist === name && a.method === "queue").length;
-    const byName = todayItems.filter(a => a.therapist === name && a.method === "name").length;
+    const queue = todayItems.filter(a =>
+      sameTherapist(a.therapist, name) && a.method === "queue"
+    ).length;
+
+    const byName = todayItems.filter(a =>
+      sameTherapist(a.therapist, name) && a.method === "name"
+    ).length;
+
     const total = queue + byName;
 
     tbody.innerHTML += `
@@ -665,6 +737,7 @@ listenAssessments();
 listenQueueState();
 render();
 </script>
+
 <script type="module" src="tracker.js"></script>
 </body>
 </html>
