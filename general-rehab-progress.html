@@ -3,100 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>General Rehab Progress</title>
+<title>General Functional Assessment</title>
 <link rel="icon" href="logo.png">
 
 <style>
 :root{
-  --blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;
-  --text:#0f172a;--line:#e2e8f0;
-  --green:#166534;--yellow:#92400e;--red:#b91c1c;
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --bg:#f4f8fc;
+  --card:#ffffff;
 }
-body{margin:0;font-family:Tahoma;background:#f4f8fc}
+
+body{
+  margin:0;
+  font-family:Tahoma;
+  background:var(--bg);
+}
+
+/* HEADER */
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;padding:18px;display:flex;justify-content:space-between
+  color:white;
+  padding:20px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:25px;
+  border-bottom-right-radius:25px;
 }
-.home-btn{background:white;color:var(--blue);border:none;padding:10px;border-radius:10px;cursor:pointer}
 
-.main{width:92%;max-width:1100px;margin:25px auto}
+.home-btn{
+  background:white;
+  color:var(--blue);
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+/* MAIN */
+.main{
+  width:90%;
+  max-width:1100px;
+  margin:30px auto;
+}
 
 .card{
-  background:white;border-radius:20px;padding:20px;margin-bottom:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,.08)
+  background:var(--card);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-h2{color:var(--blue)}
-
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-input,select,textarea{
-  width:100%;padding:10px;border-radius:10px;border:1px solid #ccc
+.title{
+  color:var(--blue);
+  font-weight:bold;
+  margin-bottom:15px;
 }
 
-.result{
-  text-align:center;font-size:40px;font-weight:bold;color:var(--blue)
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
-.badge{
-  padding:8px 15px;border-radius:999px;font-weight:bold
+input, textarea{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
 }
-.good{background:#dcfce7;color:var(--green)}
-.mid{background:#fef3c7;color:var(--yellow)}
-.bad{background:#fee2e2;color:var(--red)}
+
+/* SCORE BOX */
+.score-box{
+  text-align:center;
+  padding:25px;
+}
+
+.score{
+  font-size:55px;
+  font-weight:bold;
+  color:var(--blue);
+}
+
+.status{
+  margin-top:10px;
+  font-weight:bold;
+  padding:10px 20px;
+  border-radius:999px;
+  display:inline-block;
+}
+
+.good{background:#dcfce7;color:#166534;}
+.mid{background:#fef3c7;color:#92400e;}
+.bad{background:#fee2e2;color:#b91c1c;}
 
 button{
-  padding:12px;border:none;border-radius:12px;font-weight:bold;cursor:pointer
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
 }
-.primary{background:var(--blue);color:white}
-.secondary{background:#eef6ff;color:var(--blue)}
+
+.primary{background:var(--blue);color:white;}
+.secondary{background:#eef6ff;color:var(--blue);}
+
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-  <h3>تقييم تأهيلي عام</h3>
+  <h2>تقييم تأهيلي عام</h2>
   <button class="home-btn" onclick="location.href='functional-assessments.html'">رجوع</button>
 </div>
 
 <div class="main">
 
+<!-- بيانات -->
 <div class="card">
-<h2>بيانات المريض</h2>
+<div class="title">بيانات المريض</div>
 <div class="grid">
-<input id="name" placeholder="اسم المريض">
-<input id="condition" placeholder="نوع الحالة">
-<input id="therapist" placeholder="الأخصائي">
-<input type="date" id="date">
+<input placeholder="اسم المريض">
+<input placeholder="التشخيص">
+<input placeholder="الأخصائي">
+<input type="date">
 </div>
 </div>
 
+<!-- التقييم -->
 <div class="card">
-<h2>التقييم العام</h2>
+<div class="title">التقييم العام</div>
 <div class="grid">
-<input type="number" id="pain" placeholder="Pain 0-10" oninput="calc()">
+<input type="number" id="pain" placeholder="Pain (0-10)" oninput="calc()">
 <input type="number" id="rom" placeholder="ROM %" oninput="calc()">
 <input type="number" id="strength" placeholder="Strength %" oninput="calc()">
 <input type="number" id="function" placeholder="Function %" oninput="calc()">
 <input type="number" id="balance" placeholder="Balance %" oninput="calc()">
-<input type="number" id="confidence" placeholder="Confidence 0-10" oninput="calc()">
+<input type="number" id="confidence" placeholder="Confidence (0-10)" oninput="calc()">
 </div>
 </div>
 
+<!-- ملاحظات -->
 <div class="card">
-<h2>ملاحظات</h2>
-<textarea id="notes"></textarea>
+<div class="title">ملاحظات</div>
+<textarea rows="4"></textarea>
 </div>
 
-<div class="card">
-<h2>النتيجة</h2>
-<div class="result" id="score">0%</div>
-<div id="status" class="badge bad">Needs Rehab</div>
+<!-- النتيجة -->
+<div class="card score-box">
+<div class="score" id="score">0%</div>
+<div id="status" class="status bad">Needs Rehab</div>
 </div>
 
+<!-- أزرار -->
 <div class="card">
-<button class="primary" onclick="printReport()">طباعة التقرير</button>
+<button class="primary" onclick="print()">طباعة</button>
 <button class="secondary" onclick="calc()">تحديث</button>
 </div>
 
@@ -107,15 +174,14 @@ function calc(){
   let pain = document.getElementById("pain").value || 0;
   let rom = document.getElementById("rom").value || 0;
   let strength = document.getElementById("strength").value || 0;
-  let functionVal = document.getElementById("function").value || 0;
+  let func = document.getElementById("function").value || 0;
   let balance = document.getElementById("balance").value || 0;
-  let confidence = document.getElementById("confidence").value || 0;
+  let conf = document.getElementById("confidence").value || 0;
 
   let painScore = (10 - pain) * 10;
-  let confScore = confidence * 10;
+  let confScore = conf * 10;
 
-  let avg = (painScore + rom + strength + functionVal + balance + confScore) / 6;
-
+  let avg = (painScore + rom + strength + func + balance + confScore) / 6;
   avg = Math.round(avg);
 
   document.getElementById("score").innerText = avg + "%";
@@ -123,21 +189,16 @@ function calc(){
   let status = document.getElementById("status");
 
   if(avg >= 90){
-    status.innerText = "Excellent";
-    status.className = "badge good";
+    status.innerText="Excellent";
+    status.className="status good";
   }else if(avg >= 75){
-    status.innerText = "Good";
-    status.className = "badge mid";
+    status.innerText="Good";
+    status.className="status mid";
   }else{
-    status.innerText = "Needs Rehab";
-    status.className = "badge bad";
+    status.innerText="Needs Rehab";
+    status.className="status bad";
   }
 }
-
-function printReport(){
-  window.print();
-}
-
 calc();
 </script>
 
