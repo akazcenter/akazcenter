@@ -1,61 +1,58 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const firebaseConfig = {
+const app = initializeApp({
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
-  authDomain: "akazcenter-89c17.firebaseapp.com",
-  projectId: "akazcenter-89c17",
-  storageBucket: "akazcenter-89c17.firebasestorage.app",
-  messagingSenderId: "576111794528",
-  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
-};
+  projectId: "akazcenter-89c17"
+});
 
-const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function getDeviceId(){
-  let id = localStorage.getItem("akazDeviceId");
+// معرف الجهاز
+function getId(){
+  let id = localStorage.getItem("akazDevice");
   if(!id){
-    id = "device_" + Date.now() + "_" + Math.random().toString(36).slice(2,8);
-    localStorage.setItem("akazDeviceId", id);
+    id = "dev_" + Math.random().toString(36).slice(2);
+    localStorage.setItem("akazDevice", id);
   }
   return id;
 }
 
-function getPageName(){
-  const path = location.pathname.split("/").pop() || "index.html";
-
-  const names = {
-    "index.html":"الصفحة الرئيسية",
-    "work-schedule.html":"جدول الدوام",
-    "kids-rooms.html":"غرف الأطفال",
-    "hydrotherapy.html":"العلاج المائي",
-    "home-visits.html":"الزيارات المنزلية",
-    "suggestions.html":"الاقتراحات",
-    "therapist-planners.html":"جداول الأخصائيين",
-    "therapist-calendar.html":"جدول أخصائي",
-    "new-assessment-entry.html":"مدخل توزيع الكشف",
-    "new-assessment-view.html":"عرض توزيع الكشف",
-    "new-assessment-queue.html":"استقبال الكشف الجديد",
-    "functional-assessments.html":"التقييمات الوظيفية",
-    "admin.html":"لوحة الإدارة"
-  };
-
-  return names[path] || path;
+// اسم الصفحة
+function page(){
+  return location.pathname.split("/").pop() || "index";
 }
 
-async function sendPresence(){
-  const id = getDeviceId();
-
-  await setDoc(doc(db, "activeDevices", id), {
-    id,
-    page: getPageName(),
-    url: location.pathname.split("/").pop() || "index.html",
-    lastSeen: new Date(),
-    userAgent: navigator.userAgent,
-    updatedAt: new Date()
+// إرسال التواجد
+async function ping(){
+  await setDoc(doc(db,"activeDevices",getId()),{
+    page: page(),
+    lastSeen: new Date()
   });
 }
 
-sendPresence();
-setInterval(sendPresence, 20000);
+// تسجيل النشاط
+async function log(action){
+  await addDoc(collection(db,"activityLogs"),{
+    device:getId(),
+    page:page(),
+    action:action,
+    time:new Date()
+  });
+}
+
+// كل 20 ثانية
+setInterval(ping,20000);
+ping();
+
+// تتبع الضغط
+document.addEventListener("click",e=>{
+  if(e.target.tagName==="BUTTON"){
+    log("ضغط زر");
+  }
+});
+
+// تتبع التعديلات
+document.addEventListener("change",()=>{
+  log("تعديل بيانات");
+});
