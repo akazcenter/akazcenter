@@ -9,34 +9,29 @@
 <style>
 :root{--blue:#005b9f;--blue2:#0077c8;--text:#0f172a;--muted:#64748b;--line:#e2e8f0}
 *{box-sizing:border-box}
-  body, button, input, select, table, th, td, .badge, .btn{
-  font-weight:700;
-}
+body,button,input,select,table,th,td,.badge,.btn{font-weight:700}
 body{margin:0;font-family:Tahoma,Arial;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
-.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:20px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:28px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
+.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:32px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
 .brand{display:flex;align-items:center;gap:14px}
-.logo{width:60px;height:60px;background:white;border-radius:14px;padding:5px;object-fit:contain}
-.brand h1{margin:0;font-size:22px;font-weight:900}
+.logo{width:66px;height:66px;background:white;border-radius:16px;padding:6px;object-fit:contain}
+.brand h1{margin:0;font-size:24px;font-weight:900}
 .brand p{margin:4px 0 0;direction:ltr;color:#dbeafe;font-size:12px}
-.btn{background:white;color:var(--blue);border:none;padding:8px 14px;border-radius:10px;font-weight:bold;cursor:pointer}
-.main{width:94%;max-width:1250px;margin:25px auto}
-.intro{background:white;border:1px solid var(--line);border-radius:22px;padding:16px;text-align:center;margin-bottom:18px;box-shadow:0 12px 30px rgba(15,23,42,.07)}
-.intro h2{margin:0;color:var(--blue);font-size:24px}
-.intro p{margin:8px 0 0;color:var(--muted);line-height:1.7}
-.sections{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.panel{background:white;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 12px 30px rgba(15,23,42,.07)}
-.panel-head{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:14px;display:flex;justify-content:space-between;font-weight:900}
-.panel-body{padding:14px}
-.fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:14px;padding:10px;margin-bottom:12px;font-weight:900;text-align:center;font-size:13px;line-height:1.7}
+.btn{background:white;color:var(--blue);border:none;padding:10px 16px;border-radius:12px;font-weight:900;cursor:pointer}
+.main{width:94%;max-width:1280px;margin:26px auto}
+.intro{background:white;border:1px solid var(--line);border-radius:24px;padding:18px;text-align:center;margin-bottom:20px;box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.intro h2{margin:0;color:var(--blue);font-size:25px;font-weight:900}
+.intro p{margin:8px 0 0;color:var(--muted);line-height:1.8}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:white;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.panel-head{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:16px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:16px;padding:12px;margin:14px;font-weight:900;text-align:center;font-size:14px;line-height:1.8}
 .balance-ok{background:#dcfce7!important;border-color:#86efac!important;color:#166534!important}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
-.stat{background:#f8fbff;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;font-weight:bold;color:var(--blue)}
-.stat span{display:block;font-size:20px;margin-top:4px;direction:ltr}
-.table-wrap{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.table-wrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:14px}
 table{width:100%;border-collapse:collapse;table-layout:fixed;background:white}
-th{background:#06345d;color:white;font-size:10px;padding:6px;border:1px solid #17456f}
-td{border:1px solid #e2e8f0;font-size:10px;padding:6px;text-align:center;word-break:break-word}
-.badge{display:inline-block;padding:3px 6px;border-radius:999px;font-size:9.5px;font-weight:bold;line-height:1.35}
+th{background:#06345d;color:white;font-size:12px;padding:10px 6px;border:1px solid #17456f;font-weight:900}
+td{border:1px solid #e2e8f0;font-size:12px;padding:10px 6px;text-align:center;word-break:break-word}
+td:first-child{font-weight:900;font-size:13px}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;line-height:1.35}
 .green{background:#dcfce7;color:#166534}
 .yellow{background:#fef3c7;color:#92400e}
 .red{background:#fee2e2;color:#b91c1c}
@@ -46,14 +41,14 @@ td{border:1px solid #e2e8f0;font-size:10px;padding:6px;text-align:center;word-br
 .priority-row{background:#f0fdf4}
 .suspended-row{background:#f8fafc;color:#64748b}
 .skip-row{background:#fff7ed}
-.history{margin-top:18px;background:white;border-radius:22px;padding:14px;border:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.07)}
-.history h3{margin:0 0 12px;color:var(--blue)}
+.history{margin-top:22px;background:white;border-radius:24px;padding:18px;border:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.history h3{margin:0 0 14px;color:var(--blue);font-size:23px;font-weight:900}
 .reset td{background:#dcfce7!important;color:#166534!important;font-weight:900}
 .suspend td{background:#fef3c7!important;color:#92400e!important;font-weight:900}
 .opening td{background:#eef6ff!important;color:#005b9f!important;font-weight:900}
 .empty{color:#94a3b8;font-weight:900}
-.note{text-align:center;color:#64748b;font-size:12px;line-height:1.7;margin-top:10px}
-@media(max-width:900px){.sections{grid-template-columns:1fr}.topbar{flex-direction:column;text-align:center;gap:12px}.stats{grid-template-columns:1fr}}
+.note{text-align:center;color:#64748b;font-size:13px;line-height:1.8;margin-top:12px}
+@media(max-width:900px){.sections{grid-template-columns:1fr}.topbar{flex-direction:column;text-align:center;gap:12px}}
 </style>
 </head>
 
@@ -76,8 +71,8 @@ td{border:1px solid #e2e8f0;font-size:10px;padding:6px;text-align:center;word-br
 <div class="main">
 
   <div class="intro">
-    <h2>عرض فقط</h2>
-    <p>يعرض إجمالي الكشوفات الحالية، الرصيد السابق، التجاوز، والإيقاف المؤقت بدون صلاحية تعديل.</p>
+    <h2>لوحة عرض التوزيع</h2>
+    <p>عرض حالة الأخصائيين الحالية مع السجل الكامل للتوثيق. التجاوز والإيقاف لا يدخلان ضمن إجمالي الكشوفات.</p>
   </div>
 
   <div class="sections">
@@ -87,32 +82,22 @@ td{border:1px solid #e2e8f0;font-size:10px;padding:6px;text-align:center;word-br
         <span>قسم الرجال</span>
         <span>التوزيع القادم: <span id="menNext">—</span></span>
       </div>
-      <div class="panel-body">
-        <div class="fair-box" id="menFairNote">—</div>
-
-        <div class="stats">
-          <div class="stat">الإجمالي <span id="menTotal">0</span></div>
-          <div class="stat">المسجل <span id="menSystem">0</span></div>
-          <div class="stat">السابق <span id="menOpening">0</span></div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>الأخصائي</th>
-                <th>سابق</th>
-                <th>دور</th>
-                <th>اسم</th>
-                <th>يدوي</th>
-                <th>تجاوز</th>
-                <th>إجمالي</th>
-                <th>الحالة</th>
-              </tr>
-            </thead>
-            <tbody id="menTable"></tbody>
-          </table>
-        </div>
+      <div class="fair-box" id="menFairNote">—</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الأخصائي</th>
+              <th>دور</th>
+              <th>اسم</th>
+              <th>يدوي</th>
+              <th>تجاوز</th>
+              <th>إجمالي</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="menTable"></tbody>
+        </table>
       </div>
     </div>
 
@@ -121,32 +106,22 @@ td{border:1px solid #e2e8f0;font-size:10px;padding:6px;text-align:center;word-br
         <span>قسم النساء</span>
         <span>التوزيع القادم: <span id="womenNext">—</span></span>
       </div>
-      <div class="panel-body">
-        <div class="fair-box" id="womenFairNote">—</div>
-
-        <div class="stats">
-          <div class="stat">الإجمالي <span id="womenTotal">0</span></div>
-          <div class="stat">المسجل <span id="womenSystem">0</span></div>
-          <div class="stat">السابق <span id="womenOpening">0</span></div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>الأخصائي</th>
-                <th>سابق</th>
-                <th>دور</th>
-                <th>اسم</th>
-                <th>يدوي</th>
-                <th>تجاوز</th>
-                <th>إجمالي</th>
-                <th>الحالة</th>
-              </tr>
-            </thead>
-            <tbody id="womenTable"></tbody>
-          </table>
-        </div>
+      <div class="fair-box" id="womenFairNote">—</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الأخصائي</th>
+              <th>دور</th>
+              <th>اسم</th>
+              <th>يدوي</th>
+              <th>تجاوز</th>
+              <th>إجمالي</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="womenTable"></tbody>
+        </table>
       </div>
     </div>
 
@@ -169,7 +144,7 @@ td{border:1px solid #e2e8f0;font-size:10px;padding:6px;text-align:center;word-br
         <tbody id="log"></tbody>
       </table>
     </div>
-    <div class="note">الرصيد السابق والاختيار اليدوي والاختيار بالاسم تدخل ضمن الإجمالي. التجاوز والإيقاف لا يدخلان ضمن إجمالي الكشوفات.</div>
+    <div class="note">الرصيد السابق محسوب داخل الإجمالي ولا يظهر كعمود مستقل. التجاوز والإيقاف للتوثيق فقط.</div>
   </div>
 
 </div>
@@ -193,33 +168,20 @@ const db=getFirestore(app);
 const assessmentsRef=collection(db,"newAssessments");
 const queueStateRef=collection(db,"newAssessmentQueueState");
 
-const menList=[
-  "د: حاتم الاحمدي",
-  "د: عبدالرحمن السويداء",
-  "د: عبدالرحمن السليمي",
-  "د: عبدالعزيز الحمدان"
-];
-
-const womenList=[
-  "د: ريناد حميد",
-  "د: ابتسام سويلم",
-  "د: سلمى فرحان",
-  "د: أسماء فهيد",
-  "د: هند فهيد",
-  "د: مها فريح"
-];
+const menList=["د: حاتم الاحمدي","د: عبدالرحمن السويداء","د: عبدالرحمن السليمي","د: عبدالعزيز الحمدان"];
+const womenList=["د: ريناد حميد","د: ابتسام سويلم","د: سلمى فرحان","د: أسماء فهيد","د: هند فهيد","د: مها فريح"];
 
 const nameAliases={
-  "د: حاتم الاحمدي":["د: حاتم الاحمدي","د: حاتم الأحمدي","د. حاتم الأحمدي","د حاتم الاحمدي","د حاتم الأحمدي","حاتم","حاتم الاحمدي","حاتم الأحمدي","حاتم احمدي","Hatem","hatem"],
-  "د: عبدالرحمن السويداء":["د: عبدالرحمن السويداء","د : عبدالرحمن السويداء","د. عبدالرحمن السويداء","د عبدالرحمن السويداء","عبدالرحمن السويداء","السويداء","Abdulrahman Alswaida","alswaida"],
-  "د: عبدالرحمن السليمي":["د: عبدالرحمن السليمي","د. عبدالرحمن السليمي","د عبدالرحمن السليمي","عبدالرحمن السليمي","السليمي","Alsulaimi","alsulaimi"],
-  "د: عبدالعزيز الحمدان":["د: عبدالعزيز الحمدان","د. عبدالعزيز الحمدان","د عبدالعزيز الحمدان","عبدالعزيز الحمدان","الحمدان","Abdulaziz Alhamdan","alhamdan"],
-  "د: ريناد حميد":["د: ريناد حميد","د. ريناد حميد","د ريناد حميد","ريناد","ريناد حميد","Renad","renad"],
-  "د: ابتسام سويلم":["د: ابتسام سويلم","د. ابتسام سويلم","د ابتسام سويلم","ابتسام","ابتسام سويلم","التسام","Ebtesam","Ibtisam","ebtesam"],
-  "د: سلمى فرحان":["د: سلمى فرحان","د. سلمى فرحان","د سلمى فرحان","سلمى","سلمى فرحان","Salma","salma"],
-  "د: أسماء فهيد":["د: أسماء فهيد","د. أسماء فهيد","د أسماء فهيد","أسماء","اسماء","أسماء فهيد","اسماء فهيد","Asma","asma"],
-  "د: هند فهيد":["د: هند فهيد","د. هند فهيد","د هند فهيد","هند","هند فهيد","Hind","hind"],
-  "د: مها فريح":["د: مها فريح","د. مها فريح","د مها فريح","مها","مها فريح","Maha","maha"]
+  "د: حاتم الاحمدي":["د: حاتم الاحمدي","د: حاتم الأحمدي","د. حاتم الأحمدي","د حاتم الاحمدي","د حاتم الأحمدي","حاتم","حاتم الاحمدي","حاتم الأحمدي","Hatem","hatem"],
+  "د: عبدالرحمن السويداء":["د: عبدالرحمن السويداء","د : عبدالرحمن السويداء","د. عبدالرحمن السويداء","د عبدالرحمن السويداء","عبدالرحمن السويداء","السويداء"],
+  "د: عبدالرحمن السليمي":["د: عبدالرحمن السليمي","د. عبدالرحمن السليمي","د عبدالرحمن السليمي","عبدالرحمن السليمي","السليمي"],
+  "د: عبدالعزيز الحمدان":["د: عبدالعزيز الحمدان","د. عبدالعزيز الحمدان","د عبدالعزيز الحمدان","عبدالعزيز الحمدان","الحمدان"],
+  "د: ريناد حميد":["د: ريناد حميد","د. ريناد حميد","د ريناد حميد","ريناد","ريناد حميد"],
+  "د: ابتسام سويلم":["د: ابتسام سويلم","د. ابتسام سويلم","د ابتسام سويلم","ابتسام","ابتسام سويلم","التسام"],
+  "د: سلمى فرحان":["د: سلمى فرحان","د. سلمى فرحان","د سلمى فرحان","سلمى","سلمى فرحان"],
+  "د: أسماء فهيد":["د: أسماء فهيد","د. أسماء فهيد","د أسماء فهيد","أسماء","اسماء","أسماء فهيد","اسماء فهيد"],
+  "د: هند فهيد":["د: هند فهيد","د. هند فهيد","د هند فهيد","هند","هند فهيد"],
+  "د: مها فريح":["د: مها فريح","د. مها فريح","د مها فريح","مها","مها فريح"]
 };
 
 let records=[];
@@ -266,31 +228,15 @@ function getTimeText(item){
     : "—");
 }
 
-function getList(section){
-  return section==="men"?menList:womenList;
-}
+function getList(section){return section==="men"?menList:womenList}
 
 function getAssessments(section){
-  return records.filter(a=>
-    a.section===section &&
-    a.recordType!=="balanceReset" &&
-    a.recordType!=="suspension" &&
-    a.recordType!=="skip" &&
-    a.recordType!=="openingBalance"
-  );
+  return records.filter(a=>a.section===section&&a.recordType!=="balanceReset"&&a.recordType!=="suspension"&&a.recordType!=="skip"&&a.recordType!=="openingBalance");
 }
 
-function getOpenings(section){
-  return records.filter(a=>a.section===section&&a.recordType==="openingBalance");
-}
-
-function getSkips(section){
-  return records.filter(a=>a.section===section&&a.recordType==="skip");
-}
-
-function getSuspensions(section){
-  return records.filter(a=>a.section===section&&a.recordType==="suspension");
-}
+function getOpenings(section){return records.filter(a=>a.section===section&&a.recordType==="openingBalance")}
+function getSkips(section){return records.filter(a=>a.section===section&&a.recordType==="skip")}
+function getSuspensions(section){return records.filter(a=>a.section===section&&a.recordType==="suspension")}
 
 function activeSusp(section,name){
   return getSuspensions(section)
@@ -299,9 +245,7 @@ function activeSusp(section,name){
 }
 
 function getLastResetDate(section){
-  const resets=records
-    .filter(a=>a.section===section&&a.recordType==="balanceReset")
-    .sort((a,b)=>getItemDate(b)-getItemDate(a));
+  const resets=records.filter(a=>a.section===section&&a.recordType==="balanceReset").sort((a,b)=>getItemDate(b)-getItemDate(a));
   return resets.length?getItemDate(resets[0]):null;
 }
 
@@ -310,22 +254,12 @@ function afterReset(section,arr){
   return arr.filter(a=>!reset||getItemDate(a)>reset);
 }
 
-function activeAssessments(section){
-  return afterReset(section,getAssessments(section));
-}
-
-function activeOpenings(section){
-  return afterReset(section,getOpenings(section));
-}
-
-function activeSkips(section){
-  return afterReset(section,getSkips(section));
-}
+function activeAssessments(section){return afterReset(section,getAssessments(section))}
+function activeOpenings(section){return afterReset(section,getOpenings(section))}
+function activeSkips(section){return afterReset(section,getSkips(section))}
 
 function openingCount(section,name){
-  return activeOpenings(section)
-    .filter(a=>sameTherapist(a.therapist,name))
-    .reduce((s,a)=>s+Number(a.count||0),0);
+  return activeOpenings(section).filter(a=>sameTherapist(a.therapist,name)).reduce((s,a)=>s+Number(a.count||0),0);
 }
 
 function countFor(name,items,method=null){
@@ -369,22 +303,16 @@ function render(){
   menNext.innerText=recommended("men");
   womenNext.innerText=recommended("women");
 
-  renderSection("men",menList,menTable,menTotal,menSystem,menOpening,menFairNote);
-  renderSection("women",womenList,womenTable,womenTotal,womenSystem,womenOpening,womenFairNote);
+  renderSection("men",menList,menTable,menFairNote);
+  renderSection("women",womenList,womenTable,womenFairNote);
 
   renderLog();
 }
 
-function renderSection(section,list,tbody,totalEl,systemEl,openingEl,noteEl){
+function renderSection(section,list,tbody,noteEl){
   const items=activeAssessments(section);
-  const openings=activeOpenings(section);
-  const openingTotal=openings.reduce((s,a)=>s+Number(a.count||0),0);
-
-  systemEl.innerText=items.length;
-  openingEl.innerText=openingTotal;
-  totalEl.innerText=items.length+openingTotal;
-
   const reset=getLastResetDate(section);
+
   if(reset&&new Date().toDateString()===reset.toDateString()){
     noteEl.classList.add("balance-ok");
     noteEl.innerText="تم تحقيق التوازن بين الأخصائيين — تم بدء دورة جديدة ويستمر الإشعار حتى نهاية اليوم.";
@@ -400,12 +328,11 @@ function renderSection(section,list,tbody,totalEl,systemEl,openingEl,noteEl){
   tbody.innerHTML="";
 
   list.forEach(name=>{
-    const opening=openingCount(section,name);
     const q=countFor(name,items,"queue");
     const byName=countFor(name,items,"name");
     const manual=countFor(name,items,"manual");
     const skips=skipCount(section,name);
-    const total=opening+q+byName+manual;
+    const total=openingCount(section,name)+q+byName+manual;
     const diff=total-min;
     const susp=activeSusp(section,name);
 
@@ -430,7 +357,6 @@ function renderSection(section,list,tbody,totalEl,systemEl,openingEl,noteEl){
     tbody.innerHTML+=`
       <tr class="${rowClass}">
         <td>${name}</td>
-        <td>${opening}</td>
         <td>${q}</td>
         <td>${byName}</td>
         <td>${manual}</td>
