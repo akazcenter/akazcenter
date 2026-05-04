@@ -1,342 +1,1082 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة التحكم - مركز عكاز</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>لوحة التحكم | مركز عكاز للعلاج الطبيعي</title>
 
 <style>
 :root{
   --blue:#005b9f;
   --blue2:#0077c8;
   --orange:#f59e0b;
-  --bg:#f8fbff;
+  --green:#16a34a;
+  --red:#dc2626;
+  --yellow:#ca8a04;
+  --bg:#f5f8fc;
   --card:#ffffff;
-  --line:#e2e8f0;
+  --text:#0f172a;
   --muted:#64748b;
+  --line:#e2e8f0;
+  --soft-blue:#eef7ff;
+  --soft-orange:#fff7ed;
+  --shadow:0 18px 45px rgba(15,23,42,.08);
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Tahoma,Arial;
-  direction:rtl;
-  background:linear-gradient(180deg,#f9fcff,#eef4f9);
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top right,rgba(0,91,159,.12),transparent 35%),
+    linear-gradient(180deg,#fbfdff,#eef4f9);
+  color:var(--text);
 }
 
-/* HEADER */
-.topbar{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:26px;
-  text-align:center;
-  font-weight:900;
-  font-size:24px;
-  border-bottom-left-radius:32px;
-  border-bottom-right-radius:32px;
-  box-shadow:0 20px 45px rgba(0,0,0,.15);
-}
-
-/* MAIN */
-.main{
-  width:92%;
-  max-width:1300px;
-  margin:30px auto;
-}
-
-/* LOGIN */
-.login{
-  background:var(--card);
-  padding:28px;
-  border-radius:20px;
-  max-width:420px;
-  margin:90px auto;
-  text-align:center;
-  box-shadow:0 15px 40px rgba(0,0,0,.12);
-}
-
-input,button{
-  width:100%;
-  padding:12px;
-  margin-top:10px;
-  border-radius:10px;
-  border:1px solid #ccc;
+button,input,select{
+  font-family:inherit;
 }
 
 button{
-  background:var(--blue);
-  color:white;
-  font-weight:bold;
+  border:0;
   cursor:pointer;
 }
 
-/* ALERT */
-.alert{
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#92400e;
-  padding:14px;
+.layout{
+  min-height:100vh;
+}
+
+/* LOGIN */
+.login-wrap{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.login-card{
+  width:100%;
+  max-width:430px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(226,232,240,.9);
+  border-radius:28px;
+  padding:30px;
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(12px);
+}
+
+.logo-badge{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  font-weight:900;
+  margin:0 auto 16px;
+  box-shadow:0 15px 30px rgba(0,91,159,.25);
+}
+
+.login-card h2{
+  margin:0;
+  text-align:center;
+  color:var(--blue);
+  font-size:24px;
+}
+
+.login-card p{
+  margin:10px 0 22px;
+  text-align:center;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.field{
+  width:100%;
+  padding:13px 14px;
   border-radius:14px;
-  margin-bottom:20px;
-  font-weight:bold;
+  border:1px solid var(--line);
+  background:#fff;
+  outline:none;
+  font-size:15px;
+}
+
+.field:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.12);
+}
+
+.primary-btn{
+  width:100%;
+  margin-top:12px;
+  padding:13px 16px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  font-weight:900;
+  font-size:15px;
+  box-shadow:0 12px 24px rgba(0,91,159,.20);
+}
+
+.error{
+  display:none;
+  margin-top:12px;
+  background:#fef2f2;
+  color:#991b1b;
+  border:1px solid #fecaca;
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:700;
+}
+
+/* APP */
+.app{
+  display:none;
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  padding:22px 26px;
+  border-bottom-left-radius:34px;
+  border-bottom-right-radius:34px;
+  box-shadow:0 18px 40px rgba(0,91,159,.20);
+}
+
+.topbar-inner{
+  max-width:1450px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  flex-wrap:wrap;
+}
+
+.brand h1{
+  margin:0;
+  font-size:24px;
+  font-weight:900;
+}
+
+.brand span{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  opacity:.88;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.ghost-btn{
+  padding:10px 14px;
+  border-radius:14px;
+  color:#fff;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.26);
+  font-weight:800;
+}
+
+.main{
+  max-width:1450px;
+  margin:26px auto;
+  padding:0 18px 30px;
+}
+
+/* STATUS */
+.status-bar{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:14px;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.alert{
+  background:#fff;
+  border:1px solid var(--line);
+  border-right:6px solid var(--green);
+  padding:15px 18px;
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(15,23,42,.06);
+  font-weight:900;
+}
+
+.alert.danger{border-right-color:var(--red); background:#fff7f7}
+.alert.warn{border-right-color:var(--yellow); background:#fffaf0}
+
+.clock{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:13px 16px;
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(15,23,42,.06);
+  color:var(--muted);
+  font-weight:800;
+  min-width:210px;
   text-align:center;
 }
 
-/* CARDS */
-.grid{
+/* STATS */
+.stats-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
 }
 
 .card{
-  background:var(--card);
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
-  text-align:center;
+  background:rgba(255,255,255,.95);
+  border:1px solid rgba(226,232,240,.9);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+  position:relative;
+  overflow:hidden;
 }
 
-.card h3{
-  margin:0;
-  color:var(--blue);
+.card:before{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:rgba(245,158,11,.12);
+  left:-28px;
+  top:-28px;
 }
 
-.number{
-  font-size:36px;
+.card-title{
+  color:var(--muted);
+  font-size:13px;
   font-weight:900;
-  color:var(--orange);
+}
+
+.card-number{
   margin-top:10px;
+  color:var(--blue);
+  font-size:34px;
+  font-weight:900;
+  line-height:1;
+}
+
+.card-note{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* TOOLS */
+.tools{
+  margin-top:18px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:14px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+  display:grid;
+  grid-template-columns:1fr 190px 190px;
+  gap:12px;
+}
+
+.tool-btn{
+  padding:12px 14px;
+  border-radius:14px;
+  background:var(--soft-blue);
+  color:var(--blue);
+  font-weight:900;
 }
 
 /* TABS */
 .tabs{
   display:flex;
   gap:10px;
-  margin-top:25px;
   flex-wrap:wrap;
+  margin-top:18px;
 }
 
 .tab{
-  padding:10px 16px;
-  border-radius:10px;
-  background:#eef6ff;
-  cursor:pointer;
-  font-weight:bold;
+  padding:11px 16px;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--text);
+  font-weight:900;
+  box-shadow:0 8px 18px rgba(15,23,42,.04);
 }
 
 .tab.active{
-  background:var(--blue);
-  color:white;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:#fff;
+  border-color:transparent;
 }
 
-/* SECTION */
+/* CONTENT */
 .section{
-  margin-top:15px;
-  background:var(--card);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.06);
-}
-
-/* ITEMS */
-.item{
-  background:#f8fbff;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:8px;
+  margin-top:14px;
+  background:#fff;
   border:1px solid var(--line);
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 14px 35px rgba(15,23,42,.06);
 }
 
-/* TABLE */
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+
+.section-title{
+  margin:0;
+  color:var(--blue);
+  font-size:19px;
+  font-weight:900;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  background:var(--soft-blue);
+  color:var(--blue);
+  font-size:12px;
+  font-weight:900;
+}
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border:1px solid var(--line);
+  border-radius:18px;
+}
+
 table{
   width:100%;
   border-collapse:collapse;
+  min-width:760px;
 }
 
 th,td{
-  border:1px solid var(--line);
-  padding:10px;
+  padding:12px 10px;
   text-align:center;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
 }
 
 th{
-  background:var(--blue);
-  color:white;
+  background:#f8fbff;
+  color:var(--blue);
+  font-weight:900;
 }
 
-.small{
+tr:hover td{
+  background:#fcfdff;
+}
+
+.empty{
+  padding:26px;
+  text-align:center;
+  color:var(--muted);
+  background:#f8fafc;
+  border:1px dashed var(--line);
+  border-radius:18px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fbfdff;
+  margin-bottom:10px;
+}
+
+.item strong{
+  color:var(--blue);
+}
+
+.muted{
   color:var(--muted);
   font-size:12px;
+}
+
+.pill{
+  padding:6px 9px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  background:var(--soft-orange);
+  color:#92400e;
+}
+
+.progress{
+  height:10px;
+  background:#e5e7eb;
+  border-radius:999px;
+  overflow:hidden;
+  margin-top:8px;
+}
+
+.progress span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--orange),var(--blue2));
+  width:0;
+}
+
+/* RESPONSIVE */
+@media(max-width:950px){
+  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tools{grid-template-columns:1fr}
+  .status-bar{grid-template-columns:1fr}
+}
+
+@media(max-width:560px){
+  .stats-grid{grid-template-columns:1fr}
+  .topbar{padding:18px}
+  .brand h1{font-size:20px}
+  .main{padding:0 12px 24px}
+  .section{padding:14px}
+  .card-number{font-size:30px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="topbar">لوحة التحكم - مركز عكاز</div>
+<div class="layout">
 
-<div class="main">
-
-<div id="login" class="login">
-  <h3>دخول الإدارة</h3>
-  <input id="code" placeholder="الرمز">
-  <button onclick="login()">دخول</button>
-</div>
-
-<div id="panel" style="display:none">
-
-<div id="alertBox" class="alert">جاري التحميل...</div>
-
-<!-- STATS -->
-<div class="grid">
-  <div class="card">
-    <h3>الجلسات اليوم</h3>
-    <div class="number" id="sessions">0</div>
+  <!-- LOGIN -->
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <div class="logo-badge">ع</div>
+      <h2>دخول الإدارة</h2>
+      <p>لوحة متابعة العمليات والجداول والحركة اليومية داخل مركز عكاز.</p>
+      <input id="code" class="field" type="password" placeholder="أدخل رمز الدخول" />
+      <button class="primary-btn" onclick="login()">دخول</button>
+      <div id="loginError" class="error">رمز الدخول غير صحيح</div>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>كشف جديد</h3>
-    <div class="number" id="newCases">0</div>
+  <!-- APP -->
+  <div id="appView" class="app">
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <h1>لوحة التحكم - مركز عكاز للعلاج الطبيعي</h1>
+          <span>متابعة مباشرة للعمليات، الجداول، المتصلين، السجلات، والاعتمادات</span>
+        </div>
+        <div class="top-actions">
+          <button class="ghost-btn" onclick="refreshDashboard()">تحديث البيانات</button>
+          <button class="ghost-btn" onclick="logout()">خروج</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <div class="status-bar">
+        <div id="alertBox" class="alert">جاري تحميل بيانات النظام...</div>
+        <div id="clockBox" class="clock">—</div>
+      </div>
+
+      <section class="stats-grid">
+        <div class="card">
+          <div class="card-title">إجمالي الجلسات المجدولة</div>
+          <div class="card-number" id="sessions">0</div>
+          <div class="card-note">من جدول therapistSchedules</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">الكشوفات الجديدة</div>
+          <div class="card-number" id="newCases">0</div>
+          <div class="card-note">من جدول newAssessments</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">كشوفات بالاسم</div>
+          <div class="card-number" id="byName">0</div>
+          <div class="card-note">الحالات المحجوزة باسم أخصائي</div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">أعلى ضغط حاليًا</div>
+          <div class="card-number" id="topTherapist">—</div>
+          <div class="card-note" id="topTherapistNote">حسب عدد الجلسات</div>
+        </div>
+      </section>
+
+      <section class="tools">
+        <input id="searchInput" class="field" placeholder="بحث سريع داخل النتائج: اسم، صفحة، عملية..." oninput="renderCurrentTab()" />
+        <select id="limitSelect" class="field" onchange="renderCurrentTab()">
+          <option value="15">عرض آخر 15</option>
+          <option value="30">عرض آخر 30</option>
+          <option value="100">عرض آخر 100</option>
+          <option value="all">عرض الكل</option>
+        </select>
+        <button class="tool-btn" onclick="exportCurrentTab()">تصدير CSV</button>
+      </section>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="overview" onclick="openTab('overview',this)">نظرة عامة</button>
+        <button class="tab" data-tab="schedules" onclick="openTab('schedules',this)">الجداول</button>
+        <button class="tab" data-tab="assessments" onclick="openTab('assessments',this)">الكشوفات</button>
+        <button class="tab" data-tab="online" onclick="openTab('online',this)">المتصلين</button>
+        <button class="tab" data-tab="logs" onclick="openTab('logs',this)">سجل العمليات</button>
+        <button class="tab" data-tab="analytics" onclick="openTab('analytics',this)">الإحصائيات</button>
+        <button class="tab" data-tab="approvals" onclick="openTab('approvals',this)">الاعتمادات</button>
+      </nav>
+
+      <section id="tabContent" class="section"></section>
+
+    </main>
   </div>
-
-  <div class="card">
-    <h3>بالاسم</h3>
-    <div class="number" id="byName">0</div>
-  </div>
-
-  <div class="card">
-    <h3>أعلى ضغط</h3>
-    <div class="number" id="topTherapist">—</div>
-  </div>
-</div>
-
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab active" onclick="openTab('overview',this)">نظرة عامة</div>
-  <div class="tab" onclick="openTab('online',this)">المتصلين</div>
-  <div class="tab" onclick="openTab('logs',this)">السجل</div>
-  <div class="tab" onclick="openTab('analytics',this)">الإحصائيات</div>
-  <div class="tab" onclick="openTab('approvals',this)">الاعتمادات</div>
-</div>
-
-<div id="tabContent" class="section"></div>
-
-</div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  query,
+  orderBy,
+  limit
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+/* Firebase */
 const app = initializeApp({
   apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   projectId:"akazcenter-89c17"
 });
 
 const db = getFirestore(app);
-const CODE="164321";
 
-window.login=()=>{
-  if(document.getElementById("code").value!==CODE){
-    alert("خطأ");
-    return;
-  }
-  document.getElementById("login").style.display="none";
-  document.getElementById("panel").style.display="block";
-  load();
+/* تنبيه مهم:
+   رمز الدخول هنا مجرد حماية واجهة فقط، وليس حماية حقيقية.
+   لو الموقع بيكون منشور للعامة، الأفضل تستخدم Firebase Authentication + Security Rules.
+*/
+const CODE = "164321";
+
+const state = {
+  currentTab: "overview",
+  sessions: [],
+  assessments: [],
+  online: [],
+  logs: [],
+  approvals: []
 };
 
-function load(){
+const unsubscribers = [];
 
-// الجلسات
-onSnapshot(collection(db,"therapistSchedules"), snap=>{
-  document.getElementById("sessions").innerText=snap.size;
-
-  let count={};
-  snap.forEach(d=>{
-    let t=d.data().therapist;
-    if(t) count[t]=(count[t]||0)+1;
-  });
-
-  let max=0,name="—";
-  for(let k in count){
-    if(count[k]>max){max=count[k];name=k;}
-  }
-  document.getElementById("topTherapist").innerText=name;
-});
-
-// كشف
-onSnapshot(collection(db,"newAssessments"), snap=>{
-  let total=0,byName=0;
-
-  snap.forEach(d=>{
-    total++;
-    if(d.data().type==="name") byName++;
-  });
-
-  document.getElementById("newCases").innerText=total;
-  document.getElementById("byName").innerText=byName;
-
-  document.getElementById("alertBox").innerText =
-    total>20 ? "🚨 ضغط عالي اليوم" : "الوضع مستقر";
-});
-
-openTab('overview',document.querySelector('.tab'));
+function safeText(value){
+  if(value === null || value === undefined || value === "") return "—";
+  return String(value);
 }
 
-// TABS
-window.openTab=function(type,el){
-  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-  el.classList.add("active");
+function formatDate(value){
+  try{
+    if(!value) return "—";
+    if(value.seconds) return new Date(value.seconds * 1000).toLocaleString("ar-SA");
+    if(value.toDate) return value.toDate().toLocaleString("ar-SA");
+    return new Date(value).toLocaleString("ar-SA");
+  }catch(e){
+    return "—";
+  }
+}
 
-  let html="";
+function normalizeText(value){
+  return String(value || "").toLowerCase().trim();
+}
 
-  if(type==="overview"){
-    html="نظرة عامة على النظام";
+function getSearch(){
+  return normalizeText(document.getElementById("searchInput")?.value);
+}
+
+function applySearch(rows, keys){
+  const s = getSearch();
+  if(!s) return rows;
+  return rows.filter(row => keys.some(k => normalizeText(row[k]).includes(s)));
+}
+
+function applyLimit(rows){
+  const value = document.getElementById("limitSelect")?.value || "15";
+  if(value === "all") return rows;
+  return rows.slice(0, Number(value));
+}
+
+function setAlert(text, type="ok"){
+  const box = document.getElementById("alertBox");
+  box.className = "alert";
+  if(type === "danger") box.classList.add("danger");
+  if(type === "warn") box.classList.add("warn");
+  box.textContent = text;
+}
+
+function updateClock(){
+  const el = document.getElementById("clockBox");
+  if(!el) return;
+  el.textContent = new Date().toLocaleString("ar-SA", {
+    weekday:"long",
+    year:"numeric",
+    month:"long",
+    day:"numeric",
+    hour:"2-digit",
+    minute:"2-digit"
+  });
+}
+
+setInterval(updateClock, 30000);
+updateClock();
+
+/* Login */
+window.login = () => {
+  const code = document.getElementById("code").value.trim();
+  const error = document.getElementById("loginError");
+
+  if(code !== CODE){
+    error.style.display = "block";
+    return;
   }
 
-  if(type==="online"){
-    html='<div id="online"></div>';
-    onSnapshot(collection(db,"activeDevices"), snap=>{
-      let out="";
-      snap.forEach(d=>{
-        let x=d.data();
-        out+=`<div class="item">${x.page}</div>`;
-      });
-      document.getElementById("online").innerHTML=out || "لا يوجد";
-    });
+  sessionStorage.setItem("akaz_admin_login", "1");
+  showApp();
+};
+
+window.logout = () => {
+  sessionStorage.removeItem("akaz_admin_login");
+  location.reload();
+};
+
+function showApp(){
+  document.getElementById("loginView").style.display = "none";
+  document.getElementById("appView").style.display = "block";
+  startListeners();
+}
+
+if(sessionStorage.getItem("akaz_admin_login") === "1"){
+  showApp();
+}
+
+/* Data */
+function startListeners(){
+  if(unsubscribers.length) return;
+
+  unsubscribers.push(onSnapshot(collection(db,"therapistSchedules"), snap=>{
+    state.sessions = [];
+    snap.forEach(d => state.sessions.push({ id:d.id, ...d.data() }));
+    updateStats();
+    renderCurrentTab();
+  }, err => setAlert("تعذر تحميل الجلسات: " + err.message, "danger")));
+
+  unsubscribers.push(onSnapshot(collection(db,"newAssessments"), snap=>{
+    state.assessments = [];
+    snap.forEach(d => state.assessments.push({ id:d.id, ...d.data() }));
+    updateStats();
+    renderCurrentTab();
+  }, err => setAlert("تعذر تحميل الكشوفات: " + err.message, "danger")));
+
+  unsubscribers.push(onSnapshot(collection(db,"activeDevices"), snap=>{
+    state.online = [];
+    snap.forEach(d => state.online.push({ id:d.id, ...d.data() }));
+    renderCurrentTab();
+  }, err => setAlert("تعذر تحميل الأجهزة المتصلة: " + err.message, "danger")));
+
+  unsubscribers.push(onSnapshot(collection(db,"activityLogs"), snap=>{
+    state.logs = [];
+    snap.forEach(d => state.logs.push({ id:d.id, ...d.data() }));
+    state.logs.sort((a,b)=>(b.time?.seconds || 0) - (a.time?.seconds || 0));
+    renderCurrentTab();
+  }, err => setAlert("تعذر تحميل سجل العمليات: " + err.message, "danger")));
+
+  unsubscribers.push(onSnapshot(collection(db,"approvals"), snap=>{
+    state.approvals = [];
+    snap.forEach(d => state.approvals.push({ id:d.id, ...d.data() }));
+    renderCurrentTab();
+  }, () => {
+    state.approvals = [];
+    renderCurrentTab();
+  }));
+
+  openTab("overview", document.querySelector(".tab.active"));
+}
+
+window.refreshDashboard = () => {
+  updateStats();
+  renderCurrentTab();
+  setAlert("تم تحديث عرض البيانات", "ok");
+};
+
+function updateStats(){
+  const sessionsTotal = state.sessions.length;
+  const assessmentsTotal = state.assessments.length;
+  const byNameTotal = state.assessments.filter(x => x.type === "name" || x.byName === true).length;
+
+  document.getElementById("sessions").textContent = sessionsTotal;
+  document.getElementById("newCases").textContent = assessmentsTotal;
+  document.getElementById("byName").textContent = byNameTotal;
+
+  const count = {};
+  state.sessions.forEach(x => {
+    const name = x.therapist || x.therapistName || x.name;
+    if(name) count[name] = (count[name] || 0) + 1;
+  });
+
+  let topName = "—";
+  let topCount = 0;
+  Object.keys(count).forEach(name => {
+    if(count[name] > topCount){
+      topName = name;
+      topCount = count[name];
+    }
+  });
+
+  document.getElementById("topTherapist").textContent = topName;
+  document.getElementById("topTherapistNote").textContent = topCount ? `${topCount} جلسة مجدولة` : "لا يوجد بيانات كافية";
+
+  if(assessmentsTotal > 20){
+    setAlert("ضغط عالي اليوم: عدد الكشوفات الجديدة تجاوز 20", "danger");
+  }else if(sessionsTotal > 45){
+    setAlert("تنبيه: عدد الجلسات المجدولة مرتفع ويحتاج متابعة", "warn");
+  }else{
+    setAlert("الوضع مستقر والبيانات تعمل بشكل طبيعي", "ok");
+  }
+}
+
+/* Tabs */
+window.openTab = function(tab, el){
+  state.currentTab = tab;
+
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  if(el) el.classList.add("active");
+
+  renderCurrentTab();
+};
+
+window.renderCurrentTab = function(){
+  const tab = state.currentTab;
+  if(tab === "overview") renderOverview();
+  if(tab === "schedules") renderSchedules();
+  if(tab === "assessments") renderAssessments();
+  if(tab === "online") renderOnline();
+  if(tab === "logs") renderLogs();
+  if(tab === "analytics") renderAnalytics();
+  if(tab === "approvals") renderApprovals();
+};
+
+function content(html){
+  document.getElementById("tabContent").innerHTML = html;
+}
+
+function renderOverview(){
+  const therapists = {};
+  state.sessions.forEach(x => {
+    const name = x.therapist || x.therapistName || x.name || "غير محدد";
+    therapists[name] = (therapists[name] || 0) + 1;
+  });
+
+  const rows = Object.entries(therapists)
+    .sort((a,b)=>b[1]-a[1])
+    .map(([name,total]) => ({ name, total }));
+
+  const max = Math.max(...rows.map(r=>r.total), 1);
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">نظرة عامة على تشغيل الموقع</h2>
+      <span class="badge">آخر تحديث مباشر من Firebase</span>
+    </div>
+
+    <div class="item">
+      <div>
+        <strong>ملخص سريع</strong>
+        <div class="muted">الجلسات: ${state.sessions.length} | الكشوفات: ${state.assessments.length} | المتصلين: ${state.online.length} | العمليات المسجلة: ${state.logs.length}</div>
+      </div>
+      <span class="pill">Live</span>
+    </div>
+
+    <h3 class="section-title" style="font-size:16px;margin:18px 0 12px">توزيع الجلسات حسب الأخصائي</h3>
+    ${
+      rows.length
+      ? rows.map(r => `
+          <div class="item">
+            <div style="width:100%">
+              <strong>${safeText(r.name)}</strong>
+              <div class="muted">${r.total} جلسة</div>
+              <div class="progress"><span style="width:${Math.round((r.total/max)*100)}%"></span></div>
+            </div>
+          </div>
+        `).join("")
+      : `<div class="empty">لا يوجد بيانات جلسات حتى الآن</div>`
+    }
+  `);
+}
+
+function renderSchedules(){
+  let rows = applySearch(state.sessions, ["therapist","therapistName","name","day","time","department","room"]);
+  rows = applyLimit(rows);
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">الجداول والجلسات</h2>
+      <span class="badge">${rows.length} نتيجة معروضة</span>
+    </div>
+
+    ${rows.length ? `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الأخصائي</th>
+            <th>القسم</th>
+            <th>اليوم</th>
+            <th>الوقت</th>
+            <th>الغرفة/المكان</th>
+            <th>ملاحظات</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(x => `
+            <tr>
+              <td>${safeText(x.therapist || x.therapistName || x.name)}</td>
+              <td>${safeText(x.department || x.section)}</td>
+              <td>${safeText(x.day || x.date)}</td>
+              <td>${safeText(x.time || x.slot)}</td>
+              <td>${safeText(x.room || x.location)}</td>
+              <td>${safeText(x.note || x.notes)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>` : `<div class="empty">لا توجد جلسات مطابقة للبحث</div>`}
+  `);
+}
+
+function renderAssessments(){
+  let rows = applySearch(state.assessments, ["patient","patientName","therapist","type","status","createdBy"]);
+  rows = applyLimit(rows);
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">الكشوفات الجديدة</h2>
+      <span class="badge">${rows.length} نتيجة معروضة</span>
+    </div>
+
+    ${rows.length ? `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>المريض</th>
+            <th>النوع</th>
+            <th>الأخصائي</th>
+            <th>الحالة</th>
+            <th>المدخل</th>
+            <th>التاريخ</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(x => `
+            <tr>
+              <td>${safeText(x.patient || x.patientName)}</td>
+              <td>${safeText(x.type)}</td>
+              <td>${safeText(x.therapist || x.therapistName)}</td>
+              <td>${safeText(x.status)}</td>
+              <td>${safeText(x.createdBy || x.receptionist)}</td>
+              <td>${formatDate(x.createdAt || x.time || x.date)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>` : `<div class="empty">لا توجد كشوفات مطابقة للبحث</div>`}
+  `);
+}
+
+function renderOnline(){
+  let rows = applySearch(state.online, ["page","device","user","name","lastSeen"]);
+  rows = applyLimit(rows);
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">الأجهزة والمتصلين الآن</h2>
+      <span class="badge">${state.online.length} متصل</span>
+    </div>
+
+    ${
+      rows.length
+      ? rows.map(x => `
+          <div class="item">
+            <div>
+              <strong>${safeText(x.page || "صفحة غير محددة")}</strong>
+              <div class="muted">${safeText(x.user || x.name || x.device)} | آخر ظهور: ${formatDate(x.lastSeen || x.time)}</div>
+            </div>
+            <span class="pill">متصل</span>
+          </div>
+        `).join("")
+      : `<div class="empty">لا يوجد أجهزة متصلة الآن</div>`
+    }
+  `);
+}
+
+function renderLogs(){
+  let rows = applySearch(state.logs, ["page","action","user","name","details"]);
+  rows = applyLimit(rows);
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">سجل جميع العمليات</h2>
+      <span class="badge">${rows.length} عملية معروضة</span>
+    </div>
+
+    ${rows.length ? `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>الوقت</th>
+            <th>المستخدم/الجهاز</th>
+            <th>الصفحة</th>
+            <th>العملية</th>
+            <th>التفاصيل</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(x => `
+            <tr>
+              <td>${formatDate(x.time || x.createdAt)}</td>
+              <td>${safeText(x.user || x.name || x.device)}</td>
+              <td>${safeText(x.page)}</td>
+              <td>${safeText(x.action)}</td>
+              <td>${safeText(x.details || x.note)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>` : `<div class="empty">لا يوجد سجل عمليات حتى الآن</div>`}
+  `);
+}
+
+function renderAnalytics(){
+  const totalSessions = state.sessions.length;
+  const totalAssessments = state.assessments.length;
+  const online = state.online.length;
+  const logs = state.logs.length;
+  const byName = state.assessments.filter(x => x.type === "name" || x.byName === true).length;
+  const byNameRate = totalAssessments ? Math.round((byName / totalAssessments) * 100) : 0;
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">الإحصائيات التشغيلية</h2>
+      <span class="badge">تحليل مباشر</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="card"><div class="card-title">نسبة الكشوفات بالاسم</div><div class="card-number">${byNameRate}%</div><div class="card-note">${byName} من ${totalAssessments}</div></div>
+      <div class="card"><div class="card-title">متوسط العمليات لكل جلسة</div><div class="card-number">${totalSessions ? (logs / totalSessions).toFixed(1) : 0}</div><div class="card-note">تقريبي حسب السجل</div></div>
+      <div class="card"><div class="card-title">الأجهزة المتصلة</div><div class="card-number">${online}</div><div class="card-note">عدد مباشر</div></div>
+      <div class="card"><div class="card-title">إجمالي العمليات</div><div class="card-number">${logs}</div><div class="card-note">من activityLogs</div></div>
+    </div>
+  `);
+}
+
+function renderApprovals(){
+  let rows = applySearch(state.approvals, ["type","status","approvedBy","requestedBy","note"]);
+  rows = applyLimit(rows);
+
+  content(`
+    <div class="section-head">
+      <h2 class="section-title">الاعتمادات</h2>
+      <span class="badge">${rows.length} اعتماد معروض</span>
+    </div>
+
+    ${rows.length ? `
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>النوع</th>
+            <th>الحالة</th>
+            <th>طالب الاعتماد</th>
+            <th>المعتمد</th>
+            <th>التاريخ</th>
+            <th>ملاحظة</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map(x => `
+            <tr>
+              <td>${safeText(x.type || x.title)}</td>
+              <td>${safeText(x.status)}</td>
+              <td>${safeText(x.requestedBy)}</td>
+              <td>${safeText(x.approvedBy)}</td>
+              <td>${formatDate(x.time || x.createdAt || x.updatedAt)}</td>
+              <td>${safeText(x.note || x.notes)}</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>` : `<div class="empty">لا توجد اعتمادات مسجلة. إذا لم تستخدم collection باسم approvals بيظهر هذا القسم فارغ.</div>`}
+  `);
+}
+
+/* Export */
+window.exportCurrentTab = function(){
+  let rows = [];
+  const tab = state.currentTab;
+
+  if(tab === "schedules") rows = state.sessions;
+  else if(tab === "assessments") rows = state.assessments;
+  else if(tab === "online") rows = state.online;
+  else if(tab === "logs") rows = state.logs;
+  else if(tab === "approvals") rows = state.approvals;
+  else rows = [
+    { label:"sessions", value:state.sessions.length },
+    { label:"assessments", value:state.assessments.length },
+    { label:"online", value:state.online.length },
+    { label:"logs", value:state.logs.length }
+  ];
+
+  if(!rows.length){
+    alert("لا توجد بيانات للتصدير");
+    return;
   }
 
-  if(type==="logs"){
-    html='<div id="logs"></div>';
-    onSnapshot(collection(db,"activityLogs"), snap=>{
-      let arr=[];
-      snap.forEach(d=>arr.push(d.data()));
-      arr.sort((a,b)=>b.time.seconds-a.time.seconds);
+  const keys = Array.from(new Set(rows.flatMap(r => Object.keys(r))));
+  const csv = [
+    keys.join(","),
+    ...rows.map(row => keys.map(k => `"${String(row[k] ?? "").replaceAll('"','""')}"`).join(","))
+  ].join("\n");
 
-      let out="";
-      arr.slice(0,15).forEach(x=>{
-        out+=`<div class="item">${x.page} - ${x.action}</div>`;
-      });
-
-      document.getElementById("logs").innerHTML=out || "لا يوجد";
-    });
-  }
-
-  if(type==="analytics"){
-    html='<div class="item">إحصائيات قادمة</div>';
-  }
-
-  if(type==="approvals"){
-    html='<div class="item">حالة اعتماد الجداول</div>';
-  }
-
-  document.getElementById("tabContent").innerHTML=html;
+  const blob = new Blob(["\ufeff" + csv], { type:"text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `akaz-${tab}-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
 };
 </script>
 
+<!-- إذا عندك ملف tracker.js للتتبع خله بنفس المجلد -->
 <script type="module" src="tracker.js"></script>
 
 </body>
