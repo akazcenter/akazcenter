@@ -5,52 +5,131 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>توزيع الكشف الجديد</title>
 <link rel="icon" href="logo.png">
+
 <style>
 :root{--blue:#005b9f;--blue2:#0077c8;--text:#0f172a;--muted:#64748b;--line:#e2e8f0}
 *{box-sizing:border-box}
 body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
 .topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:28px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
-.brand{display:flex;align-items:center;gap:16px}.logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}.brand h1{margin:0;font-size:27px;font-weight:900}.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
-.btn{border:none;border-radius:12px;padding:10px 13px;font-weight:900;cursor:pointer;font-family:Tahoma,Arial;font-size:13px}.btn-white{background:white;color:var(--blue)}.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}.btn-light{background:#eef6ff;color:var(--blue)}.btn-red{background:#fee2e2;color:#b91c1c}.btn-orange{background:#fff7ed;color:#92400e}
-.main{width:94%;max-width:1320px;margin:28px auto}.intro,.history,.panel{background:white;border:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.07)}
-.intro{border-radius:24px;padding:20px;text-align:center;margin-bottom:20px}.intro h2{margin:0;color:var(--blue);font-size:26px}.intro p{margin:10px 0 0;color:var(--muted);line-height:1.8}
-.sections{display:grid;grid-template-columns:1fr 1fr;gap:20px}.panel{border-radius:24px;overflow:hidden}.panel-head{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}.panel-head h3{margin:0;font-size:22px}.next-box{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 13px;font-weight:900}
-.panel-body{padding:16px}.fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:16px;padding:12px;margin-bottom:14px;font-weight:900;text-align:center;line-height:1.7}.balance-ok{background:#dcfce7!important;border-color:#86efac!important;color:#166534!important}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.full{grid-column:1/-1}.field label{display:block;font-size:12px;font-weight:900;color:#334155;margin-bottom:6px}
+.brand{display:flex;align-items:center;gap:16px}
+.logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
+.brand h1{margin:0;font-size:27px;font-weight:900}
+.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
+.btn{border:none;border-radius:12px;padding:10px 13px;font-weight:900;cursor:pointer;font-family:Tahoma,Arial;font-size:13px}
+.btn-white{background:white;color:var(--blue)}
+.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.btn-light{background:#eef6ff;color:var(--blue)}
+.btn-red{background:#fee2e2;color:#b91c1c}
+.btn-orange{background:#fff7ed;color:#92400e}
+.main{width:94%;max-width:1320px;margin:28px auto}
+.intro,.history,.panel{background:white;border:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.intro{border-radius:24px;padding:20px;text-align:center;margin-bottom:20px}
+.intro h2{margin:0;color:var(--blue);font-size:26px}
+.intro p{margin:10px 0 0;color:var(--muted);line-height:1.8}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{border-radius:24px;overflow:hidden}
+.panel-head{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.panel-head h3{margin:0;font-size:22px}
+.next-box{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 13px;font-weight:900}
+.panel-body{padding:16px}
+.fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:16px;padding:12px;margin-bottom:14px;font-weight:900;text-align:center;line-height:1.7}
+.balance-ok{background:#dcfce7!important;border-color:#86efac!important;color:#166534!important}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.full{grid-column:1/-1}
+.field label{display:block;font-size:12px;font-weight:900;color:#334155;margin-bottom:6px}
 input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:10px;font-family:Tahoma,Arial;font-size:13px;background:white}
-.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{flex:1}.suspend-box{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:14px 0}.suspend-title{color:var(--blue);font-weight:900;margin-bottom:10px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.stat{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;color:var(--blue);font-weight:900}.stat span{display:block;direction:ltr;font-size:24px;margin-top:5px}
-.table-wrap{overflow:visible;border:1px solid var(--line);border-radius:16px;margin-top:12px}table{width:100%;border-collapse:collapse;min-width:0;table-layout:fixed;background:white}
-th{background:#06345d;color:white;padding:8px 4px;font-size:11px;border:1px solid #17456f}td{border:1px solid #e2e8f0;padding:7px 4px;text-align:center;font-size:11px;word-break:break-word}
-.badge{display:inline-block;padding:4px 7px;border-radius:999px;font-size:10.5px;font-weight:900;line-height:1.35}.green{background:#dcfce7;color:#166534}.blue{background:#dbeafe;color:#1d4ed8}.yellow{background:#fef3c7;color:#92400e}.red{background:#fee2e2;color:#b91c1c}.gray{background:#e5e7eb;color:#374151}.orange{background:#ffedd5;color:#9a3412}
-.priority-row{background:#f0fdf4}.suspended-row{background:#f8fafc;color:#64748b}.skip-row{background:#fff7ed}
-.history{margin-top:20px;border-radius:24px;padding:18px}.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}.empty{color:#94a3b8;font-weight:900}.reset-row td{background:#dcfce7!important;color:#166534!important;font-weight:900;border:2px solid #86efac!important}.suspend-row td{background:#fef3c7!important;color:#92400e!important;font-weight:900}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.actions button{flex:1}
+.tool-box{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:14px 0}
+.tool-title{color:var(--blue);font-weight:900;margin-bottom:10px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;color:var(--blue);font-weight:900}
+.stat span{display:block;direction:ltr;font-size:24px;margin-top:5px}
+.table-wrap{overflow:visible;border:1px solid var(--line);border-radius:16px;margin-top:12px}
+table{width:100%;border-collapse:collapse;min-width:0;table-layout:fixed;background:white}
+th{background:#06345d;color:white;padding:7px 3px;font-size:10px;border:1px solid #17456f}
+td{border:1px solid #e2e8f0;padding:6px 3px;text-align:center;font-size:10px;word-break:break-word}
+.badge{display:inline-block;padding:4px 6px;border-radius:999px;font-size:10px;font-weight:900;line-height:1.35}
+.green{background:#dcfce7;color:#166534}
+.blue{background:#dbeafe;color:#1d4ed8}
+.yellow{background:#fef3c7;color:#92400e}
+.red{background:#fee2e2;color:#b91c1c}
+.gray{background:#e5e7eb;color:#374151}
+.orange{background:#ffedd5;color:#9a3412}
+.priority-row{background:#f0fdf4}
+.suspended-row{background:#f8fafc;color:#64748b}
+.skip-row{background:#fff7ed}
+.history{margin-top:20px;border-radius:24px;padding:18px}
+.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}
+.empty{color:#94a3b8;font-weight:900}
+.reset-row td{background:#dcfce7!important;color:#166534!important;font-weight:900;border:2px solid #86efac!important}
+.suspend-row td{background:#fef3c7!important;color:#92400e!important;font-weight:900}
+.opening-row td{background:#eef6ff!important;color:#005b9f!important;font-weight:900}
 .note{margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center}
-@media(max-width:1000px){.sections{grid-template-columns:1fr}}@media(max-width:650px){.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.form-grid,.stats{grid-template-columns:1fr}}
+@media(max-width:1000px){.sections{grid-template-columns:1fr}}
+@media(max-width:650px){.topbar{flex-direction:column;text-align:center}.brand{flex-direction:column}.form-grid,.stats{grid-template-columns:1fr}}
 </style>
 </head>
+
 <body>
+
 <div class="topbar">
-  <div class="brand"><img src="logo.png" class="logo" alt="Akaz Logo"><div><h1>توزيع الكشف الجديد</h1><p>New Assessment Queue</p></div></div>
+  <div class="brand">
+    <img src="logo.png" class="logo" alt="Akaz Logo">
+    <div>
+      <h1>توزيع الكشف الجديد</h1>
+      <p>New Assessment Queue</p>
+    </div>
+  </div>
   <button class="btn btn-white" onclick="location.href='index.html'">الرئيسية</button>
 </div>
 
 <div class="main">
-  <div class="intro"><h2>نظام توزيع حالات الكشف الجديد</h2><p>التوزيع يتم بناءً على إجمالي الكشوفات الحالية، مع توثيق الاختيار بالاسم أو طلبات الأخصائيين.</p></div>
+
+  <div class="intro">
+    <h2>نظام توزيع حالات الكشف الجديد</h2>
+    <p>التوزيع يتم بناءً على إجمالي الكشوفات الحالية، مع توثيق الاختيار بالاسم، الاختيار اليدوي، الرصيد السابق، أو طلبات الأخصائيين.</p>
+  </div>
 
   <div class="sections">
+
     <div class="panel">
-      <div class="panel-head"><h3>قسم الرجال</h3><div class="next-box">التوزيع القادم: <span id="menNext">—</span></div></div>
+      <div class="panel-head">
+        <h3>قسم الرجال</h3>
+        <div class="next-box">التوزيع القادم: <span id="menNext">—</span></div>
+      </div>
+
       <div class="panel-body">
         <div class="fair-box" id="menFairNote">—</div>
+
         <div class="form-grid">
-          <div class="field full"><label>اسم المريض | Patient Name</label><input id="menPatient" placeholder="اكتب اسم المريض"></div>
-          <div class="field"><label>طريقة التوزيع</label><select id="menMethod" onchange="toggleNamed('men')"><option value="queue">حسب الأقل عددًا</option><option value="name">اختيار بالاسم</option></select></div>
-          <div class="field"><label>الأخصائي</label><select id="menTherapist" disabled></select></div>
+          <div class="field full">
+            <label>اسم المريض | Patient Name</label>
+            <input id="menPatient" placeholder="اكتب اسم المريض">
+          </div>
+
+          <div class="field">
+            <label>طريقة التوزيع</label>
+            <select id="menMethod" onchange="toggleNamed('men')">
+              <option value="queue">حسب الأقل عددًا</option>
+              <option value="name">اختيار بالاسم</option>
+              <option value="manual">اختيار يدوي</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>الأخصائي</label>
+            <select id="menTherapist" disabled></select>
+          </div>
         </div>
-        <div class="actions"><button class="btn btn-blue" onclick="addAssessment('men')">إضافة كشف جديد</button><button class="btn btn-light" onclick="skipTurn('men')">تجاوز حسب طلب الأخصائي</button></div>
-        <div class="suspend-box">
-          <div class="suspend-title">إيقاف مؤقت للأخصائي</div>
+
+        <div class="actions">
+          <button class="btn btn-blue" onclick="addAssessment('men')">إضافة كشف جديد</button>
+          <button class="btn btn-light" onclick="skipTurn('men')">تجاوز حسب طلب الأخصائي</button>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-title">إيقاف مؤقت للأخصائي</div>
           <div class="form-grid">
             <div class="field"><label>الأخصائي</label><select id="menSuspendTherapist"></select></div>
             <div class="field"><label>السبب</label><select id="menSuspendReason"><option>حسب طلب الأخصائي</option><option>إجازة</option></select></div>
@@ -58,23 +137,79 @@ th{background:#06345d;color:white;padding:8px 4px;font-size:11px;border:1px soli
             <div class="field"><label>&nbsp;</label><button class="btn btn-orange" onclick="addSuspension('men')">تفعيل الإيقاف</button></div>
           </div>
         </div>
-        <div class="stats"><div class="stat">إجمالي الفترة <span id="menTotalToday">0</span></div><div class="stat">بالدور <span id="menQueueToday">0</span></div><div class="stat">بالاسم <span id="menNameToday">0</span></div></div>
-        <div class="table-wrap"><table><thead><tr><th>الأخصائي</th><th>بالدور</th><th>بالاسم</th><th>تجاوز</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody id="menStatsTable"></tbody></table></div>
+
+        <div class="tool-box">
+          <div class="tool-title">ترحيل رصيد سابق</div>
+          <div class="form-grid">
+            <div class="field"><label>الأخصائي</label><select id="menOpeningTherapist"></select></div>
+            <div class="field"><label>عدد الكشوفات السابقة</label><input type="number" min="0" id="menOpeningCount" placeholder="مثال: 5"></div>
+            <div class="field full"><button class="btn btn-blue" onclick="addOpeningBalance('men')">حفظ الرصيد السابق</button></div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">إجمالي الفترة <span id="menTotalToday">0</span></div>
+          <div class="stat">المسجل بالنظام <span id="menSystemToday">0</span></div>
+          <div class="stat">الرصيد السابق <span id="menOpeningToday">0</span></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الأخصائي</th>
+                <th>سابق</th>
+                <th>دور</th>
+                <th>اسم</th>
+                <th>يدوي</th>
+                <th>تجاوز</th>
+                <th>إجمالي</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody id="menStatsTable"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
     <div class="panel">
-      <div class="panel-head"><h3>قسم النساء</h3><div class="next-box">التوزيع القادم: <span id="womenNext">—</span></div></div>
+      <div class="panel-head">
+        <h3>قسم النساء</h3>
+        <div class="next-box">التوزيع القادم: <span id="womenNext">—</span></div>
+      </div>
+
       <div class="panel-body">
         <div class="fair-box" id="womenFairNote">—</div>
+
         <div class="form-grid">
-          <div class="field full"><label>اسم المريض | Patient Name</label><input id="womenPatient" placeholder="اكتب اسم المريض"></div>
-          <div class="field"><label>طريقة التوزيع</label><select id="womenMethod" onchange="toggleNamed('women')"><option value="queue">حسب الأقل عددًا</option><option value="name">اختيار بالاسم</option></select></div>
-          <div class="field"><label>الأخصائي</label><select id="womenTherapist" disabled></select></div>
+          <div class="field full">
+            <label>اسم المريض | Patient Name</label>
+            <input id="womenPatient" placeholder="اكتب اسم المريض">
+          </div>
+
+          <div class="field">
+            <label>طريقة التوزيع</label>
+            <select id="womenMethod" onchange="toggleNamed('women')">
+              <option value="queue">حسب الأقل عددًا</option>
+              <option value="name">اختيار بالاسم</option>
+              <option value="manual">اختيار يدوي</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>الأخصائي</label>
+            <select id="womenTherapist" disabled></select>
+          </div>
         </div>
-        <div class="actions"><button class="btn btn-blue" onclick="addAssessment('women')">إضافة كشف جديد</button><button class="btn btn-light" onclick="skipTurn('women')">تجاوز حسب طلب الأخصائي</button></div>
-        <div class="suspend-box">
-          <div class="suspend-title">إيقاف مؤقت للأخصائي</div>
+
+        <div class="actions">
+          <button class="btn btn-blue" onclick="addAssessment('women')">إضافة كشف جديد</button>
+          <button class="btn btn-light" onclick="skipTurn('women')">تجاوز حسب طلب الأخصائي</button>
+        </div>
+
+        <div class="tool-box">
+          <div class="tool-title">إيقاف مؤقت للأخصائي</div>
           <div class="form-grid">
             <div class="field"><label>الأخصائي</label><select id="womenSuspendTherapist"></select></div>
             <div class="field"><label>السبب</label><select id="womenSuspendReason"><option>حسب طلب الأخصائي</option><option>إجازة</option></select></div>
@@ -82,104 +217,646 @@ th{background:#06345d;color:white;padding:8px 4px;font-size:11px;border:1px soli
             <div class="field"><label>&nbsp;</label><button class="btn btn-orange" onclick="addSuspension('women')">تفعيل الإيقاف</button></div>
           </div>
         </div>
-        <div class="stats"><div class="stat">إجمالي الفترة <span id="womenTotalToday">0</span></div><div class="stat">بالدور <span id="womenQueueToday">0</span></div><div class="stat">بالاسم <span id="womenNameToday">0</span></div></div>
-        <div class="table-wrap"><table><thead><tr><th>الأخصائي</th><th>بالدور</th><th>بالاسم</th><th>تجاوز</th><th>الإجمالي</th><th>الحالة</th></tr></thead><tbody id="womenStatsTable"></tbody></table></div>
+
+        <div class="tool-box">
+          <div class="tool-title">ترحيل رصيد سابق</div>
+          <div class="form-grid">
+            <div class="field"><label>الأخصائي</label><select id="womenOpeningTherapist"></select></div>
+            <div class="field"><label>عدد الكشوفات السابقة</label><input type="number" min="0" id="womenOpeningCount" placeholder="مثال: 5"></div>
+            <div class="field full"><button class="btn btn-blue" onclick="addOpeningBalance('women')">حفظ الرصيد السابق</button></div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">إجمالي الفترة <span id="womenTotalToday">0</span></div>
+          <div class="stat">المسجل بالنظام <span id="womenSystemToday">0</span></div>
+          <div class="stat">الرصيد السابق <span id="womenOpeningToday">0</span></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>الأخصائي</th>
+                <th>سابق</th>
+                <th>دور</th>
+                <th>اسم</th>
+                <th>يدوي</th>
+                <th>تجاوز</th>
+                <th>إجمالي</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody id="womenStatsTable"></tbody>
+          </table>
+        </div>
       </div>
     </div>
+
   </div>
 
   <div class="history">
     <h3>السجل الكامل | Full Log</h3>
-    <div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الوقت</th><th>القسم</th><th>المريض/الإجراء</th><th>الأخصائي</th><th>الطريقة</th><th>إجراء</th></tr></thead><tbody id="todayLog"></tbody></table></div>
-    <div class="note">السجل محفوظ بالكامل. التجاوز والإيقاف لا يدخلان ضمن إجمالي الكشوفات.</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>التاريخ</th>
+            <th>الوقت</th>
+            <th>القسم</th>
+            <th>المريض/الإجراء</th>
+            <th>الأخصائي</th>
+            <th>الطريقة</th>
+            <th>إجراء</th>
+          </tr>
+        </thead>
+        <tbody id="todayLog"></tbody>
+      </table>
+    </div>
+    <div class="note">الرصيد السابق، الاختيار بالاسم، والاختيار اليدوي تدخل ضمن الإجمالي. التجاوز والإيقاف لا يدخلان ضمن إجمالي الكشوفات.</div>
   </div>
+
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const firebaseConfig={apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",authDomain:"akazcenter-89c17.firebaseapp.com",projectId:"akazcenter-89c17",storageBucket:"akazcenter-89c17.firebasestorage.app",messagingSenderId:"576111794528",appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"};
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
-const assessmentsRef=collection(db,"newAssessments");
-const queueStateRef=collection(db,"newAssessmentQueueState");
+const firebaseConfig = {
+  apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain:"akazcenter-89c17.firebaseapp.com",
+  projectId:"akazcenter-89c17",
+  storageBucket:"akazcenter-89c17.firebasestorage.app",
+  messagingSenderId:"576111794528",
+  appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
 
-const menList=["د: حاتم الاحمدي","د: عبدالرحمن السويداء","د: عبدالرحمن السليمي","د: عبدالعزيز الحمدان"];
-const womenList=["د: ريناد حميد","د: ابتسام سويلم","د: سلمى فرحان","د: أسماء فهيد","د: هند فهيد","د: مها فريح"];
-const nameAliases={"د: حاتم الاحمدي":["د: حاتم الاحمدي","د: حاتم الأحمدي","د. حاتم الأحمدي","حاتم","حاتم الاحمدي","حاتم الأحمدي"],"د: عبدالرحمن السويداء":["د: عبدالرحمن السويداء","د : عبدالرحمن السويداء","د. عبدالرحمن السويداء","عبدالرحمن السويداء","السويداء"],"د: عبدالرحمن السليمي":["د: عبدالرحمن السليمي","د. عبدالرحمن السليمي","عبدالرحمن السليمي","السليمي"],"د: عبدالعزيز الحمدان":["د: عبدالعزيز الحمدان","د. عبدالعزيز الحمدان","عبدالعزيز الحمدان","الحمدان"],"د: ريناد حميد":["د: ريناد حميد","د. ريناد حميد","ريناد","ريناد حميد"],"د: ابتسام سويلم":["د: ابتسام سويلم","د. ابتسام سويلم","ابتسام","ابتسام سويلم","التسام"],"د: سلمى فرحان":["د: سلمى فرحان","د. سلمى فرحان","سلمى","سلمى فرحان"],"د: أسماء فهيد":["د: أسماء فهيد","د. أسماء فهيد","أسماء","اسماء","أسماء فهيد","اسماء فهيد"],"د: هند فهيد":["د: هند فهيد","د. هند فهيد","هند","هند فهيد"],"د: مها فريح":["د: مها فريح","د. مها فريح","مها","مها فريح"]};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-let records=[];let queueState={men:0,women:0};
+const assessmentsRef = collection(db,"newAssessments");
+const queueStateRef = collection(db,"newAssessmentQueueState");
 
-function normalizeName(v){return (v||"").toString().trim().replaceAll("أ","ا").replaceAll("إ","ا").replaceAll("آ","ا").replaceAll("ة","ه").replaceAll(".",":").replace(/\s+/g," ")}
-function sameTherapist(saved,current){const s=normalizeName(saved),c=normalizeName(current);if(s===c)return true;return (nameAliases[current]||[current]).some(a=>normalizeName(a)===s)}
-function todayISO(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,10)}
-function timeNow(){return new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}
-function getItemDate(item){if(item.createdAt?.seconds)return new Date(item.createdAt.seconds*1000);if(item.createdAt)return new Date(item.createdAt);if(item.date&&item.time)return new Date(`${item.date}T${item.time}`);if(item.date)return new Date(`${item.date}T00:00:00`);return new Date(0)}
-function getItemDateText(item){const d=getItemDate(item);return d.getTime()?d.toLocaleDateString("ar-SA"):"—"}
-function getItemTimeText(item){return item.time||(getItemDate(item).getTime()?getItemDate(item).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"}):"—")}
-function getList(section){return section==="men"?menList:womenList}
-function getAssessments(section){return records.filter(a=>a.section===section&&a.recordType!=="balanceReset"&&a.recordType!=="suspension"&&a.recordType!=="skip")}
-function getSkips(section){return records.filter(a=>a.section===section&&a.recordType==="skip")}
-function getSuspensions(section){return records.filter(a=>a.section===section&&a.recordType==="suspension")}
-function activeSuspensionFor(section,name){const today=todayISO();return getSuspensions(section).filter(s=>sameTherapist(s.therapist,name)&&s.untilDate>=today).sort((a,b)=>getItemDate(b)-getItemDate(a))[0]||null}
-function isSuspended(section,name){return !!activeSuspensionFor(section,name)}
-function getEligibleList(section){const list=getList(section).filter(n=>!isSuspended(section,n));return list.length?list:getList(section)}
-function getLastResetDate(section){const resets=records.filter(a=>a.section===section&&a.recordType==="balanceReset").sort((a,b)=>getItemDate(b)-getItemDate(a));return resets.length?getItemDate(resets[0]):null}
-function afterReset(section,arr){const reset=getLastResetDate(section);return arr.filter(a=>!reset||getItemDate(a)>reset)}
-function getActiveItems(section){return afterReset(section,getAssessments(section))}
-function getActiveSkips(section){return afterReset(section,getSkips(section))}
-function countFor(name,items,method=null){return items.filter(a=>sameTherapist(a.therapist,name)&&(!method||a.method===method)).length}
-function skipCountFor(section,name){return getActiveSkips(section).filter(a=>sameTherapist(a.therapist,name)).length}
-function allBalanced(section,items){const list=getEligibleList(section);const totals=list.map(n=>countFor(n,items));const sum=totals.reduce((a,b)=>a+b,0);return sum>0&&totals.every(v=>v===totals[0])}
-async function createBalanceReset(section){const now=new Date();const id=`reset_${section}_${Date.now()}`;await setDoc(doc(db,"newAssessments",id),{id,section,recordType:"balanceReset",message:"تم التصفير بسبب تحقق التعادل أو التوازن بين الأخصائيين",date:todayISO(),time:timeNow(),createdAt:now});await setDoc(doc(db,"newAssessmentQueueState",section),{section,index:0,updatedAt:now})}
-async function checkAndApplyBalance(section){const items=getActiveItems(section);if(allBalanced(section,items))await createBalanceReset(section)}
-function getRecommendedTherapist(section){const list=getEligibleList(section),items=getActiveItems(section);if(items.length===0)return list[(queueState[section]||0)%list.length];const min=Math.min(...list.map(n=>countFor(n,items)));const tied=list.filter(n=>countFor(n,items)===min);const start=queueState[section]||0;for(let i=0;i<list.length;i++){const n=list[(start+i)%list.length];if(tied.includes(n))return n}return tied[0]||list[0]}
-function setQueueAfter(section,name){const list=getEligibleList(section);const idx=list.indexOf(name);queueState[section]=idx>=0?(idx+1)%list.length:((queueState[section]||0)+1)%list.length;return setDoc(doc(db,"newAssessmentQueueState",section),{section,index:queueState[section],updatedAt:new Date()})}
-function fillTherapists(){menTherapist.innerHTML=menList.map(n=>`<option value="${n}">${n}</option>`).join("");womenTherapist.innerHTML=womenList.map(n=>`<option value="${n}">${n}</option>`).join("");menSuspendTherapist.innerHTML=menList.map(n=>`<option value="${n}">${n}</option>`).join("");womenSuspendTherapist.innerHTML=womenList.map(n=>`<option value="${n}">${n}</option>`).join("")}
-window.toggleNamed=function(section){const method=document.getElementById(section+"Method").value;const select=document.getElementById(section+"Therapist");select.disabled=method!=="name";if(method==="queue")select.value=getRecommendedTherapist(section)}
-window.addAssessment=async function(section){const patientInput=document.getElementById(section+"Patient");const method=document.getElementById(section+"Method").value;const patient=patientInput.value.trim();if(!patient){alert("اكتب اسم المريض");return}const therapist=method==="queue"?getRecommendedTherapist(section):document.getElementById(section+"Therapist").value;if(method==="queue"&&isSuspended(section,therapist)){alert("الأخصائي متوقف مؤقتًا عن استقبال الكشف");return}const id=Date.now().toString();await setDoc(doc(db,"newAssessments",id),{id,section,recordType:"assessment",patient,therapist,method,date:todayISO(),time:timeNow(),createdAt:new Date()});await setQueueAfter(section,therapist);await checkAndApplyBalance(section);patientInput.value="";document.getElementById(section+"Method").value="queue";toggleNamed(section)}
-window.skipTurn=async function(section){const current=getRecommendedTherapist(section);const id=`skip_${section}_${Date.now()}`;if(!confirm(`تجاوز بناءً على طلب الأخصائي؟\n\n${current}`))return;await setDoc(doc(db,"newAssessments",id),{id,section,recordType:"skip",message:"تم التجاوز بناءً على طلب الأخصائي",therapist:current,date:todayISO(),time:timeNow(),createdAt:new Date()});await setQueueAfter(section,current)}
-window.addSuspension=async function(section){const therapist=document.getElementById(section+"SuspendTherapist").value;const reason=document.getElementById(section+"SuspendReason").value;const untilDate=document.getElementById(section+"SuspendUntil").value;if(!untilDate){alert("حدد تاريخ انتهاء الإيقاف");return}const id=`susp_${section}_${Date.now()}`;await setDoc(doc(db,"newAssessments",id),{id,section,recordType:"suspension",therapist,reason,untilDate,date:todayISO(),time:timeNow(),createdAt:new Date()});alert("تم تفعيل الإيقاف المؤقت")}
-window.deleteAssessment=async function(id){if(!confirm("حذف هذا السجل؟"))return;await deleteDoc(doc(db,"newAssessments",id))}
-function render(){menNext.innerText=getRecommendedTherapist("men");womenNext.innerText=getRecommendedTherapist("women");menTherapist.value=getRecommendedTherapist("men");womenTherapist.value=getRecommendedTherapist("women");renderStats("men");renderStats("women");renderLog()}
+const menList = [
+  "د: حاتم الاحمدي",
+  "د: عبدالرحمن السويداء",
+  "د: عبدالرحمن السليمي",
+  "د: عبدالعزيز الحمدان"
+];
+
+const womenList = [
+  "د: ريناد حميد",
+  "د: ابتسام سويلم",
+  "د: سلمى فرحان",
+  "د: أسماء فهيد",
+  "د: هند فهيد",
+  "د: مها فريح"
+];
+
+const nameAliases = {
+  "د: حاتم الاحمدي":["د: حاتم الاحمدي","د: حاتم الأحمدي","د. حاتم الأحمدي","حاتم","حاتم الاحمدي","حاتم الأحمدي"],
+  "د: عبدالرحمن السويداء":["د: عبدالرحمن السويداء","د : عبدالرحمن السويداء","د. عبدالرحمن السويداء","عبدالرحمن السويداء","السويداء"],
+  "د: عبدالرحمن السليمي":["د: عبدالرحمن السليمي","د. عبدالرحمن السليمي","عبدالرحمن السليمي","السليمي"],
+  "د: عبدالعزيز الحمدان":["د: عبدالعزيز الحمدان","د. عبدالعزيز الحمدان","عبدالعزيز الحمدان","الحمدان"],
+  "د: ريناد حميد":["د: ريناد حميد","د. ريناد حميد","ريناد","ريناد حميد"],
+  "د: ابتسام سويلم":["د: ابتسام سويلم","د. ابتسام سويلم","ابتسام","ابتسام سويلم","التسام"],
+  "د: سلمى فرحان":["د: سلمى فرحان","د. سلمى فرحان","سلمى","سلمى فرحان"],
+  "د: أسماء فهيد":["د: أسماء فهيد","د. أسماء فهيد","أسماء","اسماء","أسماء فهيد","اسماء فهيد"],
+  "د: هند فهيد":["د: هند فهيد","د. هند فهيد","هند","هند فهيد"],
+  "د: مها فريح":["د: مها فريح","د. مها فريح","مها","مها فريح"]
+};
+
+let records = [];
+let queueState = {men:0,women:0};
+
+function normalizeName(v){
+  return (v||"").toString().trim()
+    .replaceAll("أ","ا").replaceAll("إ","ا").replaceAll("آ","ا")
+    .replaceAll("ة","ه").replaceAll(".",":").replace(/\s+/g," ");
+}
+
+function sameTherapist(saved,current){
+  const s = normalizeName(saved);
+  const c = normalizeName(current);
+  if(s === c) return true;
+  return (nameAliases[current] || [current]).some(a => normalizeName(a) === s);
+}
+
+function todayISO(){
+  const d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().slice(0,10);
+}
+
+function timeNow(){
+  return new Date().toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"});
+}
+
+function getItemDate(item){
+  if(item.createdAt?.seconds) return new Date(item.createdAt.seconds*1000);
+  if(item.createdAt) return new Date(item.createdAt);
+  if(item.date && item.time) return new Date(`${item.date}T${item.time}`);
+  if(item.date) return new Date(`${item.date}T00:00:00`);
+  return new Date(0);
+}
+
+function getItemDateText(item){
+  const d = getItemDate(item);
+  return d.getTime() ? d.toLocaleDateString("ar-SA") : "—";
+}
+
+function getItemTimeText(item){
+  return item.time || (getItemDate(item).getTime()
+    ? getItemDate(item).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})
+    : "—");
+}
+
+function getList(section){
+  return section === "men" ? menList : womenList;
+}
+
+function getAssessments(section){
+  return records.filter(a =>
+    a.section === section &&
+    a.recordType !== "balanceReset" &&
+    a.recordType !== "suspension" &&
+    a.recordType !== "skip" &&
+    a.recordType !== "openingBalance"
+  );
+}
+
+function getOpenings(section){
+  return records.filter(a => a.section === section && a.recordType === "openingBalance");
+}
+
+function getSkips(section){
+  return records.filter(a => a.section === section && a.recordType === "skip");
+}
+
+function getSuspensions(section){
+  return records.filter(a => a.section === section && a.recordType === "suspension");
+}
+
+function activeSuspensionFor(section,name){
+  const today = todayISO();
+  return getSuspensions(section)
+    .filter(s => sameTherapist(s.therapist,name) && s.untilDate >= today)
+    .sort((a,b)=>getItemDate(b)-getItemDate(a))[0] || null;
+}
+
+function isSuspended(section,name){
+  return !!activeSuspensionFor(section,name);
+}
+
+function getEligibleList(section){
+  const list = getList(section).filter(n => !isSuspended(section,n));
+  return list.length ? list : getList(section);
+}
+
+function getLastResetDate(section){
+  const resets = records
+    .filter(a => a.section === section && a.recordType === "balanceReset")
+    .sort((a,b)=>getItemDate(b)-getItemDate(a));
+
+  return resets.length ? getItemDate(resets[0]) : null;
+}
+
+function afterReset(section,arr){
+  const reset = getLastResetDate(section);
+  return arr.filter(a => !reset || getItemDate(a) > reset);
+}
+
+function getActiveItems(section){
+  return afterReset(section,getAssessments(section));
+}
+
+function getActiveOpenings(section){
+  return afterReset(section,getOpenings(section));
+}
+
+function getActiveSkips(section){
+  return afterReset(section,getSkips(section));
+}
+
+function openingCountFor(section,name){
+  return getActiveOpenings(section)
+    .filter(a => sameTherapist(a.therapist,name))
+    .reduce((sum,a)=>sum + Number(a.count || 0),0);
+}
+
+function countFor(name,items,method=null){
+  return items.filter(a =>
+    sameTherapist(a.therapist,name) &&
+    (!method || a.method === method)
+  ).length;
+}
+
+function totalFor(section,name,items){
+  return openingCountFor(section,name) + countFor(name,items);
+}
+
+function skipCountFor(section,name){
+  return getActiveSkips(section).filter(a => sameTherapist(a.therapist,name)).length;
+}
+
+function allBalanced(section,items){
+  const list = getEligibleList(section);
+  const totals = list.map(n => totalFor(section,n,items));
+  const sum = totals.reduce((a,b)=>a+b,0);
+  return sum > 0 && totals.every(v => v === totals[0]);
+}
+
+async function createBalanceReset(section){
+  const now = new Date();
+  const id = `reset_${section}_${Date.now()}`;
+
+  await setDoc(doc(db,"newAssessments",id),{
+    id,
+    section,
+    recordType:"balanceReset",
+    message:"تم التصفير بسبب تحقق التعادل أو التوازن بين الأخصائيين",
+    date:todayISO(),
+    time:timeNow(),
+    createdAt:now
+  });
+
+  await setDoc(doc(db,"newAssessmentQueueState",section),{
+    section,
+    index:0,
+    updatedAt:now
+  });
+}
+
+async function checkAndApplyBalance(section){
+  const items = getActiveItems(section);
+  if(allBalanced(section,items)) await createBalanceReset(section);
+}
+
+function getRecommendedTherapist(section){
+  const list = getEligibleList(section);
+  const items = getActiveItems(section);
+
+  if(items.length === 0 && getActiveOpenings(section).length === 0){
+    return list[(queueState[section] || 0) % list.length];
+  }
+
+  const min = Math.min(...list.map(n => totalFor(section,n,items)));
+  const tied = list.filter(n => totalFor(section,n,items) === min);
+  const start = queueState[section] || 0;
+
+  for(let i=0;i<list.length;i++){
+    const n = list[(start+i) % list.length];
+    if(tied.includes(n)) return n;
+  }
+
+  return tied[0] || list[0];
+}
+
+function setQueueAfter(section,name){
+  const list = getEligibleList(section);
+  const idx = list.indexOf(name);
+
+  queueState[section] = idx >= 0
+    ? (idx + 1) % list.length
+    : ((queueState[section] || 0) + 1) % list.length;
+
+  return setDoc(doc(db,"newAssessmentQueueState",section),{
+    section,
+    index:queueState[section],
+    updatedAt:new Date()
+  });
+}
+
+function fillTherapists(){
+  menTherapist.innerHTML = menList.map(n=>`<option value="${n}">${n}</option>`).join("");
+  womenTherapist.innerHTML = womenList.map(n=>`<option value="${n}">${n}</option>`).join("");
+
+  menSuspendTherapist.innerHTML = menList.map(n=>`<option value="${n}">${n}</option>`).join("");
+  womenSuspendTherapist.innerHTML = womenList.map(n=>`<option value="${n}">${n}</option>`).join("");
+
+  menOpeningTherapist.innerHTML = menList.map(n=>`<option value="${n}">${n}</option>`).join("");
+  womenOpeningTherapist.innerHTML = womenList.map(n=>`<option value="${n}">${n}</option>`).join("");
+}
+
+window.toggleNamed = function(section){
+  const method = document.getElementById(section+"Method").value;
+  const select = document.getElementById(section+"Therapist");
+
+  select.disabled = method === "queue";
+
+  if(method === "queue"){
+    select.value = getRecommendedTherapist(section);
+  }
+};
+
+window.addAssessment = async function(section){
+  const patientInput = document.getElementById(section+"Patient");
+  const method = document.getElementById(section+"Method").value;
+  const patient = patientInput.value.trim();
+
+  if(!patient){
+    alert("اكتب اسم المريض");
+    return;
+  }
+
+  const therapist = method === "queue"
+    ? getRecommendedTherapist(section)
+    : document.getElementById(section+"Therapist").value;
+
+  if(method === "queue" && isSuspended(section,therapist)){
+    alert("الأخصائي متوقف مؤقتًا عن استقبال الكشف");
+    return;
+  }
+
+  const id = Date.now().toString();
+
+  await setDoc(doc(db,"newAssessments",id),{
+    id,
+    section,
+    recordType:"assessment",
+    patient,
+    therapist,
+    method,
+    date:todayISO(),
+    time:timeNow(),
+    createdAt:new Date()
+  });
+
+  await setQueueAfter(section,therapist);
+  await checkAndApplyBalance(section);
+
+  patientInput.value = "";
+  document.getElementById(section+"Method").value = "queue";
+  toggleNamed(section);
+};
+
+window.skipTurn = async function(section){
+  const current = getRecommendedTherapist(section);
+  const id = `skip_${section}_${Date.now()}`;
+
+  if(!confirm(`تجاوز بناءً على طلب الأخصائي؟\n\n${current}`)) return;
+
+  await setDoc(doc(db,"newAssessments",id),{
+    id,
+    section,
+    recordType:"skip",
+    message:"تم التجاوز بناءً على طلب الأخصائي",
+    therapist:current,
+    date:todayISO(),
+    time:timeNow(),
+    createdAt:new Date()
+  });
+
+  await setQueueAfter(section,current);
+};
+
+window.addSuspension = async function(section){
+  const therapist = document.getElementById(section+"SuspendTherapist").value;
+  const reason = document.getElementById(section+"SuspendReason").value;
+  const untilDate = document.getElementById(section+"SuspendUntil").value;
+
+  if(!untilDate){
+    alert("حدد تاريخ انتهاء الإيقاف");
+    return;
+  }
+
+  const id = `susp_${section}_${Date.now()}`;
+
+  await setDoc(doc(db,"newAssessments",id),{
+    id,
+    section,
+    recordType:"suspension",
+    therapist,
+    reason,
+    untilDate,
+    date:todayISO(),
+    time:timeNow(),
+    createdAt:new Date()
+  });
+
+  alert("تم تفعيل الإيقاف المؤقت");
+};
+
+window.addOpeningBalance = async function(section){
+  const therapist = document.getElementById(section+"OpeningTherapist").value;
+  const count = Number(document.getElementById(section+"OpeningCount").value || 0);
+
+  if(count <= 0){
+    alert("اكتب عدد صحيح للرصيد السابق");
+    return;
+  }
+
+  const id = `opening_${section}_${Date.now()}`;
+
+  await setDoc(doc(db,"newAssessments",id),{
+    id,
+    section,
+    recordType:"openingBalance",
+    therapist,
+    count,
+    date:todayISO(),
+    time:timeNow(),
+    createdAt:new Date()
+  });
+
+  document.getElementById(section+"OpeningCount").value = "";
+  await checkAndApplyBalance(section);
+
+  alert("تم حفظ الرصيد السابق");
+};
+
+window.deleteAssessment = async function(id){
+  if(!confirm("حذف هذا السجل؟")) return;
+  await deleteDoc(doc(db,"newAssessments",id));
+};
+
+function render(){
+  menNext.innerText = getRecommendedTherapist("men");
+  womenNext.innerText = getRecommendedTherapist("women");
+
+  menTherapist.value = getRecommendedTherapist("men");
+  womenTherapist.value = getRecommendedTherapist("women");
+
+  renderStats("men");
+  renderStats("women");
+  renderLog();
+}
+
 function renderStats(section){
-  const list=getList(section),items=getActiveItems(section),lastReset=getLastResetDate(section);
-  document.getElementById(section+"TotalToday").innerText=items.length;
-  document.getElementById(section+"QueueToday").innerText=items.filter(a=>a.method==="queue").length;
-  document.getElementById(section+"NameToday").innerText=items.filter(a=>a.method==="name").length;
-  const note=document.getElementById(section+"FairNote");
-  if(lastReset&&new Date().toDateString()===lastReset.toDateString()){note.classList.add("balance-ok");note.innerText="تم تحقيق التوازن بين الأخصائيين — تم بدء دورة جديدة ويستمر الإشعار حتى نهاية اليوم."}
-  else{note.classList.remove("balance-ok");note.innerText=`التوزيع القادم: ${getRecommendedTherapist(section)} حسب إجمالي الكشوفات الحالية.`}
-  const activeEligible=getEligibleList(section);const totals=activeEligible.map(n=>countFor(n,items));const min=totals.length?Math.min(...totals):0;const tbody=document.getElementById(section+"StatsTable");tbody.innerHTML="";
+  const list = getList(section);
+  const items = getActiveItems(section);
+  const openings = getActiveOpenings(section);
+  const lastReset = getLastResetDate(section);
+
+  const systemCount = items.length;
+  const openingCount = openings.reduce((sum,a)=>sum + Number(a.count || 0),0);
+
+  document.getElementById(section+"TotalToday").innerText = systemCount + openingCount;
+  document.getElementById(section+"SystemToday").innerText = systemCount;
+  document.getElementById(section+"OpeningToday").innerText = openingCount;
+
+  const note = document.getElementById(section+"FairNote");
+
+  if(lastReset && new Date().toDateString() === lastReset.toDateString()){
+    note.classList.add("balance-ok");
+    note.innerText = "تم تحقيق التوازن بين الأخصائيين — تم بدء دورة جديدة ويستمر الإشعار حتى نهاية اليوم.";
+  }else{
+    note.classList.remove("balance-ok");
+    note.innerText = `التوزيع القادم: ${getRecommendedTherapist(section)} حسب إجمالي الكشوفات الحالية.`;
+  }
+
+  const activeEligible = getEligibleList(section);
+  const totals = activeEligible.map(n => totalFor(section,n,items));
+  const min = totals.length ? Math.min(...totals) : 0;
+
+  const tbody = document.getElementById(section+"StatsTable");
+  tbody.innerHTML = "";
+
   list.forEach(name=>{
-    const q=countFor(name,items,"queue"),n=countFor(name,items,"name"),skip=skipCountFor(section,name),total=q+n,diff=total-min,susp=activeSuspensionFor(section,name);
-    let badge="",rowClass="";
-    if(susp){rowClass="suspended-row";badge=`<span class="badge gray">متوقف عن استقبال الكشف<br>${susp.reason}<br>حتى ${susp.untilDate}</span>`}
-    else if(skip>0){rowClass="skip-row";badge=`<span class="badge orange">تم التجاوز بناءً على طلبه<br>عدد التجاوز: ${skip}</span>`}
-    else if(diff===0){rowClass="priority-row";badge=`<span class="badge green">أولوية</span>`}
-    else if(diff<=1){badge=`<span class="badge blue">قريب</span>`}
-    else{badge=`<span class="badge red">أعلى +${diff}</span>`}
-    tbody.innerHTML+=`<tr class="${rowClass}"><td>${name}</td><td>${q}</td><td>${n}</td><td>${skip}</td><td><b>${total}</b></td><td>${badge}</td></tr>`;
-  })
+    const opening = openingCountFor(section,name);
+    const q = countFor(name,items,"queue");
+    const n = countFor(name,items,"name");
+    const manual = countFor(name,items,"manual");
+    const skip = skipCountFor(section,name);
+    const total = opening + q + n + manual;
+    const diff = total - min;
+    const susp = activeSuspensionFor(section,name);
+
+    let badge = "";
+    let rowClass = "";
+
+    if(susp){
+      rowClass = "suspended-row";
+      badge = `<span class="badge gray">متوقف عن استقبال الكشف<br>${susp.reason}<br>حتى ${susp.untilDate}</span>`;
+    }else if(skip > 0){
+      rowClass = "skip-row";
+      badge = `<span class="badge orange">تم التجاوز بناءً على طلبه<br>عدد التجاوز: ${skip}</span>`;
+    }else if(diff === 0){
+      rowClass = "priority-row";
+      badge = `<span class="badge green">أولوية</span>`;
+    }else if(diff <= 1){
+      badge = `<span class="badge blue">قريب</span>`;
+    }else{
+      badge = `<span class="badge red">أعلى +${diff}</span>`;
+    }
+
+    tbody.innerHTML += `
+      <tr class="${rowClass}">
+        <td>${name}</td>
+        <td>${opening}</td>
+        <td>${q}</td>
+        <td>${n}</td>
+        <td>${manual}</td>
+        <td>${skip}</td>
+        <td><b>${total}</b></td>
+        <td>${badge}</td>
+      </tr>
+    `;
+  });
 }
+
 function renderLog(){
-  const sorted=[...records].sort((a,b)=>getItemDate(b)-getItemDate(a));
-  if(!sorted.length){todayLog.innerHTML=`<tr><td colspan="7" class="empty">لا توجد سجلات حتى الآن</td></tr>`;return}
-  todayLog.innerHTML="";
+  const sorted = [...records].sort((a,b)=>getItemDate(b)-getItemDate(a));
+
+  if(!sorted.length){
+    todayLog.innerHTML = `<tr><td colspan="7" class="empty">لا توجد سجلات حتى الآن</td></tr>`;
+    return;
+  }
+
+  todayLog.innerHTML = "";
+
   sorted.forEach(a=>{
-    const sectionText=a.section==="men"?"قسم الرجال":"قسم النساء";
-    if(a.recordType==="balanceReset"){todayLog.innerHTML+=`<tr class="reset-row"><td colspan="7">✅ ${getItemDateText(a)} - ${getItemTimeText(a)} | ${sectionText}: تم التصفير بسبب تحقق التوازن بين الأخصائيين</td></tr>`;return}
-    if(a.recordType==="suspension"){todayLog.innerHTML+=`<tr class="suspend-row"><td>${getItemDateText(a)}</td><td>${getItemTimeText(a)}</td><td>${sectionText}</td><td>إيقاف مؤقت حتى ${a.untilDate}</td><td>${a.therapist}</td><td>${a.reason}</td><td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td></tr>`;return}
-    if(a.recordType==="skip"){todayLog.innerHTML+=`<tr><td>${getItemDateText(a)}</td><td>${getItemTimeText(a)}</td><td>${sectionText}</td><td>تم التجاوز بناءً على طلب الأخصائي</td><td>${a.therapist}</td><td><span class="badge orange">تجاوز</span></td><td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td></tr>`;return}
-    const section=a.section==="men"?"رجال":"نساء";const methodText=a.method==="queue"?`<span class="badge green">بالدور</span>`:`<span class="badge yellow">بالاسم</span>`;
-    todayLog.innerHTML+=`<tr><td>${getItemDateText(a)}</td><td>${getItemTimeText(a)}</td><td>${section}</td><td>${a.patient||"—"}</td><td>${a.therapist||"—"}</td><td>${methodText}</td><td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td></tr>`;
-  })
+    const sectionText = a.section === "men" ? "قسم الرجال" : "قسم النساء";
+
+    if(a.recordType === "balanceReset"){
+      todayLog.innerHTML += `
+        <tr class="reset-row">
+          <td colspan="7">✅ ${getItemDateText(a)} - ${getItemTimeText(a)} | ${sectionText}: تم التصفير بسبب تحقق التوازن بين الأخصائيين</td>
+        </tr>`;
+      return;
+    }
+
+    if(a.recordType === "openingBalance"){
+      todayLog.innerHTML += `
+        <tr class="opening-row">
+          <td>${getItemDateText(a)}</td>
+          <td>${getItemTimeText(a)}</td>
+          <td>${sectionText}</td>
+          <td>ترحيل رصيد سابق: ${a.count} كشف</td>
+          <td>${a.therapist}</td>
+          <td><span class="badge blue">رصيد سابق</span></td>
+          <td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td>
+        </tr>`;
+      return;
+    }
+
+    if(a.recordType === "suspension"){
+      todayLog.innerHTML += `
+        <tr class="suspend-row">
+          <td>${getItemDateText(a)}</td>
+          <td>${getItemTimeText(a)}</td>
+          <td>${sectionText}</td>
+          <td>إيقاف مؤقت حتى ${a.untilDate}</td>
+          <td>${a.therapist}</td>
+          <td>${a.reason}</td>
+          <td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td>
+        </tr>`;
+      return;
+    }
+
+    if(a.recordType === "skip"){
+      todayLog.innerHTML += `
+        <tr>
+          <td>${getItemDateText(a)}</td>
+          <td>${getItemTimeText(a)}</td>
+          <td>${sectionText}</td>
+          <td>تم التجاوز بناءً على طلب الأخصائي</td>
+          <td>${a.therapist}</td>
+          <td><span class="badge orange">تجاوز</span></td>
+          <td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td>
+        </tr>`;
+      return;
+    }
+
+    const methodText =
+      a.method === "queue" ? `<span class="badge green">حسب الأقل</span>` :
+      a.method === "name" ? `<span class="badge yellow">بالاسم</span>` :
+      `<span class="badge blue">يدوي</span>`;
+
+    todayLog.innerHTML += `
+      <tr>
+        <td>${getItemDateText(a)}</td>
+        <td>${getItemTimeText(a)}</td>
+        <td>${a.section === "men" ? "رجال" : "نساء"}</td>
+        <td>${a.patient || "—"}</td>
+        <td>${a.therapist || "—"}</td>
+        <td>${methodText}</td>
+        <td><button class="btn btn-red" onclick="deleteAssessment('${a.id}')">حذف</button></td>
+      </tr>`;
+  });
 }
-onSnapshot(assessmentsRef,snapshot=>{records=[];snapshot.forEach(item=>records.push({id:item.id,...item.data()}));render()});
-onSnapshot(queueStateRef,snapshot=>{snapshot.forEach(item=>{const d=item.data();if(d.section==="men")queueState.men=d.index||0;if(d.section==="women")queueState.women=d.index||0});render()});
-fillTherapists();toggleNamed("men");toggleNamed("women");render();
+
+onSnapshot(assessmentsRef,snapshot=>{
+  records = [];
+  snapshot.forEach(item=>records.push({id:item.id,...item.data()}));
+  render();
+});
+
+onSnapshot(queueStateRef,snapshot=>{
+  snapshot.forEach(item=>{
+    const d = item.data();
+    if(d.section === "men") queueState.men = d.index || 0;
+    if(d.section === "women") queueState.women = d.index || 0;
+  });
+  render();
+});
+
+fillTherapists();
+toggleNamed("men");
+toggleNamed("women");
+render();
 </script>
+
 <script type="module" src="tracker.js"></script>
 </body>
 </html>
