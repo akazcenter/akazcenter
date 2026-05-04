@@ -3,72 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عرض توزيع الكشف الجديد</title>
+<title>عرض توزيع الكشف</title>
 <link rel="icon" href="logo.png">
 
 <style>
-:root{--blue:#005b9f;--blue2:#0077c8;--text:#0f172a;--muted:#64748b;--line:#e2e8f0}
+:root{--blue:#005b9f;--blue2:#0077c8;--line:#e2e8f0}
 *{box-sizing:border-box}
 
 body{
   margin:0;
   font-family:Tahoma,Arial;
   background:linear-gradient(180deg,#f8fbff,#eef4f9);
-  color:var(--text);
 }
 
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:20px 30px;
+  color:#fff;
+  padding:18px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  border-bottom-left-radius:28px;
-}
-
-.brand{display:flex;align-items:center;gap:14px}
-.logo{width:60px;height:60px;background:white;border-radius:14px;padding:5px}
-.brand h1{margin:0;font-size:22px;font-weight:900}
-
-.btn{
-  background:white;
-  color:var(--blue);
-  border:none;
-  padding:8px 14px;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
+  border-bottom-left-radius:25px;
 }
 
 .main{
   width:94%;
   max-width:1200px;
-  margin:25px auto;
+  margin:20px auto;
 }
 
 .sections{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:15px;
 }
 
 .panel{
-  background:white;
+  background:#fff;
+  border-radius:20px;
   border:1px solid var(--line);
-  border-radius:22px;
   overflow:hidden;
 }
 
 .panel-head{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:14px;
+  color:#fff;
+  padding:12px;
   display:flex;
   justify-content:space-between;
 }
 
-.panel-body{padding:14px}
+.panel-body{padding:12px}
 
 .stats{
   display:grid;
@@ -80,19 +64,12 @@ body{
 .stat{
   background:#f8fbff;
   border:1px solid var(--line);
-  border-radius:12px;
-  padding:10px;
+  border-radius:10px;
   text-align:center;
-  font-weight:bold;
+  padding:8px;
 }
 
-.stat span{display:block;font-size:20px;margin-top:4px}
-
-.table-wrap{
-  border:1px solid var(--line);
-  border-radius:12px;
-  overflow:hidden;
-}
+.stat span{font-size:18px;display:block}
 
 table{
   width:100%;
@@ -102,7 +79,7 @@ table{
 
 th{
   background:#06345d;
-  color:white;
+  color:#fff;
   font-size:11px;
   padding:6px;
 }
@@ -112,36 +89,28 @@ td{
   font-size:11px;
   padding:6px;
   text-align:center;
-  word-break:break-word;
 }
 
 .badge{
   padding:3px 6px;
   border-radius:999px;
   font-size:10px;
-  font-weight:bold;
 }
 
-.green{background:#dcfce7;color:#166534}
-.yellow{background:#fef3c7;color:#92400e}
-.red{background:#fee2e2;color:#b91c1c}
-.gray{background:#e5e7eb;color:#374151}
+.green{background:#dcfce7}
+.yellow{background:#fef3c7}
+.gray{background:#e5e7eb}
 
 .history{
-  margin-top:18px;
-  background:white;
-  border-radius:22px;
-  padding:14px;
+  margin-top:15px;
+  background:#fff;
+  padding:12px;
+  border-radius:20px;
   border:1px solid var(--line);
 }
 
 .reset{
   background:#dcfce7;
-  font-weight:bold;
-}
-
-.suspend{
-  background:#fef3c7;
   font-weight:bold;
 }
 
@@ -154,11 +123,8 @@ td{
 <body>
 
 <div class="topbar">
-  <div class="brand">
-    <img src="logo.png" class="logo">
-    <h1>عرض توزيع الكشف</h1>
-  </div>
-  <button class="btn" onclick="location.href='index.html'">الرئيسية</button>
+  <div>عرض توزيع الكشف</div>
+  <button onclick="location.href='index.html'">الرئيسية</button>
 </div>
 
 <div class="main">
@@ -179,18 +145,16 @@ td{
       <div class="stat">بالاسم <span id="menName">0</span></div>
     </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>الأخصائي</th>
-            <th>الإجمالي</th>
-            <th>الحالة</th>
-          </tr>
-        </thead>
-        <tbody id="menTable"></tbody>
-      </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>الأخصائي</th>
+          <th>الإجمالي</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="menTable"></tbody>
+    </table>
 
   </div>
 </div>
@@ -209,18 +173,16 @@ td{
       <div class="stat">بالاسم <span id="womenName">0</span></div>
     </div>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>الأخصائي</th>
-            <th>الإجمالي</th>
-            <th>الحالة</th>
-          </tr>
-        </thead>
-        <tbody id="womenTable"></tbody>
-      </table>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>الأخصائي</th>
+          <th>الإجمالي</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="womenTable"></tbody>
+    </table>
 
   </div>
 </div>
@@ -229,18 +191,16 @@ td{
 
 <div class="history">
   <h3>السجل</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>التاريخ</th>
-          <th>القسم</th>
-          <th>التفاصيل</th>
-        </tr>
-      </thead>
-      <tbody id="log"></tbody>
-    </table>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>التاريخ</th>
+        <th>القسم</th>
+        <th>التفاصيل</th>
+      </tr>
+    </thead>
+    <tbody id="log"></tbody>
+  </table>
 </div>
 
 </div>
@@ -250,13 +210,29 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/fireba
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const app=initializeApp({
-apiKey:"AIzaSy...",
-authDomain:"akazcenter-89c17.firebaseapp.com",
-projectId:"akazcenter-89c17"
+  apiKey:"AIzaSy...",
+  authDomain:"akazcenter-89c17.firebaseapp.com",
+  projectId:"akazcenter-89c17"
 });
 
 const db=getFirestore(app);
 const ref=collection(db,"newAssessments");
+
+const menList=[
+"د: حاتم الاحمدي",
+"د: عبدالرحمن السويداء",
+"د: عبدالرحمن السليمي",
+"د: عبدالعزيز الحمدان"
+];
+
+const womenList=[
+"د: ريناد حميد",
+"د: ابتسام سويلم",
+"د: سلمى فرحان",
+"د: أسماء فهيد",
+"د: هند فهيد",
+"د: مها فريح"
+];
 
 let data=[];
 
@@ -266,44 +242,86 @@ onSnapshot(ref,snap=>{
   render();
 });
 
+function same(a,b){
+  return (a||"").replace(/\s/g,"") === (b||"").replace(/\s/g,"");
+}
+
 function render(){
 
   const men=data.filter(x=>x.section==="men" && x.recordType==="assessment");
   const women=data.filter(x=>x.section==="women" && x.recordType==="assessment");
 
-  document.getElementById("menTotal").innerText=men.length;
-  document.getElementById("womenTotal").innerText=women.length;
+  menTotal.innerText=men.length;
+  womenTotal.innerText=women.length;
 
-  document.getElementById("menQueue").innerText=men.filter(x=>x.method==="queue").length;
-  document.getElementById("womenQueue").innerText=women.filter(x=>x.method==="queue").length;
+  menQueue.innerText=men.filter(x=>x.method==="queue").length;
+  womenQueue.innerText=women.filter(x=>x.method==="queue").length;
 
-  document.getElementById("menName").innerText=men.filter(x=>x.method==="name").length;
-  document.getElementById("womenName").innerText=women.filter(x=>x.method==="name").length;
+  menName.innerText=men.filter(x=>x.method==="name").length;
+  womenName.innerText=women.filter(x=>x.method==="name").length;
+
+  fillTable("men",menList,men,"menTable");
+  fillTable("women",womenList,women,"womenTable");
 
   renderLog();
 }
 
+function fillTable(section,list,items,id){
+  const box=document.getElementById(id);
+  box.innerHTML="";
+
+  list.forEach(name=>{
+    const total=items.filter(x=>same(x.therapist,name)).length;
+
+    const suspended=data.find(x=>
+      x.recordType==="suspension" &&
+      same(x.therapist,name)
+    );
+
+    let status="";
+
+    if(suspended){
+      status=`<span class="badge gray">موقوف</span>`;
+    }else if(total===0){
+      status=`<span class="badge green">أولوية</span>`;
+    }else{
+      status=`<span class="badge yellow">متاح</span>`;
+    }
+
+    box.innerHTML+=`
+      <tr>
+        <td>${name}</td>
+        <td>${total}</td>
+        <td>${status}</td>
+      </tr>
+    `;
+  });
+}
+
 function renderLog(){
-  const log=document.getElementById("log");
   log.innerHTML="";
 
   data.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
 
   data.forEach(x=>{
+
+    if(x.recordType==="balanceReset"){
+      log.innerHTML+=`<tr class="reset"><td colspan="3">تم التوازن وإعادة التوزيع</td></tr>`;
+      return;
+    }
+
     let text="";
 
     if(x.recordType==="assessment"){
       text=`${x.patient} - ${x.therapist}`;
     }
+
     if(x.recordType==="skip"){
       text=`تجاوز ${x.therapist}`;
     }
+
     if(x.recordType==="suspension"){
-      text=`إيقاف ${x.therapist} حتى ${x.untilDate}`;
-    }
-    if(x.recordType==="balanceReset"){
-      log.innerHTML+=`<tr class="reset"><td colspan="3">تم تحقيق التوازن وإعادة التوزيع</td></tr>`;
-      return;
+      text=`إيقاف ${x.therapist}`;
     }
 
     log.innerHTML+=`
