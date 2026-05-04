@@ -19,8 +19,35 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 .next-box{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:9px 13px;font-weight:900}.panel-body{padding:18px}
 .fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:16px;padding:13px;margin-bottom:14px;font-weight:900;text-align:center;line-height:1.8}.balance-ok{background:#dcfce7!important;border-color:#86efac!important;color:#166534!important}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:15px}.stat{background:#f8fbff;border:1px solid var(--line);border-radius:16px;padding:13px;text-align:center;color:var(--blue);font-weight:900}.stat span{display:block;direction:ltr;font-size:24px;margin-top:5px}
-.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px}table{width:100%;border-collapse:collapse;min-width:680px;background:white}
-th{background:#06345d;color:white;padding:10px;font-size:13px;border:1px solid #17456f}td{border:1px solid #e2e8f0;padding:9px;text-align:center;font-size:13px}
+.table-wrap{
+  overflow:visible;
+  border:1px solid var(--line);
+  border-radius:16px;
+  margin-top:14px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:0;
+  table-layout:fixed;
+  background:white;
+}
+
+th,td{
+  border:1px solid #e2e8f0;
+  padding:8px 5px;
+  text-align:center;
+  font-size:12px;
+  word-break:break-word;
+}
+
+th{
+  background:#06345d;
+  color:white;
+  border:1px solid #17456f;
+}
+  td{border:1px solid #e2e8f0;padding:9px;text-align:center;font-size:13px}
 .badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900}.by-queue{background:#dcfce7;color:#166534}.by-name{background:#fef3c7;color:#92400e}.priority{background:#dcfce7;color:#166534}.normal{background:#eef6ff;color:#005b9f}.high{background:#fee2e2;color:#b91c1c}
 .history{margin-top:20px;border-radius:24px;padding:18px}.history h3{margin:0 0 14px;color:var(--blue);font-size:22px}.empty{color:#94a3b8;font-weight:900}.reset-row td{background:#dcfce7!important;color:#166534!important;font-weight:900;border:2px solid #86efac!important}
 .note{margin-top:12px;color:#64748b;font-size:13px;line-height:1.8;text-align:center}
