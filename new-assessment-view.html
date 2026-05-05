@@ -3,205 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>عرض توزيع الكشف</title>
+<title>عرض توزيع الكشف الجديد</title>
 <link rel="icon" href="logo.png">
 
 <style>
-:root{
-  --blue:#005b9f;
-  --blue2:#0077c8;
-  --text:#0f172a;
-  --muted:#64748b;
-  --line:#e2e8f0;
-}
-
+:root{--blue:#005b9f;--blue2:#0077c8;--text:#0f172a;--muted:#64748b;--line:#e2e8f0}
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Tahoma,Arial;
-  background:linear-gradient(180deg,#f8fbff,#eef4f9);
-  color:var(--text);
-}
-
-/* الهيدر */
-.topbar{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:20px 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom-left-radius:28px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.logo{
-  width:60px;
-  height:60px;
-  background:white;
-  border-radius:14px;
-  padding:5px;
-}
-
-.brand h1{
-  margin:0;
-  font-size:22px;
-  font-weight:900;
-}
-
-.btn{
-  background:white;
-  color:var(--blue);
-  border:none;
-  padding:10px 16px;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* الصفحة */
-.main{
-  width:95%;
-  max-width:1300px;
-  margin:25px auto;
-}
-
-/* الأقسام */
-.sections{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
-
-.panel{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  overflow:hidden;
-}
-
-/* رأس القسم */
-.panel-head{
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:16px;
-  display:flex;
-  justify-content:space-between;
-  font-weight:900;
-  font-size:16px;
-}
-
-/* التنبيه */
-.fair-box{
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#92400e;
-  border-radius:14px;
-  padding:12px;
-  margin-bottom:14px;
-  text-align:center;
-  font-weight:900;
-  font-size:14px;
-}
-
-.balance-ok{
-  background:#dcfce7!important;
-  border-color:#86efac!important;
-  color:#166534!important;
-}
-
-/* الجدول */
-.table-wrap{
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  table-layout:fixed;
-}
-
-th{
-  background:#06345d;
-  color:white;
-  padding:12px;
-  font-size:14px;
-}
-
-td{
-  border:1px solid #e2e8f0;
-  padding:12px;
-  text-align:center;
-  font-size:14px;
-}
-
-/* اسم الدكتور */
-td:first-child{
-  font-size:16px;
-  font-weight:900;
-}
-
-/* الحالات */
-.badge{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:900;
-}
-
+body,button,input,select,table,th,td,.badge,.btn{font-weight:700}
+body{margin:0;font-family:Tahoma,Arial;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
+.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:32px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:66px;height:66px;background:white;border-radius:16px;padding:6px;object-fit:contain}
+.brand h1{margin:0;font-size:24px;font-weight:900}
+.brand p{margin:4px 0 0;direction:ltr;color:#dbeafe;font-size:12px}
+.btn{background:white;color:var(--blue);border:none;padding:10px 16px;border-radius:12px;font-weight:900;cursor:pointer}
+.main{width:94%;max-width:1280px;margin:26px auto}
+.intro{background:white;border:1px solid var(--line);border-radius:24px;padding:18px;text-align:center;margin-bottom:20px;box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.intro h2{margin:0;color:var(--blue);font-size:25px;font-weight:900}
+.intro p{margin:8px 0 0;color:var(--muted);line-height:1.8}
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:white;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.panel-head{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:16px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.fair-box{background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:16px;padding:12px;margin:14px;font-weight:900;text-align:center;font-size:14px;line-height:1.8}
+.balance-ok{background:#dcfce7!important;border-color:#86efac!important;color:#166534!important}
+.table-wrap{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:14px}
+table{width:100%;border-collapse:collapse;table-layout:fixed;background:white}
+th{background:#06345d;color:white;font-size:12px;padding:10px 6px;border:1px solid #17456f;font-weight:900}
+td{border:1px solid #e2e8f0;font-size:12px;padding:10px 6px;text-align:center;word-break:break-word}
+td:first-child{font-weight:900;font-size:13px}
+.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900;line-height:1.35}
 .green{background:#dcfce7;color:#166534}
-.blue{background:#dbeafe;color:#1d4ed8}
+.yellow{background:#fef3c7;color:#92400e}
 .red{background:#fee2e2;color:#b91c1c}
 .gray{background:#e5e7eb;color:#374151}
 .orange{background:#ffedd5;color:#9a3412}
-
-/* السجل */
-.history{
-  margin-top:20px;
-  background:white;
-  border-radius:24px;
-  padding:16px;
-  border:1px solid var(--line);
-}
-
-.history h3{
-  margin:0 0 12px;
-  color:var(--blue);
-}
-
-.reset{
-  background:#dcfce7;
-  font-weight:bold;
-}
-
-.suspend{
-  background:#fef3c7;
-  font-weight:bold;
-}
-
-.opening{
-  background:#eef6ff;
-  font-weight:bold;
-}
-
-.empty{
-  color:#94a3b8;
-  font-weight:900;
-}
-
-/* موبايل */
-@media(max-width:900px){
-  .sections{grid-template-columns:1fr}
-}
+.blue{background:#dbeafe;color:#1d4ed8}
+.priority-row{background:#f0fdf4}
+.suspended-row{background:#f8fafc;color:#64748b}
+.skip-row{background:#fff7ed}
+.history{margin-top:22px;background:white;border-radius:24px;padding:18px;border:1px solid var(--line);box-shadow:0 12px 30px rgba(15,23,42,.07)}
+.history h3{margin:0 0 14px;color:var(--blue);font-size:23px;font-weight:900}
+.reset td{background:#dcfce7!important;color:#166534!important;font-weight:900}
+.suspend td{background:#fef3c7!important;color:#92400e!important;font-weight:900}
+.opening td{background:#eef6ff!important;color:#005b9f!important;font-weight:900}
+.empty{color:#94a3b8;font-weight:900}
+.note{text-align:center;color:#64748b;font-size:13px;line-height:1.8;margin-top:12px}
+@media(max-width:900px){.sections{grid-template-columns:1fr}.topbar{flex-direction:column;text-align:center;gap:12px}}
 </style>
 </head>
 
@@ -210,87 +57,95 @@ td:first-child{
 <div class="topbar">
   <div class="brand">
     <img src="logo.png" class="logo">
-    <h1>عرض توزيع الكشف</h1>
+    <div>
+      <h1>عرض توزيع الكشف الجديد</h1>
+      <p>New Assessment Queue View</p>
+    </div>
   </div>
-  <button class="btn" onclick="location.href='index.html'">الرئيسية</button>
+  <div>
+    <button class="btn" onclick="location.href='new-assessment-entry.html'">رجوع</button>
+    <button class="btn" onclick="location.href='index.html'">الرئيسية</button>
+  </div>
 </div>
 
 <div class="main">
 
-<div class="sections">
-
-<!-- رجال -->
-<div class="panel">
-  <div class="panel-head">
-    <span>قسم الرجال</span>
-    <span id="menNext">—</span>
+  <div class="intro">
+    <h2>لوحة عرض التوزيع</h2>
+    <p>عرض حالة الأخصائيين الحالية مع السجل الكامل للتوثيق. التجاوز والإيقاف لا يدخلان ضمن إجمالي الكشوفات.</p>
   </div>
 
-  <div class="panel-body">
+  <div class="sections">
 
-    <div class="fair-box" id="menFairNote">—</div>
+    <div class="panel">
+      <div class="panel-head">
+        <span>قسم الرجال</span>
+        <span>التوزيع القادم: <span id="menNext">—</span></span>
+      </div>
+      <div class="fair-box" id="menFairNote">—</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الأخصائي</th>
+              <th>دور</th>
+              <th>اسم</th>
+              <th>يدوي</th>
+              <th>تجاوز</th>
+              <th>إجمالي</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="menTable"></tbody>
+        </table>
+      </div>
+    </div>
 
+    <div class="panel">
+      <div class="panel-head">
+        <span>قسم النساء</span>
+        <span>التوزيع القادم: <span id="womenNext">—</span></span>
+      </div>
+      <div class="fair-box" id="womenFairNote">—</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>الأخصائي</th>
+              <th>دور</th>
+              <th>اسم</th>
+              <th>يدوي</th>
+              <th>تجاوز</th>
+              <th>إجمالي</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="womenTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="history">
+    <h3>السجل الكامل</h3>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
+            <th>التاريخ</th>
+            <th>الوقت</th>
+            <th>القسم</th>
+            <th>التفاصيل</th>
             <th>الأخصائي</th>
-            <th>الإجمالي</th>
-            <th>الحالة</th>
+            <th>النوع</th>
           </tr>
         </thead>
-        <tbody id="menTable"></tbody>
+        <tbody id="log"></tbody>
       </table>
     </div>
-
+    <div class="note">الرصيد السابق محسوب داخل الإجمالي ولا يظهر كعمود مستقل. التجاوز والإيقاف للتوثيق فقط.</div>
   </div>
-</div>
-
-<!-- نساء -->
-<div class="panel">
-  <div class="panel-head">
-    <span>قسم النساء</span>
-    <span id="womenNext">—</span>
-  </div>
-
-  <div class="panel-body">
-
-    <div class="fair-box" id="womenFairNote">—</div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>الأخصائي</th>
-            <th>الإجمالي</th>
-            <th>الحالة</th>
-          </tr>
-        </thead>
-        <tbody id="womenTable"></tbody>
-      </table>
-    </div>
-
-  </div>
-</div>
-
-</div>
-
-<!-- السجل -->
-<div class="history">
-  <h3>السجل</h3>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>التاريخ</th>
-          <th>القسم</th>
-          <th>التفاصيل</th>
-        </tr>
-      </thead>
-      <tbody id="log"></tbody>
-    </table>
-  </div>
-</div>
 
 </div>
 
@@ -298,91 +153,314 @@ td:first-child{
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const app=initializeApp({
-  apiKey:"AIzaSy...",
+const firebaseConfig={
+  apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   authDomain:"akazcenter-89c17.firebaseapp.com",
-  projectId:"akazcenter-89c17"
-});
+  projectId:"akazcenter-89c17",
+  storageBucket:"akazcenter-89c17.firebasestorage.app",
+  messagingSenderId:"576111794528",
+  appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
 
+const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
-const ref=collection(db,"newAssessments");
 
-let data=[];
+const assessmentsRef=collection(db,"newAssessments");
+const queueStateRef=collection(db,"newAssessmentQueueState");
 
-onSnapshot(ref,snap=>{
-  data=[];
-  snap.forEach(d=>data.push(d.data()));
-  render();
-});
+const menList=["د: حاتم الاحمدي","د: عبدالرحمن السويداء","د: عبدالرحمن السليمي","د: عبدالعزيز الحمدان"];
+const womenList=["د: ريناد حميد","د: ابتسام سويلم","د: سلمى فرحان","د: أسماء فهيد","د: هند فهيد","د: مها فريح"];
+
+const nameAliases={
+  "د: حاتم الاحمدي":["د: حاتم الاحمدي","د: حاتم الأحمدي","د. حاتم الأحمدي","د حاتم الاحمدي","د حاتم الأحمدي","حاتم","حاتم الاحمدي","حاتم الأحمدي","Hatem","hatem"],
+  "د: عبدالرحمن السويداء":["د: عبدالرحمن السويداء","د : عبدالرحمن السويداء","د. عبدالرحمن السويداء","د عبدالرحمن السويداء","عبدالرحمن السويداء","السويداء"],
+  "د: عبدالرحمن السليمي":["د: عبدالرحمن السليمي","د. عبدالرحمن السليمي","د عبدالرحمن السليمي","عبدالرحمن السليمي","السليمي"],
+  "د: عبدالعزيز الحمدان":["د: عبدالعزيز الحمدان","د. عبدالعزيز الحمدان","د عبدالعزيز الحمدان","عبدالعزيز الحمدان","الحمدان"],
+  "د: ريناد حميد":["د: ريناد حميد","د. ريناد حميد","د ريناد حميد","ريناد","ريناد حميد"],
+  "د: ابتسام سويلم":["د: ابتسام سويلم","د. ابتسام سويلم","د ابتسام سويلم","ابتسام","ابتسام سويلم","التسام"],
+  "د: سلمى فرحان":["د: سلمى فرحان","د. سلمى فرحان","د سلمى فرحان","سلمى","سلمى فرحان"],
+  "د: أسماء فهيد":["د: أسماء فهيد","د. أسماء فهيد","د أسماء فهيد","أسماء","اسماء","أسماء فهيد","اسماء فهيد"],
+  "د: هند فهيد":["د: هند فهيد","د. هند فهيد","د هند فهيد","هند","هند فهيد"],
+  "د: مها فريح":["د: مها فريح","د. مها فريح","د مها فريح","مها","مها فريح"]
+};
+
+let records=[];
+let queueState={men:0,women:0};
+
+function normalizeName(v){
+  return (v||"").toString().trim()
+    .replaceAll("أ","ا").replaceAll("إ","ا").replaceAll("آ","ا")
+    .replaceAll("ة","ه").replaceAll(".",":")
+    .replaceAll("دكتور","د").replaceAll("دكتوره","د").replaceAll("دكتورة","د")
+    .replace(/\s+/g,"")
+    .toLowerCase();
+}
+
+function sameTherapist(saved,current){
+  const s=normalizeName(saved);
+  const c=normalizeName(current);
+  if(s===c)return true;
+  return (nameAliases[current]||[current]).some(a=>normalizeName(a)===s);
+}
+
+function todayISO(){
+  const d=new Date();
+  d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  return d.toISOString().slice(0,10);
+}
+
+function getItemDate(item){
+  if(item.createdAt?.seconds)return new Date(item.createdAt.seconds*1000);
+  if(item.createdAt)return new Date(item.createdAt);
+  if(item.date&&item.time)return new Date(`${item.date}T${item.time}`);
+  if(item.date)return new Date(`${item.date}T00:00:00`);
+  return new Date(0);
+}
+
+function getDateText(item){
+  const d=getItemDate(item);
+  return d.getTime()?d.toLocaleDateString("ar-SA"):"—";
+}
+
+function getTimeText(item){
+  return item.time || (getItemDate(item).getTime()
+    ? getItemDate(item).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})
+    : "—");
+}
+
+function getList(section){return section==="men"?menList:womenList}
+
+function getAssessments(section){
+  return records.filter(a=>a.section===section&&a.recordType!=="balanceReset"&&a.recordType!=="suspension"&&a.recordType!=="skip"&&a.recordType!=="openingBalance");
+}
+
+function getOpenings(section){return records.filter(a=>a.section===section&&a.recordType==="openingBalance")}
+function getSkips(section){return records.filter(a=>a.section===section&&a.recordType==="skip")}
+function getSuspensions(section){return records.filter(a=>a.section===section&&a.recordType==="suspension")}
+
+function activeSusp(section,name){
+  return getSuspensions(section)
+    .filter(s=>sameTherapist(s.therapist,name)&&s.untilDate>=todayISO())
+    .sort((a,b)=>getItemDate(b)-getItemDate(a))[0] || null;
+}
+
+function getLastResetDate(section){
+  const resets=records.filter(a=>a.section===section&&a.recordType==="balanceReset").sort((a,b)=>getItemDate(b)-getItemDate(a));
+  return resets.length?getItemDate(resets[0]):null;
+}
+
+function afterReset(section,arr){
+  const reset=getLastResetDate(section);
+  return arr.filter(a=>!reset||getItemDate(a)>reset);
+}
+
+function activeAssessments(section){return afterReset(section,getAssessments(section))}
+function activeOpenings(section){return afterReset(section,getOpenings(section))}
+function activeSkips(section){return afterReset(section,getSkips(section))}
+
+function openingCount(section,name){
+  return activeOpenings(section).filter(a=>sameTherapist(a.therapist,name)).reduce((s,a)=>s+Number(a.count||0),0);
+}
+
+function countFor(name,items,method=null){
+  return items.filter(a=>sameTherapist(a.therapist,name)&&(!method||a.method===method)).length;
+}
+
+function skipCount(section,name){
+  return activeSkips(section).filter(a=>sameTherapist(a.therapist,name)).length;
+}
+
+function totalFor(section,name,items){
+  return openingCount(section,name)+countFor(name,items);
+}
+
+function eligibleList(section){
+  const list=getList(section).filter(n=>!activeSusp(section,n));
+  return list.length?list:getList(section);
+}
+
+function recommended(section){
+  const list=eligibleList(section);
+  const items=activeAssessments(section);
+
+  if(items.length===0 && activeOpenings(section).length===0){
+    return list[(queueState[section]||0)%list.length];
+  }
+
+  const min=Math.min(...list.map(n=>totalFor(section,n,items)));
+  const tied=list.filter(n=>totalFor(section,n,items)===min);
+  const start=queueState[section]||0;
+
+  for(let i=0;i<list.length;i++){
+    const n=list[(start+i)%list.length];
+    if(tied.includes(n))return n;
+  }
+
+  return tied[0]||list[0];
+}
 
 function render(){
+  menNext.innerText=recommended("men");
+  womenNext.innerText=recommended("women");
 
-  const men=data.filter(x=>x.section==="men" && x.recordType==="assessment");
-  const women=data.filter(x=>x.section==="women" && x.recordType==="assessment");
-
-  document.getElementById("menNext").innerText = men.length ? men[men.length-1].therapist : "—";
-  document.getElementById("womenNext").innerText = women.length ? women[women.length-1].therapist : "—";
-
-  renderTable("menTable", men);
-  renderTable("womenTable", women);
+  renderSection("men",menList,menTable,menFairNote);
+  renderSection("women",womenList,womenTable,womenFairNote);
 
   renderLog();
 }
 
-function renderTable(id, list){
-  const table=document.getElementById(id);
-  table.innerHTML="";
+function renderSection(section,list,tbody,noteEl){
+  const items=activeAssessments(section);
+  const reset=getLastResetDate(section);
 
-  const counts={};
+  if(reset&&new Date().toDateString()===reset.toDateString()){
+    noteEl.classList.add("balance-ok");
+    noteEl.innerText="تم تحقيق التوازن بين الأخصائيين — تم بدء دورة جديدة ويستمر الإشعار حتى نهاية اليوم.";
+  }else{
+    noteEl.classList.remove("balance-ok");
+    noteEl.innerText=`التوزيع القادم: ${recommended(section)} حسب إجمالي الكشوفات الحالية.`;
+  }
 
-  list.forEach(x=>{
-    counts[x.therapist]=(counts[x.therapist]||0)+1;
-  });
+  const eligible=eligibleList(section);
+  const totals=eligible.map(n=>totalFor(section,n,items));
+  const min=totals.length?Math.min(...totals):0;
 
-  Object.keys(counts).forEach(name=>{
-    table.innerHTML+=`
-      <tr>
+  tbody.innerHTML="";
+
+  list.forEach(name=>{
+    const q=countFor(name,items,"queue");
+    const byName=countFor(name,items,"name");
+    const manual=countFor(name,items,"manual");
+    const skips=skipCount(section,name);
+    const total=openingCount(section,name)+q+byName+manual;
+    const diff=total-min;
+    const susp=activeSusp(section,name);
+
+    let status="";
+    let rowClass="";
+
+    if(susp){
+      rowClass="suspended-row";
+      status=`<span class="badge gray">متوقف عن استقبال الكشف<br>${susp.reason}<br>حتى ${susp.untilDate}</span>`;
+    }else if(skips>0){
+      rowClass="skip-row";
+      status=`<span class="badge orange">تم التجاوز بناءً على طلبه<br>عدد التجاوز: ${skips}</span>`;
+    }else if(diff===0){
+      rowClass="priority-row";
+      status=`<span class="badge green">أولوية</span>`;
+    }else if(diff<=1){
+      status=`<span class="badge blue">قريب</span>`;
+    }else{
+      status=`<span class="badge red">أعلى +${diff}</span>`;
+    }
+
+    tbody.innerHTML+=`
+      <tr class="${rowClass}">
         <td>${name}</td>
-        <td>${counts[name]}</td>
-        <td><span class="badge green">نشط</span></td>
+        <td>${q}</td>
+        <td>${byName}</td>
+        <td>${manual}</td>
+        <td>${skips}</td>
+        <td><b>${total}</b></td>
+        <td>${status}</td>
       </tr>
     `;
   });
 }
 
 function renderLog(){
-  const log=document.getElementById("log");
+  const sorted=[...records].sort((a,b)=>getItemDate(b)-getItemDate(a));
+
+  if(!sorted.length){
+    log.innerHTML=`<tr><td colspan="6" class="empty">لا توجد سجلات حتى الآن</td></tr>`;
+    return;
+  }
+
   log.innerHTML="";
 
-  data.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  sorted.forEach(x=>{
+    const section=x.section==="men"?"رجال":"نساء";
+    const sectionFull=x.section==="men"?"قسم الرجال":"قسم النساء";
 
-  data.forEach(x=>{
-    let text="";
-
-    if(x.recordType==="assessment"){
-      text=`${x.patient} - ${x.therapist}`;
-    }
-    if(x.recordType==="skip"){
-      text=`تم التجاوز حسب طلب الأخصائي`;
-    }
-    if(x.recordType==="suspension"){
-      text=`متوقف عن استقبال الكشف حتى ${x.untilDate}`;
-    }
     if(x.recordType==="balanceReset"){
-      log.innerHTML+=`<tr class="reset"><td colspan="3">تم تحقيق التوازن</td></tr>`;
+      log.innerHTML+=`<tr class="reset"><td colspan="6">✅ ${getDateText(x)} - ${getTimeText(x)} | ${sectionFull}: تم تحقيق التوازن وبدء دورة جديدة</td></tr>`;
       return;
     }
 
+    if(x.recordType==="openingBalance"){
+      log.innerHTML+=`
+        <tr class="opening">
+          <td>${getDateText(x)}</td>
+          <td>${getTimeText(x)}</td>
+          <td>${sectionFull}</td>
+          <td>ترحيل رصيد سابق: ${x.count} كشف</td>
+          <td>${x.therapist}</td>
+          <td><span class="badge blue">رصيد سابق</span></td>
+        </tr>`;
+      return;
+    }
+
+    if(x.recordType==="suspension"){
+      log.innerHTML+=`
+        <tr class="suspend">
+          <td>${getDateText(x)}</td>
+          <td>${getTimeText(x)}</td>
+          <td>${sectionFull}</td>
+          <td>إيقاف مؤقت حتى ${x.untilDate}</td>
+          <td>${x.therapist}</td>
+          <td>${x.reason}</td>
+        </tr>`;
+      return;
+    }
+
+    if(x.recordType==="skip"){
+      log.innerHTML+=`
+        <tr>
+          <td>${getDateText(x)}</td>
+          <td>${getTimeText(x)}</td>
+          <td>${sectionFull}</td>
+          <td>تم التجاوز بناءً على طلب الأخصائي</td>
+          <td>${x.therapist}</td>
+          <td><span class="badge orange">تجاوز</span></td>
+        </tr>`;
+      return;
+    }
+
+    const method =
+      x.method==="queue" ? `<span class="badge green">حسب الأقل</span>` :
+      x.method==="name" ? `<span class="badge yellow">بالاسم</span>` :
+      `<span class="badge blue">يدوي</span>`;
+
     log.innerHTML+=`
       <tr>
-        <td>${x.date || ""}</td>
-        <td>${x.section==="men"?"رجال":"نساء"}</td>
-        <td>${text}</td>
-      </tr>
-    `;
+        <td>${getDateText(x)}</td>
+        <td>${getTimeText(x)}</td>
+        <td>${section}</td>
+        <td>${x.patient||"—"}</td>
+        <td>${x.therapist||"—"}</td>
+        <td>${method}</td>
+      </tr>`;
   });
 }
+
+onSnapshot(assessmentsRef,snap=>{
+  records=[];
+  snap.forEach(d=>records.push({id:d.id,...d.data()}));
+  render();
+});
+
+onSnapshot(queueStateRef,snap=>{
+  snap.forEach(d=>{
+    const x=d.data();
+    if(x.section==="men")queueState.men=x.index||0;
+    if(x.section==="women")queueState.women=x.index||0;
+  });
+  render();
+});
+
+render();
 </script>
 
+<script type="module" src="tracker.js"></script>
 </body>
 </html>
