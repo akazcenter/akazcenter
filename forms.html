@@ -235,7 +235,8 @@ input[readonly]{background:#f1f5f9;color:#334155;font-weight:900}
         <div class="field"><label>عدد الجلسات في البرنامج</label><input type="number" id="totalSessions" oninput="updateForm()"></div>
         <div class="field"><label>عدد الجلسات المستنفدة</label><input type="number" id="usedSessions" oninput="updateForm()"></div>
         <div class="field"><label>المبلغ المدفوع</label><input type="number" id="paidAmount" oninput="updateForm()"></div>
-        <div class="field"><label>سعر الجلسة الواحدة</label><input type="number" id="sessionPrice" value="150" readonly></div>
+        <div class="field"><label>سعر الجلسة الواحدة</label><input type="number" id="sessionPrice" oninput="updateForm()"></div>
+        
       </div>
 
       <div class="actions">
