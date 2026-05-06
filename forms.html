@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>النماذج الإدارية</title>
+<link rel="icon" href="logo.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#dbe3ee;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:22px 34px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:32px;
+  box-shadow:0 16px 38px rgba(8,52,95,.22);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  width:72px;
+  height:72px;
+  background:white;
+  object-fit:contain;
+  border-radius:18px;
+  padding:7px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  direction:ltr;
+  color:#dbeafe;
+  font-size:13px;
+  font-weight:700;
+}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:11px 16px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:Tahoma,Arial;
+}
+
+.btn-white{background:white;color:var(--blue)}
+.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.btn-orange{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
+
+.main{
+  width:94%;
+  max-width:1180px;
+  margin:28px auto;
+}
+
+.intro{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+  margin-bottom:20px;
+}
+
+.intro h2{
+  margin:0;
+  color:var(--blue);
+  font-size:28px;
+  font-weight:900;
+}
+
+.intro p{
+  color:var(--muted);
+  line-height:1.8;
+  margin:10px 0 0;
+}
+
+.workspace{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:20px;
+}
+
+.panel,.paper{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+}
+
+.panel{
+  padding:18px;
+}
+
+.panel h3{
+  margin:0 0 14px;
+  color:var(--blue);
+  font-size:22px;
+  font-weight:900;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:11px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:900;
+  color:#334155;
+  margin-bottom:6px;
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:11px;
+  font-family:Tahoma,Arial;
+  font-size:14px;
+  background:white;
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.paper{
+  padding:26px;
+}
+
+#refundPaper{
+  background:white;
+  padding:28px;
+  border:1px solid #cbd5e1;
+}
+
+.paper-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:3px solid var(--blue);
+  padding-bottom:14px;
+  margin-bottom:18px;
+}
+
+.paper-logo{
+  width:110px;
+  height:80px;
+  object-fit:contain;
+}
+
+.paper-title{
+  text-align:center;
+  flex:1;
+}
+
+.paper-title h2{
+  margin:0;
+  color:var(--blue);
+  font-size:24px;
+  font-weight:900;
+}
+
+.paper-title p{
+  margin:6px 0 0;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.section-title{
+  background:#06345d;
+  color:white;
+  padding:10px 14px;
+  border-radius:12px;
+  font-weight:900;
+  margin:18px 0 10px;
+}
+
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.info-table th,
+.info-table td{
+  border:1px solid #94a3b8;
+  padding:9px;
+  font-size:13px;
+  text-align:right;
+  vertical-align:top;
+}
+
+.info-table th{
+  background:#f8fafc;
+  color:#0f172a;
+  width:28%;
+  font-weight:900;
+}
+
+.value{
+  font-weight:900;
+  color:#111827;
+}
+
+.reason-box{
+  border:1px solid #94a3b8;
+  padding:12px;
+  min-height:70px;
+  line-height:1.8;
+  font-size:13px;
+}
+
+.signatures{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  margin-top:28px;
+}
+
+.signature-box{
+  border-top:1px solid #111827;
+  padding-top:10px;
+  min-height:70px;
+  font-weight:900;
+}
+
+.notice{
+  margin-top:18px;
+  font-size:12px;
+  line-height:1.8;
+  color:#b91c1c;
+  font-weight:900;
+}
+
+.footer{
+  margin-top:20px;
+  text-align:center;
+  color:#64748b;
+  font-size:12px;
+  border-top:1px solid #e2e8f0;
+  padding-top:12px;
+}
+
+@media print{
+  body{background:white}
+  .topbar,.intro,.panel{display:none}
+  .main{width:100%;margin:0}
+  .workspace{display:block}
+  .paper{box-shadow:none;border:none;padding:0}
+  #refundPaper{border:none}
+}
+
+@media(max-width:950px){
+  .workspace{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo">
+    <div>
+      <h1>النماذج الإدارية</h1>
+      <p>Administrative Forms</p>
+    </div>
+  </div>
+  <button class="btn btn-white" onclick="location.href='index.html'">الرئيسية</button>
+</div>
+
+<div class="main">
+
+  <div class="intro">
+    <h2>نماذج مركز عكاز</h2>
+    <p>إنشاء نموذج استرداد رسمي جاهز للطباعة أو التحميل كملف PDF.</p>
+  </div>
+
+  <div class="workspace">
+
+    <div class="panel">
+      <h3>طلب استرداد مبلغ الجلسات</h3>
+
+      <div class="form-grid">
+        <div class="field"><label>اسم المريض</label><input id="patientName" oninput="updateForm()"></div>
+        <div class="field"><label>اسم مقدم الطلب</label><input id="applicantName" oninput="updateForm()"></div>
+        <div class="field"><label>صلة القرابة</label><input id="relation" oninput="updateForm()"></div>
+        <div class="field"><label>رقم الهوية</label><input id="nationalId" oninput="updateForm()"></div>
+        <div class="field"><label>رقم الملف الطبي</label><input id="fileNo" oninput="updateForm()"></div>
+        <div class="field"><label>رقم الجوال</label><input id="phone" oninput="updateForm()"></div>
+        <div class="field"><label>اسم البنك</label><input id="bankName" oninput="updateForm()"></div>
+        <div class="field"><label>رقم الآيبان</label><input id="iban" oninput="updateForm()"></div>
+        <div class="field"><label>اسم صاحب الحساب</label><input id="accountName" oninput="updateForm()"></div>
+
+        <div class="field"><label>اسم الخدمة</label><input id="serviceName" oninput="updateForm()" placeholder="مثال: برنامج علاج طبيعي عام"></div>
+        <div class="field"><label>رقم الفاتورة</label><input id="invoiceNo" oninput="updateForm()"></div>
+        <div class="field"><label>اسم الأخصائي/ة</label><input id="therapistName" oninput="updateForm()"></div>
+
+        <div class="field"><label>عدد الجلسات في البرنامج</label><input type="number" id="totalSessions" oninput="updateForm()"></div>
+        <div class="field"><label>عدد الجلسات المستنفدة</label><input type="number" id="usedSessions" oninput="updateForm()"></div>
+        <div class="field"><label>المبلغ المدفوع</label><input type="number" id="paidAmount" oninput="updateForm()"></div>
+        <div class="field"><label>سعر الجلسة الواحدة</label><input type="number" id="sessionPrice" oninput="updateForm()"></div>
+
+        <div class="field"><label>سبب طلب الاسترداد</label><textarea id="reason" oninput="updateForm()"></textarea></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-blue" onclick="window.print()">طباعة</button>
+        <button class="btn btn-orange" onclick="downloadPDF()">تحميل PDF</button>
+      </div>
+    </div>
+
+    <div class="paper">
+      <div id="refundPaper">
+
+        <div class="paper-head">
+          <img src="logo.png" class="paper-logo">
+          <div class="paper-title">
+            <h2>استمارة طلب استرداد مبلغ الجلسات</h2>
+            <p>مركز عكاز للعلاج الطبيعي</p>
+          </div>
+          <div style="width:110px;text-align:left;font-weight:900" id="dateBox"></div>
+        </div>
+
+        <div class="section-title">بيانات المريض ومقدم الطلب</div>
+        <table class="info-table">
+          <tr><th>اسم المريض</th><td class="value" id="vPatientName">—</td></tr>
+          <tr><th>اسم مقدم الطلب</th><td class="value" id="vApplicantName">—</td></tr>
+          <tr><th>صلة القرابة</th><td id="vRelation">—</td></tr>
+          <tr><th>رقم الهوية</th><td id="vNationalId">—</td></tr>
+          <tr><th>رقم الملف الطبي</th><td id="vFileNo">—</td></tr>
+          <tr><th>رقم الجوال</th><td id="vPhone">—</td></tr>
+        </table>
+
+        <div class="section-title">بيانات الحساب البنكي</div>
+        <table class="info-table">
+          <tr><th>اسم البنك</th><td id="vBankName">—</td></tr>
+          <tr><th>رقم الآيبان</th><td class="value" id="vIban">—</td></tr>
+          <tr><th>اسم صاحب الحساب</th><td id="vAccountName">—</td></tr>
+        </table>
+
+        <div class="section-title">تفاصيل الخدمة والاسترداد</div>
+        <table class="info-table">
+          <tr><th>اسم الخدمة</th><td id="vServiceName">—</td></tr>
+          <tr><th>رقم الفاتورة</th><td id="vInvoiceNo">—</td></tr>
+          <tr><th>اسم الأخصائي/ة</th><td id="vTherapistName">—</td></tr>
+          <tr><th>عدد الجلسات في البرنامج</th><td id="vTotalSessions">0</td></tr>
+          <tr><th>عدد الجلسات المستنفدة</th><td id="vUsedSessions">0</td></tr>
+          <tr><th>عدد الجلسات المتبقية</th><td class="value" id="vRemainingSessions">0</td></tr>
+          <tr><th>المبلغ المدفوع</th><td id="vPaidAmount">0 ريال</td></tr>
+          <tr><th>سعر الجلسة الواحدة</th><td id="vSessionPrice">0 ريال</td></tr>
+          <tr><th>المبلغ المتوقع للاسترداد</th><td class="value" id="vRefundAmount">0 ريال</td></tr>
+        </table>
+
+        <div class="section-title">سبب طلب الاسترداد</div>
+        <div class="reason-box" id="vReason">—</div>
+
+        <div class="notice">
+          ملاحظة: يتم مراجعة الطلب من قبل الإدارة المالية، وقد تختلف قيمة الاسترداد النهائية حسب سياسة المركز وحالة الفاتورة.
+          <br>
+          ملاحظة: يرجى إرفاق صورة الآيبان البنكي عند تسليم الطلب.
+        </div>
+
+        <div class="signatures">
+          <div class="signature-box">اسم وتوقيع مقدم الطلب:</div>
+          <div class="signature-box">اعتماد الإدارة:</div>
+        </div>
+
+        <div class="footer">
+          Akaz Physiotherapy Center © مركز عكاز للعلاج الطبيعي
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function val(id){
+  return document.getElementById(id).value || "—";
+}
+
+function num(id){
+  return Number(document.getElementById(id).value || 0);
+}
+
+function set(id,value){
+  document.getElementById(id).innerText = value;
+}
+
+function updateForm(){
+  const total = num("totalSessions");
+  const used = num("usedSessions");
+  const paid = num("paidAmount");
+  const price = num("sessionPrice");
+
+  const remaining = Math.max(total - used, 0);
+  const refund = Math.max(paid - (used * price), 0);
+
+  set("vPatientName", val("patientName"));
+  set("vApplicantName", val("applicantName"));
+  set("vRelation", val("relation"));
+  set("vNationalId", val("nationalId"));
+  set("vFileNo", val("fileNo"));
+  set("vPhone", val("phone"));
+  set("vBankName", val("bankName"));
+  set("vIban", val("iban"));
+  set("vAccountName", val("accountName"));
+  set("vServiceName", val("serviceName"));
+  set("vInvoiceNo", val("invoiceNo"));
+  set("vTherapistName", val("therapistName"));
+  set("vTotalSessions", total);
+  set("vUsedSessions", used);
+  set("vRemainingSessions", remaining);
+  set("vPaidAmount", paid + " ريال");
+  set("vSessionPrice", price + " ريال");
+  set("vRefundAmount", refund + " ريال");
+  set("vReason", val("reason"));
+
+  const today = new Date().toLocaleDateString("ar-SA");
+  set("dateBox", today);
+}
+
+function downloadPDF(){
+  const element = document.getElementById("refundPaper");
+  const name = document.getElementById("patientName").value || "refund-form";
+
+  const opt = {
+    margin:0.25,
+    filename:`استمارة استرداد - ${name}.pdf`,
+    image:{type:"jpeg",quality:0.98},
+    html2canvas:{scale:2,useCORS:true},
+    jsPDF:{unit:"in",format:"a4",orientation:"portrait"}
+  };
+
+  html2pdf().set(opt).from(element).save();
+}
+
+updateForm();
+</script>
+
+</body>
+</html>
