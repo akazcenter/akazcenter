@@ -37,12 +37,14 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 .panel h3{margin:0 0 14px;color:var(--blue);font-size:22px;font-weight:900}
 .form-grid{display:grid;grid-template-columns:1fr;gap:11px}
 .field label{display:block;font-size:13px;font-weight:900;color:#334155;margin-bottom:6px}
-input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-family:Tahoma,Arial;font-size:14px;background:white}
+input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-family:Tahoma,Arial;font-size:14px;background:white}
+input[readonly]{background:#f1f5f9;color:#334155;font-weight:900}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
 .paper{padding:22px}
+
 .form-paper{
   background:white;
-  padding:11mm 12mm;
+  padding:9mm 11mm;
   border:1px solid #cbd5e1;
   width:190mm;
   height:277mm;
@@ -50,23 +52,108 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
   margin:auto;
   display:flex;
   flex-direction:column;
+  color:#111827;
 }
-.paper-head{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #777;padding-top:7px;margin-bottom:8px}
-.paper-logo{width:95px;height:62px;object-fit:contain}
-.paper-title{text-align:center;flex:1}
-.paper-title h2{margin:0;color:#111827;font-size:16px;font-weight:900}
+
+.paper-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:4px;
+  margin-bottom:18px;
+}
+
+.paper-logo{
+  width:125px;
+  height:82px;
+  object-fit:contain;
+}
+
+.paper-title{
+  text-align:center;
+  flex:1;
+}
+
+.paper-title h2{
+  margin:0;
+  color:#111827;
+  font-size:18px;
+  font-weight:900;
+}
+
 .form-content{flex:1;display:flex;flex-direction:column}
-.info-table{width:100%;border-collapse:collapse;margin-top:7px}
-.info-table th,.info-table td{border:1px solid #777;padding:5px 7px;font-size:10.8px;text-align:right;vertical-align:middle;height:24px}
-.info-table th{width:30%;font-weight:900;background:#f8fafc}
+
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:6px;
+}
+
+.info-table th,
+.info-table td{
+  border:1px solid #555;
+  padding:6px 8px;
+  font-size:12px;
+  text-align:right;
+  vertical-align:middle;
+  height:26px;
+  font-weight:700;
+}
+
+.info-table th{
+  width:31%;
+  font-weight:900;
+  background:#f8fafc;
+}
+
 .value{font-weight:900}
-.blank{height:24px}
-.reason-title{font-size:11.5px;font-weight:900;margin:10px 0 2px}
-.lines{border-top:1px solid #bbb;height:19px;margin-top:5px}
-.footer-note{text-align:center;margin-top:10px;font-size:10px;color:#111827;line-height:1.7}
-.sign-row{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:18px;font-size:11.5px;font-weight:900}
-.sign-line{border-bottom:1px dotted #222;height:24px}
-.notice{margin-top:auto;font-size:10px;line-height:1.6;color:#b91c1c;font-weight:900;text-align:right;padding-top:10px}
+.blank{height:26px}
+
+.reason-title{
+  font-size:12.5px;
+  font-weight:900;
+  margin:12px 0 3px;
+}
+
+.lines{
+  border-top:1px solid #aaa;
+  height:18px;
+  margin-top:5px;
+}
+
+.footer-note{
+  text-align:center;
+  margin-top:14px;
+  font-size:12px;
+  color:#111827;
+  line-height:1.9;
+  font-weight:800;
+}
+
+.sign-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-top:12px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.sign-line{
+  border-bottom:1px dotted #222;
+  height:18px;
+}
+
+.notice{
+  margin-top:auto;
+  font-size:11px;
+  line-height:1.7;
+  color:#b91c1c;
+  font-weight:900;
+  text-align:right;
+  padding-top:8px;
+}
+
 .hidden{display:none!important}
 
 @media print{
@@ -134,12 +221,21 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
         <div class="field"><label>رقم الجوال</label><input id="phone" oninput="updateForm()"></div>
         <div class="field"><label>اسم الخدمة</label><input id="serviceName" oninput="updateForm()"></div>
         <div class="field"><label>رقم الفاتورة</label><input id="invoiceNo" oninput="updateForm()"></div>
-        <div class="field"><label>اسم الأخصائي السابق</label><input id="oldTherapistName" oninput="updateForm()"></div>
-        <div class="field"><label>اسم الأخصائي المحول له</label><input id="newTherapistName" oninput="updateForm()"></div>
+
+        <div class="field">
+          <label>اسم الأخصائي السابق</label>
+          <select id="oldTherapistName" onchange="updateForm()"></select>
+        </div>
+
+        <div class="field">
+          <label>اسم الأخصائي المحول له</label>
+          <select id="newTherapistName" onchange="updateForm()"></select>
+        </div>
+
         <div class="field"><label>عدد الجلسات في البرنامج</label><input type="number" id="totalSessions" oninput="updateForm()"></div>
         <div class="field"><label>عدد الجلسات المستنفدة</label><input type="number" id="usedSessions" oninput="updateForm()"></div>
         <div class="field"><label>المبلغ المدفوع</label><input type="number" id="paidAmount" oninput="updateForm()"></div>
-        <div class="field"><label>سعر الجلسة الواحدة</label><input type="number" id="sessionPrice" oninput="updateForm()"></div>
+        <div class="field"><label>سعر الجلسة الواحدة</label><input type="number" id="sessionPrice" value="150" readonly></div>
       </div>
 
       <div class="actions">
@@ -160,7 +256,7 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
           <div class="paper-title">
             <h2>استمارة طلب استرداد مبلغ الجلسات</h2>
           </div>
-          <div style="width:95px"></div>
+          <div style="width:125px"></div>
         </div>
 
         <div class="form-content">
@@ -173,7 +269,7 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
             <tr><th>رقم جوال التواصل</th><td id="vPhone">—</td></tr>
             <tr><th>اسم البنك المحول عن طريقه</th><td class="blank"></td></tr>
             <tr><th>رقم الحساب البنكي</th><td class="blank"></td></tr>
-            <tr><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:9px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
+            <tr><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:10px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
             <tr><th>تاريخ الطلب</th><td id="vDate">—</td></tr>
           </table>
 
@@ -187,12 +283,12 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
             <tr><th>عدد الجلسات المستوفاة من البرنامج:</th><td id="vUsedSessions">0</td></tr>
             <tr><th>عدد الجلسات المتبقية من البرنامج:</th><td id="vRemainingSessions">0</td></tr>
             <tr><th>سعر الخدمة المدفوعة:</th><td id="vPaidAmount">0</td></tr>
-            <tr><th>سعر الخدمة للجلسة الواحدة في المركز:</th><td id="vSessionPrice">0</td></tr>
+            <tr><th>سعر الخدمة للجلسة الواحدة في المركز:</th><td id="vSessionPrice">150</td></tr>
             <tr><th>المبلغ المتبقي للاسترداد:</th><td id="vRefundAmount">0</td></tr>
           </table>
 
           <div class="footer-note">
-            أقر أنا الموقع أدناه بالاطلاع على النقاط المذكورة أعلاه وأتعهد بأن جميع المعلومات المذكورة صحيحة ولم يسبق رفع طلب استرداد عن نفس الفاتورة.
+            أقر أنا الموقع أدناه بالاطلاع على النقاط المذكورة أعلاه، وأتعهد بأن جميع المعلومات المذكورة صحيحة، ولم يسبق رفع طلب استرداد عن نفس الفاتورة.
           </div>
 
           <div class="sign-row">
@@ -213,7 +309,7 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
           <div class="paper-title">
             <h2>استمارة تحويل الجلسات المتبقية</h2>
           </div>
-          <div style="width:95px"></div>
+          <div style="width:125px"></div>
         </div>
 
         <div class="form-content">
@@ -257,12 +353,30 @@ input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-f
       </div>
 
     </div>
-
   </div>
 </div>
 
 <script>
 let currentForm = "refund";
+
+const therapists = [
+  "د: حاتم الاحمدي",
+  "د: عبدالرحمن السويداء",
+  "د: عبدالرحمن السليمي",
+  "د: عبدالعزيز الحمدان",
+  "د: ريناد حميد",
+  "د: ابتسام سويلم",
+  "د: سلمى فرحان",
+  "د: أسماء فهيد",
+  "د: هند فهيد",
+  "د: مها فريح"
+];
+
+function fillTherapists(){
+  const options = `<option value="">اختر الأخصائي</option>` + therapists.map(n=>`<option value="${n}">${n}</option>`).join("");
+  document.getElementById("oldTherapistName").innerHTML = options;
+  document.getElementById("newTherapistName").innerHTML = options;
+}
 
 function openForm(type){
   currentForm = type;
@@ -287,7 +401,7 @@ function updateForm(){
   const total = num("totalSessions");
   const used = num("usedSessions");
   const paid = num("paidAmount");
-  const price = num("sessionPrice");
+  const price = 150;
   const remaining = Math.max(total - used, 0);
   const refund = Math.max(paid - (used * price), 0);
   const today = new Date().toLocaleDateString("ar-SA");
@@ -330,14 +444,17 @@ function downloadPDF(){
   const title = currentForm === "refund" ? "استمارة استرداد" : "استمارة تحويل جلسات";
 
   html2pdf().set({
-    margin:[0.1,0.1,0.1,0.1],
+    margin:[0.05,0.05,0.05,0.05],
     filename:`${title} ${name}.pdf`,
-    image:{type:"jpeg",quality:0.98},
-    html2canvas:{scale:2,useCORS:true,scrollY:0},
+    image:{type:"jpeg",quality:1},
+    html2canvas:{scale:4,useCORS:true,scrollY:0,letterRendering:true},
     jsPDF:{unit:"in",format:"a4",orientation:"portrait"},
     pagebreak:{mode:["avoid-all"]}
   }).from(element).save();
 }
+
+fillTherapists();
+updateForm();
 </script>
 
 </body>
