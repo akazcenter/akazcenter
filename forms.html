@@ -10,63 +10,288 @@
 <style>
 :root{--blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;--text:#0f172a;--muted:#64748b;--line:#dbe3ee}
 *{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
-.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:32px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:22px 34px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:32px;
+  box-shadow:0 16px 38px rgba(8,52,95,.22);
+}
+
 .brand{display:flex;align-items:center;gap:16px}
 .logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
 .brand h1{margin:0;font-size:28px;font-weight:900}
 .brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
-.btn{border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer;font-family:Tahoma,Arial}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:11px 16px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:Tahoma,Arial;
+}
+
 .btn-white{background:white;color:var(--blue)}
 .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
 .btn-orange{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
+
 .main{width:94%;max-width:1180px;margin:28px auto}
-.intro{background:white;border:1px solid var(--line);border-radius:24px;padding:22px;text-align:center;box-shadow:0 12px 30px rgba(15,23,42,.07);margin-bottom:22px}
+
+.intro{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+  margin-bottom:22px;
+}
+
 .intro h2{margin:0;color:var(--blue);font-size:28px;font-weight:900}
 .intro p{color:var(--muted);line-height:1.8;margin:10px 0 0}
-.cards{display:grid;grid-template-columns:repeat(2,260px);gap:22px;justify-content:center;margin-top:25px}
-.card{background:white;border:1px solid var(--line);border-radius:26px;padding:28px 18px;text-align:center;box-shadow:0 16px 38px rgba(15,23,42,.09);cursor:pointer;position:relative;overflow:hidden}
-.card:before{content:"";position:absolute;top:0;right:0;width:100%;height:6px;background:linear-gradient(90deg,var(--orange),#ffd28a)}
-.icon{width:64px;height:64px;margin:0 auto 14px;border-radius:22px;background:#eef6ff;display:flex;align-items:center;justify-content:center;font-size:30px}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,260px);
+  gap:22px;
+  justify-content:center;
+  margin-top:25px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:0 16px 38px rgba(15,23,42,.09);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg,var(--orange),#ffd28a);
+}
+
+.icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 14px;
+  border-radius:22px;
+  background:#eef6ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
+
 .card h3{margin:0;color:var(--blue);font-size:22px;font-weight:900}
 .card h4{margin:7px 0;color:var(--orange);font-size:12px}
 .card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
-.workspace{display:none;grid-template-columns:360px 1fr;gap:20px}
-.panel,.paper{background:white;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 30px rgba(15,23,42,.07)}
+
+.workspace{
+  display:none;
+  grid-template-columns:360px 1fr;
+  gap:20px;
+}
+
+.panel,.paper{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+}
+
 .panel{padding:18px}
 .panel h3{margin:0 0 14px;color:var(--blue);font-size:22px;font-weight:900}
+
 .form-grid{display:grid;grid-template-columns:1fr;gap:11px}
-.field label{display:block;font-size:13px;font-weight:900;color:#334155;margin-bottom:6px}
-input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-family:Tahoma,Arial;font-size:14px;background:white}
-textarea{min-height:70px;resize:vertical}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
-.paper{padding:22px}
-.form-paper{background:white;padding:24px;border:1px solid #cbd5e1;min-height:1050px}
-.paper-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.paper-logo{width:130px;height:90px;object-fit:contain}
-.paper-title{text-align:center;flex:1}
-.paper-title h2{margin:0;color:#111827;font-size:18px;font-weight:900}
-.paper-title p{margin:6px 0 0;color:#111827;font-size:13px;font-weight:900}
-.info-table{width:100%;border-collapse:collapse;margin-top:10px}
-.info-table th,.info-table td{border:1px solid #777;padding:7px;font-size:12px;text-align:right;vertical-align:middle;height:31px}
-.info-table th{width:28%;font-weight:900;background:#f8fafc}
-.value{font-weight:900}
-.blank{height:28px}
-.lines{border-top:1px solid #bbb;height:25px;margin-top:8px}
-.reason-title{font-size:13px;font-weight:900;margin:14px 0 5px}
-.notice{margin-top:14px;font-size:11px;line-height:1.8;color:#b91c1c;font-weight:900;text-align:right}
-.sign-row{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:30px;font-size:13px;font-weight:900}
-.sign-line{border-bottom:1px dotted #222;height:30px}
-.footer-note{text-align:center;margin-top:16px;font-size:11px;color:#111827}
-.hidden{display:none}
-@media print{
-  .topbar,.intro,.panel,.cards{display:none!important}
-  body{background:white}
-  .main{width:100%;margin:0}
-  .workspace{display:block!important}
-  .paper{box-shadow:none;border:none;padding:0}
-  .form-paper{border:none}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:900;
+  color:#334155;
+  margin-bottom:6px;
 }
+
+input,select,textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:11px;
+  font-family:Tahoma,Arial;
+  font-size:14px;
+  background:white;
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.paper{padding:22px}
+
+.form-paper{
+  background:white;
+  padding:16px 22px;
+  border:1px solid #cbd5e1;
+  min-height:auto;
+  width:794px;
+  max-width:794px;
+  margin:auto;
+}
+
+.paper-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+
+.paper-logo{
+  width:105px;
+  height:70px;
+  object-fit:contain;
+}
+
+.paper-title{
+  text-align:center;
+  flex:1;
+}
+
+.paper-title h2{
+  margin:0;
+  color:#111827;
+  font-size:17px;
+  font-weight:900;
+}
+
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:7px;
+}
+
+.info-table th,
+.info-table td{
+  border:1px solid #777;
+  padding:5px 7px;
+  font-size:11px;
+  text-align:right;
+  vertical-align:middle;
+  height:25px;
+}
+
+.info-table th{
+  width:28%;
+  font-weight:900;
+  background:#f8fafc;
+}
+
+.value{font-weight:900}
+.blank{height:25px}
+
+.reason-title{
+  font-size:12px;
+  font-weight:900;
+  margin:10px 0 3px;
+}
+
+.lines{
+  border-top:1px solid #bbb;
+  height:20px;
+  margin-top:5px;
+}
+
+.footer-note{
+  text-align:center;
+  margin-top:10px;
+  font-size:10px;
+  color:#111827;
+}
+
+.sign-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  margin-top:18px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.sign-line{
+  border-bottom:1px dotted #222;
+  height:24px;
+}
+
+.notice{
+  margin-top:8px;
+  font-size:10px;
+  line-height:1.6;
+  color:#b91c1c;
+  font-weight:900;
+  text-align:right;
+}
+
+.hidden{display:none}
+
+@media print{
+  @page{
+    size:A4 portrait;
+    margin:6mm;
+  }
+
+  body{background:white}
+
+  .topbar,.intro,.panel,.cards{display:none!important}
+
+  .main{
+    width:100%;
+    margin:0;
+  }
+
+  .workspace{
+    display:block!important;
+  }
+
+  .paper{
+    box-shadow:none;
+    border:none;
+    padding:0;
+  }
+
+  .form-paper{
+    border:none;
+    width:100%;
+    max-width:100%;
+    padding:0;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+}
+
 @media(max-width:950px){
   .workspace{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
@@ -143,11 +368,11 @@ textarea{min-height:70px;resize:vertical}
 
       <div id="refundPaper" class="form-paper">
         <div class="paper-head">
-          <div style="width:130px"></div>
+          <img src="logo.png" class="paper-logo">
           <div class="paper-title">
             <h2>استمارة طلب استرداد مبلغ الجلسات</h2>
           </div>
-          <img src="logo.png" class="paper-logo">
+          <div style="width:105px"></div>
         </div>
 
         <table class="info-table">
@@ -159,7 +384,7 @@ textarea{min-height:70px;resize:vertical}
           <tr><th>رقم جوال التواصل</th><td id="vPhone">—</td></tr>
           <tr><th>اسم البنك المحول عن طريقه</th><td class="blank"></td></tr>
           <tr><th>رقم الحساب البنكي</th><td class="blank"></td></tr>
-          <tr><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:10px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
+          <tr><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:9px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
           <tr><th>تاريخ الطلب</th><td id="vDate">—</td></tr>
         </table>
 
@@ -177,7 +402,9 @@ textarea{min-height:70px;resize:vertical}
           <tr><th>المبلغ المتبقي للاسترداد:</th><td id="vRefundAmount">0</td></tr>
         </table>
 
-        <div class="footer-note">أقر أنا الموقع أدناه بالاطلاع على النقاط المذكورة أعلاه وأتعهد بأن جميع المعلومات المذكورة صحيحة ولم يسبق رفع طلب استرداد عن نفس الفاتورة.</div>
+        <div class="footer-note">
+          أقر أنا الموقع أدناه بالاطلاع على النقاط المذكورة أعلاه وأتعهد بأن جميع المعلومات المذكورة صحيحة ولم يسبق رفع طلب استرداد عن نفس الفاتورة.
+        </div>
 
         <div class="sign-row">
           <div>الاسم / <div class="sign-line"></div></div>
@@ -192,11 +419,11 @@ textarea{min-height:70px;resize:vertical}
 
       <div id="transferPaper" class="form-paper hidden">
         <div class="paper-head">
-          <div style="width:130px"></div>
+          <img src="logo.png" class="paper-logo">
           <div class="paper-title">
             <h2>استمارة تحويل جلسات</h2>
           </div>
-          <img src="logo.png" class="paper-logo">
+          <div style="width:105px"></div>
         </div>
 
         <table class="info-table">
@@ -223,7 +450,9 @@ textarea{min-height:70px;resize:vertical}
           <tr><th>عدد الجلسات المتبقية للتحويل:</th><td id="tRemainingSessions">0</td></tr>
         </table>
 
-        <div class="footer-note">أقر أنا الموقع أدناه بصحة البيانات المذكورة، وأوافق على تحويل الجلسات المتبقية حسب سياسة مركز عكاز للعلاج الطبيعي.</div>
+        <div class="footer-note">
+          أقر أنا الموقع أدناه بصحة البيانات المذكورة، وأوافق على تحويل الجلسات المتبقية حسب سياسة مركز عكاز للعلاج الطبيعي.
+        </div>
 
         <div class="sign-row">
           <div>الاسم / <div class="sign-line"></div></div>
@@ -295,16 +524,20 @@ function updateForm(){
 }
 
 function downloadPDF(){
-  const element = currentForm === "refund" ? document.getElementById("refundPaper") : document.getElementById("transferPaper");
+  const element = currentForm === "refund"
+    ? document.getElementById("refundPaper")
+    : document.getElementById("transferPaper");
+
   const name = document.getElementById("patientName").value || "form";
   const title = currentForm === "refund" ? "استمارة استرداد" : "استمارة تحويل جلسات";
 
   html2pdf().set({
-    margin:0.2,
+    margin:[0.15,0.15,0.15,0.15],
     filename:`${title} ${name}.pdf`,
     image:{type:"jpeg",quality:0.98},
-    html2canvas:{scale:2,useCORS:true},
-    jsPDF:{unit:"in",format:"a4",orientation:"portrait"}
+    html2canvas:{scale:2,useCORS:true,scrollY:0},
+    jsPDF:{unit:"in",format:"a4",orientation:"portrait"},
+    pagebreak:{mode:["avoid-all"]}
   }).from(element).save();
 }
 </script>
