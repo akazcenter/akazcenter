@@ -342,9 +342,10 @@ function renderSection(section,list,tbody,noteEl){
     if(susp){
       rowClass="suspended-row";
       status=`<span class="badge gray">متوقف عن استقبال الكشف<br>${susp.reason}<br>حتى ${susp.untilDate}</span>`;
-    }else if(skips>0){
-      rowClass="skip-row";
-      status=`<span class="badge orange">تم التجاوز بناءً على طلبه<br>عدد التجاوز: ${skips}</span>`;
+else if(skips>0 && total===min){
+  rowClass="skip-row";
+  status=`<span class="badge orange">تم تجاوزه</span>`;
+}
     }else if(diff===0){
       rowClass="priority-row";
       status=`<span class="badge green">أولوية</span>`;
