@@ -119,6 +119,20 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
         <div class="field"><label>عدد الجلسات المستنفدة</label><input type="number" id="usedSessions" oninput="updateForm()"></div>
         <div class="field"><label>المبلغ المدفوع</label><input type="number" id="paidAmount" oninput="updateForm()"></div>
 
+        <div class="field">
+          <label>طريقة الدفع</label>
+          <select id="paymentMethod" onchange="updateForm()">
+            <option value="">اختر طريقة الدفع</option>
+            <option value="تمارا">تمارا</option>
+            <option value="تابي">تابي</option>
+            <option value="كاش">كاش</option>
+            <option value="تحويل">تحويل</option>
+            <option value="مدى">مدى</option>
+            <option value="فيزا">فيزا</option>
+            <option value="ماسترد كارد">ماسترد كارد</option>
+          </select>
+        </div>
+
         <div class="field refund-field">
           <label>سعر الجلسة الواحدة</label>
           <input type="number" id="sessionPrice" oninput="updateForm()" placeholder="مثال: 150 أو 180">
@@ -167,6 +181,7 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
             <tr><th>عدد الجلسات المستوفاة من البرنامج</th><td id="vUsedSessions">0</td></tr>
             <tr><th>عدد الجلسات المتبقية من البرنامج</th><td id="vRemainingSessions">0</td></tr>
             <tr><th>سعر الخدمة المدفوعة</th><td id="vPaidAmount">0</td></tr>
+            <tr><th>طريقة الدفع</th><td id="vPaymentMethod">—</td></tr>
             <tr><th>سعر الخدمة للجلسة الواحدة في المركز</th><td id="vSessionPrice">0</td></tr>
             <tr><th>المبلغ المتبقي للاسترداد</th><td id="vRefundAmount">0</td></tr>
           </table>
@@ -176,13 +191,13 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
           </div>
 
           <div class="sign-row">
-            <div>/الاسم<div class="sign-line"></div></div>
-            <div>/التوقيع<div class="sign-line"></div></div>
+            <div>الاسم /<div class="sign-line"></div></div>
+            <div>التوقيع /<div class="sign-line"></div></div>
           </div>
 
           <div class="notice">
-            *ملاحظة: يتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد التأكد من أحقية استحقاق المريض للمبلغ3*<br>
-            *ملاحظة*: يرجى إرفاق صورة من الآيبان البنكي للعميل
+            * ملاحظة: تتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد التأكد من أحقية استحقاق المريض للمبلغ.<br>
+            * ملاحظة: يرجى إرفاق صورة من الآيبان البنكي للعميل.
           </div>
         </div>
       </div>
@@ -207,14 +222,15 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
           <div class="lines"></div><div class="lines"></div><div class="lines"></div>
 
           <table class="info-table">
-            <tr><th>اسم الخدمة:</th><td id="tServiceName">—</td></tr>
-            <tr><th>رقم الفاتورة:</th><td id="tInvoiceNo">—</td></tr>
-            <tr><th>عدد الجلسات في البرنامج:</th><td id="tTotalSessions">0</td></tr>
-            <tr><th>عدد الجلسات المستنفدة:</th><td id="tUsedSessions">0</td></tr>
-            <tr><th>عدد الجلسات المتبقية للتحويل:</th><td id="tRemainingSessions">0</td></tr>
-            <tr><th>سعر الخدمة المدفوعة:</th><td id="tPaidAmount">0</td></tr>
-            <tr><th>الأخصائي السابق:</th><td id="tOldTherapistName">—</td></tr>
-            <tr><th>الأخصائي المحول له:</th><td id="tNewTherapistName">—</td></tr>
+            <tr><th>اسم الخدمة</th><td id="tServiceName">—</td></tr>
+            <tr><th>رقم الفاتورة</th><td id="tInvoiceNo">—</td></tr>
+            <tr><th>عدد الجلسات في البرنامج</th><td id="tTotalSessions">0</td></tr>
+            <tr><th>عدد الجلسات المستنفدة</th><td id="tUsedSessions">0</td></tr>
+            <tr><th>عدد الجلسات المتبقية للتحويل</th><td id="tRemainingSessions">0</td></tr>
+            <tr><th>سعر الخدمة المدفوعة</th><td id="tPaidAmount">0</td></tr>
+            <tr><th>طريقة الدفع</th><td id="tPaymentMethod">—</td></tr>
+            <tr><th>الأخصائي السابق</th><td id="tOldTherapistName">—</td></tr>
+            <tr><th>الأخصائي المحول له</th><td id="tNewTherapistName">—</td></tr>
           </table>
 
           <div class="footer-note">
@@ -222,12 +238,12 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
           </div>
 
           <div class="sign-row">
-            <div>الاسم / <div class="sign-line"></div></div>
-            <div>التوقيع / <div class="sign-line"></div></div>
+            <div>الاسم /<div class="sign-line"></div></div>
+            <div>التوقيع /<div class="sign-line"></div></div>
           </div>
 
           <div class="notice">
-            *ملاحظة: يتم إبلاغ الأخصائي السابق والأخصائي المحول له من قبل الاستقبال لتنسيق المواعيد.
+            * ملاحظة: يتم إبلاغ الأخصائي السابق والأخصائي المحول له من قبل الاستقبال لتنسيق المواعيد.
           </div>
         </div>
       </div>
@@ -296,6 +312,7 @@ function updateForm(){
   set("vUsedSessions", used);
   set("vRemainingSessions", remaining);
   set("vPaidAmount", paid);
+  set("vPaymentMethod", val("paymentMethod"));
   set("vSessionPrice", price);
   set("vRefundAmount", refund);
 
@@ -310,6 +327,7 @@ function updateForm(){
   set("tUsedSessions", used);
   set("tRemainingSessions", remaining);
   set("tPaidAmount", paid);
+  set("tPaymentMethod", val("paymentMethod"));
   set("tOldTherapistName", val("oldTherapistName"));
   set("tNewTherapistName", val("newTherapistName"));
 }
