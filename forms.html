@@ -14,41 +14,118 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 .topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:32px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
 .brand{display:flex;align-items:center;gap:16px}
 .logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
-.brand h1{margin:0;font-size:28px;font-weight:900}.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
+.brand h1{margin:0;font-size:28px;font-weight:900}
+.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
 .btn{border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer;font-family:Tahoma,Arial}
-.btn-white{background:white;color:var(--blue)}.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}.btn-orange{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
+.btn-white{background:white;color:var(--blue)}
+.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.btn-orange{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
 .main{width:94%;max-width:1180px;margin:28px auto}
 .intro{background:white;border:1px solid var(--line);border-radius:24px;padding:22px;text-align:center;box-shadow:0 12px 30px rgba(15,23,42,.07);margin-bottom:22px}
-.intro h2{margin:0;color:var(--blue);font-size:28px;font-weight:900}.intro p{color:var(--muted);line-height:1.8;margin:10px 0 0}
+.intro h2{margin:0;color:var(--blue);font-size:28px;font-weight:900}
+.intro p{color:var(--muted);line-height:1.8;margin:10px 0 0}
 .cards{display:grid;grid-template-columns:repeat(2,260px);gap:22px;justify-content:center;margin-top:25px}
 .card{background:white;border:1px solid var(--line);border-radius:26px;padding:28px 18px;text-align:center;box-shadow:0 16px 38px rgba(15,23,42,.09);cursor:pointer;position:relative;overflow:hidden}
 .card:before{content:"";position:absolute;top:0;right:0;width:100%;height:6px;background:linear-gradient(90deg,var(--orange),#ffd28a)}
 .icon{width:64px;height:64px;margin:0 auto 14px;border-radius:22px;background:#eef6ff;display:flex;align-items:center;justify-content:center;font-size:30px}
-.card h3{margin:0;color:var(--blue);font-size:22px;font-weight:900}.card h4{margin:7px 0;color:var(--orange);font-size:12px}.card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.card h3{margin:0;color:var(--blue);font-size:22px;font-weight:900}
+.card h4{margin:7px 0;color:var(--orange);font-size:12px}
+.card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
 .workspace{display:none;grid-template-columns:360px 1fr;gap:20px}
 .panel,.paper{background:white;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 30px rgba(15,23,42,.07)}
-.panel{padding:18px}.panel h3{margin:0 0 14px;color:var(--blue);font-size:22px;font-weight:900}
+.panel{padding:18px}
+.panel h3{margin:0 0 14px;color:var(--blue);font-size:22px;font-weight:900}
 .form-grid{display:grid;grid-template-columns:1fr;gap:11px}
 .field label{display:block;font-size:13px;font-weight:900;color:#334155;margin-bottom:6px}
 input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-family:Tahoma,Arial;font-size:14px;background:white}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
 .paper{padding:22px}
 
-.form-paper{background:white;padding:9mm 11mm;border:1px solid #cbd5e1;width:190mm;height:277mm;max-width:190mm;margin:auto;display:flex;flex-direction:column;color:#111827}
+.form-paper{
+  background:white;
+  padding:9mm 11mm;
+  border:1px solid #cbd5e1;
+  width:190mm;
+  height:277mm;
+  max-width:190mm;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  color:#111827;
+  direction:rtl;
+  unicode-bidi:plaintext;
+}
+
 .paper-head{display:flex;justify-content:space-between;align-items:center;padding-top:4px;margin-bottom:18px}
 .paper-logo{width:125px;height:82px;object-fit:contain}
-.paper-title{text-align:center;flex:1}.paper-title h2{margin:0;color:#111827;font-size:18px;font-weight:900}
+.paper-title{text-align:center;flex:1}
+.paper-title h2{margin:0;color:#111827;font-size:18px;font-weight:900}
 .form-content{flex:1;display:flex;flex-direction:column}
 .info-table{width:100%;border-collapse:collapse;margin-top:6px}
-.info-table th,.info-table td{border:1px solid #555;padding:6px 8px;font-size:12px;text-align:right;vertical-align:middle;height:26px;font-weight:700}
+
+.info-table th,
+.info-table td{
+  border:1px solid #555;
+  padding:6px 8px;
+  font-size:12px;
+  text-align:right;
+  vertical-align:middle;
+  height:26px;
+  font-weight:700;
+  direction:rtl;
+  unicode-bidi:plaintext;
+}
+
 .info-table th{width:31%;font-weight:900;background:#f8fafc}
-.value{font-weight:900}.blank{height:26px}
-.reason-title{font-size:12.5px;font-weight:900;margin:12px 0 3px}
+.value{font-weight:900}
+.blank{height:26px}
+.reason-title{font-size:12.5px;font-weight:900;margin:12px 0 3px;direction:rtl;unicode-bidi:plaintext}
 .lines{border-top:1px solid #aaa;height:18px;margin-top:5px}
-.footer-note{text-align:center;margin-top:14px;font-size:12px;color:#111827;line-height:1.9;font-weight:800}
-.sign-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:12px;font-size:12px;font-weight:900}
+
+.footer-note{
+  direction:rtl;
+  unicode-bidi:plaintext;
+  text-align:center;
+  margin-top:14px;
+  font-size:12px;
+  color:#111827;
+  line-height:1.9;
+  font-weight:800;
+}
+
+.sign-row{
+  direction:rtl;
+  unicode-bidi:plaintext;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-top:12px;
+  font-size:12px;
+  font-weight:900;
+}
+
 .sign-line{border-bottom:1px dotted #222;height:18px}
-.notice{margin-top:auto;font-size:11px;line-height:1.7;color:#b91c1c;font-weight:900;text-align:right;padding-top:8px}
+
+.notice{
+  direction:rtl;
+  unicode-bidi:plaintext;
+  margin-top:auto;
+  font-size:11px;
+  line-height:1.7;
+  color:#b91c1c;
+  font-weight:900;
+  text-align:right;
+  padding-top:8px;
+}
+
+.refund-method-note{
+  color:#92400e;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  font-weight:900;
+  text-align:center!important;
+}
+
 .hidden{display:none!important}
 
 @media print{
@@ -165,9 +242,16 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
             <tr><th>رقم الهوية الوطنية للمريض</th><td id="vNationalId">—</td></tr>
             <tr><th>رقم الملف الطبي</th><td id="vFileNo">—</td></tr>
             <tr><th>رقم جوال التواصل</th><td id="vPhone">—</td></tr>
-            <tr><th>اسم البنك المحول عن طريقه</th><td class="blank"></td></tr>
-            <tr><th>رقم الحساب البنكي</th><td class="blank"></td></tr>
-            <tr><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:10px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
+
+            <tr class="bank-row"><th>اسم البنك المحول عن طريقه</th><td class="blank"></td></tr>
+            <tr class="bank-row"><th>رقم الحساب البنكي</th><td class="blank"></td></tr>
+            <tr class="bank-row"><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:10px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
+
+            <tr id="installmentRefundRow" class="hidden">
+              <th>طريقة الاسترداد</th>
+              <td id="vInstallmentRefundText" class="refund-method-note">—</td>
+            </tr>
+
             <tr><th>تاريخ الطلب</th><td id="vDate">—</td></tr>
           </table>
 
@@ -191,13 +275,14 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
           </div>
 
           <div class="sign-row">
-            <div>الاسم /<div class="sign-line"></div></div>
-            <div>التوقيع /<div class="sign-line"></div></div>
+            <div><span>الاسم</span><span> / </span><div class="sign-line"></div></div>
+            <div><span>التوقيع</span><span> / </span><div class="sign-line"></div></div>
           </div>
 
           <div class="notice">
             * ملاحظة: تتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد التأكد من أحقية استحقاق المريض للمبلغ.<br>
-            * ملاحظة: يرجى إرفاق صورة من الآيبان البنكي للعميل.
+            * ملاحظة: في حال كان الدفع عن طريق تمارا أو تابي، يتم الاسترداد من خلال نفس الجهة ولا يلزم إدخال بيانات الحساب البنكي.<br>
+            * ملاحظة: عند الدفع بغير تمارا أو تابي، يرجى إرفاق صورة من الآيبان البنكي للعميل.
           </div>
         </div>
       </div>
@@ -238,8 +323,8 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
           </div>
 
           <div class="sign-row">
-            <div>الاسم /<div class="sign-line"></div></div>
-            <div>التوقيع /<div class="sign-line"></div></div>
+            <div><span>الاسم</span><span> / </span><div class="sign-line"></div></div>
+            <div><span>التوقيع</span><span> / </span><div class="sign-line"></div></div>
           </div>
 
           <div class="notice">
@@ -292,6 +377,22 @@ function val(id){return document.getElementById(id).value || "—"}
 function num(id){return Number(document.getElementById(id).value || 0)}
 function set(id,value){document.getElementById(id).innerText = value}
 
+function updateBankRows(method){
+  const isInstallment = method === "تمارا" || method === "تابي";
+
+  document.querySelectorAll(".bank-row").forEach(row=>{
+    row.classList.toggle("hidden", isInstallment);
+  });
+
+  installmentRefundRow.classList.toggle("hidden", !isInstallment);
+
+  if(isInstallment){
+    vInstallmentRefundText.innerText = `يتم الاسترداد من خلال ${method} حسب إجراءات الجهة ولا يلزم إدخال بيانات الحساب البنكي.`;
+  }else{
+    vInstallmentRefundText.innerText = "—";
+  }
+}
+
 function updateForm(){
   const total = num("totalSessions");
   const used = num("usedSessions");
@@ -300,6 +401,9 @@ function updateForm(){
   const remaining = Math.max(total - used, 0);
   const refund = Math.max(paid - (used * price), 0);
   const today = new Date().toLocaleDateString("ar-SA");
+  const method = val("paymentMethod");
+
+  updateBankRows(method);
 
   set("vPatientName", val("patientName"));
   set("vNationalId", val("nationalId"));
@@ -312,7 +416,7 @@ function updateForm(){
   set("vUsedSessions", used);
   set("vRemainingSessions", remaining);
   set("vPaidAmount", paid);
-  set("vPaymentMethod", val("paymentMethod"));
+  set("vPaymentMethod", method);
   set("vSessionPrice", price);
   set("vRefundAmount", refund);
 
@@ -327,7 +431,7 @@ function updateForm(){
   set("tUsedSessions", used);
   set("tRemainingSessions", remaining);
   set("tPaidAmount", paid);
-  set("tPaymentMethod", val("paymentMethod"));
+  set("tPaymentMethod", method);
   set("tOldTherapistName", val("oldTherapistName"));
   set("tNewTherapistName", val("newTherapistName"));
 }
