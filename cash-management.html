@@ -557,3 +557,178 @@ body{
         حفظ عد الصندوق
       </button>
     </div>
+        <div class="panel">
+
+      <h2>إيراد اليوم</h2>
+
+      <div class="help">
+        هذا الإيراد خاص بالموظفة نفسها فقط.
+        أي مبلغ تستلمه من موظفة أخرى يدخل ضمن المتوقع داخل الصندوق ولا يغير إيراد اليوم.
+      </div>
+
+      <input
+      class="revenue-input"
+      type="number"
+      id="todayRevenue"
+      placeholder="0"
+      oninput="calculate()">
+
+      <div class="total-line">
+        المتوقع داخل الصندوق
+        <span id="expectedTotal">0.00 ريال</span>
+      </div>
+
+      <div class="status-result ok" id="differenceBox">
+        الصندوق مطابق
+      </div>
+
+      <h2 style="margin-top:24px">عرض الصندوق</h2>
+
+      <div class="box-preview" id="boxPreview"></div>
+
+      <div class="actions">
+
+        <button
+        class="btn btn-blue"
+        onclick="requestAdminDelivery()">
+
+        تسليم للإدارة
+
+        </button>
+
+        <button
+        class="btn btn-orange"
+        onclick="toggleTransferBox()">
+
+        تسليم لموظفة
+
+        </button>
+
+        <button
+        class="btn btn-green"
+        onclick="requestChange()">
+
+        طلب فكة
+
+        </button>
+
+      </div>
+
+      <div id="transferBox"
+      class="hidden"
+      style="margin-top:14px">
+
+        <select id="transferTo"></select>
+
+        <button
+        class="btn btn-blue"
+        style="width:100%;margin-top:10px"
+        onclick="sendToEmployee()">
+
+        إرسال طلب التسليم
+
+        </button>
+
+      </div>
+
+      <div id="changeBox"
+      class="hidden"
+      style="margin-top:14px">
+
+        <div class="help">
+          أضيفي الفئات المطلوبة فقط.
+        </div>
+
+        <div id="changeRows"></div>
+
+        <button
+        class="btn btn-orange"
+        style="width:100%;margin-top:10px"
+        onclick="addChangeRow()">
+
+        إضافة فئة
+
+        </button>
+
+        <button
+        class="btn btn-blue"
+        style="width:100%;margin-top:10px"
+        onclick="sendChangeRequest()">
+
+        إرسال طلب الفكة
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>الطلبات والعمليات</h2>
+
+    <div id="cashierRequestsBox"></div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>آخر العمليات</h2>
+
+    <table class="cash-table">
+
+      <thead>
+        <tr>
+          <th>الوقت</th>
+          <th>العملية</th>
+          <th>المبلغ</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+
+      <tbody id="cashierLog"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+<section id="adminView" class="hidden">
+
+  <div class="intro">
+
+    <h2>لوحة الإدارة النقدية</h2>
+
+    <p>
+      متابعة الصناديق والخزنة واستلام الإيرادات والفكة والتوديع البنكي.
+    </p>
+
+  </div>
+
+  <div class="summary-grid admin-summary">
+
+    <div class="summary-card">
+      <h3>رصيد الخزنة الحالي</h3>
+      <span id="vaultTotal">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card green">
+      <h3>الإيرادات المستلمة اليوم</h3>
+      <span id="receivedToday">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>طلبات معلقة</h3>
+      <span id="pendingCount">0</span>
+    </div>
+
+    <div class="summary-card red">
+      <h3>حالة الإدارة</h3>
+      <span id="adminStateText">متواجد</span>
+    </div>
+
+  </div>
+  
