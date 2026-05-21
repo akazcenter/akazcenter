@@ -1,1 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة الإيرادات والعهد</title>
 
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --bg:#eef4f9;
+  --text:#0f172a;
+  --muted:#64748b;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(0,119,200,.12), transparent 25%),
+    radial-gradient(circle at bottom left, rgba(245,158,11,.12), transparent 25%),
+    linear-gradient(180deg,#f8fbff,#edf3f9);
+  min-height:100vh;
+  color:var(--text);
+}
+
+.topbar{
+  width:100%;
+  background:linear-gradient(135deg,#00467d,#0077c8);
+  padding:26px 34px;
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
+}
+
+.title h1{
+  margin:0;
+  font-size:32px;
+  font-weight:900;
+}
+
+.title p{
+  margin:8px 0 0;
+  color:#dbeafe;
+  font-size:14px;
+}
+
+.back-btn{
+  border:none;
+  background:white;
+  color:var(--blue);
+  padding:13px 22px;
+  border-radius:16px;
+  cursor:pointer;
+  font-weight:900;
+  font-size:14px;
+}
+
+.main{
+  width:92%;
+  max-width:1350px;
+  margin:40px auto;
+}
+
+.status-box{
+  background:white;
+  border-radius:26px;
+  padding:24px;
+  box-shadow:0 18px 40px rgba(15,23,42,.08);
+  margin-bottom:34px;
+  border:1px solid #e2e8f0;
+}
+
+.status-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.status-title h2{
+  margin:0;
+  color:var(--blue);
+  font-size:28px;
+}
+
+.status-title p{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.toggle-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.status-indicator{
+  padding:12px 20px;
+  border-radius:14px;
+  font-weight:900;
+  color:white;
+  background:#16a34a;
+}
+
+.status-indicator.off{
+  background:#dc2626;
+}
+
+.toggle-btn{
+  border:none;
+  cursor:pointer;
+  padding:12px 20px;
+  border-radius:14px;
+  background:var(--blue);
+  color:white;
+  font-weight:900;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+.card{
+  background:white;
+  border-radius:30px;
+  padding:28px 24px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #e2e8f0;
+  box-shadow:0 18px 38px rgba(15,23,42,.08);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg,#f59e0b,#ffd28a);
+}
+
+.icon{
+  width:74px;
+  height:74px;
+  border-radius:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  background:#eef6ff;
+  margin-bottom:18px;
+}
+
+.card h3{
+  margin:0;
+  color:var(--blue);
+  font-size:28px;
+}
+
+.card h4{
+  margin:8px 0 12px;
+  color:#f59e0b;
+  font-size:13px;
+  direction:ltr;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.8;
+  font-size:13px;
+}
+
+.pin{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+}
+
+.pin input{
+  flex:1;
+  border:none;
+  background:#f1f5f9;
+  border-radius:14px;
+  padding:14px;
+  font-size:15px;
+  outline:none;
+}
+
+.pin button{
+  border:none;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  border-radius:14px;
+  padding:0 18px;
+  cursor:pointer;
+  font-weight:900;
+}
+
+.merge-box{
+  margin-top:18px;
+  background:#f8fafc;
+  border-radius:18px;
+  padding:14px;
+  border:1px dashed #cbd5e1;
+}
+
+.merge-box select{
+  width:100%;
+  margin-top:10px;
+  border:none;
+  background:white;
+  padding:12px;
+  border-radius:12px;
+  font-size:14px;
+}
+
+.merge-note{
+  margin-top:10px;
+  color:#64748b;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.admin-box{
+  margin-top:18px;
+  padding:14px;
+  border-radius:18px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+}
+
+.admin-box strong{
+  color:#c2410c;
+}
+
+.footer{
+  text-align:center;
+  margin:60px 0 25px;
+  color:#64748b;
+  font-size:14px;
+}
+
+@media(max-width:700px){
+
+  .topbar{
+    flex-direction:column;
+    gap:20px;
+    text-align:center;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+
+  <div class="title">
+    <h1>إدارة الإيرادات والعهد</h1>
+    <p>نظام داخلي لتنظيم النقدية والتسليم والاستلام داخل المركز</p>
+  </div>
+
+  <button class="back-btn" onclick="location.href='index.html'">
+    ← الرجوع للرئيسية
+  </button>
+
+</div>
+
+<div class="main">
+
+  <div class="status-box">
+
+    <div class="status-head">
+
+      <div class="status-title">
+        <h2>حالة الإدارة</h2>
+        <p>
+          عند تفعيل "الإدارة موجودة" يتم تجهيز وتسليم الإيرادات مباشرة.
+          وفي حال عدم التواجد يتم تأجيل التسليم تلقائيًا.
+        </p>
+      </div>
+
+      <div class="toggle-area">
+
+        <div class="status-indicator" id="statusText">
+          الإدارة موجودة الآن
+        </div>
+
+        <button class="toggle-btn" onclick="toggleAdminStatus()">
+          تغيير الحالة
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="cards">
+
+    <!-- مرام -->
+
+    <div class="card">
+
+      <div class="icon">💰</div>
+
+      <h3>أ. مرام</h3>
+      <h4>Reception Cashier</h4>
+
+      <p>
+        إدارة الإيرادات اليومية والعهدة الخاصة بالكاش وتصنيف الفئات النقدية.
+      </p>
+
+      <div class="pin">
+        <input type="password" placeholder="الرمز السري">
+        <button onclick="openCashier('maram')">
+          دخول
+        </button>
+      </div>
+
+      <div class="merge-box">
+
+        <strong>دمج العهدة عند الاستئذان</strong>
+
+        <select>
+          <option>اختيار الموظفة</option>
+          <option>أ. أشواق</option>
+          <option>أ. شهد</option>
+        </select>
+
+        <div class="merge-note">
+          في حال خروج الموظفة مبكرًا يتم تحويل الإيرادات والعهدة مؤقتًا للموظفة المحددة مع توثيق الحركة.
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- اشواق -->
+
+    <div class="card">
+
+      <div class="icon">💳</div>
+
+      <h3>أ. أشواق</h3>
+      <h4>Reception Cashier</h4>
+
+      <p>
+        تسجيل النقدية اليومية وإدارة الصندوق مع متابعة التسليم والاستلام.
+      </p>
+
+      <div class="pin">
+        <input type="password" placeholder="الرمز السري">
+        <button onclick="openCashier('ashwaq')">
+          دخول
+        </button>
+      </div>
+
+      <div class="merge-box">
+
+        <strong>دمج العهدة عند الاستئذان</strong>
+
+        <select>
+          <option>اختيار الموظفة</option>
+          <option>أ. مرام</option>
+          <option>أ. شهد</option>
+        </select>
+
+        <div class="merge-note">
+          يتم احتساب النقدية تلقائيًا بعد الدمج لمنع اختلاف الصناديق أو ضياع الفئات.
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- شهد -->
+
+    <div class="card">
+
+      <div class="icon">🧾</div>
+
+      <h3>أ. شهد</h3>
+      <h4>Reception Cashier</h4>
+
+      <p>
+        تنظيم العهد اليومية وتصنيف الإيرادات النقدية والفئات المختلفة.
+      </p>
+
+      <div class="pin">
+        <input type="password" placeholder="الرمز السري">
+        <button onclick="openCashier('shahad')">
+          دخول
+        </button>
+      </div>
+
+      <div class="merge-box">
+
+        <strong>دمج العهدة عند الاستئذان</strong>
+
+        <select>
+          <option>اختيار الموظفة</option>
+          <option>أ. مرام</option>
+          <option>أ. أشواق</option>
+        </select>
+
+        <div class="merge-note">
+          يتم تسجيل وقت الدمج والموظفة المستلمة بشكل تلقائي داخل النظام.
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- الادارة -->
+
+    <div class="card">
+
+      <div class="icon">🔐</div>
+
+      <h3>الإدارة</h3>
+      <h4>Management</h4>
+
+      <p>
+        استلام الإيرادات اليومية وإدارة الخزنة الرئيسية ومتابعة الفروقات والإيداعات البنكية.
+      </p>
+
+      <div class="pin">
+        <input type="password" placeholder="رمز الإدارة">
+        <button onclick="openCashier('admin')">
+          دخول
+        </button>
+      </div>
+
+      <div class="admin-box">
+
+        <strong>مميزات الإدارة:</strong>
+
+        <ul>
+          <li>عرض إجمالي الخزنة</li>
+          <li>تتبع التسليمات</li>
+          <li>الإيداع البنكي</li>
+          <li>سجل الحركات</li>
+          <li>اقتراح التصريف المناسب</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  مركز عكاز للعلاج الطبيعي © نظام إدارة الإيرادات والعهد
+</div>
+
+<script>
+
+let adminAvailable = true;
+
+function toggleAdminStatus(){
+
+  adminAvailable = !adminAvailable;
+
+  const status = document.getElementById("statusText");
+
+  if(adminAvailable){
+
+    status.innerText = "الإدارة موجودة الآن";
+    status.classList.remove("off");
+
+  }else{
+
+    status.innerText = "التسليم مؤجل للإدارة";
+    status.classList.add("off");
+
+  }
+
+}
+
+function openCashier(type){
+
+  if(type === "admin"){
+    alert("سيتم لاحقًا فتح لوحة الإدارة الكاملة");
+  }else{
+    alert("سيتم لاحقًا فتح صندوق الموظفة");
+  }
+
+}
+
+</script>
+
+</body>
+</html>
