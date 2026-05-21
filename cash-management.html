@@ -426,3 +426,134 @@ body{
 }
 </style>
 </head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <img src="logo.png" class="logo">
+    <div>
+      <h1 id="pageTitle">إدارة النقدية</h1>
+      <p id="pageSub">Cash Management</p>
+    </div>
+  </div>
+
+  <button class="btn btn-white" onclick="location.href='index.html'">
+    الرئيسية
+  </button>
+</div>
+
+<div class="main">
+
+<section id="loginView">
+
+  <div class="intro">
+    <h2>نظام الصناديق والعهد</h2>
+    <p>إدارة الصناديق النقدية وتسليم الإيرادات والفكة والخزنة الداخلية بشكل مباشر واحترافي.</p>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>أ. مرام</h3>
+      <h4>Cash Box</h4>
+      <p>صندوق أ. مرام وإدارة الإيرادات النقدية.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_maram" placeholder="الرمز السري">
+        <button onclick="login('maram')">دخول</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>أ. أشواق</h3>
+      <h4>Cash Box</h4>
+      <p>صندوق أ. أشواق وإدارة الإيرادات النقدية.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_ashwaq" placeholder="الرمز السري">
+        <button onclick="login('ashwaq')">دخول</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>أ. شهد</h3>
+      <h4>Cash Box</h4>
+      <p>صندوق أ. شهد وإدارة الإيرادات النقدية.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_shahad" placeholder="الرمز السري">
+        <button onclick="login('shahad')">دخول</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔐</div>
+      <h3>الإدارة</h3>
+      <h4>Management</h4>
+      <p>إدارة الخزنة واستلام الإيرادات واعتماد العمليات.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_admin" placeholder="رمز الإدارة">
+        <button onclick="login('admin')">دخول</button>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="cashierView" class="hidden">
+
+  <div class="status-box status-available" id="cashierAdminStatus">
+    الإدارة موجودة لاستلام الإيراد
+  </div>
+
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <h3>إجمالي الصندوق</h3>
+      <span id="fullTotal">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card green">
+      <h3>إيراد اليوم</h3>
+      <span id="deliverAmount">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>حالة الصندوق</h3>
+      <span id="boxStatus">سليم</span>
+    </div>
+
+  </div>
+
+  <div class="sections">
+
+    <div class="panel">
+      <h2>عد الصندوق كامل</h2>
+      <div class="help">اكتبي جميع الفئات الموجودة داخل الصندوق بما فيها العهدة والإيراد والفكة.</div>
+
+      <table class="cash-table">
+        <thead>
+          <tr>
+            <th>الفئة</th>
+            <th>العدد</th>
+            <th>الإجمالي</th>
+          </tr>
+        </thead>
+        <tbody id="cashRows"></tbody>
+      </table>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+        <input type="number" step="0.01" min="0" id="otherCashValue" placeholder="فئة أخرى">
+        <input type="number" min="0" id="otherCashCount" placeholder="العدد" oninput="calculate()">
+      </div>
+
+      <div class="total-line">
+        إجمالي الصندوق بعد العد
+        <span id="cashTotal">0.00 ريال</span>
+      </div>
+
+      <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveCashierData()">
+        حفظ عد الصندوق
+      </button>
+    </div>
