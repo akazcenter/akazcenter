@@ -932,7 +932,6 @@ body{
 <script>
 
 const baseCustody = 1000;
-
 let currentUser = null;
 
 const employees = {
@@ -956,13 +955,7 @@ const denoms = [
 ];
 
 function money(n){
-  return Number(n || 0).toLocaleString(
-    "en-US",
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  ) + " ريال";
+  return Number(n || 0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}) + " ريال";
 }
 
 function now(){
@@ -970,43 +963,25 @@ function now(){
 }
 
 function loadState(){
-
-  return JSON.parse(
-    localStorage.getItem("akazCashSystem")
-    ||
-    JSON.stringify({
-
-      adminStatus:"available",
-
-      vault:0,
-
-      boxes:{
-        maram:{revenue:0,status:"سليم"},
-        ashwaq:{revenue:0,status:"سليم"},
-        shahad:{revenue:0,status:"سليم"}
-      },
-
-      requests:[],
-
-      logs:[]
-
-    })
-  );
+  return JSON.parse(localStorage.getItem("akazCashSystem") || JSON.stringify({
+    adminStatus:"available",
+    vault:0,
+    boxes:{
+      maram:{revenue:0,status:"سليم",smallCash:"جيدة"},
+      ashwaq:{revenue:0,status:"سليم",smallCash:"جيدة"},
+      shahad:{revenue:0,status:"سليم",smallCash:"جيدة"}
+    },
+    requests:[],
+    logs:[]
+  }));
 }
 
 function saveState(state){
-  localStorage.setItem(
-    "akazCashSystem",
-    JSON.stringify(state)
-  );
+  localStorage.setItem("akazCashSystem", JSON.stringify(state));
 }
 
 function login(type){
-
-  const pin =
-  document.getElementById(
-    "pin_"+type
-  ).value.trim();
+  const pin = document.getElementById("pin_"+type).value.trim();
 
   if(pin !== employees[type].pin){
     alert("الرمز غير صحيح");
@@ -1014,141 +989,90 @@ function login(type){
   }
 
   currentUser = type;
-
   loginView.classList.add("hidden");
 
   if(type === "admin"){
-
     adminView.classList.remove("hidden");
-
     renderAdmin();
-
   }else{
-
     cashierView.classList.remove("hidden");
-
     renderCashier();
-
   }
-}
-
-function renderCashier(){
-
-  buildRows();
-
-  const state = loadState();
-
-  const adminStatus =
-  state.adminStatus;
-
-  if(adminStatus === "available"){
-
-    cashierAdminStatus.className =
-    "status-box status-available";
-
-    cashierAdminStatus.innerText =
-    "الإدارة موجودة لاستلام الإيراد";
-
-  }
-
-  if(adminStatus === "unavailable"){
-
-    cashierAdminStatus.className =
-    "status-box status-unavailable";
-
-    cashierAdminStatus.innerText =
-    "الإدارة غير موجودة حالياً";
-
-  }
-
-  if(adminStatus === "tomorrow"){
-
-    cashierAdminStatus.className =
-    "status-box status-delay";
-
-    cashierAdminStatus.innerText =
-    "تم تأجيل التسليم إلى الغد";
-
-  }
-
-  todayRevenue.value =
-  state.boxes[currentUser].revenue || 0;
-
-  calculate();
-
-  renderCashierLog();
 }
 
 function buildRows(){
-
   cashRows.innerHTML = "";
-
-  denoms.forEach((d,i)=>{
-
-    cashRows.innerHTML += `
-      <tr>
-        <td>${d.label}</td>
-
-        <td>
-          <input
-          type="number"
-          min="0"
-          value="0"
-          id="denom_${i}"
-          oninput="calculate()">
-        </td>
-
-        <td id="total_${i}">
-          0.00 ريال
-        </td>
-      </tr>
-    `;
-  });
-
   vaultRows.innerHTML = "";
 
   denoms.forEach((d,i)=>{
+    cashRows.innerHTML += `
+      <tr>
+        <td>${d.label}</td>
+        <td><input type="number" min="0" value="0" id="denom_${i}" oninput="calculate()"></td>
+        <td id="total_${i}">0.00 ريال</td>
+      </tr>
+    `;
 
     vaultRows.innerHTML += `
       <tr>
         <td>${d.label}</td>
-
-        <td>
-          <input
-          type="number"
-          min="0"
-          value="0"
-          id="vault_${i}"
-          oninput="calculateVault()">
-        </td>
-
-        <td id="vault_total_${i}">
-          0.00 ريال
-        </td>
+        <td><input type="number" min="0" value="0" id="vault_${i}" oninput="calculateVault()"></td>
+        <td id="vault_total_${i}">0.00 ريال</td>
       </tr>
     `;
   });
 }
 
+function renderCashier(){
+  buildRows();
+
+  const state = loadState();
+  const adminStatus = state.adminStatus;
+
+  if(adminStatus === "available"){
+    cashierAdminStatus.className = "status-box status-available";
+    cashierAdminStatus.innerText = "الإدارة موجودة لاستلام الإيراد";
+  }
+
+  if(adminStatus === "unavailable"){
+    cashierAdminStatus.className = "status-box status-unavailable";
+    cashierAdminStatus.innerText = "الإدارة غير موجودة حالياً";
+  }
+
+  if(adminStatus === "tomorrow"){
+    cashierAdminStatus.className = "status-box status-delay";
+    cashierAdminStatus.innerText = "تم تأجيل التسليم إلى الغد";
+  }
+
+  todayRevenue.value = state.boxes[currentUser].revenue || 0;
+
+  renderTransferOptions();
+  calculate();
+  renderCashierRequests();
+  renderCashierLog();
+}
+
+function renderTransferOptions(){
+  transferTo.innerHTML = "";
+
+  Object.keys(employees).forEach(k=>{
+    if(k !== "admin" && k !== currentUser){
+      transferTo.innerHTML += `<option value="${k}">${employees[k].name}</option>`;
+    }
+  });
+}
+
 function calculate(){
-
   let total = 0;
-
+  let smallCash = 0;
   let preview = [];
 
-  let smallCash = 0;
-
   denoms.forEach((d,i)=>{
+    const input = document.getElementById("denom_"+i);
+    if(!input) return;
 
-    const count =
-    Number(
-      document.getElementById(
-        "denom_"+i
-      ).value || 0
-    );
-
-    const rowTotal =
-    count * d.value;
+    const count = Number(input.value || 0);
+    const rowTotal = count * d.value;
 
     total += rowTotal;
 
@@ -1156,199 +1080,104 @@ function calculate(){
       smallCash += rowTotal;
     }
 
-    document.getElementById(
-      "total_"+i
-    ).innerText =
-    money(rowTotal);
+    document.getElementById("total_"+i).innerText = money(rowTotal);
 
     if(count > 0){
-
-      preview.push({
-        label:d.label,
-        count,
-        total:rowTotal
-      });
+      preview.push({label:d.label,count,total:rowTotal});
     }
-
   });
 
-  const revenue =
-  Number(
-    todayRevenue.value || 0
-  );
+  const revenue = Number(todayRevenue.value || 0);
+  const expected = baseCustody + revenue;
+  const diff = total - expected;
 
-  const expected =
-  baseCustody + revenue;
-
-  const diff =
-  total - expected;
-
-  fullTotal.innerText =
-  money(total);
-
-  cashTotal.innerText =
-  money(total);
-
-  deliverAmount.innerText =
-  money(revenue);
-
-  expectedTotal.innerText =
-  money(expected);
+  fullTotal.innerText = money(total);
+  cashTotal.innerText = money(total);
+  deliverAmount.innerText = money(revenue);
+  expectedTotal.innerText = money(expected);
 
   if(diff === 0){
-
     boxStatus.innerText = "سليم";
-
-    differenceBox.className =
-    "status-result ok";
-
-    differenceBox.innerText =
-    "الصندوق مطابق";
-
+    differenceBox.className = "status-result ok";
+    differenceBox.innerText = "الصندوق مطابق";
   }else if(diff > 0){
-
-    boxStatus.innerText =
-    "زيادة " + money(diff);
-
-    differenceBox.className =
-    "status-result more";
-
-    differenceBox.innerText =
-    "يوجد زيادة بالصندوق";
-
+    boxStatus.innerText = "زيادة " + money(diff);
+    differenceBox.className = "status-result more";
+    differenceBox.innerText = "يوجد زيادة بالصندوق " + money(diff);
   }else{
-
-    boxStatus.innerText =
-    "نقص " + money(Math.abs(diff));
-
-    differenceBox.className =
-    "status-result bad";
-
-    differenceBox.innerText =
-    "يوجد نقص بالصندوق";
-
+    boxStatus.innerText = "نقص " + money(Math.abs(diff));
+    differenceBox.className = "status-result bad";
+    differenceBox.innerText = "يوجد نقص بالصندوق " + money(Math.abs(diff));
   }
 
   if(smallCash < 200){
-
-    smallCashStatus.innerText =
-    "الصرف منخفض";
-
-    smallCashStatus.style.color =
-    "#dc2626";
-
+    smallCashStatus.innerText = "الصرف منخفض";
+    smallCashStatus.style.color = "#dc2626";
   }else{
-
-    smallCashStatus.innerText =
-    "جيدة";
-
-    smallCashStatus.style.color =
-    "#16a34a";
+    smallCashStatus.innerText = "جيدة";
+    smallCashStatus.style.color = "#16a34a";
   }
 
   boxPreview.innerHTML = "";
 
-  preview.forEach(p=>{
-
-    boxPreview.innerHTML += `
-      <div class="preview-item">
-        ${p.label} × ${p.count}
-        <strong>
-          ${money(p.total)}
-        </strong>
-      </div>
-    `;
-  });
-
+  if(preview.length === 0){
+    boxPreview.innerHTML = `<div class="preview-item">لا توجد فئات مدخلة<strong>0</strong></div>`;
+  }else{
+    preview.forEach(p=>{
+      boxPreview.innerHTML += `
+        <div class="preview-item">
+          ${p.label} × ${p.count}
+          <strong>${money(p.total)}</strong>
+        </div>
+      `;
+    });
+  }
 }
 
 function calculateVault(){
-
   let total = 0;
 
   denoms.forEach((d,i)=>{
+    const input = document.getElementById("vault_"+i);
+    if(!input) return;
 
-    const count =
-    Number(
-      document.getElementById(
-        "vault_"+i
-      ).value || 0
-    );
-
-    const rowTotal =
-    count * d.value;
+    const count = Number(input.value || 0);
+    const rowTotal = count * d.value;
 
     total += rowTotal;
 
-    document.getElementById(
-      "vault_total_"+i
-    ).innerText =
-    money(rowTotal);
-
+    document.getElementById("vault_total_"+i).innerText = money(rowTotal);
   });
 
-  vaultCountTotal.innerText =
-  money(total);
+  vaultCountTotal.innerText = money(total);
 }
 
 function saveCashierData(){
-
   const state = loadState();
 
-  state.boxes[currentUser].revenue =
-  Number(todayRevenue.value || 0);
-
-  state.boxes[currentUser].status =
-  boxStatus.innerText;
+  state.boxes[currentUser].revenue = Number(todayRevenue.value || 0);
+  state.boxes[currentUser].status = boxStatus.innerText;
+  state.boxes[currentUser].smallCash = smallCashStatus.innerText;
 
   state.logs.unshift({
-
+    id:Date.now(),
     time:now(),
-
     type:"حفظ صندوق",
-
     user:employees[currentUser].name,
-
     amount:Number(todayRevenue.value || 0),
-
     status:"معتمد"
-
   });
 
   saveState(state);
-
   renderCashierLog();
 
   alert("تم حفظ الصندوق");
 }
 
-function renderCashierLog(){
-
-  const state = loadState();
-
-  cashierLog.innerHTML = "";
-
-  state.logs
-  .filter(l=>l.user === employees[currentUser].name)
-  .slice(0,10)
-  .forEach(log=>{
-
-    cashierLog.innerHTML += `
-      <tr>
-        <td>${log.time}</td>
-        <td>${log.type}</td>
-        <td>${money(log.amount)}</td>
-        <td>${log.status}</td>
-      </tr>
-    `;
-  });
-
-}
-
 function requestAdminDelivery(){
+  saveCashierData();
 
-  const amount =
-  Number(todayRevenue.value || 0);
+  const amount = Number(todayRevenue.value || 0);
 
   if(amount <= 0){
     alert("لا يوجد مبلغ للتسليم");
@@ -1358,22 +1187,19 @@ function requestAdminDelivery(){
   const state = loadState();
 
   state.requests.unshift({
-
     id:Date.now(),
-
     type:"admin",
-
     from:currentUser,
-
     amount,
-
-    status:"معلق"
-
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
   });
 
   saveState(state);
 
-  alert("تم إرسال الطلب للإدارة");
+  alert("تم إرسال طلب التسليم للإدارة");
+  renderCashierRequests();
 }
 
 function toggleTransferBox(){
@@ -1381,313 +1207,512 @@ function toggleTransferBox(){
 }
 
 function sendToEmployee(){
+  saveCashierData();
 
-  const amount =
-  Number(todayRevenue.value || 0);
-
-  const to =
-  transferTo.value;
+  const amount = Number(todayRevenue.value || 0);
+  const to = transferTo.value;
 
   if(amount <= 0){
-    alert("لا يوجد مبلغ");
+    alert("لا يوجد مبلغ للتسليم");
     return;
   }
 
   const state = loadState();
 
   state.requests.unshift({
-
     id:Date.now(),
-
     type:"employee",
-
     from:currentUser,
-
     to,
-
     amount,
-
-    status:"معلق"
-
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
   });
 
   saveState(state);
 
-  alert("تم إرسال الطلب");
+  alert("تم إرسال طلب التسليم إلى " + employees[to].name);
+  renderCashierRequests();
 }
 
 function requestChange(){
   changeBox.classList.toggle("hidden");
 }
 
-function sendChangeRequest(){
+function getChangeSuggestion(amount){
+  const state = loadState();
+  const vault = Number(state.vault || 0);
 
-  const amount =
-  Number(changeAmount.value || 0);
+  if(vault <= 0){
+    return "لا يوجد رصيد مسجل في خزنة الإدارة حالياً";
+  }
+
+  if(amount >= 500){
+    return "اقتراح: 5 × 100 أو 2 × 200 + 1 × 100 حسب المتوفر";
+  }
+
+  if(amount >= 300){
+    return "اقتراح: 2 × 100 + 2 × 50 أو 10 × 20 + 10 × 10";
+  }
+
+  if(amount >= 100){
+    return "اقتراح: 5 × 20 أو 5 × 10 + 10 × 5";
+  }
+
+  return "اقتراح: فئات صغيرة 10 و5 و1 ريال حسب توفر الخزنة";
+}
+
+function sendChangeRequest(){
+  const amount = Number(changeAmount.value || 0);
 
   if(amount <= 0){
-    alert("اكتب المبلغ");
+    alert("اكتب مبلغ الفكة المطلوب");
     return;
   }
 
   const state = loadState();
-
-  let suggestion = "";
-
-  if(amount >= 500){
-
-    suggestion =
-    "يفضل تجهيز 5 × 100";
-
-  }else if(amount >= 200){
-
-    suggestion =
-    "يفضل تجهيز 2 × 50 و 10 × 10";
-
-  }else{
-
-    suggestion =
-    "يفضل تجهيز فئات صغيرة";
-  }
+  const suggestion = getChangeSuggestion(amount);
 
   state.requests.unshift({
-
     id:Date.now(),
-
     type:"change",
-
     from:currentUser,
-
     amount,
-
     suggestion,
-
-    status:"معلق"
-
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
   });
 
   saveState(state);
 
-  alert("تم إرسال طلب الفكة");
+  alert("تم إرسال طلب الفكة للإدارة");
+  changeAmount.value = "";
+  renderCashierRequests();
+}
+
+function renderCashierRequests(){
+  const state = loadState();
+
+  let html = "";
+
+  const ownPending = state.requests.filter(r =>
+    r.createdBy === currentUser &&
+    r.status === "معلق"
+  );
+
+  const incoming = state.requests.filter(r =>
+    r.type === "employee" &&
+    r.to === currentUser &&
+    r.status === "معلق"
+  );
+
+  if(ownPending.length > 0){
+    html += `<h2 style="margin-top:22px">طلباتك المعلقة</h2>`;
+
+    ownPending.forEach(r=>{
+      html += `
+        <div class="status-result more">
+          ${requestTitle(r)} - ${money(r.amount)}
+          <br>
+          <button class="btn btn-red" style="margin-top:10px" onclick="cancelOwnRequest(${r.id})">
+            إلغاء الطلب
+          </button>
+        </div>
+      `;
+    });
+  }
+
+  if(incoming.length > 0){
+    html += `<h2 style="margin-top:22px">طلبات استلام واردة</h2>`;
+
+    incoming.forEach(r=>{
+      html += `
+        <div class="status-result ok">
+          ${employees[r.from].name} سلمتك ${money(r.amount)}
+          <br>
+          <button class="btn btn-green" style="margin-top:10px" onclick="acceptEmployeeTransfer(${r.id})">
+            تم الاستلام
+          </button>
+        </div>
+      `;
+    });
+  }
+
+  if(!html){
+    html = `<div class="help" style="margin-top:18px">لا توجد طلبات معلقة</div>`;
+  }
+
+  const old = document.getElementById("cashierRequestsBox");
+  if(old) old.remove();
+
+  const box = document.createElement("div");
+  box.id = "cashierRequestsBox";
+  box.innerHTML = html;
+
+  document.querySelector("#cashierView .sections .panel:last-child").appendChild(box);
+}
+
+function requestTitle(r){
+  if(r.type === "admin") return "طلب تسليم للإدارة";
+  if(r.type === "employee") return "طلب تسليم لموظفة";
+  if(r.type === "change") return "طلب فكة";
+  return "طلب";
+}
+
+function cancelOwnRequest(id){
+  const state = loadState();
+  const request = state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  if(request.status !== "معلق"){
+    alert("لا يمكن إلغاء طلب تم اعتماده");
+    return;
+  }
+
+  request.status = "ملغي";
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    type:"إلغاء طلب قبل الاعتماد",
+    user:employees[currentUser].name,
+    amount:request.amount,
+    status:"ملغي"
+  });
+
+  saveState(state);
+
+  alert("تم إلغاء الطلب");
+  renderCashierRequests();
+  renderCashierLog();
+}
+
+function acceptEmployeeTransfer(id){
+  const state = loadState();
+  const request = state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "معتمد";
+
+  state.boxes[request.to].revenue =
+    Number(state.boxes[request.to].revenue || 0) + Number(request.amount || 0);
+
+  state.boxes[request.from].revenue = 0;
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    type:"استلام من موظفة",
+    user:employees[request.to].name,
+    amount:request.amount,
+    status:"معتمد",
+    from:request.from,
+    to:request.to,
+    reversible:true
+  });
+
+  saveState(state);
+
+  alert("تم الاستلام وترحيل الإيراد لصندوقك");
+  renderCashier();
+}
+
+function renderCashierLog(){
+  const state = loadState();
+
+  cashierLog.innerHTML = "";
+
+  const rows = state.logs
+    .filter(l=>l.user === employees[currentUser].name)
+    .slice(0,10);
+
+  if(rows.length === 0){
+    cashierLog.innerHTML = `<tr><td colspan="4">لا يوجد سجل</td></tr>`;
+    return;
+  }
+
+  rows.forEach(log=>{
+    cashierLog.innerHTML += `
+      <tr>
+        <td>${log.time}</td>
+        <td>${log.type}</td>
+        <td>${money(log.amount)}</td>
+        <td>${log.status}</td>
+      </tr>
+    `;
+  });
 }
 
 function renderAdmin(){
-
   const state = loadState();
 
-  vaultTotal.innerText =
-  money(state.vault);
-
-  adminStateText.innerText =
-  state.adminStatus;
+  vaultTotal.innerText = money(state.vault);
+  adminStateText.innerText = adminStatusText(state.adminStatus);
 
   pendingCount.innerText =
-  state.requests.filter(
-    r=>r.status === "معلق"
-  ).length;
+    state.requests.filter(r=>r.status === "معلق").length;
 
   let todayReceived = 0;
 
   state.logs.forEach(l=>{
-
     if(l.type === "استلام إدارة"){
-      todayReceived += l.amount;
+      todayReceived += Number(l.amount || 0);
     }
-
   });
 
-  receivedToday.innerText =
-  money(todayReceived);
+  receivedToday.innerText = money(todayReceived);
 
   boxesTable.innerHTML = "";
 
   Object.keys(state.boxes).forEach(k=>{
-
-    const box =
-    state.boxes[k];
+    const box = state.boxes[k];
 
     boxesTable.innerHTML += `
       <tr>
         <td>${employees[k].name}</td>
         <td>${money(box.revenue)}</td>
-        <td>${box.status}</td>
-        <td>
-          ${box.revenue < 200 ? "ضعيفة" : "جيدة"}
-        </td>
+        <td>${box.status || "سليم"}</td>
+        <td>${box.smallCash || "جيدة"}</td>
       </tr>
     `;
   });
 
   adminRequests.innerHTML = "";
 
-  state.requests
-  .filter(r=>r.status === "معلق")
-  .forEach(r=>{
+  const pending = state.requests.filter(r=>r.status === "معلق");
 
-    let title = "";
+  if(pending.length === 0){
+    adminRequests.innerHTML = `<div class="help">لا توجد طلبات معلقة</div>`;
+  }
 
-    if(r.type === "admin"){
-      title = "طلب تسليم للإدارة";
-    }
-
-    if(r.type === "employee"){
-      title = "تسليم لموظفة";
-    }
-
-    if(r.type === "change"){
-      title = "طلب فكة";
-    }
-
+  pending.forEach(r=>{
     adminRequests.innerHTML += `
-
       <div class="panel" style="margin-top:12px">
+        <strong>${requestTitle(r)}</strong>
 
-        <strong>${title}</strong>
+        <div style="margin-top:10px">من: ${employees[r.from].name}</div>
 
-        <div style="margin-top:10px">
+        ${r.to ? `<div style="margin-top:6px">إلى: ${employees[r.to].name}</div>` : ""}
 
-          من:
-          ${employees[r.from].name}
+        <div style="margin-top:6px">المبلغ: ${money(r.amount)}</div>
 
-        </div>
-
-        <div style="margin-top:6px">
-
-          المبلغ:
-          ${money(r.amount)}
-
-        </div>
-
-        ${
-          r.suggestion
-          ?
-          `<div style="margin-top:6px;color:#92400e">
-            اقتراح:
-            ${r.suggestion}
-          </div>`
-          :
-          ""
-        }
+        ${r.suggestion ? `<div style="margin-top:6px;color:#92400e">اقتراح: ${r.suggestion}</div>` : ""}
 
         <div class="actions">
-
-          <button
-          class="btn btn-green"
-          onclick="approveRequest(${r.id})">
-
-          اعتماد
-
-          </button>
-
-          <button
-          class="btn btn-red"
-          onclick="cancelRequest(${r.id})">
-
-          إلغاء
-
-          </button>
-
+          <button class="btn btn-green" onclick="approveRequest(${r.id})">اعتماد</button>
+          <button class="btn btn-red" onclick="cancelRequest(${r.id})">إلغاء</button>
         </div>
-
       </div>
     `;
   });
 
+  renderAdminLog();
 }
 
 function approveRequest(id){
-
   const state = loadState();
-
-  const request =
-  state.requests.find(r=>r.id == id);
+  const request = state.requests.find(r=>r.id == id);
 
   if(!request) return;
 
   request.status = "معتمد";
 
   if(request.type === "admin"){
-
-    state.vault += request.amount;
-
-    state.boxes[
-      request.from
-    ].revenue = 0;
+    state.vault += Number(request.amount || 0);
+    state.boxes[request.from].revenue = 0;
 
     state.logs.unshift({
-
+      id:Date.now(),
       time:now(),
-
       type:"استلام إدارة",
-
-      user:employees[
-        request.from
-      ].name,
-
+      user:employees[request.from].name,
       amount:request.amount,
-
-      status:"معتمد"
-
+      status:"معتمد",
+      from:request.from,
+      reversible:true
     });
-
   }
 
   if(request.type === "employee"){
+    state.boxes[request.to].revenue =
+      Number(state.boxes[request.to].revenue || 0) + Number(request.amount || 0);
 
-    state.boxes[
-      request.to
-    ].revenue += request.amount;
+    state.boxes[request.from].revenue = 0;
 
-    state.boxes[
-      request.from
-    ].revenue = 0;
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      type:"تسليم بين الموظفات",
+      user:employees[request.from].name,
+      amount:request.amount,
+      status:"معتمد",
+      from:request.from,
+      to:request.to,
+      reversible:true
+    });
+  }
 
+  if(request.type === "change"){
+    if(state.vault < request.amount){
+      alert("رصيد الخزنة غير كاف لاعتماد الفكة");
+      request.status = "معلق";
+      saveState(state);
+      return;
+    }
+
+    state.vault -= Number(request.amount || 0);
+
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      type:"اعتماد طلب فكة",
+      user:employees[request.from].name,
+      amount:request.amount,
+      status:"معتمد",
+      from:"admin",
+      to:request.from,
+      reversible:true
+    });
   }
 
   saveState(state);
-
   renderAdmin();
 }
 
 function cancelRequest(id){
-
   const state = loadState();
-
-  const request =
-  state.requests.find(r=>r.id == id);
+  const request = state.requests.find(r=>r.id == id);
 
   if(!request) return;
 
   request.status = "ملغي";
 
   state.logs.unshift({
-
+    id:Date.now(),
     time:now(),
-
-    type:"إلغاء عملية",
-
+    type:"إلغاء طلب بواسطة الإدارة",
     user:"الإدارة",
-
     amount:request.amount,
-
     status:"ملغي"
-
   });
 
   saveState(state);
+  renderAdmin();
+}
 
+function renderAdminLog(){
+  const state = loadState();
+
+  let html = `
+    <div class="panel" style="margin-top:18px">
+      <h2>السجل الكامل</h2>
+      <table class="cash-table">
+        <thead>
+          <tr>
+            <th>الوقت</th>
+            <th>العملية</th>
+            <th>المبلغ</th>
+            <th>الحالة</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  if(state.logs.length === 0){
+    html += `<tr><td colspan="4">لا يوجد سجل</td></tr>`;
+  }
+
+  state.logs.forEach(l=>{
+    html += `
+      <tr>
+        <td>${l.time}</td>
+        <td>${l.type}<br>${l.user}</td>
+        <td>${money(l.amount)}</td>
+        <td>
+          ${l.status}
+          ${l.reversible && l.status === "معتمد" ? `<br><button class="btn btn-red" onclick="reverseOperation(${l.id})">إلغاء العملية</button>` : ""}
+        </td>
+      </tr>
+    `;
+  });
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  const old = document.getElementById("adminLogBox");
+  if(old) old.remove();
+
+  const div = document.createElement("div");
+  div.id = "adminLogBox";
+  div.innerHTML = html;
+
+  adminView.appendChild(div);
+}
+
+function reverseOperation(logId){
+  const state = loadState();
+  const log = state.logs.find(l=>l.id == logId);
+
+  if(!log || log.status !== "معتمد"){
+    alert("لا يمكن إلغاء هذه العملية");
+    return;
+  }
+
+  if(!confirm("تأكيد إلغاء العملية؟")) return;
+
+  if(log.type === "استلام إدارة"){
+    if(state.vault < log.amount){
+      alert("لا يمكن الإلغاء لأن رصيد الخزنة أقل من مبلغ العملية");
+      return;
+    }
+
+    state.vault -= Number(log.amount || 0);
+    state.boxes[log.from].revenue += Number(log.amount || 0);
+  }
+
+  if(log.type === "تسليم بين الموظفات" || log.type === "استلام من موظفة"){
+    state.boxes[log.to].revenue -= Number(log.amount || 0);
+    state.boxes[log.from].revenue += Number(log.amount || 0);
+  }
+
+  if(log.type === "اعتماد طلب فكة"){
+    state.vault += Number(log.amount || 0);
+  }
+
+  log.status = "ملغي";
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    type:"إلغاء عملية معتمدة",
+    user:"الإدارة",
+    amount:log.amount,
+    status:"ملغي"
+  });
+
+  saveState(state);
   renderAdmin();
 }
 
 function setAdminStatus(status){
-
   const state = loadState();
-
   state.adminStatus = status;
-
   saveState(state);
-
   renderAdmin();
+}
+
+function adminStatusText(status){
+  if(status === "available") return "متواجد";
+  if(status === "unavailable") return "غير موجود";
+  if(status === "tomorrow") return "مؤجل للغد";
+  return status;
 }
 
 buildRows();
