@@ -1183,4 +1183,802 @@ function calculate(){
     `;
   });
 }
-  
+  function calculateVault(){
+
+  let total = 0;
+
+  denoms.forEach((d,i)=>{
+
+    const input =
+    document.getElementById("vault_"+i);
+
+    if(!input) return;
+
+    const count =
+    Number(input.value || 0);
+
+    const rowTotal =
+    count * d.value;
+
+    total += rowTotal;
+
+    document.getElementById(
+      "vault_total_"+i
+    ).innerText = money(rowTotal);
+  });
+
+  const otherValue =
+  Number(otherVaultValue.value || 0);
+
+  const otherCount =
+  Number(otherVaultCount.value || 0);
+
+  if(otherValue > 0 && otherCount > 0){
+
+    total += (otherValue * otherCount);
+  }
+
+  vaultCountTotal.innerText =
+  money(total);
+}
+
+function saveCashierData(){
+
+  const state = loadState();
+
+  state.boxes[currentUser].revenue =
+  Number(todayRevenue.value || 0);
+
+  state.boxes[currentUser].total =
+  parseMoney(fullTotal.innerText);
+
+  state.boxes[currentUser].status =
+  boxStatus.innerText;
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"حفظ عد الصندوق",
+    user:employees[currentUser].name,
+    amount:Number(todayRevenue.value || 0),
+    status:"معتمد"
+  });
+
+  saveState(state);
+
+  renderCashierLog();
+
+  alert("تم حفظ عد الصندوق");
+}
+
+function requestAdminDelivery(){
+
+  saveCashierData();
+
+  const state = loadState();
+
+  const ownRevenue =
+  Number(state.boxes[currentUser].revenue || 0);
+
+  const received =
+  Number(state.boxes[currentUser].received || 0);
+
+  const amount =
+  ownRevenue + received;
+
+  if(amount <= 0){
+
+    alert("لا يوجد مبلغ للتسليم");
+    return;
+  }
+
+  state.requests.unshift({
+
+    id:Date.now(),
+
+    type:"admin",
+
+    from:currentUser,
+
+    amount,
+
+    status:"معلق",
+
+    createdBy:currentUser,
+
+    time:now()
+  });
+
+  saveState(state);
+
+  alert("تم إرسال طلب التسليم للإدارة");
+
+  renderCashierRequests();
+}
+
+function toggleTransferBox(){
+
+  transferBox.classList.toggle("hidden");
+}
+
+function sendToEmployee(){
+
+  saveCashierData();
+
+  const state = loadState();
+
+  const ownRevenue =
+  Number(state.boxes[currentUser].revenue || 0);
+
+  const received =
+  Number(state.boxes[currentUser].received || 0);
+
+  const amount =
+  ownRevenue + received;
+
+  if(amount <= 0){
+
+    alert("لا يوجد مبلغ للتسليم");
+    return;
+  }
+
+  const to = transferTo.value;
+
+  state.requests.unshift({
+
+    id:Date.now(),
+
+    type:"employee",
+
+    from:currentUser,
+
+    to,
+
+    amount,
+
+    status:"معلق",
+
+    createdBy:currentUser,
+
+    time:now()
+  });
+
+  saveState(state);
+
+  alert("تم إرسال الطلب");
+
+  renderCashierRequests();
+}
+
+function requestChange(){
+
+  changeBox.classList.toggle("hidden");
+}
+
+function addChangeRow(){
+
+  changeRows.innerHTML += `
+
+    <div style="display:grid;
+    grid-template-columns:1fr 1fr auto;
+    gap:10px;
+    margin-top:10px">
+
+      <select class="changeDenom">
+
+        ${denoms.map(d=>
+          `<option value="${d.value}">
+            ${d.label}
+          </option>`
+        ).join("")}
+
+      </select>
+
+      <input
+      type="number"
+      min="1"
+      value="1"
+      class="changeCount">
+
+      <button
+      class="btn btn-red"
+      onclick="this.parentElement.remove()">
+
+      حذف
+
+      </button>
+
+    </div>
+  `;
+}
+
+function sendChangeRequest(){
+
+  const rows =
+  document.querySelectorAll("#changeRows > div");
+
+  if(rows.length === 0){
+
+    alert("أضيفي فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let total = 0;
+
+  rows.forEach(r=>{
+
+    const value =
+    Number(r.querySelector(".changeDenom").value);
+
+    const count =
+    Number(r.querySelector(".changeCount").value);
+
+    total += value * count;
+
+    const denom =
+    denoms.find(d=>d.value == value);
+
+    details.push({
+      label:denom.label,
+      value,
+      count
+    });
+  });
+
+  const state = loadState();
+
+  state.requests.unshift({
+
+    id:Date.now(),
+
+    type:"change",
+
+    from:currentUser,
+
+    amount:total,
+
+    details,
+
+    status:"معلق",
+
+    createdBy:currentUser,
+
+    time:now()
+  });
+
+  saveState(state);
+
+  changeRows.innerHTML = "";
+
+  alert("تم إرسال طلب الفكة");
+
+  renderCashierRequests();
+}
+
+function renderCashierRequests(){
+
+  const state = loadState();
+
+  let html = "";
+
+  const requests =
+  state.requests.filter(r=>
+
+    (
+      r.createdBy === currentUser
+      ||
+      (r.type === "employee" && r.to === currentUser)
+    )
+
+    &&
+
+    r.status === "معلق"
+  );
+
+  if(requests.length === 0){
+
+    cashierRequestsBox.innerHTML = `
+      <div class="help">
+        لا توجد طلبات معلقة
+      </div>
+    `;
+
+    return;
+  }
+
+  requests.forEach(r=>{
+
+    html += `
+      <div class="status-result more">
+
+        ${requestTitle(r)}
+        <br>
+        ${money(r.amount)}
+    `;
+
+    if(r.type === "change"){
+
+      html += `
+        <button
+        class="btn btn-orange"
+        style="margin-top:10px"
+        onclick="toggleChangeDetails(${r.id})">
+
+        عرض التفاصيل
+
+        </button>
+
+        <div
+        id="change_${r.id}"
+        class="hidden"
+        style="margin-top:12px">
+      `;
+
+      r.details.forEach(d=>{
+
+        html += `
+          <div style="margin-bottom:6px">
+            ${d.label} × ${d.count}
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+    }
+
+    if(r.type === "employee" && r.to === currentUser){
+
+      html += `
+
+        <br>
+
+        <button
+        class="btn btn-green"
+        style="margin-top:10px"
+        onclick="acceptEmployeeTransfer(${r.id})">
+
+        تم الاستلام
+
+        </button>
+      `;
+    }
+
+    html += `
+
+      <button
+      class="btn btn-red"
+      style="margin-top:10px"
+      onclick="cancelOwnRequest(${r.id})">
+
+      إلغاء
+
+      </button>
+
+      </div>
+    `;
+  });
+
+  cashierRequestsBox.innerHTML = html;
+}
+
+function toggleChangeDetails(id){
+
+  document
+  .getElementById("change_"+id)
+  .classList.toggle("hidden");
+}
+
+function requestTitle(r){
+
+  if(r.type === "admin"){
+    return "طلب تسليم للإدارة";
+  }
+
+  if(r.type === "employee"){
+    return "طلب تسليم لموظفة";
+  }
+
+  if(r.type === "change"){
+    return "طلب فكة";
+  }
+
+  return "طلب";
+}
+
+function cancelOwnRequest(id){
+
+  const state = loadState();
+
+  const request =
+  state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "ملغي";
+
+  saveState(state);
+
+  renderCashierRequests();
+  renderAdmin();
+}
+
+function acceptEmployeeTransfer(id){
+
+  const state = loadState();
+
+  const request =
+  state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "معتمد";
+
+  state.boxes[request.to].received +=
+  Number(request.amount || 0);
+
+  saveState(state);
+
+  renderCashier();
+}
+
+function renderCashierLog(){
+
+  const state = loadState();
+
+  cashierLog.innerHTML = "";
+
+  const rows =
+  state.logs
+  .filter(l=>l.user === employees[currentUser].name)
+  .slice(0,10);
+
+  if(rows.length === 0){
+
+    cashierLog.innerHTML =
+    `<tr><td colspan="4">لا يوجد سجل</td></tr>`;
+
+    return;
+  }
+
+  rows.forEach(log=>{
+
+    cashierLog.innerHTML += `
+      <tr>
+        <td>${log.time}</td>
+        <td>${log.type}</td>
+        <td>${money(log.amount)}</td>
+        <td>${log.status}</td>
+      </tr>
+    `;
+  });
+}
+
+function renderAdmin(){
+
+  const state = loadState();
+
+  vaultTotal.innerText =
+  money(state.vault);
+
+  adminStateText.innerText =
+  state.adminStatus.text;
+
+  pendingCount.innerText =
+  state.requests.filter(r=>r.status==="معلق").length;
+
+  let todayReceived = 0;
+
+  state.logs.forEach(l=>{
+
+    if(l.type === "استلام إدارة"){
+
+      todayReceived += Number(l.amount || 0);
+    }
+  });
+
+  receivedToday.innerText =
+  money(todayReceived);
+
+  boxesTable.innerHTML = "";
+
+  Object.keys(state.boxes).forEach(k=>{
+
+    const box = state.boxes[k];
+
+    boxesTable.innerHTML += `
+      <tr>
+
+        <td>${employees[k].name}</td>
+
+        <td>${money(box.revenue)}</td>
+
+        <td>${money(box.received)}</td>
+
+        <td>${money(box.total)}</td>
+
+        <td>${box.status}</td>
+
+      </tr>
+    `;
+  });
+
+  renderAdminRequests();
+}
+
+function renderAdminRequests(){
+
+  const state = loadState();
+
+  adminRequests.innerHTML = "";
+
+  const pending =
+  state.requests.filter(r=>r.status==="معلق");
+
+  if(pending.length === 0){
+
+    adminRequests.innerHTML = `
+      <div class="help">
+        لا توجد طلبات معلقة
+      </div>
+    `;
+
+    return;
+  }
+
+  pending.forEach(r=>{
+
+    let html = `
+      <div class="panel" style="margin-top:12px">
+
+      <strong>${requestTitle(r)}</strong>
+
+      <div style="margin-top:10px">
+        من:
+        ${employees[r.from].name}
+      </div>
+
+      <div style="margin-top:6px">
+        المبلغ:
+        ${money(r.amount)}
+      </div>
+    `;
+
+    if(r.type === "change"){
+
+      html += `
+
+        <button
+        class="btn btn-orange"
+        style="margin-top:10px"
+        onclick="toggleAdminChange(${r.id})">
+
+        عرض التفاصيل
+
+        </button>
+
+        <div
+        id="admin_change_${r.id}"
+        class="hidden"
+        style="margin-top:12px">
+      `;
+
+      r.details.forEach(d=>{
+
+        html += `
+          <div style="margin-bottom:6px">
+            ${d.label} × ${d.count}
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+    }
+
+    html += `
+
+      <div class="actions">
+
+        <button
+        class="btn btn-green"
+        onclick="approveRequest(${r.id})">
+
+        اعتماد
+
+        </button>
+
+        <button
+        class="btn btn-red"
+        onclick="cancelRequest(${r.id})">
+
+        إلغاء
+
+        </button>
+
+      </div>
+
+      </div>
+    `;
+
+    adminRequests.innerHTML += html;
+  });
+}
+
+function toggleAdminChange(id){
+
+  document
+  .getElementById("admin_change_"+id)
+  .classList.toggle("hidden");
+}
+
+function approveRequest(id){
+
+  const state = loadState();
+
+  const request =
+  state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "معتمد";
+
+  if(request.type === "admin"){
+
+    state.vault += Number(request.amount || 0);
+
+    state.boxes[request.from].revenue = 0;
+    state.boxes[request.from].received = 0;
+  }
+
+  if(request.type === "change"){
+
+    state.vault -= Number(request.amount || 0);
+  }
+
+  saveState(state);
+
+  renderAdmin();
+}
+
+function cancelRequest(id){
+
+  const state = loadState();
+
+  const request =
+  state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "ملغي";
+
+  saveState(state);
+
+  renderAdmin();
+}
+
+function saveVaultCount(){
+
+  const state = loadState();
+
+  state.vault =
+  parseMoney(vaultCountTotal.innerText);
+
+  saveState(state);
+
+  alert("تم حفظ عد الخزنة");
+
+  renderAdmin();
+}
+
+function bankDeposit(){
+
+  const amount =
+  Number(bankDepositAmount.value || 0);
+
+  const bank =
+  bankName.value.trim();
+
+  if(amount <= 0){
+
+    alert("اكتب مبلغ التوديع");
+    return;
+  }
+
+  if(!bank){
+
+    alert("اكتب اسم البنك");
+    return;
+  }
+
+  const state = loadState();
+
+  if(state.vault < amount){
+
+    alert("رصيد الخزنة لا يكفي");
+    return;
+  }
+
+  state.vault -= amount;
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    type:"توديع بنكي",
+    user:"الإدارة",
+    amount,
+    status:"معتمد"
+  });
+
+  saveState(state);
+
+  bankDepositAmount.value = "";
+  bankName.value = "";
+
+  renderAdmin();
+
+  alert("تم تسجيل التوديع البنكي");
+}
+
+function setAdminStatus(type){
+
+  const state = loadState();
+
+  if(type === "available"){
+
+    state.adminStatus = {
+      type:"available",
+      text:"الإدارة موجودة لاستلام الإيراد"
+    };
+  }
+
+  if(type === "unavailable"){
+
+    state.adminStatus = {
+      type:"unavailable",
+      text:"الإدارة غير موجودة حالياً"
+    };
+  }
+
+  if(type === "tomorrow"){
+
+    state.adminStatus = {
+      type:"delay",
+      text:"تم تأجيل الاستلام للغد"
+    };
+  }
+
+  saveState(state);
+
+  renderAdmin();
+}
+
+function setAdminCustomDelay(){
+
+  const date =
+  customDelayDate.value;
+
+  if(!date){
+
+    alert("اختر التاريخ");
+    return;
+  }
+
+  const state = loadState();
+
+  state.adminStatus = {
+    type:"delay",
+    text:"تم تأجيل الاستلام إلى " + date
+  };
+
+  saveState(state);
+
+  renderAdmin();
+}
+
+buildRows();
+
+</script>
+
+</body>
+</html>
