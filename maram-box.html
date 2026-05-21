@@ -8,351 +8,216 @@
 
 <style>
 :root{
-  --blue:#005b9f;
-  --blue2:#0077c8;
-  --orange:#f59e0b;
-  --text:#0f172a;
-  --muted:#64748b;
-  --line:#e2e8f0;
+  --blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;
+  --text:#0f172a;--muted:#64748b;--line:#e2e8f0;
+  --green:#16a34a;--red:#dc2626;--yellow:#f59e0b;
 }
-
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 90% 8%, rgba(0,119,200,.13), transparent 28%),
-    linear-gradient(180deg,#f9fcff,#eef4f9);
+  margin:0;font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
 }
-
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:22px 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom-left-radius:28px;
-  box-shadow:0 16px 38px rgba(8,52,95,.22);
+  color:white;padding:20px 30px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom-left-radius:28px;box-shadow:0 16px 38px rgba(8,52,95,.22);
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
-.logo{
-  width:66px;
-  height:66px;
-  background:white;
-  border-radius:18px;
-  object-fit:contain;
-  padding:6px;
-}
-
-.brand h1{
-  margin:0;
-  font-size:28px;
-  font-weight:900;
-}
-
-.brand p{
-  margin:5px 0 0;
-  color:#dbeafe;
-  direction:ltr;
-  font-size:12px;
-}
-
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:64px;height:64px;background:white;border-radius:16px;padding:6px;object-fit:contain}
+.brand h1{margin:0;font-size:27px;font-weight:900}
+.brand p{margin:4px 0 0;color:#dbeafe;direction:ltr;font-size:12px}
 .btn{
-  border:none;
-  border-radius:12px;
-  padding:11px 16px;
-  font-family:Tahoma,Arial;
-  font-weight:900;
-  cursor:pointer;
+  border:none;border-radius:12px;padding:11px 16px;font-family:Tahoma,Arial;
+  font-weight:900;cursor:pointer;
 }
-
-.btn-white{
-  background:white;
-  color:var(--blue);
+.btn-white{background:white;color:var(--blue)}
+.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
+.btn-orange{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
+.main{width:94%;max-width:1380px;margin:26px auto}
+.summary-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px;
 }
-
-.main{
-  width:92%;
-  max-width:1250px;
-  margin:28px auto;
+.summary-card{
+  background:white;border:1px solid var(--line);border-radius:22px;padding:18px;text-align:center;
+  box-shadow:0 12px 28px rgba(15,23,42,.07);
 }
-
+.summary-card h3{margin:0 0 8px;color:var(--muted);font-size:13px;font-weight:900}
+.summary-card span{display:block;font-size:28px;font-weight:900;color:var(--blue);direction:ltr}
+.summary-card.deliver span{color:var(--green)}
+.summary-card.warn span{color:var(--orange)}
 .status-box{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:22px;
-  text-align:center;
-  box-shadow:0 14px 34px rgba(15,23,42,.08);
-  margin-bottom:24px;
+  background:#fff7ed;border:1px solid #fed7aa;color:#92400e;border-radius:20px;
+  padding:14px;text-align:center;font-weight:900;margin-bottom:18px;line-height:1.8;
 }
-
-.status-box h2{
-  margin:0;
-  color:var(--blue);
-  font-size:28px;
-}
-
-.status-badge{
-  margin-top:14px;
-  display:inline-block;
-  background:#dcfce7;
-  color:#166534;
-  padding:12px 22px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:15px;
-}
-
-.sections{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-
+.sections{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .panel{
-  background:white;
-  border:1px solid var(--line);
-  border-radius:26px;
-  padding:22px;
-  box-shadow:0 14px 34px rgba(15,23,42,.08);
+  background:white;border:1px solid var(--line);border-radius:24px;padding:18px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
 }
-
-.panel h3{
-  margin:0 0 18px;
-  color:var(--blue);
-  font-size:24px;
+.panel h2{margin:0 0 14px;color:var(--blue);font-size:24px;font-weight:900}
+.help{color:var(--muted);font-size:12px;line-height:1.8;margin-bottom:12px}
+.cash-table{width:100%;border-collapse:collapse;table-layout:fixed;overflow:hidden;border-radius:16px}
+.cash-table th{
+  background:#06345d;color:white;padding:10px 6px;font-size:12px;border:1px solid #17456f;font-weight:900
 }
-
-.money-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+.cash-table td{
+  border:1px solid #e2e8f0;padding:8px 6px;text-align:center;font-size:13px;font-weight:900
 }
-
-.field label{
-  display:block;
-  margin-bottom:6px;
-  font-size:13px;
-  font-weight:900;
-  color:#334155;
+.cash-table input{
+  width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:9px;text-align:center;
+  font-family:Tahoma,Arial;font-size:14px;font-weight:900;background:#f8fafc;
 }
-
-.field input{
-  width:100%;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  padding:12px;
-  font-family:Tahoma,Arial;
-  font-size:14px;
-  background:#f8fafc;
+.total-line{
+  margin-top:14px;background:#eef6ff;border:1px solid #bfdbfe;border-radius:16px;
+  padding:14px;text-align:center;font-weight:900;color:#1d4ed8;
 }
-
-.total-box{
-  margin-top:18px;
-  background:#eef6ff;
-  border:1px solid #bfdbfe;
-  border-radius:18px;
-  padding:18px;
-  text-align:center;
+.total-line span{display:block;margin-top:8px;font-size:30px;color:var(--blue);direction:ltr}
+.full-panel{grid-column:1/-1}
+.box-preview{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px;
 }
-
-.total-box h4{
-  margin:0;
-  color:#1d4ed8;
-  font-size:15px;
+.preview-item{
+  background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;text-align:center;
+  font-weight:900;color:#334155;
 }
-
-.total-box span{
-  display:block;
-  margin-top:10px;
-  font-size:34px;
-  font-weight:900;
-  color:#005b9f;
+.preview-item strong{display:block;color:var(--blue);font-size:20px;margin-top:6px;direction:ltr}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.actions button{padding:15px;border-radius:15px;font-size:15px}
+.note-box{
+  background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:14px;margin-top:14px;
 }
-
-.cash-box{
-  margin-top:18px;
+.note-box textarea{
+  width:100%;min-height:80px;border:1px solid #cbd5e1;border-radius:12px;padding:12px;
+  font-family:Tahoma,Arial;font-size:14px;resize:vertical;background:white;
 }
-
-.cash-box input{
-  width:100%;
-  border:1px solid #cbd5e1;
-  border-radius:14px;
-  padding:14px;
-  font-family:Tahoma,Arial;
-  font-size:18px;
-  font-weight:900;
-  background:#f8fafc;
-  text-align:center;
-}
-
-.save-btn{
-  width:100%;
-  margin-top:18px;
-  border:none;
-  border-radius:16px;
-  padding:16px;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  font-size:17px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.summary{
-  margin-top:22px;
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  border-radius:20px;
-  padding:18px;
-  line-height:2;
-  font-weight:900;
-  color:#92400e;
-}
-
+.other-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.result-ok{color:var(--green)!important}
+.result-bad{color:var(--red)!important}
 .footer{
-  width:90%;
-  max-width:1200px;
-  margin:45px auto 20px;
-  padding-top:18px;
-  border-top:1px solid #dbe4ee;
-  text-align:center;
-  color:#64748b;
-  font-size:14px;
+  width:90%;max-width:1200px;margin:45px auto 20px;padding-top:18px;
+  border-top:1px solid #dbe4ee;text-align:center;color:#64748b;font-size:14px;
 }
-
-@media(max-width:900px){
-  .sections{
-    grid-template-columns:1fr;
-  }
+@media(max-width:1100px){
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+  .sections{grid-template-columns:1fr}
+  .box-preview{grid-template-columns:repeat(2,1fr)}
 }
-
+@media(max-width:650px){
+  .topbar{flex-direction:column;text-align:center;gap:12px}
+  .brand{flex-direction:column}
+  .summary-grid,.box-preview,.actions{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-
   <div class="brand">
     <img src="logo.png" class="logo">
-
     <div>
       <h1>صندوق أ. مرام</h1>
       <p>Cash Box - Maram</p>
     </div>
   </div>
-
-  <button class="btn btn-white" onclick="location.href='cash-management.html'">
-    رجوع
-  </button>
-
+  <button class="btn btn-white" onclick="location.href='cash-management.html'">رجوع</button>
 </div>
 
 <div class="main">
 
-  <div class="status-box">
-    <h2>حالة الإدارة</h2>
+  <div class="status-box" id="adminStatus">
+    حالة الإدارة: الإدارة موجودة لاستلام الإيراد
+  </div>
 
-    <div class="status-badge">
-      الإدارة موجودة لاستلام الإيراد
+  <div class="summary-grid">
+    <div class="summary-card">
+      <h3>إجمالي الصندوق كامل</h3>
+      <span id="fullTotal">0.00 ريال</span>
+    </div>
+    <div class="summary-card">
+      <h3>العهدة الأساسية</h3>
+      <span>1,000.00 ريال</span>
+    </div>
+    <div class="summary-card deliver">
+      <h3>المطلوب تسليمه للإدارة</h3>
+      <span id="deliverAmount">0.00 ريال</span>
+    </div>
+    <div class="summary-card warn">
+      <h3>حالة الصندوق</h3>
+      <span id="boxStatus">سليم</span>
     </div>
   </div>
 
   <div class="sections">
 
     <div class="panel">
+      <h2>عد الصندوق كامل</h2>
+      <div class="help">اكتبي عدد كل فئة موجودة فعليًا بالصندوق. النظام يحسب الإجمالي والمبلغ الزائد عن العهدة تلقائيًا.</div>
 
-      <h3>جرد العهدة</h3>
+      <table class="cash-table">
+        <thead>
+          <tr>
+            <th>الفئة</th>
+            <th>العدد</th>
+            <th>الإجمالي</th>
+          </tr>
+        </thead>
+        <tbody id="cashRows"></tbody>
+      </table>
 
-      <div class="money-grid">
-
-        <div class="field">
-          <label>500 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>200 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>100 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>50 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>20 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>10 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>5 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
-        <div class="field">
-          <label>1 ريال</label>
-          <input type="number" value="0" oninput="calculate()">
-        </div>
-
+      <div class="total-line">
+        إجمالي الفئات النقدية
+        <span id="cashTotal">0.00 ريال</span>
       </div>
-
-      <div class="total-box">
-        <h4>إجمالي العهدة الحالي</h4>
-        <span id="drawerTotal">0 ريال</span>
-      </div>
-
     </div>
 
     <div class="panel">
+      <h2>الهللات والعملات الصغيرة</h2>
+      <div class="help">الفئات الأقل من 50 هللة اكتبي القيمة والعدد في خانة أخرى.</div>
 
-      <h3>الإيراد النقدي</h3>
+      <table class="cash-table">
+        <thead>
+          <tr>
+            <th>الفئة</th>
+            <th>العدد</th>
+            <th>الإجمالي</th>
+          </tr>
+        </thead>
+        <tbody id="coinRows"></tbody>
+      </table>
 
-      <div class="cash-box">
-        <input type="number" id="cashRevenue" placeholder="اكتب الإيراد النقدي الحالي">
+      <div class="note-box">
+        <div class="help">أخرى أقل من 50 هللة</div>
+        <div class="other-grid">
+          <input type="number" step="0.01" min="0" id="otherCoinValue" placeholder="القيمة مثال 0.10" oninput="calculate()">
+          <input type="number" min="0" id="otherCoinCount" placeholder="العدد" oninput="calculate()">
+        </div>
       </div>
 
-      <div class="total-box">
-        <h4>الإجمالي المتوقع داخل الصندوق</h4>
-        <span id="expectedTotal">0 ريال</span>
+      <div class="total-line">
+        إجمالي الهللات
+        <span id="coinTotal">0.00 ريال</span>
+      </div>
+    </div>
+
+    <div class="panel full-panel">
+      <h2>عرض الصندوق</h2>
+      <div class="help">ملخص مباشر للفئات الموجودة داخل الصندوق.</div>
+      <div class="box-preview" id="boxPreview"></div>
+
+      <div class="note-box">
+        <textarea id="notes" placeholder="ملاحظات اختيارية مثل: تم استخدام فكة كثيرة، يوجد نقص هللات، تم تجهيز الإيراد للتسليم..."></textarea>
       </div>
 
-      <div class="summary">
-        • العهدة الأساسية: 1000 ريال<br>
-        • يتم تسليم الإيراد للإدارة نهاية اليوم<br>
-        • أي نقص أو زيادة يتم مراجعته قبل الاستلام
+      <div class="actions">
+        <button class="btn btn-blue" onclick="saveDraft()">حفظ الجرد</button>
+        <button class="btn btn-orange" onclick="alert('مرحلة لاحقة: تسليم الإيراد لموظفة أخرى مع اعتماد الاستلام')">تسليم لموظفة أخرى</button>
+        <button class="btn btn-blue" onclick="alert('مرحلة لاحقة: إرسال طلب تسليم للإدارة')">جاهز للتسليم للإدارة</button>
       </div>
-
-      <button class="save-btn">
-        حفظ الجرد والإيراد
-      </button>
-
     </div>
 
   </div>
-
 </div>
 
 <div class="footer">
@@ -360,34 +225,137 @@ body{
 </div>
 
 <script>
+const baseCustody = 1000;
 
-function calculate(){
+const cashDenoms = [
+  {label:"500 ريال", value:500},
+  {label:"200 ريال", value:200},
+  {label:"100 ريال", value:100},
+  {label:"50 ريال", value:50},
+  {label:"20 ريال", value:20},
+  {label:"10 ريال", value:10},
+  {label:"5 ريال", value:5},
+  {label:"1 ريال", value:1}
+];
 
-  const inputs = document.querySelectorAll(".money-grid input");
+const coinDenoms = [
+  {label:"2 ريال", value:2},
+  {label:"1 ريال معدني", value:1},
+  {label:"50 هللة", value:0.5},
+  {label:"25 هللة", value:0.25}
+];
 
-  const values = [500,200,100,50,20,10,5,1];
+function buildRows(){
+  cashRows.innerHTML = "";
+  coinRows.innerHTML = "";
 
-  let total = 0;
-
-  inputs.forEach((input,index)=>{
-    total += Number(input.value || 0) * values[index];
+  cashDenoms.forEach((d,i)=>{
+    cashRows.innerHTML += `
+      <tr>
+        <td>${d.label}</td>
+        <td><input type="number" min="0" id="cash_${i}" value="0" oninput="calculate()"></td>
+        <td id="cash_total_${i}">0.00</td>
+      </tr>
+    `;
   });
 
-  document.getElementById("drawerTotal").innerText =
-    total.toLocaleString() + " ريال";
-
-  const revenue =
-    Number(document.getElementById("cashRevenue").value || 0);
-
-  document.getElementById("expectedTotal").innerText =
-    (total + revenue).toLocaleString() + " ريال";
+  coinDenoms.forEach((d,i)=>{
+    coinRows.innerHTML += `
+      <tr>
+        <td>${d.label}</td>
+        <td><input type="number" min="0" id="coin_${i}" value="0" oninput="calculate()"></td>
+        <td id="coin_total_${i}">0.00</td>
+      </tr>
+    `;
+  });
 }
 
-document.getElementById("cashRevenue")
-.addEventListener("input",calculate);
+function money(n){
+  return Number(n || 0).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}) + " ريال";
+}
 
+function calculate(){
+  let cashTotalValue = 0;
+  let coinTotalValue = 0;
+  let preview = [];
+
+  cashDenoms.forEach((d,i)=>{
+    const count = Number(document.getElementById("cash_"+i).value || 0);
+    const total = count * d.value;
+    cashTotalValue += total;
+    document.getElementById("cash_total_"+i).innerText = money(total);
+    if(count > 0) preview.push({label:d.label,count,total});
+  });
+
+  coinDenoms.forEach((d,i)=>{
+    const count = Number(document.getElementById("coin_"+i).value || 0);
+    const total = count * d.value;
+    coinTotalValue += total;
+    document.getElementById("coin_total_"+i).innerText = money(total);
+    if(count > 0) preview.push({label:d.label,count,total});
+  });
+
+  const otherValue = Number(document.getElementById("otherCoinValue").value || 0);
+  const otherCount = Number(document.getElementById("otherCoinCount").value || 0);
+  const otherTotal = otherValue * otherCount;
+
+  if(otherValue > 0 && otherCount > 0){
+    coinTotalValue += otherTotal;
+    preview.push({label:`أخرى ${otherValue}`,count:otherCount,total:otherTotal});
+  }
+
+  const full = cashTotalValue + coinTotalValue;
+  const deliver = Math.max(full - baseCustody, 0);
+  const difference = full - baseCustody;
+
+  cashTotal.innerText = money(cashTotalValue);
+  coinTotal.innerText = money(coinTotalValue);
+  fullTotal.innerText = money(full);
+  deliverAmount.innerText = money(deliver);
+
+  if(full === baseCustody){
+    boxStatus.innerText = "سليم";
+    boxStatus.className = "result-ok";
+  }else if(full > baseCustody){
+    boxStatus.innerText = "زائد +" + money(full - baseCustody);
+    boxStatus.className = "result-ok";
+  }else{
+    boxStatus.innerText = "ناقص " + money(Math.abs(difference));
+    boxStatus.className = "result-bad";
+  }
+
+  boxPreview.innerHTML = "";
+  if(preview.length === 0){
+    boxPreview.innerHTML = `<div class="preview-item">لا توجد فئات مدخلة<strong>0</strong></div>`;
+  }else{
+    preview.forEach(p=>{
+      boxPreview.innerHTML += `
+        <div class="preview-item">
+          ${p.label} × ${p.count}
+          <strong>${money(p.total)}</strong>
+        </div>
+      `;
+    });
+  }
+}
+
+function saveDraft(){
+  const data = {
+    employee:"maram",
+    employeeName:"أ. مرام",
+    fullTotal:fullTotal.innerText,
+    deliverAmount:deliverAmount.innerText,
+    status:boxStatus.innerText,
+    notes:document.getElementById("notes").value,
+    savedAt:new Date().toLocaleString("ar-SA")
+  };
+
+  localStorage.setItem("akazCashBox_maram", JSON.stringify(data));
+  alert("تم حفظ الجرد مؤقتًا على الجهاز");
+}
+
+buildRows();
 calculate();
-
 </script>
 
 <script type="module" src="tracker.js"></script>
