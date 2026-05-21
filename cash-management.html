@@ -1242,25 +1242,7 @@ async function cancelRequest(id){
   renderAdmin();
 }
 
-function fillVaultInputs(){
-  const state = loadState();
-  const vaultCounts = state.vaultCounts || {};
 
-  denoms.forEach((_,i)=>{
-    const input = document.getElementById("vault_"+i);
-    if(input) input.value = vaultCounts.counts?.[i] || 0;
-  });
-
-  if(document.getElementById("otherVaultValue")){
-    otherVaultValue.value = vaultCounts.otherValue || 0;
-  }
-
-  if(document.getElementById("otherVaultCount")){
-    otherVaultCount.value = vaultCounts.otherCount || 0;
-  }
-
-  calculateVault();
-}
 
 async function saveVaultCount(){
   const state = loadState();
