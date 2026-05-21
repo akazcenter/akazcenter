@@ -30,7 +30,6 @@ body{
   min-height:100vh;
 }
 
-/* HERO */
 .hero{
   position:relative;
   min-height:335px;
@@ -80,9 +79,7 @@ body{
   box-shadow:0 10px 22px rgba(0,0,0,.18);
 }
 
-.admin-btn{
-  left:70px;
-}
+.admin-btn{left:70px}
 
 .hero-inner{
   position:relative;
@@ -114,9 +111,7 @@ body{
   object-fit:contain;
 }
 
-.center-title{
-  text-align:center;
-}
+.center-title{text-align:center}
 
 .eyebrow{
   display:inline-block;
@@ -198,7 +193,6 @@ body{
   color:#dbeafe;
 }
 
-/* QUOTE */
 .quote-strip{
   width:73%;
   max-width:1030px;
@@ -225,11 +219,8 @@ body{
   transition:.35s;
 }
 
-.heart{
-  font-size:22px;
-}
+.heart{font-size:22px}
 
-/* MAIN */
 .main{
   width:92%;
   max-width:1220px;
@@ -257,7 +248,7 @@ body{
 
 .cards.secondary{
   margin-top:26px;
-  grid-template-columns:repeat(4,250px);
+  grid-template-columns:repeat(5,220px);
   justify-content:center;
 }
 
@@ -348,7 +339,6 @@ body{
   line-height:1.7;
 }
 
-/* TOOLTIP - يظهر تحت الكرت */
 .card-tooltip{
   position:absolute;
   top:calc(100% + 12px);
@@ -387,7 +377,6 @@ body{
   transform:translateX(50%) translateY(0);
 }
 
-/* Badge */
 .badge{
   position:absolute;
   top:12px;
@@ -402,7 +391,6 @@ body{
   z-index:5;
 }
 
-/* FOOTER */
 .footer{
   width:90%;
   max-width:1220px;
@@ -414,7 +402,6 @@ body{
   font-size:14px;
 }
 
-/* DARK */
 body.dark{
   background:
     radial-gradient(circle at 90% 8%, rgba(30,64,175,.22), transparent 28%),
@@ -422,9 +409,7 @@ body.dark{
   color:#e2e8f0;
 }
 
-body.dark .hero{
-  background:linear-gradient(135deg,#020617,#1e3a8a);
-}
+body.dark .hero{background:linear-gradient(135deg,#020617,#1e3a8a)}
 
 body.dark .quote-strip,
 body.dark .card{
@@ -435,13 +420,9 @@ body.dark .card{
 
 body.dark #dailyQuote,
 body.dark .card h3,
-body.dark .section-head h2{
-  color:#93c5fd;
-}
+body.dark .section-head h2{color:#93c5fd}
 
-body.dark .icon{
-  background:#0f172a;
-}
+body.dark .icon{background:#0f172a}
 
 body.dark .top-btn{
   background:#0f172a;
@@ -449,11 +430,8 @@ body.dark .top-btn{
   border:1px solid #334155;
 }
 
-body.dark .footer{
-  color:#cbd5e1;
-}
+body.dark .footer{color:#cbd5e1}
 
-/* RESPONSIVE */
 @media(max-width:1100px){
   .hero-inner{
     grid-template-columns:1fr;
@@ -462,45 +440,29 @@ body.dark .footer{
   }
 
   .logo-box,
-  .clock-card{
-    justify-self:center;
-  }
+  .clock-card{justify-self:center}
 
-  .center-title h1{
-    font-size:34px;
-  }
+  .center-title h1{font-size:34px}
 
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
+  .cards{grid-template-columns:repeat(2,1fr)}
 
-  .cards.secondary{
-  grid-template-columns:repeat(3,1fr);
-}
+  .cards.secondary{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:650px){
-  .center-title h1{
-    font-size:26px;
-  }
+  .center-title h1{font-size:26px}
 
   .quote-strip{
     width:92%;
     padding:18px;
   }
 
-  #dailyQuote{
-    font-size:18px;
-  }
+  #dailyQuote{font-size:18px}
 
   .cards,
-  .cards.secondary{
-    grid-template-columns:1fr;
-  }
+  .cards.secondary{grid-template-columns:1fr}
 
-  .card-tooltip{
-    display:none;
-  }
+  .card-tooltip{display:none}
 }
 </style>
 </head>
@@ -512,7 +474,6 @@ body.dark .footer{
   <button class="top-btn" onclick="toggleTheme()" id="themeBtn" title="الوضع الليلي">🌙</button>
 
   <div class="hero-inner">
-
     <div class="logo-box">
       <img src="logo.png" class="logo" alt="شعار مركز عكاز">
     </div>
@@ -531,7 +492,6 @@ body.dark .footer{
       <div id="clockDateAr">--</div>
       <div id="clockDateEn">--</div>
     </div>
-
   </div>
 </header>
 
@@ -554,9 +514,7 @@ body.dark .footer{
       <h3>جدول الدوام</h3>
       <h4>Work Schedule</h4>
       <p>إدارة جداول الدوام واعتمادها.</p>
-      <div class="card-tooltip">
-        يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام "غير محدد" في نظام اكتفاء.
-      </div>
+      <div class="card-tooltip">يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام "غير محدد" في نظام اكتفاء.</div>
     </div>
 
     <div class="card" onclick="go('kids-rooms.html')">
@@ -564,9 +522,7 @@ body.dark .footer{
       <h3>غرف الأطفال</h3>
       <h4>Pediatric Rooms</h4>
       <p>حجز غرف الأطفال حسب الدور والوقت.</p>
-      <div class="card-tooltip">
-        يتم الحجز حسب الوقت والأخصائي، مع إمكانية عرض الجدول الأسبوعي كاملًا والتصفية باسم الأخصائي.
-      </div>
+      <div class="card-tooltip">يتم الحجز حسب الوقت والأخصائي، مع إمكانية عرض الجدول الأسبوعي كاملًا والتصفية باسم الأخصائي.</div>
     </div>
 
     <div class="card" onclick="go('hydrotherapy.html')">
@@ -574,9 +530,7 @@ body.dark .footer{
       <h3>العلاج المائي</h3>
       <h4>Hydrotherapy</h4>
       <p>تنظيم حجوزات العلاج المائي.</p>
-      <div class="card-tooltip">
-        يتم تنظيم الحجز داخل النظام حسب الأيام والأوقات المحددة، وأي تعديل يظهر مباشرة للجميع.
-      </div>
+      <div class="card-tooltip">يتم تنظيم الحجز داخل النظام حسب الأيام والأوقات المحددة، وأي تعديل يظهر مباشرة للجميع.</div>
     </div>
 
     <div class="card" onclick="go('home-visits.html')">
@@ -585,9 +539,7 @@ body.dark .footer{
       <h3>الزيارات المنزلية</h3>
       <h4>Home Visits</h4>
       <p>تسجيل الزيارات للفترة الشهرية.</p>
-      <div class="card-tooltip">
-        يتم تسجيل جميع الزيارات داخل النظام مباشرة للفترة من 21 إلى 20، ولن يتم اعتماد أي ملفات خارجية أو إكسل.
-      </div>
+      <div class="card-tooltip">يتم تسجيل جميع الزيارات داخل النظام مباشرة للفترة من 21 إلى 20، ولن يتم اعتماد أي ملفات خارجية أو إكسل.</div>
     </div>
 
     <div class="card" onclick="go('suggestions.html')">
@@ -595,9 +547,7 @@ body.dark .footer{
       <h3>الاقتراحات</h3>
       <h4>Suggestions</h4>
       <p>إرسال اقتراحات تطوير العمل.</p>
-      <div class="card-tooltip">
-        مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض.
-      </div>
+      <div class="card-tooltip">مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض.</div>
     </div>
 
   </div>
@@ -609,35 +559,41 @@ body.dark .footer{
       <h3>التقييمات الوظيفية</h3>
       <h4>Functional Assessments</h4>
       <p>نماذج تقييم وتأهيل احترافية.</p>
-      <div class="card-tooltip">
-        نماذج تقييم وظيفي تساعد الأخصائي في توثيق التقدم وإصدار تقرير إرشادي للمريض عند الحاجة.
-      </div>
+      <div class="card-tooltip">نماذج تقييم وظيفي تساعد الأخصائي في توثيق التقدم وإصدار تقرير إرشادي للمريض عند الحاجة.</div>
     </div>
-<div class="card" onclick="go('therapist-planners.html')">
-  <div class="icon">📅</div>
-  <h3>جدول الأخصائيين</h3>
-  <h4>Therapist Schedule</h4>
-  <p>تنظيم الجلسات اليومية لكل أخصائي حسب الوقت والحالة.</p>
-  <div class="card-tooltip">
-    جدول خاص لكل أخصائي يساعده على تنظيم المرضى حسب مدة الجلسة ونوع الحالة، مع عرض اليوم والأسبوع والحجوزات القادمة.
-  </div>
-</div>
+
+    <div class="card" onclick="go('therapist-planners.html')">
+      <div class="icon">📅</div>
+      <h3>جدول الأخصائيين</h3>
+      <h4>Therapist Schedule</h4>
+      <p>تنظيم الجلسات اليومية لكل أخصائي حسب الوقت والحالة.</p>
+      <div class="card-tooltip">جدول خاص لكل أخصائي يساعده على تنظيم المرضى حسب مدة الجلسة ونوع الحالة، مع عرض اليوم والأسبوع والحجوزات القادمة.</div>
+    </div>
+
     <div class="card" onclick="go('new-assessment-entry.html')">
-  <div class="icon">🩺</div>
-  <h3>توزيع الكشف الجديد</h3>
-  <h4>New Assessment Queue</h4>
-  <p>تنظيم توزيع حالات الكشف الجديد بين الأخصائيين حسب الدور.</p>
-  <div class="card-tooltip">
-    قسم خاص بالاستقبال لتوزيع حالات الكشف الجديد على أخصائيي الرجال والنساء، مع إحصائيات وسجل يومي واضح.
-  </div>
-</div>
-   <div class="card" onclick="go('forms.html')">
-  <div class="icon">📄</div>
-  <h3>النماذج الإدارية</h3>
-  <h4>Administrative Forms</h4>
-  <p>إنشاء وطباعة وتحميل النماذج الرسمية.</p>
-</div>
-    
+      <div class="icon">🩺</div>
+      <h3>توزيع الكشف الجديد</h3>
+      <h4>New Assessment Queue</h4>
+      <p>تنظيم توزيع حالات الكشف الجديد بين الأخصائيين حسب الدور.</p>
+      <div class="card-tooltip">قسم خاص بالاستقبال لتوزيع حالات الكشف الجديد على أخصائيي الرجال والنساء، مع إحصائيات وسجل يومي واضح.</div>
+    </div>
+
+    <div class="card" onclick="go('forms.html')">
+      <div class="icon">📄</div>
+      <h3>النماذج الإدارية</h3>
+      <h4>Administrative Forms</h4>
+      <p>إنشاء وطباعة وتحميل النماذج الرسمية.</p>
+      <div class="card-tooltip">صفحة خاصة بإنشاء نماذج الاسترداد وتحويل الجلسات وطباعتها أو تحميلها PDF.</div>
+    </div>
+
+    <div class="card" onclick="go('cash-management.html')">
+      <div class="icon">💵</div>
+      <h3>إدارة النقدية</h3>
+      <h4>Cash Management</h4>
+      <p>إدارة العهد والصناديق وتسليم الإيرادات اليومية.</p>
+      <div class="card-tooltip">نظام ذكي لإدارة صناديق الاستقبال، الجرد اليومي، تصنيف الفئات النقدية، وتسليم الإيرادات للإدارة مع سجل كامل للحركات والتأجيلات.</div>
+    </div>
+
   </div>
 
 </main>
@@ -725,9 +681,7 @@ function rotateQuotes(){
 loadTheme();
 updateClock();
 setInterval(updateClock,1000);
-
 checkHomeVisitsAlert();
-
 rotateQuotes();
 setInterval(rotateQuotes,9000);
 </script>
