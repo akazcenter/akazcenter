@@ -847,4 +847,340 @@ body{
 <div class="footer">
 مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
 </div>
+<script>
+
+const baseCustody = 1000;
+let currentUser = null;
+
+const employees = {
+  maram:{name:"أ. مرام",pin:"1111"},
+  ashwaq:{name:"أ. أشواق",pin:"2222"},
+  shahad:{name:"أ. شهد",pin:"3333"},
+  admin:{name:"الإدارة",pin:"9999"}
+};
+
+const denoms = [
+  {label:"500 ريال",value:500},
+  {label:"200 ريال",value:200},
+  {label:"100 ريال",value:100},
+  {label:"50 ريال",value:50},
+  {label:"20 ريال",value:20},
+  {label:"10 ريال",value:10},
+  {label:"5 ريال",value:5},
+  {label:"1 ريال",value:1},
+  {label:"50 هللة",value:0.5},
+  {label:"25 هللة",value:0.25}
+];
+
+function money(n){
+  return Number(n || 0).toLocaleString("en-US",{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  }) + " ريال";
+}
+
+function now(){
+  return new Date().toLocaleString("ar-SA");
+}
+
+function todayKey(){
+  return new Date().toLocaleDateString("ar-SA");
+}
+
+function parseMoney(v){
+  return Number(String(v).replace(/[^\d.-]/g,"") || 0);
+}
+
+function loadState(){
+
+  return JSON.parse(
+    localStorage.getItem("akazCashSystem")
+    ||
+    JSON.stringify({
+
+      adminStatus:{
+        type:"available",
+        text:"الإدارة موجودة لاستلام الإيراد"
+      },
+
+      vault:0,
+
+      boxes:{
+        maram:{revenue:0,total:0,status:"سليم",received:0},
+        ashwaq:{revenue:0,total:0,status:"سليم",received:0},
+        shahad:{revenue:0,total:0,status:"سليم",received:0}
+      },
+
+      requests:[],
+      logs:[]
+    })
+  );
+}
+
+function saveState(state){
+  localStorage.setItem(
+    "akazCashSystem",
+    JSON.stringify(state)
+  );
+}
+
+function login(type){
+
+  const pin =
+  document.getElementById("pin_"+type).value.trim();
+
+  if(pin !== employees[type].pin){
+
+    alert("الرمز غير صحيح");
+    return;
+  }
+
+  currentUser = type;
+
+  loginView.classList.add("hidden");
+
+  if(type === "admin"){
+
+    adminView.classList.remove("hidden");
+    cashierView.classList.add("hidden");
+
+    renderAdmin();
+
+  }else{
+
+    cashierView.classList.remove("hidden");
+    adminView.classList.add("hidden");
+
+    renderCashier();
+  }
+}
+
+function buildRows(){
+
+  cashRows.innerHTML = "";
+  vaultRows.innerHTML = "";
+
+  denoms.forEach((d,i)=>{
+
+    cashRows.innerHTML += `
+      <tr>
+        <td>${d.label}</td>
+
+        <td>
+          <input
+          type="number"
+          min="0"
+          value="0"
+          id="denom_${i}"
+          oninput="calculate()">
+        </td>
+
+        <td id="total_${i}">
+          0.00 ريال
+        </td>
+      </tr>
+    `;
+
+    vaultRows.innerHTML += `
+      <tr>
+        <td>${d.label}</td>
+
+        <td>
+          <input
+          type="number"
+          min="0"
+          value="0"
+          id="vault_${i}"
+          oninput="calculateVault()">
+        </td>
+
+        <td id="vault_total_${i}">
+          0.00 ريال
+        </td>
+      </tr>
+    `;
+  });
+}
+
+function renderCashier(){
+
+  buildRows();
+
+  const state = loadState();
+  const status = state.adminStatus;
+
+  cashierAdminStatus.className = "status-box";
+
+  if(status.type === "available"){
+    cashierAdminStatus.classList.add("status-available");
+  }
+  else if(status.type === "unavailable"){
+    cashierAdminStatus.classList.add("status-unavailable");
+  }
+  else{
+    cashierAdminStatus.classList.add("status-delay");
+  }
+
+  cashierAdminStatus.innerText =
+  "حالة الإدارة: " + status.text;
+
+  todayRevenue.value =
+  state.boxes[currentUser].revenue || 0;
+
+  renderTransferOptions();
+  renderCashierRequests();
+  renderCashierLog();
+
+  calculate();
+}
+
+function renderTransferOptions(){
+
+  transferTo.innerHTML = "";
+
+  Object.keys(employees).forEach(k=>{
+
+    if(k !== "admin" && k !== currentUser){
+
+      transferTo.innerHTML += `
+        <option value="${k}">
+          ${employees[k].name}
+        </option>
+      `;
+    }
+  });
+}
+
+function calculate(){
+
+  const state = loadState();
+
+  let total = 0;
+  let preview = [];
+
+  denoms.forEach((d,i)=>{
+
+    const input =
+    document.getElementById("denom_"+i);
+
+    if(!input) return;
+
+    const count =
+    Number(input.value || 0);
+
+    const rowTotal =
+    count * d.value;
+
+    total += rowTotal;
+
+    document.getElementById(
+      "total_"+i
+    ).innerText = money(rowTotal);
+
+    if(count > 0){
+
+      preview.push({
+        label:d.label,
+        count,
+        total:rowTotal
+      });
+    }
+  });
+
+  const otherValue =
+  Number(otherCashValue.value || 0);
+
+  const otherCount =
+  Number(otherCashCount.value || 0);
+
+  if(otherValue > 0 && otherCount > 0){
+
+    const otherTotal =
+    otherValue * otherCount;
+
+    total += otherTotal;
+
+    preview.push({
+      label:"فئة أخرى",
+      count:otherCount,
+      total:otherTotal
+    });
+  }
+
+  const ownRevenue =
+  Number(todayRevenue.value || 0);
+
+  const received =
+  Number(state.boxes[currentUser]?.received || 0);
+
+  const expected =
+  baseCustody + ownRevenue + received;
+
+  const diff =
+  total - expected;
+
+  fullTotal.innerText = money(total);
+  cashTotal.innerText = money(total);
+  deliverAmount.innerText = money(ownRevenue);
+  expectedTotal.innerText = money(expected);
+
+  if(diff === 0){
+
+    boxStatus.innerText = "سليم";
+
+    differenceBox.className =
+    "status-result ok";
+
+    differenceBox.innerText =
+    "الصندوق مطابق";
+  }
+
+  else if(diff > 0){
+
+    boxStatus.innerText =
+    "زيادة " + money(diff);
+
+    differenceBox.className =
+    "status-result more";
+
+    differenceBox.innerText =
+    "يوجد زيادة بالصندوق " + money(diff);
+  }
+
+  else{
+
+    boxStatus.innerText =
+    "نقص " + money(Math.abs(diff));
+
+    differenceBox.className =
+    "status-result bad";
+
+    differenceBox.innerText =
+    "يوجد نقص بالصندوق " + money(Math.abs(diff));
+  }
+
+  boxPreview.innerHTML = "";
+
+  if(preview.length === 0){
+
+    boxPreview.innerHTML = `
+      <div class="preview-item">
+        لا توجد فئات مدخلة
+        <strong>0</strong>
+      </div>
+    `;
+
+    return;
+  }
+
+  preview.forEach(p=>{
+
+    boxPreview.innerHTML += `
+      <div class="preview-item">
+        ${p.label} × ${p.count}
+        <strong>${money(p.total)}</strong>
+      </div>
+    `;
+  });
+}
   
