@@ -1,1 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صندوق أ. مرام</title>
+<link rel="icon" href="logo.png">
 
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(0,119,200,.13), transparent 28%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
+  color:var(--text);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:22px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:28px;
+  box-shadow:0 16px 38px rgba(8,52,95,.22);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo{
+  width:66px;
+  height:66px;
+  background:white;
+  border-radius:18px;
+  object-fit:contain;
+  padding:6px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  color:#dbeafe;
+  direction:ltr;
+  font-size:12px;
+}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:11px 16px;
+  font-family:Tahoma,Arial;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.btn-white{
+  background:white;
+  color:var(--blue);
+}
+
+.main{
+  width:92%;
+  max-width:1250px;
+  margin:28px auto;
+}
+
+.status-box{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 14px 34px rgba(15,23,42,.08);
+  margin-bottom:24px;
+}
+
+.status-box h2{
+  margin:0;
+  color:var(--blue);
+  font-size:28px;
+}
+
+.status-badge{
+  margin-top:14px;
+  display:inline-block;
+  background:#dcfce7;
+  color:#166534;
+  padding:12px 22px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:15px;
+}
+
+.sections{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.panel{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:22px;
+  box-shadow:0 14px 34px rgba(15,23,42,.08);
+}
+
+.panel h3{
+  margin:0 0 18px;
+  color:var(--blue);
+  font-size:24px;
+}
+
+.money-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:6px;
+  font-size:13px;
+  font-weight:900;
+  color:#334155;
+}
+
+.field input{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:12px;
+  font-family:Tahoma,Arial;
+  font-size:14px;
+  background:#f8fafc;
+}
+
+.total-box{
+  margin-top:18px;
+  background:#eef6ff;
+  border:1px solid #bfdbfe;
+  border-radius:18px;
+  padding:18px;
+  text-align:center;
+}
+
+.total-box h4{
+  margin:0;
+  color:#1d4ed8;
+  font-size:15px;
+}
+
+.total-box span{
+  display:block;
+  margin-top:10px;
+  font-size:34px;
+  font-weight:900;
+  color:#005b9f;
+}
+
+.cash-box{
+  margin-top:18px;
+}
+
+.cash-box input{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:14px;
+  padding:14px;
+  font-family:Tahoma,Arial;
+  font-size:18px;
+  font-weight:900;
+  background:#f8fafc;
+  text-align:center;
+}
+
+.save-btn{
+  width:100%;
+  margin-top:18px;
+  border:none;
+  border-radius:16px;
+  padding:16px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  font-size:17px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.summary{
+  margin-top:22px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  border-radius:20px;
+  padding:18px;
+  line-height:2;
+  font-weight:900;
+  color:#92400e;
+}
+
+.footer{
+  width:90%;
+  max-width:1200px;
+  margin:45px auto 20px;
+  padding-top:18px;
+  border-top:1px solid #dbe4ee;
+  text-align:center;
+  color:#64748b;
+  font-size:14px;
+}
+
+@media(max-width:900px){
+  .sections{
+    grid-template-columns:1fr;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+
+  <div class="brand">
+    <img src="logo.png" class="logo">
+
+    <div>
+      <h1>صندوق أ. مرام</h1>
+      <p>Cash Box - Maram</p>
+    </div>
+  </div>
+
+  <button class="btn btn-white" onclick="location.href='cash-management.html'">
+    رجوع
+  </button>
+
+</div>
+
+<div class="main">
+
+  <div class="status-box">
+    <h2>حالة الإدارة</h2>
+
+    <div class="status-badge">
+      الإدارة موجودة لاستلام الإيراد
+    </div>
+  </div>
+
+  <div class="sections">
+
+    <div class="panel">
+
+      <h3>جرد العهدة</h3>
+
+      <div class="money-grid">
+
+        <div class="field">
+          <label>500 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>200 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>100 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>50 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>20 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>10 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>5 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+        <div class="field">
+          <label>1 ريال</label>
+          <input type="number" value="0" oninput="calculate()">
+        </div>
+
+      </div>
+
+      <div class="total-box">
+        <h4>إجمالي العهدة الحالي</h4>
+        <span id="drawerTotal">0 ريال</span>
+      </div>
+
+    </div>
+
+    <div class="panel">
+
+      <h3>الإيراد النقدي</h3>
+
+      <div class="cash-box">
+        <input type="number" id="cashRevenue" placeholder="اكتب الإيراد النقدي الحالي">
+      </div>
+
+      <div class="total-box">
+        <h4>الإجمالي المتوقع داخل الصندوق</h4>
+        <span id="expectedTotal">0 ريال</span>
+      </div>
+
+      <div class="summary">
+        • العهدة الأساسية: 1000 ريال<br>
+        • يتم تسليم الإيراد للإدارة نهاية اليوم<br>
+        • أي نقص أو زيادة يتم مراجعته قبل الاستلام
+      </div>
+
+      <button class="save-btn">
+        حفظ الجرد والإيراد
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
+</div>
+
+<script>
+
+function calculate(){
+
+  const inputs = document.querySelectorAll(".money-grid input");
+
+  const values = [500,200,100,50,20,10,5,1];
+
+  let total = 0;
+
+  inputs.forEach((input,index)=>{
+    total += Number(input.value || 0) * values[index];
+  });
+
+  document.getElementById("drawerTotal").innerText =
+    total.toLocaleString() + " ريال";
+
+  const revenue =
+    Number(document.getElementById("cashRevenue").value || 0);
+
+  document.getElementById("expectedTotal").innerText =
+    (total + revenue).toLocaleString() + " ريال";
+}
+
+document.getElementById("cashRevenue")
+.addEventListener("input",calculate);
+
+calculate();
+
+</script>
+
+<script type="module" src="tracker.js"></script>
+</body>
+</html>
