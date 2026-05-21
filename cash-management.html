@@ -620,3 +620,284 @@ body{
   </div>
 
 </section>
+<section id="cashierView" class="hidden">
+
+  <div class="status-box status-available" id="cashierAdminStatus">
+    الإدارة موجودة لاستلام الإيراد
+  </div>
+
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <h3>إجمالي الصندوق</h3>
+      <span id="fullTotal">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card green">
+      <h3>إيراد اليوم</h3>
+      <span id="deliverAmount">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>حالة الصندوق</h3>
+      <span id="boxStatus">سليم</span>
+    </div>
+
+  </div>
+
+  <div class="sections">
+
+    <div class="panel">
+
+      <h2>عد الصندوق كامل</h2>
+
+      <div class="help">
+        اكتبي جميع الفئات الموجودة داخل الصندوق بما فيها العهدة والإيراد والفكة.
+      </div>
+
+      <table class="cash-table">
+        <thead>
+          <tr>
+            <th>الفئة</th>
+            <th>العدد</th>
+            <th>الإجمالي</th>
+          </tr>
+        </thead>
+        <tbody id="cashRows"></tbody>
+      </table>
+
+      <div class="total-line">
+        إجمالي الصندوق بعد العد
+        <span id="cashTotal">0.00 ريال</span>
+      </div>
+
+      <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveCashierData()">
+        حفظ عد الصندوق
+      </button>
+
+    </div>
+
+    <div class="panel">
+
+      <h2>إيراد اليوم</h2>
+
+      <div class="help">
+        هذا الإيراد خاص بالموظفة نفسها فقط. أي مبلغ تستلمه من موظفة أخرى يضاف إلى إجمالي الصندوق ولا يغير إيراد اليوم.
+      </div>
+
+      <input class="revenue-input" type="number" id="todayRevenue" placeholder="0" oninput="calculate()">
+
+      <div class="total-line">
+        المتوقع داخل الصندوق
+        <span id="expectedTotal">0.00 ريال</span>
+      </div>
+
+      <div class="status-result ok" id="differenceBox">
+        الصندوق مطابق
+      </div>
+
+      <h2 style="margin-top:24px">عرض الصندوق</h2>
+      <div class="box-preview" id="boxPreview"></div>
+
+      <div class="actions">
+
+        <button class="btn btn-blue" onclick="requestAdminDelivery()">
+          تسليم للإدارة
+        </button>
+
+        <button class="btn btn-orange" onclick="toggleTransferBox()">
+          تسليم لموظفة
+        </button>
+
+        <button class="btn btn-green" onclick="requestChange()">
+          طلب فكة
+        </button>
+
+      </div>
+
+      <div id="transferBox" class="hidden" style="margin-top:14px">
+        <select id="transferTo"></select>
+
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendToEmployee()">
+          إرسال طلب التسليم
+        </button>
+      </div>
+
+      <div id="changeBox" class="hidden" style="margin-top:14px">
+        <input type="number" id="changeAmount" placeholder="المبلغ المطلوب فكة">
+
+        <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="sendChangeRequest()">
+          إرسال طلب الفكة
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>العمليات والطلبات</h2>
+    <div id="cashierRequestsBox"></div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>العمليات الأخيرة</h2>
+
+    <table class="cash-table">
+      <thead>
+        <tr>
+          <th>الوقت</th>
+          <th>العملية</th>
+          <th>المبلغ</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="cashierLog"></tbody>
+    </table>
+
+  </div>
+
+</section>
+
+<section id="adminView" class="hidden">
+
+  <div class="intro">
+    <h2>لوحة الإدارة النقدية</h2>
+    <p>متابعة الصناديق والخزنة واستلام الإيرادات والفكة والتوديع البنكي.</p>
+  </div>
+
+  <div class="summary-grid">
+
+    <div class="summary-card">
+      <h3>رصيد الخزنة الحالي</h3>
+      <span id="vaultTotal">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card green">
+      <h3>الإيرادات المستلمة اليوم</h3>
+      <span id="receivedToday">0.00 ريال</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>طلبات معلقة</h3>
+      <span id="pendingCount">0</span>
+    </div>
+
+    <div class="summary-card">
+      <h3>حالة الإدارة</h3>
+      <span id="adminStateText">متواجد</span>
+    </div>
+
+  </div>
+
+  <div class="panel">
+
+    <h2>حالة الإدارة</h2>
+
+    <div class="actions">
+
+      <button class="btn btn-green" onclick="setAdminStatus('available')">
+        موجود
+      </button>
+
+      <button class="btn btn-red" onclick="setAdminStatus('unavailable')">
+        غير موجود
+      </button>
+
+      <button class="btn btn-orange" onclick="setAdminStatus('tomorrow')">
+        تأجيل للغد
+      </button>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px">
+      <input type="date" id="customDelayDate">
+      <button class="btn btn-blue" onclick="setAdminCustomDelay()">
+        تأجيل لتاريخ محدد
+      </button>
+    </div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>أرصدة الصناديق</h2>
+
+    <table class="cash-table">
+      <thead>
+        <tr>
+          <th>الموظفة</th>
+          <th>إيراد اليوم</th>
+          <th>إجمالي الصندوق</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="boxesTable"></tbody>
+    </table>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>طلبات الإدارة</h2>
+    <div id="adminRequests"></div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>عد الخزنة</h2>
+
+    <div class="help">
+      ادخل فئات الخزنة الفعلية ثم اضغط حفظ عد الخزنة. هذا يساعدك تعرف الرصيد الفعلي بعد الاستلامات والتوديع.
+    </div>
+
+    <table class="cash-table">
+      <thead>
+        <tr>
+          <th>الفئة</th>
+          <th>العدد</th>
+          <th>الإجمالي</th>
+        </tr>
+      </thead>
+      <tbody id="vaultRows"></tbody>
+    </table>
+
+    <div class="total-line">
+      إجمالي الخزنة الفعلي
+      <span id="vaultCountTotal">0.00 ريال</span>
+    </div>
+
+    <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveVaultCount()">
+      حفظ عد الخزنة
+    </button>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+
+    <h2>توديع للبنك</h2>
+
+    <div class="help">
+      عند تسجيل التوديع يتم خصم المبلغ من رصيد الخزنة وتوثيقه بالسجل.
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <input type="number" id="bankDepositAmount" placeholder="مبلغ التوديع">
+      <input type="text" id="bankName" placeholder="اسم البنك">
+    </div>
+
+    <button class="btn btn-blue" style="width:100%;margin-top:12px;padding:15px" onclick="bankDeposit()">
+      تسجيل توديع للبنك
+    </button>
+
+  </div>
+
+</section>
+
+</div>
+
+<div class="footer">
+مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
+</div>
