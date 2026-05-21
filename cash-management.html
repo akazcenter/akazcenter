@@ -377,6 +377,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
 const firebaseConfig = {
   apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   authDomain:"akazcenter-89c17.firebaseapp.com",
@@ -1429,7 +1430,7 @@ async function clearAllLogs(){
   alert("تم مسح جميع السجلات");
 }
 
-onSnapshot(cashDocRef,async snap=>{
+onSnapshot(cashDocRef, async snap=>{
   if(snap.exists()){
     cashState = normalizeState(snap.data());
   }else{
@@ -1442,6 +1443,10 @@ onSnapshot(cashDocRef,async snap=>{
   }else if(currentUser){
     renderCashier();
   }
+
+}, error=>{
+  console.error("Firebase error:", error);
+  alert("فيه مشكلة في اتصال Firebase أو الصلاحيات");
 });
 
 Object.assign(window,{
