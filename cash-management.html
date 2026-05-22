@@ -1092,6 +1092,7 @@ async function applyCashOperation(){
   );
 }
 let cashCalcDetails = [];
+let pendingCashOperation = null;
 
 function addCashButton(value){
   cashCalcDetails.push({value:value,count:1});
@@ -1099,7 +1100,7 @@ function addCashButton(value){
 }
 
 function addOtherCash(){
-  const amount = Number(prompt("اكتب مبلغ الفئة الأخرى") || 0);
+  const amount = Number(prompt("اكتب المبلغ") || 0);
 
   if(amount <= 0){
     alert("المبلغ غير صحيح");
@@ -1112,12 +1113,13 @@ function addOtherCash(){
 
 function clearCashCalc(){
   cashCalcDetails = [];
+  pendingCashOperation = null;
   updateCashCalcScreen();
 }
 
 function getCashCalcTotal(){
   return cashCalcDetails.reduce((sum,item)=>{
-    return sum + Number(item.value || 0) * Number(item.count || 0);
+    return sum + Number(item.value || 0);
   },0);
 }
 
@@ -1162,10 +1164,7 @@ function getBestChangeFromBox(amount){
   return result.length ? result.join(" - ") : "-";
 }
 
-async function applyCashCalculator(){
-  const state = loadState();
-  const box = state.boxes[currentUser];
-
+function showCashConfirm(){
   const invoice = Number(invoiceAmount.value || 0);
   const network = Number(networkAmount.value || 0);
   const cashReceived = getCashCalcTotal();
@@ -1183,22 +1182,63 @@ async function applyCashCalculator(){
     return;
   }
 
+  const suggestion = getBestChangeFromBox(change);
+
+  if(String(suggestion).includes("غير متوفر")){
+    alert("الصندوق لا يحتوي صرف كافي لإرجاع الباقي");
+    return;
+  }
+
+  pendingCashOperation = {
+    invoice,
+    network,
+    cashReceived,
+    cashNeeded,
+    change,
+    suggestion
+  };
+
+  cashConfirmDetails.innerHTML = `
+    قيمة الفاتورة: ${money(invoice)}<br>
+    مدفوع شبكة: ${money(network)}<br>
+    النقد المطلوب: ${money(cashNeeded)}<br>
+    النقد المستلم: ${money(cashReceived)}<br>
+    الباقي للمريض: ${money(change)}<br>
+    فئات الاسترجاع: ${suggestion}
+  `;
+
+  cashConfirmModal.classList.remove("hidden");
+}
+
+function closeCashConfirm(){
+  cashConfirmModal.classList.add("hidden");
+}
+
+async function applyCashCalculator(){
+  if(!pendingCashOperation){
+    alert("احسب العملية أولاً");
+    return;
+  }
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  const {cashNeeded,change} = pendingCashOperation;
+
   cashCalcDetails.forEach(item=>{
     const index = denoms.findIndex(d=>d.value == item.value);
 
     if(index >= 0){
       box.counts[index] =
-        Number(box.counts[index] || 0) + Number(item.count || 0);
+        Number(box.counts[index] || 0) + 1;
     }else{
       box.otherValue =
         Number(box.otherValue || 0) + Number(item.value || 0);
-
       box.otherCount = 1;
     }
   });
 
   let remaining = change;
-  let outDetails = [];
 
   denoms.forEach((d,i)=>{
     if(remaining <= 0) return;
@@ -1212,27 +1252,8 @@ async function applyCashCalculator(){
       box.counts[i] = available - take;
       remaining -= take * d.value;
       remaining = Number(remaining.toFixed(2));
-      outDetails.push(`${d.label} × ${take}`);
     }
   });
-
-  if(remaining > 0){
-    alert("الصندوق لا يحتوي صرف كافي لإرجاع الباقي");
-    return;
-  }
-
-  const confirmText =
-    "تأكيد العملية؟" +
-    "\\nقيمة الفاتورة: " + money(invoice) +
-    "\\nمدفوع شبكة: " + money(network) +
-    "\\nالنقد المطلوب: " + money(cashNeeded) +
-    "\\nالنقد المستلم: " + money(cashReceived) +
-    "\\nالباقي للمريض: " + money(change) +
-    "\\nفئات الاسترجاع: " + outDetails.join(" - ");
-
-  if(!confirm(confirmText)){
-    return;
-  }
 
   box.revenue += cashNeeded;
   box.total += cashNeeded;
@@ -1250,9 +1271,11 @@ async function applyCashCalculator(){
   await saveState(state);
 
   invoiceAmount.value = "";
-  networkAmount.value = 0;
+  networkAmount.value = "";
   cashCalcDetails = [];
+  pendingCashOperation = null;
 
+  closeCashConfirm();
   renderCashier();
 
   alert("تم اعتماد العملية");
@@ -2167,6 +2190,13 @@ applyCashOperation,
 addOtherCash,
 clearCashCalc,
 updateCashCalcScreen,
+applyCashCalculator,
+  addCashButton,
+addOtherCash,
+clearCashCalc,
+updateCashCalcScreen,
+showCashConfirm,
+closeCashConfirm,
 applyCashCalculator,
 clearAllLogs
 });
