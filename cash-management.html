@@ -859,21 +859,6 @@ async function requestAdminDelivery(){
   }
 }
 
-  state.requests.unshift({
-    id:Date.now(),
-    type:"admin",
-    from:currentUser,
-    amount,
-    status:"معلق",
-    createdBy:currentUser,
-    time:now()
-  });
-
-  await saveState(state);
-
-  renderCashierRequests();
-
-  alert("تم إرسال طلب التسليم للإدارة");
 }
 function addAdminDeliveryRow(){
   adminDeliveryRows.innerHTML += `
