@@ -734,15 +734,8 @@ function calculate(){
     differenceBox.innerText = "يوجد نقص بالصندوق " + money(Math.abs(diff));
   }
 
+if(document.getElementById("boxPreview")){
   boxPreview.innerHTML = "";
-
-  if(preview.length === 0){
-    boxPreview.innerHTML = `<div class="preview-item">لا توجد فئات مدخلة<strong>0</strong></div>`;
-  }else{
-    preview.forEach(p=>{
-      boxPreview.innerHTML += `<div class="preview-item">${p.label} × ${p.count}<strong>${money(p.total)}</strong></div>`;
-    });
-  }
 }
 
 async function autoSaveBox(){
