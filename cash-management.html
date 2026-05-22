@@ -1140,6 +1140,8 @@ async function acceptEmployeeTransfer(id){
 }
 
 function renderCashierLog(){
+  if(!document.getElementById("cashierLog")) return;
+
   const state = loadState();
 
   const rows = state.logs
