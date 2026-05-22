@@ -232,7 +232,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
         <div class="help">أضيفي الفئات المطلوبة فقط.</div>
         <div id="changeRows"></div>
         <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addChangeRow()">إضافة فئة</button>
-        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendChangeRequest()">إرسال طلب الفكة</button>
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendChangeRequest()">إرسال طلب الصرف</button>
       </div>
     </div>
   </div>
@@ -261,7 +261,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 <section id="adminView" class="hidden">
   <div class="intro">
     <h2>لوحة الإدارة النقدية</h2>
-    <p>متابعة الصناديق والخزنة واستلام الإيرادات والفكة والتوديع البنكي.</p>
+    <p>متابعة الصناديق والخزنة واستلام الإيرادات والصرف والتوديع البنكي.</p>
   </div>
 
   <div class="summary-grid admin-summary">
@@ -1287,7 +1287,7 @@ async function approveRequest(id){
 
   if(request.type === "change"){
     if(state.vault < amount){
-      alert("رصيد الخزنة لا يكفي لاعتماد الفكة");
+      alert("رصيد الخزنة لا يكفي لاعتماد الصرف");
       request.status = "معلق";
       await saveState(state);
       return;
