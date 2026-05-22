@@ -212,50 +212,42 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 
       <div class="status-result ok" id="differenceBox">الصندوق مطابق</div>
 
- <div class="card" style="margin-top:20px;padding:20px">
+<div class="card" style="margin-top:20px;padding:20px">
   <h3>حاسبة العملية النقدية</h3>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px">
-
-    <input id="invoiceAmount" type="number" placeholder="قيمة الفاتورة">
-
-    <input id="networkAmount" type="number" placeholder="مدفوع شبكة" value="0">
-
-    <input id="cashReceived" type="number" placeholder="النقد المستلم">
-
-    <input id="cashNeeded" type="number" placeholder="النقد المطلوب" readonly>
-
-    <input id="customerChange" type="number" placeholder="الباقي للمريض" readonly>
-
+    <input id="invoiceAmount" type="number" placeholder="قيمة الفاتورة" oninput="updateCashCalcScreen()">
+    <input id="networkAmount" type="number" placeholder="مدفوع شبكة" value="0" oninput="updateCashCalcScreen()">
   </div>
 
-  <div style="margin-top:15px">
-    <button class="btn btn-green" style="width:100%" onclick="calculateCashOperation()">
-      حساب العملية
-    </button>
+  <div class="total-line">
+    النقد المستلم
+    <span id="cashCalcReceived">0.00 ريال</span>
   </div>
 
-  <div style="margin-top:20px">
-    <div class="help">الفئات الداخلة للصندوق</div>
-    <div id="cashInRows"></div>
-
-    <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addCashInRow()">
-      إضافة فئة داخلة
-    </button>
+  <div class="total-line">
+    الباقي للمريض
+    <span id="cashCalcChange">0.00 ريال</span>
   </div>
 
-  <div style="margin-top:20px">
-    <div class="help">الفئات الخارجة للمريض</div>
-    <div id="cashOutRows"></div>
-
-    <button class="btn btn-red" style="width:100%;margin-top:10px" onclick="addCashOutRow()">
-      إضافة فئة خارجة
-    </button>
+  <div class="total-line">
+    اقتراح الاسترجاع
+    <span id="cashCalcSuggestion" style="font-size:20px">-</span>
   </div>
 
-  <button class="btn btn-blue" style="width:100%;margin-top:20px" onclick="applyCashOperation()">
-    اعتماد العملية
-  </button>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px">
+    <button class="btn btn-orange" onclick="addCashButton(500)">500</button>
+    <button class="btn btn-orange" onclick="addCashButton(200)">200</button>
+    <button class="btn btn-orange" onclick="addCashButton(100)">100</button>
+    <button class="btn btn-orange" onclick="addCashButton(50)">50</button>
+    <button class="btn btn-orange" onclick="addCashButton(20)">20</button>
+    <button class="btn btn-orange" onclick="addCashButton(10)">10</button>
+    <button class="btn btn-orange" onclick="addCashButton(5)">5</button>
+    <button class="btn btn-orange" onclick="addCashButton(1)">1</button>
+    <button class="btn btn-blue" onclick="addOtherCash()">فئة أخرى</button>
+    <button class="btn btn-red" onclick="clearCashCalc()">مسح</button>
+    <button class="btn btn-green" style="grid-column:span 2" onclick="applyCashCalculator()">اعتماد العملية</button>
+  </div>
 </div>
       <div class="actions">
         <button class="btn btn-blue" onclick="requestAdminDelivery()">تسليم للإدارة</button>
@@ -1079,6 +1071,172 @@ async function applyCashOperation(){
     "\\nإيراد نقدي: " + money(cashNeeded) +
     "\\nالباقي للمريض: " + money(change)
   );
+}
+let cashCalcDetails = [];
+
+function addCashButton(value){
+  cashCalcDetails.push({value:value,count:1});
+  updateCashCalcScreen();
+}
+
+function addOtherCash(){
+  const amount = Number(prompt("اكتب مبلغ الفئة الأخرى") || 0);
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  cashCalcDetails.push({value:amount,count:1,other:true});
+  updateCashCalcScreen();
+}
+
+function clearCashCalc(){
+  cashCalcDetails = [];
+  updateCashCalcScreen();
+}
+
+function getCashCalcTotal(){
+  return cashCalcDetails.reduce((sum,item)=>{
+    return sum + Number(item.value || 0) * Number(item.count || 0);
+  },0);
+}
+
+function updateCashCalcScreen(){
+  const invoice = Number(invoiceAmount.value || 0);
+  const network = Number(networkAmount.value || 0);
+  const cashReceived = getCashCalcTotal();
+
+  const cashNeeded = Math.max(0, invoice - network);
+  const change = Math.max(0, cashReceived - cashNeeded);
+
+  cashCalcReceived.innerText = money(cashReceived);
+  cashCalcChange.innerText = money(change);
+  cashCalcSuggestion.innerText = getBestChangeFromBox(change);
+}
+
+function getBestChangeFromBox(amount){
+  let remaining = Number(amount || 0);
+  const state = loadState();
+  const box = state.boxes[currentUser];
+  let result = [];
+
+  denoms.forEach((d,i)=>{
+    if(remaining <= 0) return;
+    if(d.value < 1) return;
+
+    const available = Number(box.counts[i] || 0);
+    const needed = Math.floor(remaining / d.value);
+    const take = Math.min(available,needed);
+
+    if(take > 0){
+      result.push(`${d.label} × ${take}`);
+      remaining -= take * d.value;
+      remaining = Number(remaining.toFixed(2));
+    }
+  });
+
+  if(remaining > 0){
+    result.push(`غير متوفر صرفه: ${money(remaining)}`);
+  }
+
+  return result.length ? result.join(" - ") : "-";
+}
+
+async function applyCashCalculator(){
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  const invoice = Number(invoiceAmount.value || 0);
+  const network = Number(networkAmount.value || 0);
+  const cashReceived = getCashCalcTotal();
+
+  const cashNeeded = Math.max(0, invoice - network);
+  const change = Math.max(0, cashReceived - cashNeeded);
+
+  if(invoice <= 0){
+    alert("اكتب قيمة الفاتورة");
+    return;
+  }
+
+  if(cashReceived < cashNeeded){
+    alert("النقد المستلم أقل من المطلوب");
+    return;
+  }
+
+  cashCalcDetails.forEach(item=>{
+    const index = denoms.findIndex(d=>d.value == item.value);
+
+    if(index >= 0){
+      box.counts[index] =
+        Number(box.counts[index] || 0) + Number(item.count || 0);
+    }else{
+      box.otherValue =
+        Number(box.otherValue || 0) + Number(item.value || 0);
+
+      box.otherCount = 1;
+    }
+  });
+
+  let remaining = change;
+  let outDetails = [];
+
+  denoms.forEach((d,i)=>{
+    if(remaining <= 0) return;
+    if(d.value < 1) return;
+
+    const available = Number(box.counts[i] || 0);
+    const needed = Math.floor(remaining / d.value);
+    const take = Math.min(available,needed);
+
+    if(take > 0){
+      box.counts[i] = available - take;
+      remaining -= take * d.value;
+      remaining = Number(remaining.toFixed(2));
+      outDetails.push(`${d.label} × ${take}`);
+    }
+  });
+
+  if(remaining > 0){
+    alert("الصندوق لا يحتوي صرف كافي لإرجاع الباقي");
+    return;
+  }
+
+  const confirmText =
+    "تأكيد العملية؟" +
+    "\\nقيمة الفاتورة: " + money(invoice) +
+    "\\nمدفوع شبكة: " + money(network) +
+    "\\nالنقد المطلوب: " + money(cashNeeded) +
+    "\\nالنقد المستلم: " + money(cashReceived) +
+    "\\nالباقي للمريض: " + money(change) +
+    "\\nفئات الاسترجاع: " + outDetails.join(" - ");
+
+  if(!confirm(confirmText)){
+    return;
+  }
+
+  box.revenue += cashNeeded;
+  box.total += cashNeeded;
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"عملية نقدية",
+    user:employees[currentUser].name,
+    amount:cashNeeded,
+    status:"معتمد"
+  });
+
+  await saveState(state);
+
+  invoiceAmount.value = "";
+  networkAmount.value = 0;
+  cashCalcDetails = [];
+
+  renderCashier();
+
+  alert("تم اعتماد العملية");
 }
   function requestChange(){
   changeBox.classList.toggle("hidden");
@@ -1986,6 +2144,11 @@ sendEmployeeDeliveryWithDenoms,
 addCashInRow,
 addCashOutRow,
 applyCashOperation,
+  addCashButton,
+addOtherCash,
+clearCashCalc,
+updateCashCalcScreen,
+applyCashCalculator,
 clearAllLogs
 });
 </script>
