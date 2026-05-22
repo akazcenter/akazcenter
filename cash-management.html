@@ -223,10 +223,23 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
         <button class="btn btn-orange" onclick="editClosedRevenue()">تعديل الإقفال</button>
       </div>
 
-      <div id="transferBox" class="hidden" style="margin-top:14px">
-        <select id="transferTo"></select>
-        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendToEmployee()">إرسال طلب التسليم</button>
-      </div>
+<div id="transferBox" class="hidden" style="margin-top:14px">
+  <select id="transferTo"></select>
+
+  <div class="help" style="margin-top:10px">
+    حددي الفئات التي سيتم تسليمها للموظفة.
+  </div>
+
+  <div id="employeeDeliveryRows"></div>
+
+  <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addEmployeeDeliveryRow()">
+    إضافة فئة
+  </button>
+
+  <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendEmployeeDeliveryWithDenoms()">
+    إرسال طلب التسليم
+  </button>
+</div>
 <div id="adminDeliveryBox" class="hidden" style="margin-top:14px">
   <div class="help">حددي الفئات التي سيتم تسليمها للإدارة.</div>
   <div id="adminDeliveryRows"></div>
@@ -796,7 +809,105 @@ function deliveryAmountForUser(state,user){
 function toggleTransferBox(){
   transferBox.classList.toggle("hidden");
 }
+function addEmployeeDeliveryRow(){
+  employeeDeliveryRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+      <select class="employeeDeliveryDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
 
+      <input type="number" min="1" value="1" class="employeeDeliveryCount">
+
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+    </div>
+  `;
+}
+
+async function sendEmployeeDeliveryWithDenoms(){
+  await saveCashierData(false,false);
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم لموظفة قبل إقفال اليوم");
+    return;
+  }
+
+  const maxAmount =
+    Number(box.carry || 0) +
+    Number(box.received || 0);
+
+  if(maxAmount <= 0){
+    alert("لا يوجد مبلغ مقفل للتسليم");
+    return;
+  }
+
+  const rows = document.querySelectorAll("#employeeDeliveryRows > div");
+
+  if(rows.length === 0){
+    alert("أضف فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let amount = 0;
+
+  rows.forEach(row=>{
+    const value = Number(row.querySelector(".employeeDeliveryDenom").value);
+    const count = Number(row.querySelector(".employeeDeliveryCount").value || 0);
+    const denom = denoms.find(d=>d.value == value);
+
+    if(count > 0){
+      amount += value * count;
+      details.push({
+        label:denom.label,
+        value,
+        count
+      });
+    }
+  });
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  if(amount > Number(box.total || 0)){
+    alert("الفئات المحددة أكبر من إجمالي الصندوق");
+    return;
+  }
+
+  const to = transferTo.value;
+
+  state.requests.unshift({
+    id:Date.now(),
+    type:"employee",
+    from:currentUser,
+    to,
+    amount,
+    details,
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
+  });
+
+  await saveState(state);
+
+  employeeDeliveryRows.innerHTML = "";
+  transferBox.classList.add("hidden");
+
+  renderCashierRequests();
+
+  const remainingForSender =
+    Number(box.total || 0) - amount;
+
+  alert(
+    "تم إرسال طلب التسليم" +
+    "\\nالمبلغ المسلم: " + money(amount) +
+    "\\nالمتبقي عندك: " + money(remainingForSender)
+  );
+}
 function requestChange(){
   changeBox.classList.toggle("hidden");
 }
@@ -1393,24 +1504,35 @@ alert(
   }
 
   if(request.type === "employee"){
-    reduceBoxByDelivery(state,request.from,amount);
+  deductFromBoxCounts(state,request.from,amount);
+  reduceBoxByDelivery(state,request.from,amount);
 
-    state.boxes[request.to].received += amount;
-    state.boxes[request.to].total += amount;
+  state.boxes[request.to].received += amount;
+  state.boxes[request.to].total += amount;
 
-    state.logs.unshift({
-      id:Date.now(),
-      time:now(),
-      date:todayKey(),
-      type:"تسليم بين الموظفات",
-      user:employees[request.from].name,
-      amount,
-      status:"معتمد",
-      from:request.from,
-      to:request.to
+  if(request.details){
+    request.details.forEach(item=>{
+      const index = denoms.findIndex(d=>d.value == item.value);
+
+      if(index >= 0){
+        state.boxes[request.to].counts[index] =
+          Number(state.boxes[request.to].counts[index] || 0) + Number(item.count || 0);
+      }
     });
   }
 
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"تسليم بين الموظفات",
+    user:employees[request.from].name,
+    amount,
+    status:"معتمد",
+    from:request.from,
+    to:request.to
+  });
+}
   if(request.type === "change"){
     if(state.vault < amount){
       alert("رصيد الخزنة لا يكفي لاعتماد الصرف");
