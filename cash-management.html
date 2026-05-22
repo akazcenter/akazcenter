@@ -437,6 +437,25 @@ function normalizeState(state){
   state = state || clone(defaultState);
   state.adminStatus = state.adminStatus || clone(defaultState.adminStatus);
   state.vault = Number(state.vault || 0);
+  if(!state.vaultCounts){
+  state.vaultCounts = {
+    counts:{},
+    otherValue:0,
+    otherCount:0
+  };
+}
+
+const currentVaultOther =
+Number(state.vaultCounts.otherValue || 0)
+*
+Number(state.vaultCounts.otherCount || 0);
+
+const newTotal =
+currentVaultOther + Number(request.amount || 0);
+
+state.vaultCounts.otherValue = newTotal;
+state.vaultCounts.otherCount = 1;
+  
 
   state.vaultCounts = Object.assign({}, clone(defaultState.vaultCounts), state.vaultCounts || {});
   state.vaultCounts.counts = Array.isArray(state.vaultCounts.counts) ? state.vaultCounts.counts : Array(denoms.length).fill(0);
