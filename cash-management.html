@@ -1312,6 +1312,17 @@ async function acceptEmployeeTransfer(id){
   state.boxes[request.to].received += amount;
   state.boxes[request.to].total += amount;
 
+  if(request.details){
+    request.details.forEach(item=>{
+      const index = denoms.findIndex(d=>d.value == item.value);
+
+      if(index >= 0){
+        state.boxes[request.to].counts[index] =
+          Number(state.boxes[request.to].counts[index] || 0) + Number(item.count || 0);
+      }
+    });
+  }
+
   state.logs.unshift({
     id:Date.now(),
     time:now(),
@@ -1325,6 +1336,7 @@ async function acceptEmployeeTransfer(id){
   });
 
   await saveState(state);
+
   renderCashier();
 }
 
