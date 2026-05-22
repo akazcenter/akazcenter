@@ -992,8 +992,40 @@ async function cancelOwnRequest(id){
   await saveState(state);
   renderCashierRequests();
 }
+function deductFromBoxCounts(state,user,amount){
+  let remaining = Number(amount || 0);
+  const box = state.boxes[user];
 
+  denoms.forEach((d,i)=>{
+    if(remaining <= 0) return;
+
+    const availableCount = Number(box.counts[i] || 0);
+    const needCount = Math.floor(remaining / d.value);
+    const takeCount = Math.min(availableCount,needCount);
+
+    if(takeCount > 0){
+      box.counts[i] = availableCount - takeCount;
+      remaining -= takeCount * d.value;
+      remaining = Number(remaining.toFixed(2));
+    }
+  });
+
+  if(remaining > 0){
+    const otherTotal =
+      Number(box.otherValue || 0) *
+      Number(box.otherCount || 0);
+
+    const newOtherTotal =
+      Math.max(0, otherTotal - remaining);
+
+    box.otherValue = newOtherTotal;
+    box.otherCount = newOtherTotal > 0 ? 1 : 0;
+  }
+}
+  
 function reduceBoxByDelivery(state,user,amount){
+  deductFromBoxCounts(state,user,amount);
+
   let remaining = Number(amount || 0);
   const box = state.boxes[user];
 
