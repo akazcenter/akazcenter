@@ -1161,9 +1161,43 @@ async function approveRequest(id){
 
   const amount = Number(request.amount || 0);
 
-  if(request.type === "admin"){
-    reduceBoxByDelivery(state,request.from,amount);
-    state.vault += amount;
+ if(request.type === "admin"){
+
+  reduceBoxByDelivery(state,request.from,amount);
+
+  state.vault += amount;
+
+  state.boxes[request.from].delivered =
+    (state.boxes[request.from].delivered || 0) + amount;
+
+  state.boxes[request.from].total =
+    Math.max(
+      0,
+      Number(state.boxes[request.from].total || 0) - amount
+    );
+
+  if(!state.vaultCounts){
+    state.vaultCounts = {
+      counts:Array(denoms.length).fill(0),
+      otherValue:0,
+      otherCount:0
+    };
+  }
+
+  if(!Array.isArray(state.vaultCounts.counts)){
+    state.vaultCounts.counts = Array(denoms.length).fill(0);
+  }
+
+  const currentOther =
+    Number(state.vaultCounts.otherValue || 0) *
+    Number(state.vaultCounts.otherCount || 0);
+
+  const newOtherTotal =
+    currentOther + amount;
+
+  state.vaultCounts.otherValue = newOtherTotal;
+  state.vaultCounts.otherCount = 1;
+}
 if(!state.vaultCounts){
   state.vaultCounts = {
     counts:Array(denoms.length).fill(0),
@@ -1222,6 +1256,14 @@ state.vaultCounts.otherCount = 1;
 
   if(request.type === "employee"){
     reduceBoxByDelivery(state,request.from,amount);
+    state.boxes[request.from].delivered =
+  (state.boxes[request.from].delivered || 0) + amount;
+
+state.boxes[request.from].total =
+  Math.max(
+    0,
+    Number(state.boxes[request.from].total || 0) - amount
+  );
 
     state.boxes[request.to].received += amount;
     state.boxes[request.to].total += amount;
