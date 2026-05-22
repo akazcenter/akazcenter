@@ -352,7 +352,6 @@ z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px
   <div style="background:white;border-radius:24px;padding:24px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)">
     <h2 style="color:#005b9f;margin-top:0">تأكيد العملية</h2>
 
-    <div id="cashConfirmDetails" style="line-height:2;font-weight:900;color:#0f172a"></div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
       <button class="btn btn-blue" onclick="applyCashCalculator()">اعتماد</button>
@@ -435,6 +434,7 @@ z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px
 </section>
 
 </div>
+    <div id="cashConfirmDetails" style="line-height:2;font-weight:900;color:#0f172a"></div>
 
 <div class="footer">مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center</div>
 
@@ -2152,46 +2152,45 @@ Object.assign(window,{
   calculateVault,
   saveCashierData,
   autoSaveBox,
+
   closeTodayRevenue,
   editClosedRevenue,
+
   requestAdminDelivery,
+  addAdminDeliveryRow,
+  sendAdminDeliveryWithDenoms,
+
   toggleTransferBox,
-  sendToEmployee,
+  addEmployeeDeliveryRow,
+  sendEmployeeDeliveryWithDenoms,
+
   requestChange,
   addChangeRow,
   sendChangeRequest,
+
   toggleChangeDetails,
   cancelOwnRequest,
   acceptEmployeeTransfer,
+
   renderAdmin,
   toggleAdminChange,
   approveRequest,
   cancelRequest,
+
   saveVaultCount,
   bankDeposit,
   setAdminStatus,
   setAdminCustomDelay,
-addAdminDeliveryRow,
-sendAdminDeliveryWithDenoms,
-addEmployeeDeliveryRow,
-sendEmployeeDeliveryWithDenoms,
-  calculateCashOperation,
-addCashInRow,
-addCashOutRow,
-applyCashOperation,
+
   addCashButton,
-addOtherCash,
-clearCashCalc,
-updateCashCalcScreen,
-applyCashCalculator,
-  addCashButton,
-addOtherCash,
-clearCashCalc,
-updateCashCalcScreen,
-showCashConfirm,
-closeCashConfirm,
-applyCashCalculator,
-clearAllLogs
+  addOtherCash,
+  clearCashCalc,
+  updateCashCalcScreen,
+  showCashConfirm,
+  closeCashConfirm,
+  applyCashCalculator,
+
+  clearAllLogs
 });
 </script>
 </body>
