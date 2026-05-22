@@ -1164,7 +1164,28 @@ async function approveRequest(id){
   if(request.type === "admin"){
     reduceBoxByDelivery(state,request.from,amount);
     state.vault += amount;
+if(!state.vaultCounts){
+  state.vaultCounts = {
+    counts:Array(denoms.length).fill(0),
+    otherValue:0,
+    otherCount:0
+  };
+}
 
+if(!Array.isArray(state.vaultCounts.counts)){
+  state.vaultCounts.counts = Array(denoms.length).fill(0);
+}
+
+const currentOther =
+  Number(state.vaultCounts.otherValue || 0) *
+  Number(state.vaultCounts.otherCount || 0);
+
+const newOtherTotal =
+  currentOther + amount;
+
+state.vaultCounts.otherValue = newOtherTotal;
+state.vaultCounts.otherCount = 1;
+    
     state.logs.unshift({
       id:Date.now(),
       time:now(),
