@@ -824,39 +824,73 @@ async function editClosedRevenue(){
 }
   
 async function requestAdminDelivery(){
-  await saveCashierData(false,false);
+
+  await saveCashierData();
 
   const state = loadState();
-  const amount = deliveryAmountForUser(state,currentUser);
+
+  const ownRevenue =
+  Number(state.boxes[currentUser].revenue || 0);
+
+  const received =
+  Number(state.boxes[currentUser].received || 0);
+
+  const carry =
+  Number(state.boxes[currentUser].carry || 0);
+
+  const amount =
+  ownRevenue + received + carry;
 
   if(amount <= 0){
+
     alert("لا يوجد مبلغ للتسليم");
     return;
   }
 
   state.requests.unshift({
+
     id:Date.now(),
+
     type:"admin",
+
     from:currentUser,
+
     amount,
+
     status:"معلق",
+
     createdBy:currentUser,
+
     time:now()
   });
 
   await saveState(state);
 
-  alert("تم إرسال طلب التسليم للإدارة");
   renderCashierRequests();
+
+  alert("تم إرسال طلب التسليم للإدارة");
 }
 
 async function sendToEmployee(){
-  await saveCashierData(false,false);
+
+  await saveCashierData();
 
   const state = loadState();
-  const amount = deliveryAmountForUser(state,currentUser);
+
+  const ownRevenue =
+  Number(state.boxes[currentUser].revenue || 0);
+
+  const received =
+  Number(state.boxes[currentUser].received || 0);
+
+  const carry =
+  Number(state.boxes[currentUser].carry || 0);
+
+  const amount =
+  ownRevenue + received + carry;
 
   if(amount <= 0){
+
     alert("لا يوجد مبلغ للتسليم");
     return;
   }
@@ -864,20 +898,29 @@ async function sendToEmployee(){
   const to = transferTo.value;
 
   state.requests.unshift({
+
     id:Date.now(),
+
     type:"employee",
+
     from:currentUser,
+
     to,
+
     amount,
+
     status:"معلق",
+
     createdBy:currentUser,
+
     time:now()
   });
 
   await saveState(state);
 
-  alert("تم إرسال الطلب");
   renderCashierRequests();
+
+  alert("تم إرسال الطلب");
 }
 
 function addChangeRow(){
