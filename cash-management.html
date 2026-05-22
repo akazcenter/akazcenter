@@ -1189,16 +1189,20 @@ async function sendAdminDeliveryWithDenoms(){
     return;
   }
 
-  if(amount > maxAmount){
-    alert("المبلغ المحدد أكبر من المبلغ المقفل للتسليم");
+  if(amount > Number(box.total || 0)){
+    alert("الفئات المحددة أكبر من إجمالي الصندوق");
     return;
   }
+
+  const returnAmount = Math.max(0,amount - maxAmount);
 
   state.requests.unshift({
     id:Date.now(),
     type:"admin",
     from:currentUser,
     amount,
+    returnAmount,
+    netAmount:amount - returnAmount,
     details,
     status:"معلق",
     createdBy:currentUser,
@@ -1212,7 +1216,12 @@ async function sendAdminDeliveryWithDenoms(){
 
   renderCashierRequests();
 
-  alert("تم إرسال طلب التسليم للإدارة");
+  alert(
+    "تم إرسال طلب التسليم للإدارة" +
+    "\\nالمبلغ المسلم: " + money(amount) +
+    "\\nالمبلغ المطلوب فعلياً: " + money(amount - returnAmount) +
+    "\\nالمبلغ الذي يرجع للموظفة: " + money(returnAmount)
+  );
 }
 
 function toggleTransferBox(){
@@ -1274,10 +1283,12 @@ async function sendEmployeeDeliveryWithDenoms(){
     return;
   }
 
-  if(amount > maxAmount){
-    alert("المبلغ المحدد أكبر من المبلغ المقفل للتسليم");
+  if(amount > Number(box.total || 0)){
+    alert("الفئات المحددة أكبر من إجمالي الصندوق");
     return;
   }
+
+  const returnAmount = Math.max(0,amount - maxAmount);
 
   const to = transferTo.value;
 
@@ -1287,6 +1298,8 @@ async function sendEmployeeDeliveryWithDenoms(){
     from:currentUser,
     to,
     amount,
+    returnAmount,
+    netAmount:amount - returnAmount,
     details,
     status:"معلق",
     createdBy:currentUser,
@@ -1300,7 +1313,12 @@ async function sendEmployeeDeliveryWithDenoms(){
 
   renderCashierRequests();
 
-  alert("تم إرسال طلب التسليم");
+  alert(
+    "تم إرسال طلب التسليم" +
+    "\\nالمبلغ المسلم: " + money(amount) +
+    "\\nالمبلغ المطلوب فعلياً: " + money(amount - returnAmount) +
+    "\\nالمبلغ الذي يرجع للموظفة: " + money(returnAmount)
+  );
 }
 
 function requestTitle(request){
@@ -1338,6 +1356,10 @@ function renderCashierRequests(){
 
   requests.forEach(r=>{
     html += `<div class="status-result more">${requestTitle(r)}<br>${money(r.amount)}`;
+
+    if(Number(r.returnAmount || 0) > 0){
+      html += `<br><span style="font-size:14px">المبلغ المرجع: ${money(r.returnAmount)}</span>`;
+    }
 
     if(r.details?.length){
       html += `
@@ -1408,6 +1430,18 @@ function addDetailsToBox(box,details=[]){
   });
 }
 
+function addAmountAsOther(box,amount){
+  amount = Number(amount || 0);
+
+  if(amount <= 0) return;
+
+  const currentTotal = Number(box.otherValue || 0) * Number(box.otherCount || 0);
+  const newTotal = currentTotal + amount;
+
+  box.otherValue = newTotal;
+  box.otherCount = 1;
+}
+
 function reduceBoxBalances(box,amount){
   let remaining = Number(amount || 0);
 
@@ -1453,14 +1487,19 @@ async function acceptEmployeeTransfer(id){
   request.status = "معتمد";
 
   const amount = Number(request.amount || 0);
+  const returnAmount = Number(request.returnAmount || 0);
+  const netAmount = amount - returnAmount;
+
   const fromBox = state.boxes[request.from];
   const toBox = state.boxes[request.to];
 
   deductDetailsFromBox(fromBox,request.details);
-  reduceBoxBalances(fromBox,amount);
+  reduceBoxBalances(fromBox,netAmount);
+  addAmountAsOther(fromBox,returnAmount);
+  fromBox.total = boxTotal(fromBox);
 
-  addDetailsToBox(toBox,request.details);
-  toBox.received += amount;
+  addAmountAsOther(toBox,netAmount);
+  toBox.received += netAmount;
   toBox.total = boxTotal(toBox);
 
   state.logs.unshift({
@@ -1469,7 +1508,7 @@ async function acceptEmployeeTransfer(id){
     date:todayKey(),
     type:"استلام من موظفة",
     user:employees[request.to].name,
-    amount,
+    amount:netAmount,
     status:"معتمد",
     from:request.from,
     to:request.to
@@ -1477,6 +1516,10 @@ async function acceptEmployeeTransfer(id){
 
   await saveState(state);
   renderCashier();
+
+  if(returnAmount > 0){
+    alert("تم الاستلام. يرجع للموظفة " + money(returnAmount));
+  }
 }
 
 function renderAdmin(){
@@ -1537,7 +1580,9 @@ function renderAdminRequests(){
         <strong>${requestTitle(r)}</strong>
         <div style="margin-top:10px">من: ${employees[r.from]?.name || "-"}</div>
         ${r.to ? `<div>إلى: ${employees[r.to]?.name || "-"}</div>` : ""}
-        <div>المبلغ: ${money(r.amount)}</div>
+        <div>المبلغ المسلم: ${money(r.amount)}</div>
+        ${Number(r.returnAmount || 0) > 0 ? `<div>المبلغ المرجع: ${money(r.returnAmount)}</div>` : ""}
+        <div>الصافي المستحق: ${money(Number(r.netAmount || r.amount || 0))}</div>
     `;
 
     if(r.details?.length){
@@ -1574,14 +1619,18 @@ async function approveRequest(id){
   request.status = "معتمد";
 
   const amount = Number(request.amount || 0);
+  const returnAmount = Number(request.returnAmount || 0);
+  const netAmount = amount - returnAmount;
 
   if(request.type === "admin"){
     const fromBox = state.boxes[request.from];
 
     deductDetailsFromBox(fromBox,request.details);
-    reduceBoxBalances(fromBox,amount);
+    reduceBoxBalances(fromBox,netAmount);
+    addAmountAsOther(fromBox,returnAmount);
+    fromBox.total = boxTotal(fromBox);
 
-    addDetailsToBox(state.vaultCounts,request.details);
+    addAmountAsOther(state.vaultCounts,netAmount);
     state.vault = boxTotal(state.vaultCounts);
 
     state.logs.unshift({
@@ -1590,15 +1639,16 @@ async function approveRequest(id){
       date:todayKey(),
       type:"استلام إدارة",
       user:employees[request.from].name,
-      amount,
+      amount:netAmount,
       status:"معتمد",
       from:request.from
     });
 
     alert(
       "تم استلام " + money(amount) +
-      "\\nالمتبقي في صندوق الموظفة: " + money(fromBox.total) +
-      "\\nاقتراح الصرف: " + getChangeSuggestion(fromBox.total)
+      "\\nالمبلغ المستحق فعلياً: " + money(netAmount) +
+      "\\nالمبلغ المرجع للموظفة: " + money(returnAmount) +
+      "\\nالمتبقي في صندوق الموظفة: " + money(fromBox.total)
     );
   }
 
@@ -1607,10 +1657,12 @@ async function approveRequest(id){
     const toBox = state.boxes[request.to];
 
     deductDetailsFromBox(fromBox,request.details);
-    reduceBoxBalances(fromBox,amount);
+    reduceBoxBalances(fromBox,netAmount);
+    addAmountAsOther(fromBox,returnAmount);
+    fromBox.total = boxTotal(fromBox);
 
-    addDetailsToBox(toBox,request.details);
-    toBox.received += amount;
+    addAmountAsOther(toBox,netAmount);
+    toBox.received += netAmount;
     toBox.total = boxTotal(toBox);
 
     state.logs.unshift({
@@ -1619,7 +1671,7 @@ async function approveRequest(id){
       date:todayKey(),
       type:"تسليم بين الموظفات",
       user:employees[request.from].name,
-      amount,
+      amount:netAmount,
       status:"معتمد",
       from:request.from,
       to:request.to
