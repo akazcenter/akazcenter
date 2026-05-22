@@ -802,7 +802,40 @@ function toggleTransferBox(){
 function requestChange(){
   changeBox.classList.toggle("hidden");
 }
+async function editClosedRevenue(){
+  const state = loadState();
+  const box = state.boxes[currentUser];
 
+  if(Number(box.carry || 0) <= 0){
+    alert("لا يوجد مبلغ مقفل للتعديل");
+    return;
+  }
+
+  if(!confirm("سيتم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل. هل أنت متأكد؟")){
+    return;
+  }
+
+  box.revenue += Number(box.carry || 0);
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"تعديل إقفال اليوم",
+    user:employees[currentUser].name,
+    amount:box.carry,
+    status:"معتمد"
+  });
+
+  box.carry = 0;
+
+  await saveState(state);
+
+  renderCashier();
+
+  alert("تم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل");
+}
+  
 async function requestAdminDelivery(){
   await saveCashierData(false,false);
 
