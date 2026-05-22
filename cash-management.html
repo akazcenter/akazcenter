@@ -212,9 +212,51 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 
       <div class="status-result ok" id="differenceBox">الصندوق مطابق</div>
 
-      <h2 style="margin-top:24px">عرض الصندوق</h2>
-      <div class="box-preview" id="boxPreview"></div>
+ <div class="card" style="margin-top:20px;padding:20px">
+  <h3>حاسبة العملية النقدية</h3>
 
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px">
+
+    <input id="invoiceAmount" type="number" placeholder="قيمة الفاتورة">
+
+    <input id="networkAmount" type="number" placeholder="مدفوع شبكة" value="0">
+
+    <input id="cashReceived" type="number" placeholder="النقد المستلم">
+
+    <input id="cashNeeded" type="number" placeholder="النقد المطلوب" readonly>
+
+    <input id="customerChange" type="number" placeholder="الباقي للمريض" readonly>
+
+  </div>
+
+  <div style="margin-top:15px">
+    <button class="btn btn-green" style="width:100%" onclick="calculateCashOperation()">
+      حساب العملية
+    </button>
+  </div>
+
+  <div style="margin-top:20px">
+    <div class="help">الفئات الداخلة للصندوق</div>
+    <div id="cashInRows"></div>
+
+    <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addCashInRow()">
+      إضافة فئة داخلة
+    </button>
+  </div>
+
+  <div style="margin-top:20px">
+    <div class="help">الفئات الخارجة للمريض</div>
+    <div id="cashOutRows"></div>
+
+    <button class="btn btn-red" style="width:100%;margin-top:10px" onclick="addCashOutRow()">
+      إضافة فئة خارجة
+    </button>
+  </div>
+
+  <button class="btn btn-blue" style="width:100%;margin-top:20px" onclick="applyCashOperation()">
+    اعتماد العملية
+  </button>
+</div>
       <div class="actions">
         <button class="btn btn-blue" onclick="requestAdminDelivery()">تسليم للإدارة</button>
         <button class="btn btn-orange" onclick="toggleTransferBox()">تسليم لموظفة</button>
@@ -908,7 +950,137 @@ async function sendEmployeeDeliveryWithDenoms(){
     "\\nالمتبقي عندك: " + money(remainingForSender)
   );
 }
-function requestChange(){
+function calculateCashOperation(){
+
+  const invoice = Number(invoiceAmount.value || 0);
+  const network = Number(networkAmount.value || 0);
+  const cash = Number(cashReceived.value || 0);
+
+  const cashNeeded = Math.max(0, invoice - network);
+  const change = Math.max(0, cash - cashNeeded);
+
+  cashNeededInput = document.getElementById("cashNeeded");
+  customerChangeInput = document.getElementById("customerChange");
+
+  cashNeededInput.value = cashNeeded;
+  customerChangeInput.value = change;
+}
+
+function addCashInRow(){
+  cashInRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+
+      <select class="cashInDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+
+      <input type="number" min="1" value="1" class="cashInCount">
+
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+
+    </div>
+  `;
+}
+
+function addCashOutRow(){
+  cashOutRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+
+      <select class="cashOutDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+
+      <input type="number" min="1" value="1" class="cashOutCount">
+
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+
+    </div>
+  `;
+}
+
+async function applyCashOperation(){
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  const invoice = Number(invoiceAmount.value || 0);
+  const network = Number(networkAmount.value || 0);
+  const cash = Number(cashReceived.value || 0);
+
+  const cashNeeded = Math.max(0, invoice - network);
+  const change = Math.max(0, cash - cashNeeded);
+
+  if(invoice <= 0){
+    alert("أدخل قيمة الفاتورة");
+    return;
+  }
+
+  let inTotal = 0;
+
+  document.querySelectorAll(".cashInDenom").forEach((el,index)=>{
+    const value = Number(el.value);
+    const count = Number(document.querySelectorAll(".cashInCount")[index].value || 0);
+
+    inTotal += value * count;
+
+    const denomIndex = denoms.findIndex(d=>d.value == value);
+
+    box.counts[denomIndex] =
+      Number(box.counts[denomIndex] || 0) + count;
+  });
+
+  let outTotal = 0;
+
+  document.querySelectorAll(".cashOutDenom").forEach((el,index)=>{
+    const value = Number(el.value);
+    const count = Number(document.querySelectorAll(".cashOutCount")[index].value || 0);
+
+    outTotal += value * count;
+
+    const denomIndex = denoms.findIndex(d=>d.value == value);
+
+    box.counts[denomIndex] =
+      Math.max(
+        0,
+        Number(box.counts[denomIndex] || 0) - count
+      );
+  });
+
+  if(inTotal !== cash){
+    alert("الفئات الداخلة لا تطابق النقد المستلم");
+    return;
+  }
+
+  if(outTotal !== change){
+    alert("الفئات الخارجة لا تطابق الباقي للمريض");
+    return;
+  }
+
+  box.revenue += cashNeeded;
+  box.total += cashNeeded;
+
+  state.logs.unshift({
+    id:Date.now(),
+    type:"عملية نقدية",
+    user:employees[currentUser].name,
+    amount:cashNeeded,
+    status:"معتمد",
+    time:now(),
+    date:todayKey()
+  });
+
+  await saveState(state);
+
+  calculateVault();
+  renderCashier();
+
+  alert(
+    "تم اعتماد العملية" +
+    "\\nإيراد نقدي: " + money(cashNeeded) +
+    "\\nالباقي للمريض: " + money(change)
+  );
+}
+  function requestChange(){
   changeBox.classList.toggle("hidden");
 }
 async function editClosedRevenue(){
@@ -1810,6 +1982,10 @@ addAdminDeliveryRow,
 sendAdminDeliveryWithDenoms,
 addEmployeeDeliveryRow,
 sendEmployeeDeliveryWithDenoms,
+  calculateCashOperation,
+addCashInRow,
+addCashOutRow,
+applyCashOperation,
 clearAllLogs
 });
 </script>
