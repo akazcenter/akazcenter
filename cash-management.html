@@ -27,7 +27,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 .intro h2{margin:0;color:var(--b);font-size:30px}
 .intro p{color:var(--m)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.card{border-radius:28px;padding:28px 18px;text-align:center;position:relative;overflow:hidden}
+.card{border-radius:28px;padding:24px 18px;text-align:center;position:relative;overflow:hidden}
 .card:before{content:"";position:absolute;top:0;right:0;width:100%;height:7px;background:linear-gradient(90deg,var(--o),#ffd28a)}
 .icon{width:78px;height:78px;margin:0 auto 16px;border-radius:26px;background:#eef6ff;display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--b)}
 .card h3{margin:0;color:var(--b);font-size:25px}
@@ -44,11 +44,11 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 .admin-summary{grid-template-columns:repeat(4,1fr)}
 .summary-card{border-radius:22px;padding:18px;text-align:center}
 .summary-card h3{margin:0 0 8px;color:var(--m);font-size:13px}
-.summary-card span{display:block;font-size:24px;font-weight:900;color:var(--b);direction:ltr}
+.summary-card span{display:block;font-size:22px;font-weight:900;color:var(--b);direction:ltr}
 .green span{color:var(--g)!important}
 .orange span{color:var(--o)!important}
 .red span{color:var(--r)!important}
-.sections{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.sections{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
 .panel{border-radius:24px;padding:18px}
 .panel h2{margin:0 0 14px;color:var(--b);font-size:24px}
 .help{color:var(--m);font-size:12px;line-height:1.8;margin-bottom:12px}
@@ -56,24 +56,26 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 .cash-table th{background:#06345d;color:white;padding:10px 6px;font-size:12px;border:1px solid #17456f}
 .cash-table td{border:1px solid #e2e8f0;padding:8px 6px;text-align:center;font-size:13px;font-weight:900}
 .total-line{margin-top:14px;background:#eef6ff;border:1px solid #bfdbfe;border-radius:16px;padding:14px;text-align:center;font-weight:900;color:#1d4ed8}
-.total-line span{display:block;margin-top:8px;font-size:30px;color:var(--b);direction:ltr}
-.revenue-input{border:2px solid #bfdbfe!important;border-radius:18px!important;padding:18px!important;font-size:28px!important;color:var(--b);background:#f8fbff!important}
+.total-line span{display:block;margin-top:8px;font-size:28px;color:var(--b);direction:ltr}
+.revenue-input{border:2px solid #bfdbfe!important;border-radius:18px!important;padding:16px!important;font-size:26px!important;color:var(--b);background:#f8fbff!important}
 .status-result{margin-top:16px;border-radius:18px;padding:18px;text-align:center;font-weight:900;font-size:18px}
 .ok{background:#dcfce7;color:#166534;border:1px solid #86efac}
 .bad{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
 .more{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
-.box-preview{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
-.preview-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:12px;text-align:center;font-weight:900;color:#334155}
-.preview-item strong{display:block;color:var(--b);font-size:20px;margin-top:6px;direction:ltr}
 .actions{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
 .actions button{padding:15px;border-radius:15px;font-size:14px}
 .footer{width:90%;max-width:1200px;margin:45px auto 20px;padding-top:18px;border-top:1px solid #dbe4ee;text-align:center;color:#64748b;font-size:14px}
 .mini-card{border:1px solid var(--l);background:#f8fafc;border-radius:18px;padding:14px;margin-top:10px}
 .detail-box{background:white;border:1px dashed #cbd5e1;padding:10px;border-radius:12px;margin-top:10px;font-size:13px;line-height:1.9}
-@media(max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}.summary-grid,.admin-summary{grid-template-columns:repeat(2,1fr)}.sections{grid-template-columns:1fr}.box-preview{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.topbar{flex-direction:column;text-align:center;gap:12px}.brand{flex-direction:column}.cards,.summary-grid,.admin-summary,.box-preview,.actions{grid-template-columns:1fr}}
+.calc-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
+.calc-pad button{font-size:18px;padding:16px}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-card{background:white;border-radius:24px;padding:24px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}.summary-grid,.admin-summary{grid-template-columns:repeat(2,1fr)}.sections{grid-template-columns:1fr}}
+@media(max-width:650px){.topbar{flex-direction:column;text-align:center;gap:12px}.brand{flex-direction:column}.cards,.summary-grid,.admin-summary,.actions{grid-template-columns:1fr}.calc-pad{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
+
 <body>
 
 <div class="topbar">
@@ -92,7 +94,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 <section id="loginView">
   <div class="intro">
     <h2>نظام الصناديق والعهد</h2>
-    <p>إدارة الصناديق النقدية وتسليم الإيرادات والفكة والخزنة الداخلية بشكل مباشر واحترافي.</p>
+    <p>إدارة الصناديق النقدية وتسليم الإيرادات والصرف والخزنة الداخلية بشكل مباشر.</p>
   </div>
 
   <div class="cards">
@@ -100,7 +102,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
       <div class="icon">▣</div>
       <h3>أ. مرام</h3>
       <h4>Cash Box</h4>
-      <p>صندوق أ. مرام وإدارة الإيرادات النقدية.</p>
+      <p>صندوق أ. مرام.</p>
       <div class="pin-box">
         <input type="password" id="pin_maram" placeholder="الرمز السري">
         <button onclick="login('maram')">دخول</button>
@@ -111,7 +113,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
       <div class="icon">▣</div>
       <h3>أ. أشواق</h3>
       <h4>Cash Box</h4>
-      <p>صندوق أ. أشواق وإدارة الإيرادات النقدية.</p>
+      <p>صندوق أ. أشواق.</p>
       <div class="pin-box">
         <input type="password" id="pin_ashwaq" placeholder="الرمز السري">
         <button onclick="login('ashwaq')">دخول</button>
@@ -122,7 +124,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
       <div class="icon">▣</div>
       <h3>أ. شهد</h3>
       <h4>Cash Box</h4>
-      <p>صندوق أ. شهد وإدارة الإيرادات النقدية.</p>
+      <p>صندوق أ. شهد.</p>
       <div class="pin-box">
         <input type="password" id="pin_shahad" placeholder="الرمز السري">
         <button onclick="login('shahad')">دخول</button>
@@ -133,7 +135,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
       <div class="icon">🔐</div>
       <h3>الإدارة</h3>
       <h4>Management</h4>
-      <p>إدارة الخزنة واستلام الإيرادات واعتماد العمليات.</p>
+      <p>إدارة الخزنة واعتماد العمليات.</p>
       <div class="pin-box">
         <input type="password" id="pin_admin" placeholder="رمز الإدارة">
         <button onclick="login('admin')">دخول</button>
@@ -143,24 +145,27 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 </section>
 
 <section id="cashierView" class="hidden">
-  <div class="status-box status-available" id="cashierAdminStatus">الإدارة موجودة لاستلام الإيراد</div>
+
+  <div class="status-box status-available" id="cashierAdminStatus">
+    الإدارة موجودة لاستلام الإيراد
+  </div>
 
   <div class="summary-grid">
     <div class="summary-card">
       <h3>إجمالي الصندوق</h3>
-      <span id="fullTotal">0.00 ريال</span>
+      <span id="fullTotal">0.00 SAR</span>
     </div>
     <div class="summary-card green">
       <h3>إيراد اليوم</h3>
-      <span id="deliverAmount">0.00 ريال</span>
+      <span id="deliverAmount">0.00 SAR</span>
     </div>
     <div class="summary-card orange">
       <h3>مقفل للتسليم</h3>
-      <span id="carryAmount">0.00 ريال</span>
+      <span id="carryAmount">0.00 SAR</span>
     </div>
     <div class="summary-card red">
       <h3>المستلم من موظفة</h3>
-      <span id="receivedAmount">0.00 ريال</span>
+      <span id="receivedAmount">0.00 SAR</span>
     </div>
     <div class="summary-card orange">
       <h3>حالة الصندوق</h3>
@@ -169,9 +174,10 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
   </div>
 
   <div class="sections">
+
     <div class="panel">
       <h2>عد الصندوق كامل</h2>
-      <div class="help">اكتبي جميع الفئات الموجودة داخل الصندوق بما فيها العهدة والإيراد والفكة.</div>
+      <div class="help">اكتبي الفئات الموجودة داخل الصندوق. الخانات الفاضية تعتبر صفر.</div>
 
       <table class="cash-table">
         <thead>
@@ -191,7 +197,7 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 
       <div class="total-line">
         إجمالي الصندوق بعد العد
-        <span id="cashTotal">0.00 ريال</span>
+        <span id="cashTotal">0.00 SAR</span>
       </div>
 
       <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveCashierData()">
@@ -201,58 +207,55 @@ body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180
 
     <div class="panel">
       <h2>إيراد اليوم</h2>
-      <div class="help">إقفال اليوم ينقل إيراد اليوم إلى مبلغ مقفل للتسليم ويصفر خانة إيراد اليوم بدون حذف مبلغ الصندوق.</div>
+      <div class="help">إيراد اليوم يحسب تلقائيا من الحاسبة. لا يكتب يدويا.</div>
 
-<input
-class="revenue-input"
-type="number"
-id="todayRevenue"
-placeholder=""
-readonly>
+      <input class="revenue-input" type="number" id="todayRevenue" placeholder="" readonly>
+
       <div class="total-line">
         المتوقع داخل الصندوق
-        <span id="expectedTotal">0.00 ريال</span>
+        <span id="expectedTotal">0.00 SAR</span>
       </div>
 
       <div class="status-result ok" id="differenceBox">الصندوق مطابق</div>
 
-<div class="card" style="margin-top:20px;padding:20px">
-  <h3 style="margin-bottom:15px">حاسبة العملية النقدية</h3>
+      <div class="card" style="margin-top:20px;padding:20px">
+        <h3 style="margin-bottom:15px">حاسبة العملية النقدية</h3>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-    <input id="invoiceAmount" type="number" placeholder="قيمة الفاتورة" oninput="updateCashCalcScreen()">
-    <input id="networkAmount" type="number" placeholder="مدفوع شبكة" oninput="updateCashCalcScreen()">
-  </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <input id="invoiceAmount" type="number" placeholder="قيمة الفاتورة" oninput="updateCashCalcScreen()">
+          <input id="networkAmount" type="number" placeholder="مدفوع شبكة" oninput="updateCashCalcScreen()">
+        </div>
 
-  <div class="total-line">
-    النقد المستلم
-    <span id="cashCalcReceived">0.00 SAR</span>
-  </div>
+        <div class="total-line">
+          النقد المستلم
+          <span id="cashCalcReceived">0.00 SAR</span>
+        </div>
 
-  <div class="total-line">
-    الباقي للمريض
-    <span id="cashCalcChange">0.00 SAR</span>
-  </div>
+        <div class="total-line">
+          الباقي للمريض
+          <span id="cashCalcChange">0.00 SAR</span>
+        </div>
 
-  <div class="total-line">
-    اقتراح الاسترجاع
-    <span id="cashCalcSuggestion" style="font-size:18px">-</span>
-  </div>
+        <div class="total-line">
+          اقتراح الاسترجاع
+          <span id="cashCalcSuggestion" style="font-size:18px">-</span>
+        </div>
 
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px">
-    <button class="btn btn-orange" onclick="addCashButton(500)">500</button>
-    <button class="btn btn-orange" onclick="addCashButton(200)">200</button>
-    <button class="btn btn-orange" onclick="addCashButton(100)">100</button>
-    <button class="btn btn-orange" onclick="addCashButton(50)">50</button>
-    <button class="btn btn-orange" onclick="addCashButton(20)">20</button>
-    <button class="btn btn-orange" onclick="addCashButton(10)">10</button>
-    <button class="btn btn-orange" onclick="addCashButton(5)">5</button>
-    <button class="btn btn-orange" onclick="addCashButton(1)">1</button>
-    <button class="btn btn-blue" onclick="addOtherCash()">أخرى</button>
-    <button class="btn btn-red" onclick="clearCashCalc()">مسح</button>
-    <button class="btn btn-green" style="grid-column:span 2" onclick="showCashConfirm()">اعتماد العملية</button>
-  </div>
-</div>
+        <div class="calc-pad">
+          <button class="btn btn-orange" onclick="addCashButton(500)">500</button>
+          <button class="btn btn-orange" onclick="addCashButton(200)">200</button>
+          <button class="btn btn-orange" onclick="addCashButton(100)">100</button>
+          <button class="btn btn-orange" onclick="addCashButton(50)">50</button>
+          <button class="btn btn-orange" onclick="addCashButton(20)">20</button>
+          <button class="btn btn-orange" onclick="addCashButton(10)">10</button>
+          <button class="btn btn-orange" onclick="addCashButton(5)">5</button>
+          <button class="btn btn-orange" onclick="addCashButton(1)">1</button>
+          <button class="btn btn-blue" onclick="addOtherCash()">أخرى</button>
+          <button class="btn btn-red" onclick="clearCashCalc()">مسح</button>
+          <button class="btn btn-green" style="grid-column:span 2" onclick="showCashConfirm()">اعتماد العملية</button>
+        </div>
+      </div>
+
       <div class="actions">
         <button class="btn btn-blue" onclick="requestAdminDelivery()">تسليم للإدارة</button>
         <button class="btn btn-orange" onclick="toggleTransferBox()">تسليم لموظفة</button>
@@ -261,38 +264,27 @@ readonly>
         <button class="btn btn-orange" onclick="editClosedRevenue()">تعديل الإقفال</button>
       </div>
 
-<div id="transferBox" class="hidden" style="margin-top:14px">
-  <select id="transferTo"></select>
+      <div id="transferBox" class="hidden" style="margin-top:14px">
+        <select id="transferTo"></select>
+        <div class="help" style="margin-top:10px">حددي الفئات التي سيتم تسليمها للموظفة.</div>
+        <div id="employeeDeliveryRows"></div>
 
-  <div class="help" style="margin-top:10px">
-    حددي الفئات التي سيتم تسليمها للموظفة.
-  </div>
+        <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addEmployeeDeliveryRow()">إضافة فئة</button>
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendEmployeeDeliveryWithDenoms()">إرسال طلب التسليم</button>
+      </div>
 
-  <div id="employeeDeliveryRows"></div>
+      <div id="adminDeliveryBox" class="hidden" style="margin-top:14px">
+        <div class="help">حددي الفئات التي سيتم تسليمها للإدارة.</div>
+        <div id="adminDeliveryRows"></div>
 
-  <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addEmployeeDeliveryRow()">
-    إضافة فئة
-  </button>
+        <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addAdminDeliveryRow()">إضافة فئة</button>
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendAdminDeliveryWithDenoms()">إرسال طلب التسليم</button>
+      </div>
 
-  <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendEmployeeDeliveryWithDenoms()">
-    إرسال طلب التسليم
-  </button>
-</div>
-<div id="adminDeliveryBox" class="hidden" style="margin-top:14px">
-  <div class="help">حددي الفئات التي سيتم تسليمها للإدارة.</div>
-  <div id="adminDeliveryRows"></div>
-
-  <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addAdminDeliveryRow()">
-    إضافة فئة
-  </button>
-
-  <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendAdminDeliveryWithDenoms()">
-    إرسال طلب التسليم
-  </button>
-</div>
       <div id="changeBox" class="hidden" style="margin-top:14px">
         <div class="help">أضيفي الفئات المطلوبة فقط.</div>
         <div id="changeRows"></div>
+
         <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addChangeRow()">إضافة فئة</button>
         <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendChangeRequest()">إرسال طلب الصرف</button>
       </div>
@@ -303,8 +295,6 @@ readonly>
     <h2>الطلبات والعمليات</h2>
     <div id="cashierRequestsBox"></div>
   </div>
-
-
 </section>
 
 <section id="adminView" class="hidden">
@@ -316,11 +306,11 @@ readonly>
   <div class="summary-grid admin-summary">
     <div class="summary-card">
       <h3>رصيد الخزنة الحالي</h3>
-      <span id="vaultTotal">0.00 ريال</span>
+      <span id="vaultTotal">0.00 SAR</span>
     </div>
     <div class="summary-card green">
       <h3>الإيرادات المستلمة اليوم</h3>
-      <span id="receivedToday">0.00 ريال</span>
+      <span id="receivedToday">0.00 SAR</span>
     </div>
     <div class="summary-card orange">
       <h3>طلبات معلقة</h3>
@@ -334,6 +324,7 @@ readonly>
 
   <div class="panel">
     <h2>حالة الإدارة</h2>
+
     <div class="actions">
       <button class="btn btn-green" onclick="setAdminStatus('available')">موجود</button>
       <button class="btn btn-red" onclick="setAdminStatus('unavailable')">غير موجود</button>
@@ -345,23 +336,10 @@ readonly>
       <input type="date" id="customDelayDate">
     </div>
   </div>
-<div id="cashConfirmModal" class="hidden" style="
-position:fixed;inset:0;background:rgba(15,23,42,.55);
-z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
 
-  <div style="background:white;border-radius:24px;padding:24px;max-width:520px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.25)">
-    <h2 style="color:#005b9f;margin-top:0">تأكيد العملية</h2>
-
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
-      <button class="btn btn-blue" onclick="applyCashCalculator()">اعتماد</button>
-      <button class="btn btn-red" onclick="closeCashConfirm()">إلغاء</button>
-    </div>
-  </div>
-
-</div>
   <div class="panel" style="margin-top:18px">
     <h2>أرصدة الصناديق</h2>
+
     <table class="cash-table">
       <thead>
         <tr>
@@ -404,12 +382,10 @@ z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px
 
     <div class="total-line">
       إجمالي الخزنة الفعلي
-      <span id="vaultCountTotal">0.00 ريال</span>
+      <span id="vaultCountTotal">0.00 SAR</span>
     </div>
 
-    <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveVaultCount()">
-      حفظ عد الخزنة
-    </button>
+    <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveVaultCount()">حفظ عد الخزنة</button>
   </div>
 
   <div class="panel" style="margin-top:18px">
@@ -421,9 +397,7 @@ z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px
       <input type="text" id="bankName" placeholder="اسم البنك">
     </div>
 
-    <button class="btn btn-blue" style="width:100%;margin-top:12px;padding:15px" onclick="bankDeposit()">
-      تسجيل توديع للبنك
-    </button>
+    <button class="btn btn-blue" style="width:100%;margin-top:12px;padding:15px" onclick="bankDeposit()">تسجيل توديع للبنك</button>
   </div>
 
   <div class="panel" style="margin-top:18px">
@@ -434,14 +408,23 @@ z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px
 </section>
 
 </div>
-    <div id="cashConfirmDetails" style="line-height:2;font-weight:900;color:#0f172a"></div>
 
 <div class="footer">مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center</div>
+
+<div id="cashConfirmModal" class="hidden modal">
+  <div class="modal-card">
+    <h2 style="color:#005b9f;margin-top:0">تأكيد العملية</h2>
+    <div id="cashConfirmDetails" style="line-height:2;font-weight:900;color:#0f172a"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+      <button class="btn btn-blue" onclick="applyCashCalculator()">اعتماد</button>
+      <button class="btn btn-red" onclick="closeCashConfirm()">إلغاء</button>
+    </div>
+  </div>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 
 const firebaseConfig = {
   apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -459,6 +442,9 @@ const cashDocRef = doc(db,"cashManagement","main");
 let cashState = null;
 let currentUser = null;
 let saveTimer = null;
+let cashCalcDetails = [];
+let pendingCashOperation = null;
+
 const baseCustody = 1000;
 
 const employees = {
@@ -481,14 +467,25 @@ const denoms = [
   {label:"25 هللة",value:0.25}
 ];
 
+const defaultBox = {
+  revenue:0,
+  carry:0,
+  received:0,
+  total:0,
+  status:"سليم",
+  counts:Array(denoms.length).fill(0),
+  otherValue:0,
+  otherCount:0
+};
+
 const defaultState = {
   adminStatus:{type:"available",text:"الإدارة موجودة لاستلام الإيراد"},
   vault:0,
   vaultCounts:{counts:Array(denoms.length).fill(0),otherValue:0,otherCount:0},
   boxes:{
-    maram:{revenue:0,carry:0,received:0,total:0,status:"سليم",counts:Array(denoms.length).fill(0),otherValue:0,otherCount:0},
-    ashwaq:{revenue:0,carry:0,received:0,total:0,status:"سليم",counts:Array(denoms.length).fill(0),otherValue:0,otherCount:0},
-    shahad:{revenue:0,carry:0,received:0,total:0,status:"سليم",counts:Array(denoms.length).fill(0),otherValue:0,otherCount:0}
+    maram:JSON.parse(JSON.stringify(defaultBox)),
+    ashwaq:JSON.parse(JSON.stringify(defaultBox)),
+    shahad:JSON.parse(JSON.stringify(defaultBox))
   },
   requests:[],
   logs:[]
@@ -498,21 +495,43 @@ function clone(obj){
   return JSON.parse(JSON.stringify(obj));
 }
 
+function money(n){
+  return Number(n || 0).toLocaleString("en-US",{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  }) + " SAR";
+}
+
+function now(){
+  return new Date().toLocaleString("ar-SA");
+}
+
+function todayKey(){
+  return new Date().toLocaleDateString("ar-SA");
+}
+
+function parseMoney(v){
+  return Number(String(v).replace(/[^0-9.-]/g,"") || 0);
+}
+
 function normalizeState(state){
   state = state || clone(defaultState);
   state.adminStatus = state.adminStatus || clone(defaultState.adminStatus);
   state.vault = Number(state.vault || 0);
 
-  
-
   state.vaultCounts = Object.assign({}, clone(defaultState.vaultCounts), state.vaultCounts || {});
-  state.vaultCounts.counts = Array.isArray(state.vaultCounts.counts) ? state.vaultCounts.counts : Array(denoms.length).fill(0);
+  state.vaultCounts.counts = Array.isArray(state.vaultCounts.counts)
+    ? state.vaultCounts.counts
+    : Array(denoms.length).fill(0);
 
   state.boxes = state.boxes || {};
 
   Object.keys(defaultState.boxes).forEach(k=>{
-    state.boxes[k] = Object.assign({}, clone(defaultState.boxes[k]), state.boxes[k] || {});
-    state.boxes[k].counts = Array.isArray(state.boxes[k].counts) ? state.boxes[k].counts : Array(denoms.length).fill(0);
+    state.boxes[k] = Object.assign({}, clone(defaultBox), state.boxes[k] || {});
+    state.boxes[k].counts = Array.isArray(state.boxes[k].counts)
+      ? state.boxes[k].counts
+      : Array(denoms.length).fill(0);
+
     state.boxes[k].revenue = Number(state.boxes[k].revenue || 0);
     state.boxes[k].carry = Number(state.boxes[k].carry || 0);
     state.boxes[k].received = Number(state.boxes[k].received || 0);
@@ -534,23 +553,16 @@ async function saveState(state){
   await setDoc(cashDocRef,cashState);
 }
 
-function money(n){
-  return Number(n || 0).toLocaleString("en-US",{
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
-  }) + " SAR";
-}
+function boxTotal(box){
+  let total = 0;
 
-function now(){
-  return new Date().toLocaleString("ar-SA");
-}
+  denoms.forEach((d,i)=>{
+    total += Number(box.counts?.[i] || 0) * d.value;
+  });
 
-function todayKey(){
-  return new Date().toLocaleDateString("ar-SA");
-}
+  total += Number(box.otherValue || 0) * Number(box.otherCount || 0);
 
-function parseMoney(v){
-  return Number(String(v).replace(/[^0-9.-]/g,"") || 0);
+  return Number(total.toFixed(2));
 }
 
 function login(type){
@@ -583,16 +595,16 @@ function buildRows(){
     cashRows.innerHTML += `
       <tr>
         <td>${d.label}</td>
-        <td><input type="number" min="0" value="0" id="denom_${i}" oninput="calculate();autoSaveBox()"></td>
-        <td id="total_${i}">0.00 ريال</td>
+        <td><input type="number" min="0" placeholder="" id="denom_${i}" oninput="calculate();autoSaveBox()"></td>
+        <td id="total_${i}">0.00 SAR</td>
       </tr>
     `;
 
     vaultRows.innerHTML += `
       <tr>
         <td>${d.label}</td>
-        <td><input type="number" min="0" value="0" id="vault_${i}" oninput="calculateVault()"></td>
-        <td id="vault_total_${i}">0.00 ريال</td>
+        <td><input type="number" min="0" placeholder="" id="vault_${i}" oninput="calculateVault()"></td>
+        <td id="vault_total_${i}">0.00 SAR</td>
       </tr>
     `;
   });
@@ -605,11 +617,11 @@ function fillCashInputs(){
 
   denoms.forEach((_,i)=>{
     const input = document.getElementById("denom_"+i);
-    if(input) input.value = box.counts[i] || 0;
+    if(input) input.value = Number(box.counts[i] || 0) || "";
   });
 
-  otherCashValue.value = box.otherValue || 0;
-  otherCashCount.value = box.otherCount || 0;
+  otherCashValue.value = Number(box.otherValue || 0) || "";
+  otherCashCount.value = Number(box.otherCount || 0) || "";
 }
 
 function fillVaultInputs(){
@@ -617,11 +629,11 @@ function fillVaultInputs(){
 
   denoms.forEach((_,i)=>{
     const input = document.getElementById("vault_"+i);
-    if(input) input.value = vc.counts?.[i] || 0;
+    if(input) input.value = Number(vc.counts?.[i] || 0) || "";
   });
 
-  if(document.getElementById("otherVaultValue")) otherVaultValue.value = vc.otherValue || 0;
-  if(document.getElementById("otherVaultCount")) otherVaultCount.value = vc.otherCount || 0;
+  if(document.getElementById("otherVaultValue")) otherVaultValue.value = Number(vc.otherValue || 0) || "";
+  if(document.getElementById("otherVaultCount")) otherVaultCount.value = Number(vc.otherCount || 0) || "";
 
   calculateVault();
 }
@@ -656,13 +668,12 @@ function renderCashier(){
 
   cashierAdminStatus.innerText = "حالة الإدارة: " + status.text;
 
-  todayRevenue.value = box.revenue || 0;
+  todayRevenue.value = Number(box.revenue || 0) || "";
   receivedAmount.innerText = money(box.received || 0);
   carryAmount.innerText = money(box.carry || 0);
 
   renderTransferOptions();
   renderCashierRequests();
-  renderCashierLog();
   calculate();
 }
 
@@ -678,9 +689,7 @@ function getCashCountData(){
 
 function calculate(){
   const state = loadState();
-
   let total = 0;
-  let preview = [];
 
   denoms.forEach((d,i)=>{
     const count = Number(document.getElementById("denom_"+i)?.value || 0);
@@ -690,19 +699,13 @@ function calculate(){
 
     const cell = document.getElementById("total_"+i);
     if(cell) cell.innerText = money(rowTotal);
-
-    if(count > 0){
-      preview.push({label:d.label,count,total:rowTotal});
-    }
   });
 
   const otherValue = Number(otherCashValue.value || 0);
   const otherCount = Number(otherCashCount.value || 0);
 
   if(otherValue > 0 && otherCount > 0){
-    const otherTotal = otherValue * otherCount;
-    total += otherTotal;
-    preview.push({label:"فئة أخرى",count:otherCount,total:otherTotal});
+    total += otherValue * otherCount;
   }
 
   const box = state.boxes[currentUser] || {};
@@ -711,7 +714,7 @@ function calculate(){
   const received = Number(box.received || 0);
 
   const expected = baseCustody + ownRevenue + carry + received;
-  const diff = total - expected;
+  const diff = Number((total - expected).toFixed(2));
 
   fullTotal.innerText = money(total);
   cashTotal.innerText = money(total);
@@ -733,9 +736,6 @@ function calculate(){
     differenceBox.className = "status-result bad";
     differenceBox.innerText = "يوجد نقص بالصندوق " + money(Math.abs(diff));
   }
-
-if(document.getElementById("boxPreview")){
-  boxPreview.innerHTML = "";
 }
 
 async function autoSaveBox(){
@@ -805,7 +805,6 @@ async function saveCashierData(showAlert=true,addLog=true){
   }
 
   await saveState(state);
-  renderCashierLog();
 
   if(showAlert){
     alert("تم حفظ عد الصندوق");
@@ -825,6 +824,7 @@ async function closeTodayRevenue(){
 
   state.boxes[currentUser].carry += amount;
   state.boxes[currentUser].revenue = 0;
+  state.boxes[currentUser].total = boxTotal(state.boxes[currentUser]);
 
   state.logs.unshift({
     id:Date.now(),
@@ -838,257 +838,50 @@ async function closeTodayRevenue(){
 
   await saveState(state);
 
-  todayRevenue.value = 0;
   renderCashier();
 
   alert("تم إقفال اليوم ونقل الإيراد إلى مبلغ مقفل للتسليم");
 }
 
-function deliveryAmountForUser(state,user){
-  const box = state.boxes[user];
-
-  return Number(box.revenue || 0) +
-         Number(box.carry || 0) +
-         Number(box.received || 0);
-}
-
-function toggleTransferBox(){
-  transferBox.classList.toggle("hidden");
-}
-function addEmployeeDeliveryRow(){
-  employeeDeliveryRows.innerHTML += `
-    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
-      <select class="employeeDeliveryDenom">
-        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
-      </select>
-
-      <input type="number" min="1" value="1" class="employeeDeliveryCount">
-
-      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
-    </div>
-  `;
-}
-
-async function sendEmployeeDeliveryWithDenoms(){
-  await saveCashierData(false,false);
-
+async function editClosedRevenue(){
   const state = loadState();
   const box = state.boxes[currentUser];
 
-  if(Number(box.revenue || 0) > 0){
-    alert("لا يمكن التسليم لموظفة قبل إقفال اليوم");
+  if(Number(box.carry || 0) <= 0){
+    alert("لا يوجد مبلغ مقفل للتعديل");
     return;
   }
 
-  const maxAmount =
-    Number(box.carry || 0) +
-    Number(box.received || 0);
-
-  if(maxAmount <= 0){
-    alert("لا يوجد مبلغ مقفل للتسليم");
+  if(!confirm("سيتم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل. هل أنت متأكد؟")){
     return;
   }
 
-  const rows = document.querySelectorAll("#employeeDeliveryRows > div");
-
-  if(rows.length === 0){
-    alert("أضف فئة واحدة على الأقل");
-    return;
-  }
-
-  let details = [];
-  let amount = 0;
-
-  rows.forEach(row=>{
-    const value = Number(row.querySelector(".employeeDeliveryDenom").value);
-    const count = Number(row.querySelector(".employeeDeliveryCount").value || 0);
-    const denom = denoms.find(d=>d.value == value);
-
-    if(count > 0){
-      amount += value * count;
-      details.push({
-        label:denom.label,
-        value,
-        count
-      });
-    }
-  });
-
-  if(amount <= 0){
-    alert("المبلغ غير صحيح");
-    return;
-  }
-
-  if(amount > Number(box.total || 0)){
-    alert("الفئات المحددة أكبر من إجمالي الصندوق");
-    return;
-  }
-
-  const to = transferTo.value;
-
-  state.requests.unshift({
-    id:Date.now(),
-    type:"employee",
-    from:currentUser,
-    to,
-    amount,
-    details,
-    status:"معلق",
-    createdBy:currentUser,
-    time:now()
-  });
-
-  await saveState(state);
-
-  employeeDeliveryRows.innerHTML = "";
-  transferBox.classList.add("hidden");
-
-  renderCashierRequests();
-
-  const remainingForSender =
-    Number(box.total || 0) - amount;
-
-  alert(
-    "تم إرسال طلب التسليم" +
-    "\\nالمبلغ المسلم: " + money(amount) +
-    "\\nالمتبقي عندك: " + money(remainingForSender)
-  );
-}
-function calculateCashOperation(){
-
-  const invoice = Number(invoiceAmount.value || 0);
-  const network = Number(networkAmount.value || 0);
-  const cash = Number(cashReceived.value || 0);
-
-  const cashNeeded = Math.max(0, invoice - network);
-  const change = Math.max(0, cash - cashNeeded);
-
-  cashNeededInput = document.getElementById("cashNeeded");
-  customerChangeInput = document.getElementById("customerChange");
-
-  cashNeededInput.value = cashNeeded;
-  customerChangeInput.value = change;
-}
-
-function addCashInRow(){
-  cashInRows.innerHTML += `
-    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
-
-      <select class="cashInDenom">
-        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
-      </select>
-
-      <input type="number" min="1" value="1" class="cashInCount">
-
-      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
-
-    </div>
-  `;
-}
-
-function addCashOutRow(){
-  cashOutRows.innerHTML += `
-    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
-
-      <select class="cashOutDenom">
-        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
-      </select>
-
-      <input type="number" min="1" value="1" class="cashOutCount">
-
-      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
-
-    </div>
-  `;
-}
-
-async function applyCashOperation(){
-
-  const state = loadState();
-  const box = state.boxes[currentUser];
-
-  const invoice = Number(invoiceAmount.value || 0);
-  const network = Number(networkAmount.value || 0);
-  const cash = Number(cashReceived.value || 0);
-
-  const cashNeeded = Math.max(0, invoice - network);
-  const change = Math.max(0, cash - cashNeeded);
-
-  if(invoice <= 0){
-    alert("أدخل قيمة الفاتورة");
-    return;
-  }
-
-  let inTotal = 0;
-
-  document.querySelectorAll(".cashInDenom").forEach((el,index)=>{
-    const value = Number(el.value);
-    const count = Number(document.querySelectorAll(".cashInCount")[index].value || 0);
-
-    inTotal += value * count;
-
-    const denomIndex = denoms.findIndex(d=>d.value == value);
-
-    box.counts[denomIndex] =
-      Number(box.counts[denomIndex] || 0) + count;
-  });
-
-  let outTotal = 0;
-
-  document.querySelectorAll(".cashOutDenom").forEach((el,index)=>{
-    const value = Number(el.value);
-    const count = Number(document.querySelectorAll(".cashOutCount")[index].value || 0);
-
-    outTotal += value * count;
-
-    const denomIndex = denoms.findIndex(d=>d.value == value);
-
-    box.counts[denomIndex] =
-      Math.max(
-        0,
-        Number(box.counts[denomIndex] || 0) - count
-      );
-  });
-
-  if(inTotal !== cash){
-    alert("الفئات الداخلة لا تطابق النقد المستلم");
-    return;
-  }
-
-  if(outTotal !== change){
-    alert("الفئات الخارجة لا تطابق الباقي للمريض");
-    return;
-  }
-
-  box.revenue += cashNeeded;
-  box.total += cashNeeded;
+  box.revenue += Number(box.carry || 0);
 
   state.logs.unshift({
     id:Date.now(),
-    type:"عملية نقدية",
-    user:employees[currentUser].name,
-    amount:cashNeeded,
-    status:"معتمد",
     time:now(),
-    date:todayKey()
+    date:todayKey(),
+    type:"تعديل إقفال اليوم",
+    user:employees[currentUser].name,
+    amount:box.carry,
+    status:"معتمد"
   });
 
-  await saveState(state);
+  box.carry = 0;
 
-  calculateVault();
+  await saveState(state);
   renderCashier();
 
-  alert(
-    "تم اعتماد العملية" +
-    "\\nإيراد نقدي: " + money(cashNeeded) +
-    "\\nالباقي للمريض: " + money(change)
-  );
+  alert("تم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل");
 }
-let cashCalcDetails = [];
-let pendingCashOperation = null;
+
+function getCashCalcTotal(){
+  return cashCalcDetails.reduce((sum,item)=>sum + Number(item.value || 0),0);
+}
 
 function addCashButton(value){
-  cashCalcDetails.push({value:value,count:1});
+  cashCalcDetails.push({value:value});
   updateCashCalcScreen();
 }
 
@@ -1100,7 +893,7 @@ function addOtherCash(){
     return;
   }
 
-  cashCalcDetails.push({value:amount,count:1,other:true});
+  cashCalcDetails.push({value:amount,other:true});
   updateCashCalcScreen();
 }
 
@@ -1108,12 +901,6 @@ function clearCashCalc(){
   cashCalcDetails = [];
   pendingCashOperation = null;
   updateCashCalcScreen();
-}
-
-function getCashCalcTotal(){
-  return cashCalcDetails.reduce((sum,item)=>{
-    return sum + Number(item.value || 0);
-  },0);
 }
 
 function updateCashCalcScreen(){
@@ -1222,11 +1009,9 @@ async function applyCashCalculator(){
     const index = denoms.findIndex(d=>d.value == item.value);
 
     if(index >= 0){
-      box.counts[index] =
-        Number(box.counts[index] || 0) + 1;
+      box.counts[index] = Number(box.counts[index] || 0) + 1;
     }else{
-      box.otherValue =
-        Number(box.otherValue || 0) + Number(item.value || 0);
+      box.otherValue = Number(box.otherValue || 0) + Number(item.value || 0);
       box.otherCount = 1;
     }
   });
@@ -1249,7 +1034,7 @@ async function applyCashCalculator(){
   });
 
   box.revenue += cashNeeded;
-  box.total += cashNeeded;
+  box.total = boxTotal(box);
 
   state.logs.unshift({
     id:Date.now(),
@@ -1273,192 +1058,11 @@ async function applyCashCalculator(){
 
   alert("تم اعتماد العملية");
 }
-  function requestChange(){
+
+function requestChange(){
   changeBox.classList.toggle("hidden");
 }
-async function editClosedRevenue(){
-  const state = loadState();
-  const box = state.boxes[currentUser];
 
-  if(Number(box.carry || 0) <= 0){
-    alert("لا يوجد مبلغ مقفل للتعديل");
-    return;
-  }
-
-  if(!confirm("سيتم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل. هل أنت متأكد؟")){
-    return;
-  }
-
-  box.revenue += Number(box.carry || 0);
-
-  state.logs.unshift({
-    id:Date.now(),
-    time:now(),
-    date:todayKey(),
-    type:"تعديل إقفال اليوم",
-    user:employees[currentUser].name,
-    amount:box.carry,
-    status:"معتمد"
-  });
-
-  box.carry = 0;
-
-  await saveState(state);
-
-  renderCashier();
-
-  alert("تم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل");
-}
-  
-async function requestAdminDelivery(){
-  const state = loadState();
-  const box = state.boxes[currentUser];
-
-  if(Number(box.revenue || 0) > 0){
-    alert("لا يمكن التسليم للإدارة قبل إقفال اليوم");
-    return;
-  }
-
-  const amount =
-    Number(box.carry || 0) +
-    Number(box.received || 0);
-
-  if(amount <= 0){
-    alert("لا يوجد مبلغ مقفل للتسليم");
-    return;
-  }
-
-  adminDeliveryBox.classList.toggle("hidden");
-
-  if(adminDeliveryRows.innerHTML.trim() === ""){
-    addAdminDeliveryRow();
-  }
-}
-
-function addAdminDeliveryRow(){
-  adminDeliveryRows.innerHTML += `
-    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
-      <select class="adminDeliveryDenom">
-        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
-      </select>
-
-      <input type="number" min="1" value="1" class="adminDeliveryCount">
-
-      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
-    </div>
-  `;
-}
-
-async function sendAdminDeliveryWithDenoms(){
-  await saveCashierData(false,false);
-
-  const state = loadState();
-  const box = state.boxes[currentUser];
-
-  if(Number(box.revenue || 0) > 0){
-    alert("لا يمكن التسليم للإدارة قبل إقفال اليوم");
-    return;
-  }
-
-  const rows = document.querySelectorAll("#adminDeliveryRows > div");
-
-  if(rows.length === 0){
-    alert("أضف فئة واحدة على الأقل");
-    return;
-  }
-
-  let details = [];
-  let amount = 0;
-
-  rows.forEach(row=>{
-    const value = Number(row.querySelector(".adminDeliveryDenom").value);
-    const count = Number(row.querySelector(".adminDeliveryCount").value || 0);
-    const denom = denoms.find(d=>d.value == value);
-
-    if(count > 0){
-      amount += value * count;
-      details.push({
-        label:denom.label,
-        value,
-        count
-      });
-    }
-  });
-
-  const maxAmount =
-    Number(box.carry || 0) +
-    Number(box.received || 0);
-
-  if(amount <= 0){
-    alert("المبلغ غير صحيح");
-    return;
-  }
-
-  if(amount > maxAmount){
-    alert("المبلغ المحدد أكبر من المبلغ المقفل للتسليم");
-    return;
-  }
-
-  state.requests.unshift({
-    id:Date.now(),
-    type:"admin",
-    from:currentUser,
-    amount,
-    details,
-    status:"معلق",
-    createdBy:currentUser,
-    time:now()
-  });
-
-  await saveState(state);
-
-  adminDeliveryRows.innerHTML = "";
-  adminDeliveryBox.classList.add("hidden");
-
-  renderCashierRequests();
-
-  alert("تم إرسال طلب التسليم للإدارة");
-}
-  
-async function sendToEmployee(){
-  await saveCashierData(false,false);
-
-  const state = loadState();
-  const box = state.boxes[currentUser];
-
-  if(Number(box.revenue || 0) > 0){
-    alert("لا يمكن التسليم لموظفة قبل إقفال اليوم");
-    return;
-  }
-
-  const amount =
-    Number(box.carry || 0) +
-    Number(box.received || 0);
-
-  if(amount <= 0){
-    alert("لا يوجد مبلغ مقفل للتسليم");
-    return;
-  }
-
-  const to = transferTo.value;
-
-  state.requests.unshift({
-    id:Date.now(),
-    type:"employee",
-    from:currentUser,
-    to,
-    amount,
-    status:"معلق",
-    createdBy:currentUser,
-    time:now()
-  });
-
-  await saveState(state);
-
-  alert("تم إرسال الطلب");
-
-  renderCashierRequests();
-}
 function addChangeRow(){
   changeRows.innerHTML += `
     <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
@@ -1507,8 +1111,196 @@ async function sendChangeRequest(){
   await saveState(state);
 
   changeRows.innerHTML = "";
-  alert("تم إرسال طلب الفكة");
+  alert("تم إرسال طلب الصرف");
   renderCashierRequests();
+}
+
+function requestAdminDelivery(){
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم للإدارة قبل إقفال اليوم");
+    return;
+  }
+
+  const amount = Number(box.carry || 0) + Number(box.received || 0);
+
+  if(amount <= 0){
+    alert("لا يوجد مبلغ مقفل للتسليم");
+    return;
+  }
+
+  adminDeliveryBox.classList.toggle("hidden");
+
+  if(adminDeliveryRows.innerHTML.trim() === ""){
+    addAdminDeliveryRow();
+  }
+}
+
+function addAdminDeliveryRow(){
+  adminDeliveryRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+      <select class="adminDeliveryDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+      <input type="number" min="1" value="1" class="adminDeliveryCount">
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+    </div>
+  `;
+}
+
+async function sendAdminDeliveryWithDenoms(){
+  await saveCashierData(false,false);
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم للإدارة قبل إقفال اليوم");
+    return;
+  }
+
+  const rows = document.querySelectorAll("#adminDeliveryRows > div");
+
+  if(rows.length === 0){
+    alert("أضف فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let amount = 0;
+
+  rows.forEach(row=>{
+    const value = Number(row.querySelector(".adminDeliveryDenom").value);
+    const count = Number(row.querySelector(".adminDeliveryCount").value || 0);
+    const denom = denoms.find(d=>d.value == value);
+
+    if(count > 0){
+      amount += value * count;
+      details.push({label:denom.label,value,count});
+    }
+  });
+
+  const maxAmount = Number(box.carry || 0) + Number(box.received || 0);
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  if(amount > maxAmount){
+    alert("المبلغ المحدد أكبر من المبلغ المقفل للتسليم");
+    return;
+  }
+
+  state.requests.unshift({
+    id:Date.now(),
+    type:"admin",
+    from:currentUser,
+    amount,
+    details,
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
+  });
+
+  await saveState(state);
+
+  adminDeliveryRows.innerHTML = "";
+  adminDeliveryBox.classList.add("hidden");
+
+  renderCashierRequests();
+
+  alert("تم إرسال طلب التسليم للإدارة");
+}
+
+function toggleTransferBox(){
+  transferBox.classList.toggle("hidden");
+
+  if(employeeDeliveryRows.innerHTML.trim() === ""){
+    addEmployeeDeliveryRow();
+  }
+}
+
+function addEmployeeDeliveryRow(){
+  employeeDeliveryRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+      <select class="employeeDeliveryDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+      <input type="number" min="1" value="1" class="employeeDeliveryCount">
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+    </div>
+  `;
+}
+
+async function sendEmployeeDeliveryWithDenoms(){
+  await saveCashierData(false,false);
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم لموظفة قبل إقفال اليوم");
+    return;
+  }
+
+  const rows = document.querySelectorAll("#employeeDeliveryRows > div");
+
+  if(rows.length === 0){
+    alert("أضف فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let amount = 0;
+
+  rows.forEach(row=>{
+    const value = Number(row.querySelector(".employeeDeliveryDenom").value);
+    const count = Number(row.querySelector(".employeeDeliveryCount").value || 0);
+    const denom = denoms.find(d=>d.value == value);
+
+    if(count > 0){
+      amount += value * count;
+      details.push({label:denom.label,value,count});
+    }
+  });
+
+  const maxAmount = Number(box.carry || 0) + Number(box.received || 0);
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  if(amount > maxAmount){
+    alert("المبلغ المحدد أكبر من المبلغ المقفل للتسليم");
+    return;
+  }
+
+  const to = transferTo.value;
+
+  state.requests.unshift({
+    id:Date.now(),
+    type:"employee",
+    from:currentUser,
+    to,
+    amount,
+    details,
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
+  });
+
+  await saveState(state);
+
+  employeeDeliveryRows.innerHTML = "";
+  transferBox.classList.add("hidden");
+
+  renderCashierRequests();
+
+  alert("تم إرسال طلب التسليم");
 }
 
 function requestTitle(request){
@@ -1547,14 +1339,14 @@ function renderCashierRequests(){
   requests.forEach(r=>{
     html += `<div class="status-result more">${requestTitle(r)}<br>${money(r.amount)}`;
 
-    if(r.type === "change"){
+    if(r.details?.length){
       html += `
         <br>
         <button class="btn btn-orange" style="margin-top:10px" onclick="toggleChangeDetails(${r.id})">عرض التفاصيل</button>
         <div id="change_${r.id}" class="hidden detail-box">
       `;
 
-      (r.details || []).forEach(d=>{
+      r.details.forEach(d=>{
         html += `<div>${d.label} × ${d.count}</div>`;
       });
 
@@ -1592,36 +1384,47 @@ async function cancelOwnRequest(id){
   await saveState(state);
   renderCashierRequests();
 }
-function deductFromBoxCounts(state,user,amount){
-  let remaining = Number(amount || 0);
-  const box = state.boxes[user];
 
-  denoms.forEach((d,i)=>{
-    if(remaining <= 0) return;
+function deductDetailsFromBox(box,details=[]){
+  details.forEach(item=>{
+    const index = denoms.findIndex(d=>d.value == item.value);
 
-    const availableCount = Number(box.counts[i] || 0);
-    const needCount = Math.floor(remaining / d.value);
-    const takeCount = Math.min(availableCount,needCount);
-
-    if(takeCount > 0){
-      box.counts[i] = availableCount - takeCount;
-      remaining -= takeCount * d.value;
-      remaining = Number(remaining.toFixed(2));
+    if(index >= 0){
+      box.counts[index] = Math.max(
+        0,
+        Number(box.counts[index] || 0) - Number(item.count || 0)
+      );
     }
   });
-
-  if(remaining > 0){
-    const otherTotal =
-      Number(box.otherValue || 0) *
-      Number(box.otherCount || 0);
-
-    const newOtherTotal =
-      Math.max(0, otherTotal - remaining);
-
-    box.otherValue = newOtherTotal;
-    box.otherCount = newOtherTotal > 0 ? 1 : 0;
-  }
 }
+
+function addDetailsToBox(box,details=[]){
+  details.forEach(item=>{
+    const index = denoms.findIndex(d=>d.value == item.value);
+
+    if(index >= 0){
+      box.counts[index] = Number(box.counts[index] || 0) + Number(item.count || 0);
+    }
+  });
+}
+
+function reduceBoxBalances(box,amount){
+  let remaining = Number(amount || 0);
+
+  let take = Math.min(Number(box.revenue || 0),remaining);
+  box.revenue -= take;
+  remaining -= take;
+
+  take = Math.min(Number(box.carry || 0),remaining);
+  box.carry -= take;
+  remaining -= take;
+
+  take = Math.min(Number(box.received || 0),remaining);
+  box.received -= take;
+
+  box.total = boxTotal(box);
+}
+
 function getChangeSuggestion(amount){
   let remaining = Number(amount || 0);
   let result = [];
@@ -1638,28 +1441,7 @@ function getChangeSuggestion(amount){
     }
   });
 
-  return result.join(" - ");
-}
-  
-function reduceBoxByDelivery(state,user,amount){
-  deductFromBoxCounts(state,user,amount);
-
-  let remaining = Number(amount || 0);
-  const box = state.boxes[user];
-
-  let take = Math.min(box.revenue,remaining);
-  box.revenue -= take;
-  remaining -= take;
-
-  take = Math.min(box.carry,remaining);
-  box.carry -= take;
-  remaining -= take;
-
-  take = Math.min(box.received,remaining);
-  box.received -= take;
-  remaining -= take;
-
-  box.total = Math.max(0,Number(box.total || 0) - Number(amount || 0));
+  return result.join(" - ") || "-";
 }
 
 async function acceptEmployeeTransfer(id){
@@ -1671,22 +1453,15 @@ async function acceptEmployeeTransfer(id){
   request.status = "معتمد";
 
   const amount = Number(request.amount || 0);
+  const fromBox = state.boxes[request.from];
+  const toBox = state.boxes[request.to];
 
-  reduceBoxByDelivery(state,request.from,amount);
+  deductDetailsFromBox(fromBox,request.details);
+  reduceBoxBalances(fromBox,amount);
 
-  state.boxes[request.to].received += amount;
-  state.boxes[request.to].total += amount;
-
-  if(request.details){
-    request.details.forEach(item=>{
-      const index = denoms.findIndex(d=>d.value == item.value);
-
-      if(index >= 0){
-        state.boxes[request.to].counts[index] =
-          Number(state.boxes[request.to].counts[index] || 0) + Number(item.count || 0);
-      }
-    });
-  }
+  addDetailsToBox(toBox,request.details);
+  toBox.received += amount;
+  toBox.total = boxTotal(toBox);
 
   state.logs.unshift({
     id:Date.now(),
@@ -1701,32 +1476,7 @@ async function acceptEmployeeTransfer(id){
   });
 
   await saveState(state);
-
   renderCashier();
-}
-
-function renderCashierLog(){
-  if(!document.getElementById("cashierLog")) return;
-
-  const state = loadState();
-
-  const rows = state.logs
-    .filter(log=>log.user === employees[currentUser].name)
-    .slice(0,10);
-
-  if(rows.length === 0){
-    cashierLog.innerHTML = `<tr><td colspan="4">لا يوجد سجل</td></tr>`;
-    return;
-  }
-
-  cashierLog.innerHTML = rows.map(log=>`
-    <tr>
-      <td>${log.time}</td>
-      <td>${log.type}</td>
-      <td>${money(log.amount)}</td>
-      <td>${log.status}</td>
-    </tr>
-  `).join("");
 }
 
 function renderAdmin(){
@@ -1790,13 +1540,13 @@ function renderAdminRequests(){
         <div>المبلغ: ${money(r.amount)}</div>
     `;
 
-    if(r.type === "change"){
+    if(r.details?.length){
       html += `
         <button class="btn btn-orange" style="margin-top:10px" onclick="toggleAdminChange(${r.id})">عرض التفاصيل</button>
         <div id="admin_change_${r.id}" class="hidden detail-box">
       `;
 
-      (r.details || []).forEach(d=>{
+      r.details.forEach(d=>{
         html += `<div>${d.label} × ${d.count}</div>`;
       });
 
@@ -1826,48 +1576,14 @@ async function approveRequest(id){
   const amount = Number(request.amount || 0);
 
   if(request.type === "admin"){
-    reduceBoxByDelivery(state,request.from,amount);
+    const fromBox = state.boxes[request.from];
 
-    state.vault += amount;
-if(request.details){
-  request.details.forEach(item=>{
-    const index = denoms.findIndex(d=>d.value == item.value);
+    deductDetailsFromBox(fromBox,request.details);
+    reduceBoxBalances(fromBox,amount);
 
-    if(index >= 0){
-      state.vaultCounts.counts[index] =
-        Number(state.vaultCounts.counts[index] || 0) + Number(item.count || 0);
-    }
-  });
-}
-    if(!state.vaultCounts){
-      state.vaultCounts = {
-        counts:Array(denoms.length).fill(0),
-        otherValue:0,
-        otherCount:0
-      };
-    }
+    addDetailsToBox(state.vaultCounts,request.details);
+    state.vault = boxTotal(state.vaultCounts);
 
-    if(!Array.isArray(state.vaultCounts.counts)){
-      state.vaultCounts.counts = Array(denoms.length).fill(0);
-    }
-
-    const currentOther =
-      Number(state.vaultCounts.otherValue || 0) *
-      Number(state.vaultCounts.otherCount || 0);
-
-    const newOtherTotal =
-      currentOther + amount;
-
-    state.vaultCounts.otherValue = newOtherTotal;
-    state.vaultCounts.otherCount = 1;
-const remainingBoxAmount =
-  Number(state.boxes[request.from].total || 0);
-
-alert(
-  "تم استلام " + money(amount) +
-  "\\nالمتبقي في صندوق الموظفة: " + money(remainingBoxAmount) +
-  "\\nاقتراح الصرف: " + getChangeSuggestion(remainingBoxAmount)
-);
     state.logs.unshift({
       id:Date.now(),
       time:now(),
@@ -1878,38 +1594,38 @@ alert(
       status:"معتمد",
       from:request.from
     });
+
+    alert(
+      "تم استلام " + money(amount) +
+      "\\nالمتبقي في صندوق الموظفة: " + money(fromBox.total) +
+      "\\nاقتراح الصرف: " + getChangeSuggestion(fromBox.total)
+    );
   }
 
   if(request.type === "employee"){
-  deductFromBoxCounts(state,request.from,amount);
-  reduceBoxByDelivery(state,request.from,amount);
+    const fromBox = state.boxes[request.from];
+    const toBox = state.boxes[request.to];
 
-  state.boxes[request.to].received += amount;
-  state.boxes[request.to].total += amount;
+    deductDetailsFromBox(fromBox,request.details);
+    reduceBoxBalances(fromBox,amount);
 
-  if(request.details){
-    request.details.forEach(item=>{
-      const index = denoms.findIndex(d=>d.value == item.value);
+    addDetailsToBox(toBox,request.details);
+    toBox.received += amount;
+    toBox.total = boxTotal(toBox);
 
-      if(index >= 0){
-        state.boxes[request.to].counts[index] =
-          Number(state.boxes[request.to].counts[index] || 0) + Number(item.count || 0);
-      }
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"تسليم بين الموظفات",
+      user:employees[request.from].name,
+      amount,
+      status:"معتمد",
+      from:request.from,
+      to:request.to
     });
   }
 
-  state.logs.unshift({
-    id:Date.now(),
-    time:now(),
-    date:todayKey(),
-    type:"تسليم بين الموظفات",
-    user:employees[request.from].name,
-    amount,
-    status:"معتمد",
-    from:request.from,
-    to:request.to
-  });
-}
   if(request.type === "change"){
     if(state.vault < amount){
       alert("رصيد الخزنة لا يكفي لاعتماد الصرف");
@@ -1919,13 +1635,16 @@ alert(
     }
 
     state.vault -= amount;
-    state.boxes[request.from].total += amount;
+
+    const box = state.boxes[request.from];
+    addDetailsToBox(box,request.details);
+    box.total = boxTotal(box);
 
     state.logs.unshift({
       id:Date.now(),
       time:now(),
       date:todayKey(),
-      type:"اعتماد طلب فكة",
+      type:"اعتماد طلب صرف",
       user:employees[request.from].name,
       amount,
       status:"معتمد"
@@ -1935,7 +1654,7 @@ alert(
   await saveState(state);
   renderAdmin();
 }
-  
+
 async function cancelRequest(id){
   const state = loadState();
   const request = state.requests.find(r=>r.id == id);
@@ -1957,8 +1676,6 @@ async function cancelRequest(id){
   await saveState(state);
   renderAdmin();
 }
-
-
 
 async function saveVaultCount(){
   const state = loadState();
@@ -2052,6 +1769,7 @@ async function setAdminStatus(type){
       text:"تم تأجيل الاستلام للغد"
     };
   }
+
   await saveState(state);
   renderAdmin();
 }
@@ -2127,7 +1845,7 @@ async function clearAllLogs(){
   alert("تم مسح جميع السجلات");
 }
 
-onSnapshot(cashDocRef, async snap=>{
+onSnapshot(cashDocRef,async snap=>{
   if(snap.exists()){
     cashState = normalizeState(snap.data());
   }else{
@@ -2140,9 +1858,8 @@ onSnapshot(cashDocRef, async snap=>{
   }else if(currentUser){
     renderCashier();
   }
-
-}, error=>{
-  console.error("Firebase error:", error);
+},error=>{
+  console.error("Firebase error:",error);
   alert("فيه مشكلة في اتصال Firebase أو الصلاحيات");
 });
 
@@ -2155,11 +1872,7 @@ Object.assign(window,{
   closeTodayRevenue,
   editClosedRevenue,
   requestAdminDelivery,
-  addAdminDeliveryRow,
-  sendAdminDeliveryWithDenoms,
   toggleTransferBox,
-  addEmployeeDeliveryRow,
-  sendEmployeeDeliveryWithDenoms,
   requestChange,
   addChangeRow,
   sendChangeRequest,
@@ -2174,6 +1887,10 @@ Object.assign(window,{
   bankDeposit,
   setAdminStatus,
   setAdminCustomDelay,
+  addAdminDeliveryRow,
+  sendAdminDeliveryWithDenoms,
+  addEmployeeDeliveryRow,
+  sendEmployeeDeliveryWithDenoms,
   addCashButton,
   addOtherCash,
   clearCashCalc,
@@ -2182,7 +1899,8 @@ Object.assign(window,{
   closeCashConfirm,
   applyCashCalculator,
   clearAllLogs
-});  
+});
 </script>
+
 </body>
 </html>
