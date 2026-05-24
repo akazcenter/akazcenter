@@ -2118,6 +2118,11 @@ onSnapshot(cashDocRef,async snap=>{
   "renderAdmin",
   "toggleAdminChange",
   "approveRequest",
+  "cancelRequest",
+  "saveVaultCount",
+  "bankDeposit",
+  "setAdminStatus",
+  "setAdminCustomDelay",
   "addAdminDeliveryRow",
   "sendAdminDeliveryWithDenoms",
   "addEmployeeDeliveryRow",
@@ -2129,14 +2134,18 @@ onSnapshot(cashDocRef,async snap=>{
   "showCashConfirm",
   "closeCashConfirm",
   "applyCashCalculator",
+  "clearAllLogs",
   "changeCashCount",
-  "changeVaultCount"
+  "changeVaultCount",
   "changeCashCoins",
-"changeVaultCoins",
+  "changeVaultCoins"
 ].forEach(name=>{
-  if(typeof eval(name) === "function"){
-    window[name] = eval(name);
-  }
+  try{
+    const fn = eval(name);
+    if(typeof fn === "function"){
+      window[name] = fn;
+    }
+  }catch(e){}
 });
 </script>
 
