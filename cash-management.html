@@ -710,3 +710,255 @@ body{
     <div id="cashierRequestsBox"></div>
   </div>
 </section>
+<section id="adminView" class="hidden">
+  <div class="intro">
+    <h2>لوحة الإدارة النقدية</h2>
+    <p>متابعة الصناديق والخزنة واستلام الإيرادات والصرف والتوديع البنكي.</p>
+  </div>
+
+  <div class="summary-grid admin-summary">
+    <div class="summary-card">
+      <h3>رصيد الخزنة الحالي</h3>
+      <span id="vaultTotal">0.00 SAR</span>
+    </div>
+
+    <div class="summary-card green">
+      <h3>الإيرادات المستلمة اليوم</h3>
+      <span id="receivedToday">0.00 SAR</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>طلبات معلقة</h3>
+      <span id="pendingCount">0</span>
+    </div>
+
+    <div class="summary-card red">
+      <h3>حالة الإدارة</h3>
+      <span id="adminStateText">متواجد</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>حالة الإدارة</h2>
+
+    <div class="actions">
+      <button class="btn btn-green" onclick="setAdminStatus('available')">موجود</button>
+      <button class="btn btn-red" onclick="setAdminStatus('unavailable')">غير موجود</button>
+      <button class="btn btn-orange" onclick="setAdminStatus('tomorrow')">تأجيل للغد</button>
+      <button class="btn btn-blue" onclick="setAdminCustomDelay()">تأجيل لتاريخ</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px">
+      <input type="date" id="customDelayDate">
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>أرصدة الصناديق</h2>
+
+    <table class="cash-table">
+      <thead>
+        <tr>
+          <th>الموظفة</th>
+          <th>إيراد اليوم</th>
+          <th>مقفل للتسليم</th>
+          <th>مستلم من موظفة</th>
+          <th>إجمالي الصندوق</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody id="boxesTable"></tbody>
+    </table>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>طلبات الإدارة</h2>
+    <div id="adminRequests"></div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>عد الخزنة</h2>
+    <div class="help">الخزنة تعتمد على الفئات المستلمة من الصناديق ويمكن تعديلها يدوياً عند الحاجة.</div>
+
+    <div id="vaultMoneyGrid" class="money-grid"></div>
+
+    <div class="total-line">
+      إجمالي الخزنة الفعلي
+      <span id="vaultCountTotal">0.00 SAR</span>
+    </div>
+
+    <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveVaultCount()">
+      حفظ عد الخزنة
+    </button>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>توديع للبنك</h2>
+    <div class="help">عند تسجيل التوديع يتم خصم المبلغ من رصيد الخزنة وتوثيقه بالسجل.</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <input type="number" id="bankDepositAmount" placeholder="مبلغ التوديع">
+      <input type="text" id="bankName" placeholder="اسم البنك">
+    </div>
+
+    <button class="btn btn-blue" style="width:100%;margin-top:12px;padding:15px" onclick="bankDeposit()">
+      تسجيل توديع للبنك
+    </button>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>السجل الكامل</h2>
+    <button class="btn btn-red" style="width:100%;margin-bottom:12px" onclick="clearAllLogs()">
+      مسح جميع السجلات
+    </button>
+    <div id="adminLogBox"></div>
+  </div>
+</section>
+
+</div>
+
+<div class="footer">
+  مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
+</div>
+
+<div id="cashConfirmModal" class="hidden modal">
+  <div class="modal-card">
+    <h2 style="color:#005b9f;margin-top:0">تأكيد العملية</h2>
+    <div id="cashConfirmDetails" style="line-height:2;font-weight:900;color:#0f172a"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">
+      <button class="btn btn-blue" onclick="applyCashCalculator()">اعتماد</button>
+      <button class="btn btn-red" onclick="closeCashConfirm()">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain:"akazcenter-89c17.firebaseapp.com",
+  projectId:"akazcenter-89c17",
+  storageBucket:"akazcenter-89c17.firebasestorage.app",
+  messagingSenderId:"576111794528",
+  appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const cashDocRef = doc(db,"cashManagement","main");
+
+let cashState = null;
+let currentUser = null;
+let saveTimer = null;
+let cashCalcDetails = [];
+let pendingCashOperation = null;
+
+const baseCustody = 1000;
+
+const employees = {
+  maram:{name:"أ. مرام",pin:"1111"},
+  ashwaq:{name:"أ. أشواق",pin:"2222"},
+  shahad:{name:"أ. شهد",pin:"3333"},
+  admin:{name:"الإدارة",pin:"9999"}
+};
+
+const denoms = [
+  {label:"500 ريال",value:500,img:"cash-500.png",type:"note"},
+  {label:"200 ريال",value:200,img:"cash-200.png",type:"note"},
+  {label:"100 ريال",value:100,img:"cash-100.png",type:"note"},
+  {label:"50 ريال",value:50,img:"cash-50.png",type:"note"},
+  {label:"20 ريال",value:20,img:"cash-20.png",type:"note"},
+  {label:"10 ريال",value:10,img:"cash-10.png",type:"note"},
+  {label:"5 ريال",value:5,img:"cash-5.png",type:"note"},
+  {label:"2 SAR",value:2,img:"",type:"coin"},
+  {label:"1 SAR",value:1,img:"",type:"coin"},
+  {label:"0.50",value:0.5,img:"",type:"coin"},
+  {label:"0.25",value:0.25,img:"",type:"coin"}
+];
+
+const defaultBox = {
+  revenue:0,
+  carry:0,
+  received:0,
+  directToAdmin:0,
+  total:0,
+  status:"سليم",
+  counts:Array(denoms.length).fill(0),
+  otherValue:0,
+  otherCount:0
+};
+
+const defaultState = {
+  adminStatus:{type:"available",text:"الإدارة موجودة لاستلام الإيراد"},
+  vault:0,
+  vaultCounts:{counts:Array(denoms.length).fill(0),otherValue:0,otherCount:0},
+  boxes:{
+    maram:JSON.parse(JSON.stringify(defaultBox)),
+    ashwaq:JSON.parse(JSON.stringify(defaultBox)),
+    shahad:JSON.parse(JSON.stringify(defaultBox))
+  },
+  requests:[],
+  logs:[]
+};
+
+function clone(obj){
+  return JSON.parse(JSON.stringify(obj));
+}
+
+function money(n){
+  return Number(n || 0).toLocaleString("en-US",{
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  }) + " SAR";
+}
+
+function now(){
+  return new Date().toLocaleString("ar-SA");
+}
+
+function todayKey(){
+  return new Date().toLocaleDateString("ar-SA");
+}
+
+function normalizeState(state){
+  state = state || clone(defaultState);
+  state.adminStatus = state.adminStatus || clone(defaultState.adminStatus);
+  state.vault = Number(state.vault || 0);
+
+  state.vaultCounts = Object.assign({}, clone(defaultState.vaultCounts), state.vaultCounts || {});
+  state.vaultCounts.counts = Array.isArray(state.vaultCounts.counts)
+    ? state.vaultCounts.counts
+    : Array(denoms.length).fill(0);
+
+  state.boxes = state.boxes || {};
+
+  Object.keys(defaultState.boxes).forEach(k=>{
+    state.boxes[k] = Object.assign({}, clone(defaultBox), state.boxes[k] || {});
+    state.boxes[k].counts = Array.isArray(state.boxes[k].counts)
+      ? state.boxes[k].counts
+      : Array(denoms.length).fill(0);
+
+    state.boxes[k].revenue = Number(state.boxes[k].revenue || 0);
+    state.boxes[k].carry = Number(state.boxes[k].carry || 0);
+    state.boxes[k].received = Number(state.boxes[k].received || 0);
+    state.boxes[k].directToAdmin = Number(state.boxes[k].directToAdmin || 0);
+    state.boxes[k].total = Number(state.boxes[k].total || 0);
+  });
+
+  state.requests = Array.isArray(state.requests) ? state.requests : [];
+  state.logs = Array.isArray(state.logs) ? state.logs : [];
+
+  return state;
+}
+
+function loadState(){
+  return normalizeState(cashState || clone(defaultState));
+}
+
+async function saveState(state){
+  cashState = normalizeState(state);
+  await setDoc(cashDocRef,cashState);
+}
