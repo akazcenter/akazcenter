@@ -1055,7 +1055,7 @@ function changeVaultCount(index, delta){
   state.vault = boxTotal(state.vaultCounts);
   cashState = state;
 
-  renderMoneyGrid("vaultMoneyGrid",state.vaultCounts,"vault","changeVaultCount","changeVaultCoins");
+renderMoneyGrid("vaultMoneyGrid",state.vaultCounts.counts,"vault","changeVaultCount");
   calculateVault();
 }
 
@@ -1085,8 +1085,7 @@ function renderCashier(){
   const box = state.boxes[currentUser];
   const status = state.adminStatus;
 
-  renderMoneyGrid("cashMoneyGrid",box.counts,"cash","changeCashCount");
-
+renderMoneyGrid("cashMoneyGrid",box,"cash","changeCashCount","changeCashCoins");
   cashierAdminStatus.className = "status-box";
 
   if(status.type === "available"){
@@ -2132,6 +2131,8 @@ onSnapshot(cashDocRef,async snap=>{
   "applyCashCalculator",
   "changeCashCount",
   "changeVaultCount"
+  "changeCashCoins",
+"changeVaultCoins",
 ].forEach(name=>{
   if(typeof eval(name) === "function"){
     window[name] = eval(name);
