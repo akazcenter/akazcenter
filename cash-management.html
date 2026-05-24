@@ -872,11 +872,7 @@ const denoms = [
   {label:"50 ريال",value:50,img:"cash-50.png",type:"note"},
   {label:"20 ريال",value:20,img:"cash-20.png",type:"note"},
   {label:"10 ريال",value:10,img:"cash-10.png",type:"note"},
-  {label:"5 ريال",value:5,img:"cash-5.png",type:"note"},
-  {label:"2 SAR",value:2,img:"",type:"coin"},
-  {label:"1 SAR",value:1,img:"",type:"coin"},
-  {label:"0.50",value:0.5,img:"",type:"coin"},
-  {label:"0.25",value:0.25,img:"",type:"coin"}
+  {label:"5 ريال",value:5,img:"cash-5.png",type:"note"}
 ];
 
 const defaultBox = {
@@ -887,14 +883,13 @@ const defaultBox = {
   total:0,
   status:"سليم",
   counts:Array(denoms.length).fill(0),
-  otherValue:0,
-  otherCount:0
+  coinsAmount:0
 };
 
 const defaultState = {
   adminStatus:{type:"available",text:"الإدارة موجودة لاستلام الإيراد"},
   vault:0,
-  vaultCounts:{counts:Array(denoms.length).fill(0),otherValue:0,otherCount:0},
+  vaultCounts:{counts:Array(denoms.length).fill(0),coinsAmount:0},
   boxes:{
     maram:JSON.parse(JSON.stringify(defaultBox)),
     ashwaq:JSON.parse(JSON.stringify(defaultBox)),
@@ -903,7 +898,6 @@ const defaultState = {
   requests:[],
   logs:[]
 };
-
 function clone(obj){
   return JSON.parse(JSON.stringify(obj));
 }
@@ -969,64 +963,56 @@ function boxTotal(box){
     total += Number(box.counts?.[i] || 0) * d.value;
   });
 
-  total += Number(box.otherValue || 0) * Number(box.otherCount || 0);
+  total += Number(box.coinsAmount || 0);
 
   return Number(total.toFixed(2));
 }
 
-function login(type){
-  const pin = document.getElementById("pin_"+type).value.trim();
-
-  if(pin !== employees[type].pin){
-    alert("الرمز غير صحيح");
-    return;
-  }
-
-  currentUser = type;
-  loginView.classList.add("hidden");
-
-  if(type === "admin"){
-    adminView.classList.remove("hidden");
-    cashierView.classList.add("hidden");
-    renderAdmin();
-  }else{
-    cashierView.classList.remove("hidden");
-    adminView.classList.add("hidden");
-    renderCashier();
-  }
-}
-
-function renderMoneyGrid(targetId, counts, prefix, onChangeName){
+function renderMoneyGrid(targetId, box, prefix, onChangeName, onCoinsChangeName){
   const target = document.getElementById(targetId);
   if(!target) return;
 
   target.innerHTML = "";
 
   denoms.forEach((d,i)=>{
-    const count = Number(counts?.[i] || 0);
+    const count = Number(box.counts?.[i] || 0);
     const total = count * d.value;
 
-    const imgHtml = d.img
-      ? `<img src="${d.img}" alt="${d.label}" onerror="this.style.display='none'">`
-      : `<div style="height:82px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#005b9f">${d.label}</div>`;
-
     target.innerHTML += `
-      <div class="money-card ${d.img ? "" : "no-img"}">
-        ${imgHtml}
+      <div class="money-card">
+        <img src="${d.img}" alt="${d.label}" onerror="this.style.display='none'">
         <h3>${d.label}</h3>
 
         <div class="counter">
           <button type="button" onclick="${onChangeName}(${i},-1)">-</button>
-          <span id="${prefix}_count_${i}">${count || 0}</span>
+          <span id="${prefix}_count_${i}">${count}</span>
           <button type="button" onclick="${onChangeName}(${i},1)">+</button>
         </div>
 
-        <div class="money-total" id="${prefix}_total_${i}">
-          ${money(total)}
-        </div>
+        <div class="money-total">${money(total)}</div>
       </div>
     `;
   });
+
+  target.innerHTML += `
+    <div class="money-card no-img">
+      <div style="height:82px;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#005b9f">
+        العملات المعدنية
+      </div>
+
+      <h3>إجمالي المعدني</h3>
+
+      <input
+        type="number"
+        step="0.25"
+        min="0"
+        value="${Number(box.coinsAmount || 0) || ""}"
+        placeholder="مثال 17.50"
+        oninput="${onCoinsChangeName}(this.value)">
+
+      <div class="money-total">${money(box.coinsAmount || 0)}</div>
+    </div>
+  `;
 }
 
 function changeCashCount(index, delta){
@@ -1040,7 +1026,22 @@ function changeCashCount(index, delta){
 
   cashState = state;
 
-  renderMoneyGrid("cashMoneyGrid",box.counts,"cash","changeCashCount");
+  renderMoneyGrid("cashMoneyGrid",box,"cash","changeCashCount","changeCashCoins");
+  calculate();
+  autoSaveBox();
+}
+
+function changeCashCoins(value){
+  if(!currentUser || currentUser === "admin") return;
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  box.coinsAmount = Number(value || 0);
+  box.total = boxTotal(box);
+
+  cashState = state;
+
   calculate();
   autoSaveBox();
 }
@@ -1054,7 +1055,18 @@ function changeVaultCount(index, delta){
   state.vault = boxTotal(state.vaultCounts);
   cashState = state;
 
-  renderMoneyGrid("vaultMoneyGrid",state.vaultCounts.counts,"vault","changeVaultCount");
+  renderMoneyGrid("vaultMoneyGrid",state.vaultCounts,"vault","changeVaultCount","changeVaultCoins");
+  calculateVault();
+}
+
+function changeVaultCoins(value){
+  const state = loadState();
+
+  state.vaultCounts.coinsAmount = Number(value || 0);
+  state.vault = boxTotal(state.vaultCounts);
+
+  cashState = state;
+
   calculateVault();
 }
 
