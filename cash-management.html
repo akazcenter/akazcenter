@@ -2088,42 +2088,42 @@ onSnapshot(cashDocRef,async snap=>{
   alert("فيه مشكلة في اتصال Firebase أو الصلاحيات");
 });
 
-Object.assign(window,{
-  login,
-  calculate,
-  calculateVault,
-  saveCashierData,
-  autoSaveBox,
-  closeTodayRevenue,
-  editClosedRevenue,
-  requestAdminDelivery,
-  toggleTransferBox,
-  requestChange,
-  addChangeRow,
-  sendChangeRequest,
-  toggleChangeDetails,
-  cancelOwnRequest,
-  acceptEmployeeTransfer,
-  renderAdmin,
-  toggleAdminChange,
-  approveRequest,
-  cancelRequest,
-  saveVaultCount,
-  bankDeposit,
-  setAdminStatus,
-  setAdminCustomDelay,
-  addAdminDeliveryRow,
-  sendAdminDeliveryWithDenoms,
-  addEmployeeDeliveryRow,
-  sendEmployeeDeliveryWithDenoms,
-  addCashButton,
-  addOtherCash,
-  clearCashCalc,
-  updateCashCalcScreen,
-  showCashConfirm,
-  closeCashConfirm,
-  applyCashCalculator,
-  clearAllLogs
+[
+  "login",
+  "calculate",
+  "calculateVault",
+  "saveCashierData",
+  "autoSaveBox",
+  "closeTodayRevenue",
+  "editClosedRevenue",
+  "requestAdminDelivery",
+  "toggleTransferBox",
+  "requestChange",
+  "addChangeRow",
+  "sendChangeRequest",
+  "toggleChangeDetails",
+  "cancelOwnRequest",
+  "acceptEmployeeTransfer",
+  "renderAdmin",
+  "toggleAdminChange",
+  "approveRequest",
+  "addAdminDeliveryRow",
+  "sendAdminDeliveryWithDenoms",
+  "addEmployeeDeliveryRow",
+  "sendEmployeeDeliveryWithDenoms",
+  "addCashButton",
+  "addOtherCash",
+  "clearCashCalc",
+  "updateCashCalcScreen",
+  "showCashConfirm",
+  "closeCashConfirm",
+  "applyCashCalculator",
+  "changeCashCount",
+  "changeVaultCount"
+].forEach(name=>{
+  if(typeof eval(name) === "function"){
+    window[name] = eval(name);
+  }
 });
 </script>
 
