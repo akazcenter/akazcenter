@@ -1285,3 +1285,847 @@ function updateCashCalcScreen(){
   cashCalcChange.innerText = money(change);
   cashCalcSuggestion.innerText = getBestChangeFromBox(change);
 }
+function getBestChangeFromBox(amount){
+  let remaining = Number(amount || 0);
+  const state = loadState();
+  const box = state.boxes[currentUser];
+  let result = [];
+
+  denoms.forEach((d,i)=>{
+    if(remaining <= 0) return;
+
+    const available = Number(box.counts[i] || 0);
+    const needed = Math.floor(remaining / d.value);
+    const take = Math.min(available,needed);
+
+    if(take > 0){
+      result.push(`${d.label} × ${take}`);
+      remaining -= take * d.value;
+      remaining = Number(remaining.toFixed(2));
+    }
+  });
+
+  if(remaining > 0){
+    result.push(`غير متوفر صرفه: ${money(remaining)}`);
+  }
+
+  return result.length ? result.join(" - ") : "-";
+}
+
+function showCashConfirm(){
+  const invoice = Number(invoiceAmount.value || 0);
+  const network = Number(networkAmount.value || 0);
+  const cashReceived = getCashCalcTotal();
+
+  const cashNeeded = Math.max(0, invoice - network);
+  const change = Math.max(0, cashReceived - cashNeeded);
+
+  if(invoice <= 0){
+    alert("اكتب قيمة الفاتورة");
+    return;
+  }
+
+  if(cashReceived < cashNeeded){
+    alert("النقد المستلم أقل من المطلوب");
+    return;
+  }
+
+  const suggestion = getBestChangeFromBox(change);
+
+  if(String(suggestion).includes("غير متوفر")){
+    alert("الصندوق لا يحتوي صرف كافي لإرجاع الباقي");
+    return;
+  }
+
+  pendingCashOperation = {
+    invoice,
+    network,
+    cashReceived,
+    cashNeeded,
+    change,
+    suggestion
+  };
+
+  cashConfirmDetails.innerHTML = `
+    قيمة الفاتورة: ${money(invoice)}<br>
+    مدفوع شبكة: ${money(network)}<br>
+    النقد المطلوب: ${money(cashNeeded)}<br>
+    النقد المستلم: ${money(cashReceived)}<br>
+    الباقي للمريض: ${money(change)}<br>
+    فئات الاسترجاع: ${suggestion}
+  `;
+
+  cashConfirmModal.classList.remove("hidden");
+}
+
+function closeCashConfirm(){
+  cashConfirmModal.classList.add("hidden");
+}
+
+async function applyCashCalculator(){
+  if(!pendingCashOperation){
+    alert("احسب العملية أولاً");
+    return;
+  }
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  const {cashNeeded,change} = pendingCashOperation;
+
+  cashCalcDetails.forEach(item=>{
+    const index = denoms.findIndex(d=>d.value == item.value);
+
+    if(index >= 0){
+      box.counts[index] = Number(box.counts[index] || 0) + 1;
+    }else{
+      box.otherValue = Number(box.otherValue || 0) + Number(item.value || 0);
+      box.otherCount = 1;
+    }
+  });
+
+  let remaining = change;
+
+  denoms.forEach((d,i)=>{
+    if(remaining <= 0) return;
+
+    const available = Number(box.counts[i] || 0);
+    const needed = Math.floor(remaining / d.value);
+    const take = Math.min(available,needed);
+
+    if(take > 0){
+      box.counts[i] = available - take;
+      remaining -= take * d.value;
+      remaining = Number(remaining.toFixed(2));
+    }
+  });
+
+  box.revenue += cashNeeded;
+  box.total = boxTotal(box);
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"عملية نقدية",
+    user:employees[currentUser].name,
+    amount:cashNeeded,
+    status:"معتمد"
+  });
+
+  await saveState(state);
+
+  invoiceAmount.value = "";
+  networkAmount.value = "";
+  cashCalcDetails = [];
+  pendingCashOperation = null;
+
+  closeCashConfirm();
+  renderCashier();
+
+  alert("تم اعتماد العملية");
+}
+
+function requestChange(){
+  changeBox.classList.toggle("hidden");
+}
+
+function addChangeRow(){
+  changeRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+      <select class="changeDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+      <input type="number" min="1" value="1" class="changeCount">
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+    </div>
+  `;
+}
+
+async function sendChangeRequest(){
+  const rows = document.querySelectorAll("#changeRows > div");
+
+  if(rows.length === 0){
+    alert("أضيفي فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let total = 0;
+
+  rows.forEach(row=>{
+    const value = Number(row.querySelector(".changeDenom").value);
+    const count = Number(row.querySelector(".changeCount").value);
+    const denom = denoms.find(d=>d.value == value);
+
+    total += value * count;
+    details.push({label:denom.label,value,count});
+  });
+
+  const state = loadState();
+
+  state.requests.unshift({
+    id:Date.now(),
+    type:"change",
+    from:currentUser,
+    amount:total,
+    details,
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
+  });
+
+  await saveState(state);
+
+  changeRows.innerHTML = "";
+  alert("تم إرسال طلب الصرف");
+  renderCashierRequests();
+}
+
+function requestAdminDelivery(){
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم للإدارة قبل إقفال اليوم");
+    return;
+  }
+
+  const amount = Number(box.carry || 0) + Number(box.received || 0) + Number(box.directToAdmin || 0);
+
+  if(amount <= 0){
+    alert("لا يوجد مبلغ مقفل للتسليم");
+    return;
+  }
+
+  adminDeliveryBox.classList.toggle("hidden");
+
+  if(adminDeliveryRows.innerHTML.trim() === ""){
+    addAdminDeliveryRow();
+  }
+}
+
+function addAdminDeliveryRow(){
+  adminDeliveryRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+      <select class="adminDeliveryDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+      <input type="number" min="1" value="1" class="adminDeliveryCount">
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+    </div>
+  `;
+}
+
+async function sendAdminDeliveryWithDenoms(){
+  await saveCashierData(false,false);
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم للإدارة قبل إقفال اليوم");
+    return;
+  }
+
+  const rows = document.querySelectorAll("#adminDeliveryRows > div");
+
+  if(rows.length === 0){
+    alert("أضف فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let amount = 0;
+
+  rows.forEach(row=>{
+    const value = Number(row.querySelector(".adminDeliveryDenom").value);
+    const count = Number(row.querySelector(".adminDeliveryCount").value || 0);
+    const denom = denoms.find(d=>d.value == value);
+
+    if(count > 0){
+      amount += value * count;
+      details.push({label:denom.label,value,count});
+    }
+  });
+
+  const maxAmount =
+    Number(box.carry || 0) +
+    Number(box.received || 0) +
+    Number(box.directToAdmin || 0);
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  if(amount > Number(box.total || 0)){
+    alert("الفئات المحددة أكبر من إجمالي الصندوق");
+    return;
+  }
+
+  const returnAmount = Math.max(0,amount - maxAmount);
+
+  state.requests.unshift({
+    id:Date.now(),
+    type:"admin",
+    from:currentUser,
+    amount,
+    returnAmount,
+    netAmount:amount - returnAmount,
+    details,
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
+  });
+
+  await saveState(state);
+
+  adminDeliveryRows.innerHTML = "";
+  adminDeliveryBox.classList.add("hidden");
+
+  renderCashierRequests();
+
+  alert(
+    "تم إرسال طلب التسليم للإدارة" +
+    "\\nالمبلغ المسلم: " + money(amount) +
+    "\\nالمبلغ المطلوب فعلياً: " + money(amount - returnAmount) +
+    "\\nالمبلغ الذي يرجع للموظفة: " + money(returnAmount)
+  );
+}
+function toggleTransferBox(){
+  transferBox.classList.toggle("hidden");
+
+  if(employeeDeliveryRows.innerHTML.trim() === ""){
+    addEmployeeDeliveryRow();
+  }
+}
+
+function addEmployeeDeliveryRow(){
+  employeeDeliveryRows.innerHTML += `
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin-top:10px">
+      <select class="employeeDeliveryDenom">
+        ${denoms.map(d=>`<option value="${d.value}">${d.label}</option>`).join("")}
+      </select>
+      <input type="number" min="1" value="1" class="employeeDeliveryCount">
+      <button class="btn btn-red" onclick="this.parentElement.remove()">حذف</button>
+    </div>
+  `;
+}
+
+async function sendEmployeeDeliveryWithDenoms(){
+  await saveCashierData(false,false);
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.revenue || 0) > 0){
+    alert("لا يمكن التسليم لموظفة قبل إقفال اليوم");
+    return;
+  }
+
+  const rows = document.querySelectorAll("#employeeDeliveryRows > div");
+
+  if(rows.length === 0){
+    alert("أضف فئة واحدة على الأقل");
+    return;
+  }
+
+  let details = [];
+  let amount = 0;
+
+  rows.forEach(row=>{
+    const value = Number(row.querySelector(".employeeDeliveryDenom").value);
+    const count = Number(row.querySelector(".employeeDeliveryCount").value || 0);
+    const denom = denoms.find(d=>d.value == value);
+
+    if(count > 0){
+      amount += value * count;
+      details.push({label:denom.label,value,count});
+    }
+  });
+
+  const maxAmount =
+    Number(box.carry || 0) +
+    Number(box.received || 0) +
+    Number(box.directToAdmin || 0);
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  if(amount > Number(box.total || 0)){
+    alert("الفئات المحددة أكبر من إجمالي الصندوق");
+    return;
+  }
+
+  const returnAmount = Math.max(0,amount - maxAmount);
+
+  const to = transferTo.value;
+
+  state.requests.unshift({
+    id:Date.now(),
+    type:"employee",
+    from:currentUser,
+    to,
+    amount,
+    returnAmount,
+    netAmount:amount - returnAmount,
+    details,
+    status:"معلق",
+    createdBy:currentUser,
+    time:now()
+  });
+
+  await saveState(state);
+
+  employeeDeliveryRows.innerHTML = "";
+  transferBox.classList.add("hidden");
+
+  renderCashierRequests();
+
+  alert(
+    "تم إرسال طلب التسليم" +
+    "\\nالمبلغ المسلم: " + money(amount) +
+    "\\nالمبلغ المطلوب فعلياً: " + money(amount - returnAmount) +
+    "\\nالمبلغ الذي يرجع للموظفة: " + money(returnAmount)
+  );
+}
+
+function requestTitle(request){
+  if(request.type === "admin") return "طلب تسليم للإدارة";
+  if(request.type === "employee") return "طلب تسليم لموظفة";
+  if(request.type === "change") return "طلب صرف";
+  return "طلب";
+}
+
+function toggleChangeDetails(id){
+  document.getElementById("change_"+id)?.classList.toggle("hidden");
+}
+
+function toggleAdminChange(id){
+  document.getElementById("admin_change_"+id)?.classList.toggle("hidden");
+}
+
+function renderCashierRequests(){
+  const state = loadState();
+
+  const requests = state.requests.filter(r=>
+    r.status === "معلق" &&
+    (
+      r.createdBy === currentUser ||
+      (r.type === "employee" && r.to === currentUser)
+    )
+  );
+
+  if(requests.length === 0){
+    cashierRequestsBox.innerHTML = `<div class="help">لا توجد طلبات معلقة</div>`;
+    return;
+  }
+
+  let html = "";
+
+  requests.forEach(r=>{
+    html += `<div class="status-result more">${requestTitle(r)}<br>${money(r.amount)}`;
+
+    if(Number(r.returnAmount || 0) > 0){
+      html += `<br><span style="font-size:14px">المبلغ المرجع: ${money(r.returnAmount)}</span>`;
+    }
+
+    if(r.details?.length){
+      html += `
+        <br>
+        <button class="btn btn-orange" style="margin-top:10px" onclick="toggleChangeDetails(${r.id})">عرض التفاصيل</button>
+        <div id="change_${r.id}" class="hidden detail-box">
+      `;
+
+      r.details.forEach(d=>{
+        html += `
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <img src="${d.image || getCurrencyImage(d.value)}"
+                 style="width:55px;height:36px;object-fit:contain;border-radius:8px;background:#fff;padding:3px;border:1px solid #e2e8f0">
+            <span>${d.label} × ${d.count}</span>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+    }
+
+    if(r.type === "employee" && r.to === currentUser){
+      html += `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+          <button class="btn btn-green" onclick="acceptEmployeeTransfer(${r.id},'box')">
+            إضافة لصندوقي
+          </button>
+
+          <button class="btn btn-orange" onclick="acceptEmployeeTransfer(${r.id},'admin')">
+            تسليم مباشر للإدارة
+          </button>
+        </div>
+      `;
+    }
+
+    html += `<button class="btn btn-red" style="margin-top:10px" onclick="cancelOwnRequest(${r.id})">إلغاء</button></div>`;
+  });
+
+  cashierRequestsBox.innerHTML = html;
+}
+
+function getCurrencyImage(value){
+  if(value >= 500) return "money/500.png";
+  if(value >= 200) return "money/200.png";
+  if(value >= 100) return "money/100.png";
+  if(value >= 50) return "money/50.png";
+  if(value >= 20) return "money/20.png";
+  if(value >= 10) return "money/10.png";
+  if(value >= 5) return "money/5.png";
+  return "money/coins.png";
+}
+
+async function cancelOwnRequest(id){
+  const state = loadState();
+  const request = state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "ملغي";
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"إلغاء طلب",
+    user:employees[currentUser]?.name || "مستخدم",
+    amount:request.amount,
+    status:"ملغي"
+  });
+
+  await saveState(state);
+  renderCashierRequests();
+}
+function deductDetailsFromBox(box,details=[]){
+  details.forEach(item=>{
+    const index = denoms.findIndex(d=>d.value == item.value);
+
+    if(index >= 0){
+      box.counts[index] = Math.max(
+        0,
+        Number(box.counts[index] || 0) - Number(item.count || 0)
+      );
+    }
+  });
+}
+
+function addDetailsToBox(box,details=[]){
+  details.forEach(item=>{
+    const index = denoms.findIndex(d=>d.value == item.value);
+
+    if(index >= 0){
+      box.counts[index] = Number(box.counts[index] || 0) + Number(item.count || 0);
+    }
+  });
+}
+
+function reduceBoxBalances(box,amount){
+  let remaining = Number(amount || 0);
+
+  let take = Math.min(Number(box.revenue || 0),remaining);
+  box.revenue -= take;
+  remaining -= take;
+
+  take = Math.min(Number(box.carry || 0),remaining);
+  box.carry -= take;
+  remaining -= take;
+
+  take = Math.min(Number(box.received || 0),remaining);
+  box.received -= take;
+  remaining -= take;
+
+  take = Math.min(Number(box.directToAdmin || 0),remaining);
+  box.directToAdmin -= take;
+
+  box.total = boxTotal(box);
+}
+
+async function acceptEmployeeTransfer(id,mode="box"){
+  const state = loadState();
+  const request = state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "معتمد";
+
+  const amount = Number(request.amount || 0);
+  const returnAmount = Number(request.returnAmount || 0);
+  const netAmount = amount - returnAmount;
+
+  const fromBox = state.boxes[request.from];
+  const toBox = state.boxes[request.to];
+
+  deductDetailsFromBox(fromBox,request.details);
+
+  reduceBoxBalances(fromBox,netAmount);
+
+  fromBox.total = boxTotal(fromBox);
+
+  if(mode === "box"){
+
+    addDetailsToBox(toBox,request.details);
+
+    toBox.received += netAmount;
+
+    toBox.total = boxTotal(toBox);
+
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"استلام من موظفة",
+      user:employees[request.to].name,
+      amount:netAmount,
+      status:"معتمد",
+      from:request.from,
+      to:request.to
+    });
+
+  }else{
+
+    addDetailsToBox(toBox,request.details);
+
+    toBox.directToAdmin = Number(toBox.directToAdmin || 0) + netAmount;
+
+    toBox.total = boxTotal(toBox);
+
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"استلام وتحويل للإدارة",
+      user:employees[request.to].name,
+      amount:netAmount,
+      status:"معتمد",
+      from:request.from,
+      to:request.to
+    });
+  }
+
+  await saveState(state);
+
+  renderCashier();
+
+  if(returnAmount > 0){
+    alert("تم الاستلام. يرجع للموظفة " + money(returnAmount));
+  }
+}
+
+function renderAdmin(){
+  buildRows();
+  fillVaultInputs();
+
+  const state = loadState();
+
+  vaultTotal.innerText = money(state.vault);
+  adminStateText.innerText = state.adminStatus.text;
+  pendingCount.innerText = state.requests.filter(r=>r.status === "معلق").length;
+
+  let received = 0;
+
+  state.logs.forEach(log=>{
+    if(log.type === "استلام إدارة"){
+      received += Number(log.amount || 0);
+    }
+  });
+
+  receivedToday.innerText = money(received);
+
+  boxesTable.innerHTML = "";
+
+  Object.keys(state.boxes).forEach(key=>{
+    const box = state.boxes[key];
+
+    boxesTable.innerHTML += `
+      <tr>
+        <td>${employees[key].name}</td>
+        <td>${money(box.revenue)}</td>
+        <td>${money(box.carry)}</td>
+        <td>${money(box.received)}</td>
+        <td>${money(box.total)}</td>
+        <td>${box.status}</td>
+      </tr>
+    `;
+  });
+
+  renderAdminRequests();
+  renderAdminLog();
+}
+
+async function approveRequest(id){
+  const state = loadState();
+  const request = state.requests.find(r=>r.id == id);
+
+  if(!request) return;
+
+  request.status = "معتمد";
+
+  const amount = Number(request.amount || 0);
+  const returnAmount = Number(request.returnAmount || 0);
+  const netAmount = amount - returnAmount;
+
+  if(request.type === "admin"){
+
+    const fromBox = state.boxes[request.from];
+
+    deductDetailsFromBox(fromBox,request.details);
+
+    reduceBoxBalances(fromBox,netAmount);
+
+    fromBox.total = boxTotal(fromBox);
+
+    addDetailsToBox(state.vaultCounts,request.details);
+
+    state.vault = boxTotal(state.vaultCounts);
+
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"استلام إدارة",
+      user:employees[request.from].name,
+      amount:netAmount,
+      status:"معتمد",
+      from:request.from
+    });
+
+    alert(
+      "تم استلام " + money(amount) +
+      "\\nالمبلغ المستحق فعلياً: " + money(netAmount) +
+      "\\nالمبلغ المرجع للموظفة: " + money(returnAmount)
+    );
+  }
+
+  if(request.type === "employee"){
+
+    const fromBox = state.boxes[request.from];
+    const toBox = state.boxes[request.to];
+
+    deductDetailsFromBox(fromBox,request.details);
+
+    reduceBoxBalances(fromBox,netAmount);
+
+    fromBox.total = boxTotal(fromBox);
+
+    addDetailsToBox(toBox,request.details);
+
+    toBox.received += netAmount;
+
+    toBox.total = boxTotal(toBox);
+
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"تسليم بين الموظفات",
+      user:employees[request.from].name,
+      amount:netAmount,
+      status:"معتمد",
+      from:request.from,
+      to:request.to
+    });
+  }
+
+  if(request.type === "change"){
+
+    if(state.vault < amount){
+      alert("رصيد الخزنة لا يكفي لاعتماد الصرف");
+      request.status = "معلق";
+      await saveState(state);
+      return;
+    }
+
+    state.vault -= amount;
+
+    const box = state.boxes[request.from];
+
+    addDetailsToBox(box,request.details);
+
+    box.total = boxTotal(box);
+
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"اعتماد طلب صرف",
+      user:employees[request.from].name,
+      amount,
+      status:"معتمد"
+    });
+  }
+
+  await saveState(state);
+
+  renderAdmin();
+}
+
+onSnapshot(cashDocRef,async snap=>{
+
+  if(snap.exists()){
+    cashState = normalizeState(snap.data());
+  }else{
+    cashState = clone(defaultState);
+    await setDoc(cashDocRef,cashState);
+  }
+
+  if(currentUser === "admin"){
+    renderAdmin();
+  }else if(currentUser){
+    renderCashier();
+  }
+
+},error=>{
+  console.error("Firebase error:",error);
+  alert("فيه مشكلة في اتصال Firebase أو الصلاحيات");
+});
+
+Object.assign(window,{
+  login,
+  calculate,
+  calculateVault,
+  saveCashierData,
+  autoSaveBox,
+  closeTodayRevenue,
+  editClosedRevenue,
+  requestAdminDelivery,
+  toggleTransferBox,
+  requestChange,
+  addChangeRow,
+  sendChangeRequest,
+  toggleChangeDetails,
+  cancelOwnRequest,
+  acceptEmployeeTransfer,
+  renderAdmin,
+  toggleAdminChange,
+  approveRequest,
+  cancelRequest,
+  saveVaultCount,
+  bankDeposit,
+  setAdminStatus,
+  setAdminCustomDelay,
+  addAdminDeliveryRow,
+  sendAdminDeliveryWithDenoms,
+  addEmployeeDeliveryRow,
+  sendEmployeeDeliveryWithDenoms,
+  addCashButton,
+  addOtherCash,
+  clearCashCalc,
+  updateCashCalcScreen,
+  showCashConfirm,
+  closeCashConfirm,
+  applyCashCalculator,
+  clearAllLogs
+});
+</script>
+
+</body>
+</html>
