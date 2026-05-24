@@ -962,3 +962,326 @@ async function saveState(state){
   cashState = normalizeState(state);
   await setDoc(cashDocRef,cashState);
 }
+function boxTotal(box){
+  let total = 0;
+
+  denoms.forEach((d,i)=>{
+    total += Number(box.counts?.[i] || 0) * d.value;
+  });
+
+  total += Number(box.otherValue || 0) * Number(box.otherCount || 0);
+
+  return Number(total.toFixed(2));
+}
+
+function login(type){
+  const pin = document.getElementById("pin_"+type).value.trim();
+
+  if(pin !== employees[type].pin){
+    alert("الرمز غير صحيح");
+    return;
+  }
+
+  currentUser = type;
+  loginView.classList.add("hidden");
+
+  if(type === "admin"){
+    adminView.classList.remove("hidden");
+    cashierView.classList.add("hidden");
+    renderAdmin();
+  }else{
+    cashierView.classList.remove("hidden");
+    adminView.classList.add("hidden");
+    renderCashier();
+  }
+}
+
+function renderMoneyGrid(targetId, counts, prefix, onChangeName){
+  const target = document.getElementById(targetId);
+  if(!target) return;
+
+  target.innerHTML = "";
+
+  denoms.forEach((d,i)=>{
+    const count = Number(counts?.[i] || 0);
+    const total = count * d.value;
+
+    const imgHtml = d.img
+      ? `<img src="${d.img}" alt="${d.label}" onerror="this.style.display='none'">`
+      : `<div style="height:82px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:#005b9f">${d.label}</div>`;
+
+    target.innerHTML += `
+      <div class="money-card ${d.img ? "" : "no-img"}">
+        ${imgHtml}
+        <h3>${d.label}</h3>
+
+        <div class="counter">
+          <button type="button" onclick="${onChangeName}(${i},-1)">-</button>
+          <span id="${prefix}_count_${i}">${count || 0}</span>
+          <button type="button" onclick="${onChangeName}(${i},1)">+</button>
+        </div>
+
+        <div class="money-total" id="${prefix}_total_${i}">
+          ${money(total)}
+        </div>
+      </div>
+    `;
+  });
+}
+
+function changeCashCount(index, delta){
+  if(!currentUser || currentUser === "admin") return;
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  box.counts[index] = Math.max(0,Number(box.counts[index] || 0) + delta);
+  box.total = boxTotal(box);
+
+  cashState = state;
+
+  renderMoneyGrid("cashMoneyGrid",box.counts,"cash","changeCashCount");
+  calculate();
+  autoSaveBox();
+}
+
+function changeVaultCount(index, delta){
+  const state = loadState();
+
+  state.vaultCounts.counts[index] =
+    Math.max(0,Number(state.vaultCounts.counts[index] || 0) + delta);
+
+  state.vault = boxTotal(state.vaultCounts);
+  cashState = state;
+
+  renderMoneyGrid("vaultMoneyGrid",state.vaultCounts.counts,"vault","changeVaultCount");
+  calculateVault();
+}
+
+function renderTransferOptions(){
+  transferTo.innerHTML = "";
+
+  Object.keys(employees).forEach(k=>{
+    if(k !== "admin" && k !== currentUser){
+      transferTo.innerHTML += `<option value="${k}">${employees[k].name}</option>`;
+    }
+  });
+}
+
+function renderCashier(){
+  const state = loadState();
+  const box = state.boxes[currentUser];
+  const status = state.adminStatus;
+
+  renderMoneyGrid("cashMoneyGrid",box.counts,"cash","changeCashCount");
+
+  cashierAdminStatus.className = "status-box";
+
+  if(status.type === "available"){
+    cashierAdminStatus.classList.add("status-available");
+  }else if(status.type === "unavailable"){
+    cashierAdminStatus.classList.add("status-unavailable");
+  }else{
+    cashierAdminStatus.classList.add("status-delay");
+  }
+
+  cashierAdminStatus.innerText = "حالة الإدارة: " + status.text;
+
+  todayRevenue.value = Number(box.revenue || 0) || "";
+  receivedAmount.innerText = money(box.received || 0);
+  carryAmount.innerText = money(box.carry || 0);
+
+  renderTransferOptions();
+  renderCashierRequests();
+  calculate();
+}
+
+function calculate(){
+  const state = loadState();
+  const box = state.boxes[currentUser] || {};
+
+  const total = boxTotal(box);
+
+  const ownRevenue = Number(box.revenue || 0);
+  const carry = Number(box.carry || 0);
+  const received = Number(box.received || 0);
+
+  const expected = baseCustody + ownRevenue + carry + received;
+  const diff = Number((total - expected).toFixed(2));
+
+  fullTotal.innerText = money(total);
+  cashTotal.innerText = money(total);
+  deliverAmount.innerText = money(ownRevenue);
+  carryAmount.innerText = money(carry);
+  receivedAmount.innerText = money(received);
+  expectedTotal.innerText = money(expected);
+
+  if(diff === 0){
+    boxStatus.innerText = "سليم";
+    differenceBox.className = "status-result ok";
+    differenceBox.innerText = "الصندوق مطابق";
+  }else if(diff > 0){
+    boxStatus.innerText = "زيادة " + money(diff);
+    differenceBox.className = "status-result more";
+    differenceBox.innerText = "يوجد زيادة بالصندوق " + money(diff);
+  }else{
+    boxStatus.innerText = "نقص " + money(Math.abs(diff));
+    differenceBox.className = "status-result bad";
+    differenceBox.innerText = "يوجد نقص بالصندوق " + money(Math.abs(diff));
+  }
+}
+
+async function autoSaveBox(){
+  if(!currentUser || currentUser === "admin") return;
+
+  clearTimeout(saveTimer);
+
+  saveTimer = setTimeout(async ()=>{
+    const state = loadState();
+    const box = state.boxes[currentUser];
+
+    box.total = boxTotal(box);
+    box.status = boxStatus.innerText;
+
+    await saveState(state);
+  },600);
+}
+
+function calculateVault(){
+  const state = loadState();
+  state.vault = boxTotal(state.vaultCounts);
+  vaultCountTotal.innerText = money(state.vault);
+  vaultTotal.innerText = money(state.vault);
+}
+
+async function saveCashierData(showAlert=true,addLog=true){
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  box.total = boxTotal(box);
+  box.status = boxStatus.innerText;
+
+  if(addLog){
+    state.logs.unshift({
+      id:Date.now(),
+      time:now(),
+      date:todayKey(),
+      type:"حفظ عد الصندوق",
+      user:employees[currentUser].name,
+      amount:Number(box.total || 0),
+      status:"معتمد"
+    });
+  }
+
+  await saveState(state);
+
+  if(showAlert){
+    alert("تم حفظ عد الصندوق");
+  }
+}
+
+async function closeTodayRevenue(){
+  await saveCashierData(false,false);
+
+  const state = loadState();
+  const box = state.boxes[currentUser];
+  const amount = Number(box.revenue || 0);
+
+  if(amount <= 0){
+    alert("لا يوجد إيراد يوم لإقفاله");
+    return;
+  }
+
+  box.carry += amount;
+  box.revenue = 0;
+  box.total = boxTotal(box);
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"إقفال يوم",
+    user:employees[currentUser].name,
+    amount,
+    status:"معتمد"
+  });
+
+  await saveState(state);
+
+  renderCashier();
+
+  alert("تم إقفال اليوم ونقل الإيراد إلى مبلغ مقفل للتسليم");
+}
+
+async function editClosedRevenue(){
+  const state = loadState();
+  const box = state.boxes[currentUser];
+
+  if(Number(box.carry || 0) <= 0){
+    alert("لا يوجد مبلغ مقفل للتعديل");
+    return;
+  }
+
+  if(!confirm("سيتم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل. هل أنت متأكد؟")){
+    return;
+  }
+
+  box.revenue += Number(box.carry || 0);
+
+  state.logs.unshift({
+    id:Date.now(),
+    time:now(),
+    date:todayKey(),
+    type:"تعديل إقفال اليوم",
+    user:employees[currentUser].name,
+    amount:box.carry,
+    status:"معتمد"
+  });
+
+  box.carry = 0;
+
+  await saveState(state);
+  renderCashier();
+
+  alert("تم إرجاع المبلغ المقفل إلى إيراد اليوم للتعديل");
+}
+
+function getCashCalcTotal(){
+  return cashCalcDetails.reduce((sum,item)=>sum + Number(item.value || 0),0);
+}
+
+function addCashButton(value){
+  cashCalcDetails.push({value:value});
+  updateCashCalcScreen();
+}
+
+function addOtherCash(){
+  const amount = Number(prompt("اكتب المبلغ") || 0);
+
+  if(amount <= 0){
+    alert("المبلغ غير صحيح");
+    return;
+  }
+
+  cashCalcDetails.push({value:amount,other:true});
+  updateCashCalcScreen();
+}
+
+function clearCashCalc(){
+  cashCalcDetails = [];
+  pendingCashOperation = null;
+  updateCashCalcScreen();
+}
+
+function updateCashCalcScreen(){
+  const invoice = Number(invoiceAmount.value || 0);
+  const network = Number(networkAmount.value || 0);
+  const cashReceived = getCashCalcTotal();
+
+  const cashNeeded = Math.max(0, invoice - network);
+  const change = Math.max(0, cashReceived - cashNeeded);
+
+  cashCalcReceived.innerText = money(cashReceived);
+  cashCalcChange.innerText = money(change);
+  cashCalcSuggestion.innerText = getBestChangeFromBox(change);
+}
