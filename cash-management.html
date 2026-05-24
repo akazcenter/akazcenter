@@ -496,3 +496,217 @@ body{
 </div>
 
 <div class="main">
+<section id="loginView">
+  <div class="intro">
+    <h2>نظام الصناديق والعهد</h2>
+    <p>إدارة الصناديق النقدية وتسليم الإيرادات والصرف والخزنة الداخلية بشكل مباشر.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>أ. مرام</h3>
+      <h4>Cash Box</h4>
+      <p>صندوق أ. مرام.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_maram" placeholder="الرمز السري">
+        <button onclick="login('maram')">دخول</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>أ. أشواق</h3>
+      <h4>Cash Box</h4>
+      <p>صندوق أ. أشواق.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_ashwaq" placeholder="الرمز السري">
+        <button onclick="login('ashwaq')">دخول</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">▣</div>
+      <h3>أ. شهد</h3>
+      <h4>Cash Box</h4>
+      <p>صندوق أ. شهد.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_shahad" placeholder="الرمز السري">
+        <button onclick="login('shahad')">دخول</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="icon">🔐</div>
+      <h3>الإدارة</h3>
+      <h4>Management</h4>
+      <p>إدارة الخزنة واعتماد العمليات.</p>
+      <div class="pin-box">
+        <input type="password" id="pin_admin" placeholder="رمز الإدارة">
+        <button onclick="login('admin')">دخول</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cashierView" class="hidden">
+
+  <div class="status-box status-available" id="cashierAdminStatus">
+    الإدارة موجودة لاستلام الإيراد
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <h3>إجمالي الصندوق</h3>
+      <span id="fullTotal">0.00 SAR</span>
+    </div>
+
+    <div class="summary-card green">
+      <h3>إيراد اليوم</h3>
+      <span id="deliverAmount">0.00 SAR</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>مقفل للتسليم</h3>
+      <span id="carryAmount">0.00 SAR</span>
+    </div>
+
+    <div class="summary-card red">
+      <h3>المستلم من موظفة</h3>
+      <span id="receivedAmount">0.00 SAR</span>
+    </div>
+
+    <div class="summary-card orange">
+      <h3>حالة الصندوق</h3>
+      <span id="boxStatus">سليم</span>
+    </div>
+  </div>
+
+  <div class="sections">
+
+    <div class="panel">
+      <h2>عد الصندوق كامل</h2>
+      <div class="help">اختاري الفئة واضغطي + أو - بدل كتابة الأرقام يدوياً.</div>
+
+      <div id="cashMoneyGrid" class="money-grid"></div>
+
+      <div class="total-line">
+        إجمالي الصندوق بعد العد
+        <span id="cashTotal">0.00 SAR</span>
+      </div>
+
+      <button class="btn btn-blue" style="width:100%;margin-top:16px;padding:16px" onclick="saveCashierData()">
+        حفظ عد الصندوق
+      </button>
+    </div>
+
+    <div class="panel">
+      <h2>إيراد اليوم</h2>
+      <div class="help">إيراد اليوم يحسب تلقائياً من الحاسبة. لا يكتب يدوياً.</div>
+
+      <input class="revenue-input" type="number" id="todayRevenue" placeholder="" readonly>
+
+      <div class="total-line">
+        المتوقع داخل الصندوق
+        <span id="expectedTotal">0.00 SAR</span>
+      </div>
+
+      <div class="status-result ok" id="differenceBox">الصندوق مطابق</div>
+
+      <div class="card" style="margin-top:20px;padding:20px">
+        <h3 style="margin-bottom:15px">حاسبة العملية النقدية</h3>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <input id="invoiceAmount" type="number" placeholder="قيمة الفاتورة" oninput="updateCashCalcScreen()">
+          <input id="networkAmount" type="number" placeholder="مدفوع شبكة" oninput="updateCashCalcScreen()">
+        </div>
+
+        <div class="total-line">
+          النقد المستلم
+          <span id="cashCalcReceived">0.00 SAR</span>
+        </div>
+
+        <div class="total-line">
+          الباقي للمريض
+          <span id="cashCalcChange">0.00 SAR</span>
+        </div>
+
+        <div class="total-line">
+          اقتراح الاسترجاع
+          <span id="cashCalcSuggestion" style="font-size:18px">-</span>
+        </div>
+
+        <div class="calc-pad">
+          <button class="btn btn-orange" onclick="addCashButton(500)">500</button>
+          <button class="btn btn-orange" onclick="addCashButton(200)">200</button>
+          <button class="btn btn-orange" onclick="addCashButton(100)">100</button>
+          <button class="btn btn-orange" onclick="addCashButton(50)">50</button>
+          <button class="btn btn-orange" onclick="addCashButton(20)">20</button>
+          <button class="btn btn-orange" onclick="addCashButton(10)">10</button>
+          <button class="btn btn-orange" onclick="addCashButton(5)">5</button>
+          <button class="btn btn-orange" onclick="addCashButton(2)">2</button>
+          <button class="btn btn-orange" onclick="addCashButton(1)">1</button>
+          <button class="btn btn-orange" onclick="addCashButton(0.5)">0.50</button>
+          <button class="btn btn-orange" onclick="addCashButton(0.25)">0.25</button>
+          <button class="btn btn-blue" onclick="addOtherCash()">أخرى</button>
+          <button class="btn btn-red" onclick="clearCashCalc()">مسح</button>
+          <button class="btn btn-green" style="grid-column:span 2" onclick="showCashConfirm()">اعتماد العملية</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-blue" onclick="requestAdminDelivery()">تسليم للإدارة</button>
+        <button class="btn btn-orange" onclick="toggleTransferBox()">تسليم لموظفة</button>
+        <button class="btn btn-green" onclick="requestChange()">طلب صرف</button>
+        <button class="btn btn-red" onclick="closeTodayRevenue()">إقفال اليوم</button>
+        <button class="btn btn-orange" onclick="editClosedRevenue()">تعديل الإقفال</button>
+      </div>
+
+      <div id="transferBox" class="hidden" style="margin-top:14px">
+        <select id="transferTo"></select>
+        <div class="help" style="margin-top:10px">حددي الفئات التي سيتم تسليمها للموظفة.</div>
+        <div id="employeeDeliveryRows"></div>
+
+        <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addEmployeeDeliveryRow()">
+          إضافة فئة
+        </button>
+
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendEmployeeDeliveryWithDenoms()">
+          إرسال طلب التسليم
+        </button>
+      </div>
+
+      <div id="adminDeliveryBox" class="hidden" style="margin-top:14px">
+        <div class="help">حددي الفئات التي سيتم تسليمها للإدارة.</div>
+        <div id="adminDeliveryRows"></div>
+
+        <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addAdminDeliveryRow()">
+          إضافة فئة
+        </button>
+
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendAdminDeliveryWithDenoms()">
+          إرسال طلب التسليم
+        </button>
+      </div>
+
+      <div id="changeBox" class="hidden" style="margin-top:14px">
+        <div class="help">أضيفي الفئات المطلوبة فقط.</div>
+        <div id="changeRows"></div>
+
+        <button class="btn btn-orange" style="width:100%;margin-top:10px" onclick="addChangeRow()">
+          إضافة فئة
+        </button>
+
+        <button class="btn btn-blue" style="width:100%;margin-top:10px" onclick="sendChangeRequest()">
+          إرسال طلب الصرف
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+    <h2>الطلبات والعمليات</h2>
+    <div id="cashierRequestsBox"></div>
+  </div>
+</section>
