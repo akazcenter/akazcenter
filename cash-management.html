@@ -612,6 +612,34 @@ button{
   </div>
 
 </div>
+<script>
 
+function login(user){
+
+  const pins = {
+    maram:"1111",
+    ashwaq:"2222",
+    shahad:"3333",
+    admin:"9999"
+  };
+
+  const input = document.getElementById("pin_" + user);
+
+  if(input.value !== pins[user]){
+    alert("الرمز غير صحيح");
+    return;
+  }
+
+  loginView.classList.add("hidden");
+
+  if(user === "admin"){
+    adminView.classList.remove("hidden");
+  }else{
+    cashierView.classList.remove("hidden");
+  }
+
+}
+
+</script>
 </body>
 </html>
