@@ -278,6 +278,18 @@ body{
   border-top-left-radius:28px;
 }
 
+.card::after{
+  content:"";
+  position:absolute;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background:rgba(0,91,159,.06);
+  left:-38px;
+  bottom:-45px;
+  z-index:0;
+}
+
 .card:hover{
   transform:translateY(-8px);
   box-shadow:0 28px 58px rgba(15,23,42,.16);
@@ -377,27 +389,6 @@ body{
   border-radius:999px;
   display:none;
   z-index:5;
-}
-
-.prep-badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#f59e0b;
-  color:white;
-  font-size:12px;
-  font-weight:900;
-  padding:6px 10px;
-  border-radius:999px;
-  z-index:6;
-}
-
-.card.prep{
-  border:1px dashed rgba(245,158,11,.85);
-}
-
-.card.prep::before{
-  background:linear-gradient(90deg,#f59e0b,#dc2626);
 }
 
 .footer{
@@ -523,7 +514,7 @@ body.dark .footer{color:#cbd5e1}
       <h3>جدول الدوام</h3>
       <h4>Work Schedule</h4>
       <p>إدارة جداول الدوام واعتمادها.</p>
-      <div class="card-tooltip">يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام غير محدد في نظام اكتفاء.</div>
+      <div class="card-tooltip">يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام "غير محدد" في نظام اكتفاء.</div>
     </div>
 
     <div class="card" onclick="go('kids-rooms.html')">
@@ -595,13 +586,12 @@ body.dark .footer{color:#cbd5e1}
       <div class="card-tooltip">صفحة خاصة بإنشاء نماذج الاسترداد وتحويل الجلسات وطباعتها أو تحميلها PDF.</div>
     </div>
 
-    <div class="card prep" onclick="openCashManagement()">
-      <div class="prep-badge">تحت التجهيز</div>
+    <div class="card" onclick="go('cash-management.html')">
       <div class="icon">💵</div>
       <h3>إدارة النقدية</h3>
       <h4>Cash Management</h4>
-      <p>النظام تحت التجهيز والاختبار الداخلي فقط.</p>
-      <div class="card-tooltip">هذا القسم غير متاح للموظفين حالياً. يمكن للمدير فقط الدخول عليه للتجربة والتعديل قبل الإطلاق الرسمي.</div>
+      <p>إدارة العهد والصناديق وتسليم الإيرادات اليومية.</p>
+      <div class="card-tooltip">نظام ذكي لإدارة صناديق الاستقبال، الجرد اليومي، تصنيف الفئات النقدية، وتسليم الإيرادات للإدارة مع سجل كامل للحركات والتأجيلات.</div>
     </div>
 
   </div>
@@ -615,16 +605,6 @@ body.dark .footer{color:#cbd5e1}
 <script>
 function go(page){
   window.location.href = page;
-}
-
-function openCashManagement(){
-  const pin = prompt("هذا القسم تحت التجهيز. أدخل رمز الإدارة للدخول:");
-
-  if(pin === "9999"){
-    window.location.href = "cash-management.html";
-  }else if(pin !== null){
-    alert("الرمز غير صحيح");
-  }
 }
 
 function toggleTheme(){
@@ -705,7 +685,6 @@ checkHomeVisitsAlert();
 rotateQuotes();
 setInterval(rotateQuotes,9000);
 </script>
-
 <script type="module" src="tracker.js"></script>
 </body>
 </html>
