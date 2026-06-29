@@ -295,29 +295,6 @@ body{
   box-shadow:0 28px 58px rgba(15,23,42,.16);
 }
 
-.card.soon{
-  opacity:.94;
-  cursor:not-allowed;
-}
-
-.card.soon:hover{
-  transform:translateY(-4px);
-}
-
-.soon-badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:linear-gradient(135deg,#f59e0b,#f97316);
-  color:white;
-  font-size:12px;
-  font-weight:900;
-  padding:6px 11px;
-  border-radius:999px;
-  z-index:6;
-  box-shadow:0 8px 18px rgba(245,158,11,.35);
-}
-
 .icon,
 .card h3,
 .card h4,
@@ -593,15 +570,6 @@ body.dark .footer{color:#cbd5e1}
       <div class="card-tooltip">جدول خاص لكل أخصائي يساعده على تنظيم المرضى حسب مدة الجلسة ونوع الحالة، مع عرض اليوم والأسبوع والحجوزات القادمة.</div>
     </div>
 
-    <div class="card soon" onclick="comingSoon()">
-      <div class="soon-badge">قريبًا</div>
-      <div class="icon">🤝</div>
-      <h3>التعاون العلاجي</h3>
-      <h4>Therapeutic Collaboration</h4>
-      <p>مشاركة الحالات بين الأخصائيين لتحسين جودة الخطة العلاجية.</p>
-      <div class="card-tooltip">نظام خاص لرفع طلب مشاركة حالة بين أخصائيين، بهدف تعزيز التعاون في الحالات المعقدة أو التي تحتاج أكثر من رأي علاجي.</div>
-    </div>
-
     <div class="card" onclick="go('new-assessment-entry.html')">
       <div class="icon">🩺</div>
       <h3>توزيع الكشف الجديد</h3>
@@ -637,10 +605,6 @@ body.dark .footer{color:#cbd5e1}
 <script>
 function go(page){
   window.location.href = page;
-}
-
-function comingSoon(){
-  alert("قريبًا سيتم إطلاق نظام التعاون العلاجي داخل بوابة مركز عكاز");
 }
 
 function toggleTheme(){
@@ -698,9 +662,7 @@ const quotes = [
   "التعامل الإنساني هو أساس العلاج",
   "كل جلسة فرصة لتغيير حياة",
   "راحة المريض هي نجاحك الحقيقي",
-  "استمع للمريض... نصف العلاج في الفهم",
-  "التعاون العلاجي يرفع جودة الخدمة ويختصر الطريق على المريض",
-  "نجاح الحالة هو نجاح للفريق كامل"
+  "استمع للمريض... نصف العلاج في الفهم"
 ];
 
 let quoteIndex = 0;
@@ -726,3 +688,5 @@ setInterval(rotateQuotes,9000);
 <script type="module" src="tracker.js"></script>
 </body>
 </html>
+
+هذا كود الصفحة الرئيسيه اضف عليه اللي اتفقنا عليه وخليه قريبا او اي شي يعني لين وق الاجتماع باقي عليه 5 ايام تقريبا او اسبوع 
