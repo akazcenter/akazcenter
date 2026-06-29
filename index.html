@@ -196,7 +196,7 @@ body{
 .quote-strip{
   width:73%;
   max-width:1030px;
-  margin:-38px auto 24px;
+  margin:-38px auto 32px;
   position:relative;
   z-index:5;
   background:rgba(255,255,255,.96);
@@ -220,86 +220,6 @@ body{
 }
 
 .heart{font-size:22px}
-
-.practice-board{
-  width:73%;
-  max-width:1030px;
-  margin:0 auto 34px;
-  position:relative;
-  z-index:4;
-  background:linear-gradient(135deg,#ffffff,#f8fbff);
-  border:1px solid rgba(226,232,240,.95);
-  border-radius:24px;
-  padding:18px 24px;
-  display:grid;
-  grid-template-columns:170px 1fr;
-  gap:18px;
-  align-items:center;
-  box-shadow:0 18px 42px rgba(15,23,42,.09);
-  overflow:hidden;
-}
-
-.practice-board::before{
-  content:"";
-  position:absolute;
-  top:0;
-  right:0;
-  width:100%;
-  height:5px;
-  background:linear-gradient(90deg,#005b9f,#f59e0b);
-}
-
-.practice-title{
-  position:relative;
-  z-index:2;
-  border-left:1px solid #e2e8f0;
-  padding-left:18px;
-}
-
-.practice-title strong{
-  display:block;
-  color:var(--blue);
-  font-size:18px;
-  font-weight:900;
-  margin-bottom:5px;
-}
-
-.practice-title span{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  font-weight:700;
-}
-
-.practice-content{
-  position:relative;
-  z-index:2;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.practice-icon{
-  width:42px;
-  height:42px;
-  border-radius:16px;
-  background:linear-gradient(145deg,#eef6ff,#ffffff);
-  box-shadow:inset 0 0 0 1px #e2e8f0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  flex-shrink:0;
-}
-
-#bestPractice{
-  margin:0;
-  color:#0f172a;
-  font-size:18px;
-  font-weight:900;
-  line-height:1.8;
-  transition:.35s;
-}
 
 .main{
   width:92%;
@@ -373,6 +293,29 @@ body{
 .card:hover{
   transform:translateY(-8px);
   box-shadow:0 28px 58px rgba(15,23,42,.16);
+}
+
+.card.soon{
+  opacity:.94;
+  cursor:not-allowed;
+}
+
+.card.soon:hover{
+  transform:translateY(-4px);
+}
+
+.soon-badge{
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:linear-gradient(135deg,#f59e0b,#f97316);
+  color:white;
+  font-size:12px;
+  font-weight:900;
+  padding:6px 11px;
+  border-radius:999px;
+  z-index:6;
+  box-shadow:0 8px 18px rgba(245,158,11,.35);
 }
 
 .icon,
@@ -492,8 +435,7 @@ body.dark{
 body.dark .hero{background:linear-gradient(135deg,#020617,#1e3a8a)}
 
 body.dark .quote-strip,
-body.dark .card,
-body.dark .practice-board{
+body.dark .card{
   background:#1e293b;
   border-color:#334155;
   box-shadow:0 22px 45px rgba(0,0,0,.28);
@@ -501,16 +443,8 @@ body.dark .practice-board{
 
 body.dark #dailyQuote,
 body.dark .card h3,
-body.dark .section-head h2,
-body.dark .practice-title strong{color:#93c5fd}
+body.dark .section-head h2{color:#93c5fd}
 
-body.dark #bestPractice{color:#e2e8f0}
-
-body.dark .practice-title{
-  border-left-color:#334155;
-}
-
-body.dark .practice-icon,
 body.dark .icon{background:#0f172a}
 
 body.dark .top-btn{
@@ -536,23 +470,6 @@ body.dark .footer{color:#cbd5e1}
   .cards{grid-template-columns:repeat(2,1fr)}
 
   .cards.secondary{grid-template-columns:repeat(2,1fr)}
-
-  .practice-board{
-    width:92%;
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .practice-title{
-    border-left:0;
-    padding-left:0;
-    border-bottom:1px solid #e2e8f0;
-    padding-bottom:12px;
-  }
-
-  .practice-content{
-    justify-content:center;
-  }
 }
 
 @media(max-width:650px){
@@ -564,15 +481,6 @@ body.dark .footer{color:#cbd5e1}
   }
 
   #dailyQuote{font-size:18px}
-
-  .practice-board{
-    width:92%;
-    padding:18px;
-  }
-
-  #bestPractice{
-    font-size:15.5px;
-  }
 
   .cards,
   .cards.secondary{grid-template-columns:1fr}
@@ -614,18 +522,6 @@ body.dark .footer{color:#cbd5e1}
   <span class="heart">💙</span>
   <h2 id="dailyQuote">كل مريض يدخل... هو أمانة ومسؤولية</h2>
   <span class="heart">💙</span>
-</section>
-
-<section class="practice-board">
-  <div class="practice-title">
-    <strong>سبورة أفضل الممارسات</strong>
-    <span>من خبرات فريق عكاز</span>
-  </div>
-
-  <div class="practice-content">
-    <div class="practice-icon">⭐</div>
-    <p id="bestPractice">اشرح الخطة العلاجية للمراجع من أول جلسة حتى يعرف طريقه بوضوح.</p>
-  </div>
 </section>
 
 <main class="main">
@@ -697,6 +593,15 @@ body.dark .footer{color:#cbd5e1}
       <div class="card-tooltip">جدول خاص لكل أخصائي يساعده على تنظيم المرضى حسب مدة الجلسة ونوع الحالة، مع عرض اليوم والأسبوع والحجوزات القادمة.</div>
     </div>
 
+    <div class="card soon" onclick="comingSoon()">
+      <div class="soon-badge">قريبًا</div>
+      <div class="icon">🤝</div>
+      <h3>التعاون العلاجي</h3>
+      <h4>Therapeutic Collaboration</h4>
+      <p>مشاركة الحالات بين الأخصائيين لتحسين جودة الخطة العلاجية.</p>
+      <div class="card-tooltip">نظام خاص لرفع طلب مشاركة حالة بين أخصائيين، بهدف تعزيز التعاون في الحالات المعقدة أو التي تحتاج أكثر من رأي علاجي.</div>
+    </div>
+
     <div class="card" onclick="go('new-assessment-entry.html')">
       <div class="icon">🩺</div>
       <h3>توزيع الكشف الجديد</h3>
@@ -732,6 +637,10 @@ body.dark .footer{color:#cbd5e1}
 <script>
 function go(page){
   window.location.href = page;
+}
+
+function comingSoon(){
+  alert("قريبًا سيتم إطلاق نظام التعاون العلاجي داخل بوابة مركز عكاز");
 }
 
 function toggleTheme(){
@@ -789,24 +698,12 @@ const quotes = [
   "التعامل الإنساني هو أساس العلاج",
   "كل جلسة فرصة لتغيير حياة",
   "راحة المريض هي نجاحك الحقيقي",
-  "استمع للمريض... نصف العلاج في الفهم"
-];
-
-const bestPractices = [
-  "اشرح الخطة العلاجية للمراجع من أول جلسة حتى يعرف طريقه بوضوح.",
-  "المراجع يلتزم أكثر عندما يعرف هدف كل جلسة وسبب كل تمرين.",
-  "المتابعة بعد الغياب تصنع فرقًا كبيرًا في استمرار البرنامج العلاجي.",
-  "استمع للمراجع جيدًا قبل أن تبدأ العلاج، فالفهم نصف الخطة.",
-  "لا تَعِد المراجع بنتيجة غير مضمونة، الصدق يبني الثقة.",
-  "اربط التحسن بشيء يهم المراجع في حياته اليومية.",
-  "بسّط التمارين المنزلية حتى يقدر المراجع يطبقها بدون تعقيد.",
-  "احتفل مع المراجع بالتحسن البسيط، فهو دافع للاستمرار.",
-  "المراجع يرجع للمكان الذي شعر فيه بالاهتمام والوضوح.",
-  "تجربة المراجع تبدأ من الاستقبال وتكتمل داخل غرفة العلاج."
+  "استمع للمريض... نصف العلاج في الفهم",
+  "التعاون العلاجي يرفع جودة الخدمة ويختصر الطريق على المريض",
+  "نجاح الحالة هو نجاح للفريق كامل"
 ];
 
 let quoteIndex = 0;
-let practiceIndex = 0;
 
 function rotateQuotes(){
   const el = document.getElementById("dailyQuote");
@@ -819,27 +716,12 @@ function rotateQuotes(){
   },350);
 }
 
-function rotatePractices(){
-  const el = document.getElementById("bestPractice");
-  el.style.opacity = 0;
-
-  setTimeout(()=>{
-    el.innerText = bestPractices[practiceIndex];
-    el.style.opacity = 1;
-    practiceIndex = (practiceIndex + 1) % bestPractices.length;
-  },350);
-}
-
 loadTheme();
 updateClock();
 setInterval(updateClock,1000);
 checkHomeVisitsAlert();
-
 rotateQuotes();
 setInterval(rotateQuotes,9000);
-
-rotatePractices();
-setInterval(rotatePractices,8000);
 </script>
 <script type="module" src="tracker.js"></script>
 </body>
