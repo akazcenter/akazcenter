@@ -345,7 +345,7 @@ table{min-width:1050px}
     </select>
 
     <label>تفاصيل الطلب</label>
-    <textarea id="requestDetails" placeholder="مثال: أرغب بتبديل شفت يوم الاثنين مع د. صالح بسبب..."></textarea>
+    <textarea id="requestDetails" placeholder="مثال: أرغب بتبديل شفت يوم الاثنين مع موظف آخر بسبب..."></textarea>
 
     <button class="main-btn" onclick="sendShiftRequest()">إرسال الطلب للإدارة</button>
     <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
@@ -397,18 +397,44 @@ let shiftAdminLogged=false;
 const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
 
 const sectionTitles={men:"قسم الرجال",women:"قسم النساء",reception:"الاستقبال"};
-const shiftNames={single:"شفت واحد",split:"شفتين"};
+
+const shiftNames={
+  single:"شفت واحد",
+  single12:"شفت واحد 12-8",
+  single1:"شفت واحد 1-9",
+  split:"شفتين"
+};
 
 const shiftTimes={
-  men:{single:"01:00 PM - 09:00 PM",split:"09:00 AM - 01:00 PM<br>04:00 PM - 08:00 PM"},
-  women:{single:"12:00 PM - 08:00 PM",split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"},
-  reception:{single:"12:00 PM - 08:00 PM",split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"}
+  men:{
+    single:"01:00 PM - 09:00 PM",
+    split:"09:00 AM - 01:00 PM<br>04:00 PM - 08:00 PM"
+  },
+  women:{
+    single:"12:00 PM - 08:00 PM",
+    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
+  },
+  reception:{
+    single12:"12:00 PM - 08:00 PM",
+    single1:"01:00 PM - 09:00 PM",
+    split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
+  }
 };
 
 const slotsCount={
-  men:{single:2,split:2},
-  women:{single:3,split:3},
-  reception:{single:1,split:2}
+  men:{
+    single:2,
+    split:2
+  },
+  women:{
+    single:3,
+    split:3
+  },
+  reception:{
+    single12:1,
+    single1:1,
+    split:2
+  }
 };
 
 const employees={
@@ -466,10 +492,19 @@ function warnIfApproved(actionText){
 
 function renderTables(){
   if(!currentSection) return;
+
   const area=document.getElementById("tablesArea");
   area.innerHTML="";
-  area.innerHTML+=buildTable("دوام شفت واحد","single","شفت واحد",shiftTimes[currentSection].single);
-  area.innerHTML+=buildTable("دوام شفتين","split","شفتين",shiftTimes[currentSection].split);
+
+  if(currentSection === "reception"){
+    area.innerHTML+=buildTable("دوام شفت واحد 12-8","single12","شفت واحد",shiftTimes[currentSection].single12);
+    area.innerHTML+=buildTable("دوام شفت واحد 1-9","single1","شفت واحد",shiftTimes[currentSection].single1);
+    area.innerHTML+=buildTable("دوام شفتين","split","شفتين",shiftTimes[currentSection].split);
+  }else{
+    area.innerHTML+=buildTable("دوام شفت واحد","single","شفت واحد",shiftTimes[currentSection].single);
+    area.innerHTML+=buildTable("دوام شفتين","split","شفتين",shiftTimes[currentSection].split);
+  }
+
   document.querySelectorAll("#tablesArea select").forEach(s=>colorCell(s));
 }
 
@@ -543,6 +578,13 @@ function isDuplicateInSameDay(select){
   return count>1;
 }
 
+function getShiftFromId(id){
+  if(id.includes("_single12_")) return "single12";
+  if(id.includes("_single1_")) return "single1";
+  if(id.includes("_single_")) return "single";
+  return "split";
+}
+
 window.save=async function(el){
   const id=el.dataset.id;
   const oldValue = savedData[id]?.employee || "—";
@@ -571,7 +613,7 @@ window.save=async function(el){
   await setDoc(doc(db,"workSchedule",id),{
     id,
     section:currentSection,
-    shift:id.includes("_single_") ? "single" : "split",
+    shift:getShiftFromId(id),
     employee:val,
     updatedAt:new Date()
   });
@@ -592,7 +634,13 @@ window.copySaturday = async function(shift){
     for(const day of otherDays){
       const targetId = makeId(currentSection, shift, day, i);
       if(employee === "—") writes.push(deleteDoc(doc(db, "workSchedule", targetId)));
-      else writes.push(setDoc(doc(db, "workSchedule", targetId), {id: targetId,section: currentSection,shift,employee,updatedAt: new Date()}));
+      else writes.push(setDoc(doc(db, "workSchedule", targetId), {
+        id: targetId,
+        section: currentSection,
+        shift,
+        employee,
+        updatedAt: new Date()
+      }));
     }
   }
 
