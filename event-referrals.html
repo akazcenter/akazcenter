@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>تحويلات الفعاليات | مركز عكاز</title>
-<link rel="icon" href="logo.png">
+
+<link rel="icon" type="image/png" href="./logo.png">
 
 <style>
 :root{
@@ -14,12 +15,9 @@
   --orange:#f59e0b;
   --green:#16a34a;
   --red:#dc2626;
-  --purple:#7c3aed;
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
-  --bg:#f4f8fc;
-  --card:#ffffff;
 }
 
 *{
@@ -29,12 +27,13 @@
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 90% 5%,rgba(0,119,200,.13),transparent 28%),
-    radial-gradient(circle at 8% 70%,rgba(245,158,11,.10),transparent 24%),
-    linear-gradient(180deg,#f9fcff,#eef4f9);
+  direction:rtl;
   color:var(--text);
   min-height:100vh;
+  background:
+    radial-gradient(circle at 90% 6%,rgba(0,119,200,.12),transparent 28%),
+    radial-gradient(circle at 8% 70%,rgba(245,158,11,.10),transparent 25%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
 }
 
 button,
@@ -53,47 +52,36 @@ button{
   overflow:hidden;
   background:linear-gradient(135deg,#00467d,#0077c8);
   color:#fff;
-  padding:26px 5%;
-  box-shadow:0 18px 42px rgba(6,43,79,.22);
+  padding:24px 5%;
+  box-shadow:0 16px 38px rgba(6,43,79,.23);
 }
 
 .topbar::before{
   content:"";
   position:absolute;
-  width:260px;
-  height:260px;
+  width:270px;
+  height:270px;
   border-radius:50%;
   background:rgba(255,255,255,.07);
-  right:-100px;
-  top:-140px;
-}
-
-.topbar::after{
-  content:"";
-  position:absolute;
-  width:230px;
-  height:230px;
-  border-radius:50%;
-  background:rgba(245,158,11,.13);
-  left:-100px;
-  bottom:-150px;
+  right:-110px;
+  top:-150px;
 }
 
 .topbar-inner{
   position:relative;
   z-index:2;
-  max-width:1300px;
+  max-width:1320px;
   margin:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:15px;
 }
 
 .logo-box{
@@ -139,12 +127,11 @@ button{
   padding:11px 16px;
   font-size:13px;
   font-weight:900;
-  box-shadow:0 9px 20px rgba(0,0,0,.15);
 }
 
 .container{
-  width:92%;
-  max-width:1300px;
+  width:94%;
+  max-width:1320px;
   margin:28px auto 45px;
 }
 
@@ -163,7 +150,7 @@ button{
 
 .notice strong{
   color:#9a3412;
-  font-size:15px;
+  font-size:16px;
 }
 
 .notice span{
@@ -186,29 +173,16 @@ button{
 .stats{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:15px;
+  gap:14px;
   margin-bottom:22px;
 }
 
 .stat-card{
-  position:relative;
-  overflow:hidden;
-  background:rgba(255,255,255,.96);
+  background:rgba(255,255,255,.97);
   border:1px solid var(--line);
-  border-radius:22px;
+  border-radius:21px;
   padding:18px;
-  box-shadow:0 13px 30px rgba(15,23,42,.08);
-}
-
-.stat-card::after{
-  content:"";
-  position:absolute;
-  width:75px;
-  height:75px;
-  border-radius:50%;
-  background:rgba(0,119,200,.07);
-  left:-25px;
-  bottom:-30px;
+  box-shadow:0 12px 28px rgba(15,23,42,.08);
 }
 
 .stat-label{
@@ -218,7 +192,7 @@ button{
 }
 
 .stat-number{
-  margin-top:8px;
+  margin-top:7px;
   color:var(--blue);
   font-size:29px;
   font-weight:900;
@@ -232,17 +206,17 @@ button{
 }
 
 .panel{
-  background:rgba(255,255,255,.97);
+  background:rgba(255,255,255,.98);
   border:1px solid var(--line);
   border-radius:26px;
-  box-shadow:0 16px 36px rgba(15,23,42,.09);
   overflow:hidden;
+  box-shadow:0 16px 36px rgba(15,23,42,.09);
 }
 
 .panel-head{
   padding:20px 22px;
   border-bottom:1px solid var(--line);
-  background:linear-gradient(135deg,#f8fbff,#ffffff);
+  background:linear-gradient(135deg,#f8fbff,#fff);
 }
 
 .panel-head h2{
@@ -290,7 +264,6 @@ button{
   padding:12px 13px;
   font-size:14px;
   outline:none;
-  transition:.2s;
 }
 
 .field input:focus,
@@ -301,7 +274,7 @@ button{
 }
 
 .field textarea{
-  min-height:88px;
+  min-height:86px;
   resize:vertical;
 }
 
@@ -345,8 +318,9 @@ button{
   box-shadow:0 12px 24px rgba(0,91,159,.24);
 }
 
-.save-btn:hover{
-  transform:translateY(-1px);
+.save-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 .table-tools{
@@ -385,7 +359,7 @@ button{
 
 table{
   width:100%;
-  min-width:1050px;
+  min-width:1120px;
   border-collapse:collapse;
 }
 
@@ -412,7 +386,6 @@ tr:hover td{
 }
 
 .customer-name{
-  color:#0f172a;
   font-weight:900;
 }
 
@@ -490,6 +463,14 @@ tr:hover td{
   display:block;
   color:#334155;
   margin-bottom:6px;
+}
+
+.loading{
+  display:none;
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+  font-weight:900;
 }
 
 .toast{
@@ -602,10 +583,6 @@ body.dark .offer-box{
     font-size:21px;
   }
 
-  .brand p{
-    font-size:11px;
-  }
-
   .top-actions{
     width:100%;
   }
@@ -622,14 +599,6 @@ body.dark .offer-box{
   .stats{
     grid-template-columns:1fr 1fr;
     gap:10px;
-  }
-
-  .stat-card{
-    padding:15px;
-  }
-
-  .stat-number{
-    font-size:24px;
   }
 
   .fixed-offer{
@@ -675,17 +644,19 @@ body.dark .offer-box{
 <main class="container">
 
   <div class="notice">
+
     <div>
       <strong>بطولة البادل</strong>
       <br>
       <span>
-        يسجل الأخصائي بيانات الشخص المهتم فقط، ويضيف النظام تلقائيا خصم 10٪ صالح لمدة 3 أشهر.
+        يسجل الأخصائي بيانات الشخص المهتم، ويضيف النظام تلقائيا خصم 10٪ صالح لمدة 3 أشهر.
       </span>
     </div>
 
     <div class="offer-pill">
       خصم 10٪ لمدة 3 أشهر
     </div>
+
   </div>
 
   <section class="stats">
@@ -766,23 +737,25 @@ body.dark .offer-box{
           </label>
 
           <select id="therapist" required>
+
             <option value="">اختر الأخصائي</option>
 
             <optgroup label="أخصائيو الرجال">
-              <option>حاتم الحربي</option>
-              <option>عبدالرحمن السويداء</option>
-              <option>عبدالرحمن السليمي</option>
-              <option>عبدالعزيز الحمدان</option>
+              <option>د. حاتم الاحمدي</option>
+              <option>د. عبدالرحمن السويداء</option>
+              <option>د. عبدالرحمن السليمي</option>
+              <option>د. عبدالعزيز الحمدان</option>
             </optgroup>
 
             <optgroup label="أخصائيات النساء">
-              <option>ريناد حميد</option>
-              <option>ابتسام سويلم</option>
-              <option>سلمى فرحان</option>
-              <option>هند فهيد</option>
-              <option>أسماء فهيد</option>
-              <option>مها فريح</option>
+              <option>د. ريناد حميد</option>
+              <option>د. ابتسام سويلم</option>
+              <option>د. سلمى فرحان</option>
+              <option>د. هند فهيد</option>
+              <option>د. أسماء فهيد</option>
+              <option>د. مها فريح</option>
             </optgroup>
+
           </select>
         </div>
 
@@ -826,7 +799,7 @@ body.dark .offer-box{
 
         </div>
 
-        <button class="save-btn" type="submit">
+        <button class="save-btn" id="saveBtn" type="submit">
           تسجيل العميل
         </button>
 
@@ -838,7 +811,7 @@ body.dark .offer-box{
 
       <div class="panel-head">
         <h2>سجل العملاء المحتملين</h2>
-        <p>يمكن للاستقبال فتح الواتساب مباشرة وتحديث حالة العميل.</p>
+        <p>يفتح الاستقبال الواتساب مباشرة ويحدث حالة العميل.</p>
       </div>
 
       <div class="table-tools">
@@ -847,17 +820,12 @@ body.dark .offer-box{
           <input
             id="searchInput"
             type="text"
-            placeholder="بحث بالاسم أو رقم الجوال أو الأخصائي..."
-            oninput="renderTable()"
+            placeholder="بحث بالاسم أو الجوال أو الأخصائي..."
           >
         </div>
 
         <div class="filter-wrap">
-          <select
-            id="statusFilter"
-            class="filter-select"
-            onchange="renderTable()"
-          >
+          <select id="statusFilter" class="filter-select">
             <option value="">كل الحالات</option>
             <option value="جديد">جديد</option>
             <option value="تم التواصل">تم التواصل</option>
@@ -868,6 +836,10 @@ body.dark .offer-box{
           </select>
         </div>
 
+      </div>
+
+      <div class="loading" id="loadingState">
+        جاري تحميل البيانات...
       </div>
 
       <div class="table-wrap">
@@ -881,11 +853,11 @@ body.dark .offer-box{
               <th>الأخصائي</th>
               <th>الشكوى</th>
               <th>الخصم</th>
-              <th>تاريخ التسجيل</th>
-              <th>انتهاء الخصم</th>
-              <th>صلاحية العرض</th>
+              <th>التسجيل</th>
+              <th>الانتهاء</th>
+              <th>الصلاحية</th>
               <th>الحالة</th>
-              <th>التواصل</th>
+              <th>واتساب</th>
               <th>حذف</th>
             </tr>
           </thead>
@@ -915,20 +887,78 @@ body.dark .offer-box{
 <div class="toast" id="toast"></div>
 
 <script>
-const STORAGE_KEY = "akazEventReferrals";
+function toggleTheme(){
+  document.body.classList.toggle("dark");
 
-let leads = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  const isDark =
+    document.body.classList.contains("dark");
 
-function saveLeads(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+  localStorage.setItem(
+    "akazTheme",
+    isDark ? "dark" : "light"
+  );
+
+  document.getElementById("themeBtn").innerText =
+    isDark ? "☀️" : "🌙";
 }
 
-function createId(){
-  return Date.now().toString() + Math.random().toString(16).slice(2);
-}
+(function loadTheme(){
+  if(localStorage.getItem("akazTheme") === "dark"){
+    document.body.classList.add("dark");
+    document.getElementById("themeBtn").innerText = "☀️";
+  }
+})();
+</script>
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+const referralsRef =
+  collection(db,"eventReferrals");
+
+let leads = [];
+
+const leadForm =
+  document.getElementById("leadForm");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const statusFilter =
+  document.getElementById("statusFilter");
 
 function normalizePhone(phone){
-  return phone.replace(/\D/g, "");
+  return String(phone).replace(/\D/g,"");
 }
 
 function isValidSaudiPhone(phone){
@@ -937,12 +967,30 @@ function isValidSaudiPhone(phone){
 
 function addThreeMonths(date){
   const result = new Date(date);
-  result.setMonth(result.getMonth() + 3);
+
+  result.setMonth(
+    result.getMonth() + 3
+  );
+
   return result;
 }
 
-function formatDate(dateValue){
-  const date = new Date(dateValue);
+function toDate(value){
+  if(!value) return null;
+
+  if(typeof value.toDate === "function"){
+    return value.toDate();
+  }
+
+  return new Date(value);
+}
+
+function formatDate(value){
+  const date = toDate(value);
+
+  if(!date || Number.isNaN(date.getTime())){
+    return "—";
+  }
 
   return date.toLocaleDateString("ar-SA",{
     year:"numeric",
@@ -951,18 +999,26 @@ function formatDate(dateValue){
   });
 }
 
-function getDaysRemaining(expiryDate){
+function getValidity(expiryValue){
+  const expiry = toDate(expiryValue);
+
+  if(!expiry){
+    return {
+      text:"—",
+      className:"expired"
+    };
+  }
+
   const today = new Date();
+
   today.setHours(0,0,0,0);
 
-  const expiry = new Date(expiryDate);
   expiry.setHours(23,59,59,999);
 
-  return Math.ceil((expiry - today) / 86400000);
-}
-
-function getValidity(expiryDate){
-  const days = getDaysRemaining(expiryDate);
+  const days =
+    Math.ceil(
+      (expiry - today) / 86400000
+    );
 
   if(days < 0){
     return {
@@ -984,147 +1040,165 @@ function getValidity(expiryDate){
   };
 }
 
-document.getElementById("leadForm").addEventListener("submit",function(event){
-  event.preventDefault();
+function escapeHtml(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
 
-  const customerName =
-    document.getElementById("customerName").value.trim();
+function showToast(message,isError = false){
+  const toast =
+    document.getElementById("toast");
 
-  const phone =
-    normalizePhone(document.getElementById("phone").value);
+  toast.innerText = message;
 
-  const therapist =
-    document.getElementById("therapist").value;
-
-  const complaint =
-    document.getElementById("complaint").value;
-
-  const notes =
-    document.getElementById("notes").value.trim();
-
-  if(!customerName){
-    showToast("اكتب اسم الشخص",true);
-    return;
-  }
-
-  if(!isValidSaudiPhone(phone)){
-    showToast("رقم الجوال يجب أن يبدأ بـ 05 ويتكون من 10 أرقام",true);
-    return;
-  }
-
-  if(!therapist){
-    showToast("اختر اسم الأخصائي",true);
-    return;
-  }
-
-  const duplicate = leads.some(item => item.phone === phone);
-
-  if(duplicate){
-    const proceed = confirm(
-      "رقم الجوال مسجل مسبقا. هل تريد تسجيله مرة أخرى؟"
-    );
-
-    if(!proceed){
-      return;
-    }
-  }
-
-  const createdAt = new Date();
-  const expiresAt = addThreeMonths(createdAt);
-
-  const lead = {
-    id:createId(),
-    customerName,
-    phone,
-    therapist,
-    complaint:complaint || "غير محدد",
-    notes,
-    eventName:"بطولة البادل",
-    discount:10,
-    createdAt:createdAt.toISOString(),
-    expiresAt:expiresAt.toISOString(),
-    status:"جديد"
-  };
-
-  leads.unshift(lead);
-
-  saveLeads();
-  renderTable();
-  updateStats();
-
-  this.reset();
-
-  showToast(
-    `تم تسجيل ${customerName} وإضافة خصم 10٪ صالح حتى ${formatDate(expiresAt)}`
+  toast.classList.toggle(
+    "error",
+    isError
   );
-});
+
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },3000);
+}
+
+function createStatusOptions(current){
+  const statuses = [
+    "جديد",
+    "تم التواصل",
+    "تم الحجز",
+    "حضر",
+    "لم يرد",
+    "غير مهتم"
+  ];
+
+  return statuses.map(status=>{
+    return `
+      <option
+        value="${status}"
+        ${status === current ? "selected" : ""}
+      >
+        ${status}
+      </option>
+    `;
+  }).join("");
+}
+
+function updateStats(){
+  document.getElementById("totalCount").innerText =
+    leads.length;
+
+  document.getElementById("newCount").innerText =
+    leads.filter(
+      item => item.status === "جديد"
+    ).length;
+
+  document.getElementById("contactedCount").innerText =
+    leads.filter(
+      item => item.status === "تم التواصل"
+    ).length;
+
+  document.getElementById("bookedCount").innerText =
+    leads.filter(
+      item => item.status === "تم الحجز"
+    ).length;
+
+  document.getElementById("attendedCount").innerText =
+    leads.filter(
+      item => item.status === "حضر"
+    ).length;
+}
 
 function renderTable(){
-  const tableBody = document.getElementById("tableBody");
-  const emptyState = document.getElementById("emptyState");
-  const table = document.getElementById("leadsTable");
+  const body =
+    document.getElementById("tableBody");
+
+  const table =
+    document.getElementById("leadsTable");
+
+  const empty =
+    document.getElementById("emptyState");
 
   const search =
-    document.getElementById("searchInput").value.trim().toLowerCase();
+    searchInput.value.trim().toLowerCase();
 
-  const statusFilter =
-    document.getElementById("statusFilter").value;
+  const status =
+    statusFilter.value;
 
-  const filtered = leads.filter(item => {
-    const searchable = `
-      ${item.customerName}
-      ${item.phone}
-      ${item.therapist}
-      ${item.complaint}
+  const filtered = leads.filter(item=>{
+    const text = `
+      ${item.customerName || ""}
+      ${item.phone || ""}
+      ${item.therapist || ""}
+      ${item.complaint || ""}
     `.toLowerCase();
 
     const matchesSearch =
-      !search || searchable.includes(search);
+      !search || text.includes(search);
 
     const matchesStatus =
-      !statusFilter || item.status === statusFilter;
+      !status || item.status === status;
 
     return matchesSearch && matchesStatus;
   });
 
-  tableBody.innerHTML = "";
+  body.innerHTML = "";
 
   if(filtered.length === 0){
     table.style.display = "none";
-    emptyState.style.display = "block";
+    empty.style.display = "block";
     return;
   }
 
   table.style.display = "table";
-  emptyState.style.display = "none";
+  empty.style.display = "none";
 
-  filtered.forEach(item => {
-    const validity = getValidity(item.expiresAt);
+  filtered.forEach(item=>{
+    const validity =
+      getValidity(item.expiresAt);
 
-    const row = document.createElement("tr");
+    const tr =
+      document.createElement("tr");
 
-    row.innerHTML = `
+    tr.innerHTML = `
       <td>
-        <div class="customer-name">${escapeHtml(item.customerName)}</div>
+        <div class="customer-name">
+          ${escapeHtml(item.customerName)}
+        </div>
       </td>
 
       <td>
-        <span class="phone">${item.phone}</span>
+        <span class="phone">
+          ${escapeHtml(item.phone)}
+        </span>
       </td>
 
-      <td>${escapeHtml(item.therapist)}</td>
+      <td>
+        ${escapeHtml(item.therapist)}
+      </td>
 
       <td title="${escapeHtml(item.notes || "")}">
-        ${escapeHtml(item.complaint)}
+        ${escapeHtml(item.complaint || "غير محدد")}
       </td>
 
       <td>
-        <strong>${item.discount}٪</strong>
+        <strong>
+          ${item.discount || 10}٪
+        </strong>
       </td>
 
-      <td>${formatDate(item.createdAt)}</td>
+      <td>
+        ${formatDate(item.createdAt)}
+      </td>
 
-      <td>${formatDate(item.expiresAt)}</td>
+      <td>
+        ${formatDate(item.expiresAt)}
+      </td>
 
       <td>
         <span class="status-badge ${validity.className}">
@@ -1135,16 +1209,16 @@ function renderTable(){
       <td>
         <select
           class="status-select"
-          onchange="updateStatus('${item.id}',this.value)"
+          data-id="${item.id}"
         >
-          ${createStatusOptions(item.status)}
+          ${createStatusOptions(item.status || "جديد")}
         </select>
       </td>
 
       <td>
         <button
           class="whatsapp-btn"
-          onclick="openWhatsApp('${item.id}')"
+          data-whatsapp="${item.id}"
         >
           واتساب
         </button>
@@ -1153,175 +1227,370 @@ function renderTable(){
       <td>
         <button
           class="delete-btn"
-          onclick="deleteLead('${item.id}')"
+          data-delete="${item.id}"
         >
           حذف
         </button>
       </td>
     `;
 
-    tableBody.appendChild(row);
+    body.appendChild(tr);
   });
 }
 
-function createStatusOptions(currentStatus){
-  const statuses = [
-    "جديد",
-    "تم التواصل",
-    "تم الحجز",
-    "حضر",
-    "لم يرد",
-    "غير مهتم"
-  ];
+leadForm.addEventListener(
+  "submit",
+  async event=>{
 
-  return statuses.map(status => {
-    const selected =
-      status === currentStatus ? "selected" : "";
+    event.preventDefault();
 
-    return `
-      <option value="${status}" ${selected}>
-        ${status}
-      </option>
-    `;
-  }).join("");
-}
+    const customerName =
+      document.getElementById("customerName")
+      .value
+      .trim();
 
-function updateStatus(id,newStatus){
-  const lead = leads.find(item => item.id === id);
+    const phone =
+      normalizePhone(
+        document.getElementById("phone").value
+      );
 
-  if(!lead) return;
+    const therapist =
+      document.getElementById("therapist").value;
 
-  lead.status = newStatus;
+    const complaint =
+      document.getElementById("complaint").value
+      || "غير محدد";
 
-  saveLeads();
-  updateStats();
+    const notes =
+      document.getElementById("notes")
+      .value
+      .trim();
 
-  showToast(`تم تحديث الحالة إلى: ${newStatus}`);
-}
+    if(!customerName){
+      showToast(
+        "اكتب اسم الشخص",
+        true
+      );
 
-function openWhatsApp(id){
-  const lead = leads.find(item => item.id === id);
+      return;
+    }
 
-  if(!lead) return;
+    if(!isValidSaudiPhone(phone)){
+      showToast(
+        "رقم الجوال يجب أن يبدأ بـ 05 ويتكون من 10 أرقام",
+        true
+      );
 
-  let phone = lead.phone;
+      return;
+    }
 
-  if(phone.startsWith("0")){
-    phone = "966" + phone.substring(1);
+    if(!therapist){
+      showToast(
+        "اختر اسم الأخصائي",
+        true
+      );
+
+      return;
+    }
+
+    if(
+      leads.some(
+        item => item.phone === phone
+      )
+    ){
+      const proceed = confirm(
+        "رقم الجوال مسجل مسبقا. هل تريد تسجيله مرة أخرى؟"
+      );
+
+      if(!proceed){
+        return;
+      }
+    }
+
+    try{
+      saveBtn.disabled = true;
+
+      saveBtn.innerText =
+        "جاري الحفظ...";
+
+      const now = new Date();
+
+      const expiresAt =
+        addThreeMonths(now);
+
+      await addDoc(
+        referralsRef,
+        {
+          customerName,
+          phone,
+          therapist,
+          complaint,
+          notes,
+          eventName:"بطولة البادل",
+          discount:10,
+          durationMonths:3,
+          status:"جديد",
+          createdAt:serverTimestamp(),
+          createdAtLocal:now.toISOString(),
+          expiresAt:expiresAt
+        }
+      );
+
+      leadForm.reset();
+
+      showToast(
+        `تم تسجيل ${customerName} وإضافة خصم 10٪ لمدة 3 أشهر`
+      );
+    }
+    catch(error){
+      console.error(error);
+
+      showToast(
+        "تعذر الحفظ في Firebase. تحقق من الصلاحيات والاتصال",
+        true
+      );
+    }
+    finally{
+      saveBtn.disabled = false;
+
+      saveBtn.innerText =
+        "تسجيل العميل";
+    }
   }
+);
 
-  const expiryDate = formatDate(lead.expiresAt);
+document.addEventListener(
+  "change",
+  async event=>{
 
-  const message =
+    const select =
+      event.target.closest(".status-select");
+
+    if(!select){
+      return;
+    }
+
+    try{
+      await updateDoc(
+        doc(
+          db,
+          "eventReferrals",
+          select.dataset.id
+        ),
+        {
+          status:select.value,
+          updatedAt:serverTimestamp()
+        }
+      );
+
+      showToast(
+        `تم تحديث الحالة إلى: ${select.value}`
+      );
+    }
+    catch(error){
+      console.error(error);
+
+      showToast(
+        "تعذر تحديث الحالة",
+        true
+      );
+    }
+  }
+);
+
+document.addEventListener(
+  "click",
+  async event=>{
+
+    const whatsapp =
+      event.target.closest("[data-whatsapp]");
+
+    if(whatsapp){
+      const lead =
+        leads.find(
+          item =>
+            item.id ===
+            whatsapp.dataset.whatsapp
+        );
+
+      if(!lead){
+        return;
+      }
+
+      let phone =
+        normalizePhone(lead.phone);
+
+      if(phone.startsWith("0")){
+        phone =
+          "966" + phone.slice(1);
+      }
+
+      const message =
 `أهلا وسهلا ${lead.customerName}
 
 معك مركز عكاز للعلاج الطبيعي
 
 سعدنا بلقائك خلال بطولة البادل، وتم تسجيل بياناتك بناء على توصية الأخصائي ${lead.therapist}.
 
-تم منحك خصم 10٪ خاص بالفعالية، ويكون الخصم ساريا لمدة 3 أشهر حتى تاريخ ${expiryDate}.
+تم منحك خصم 10٪ خاص بالفعالية، ويكون الخصم ساريا لمدة 3 أشهر حتى تاريخ ${formatDate(lead.expiresAt)}.
 
 يسعدنا خدمتك وتنسيق الموعد المناسب لك.`;
 
-  const url =
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(
+        `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
 
-  window.open(url,"_blank");
+      if(
+        (lead.status || "جديد") === "جديد"
+      ){
+        try{
+          await updateDoc(
+            doc(
+              db,
+              "eventReferrals",
+              lead.id
+            ),
+            {
+              status:"تم التواصل",
+              updatedAt:serverTimestamp()
+            }
+          );
+        }
+        catch(error){
+          console.error(error);
+        }
+      }
 
-  if(lead.status === "جديد"){
-    lead.status = "تم التواصل";
-    saveLeads();
-    renderTable();
+      return;
+    }
+
+    const del =
+      event.target.closest("[data-delete]");
+
+    if(del){
+      const lead =
+        leads.find(
+          item =>
+            item.id ===
+            del.dataset.delete
+        );
+
+      if(!lead){
+        return;
+      }
+
+      const confirmed =
+        confirm(
+          `تأكيد حذف تسجيل ${lead.customerName}؟`
+        );
+
+      if(!confirmed){
+        return;
+      }
+
+      try{
+        await deleteDoc(
+          doc(
+            db,
+            "eventReferrals",
+            lead.id
+          )
+        );
+
+        showToast(
+          "تم حذف التسجيل"
+        );
+      }
+      catch(error){
+        console.error(error);
+
+        showToast(
+          "تعذر حذف التسجيل",
+          true
+        );
+      }
+    }
+  }
+);
+
+searchInput.addEventListener(
+  "input",
+  renderTable
+);
+
+statusFilter.addEventListener(
+  "change",
+  renderTable
+);
+
+document.getElementById(
+  "loadingState"
+).style.display = "block";
+
+onSnapshot(
+  referralsRef,
+  snapshot=>{
+
+    leads = [];
+
+    snapshot.forEach(item=>{
+      const data = item.data();
+
+      if(
+        !data.customerName
+        &&
+        !data.phone
+      ){
+        return;
+      }
+
+      leads.push({
+        id:item.id,
+        ...data,
+        createdAt:
+          data.createdAt
+          ||
+          data.createdAtLocal
+      });
+    });
+
+    leads.sort((a,b)=>{
+      const aDate =
+        toDate(a.createdAt)?.getTime()
+        || 0;
+
+      const bDate =
+        toDate(b.createdAt)?.getTime()
+        || 0;
+
+      return bDate - aDate;
+    });
+
+    document.getElementById(
+      "loadingState"
+    ).style.display = "none";
+
     updateStats();
+    renderTable();
+  },
+  error=>{
+    console.error(error);
+
+    document.getElementById(
+      "loadingState"
+    ).style.display = "none";
+
+    showToast(
+      "تعذر قراءة بيانات Firebase. تحقق من قواعد Firestore",
+      true
+    );
   }
-}
+);
 
-function deleteLead(id){
-  const lead = leads.find(item => item.id === id);
-
-  if(!lead) return;
-
-  const confirmed = confirm(
-    `هل تريد حذف تسجيل ${lead.customerName}؟`
-  );
-
-  if(!confirmed) return;
-
-  leads = leads.filter(item => item.id !== id);
-
-  saveLeads();
-  renderTable();
-  updateStats();
-
-  showToast("تم حذف التسجيل");
-}
-
-function updateStats(){
-  document.getElementById("totalCount").innerText =
-    leads.length;
-
-  document.getElementById("newCount").innerText =
-    leads.filter(item => item.status === "جديد").length;
-
-  document.getElementById("contactedCount").innerText =
-    leads.filter(item => item.status === "تم التواصل").length;
-
-  document.getElementById("bookedCount").innerText =
-    leads.filter(item => item.status === "تم الحجز").length;
-
-  document.getElementById("attendedCount").innerText =
-    leads.filter(item => item.status === "حضر").length;
-}
-
-function showToast(message,isError = false){
-  const toast = document.getElementById("toast");
-
-  toast.innerText = message;
-  toast.classList.toggle("error",isError);
-  toast.classList.add("show");
-
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },3000);
-}
-
-function escapeHtml(value){
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-
-  const isDark =
-    document.body.classList.contains("dark");
-
-  localStorage.setItem(
-    "akazTheme",
-    isDark ? "dark" : "light"
-  );
-
-  document.getElementById("themeBtn").innerText =
-    isDark ? "☀️" : "🌙";
-}
-
-function loadTheme(){
-  const saved = localStorage.getItem("akazTheme");
-
-  if(saved === "dark"){
-    document.body.classList.add("dark");
-    document.getElementById("themeBtn").innerText = "☀️";
-  }
-}
-
-loadTheme();
-renderTable();
-updateStats();
 </script>
+
+<script type="module" src="tracker.js"></script>
 
 </body>
 </html>
