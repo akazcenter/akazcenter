@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تحويلات الفعاليات | مركز عكاز</title>
+<link rel="icon" href="logo.png">
+
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --green:#16a34a;
+  --red:#dc2626;
+  --purple:#7c3aed;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --bg:#f4f8fc;
+  --card:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 90% 5%,rgba(0,119,200,.13),transparent 28%),
+    radial-gradient(circle at 8% 70%,rgba(245,158,11,.10),transparent 24%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.topbar{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#00467d,#0077c8);
+  color:#fff;
+  padding:26px 5%;
+  box-shadow:0 18px 42px rgba(6,43,79,.22);
+}
+
+.topbar::before{
+  content:"";
+  position:absolute;
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  right:-100px;
+  top:-140px;
+}
+
+.topbar::after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:rgba(245,158,11,.13);
+  left:-100px;
+  bottom:-150px;
+}
+
+.topbar-inner{
+  position:relative;
+  z-index:2;
+  max-width:1300px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo-box{
+  width:72px;
+  height:72px;
+  border-radius:21px;
+  background:#fff;
+  padding:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
+}
+
+.logo-box img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.brand h1{
+  margin:0;
+  font-size:27px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:7px 0 0;
+  color:#dbeafe;
+  font-size:13px;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+}
+
+.top-btn{
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.94);
+  color:var(--blue);
+  border-radius:14px;
+  padding:11px 16px;
+  font-size:13px;
+  font-weight:900;
+  box-shadow:0 9px 20px rgba(0,0,0,.15);
+}
+
+.container{
+  width:92%;
+  max-width:1300px;
+  margin:28px auto 45px;
+}
+
+.notice{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  background:linear-gradient(135deg,#fff7ed,#fffbeb);
+  border:1px solid #fed7aa;
+  border-radius:20px;
+  padding:17px 20px;
+  margin-bottom:22px;
+  box-shadow:0 12px 28px rgba(15,23,42,.07);
+}
+
+.notice strong{
+  color:#9a3412;
+  font-size:15px;
+}
+
+.notice span{
+  color:#92400e;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.offer-pill{
+  white-space:nowrap;
+  background:#fff;
+  color:#b45309;
+  border:1px solid #fcd34d;
+  border-radius:999px;
+  padding:9px 14px;
+  font-weight:900;
+  font-size:13px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+  margin-bottom:22px;
+}
+
+.stat-card{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.96);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 13px 30px rgba(15,23,42,.08);
+}
+
+.stat-card::after{
+  content:"";
+  position:absolute;
+  width:75px;
+  height:75px;
+  border-radius:50%;
+  background:rgba(0,119,200,.07);
+  left:-25px;
+  bottom:-30px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:900;
+}
+
+.stat-number{
+  margin-top:8px;
+  color:var(--blue);
+  font-size:29px;
+  font-weight:900;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:22px;
+  align-items:start;
+}
+
+.panel{
+  background:rgba(255,255,255,.97);
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:0 16px 36px rgba(15,23,42,.09);
+  overflow:hidden;
+}
+
+.panel-head{
+  padding:20px 22px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,#f8fbff,#ffffff);
+}
+
+.panel-head h2{
+  margin:0;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+}
+
+.panel-head p{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.form-body{
+  padding:21px;
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#334155;
+  font-size:13px;
+  font-weight:900;
+}
+
+.required{
+  color:var(--red);
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  background:#fff;
+  color:var(--text);
+  border-radius:14px;
+  padding:12px 13px;
+  font-size:14px;
+  outline:none;
+  transition:.2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.10);
+}
+
+.field textarea{
+  min-height:88px;
+  resize:vertical;
+}
+
+.fixed-offer{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:16px;
+}
+
+.offer-box{
+  border:1px solid #bfdbfe;
+  background:#eff6ff;
+  border-radius:15px;
+  padding:12px;
+  text-align:center;
+}
+
+.offer-box span{
+  display:block;
+  color:#64748b;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.offer-box strong{
+  color:var(--blue);
+  font-size:14px;
+}
+
+.save-btn{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:14px 18px;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:#fff;
+  font-size:15px;
+  font-weight:900;
+  box-shadow:0 12px 24px rgba(0,91,159,.24);
+}
+
+.save-btn:hover{
+  transform:translateY(-1px);
+}
+
+.table-tools{
+  padding:16px 18px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.search-box{
+  flex:1;
+  min-width:220px;
+}
+
+.search-box input,
+.filter-select{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:13px;
+  padding:11px 12px;
+  outline:none;
+  background:#fff;
+}
+
+.filter-wrap{
+  width:180px;
+}
+
+.table-wrap{
+  width:100%;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  min-width:1050px;
+  border-collapse:collapse;
+}
+
+th{
+  background:#f8fafc;
+  color:#475569;
+  padding:13px 10px;
+  font-size:12px;
+  text-align:center;
+  white-space:nowrap;
+  border-bottom:1px solid var(--line);
+}
+
+td{
+  padding:12px 10px;
+  font-size:12.5px;
+  text-align:center;
+  border-bottom:1px solid #edf2f7;
+  vertical-align:middle;
+}
+
+tr:hover td{
+  background:#f8fbff;
+}
+
+.customer-name{
+  color:#0f172a;
+  font-weight:900;
+}
+
+.phone{
+  direction:ltr;
+  display:inline-block;
+  color:#475569;
+}
+
+.status-select{
+  border:1px solid #cbd5e1;
+  border-radius:11px;
+  padding:8px 9px;
+  background:#fff;
+  font-size:12px;
+  font-weight:900;
+}
+
+.status-badge{
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.valid{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.expiring{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.expired{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.whatsapp-btn{
+  border:0;
+  background:#16a34a;
+  color:#fff;
+  border-radius:11px;
+  padding:9px 11px;
+  font-weight:900;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.delete-btn{
+  border:0;
+  background:#fee2e2;
+  color:#b91c1c;
+  border-radius:10px;
+  padding:8px 10px;
+  font-weight:900;
+}
+
+.empty-state{
+  display:none;
+  text-align:center;
+  padding:52px 20px;
+  color:var(--muted);
+}
+
+.empty-state .empty-icon{
+  font-size:44px;
+  margin-bottom:10px;
+}
+
+.empty-state strong{
+  display:block;
+  color:#334155;
+  margin-bottom:6px;
+}
+
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%) translateY(30px);
+  background:#166534;
+  color:#fff;
+  border-radius:15px;
+  padding:13px 18px;
+  box-shadow:0 16px 35px rgba(0,0,0,.24);
+  font-size:13px;
+  font-weight:900;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+  z-index:99999;
+}
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+.toast.error{
+  background:#b91c1c;
+}
+
+.footer{
+  width:92%;
+  max-width:1300px;
+  margin:35px auto 22px;
+  padding-top:18px;
+  border-top:1px solid #dbe4ee;
+  text-align:center;
+  color:#64748b;
+  font-size:13px;
+}
+
+body.dark{
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --line:#334155;
+  background:linear-gradient(180deg,#020617,#0f172a);
+}
+
+body.dark .panel,
+body.dark .stat-card{
+  background:#1e293b;
+  border-color:#334155;
+}
+
+body.dark .panel-head,
+body.dark th{
+  background:#0f172a;
+}
+
+body.dark .field label,
+body.dark .customer-name,
+body.dark .empty-state strong{
+  color:#e2e8f0;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea,
+body.dark .status-select{
+  background:#0f172a;
+  color:#e2e8f0;
+  border-color:#475569;
+}
+
+body.dark td{
+  border-color:#334155;
+}
+
+body.dark tr:hover td{
+  background:#172033;
+}
+
+body.dark .notice{
+  background:#422006;
+  border-color:#92400e;
+}
+
+body.dark .offer-box{
+  background:#172554;
+  border-color:#1d4ed8;
+}
+
+@media(max-width:1050px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:650px){
+  .topbar-inner{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .brand h1{
+    font-size:21px;
+  }
+
+  .brand p{
+    font-size:11px;
+  }
+
+  .top-actions{
+    width:100%;
+  }
+
+  .top-btn{
+    flex:1;
+  }
+
+  .notice{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .stat-card{
+    padding:15px;
+  }
+
+  .stat-number{
+    font-size:24px;
+  }
+
+  .fixed-offer{
+    grid-template-columns:1fr;
+  }
+
+  .filter-wrap{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <div class="brand">
+      <div class="logo-box">
+        <img src="logo.png" alt="شعار مركز عكاز">
+      </div>
+
+      <div>
+        <h1>تحويلات الفعاليات</h1>
+        <p>تسجيل المهتمين ومتابعة التواصل والحجز والحضور</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button class="top-btn" onclick="window.location.href='index.html'">
+        🏠 الرئيسية
+      </button>
+
+      <button class="top-btn" id="themeBtn" onclick="toggleTheme()">
+        🌙
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="notice">
+    <div>
+      <strong>بطولة البادل</strong>
+      <br>
+      <span>
+        يسجل الأخصائي بيانات الشخص المهتم فقط، ويضيف النظام تلقائيا خصم 10٪ صالح لمدة 3 أشهر.
+      </span>
+    </div>
+
+    <div class="offer-pill">
+      خصم 10٪ لمدة 3 أشهر
+    </div>
+  </div>
+
+  <section class="stats">
+
+    <div class="stat-card">
+      <div class="stat-label">إجمالي المسجلين</div>
+      <div class="stat-number" id="totalCount">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">عملاء جدد</div>
+      <div class="stat-number" id="newCount">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">تم التواصل</div>
+      <div class="stat-number" id="contactedCount">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">تم الحجز</div>
+      <div class="stat-number" id="bookedCount">0</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-label">حضر للمركز</div>
+      <div class="stat-number" id="attendedCount">0</div>
+    </div>
+
+  </section>
+
+  <section class="layout">
+
+    <div class="panel">
+
+      <div class="panel-head">
+        <h2>إضافة عميل محتمل</h2>
+        <p>التسجيل سريع، وبقية التفاصيل يضيفها النظام تلقائيا.</p>
+      </div>
+
+      <form class="form-body" id="leadForm">
+
+        <div class="field">
+          <label>
+            اسم الشخص
+            <span class="required">*</span>
+          </label>
+
+          <input
+            id="customerName"
+            type="text"
+            placeholder="اكتب الاسم"
+            maxlength="60"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>
+            رقم الجوال
+            <span class="required">*</span>
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            inputmode="numeric"
+            placeholder="05xxxxxxxx"
+            maxlength="10"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label>
+            اسم الأخصائي
+            <span class="required">*</span>
+          </label>
+
+          <select id="therapist" required>
+            <option value="">اختر الأخصائي</option>
+
+            <optgroup label="أخصائيو الرجال">
+              <option>حاتم الحربي</option>
+              <option>عبدالرحمن السويداء</option>
+              <option>عبدالرحمن السليمي</option>
+              <option>عبدالعزيز الحمدان</option>
+            </optgroup>
+
+            <optgroup label="أخصائيات النساء">
+              <option>ريناد حميد</option>
+              <option>ابتسام سويلم</option>
+              <option>سلمى فرحان</option>
+              <option>هند فهيد</option>
+              <option>أسماء فهيد</option>
+              <option>مها فريح</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>نوع الشكوى أو المنطقة</label>
+
+          <select id="complaint">
+            <option value="">اختياري</option>
+            <option>الركبة</option>
+            <option>الكتف</option>
+            <option>الظهر</option>
+            <option>الرقبة</option>
+            <option>الكاحل</option>
+            <option>إصابة رياضية</option>
+            <option>استفسار عام</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>ملاحظات مختصرة</label>
+
+          <textarea
+            id="notes"
+            placeholder="اختياري، مثل: ألم بعد اللعب أو يحتاج تقييما"
+            maxlength="250"
+          ></textarea>
+        </div>
+
+        <div class="fixed-offer">
+
+          <div class="offer-box">
+            <span>الخصم</span>
+            <strong>10٪ تلقائيا</strong>
+          </div>
+
+          <div class="offer-box">
+            <span>مدة العرض</span>
+            <strong>3 أشهر</strong>
+          </div>
+
+        </div>
+
+        <button class="save-btn" type="submit">
+          تسجيل العميل
+        </button>
+
+      </form>
+
+    </div>
+
+    <div class="panel">
+
+      <div class="panel-head">
+        <h2>سجل العملاء المحتملين</h2>
+        <p>يمكن للاستقبال فتح الواتساب مباشرة وتحديث حالة العميل.</p>
+      </div>
+
+      <div class="table-tools">
+
+        <div class="search-box">
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="بحث بالاسم أو رقم الجوال أو الأخصائي..."
+            oninput="renderTable()"
+          >
+        </div>
+
+        <div class="filter-wrap">
+          <select
+            id="statusFilter"
+            class="filter-select"
+            onchange="renderTable()"
+          >
+            <option value="">كل الحالات</option>
+            <option value="جديد">جديد</option>
+            <option value="تم التواصل">تم التواصل</option>
+            <option value="تم الحجز">تم الحجز</option>
+            <option value="حضر">حضر</option>
+            <option value="لم يرد">لم يرد</option>
+            <option value="غير مهتم">غير مهتم</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="table-wrap">
+
+        <table id="leadsTable">
+
+          <thead>
+            <tr>
+              <th>الاسم</th>
+              <th>الجوال</th>
+              <th>الأخصائي</th>
+              <th>الشكوى</th>
+              <th>الخصم</th>
+              <th>تاريخ التسجيل</th>
+              <th>انتهاء الخصم</th>
+              <th>صلاحية العرض</th>
+              <th>الحالة</th>
+              <th>التواصل</th>
+              <th>حذف</th>
+            </tr>
+          </thead>
+
+          <tbody id="tableBody"></tbody>
+
+        </table>
+
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🎯</div>
+          <strong>لا توجد تسجيلات حتى الآن</strong>
+          <span>أول تسجيل سيظهر هنا مباشرة.</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = "akazEventReferrals";
+
+let leads = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+function saveLeads(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+}
+
+function createId(){
+  return Date.now().toString() + Math.random().toString(16).slice(2);
+}
+
+function normalizePhone(phone){
+  return phone.replace(/\D/g, "");
+}
+
+function isValidSaudiPhone(phone){
+  return /^05\d{8}$/.test(phone);
+}
+
+function addThreeMonths(date){
+  const result = new Date(date);
+  result.setMonth(result.getMonth() + 3);
+  return result;
+}
+
+function formatDate(dateValue){
+  const date = new Date(dateValue);
+
+  return date.toLocaleDateString("ar-SA",{
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  });
+}
+
+function getDaysRemaining(expiryDate){
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const expiry = new Date(expiryDate);
+  expiry.setHours(23,59,59,999);
+
+  return Math.ceil((expiry - today) / 86400000);
+}
+
+function getValidity(expiryDate){
+  const days = getDaysRemaining(expiryDate);
+
+  if(days < 0){
+    return {
+      text:"منتهي",
+      className:"expired"
+    };
+  }
+
+  if(days <= 7){
+    return {
+      text:`ينتهي خلال ${days} يوم`,
+      className:"expiring"
+    };
+  }
+
+  return {
+    text:"ساري",
+    className:"valid"
+  };
+}
+
+document.getElementById("leadForm").addEventListener("submit",function(event){
+  event.preventDefault();
+
+  const customerName =
+    document.getElementById("customerName").value.trim();
+
+  const phone =
+    normalizePhone(document.getElementById("phone").value);
+
+  const therapist =
+    document.getElementById("therapist").value;
+
+  const complaint =
+    document.getElementById("complaint").value;
+
+  const notes =
+    document.getElementById("notes").value.trim();
+
+  if(!customerName){
+    showToast("اكتب اسم الشخص",true);
+    return;
+  }
+
+  if(!isValidSaudiPhone(phone)){
+    showToast("رقم الجوال يجب أن يبدأ بـ 05 ويتكون من 10 أرقام",true);
+    return;
+  }
+
+  if(!therapist){
+    showToast("اختر اسم الأخصائي",true);
+    return;
+  }
+
+  const duplicate = leads.some(item => item.phone === phone);
+
+  if(duplicate){
+    const proceed = confirm(
+      "رقم الجوال مسجل مسبقا. هل تريد تسجيله مرة أخرى؟"
+    );
+
+    if(!proceed){
+      return;
+    }
+  }
+
+  const createdAt = new Date();
+  const expiresAt = addThreeMonths(createdAt);
+
+  const lead = {
+    id:createId(),
+    customerName,
+    phone,
+    therapist,
+    complaint:complaint || "غير محدد",
+    notes,
+    eventName:"بطولة البادل",
+    discount:10,
+    createdAt:createdAt.toISOString(),
+    expiresAt:expiresAt.toISOString(),
+    status:"جديد"
+  };
+
+  leads.unshift(lead);
+
+  saveLeads();
+  renderTable();
+  updateStats();
+
+  this.reset();
+
+  showToast(
+    `تم تسجيل ${customerName} وإضافة خصم 10٪ صالح حتى ${formatDate(expiresAt)}`
+  );
+});
+
+function renderTable(){
+  const tableBody = document.getElementById("tableBody");
+  const emptyState = document.getElementById("emptyState");
+  const table = document.getElementById("leadsTable");
+
+  const search =
+    document.getElementById("searchInput").value.trim().toLowerCase();
+
+  const statusFilter =
+    document.getElementById("statusFilter").value;
+
+  const filtered = leads.filter(item => {
+    const searchable = `
+      ${item.customerName}
+      ${item.phone}
+      ${item.therapist}
+      ${item.complaint}
+    `.toLowerCase();
+
+    const matchesSearch =
+      !search || searchable.includes(search);
+
+    const matchesStatus =
+      !statusFilter || item.status === statusFilter;
+
+    return matchesSearch && matchesStatus;
+  });
+
+  tableBody.innerHTML = "";
+
+  if(filtered.length === 0){
+    table.style.display = "none";
+    emptyState.style.display = "block";
+    return;
+  }
+
+  table.style.display = "table";
+  emptyState.style.display = "none";
+
+  filtered.forEach(item => {
+    const validity = getValidity(item.expiresAt);
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>
+        <div class="customer-name">${escapeHtml(item.customerName)}</div>
+      </td>
+
+      <td>
+        <span class="phone">${item.phone}</span>
+      </td>
+
+      <td>${escapeHtml(item.therapist)}</td>
+
+      <td title="${escapeHtml(item.notes || "")}">
+        ${escapeHtml(item.complaint)}
+      </td>
+
+      <td>
+        <strong>${item.discount}٪</strong>
+      </td>
+
+      <td>${formatDate(item.createdAt)}</td>
+
+      <td>${formatDate(item.expiresAt)}</td>
+
+      <td>
+        <span class="status-badge ${validity.className}">
+          ${validity.text}
+        </span>
+      </td>
+
+      <td>
+        <select
+          class="status-select"
+          onchange="updateStatus('${item.id}',this.value)"
+        >
+          ${createStatusOptions(item.status)}
+        </select>
+      </td>
+
+      <td>
+        <button
+          class="whatsapp-btn"
+          onclick="openWhatsApp('${item.id}')"
+        >
+          واتساب
+        </button>
+      </td>
+
+      <td>
+        <button
+          class="delete-btn"
+          onclick="deleteLead('${item.id}')"
+        >
+          حذف
+        </button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+}
+
+function createStatusOptions(currentStatus){
+  const statuses = [
+    "جديد",
+    "تم التواصل",
+    "تم الحجز",
+    "حضر",
+    "لم يرد",
+    "غير مهتم"
+  ];
+
+  return statuses.map(status => {
+    const selected =
+      status === currentStatus ? "selected" : "";
+
+    return `
+      <option value="${status}" ${selected}>
+        ${status}
+      </option>
+    `;
+  }).join("");
+}
+
+function updateStatus(id,newStatus){
+  const lead = leads.find(item => item.id === id);
+
+  if(!lead) return;
+
+  lead.status = newStatus;
+
+  saveLeads();
+  updateStats();
+
+  showToast(`تم تحديث الحالة إلى: ${newStatus}`);
+}
+
+function openWhatsApp(id){
+  const lead = leads.find(item => item.id === id);
+
+  if(!lead) return;
+
+  let phone = lead.phone;
+
+  if(phone.startsWith("0")){
+    phone = "966" + phone.substring(1);
+  }
+
+  const expiryDate = formatDate(lead.expiresAt);
+
+  const message =
+`أهلا وسهلا ${lead.customerName}
+
+معك مركز عكاز للعلاج الطبيعي
+
+سعدنا بلقائك خلال بطولة البادل، وتم تسجيل بياناتك بناء على توصية الأخصائي ${lead.therapist}.
+
+تم منحك خصم 10٪ خاص بالفعالية، ويكون الخصم ساريا لمدة 3 أشهر حتى تاريخ ${expiryDate}.
+
+يسعدنا خدمتك وتنسيق الموعد المناسب لك.`;
+
+  const url =
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url,"_blank");
+
+  if(lead.status === "جديد"){
+    lead.status = "تم التواصل";
+    saveLeads();
+    renderTable();
+    updateStats();
+  }
+}
+
+function deleteLead(id){
+  const lead = leads.find(item => item.id === id);
+
+  if(!lead) return;
+
+  const confirmed = confirm(
+    `هل تريد حذف تسجيل ${lead.customerName}؟`
+  );
+
+  if(!confirmed) return;
+
+  leads = leads.filter(item => item.id !== id);
+
+  saveLeads();
+  renderTable();
+  updateStats();
+
+  showToast("تم حذف التسجيل");
+}
+
+function updateStats(){
+  document.getElementById("totalCount").innerText =
+    leads.length;
+
+  document.getElementById("newCount").innerText =
+    leads.filter(item => item.status === "جديد").length;
+
+  document.getElementById("contactedCount").innerText =
+    leads.filter(item => item.status === "تم التواصل").length;
+
+  document.getElementById("bookedCount").innerText =
+    leads.filter(item => item.status === "تم الحجز").length;
+
+  document.getElementById("attendedCount").innerText =
+    leads.filter(item => item.status === "حضر").length;
+}
+
+function showToast(message,isError = false){
+  const toast = document.getElementById("toast");
+
+  toast.innerText = message;
+  toast.classList.toggle("error",isError);
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },3000);
+}
+
+function escapeHtml(value){
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "akazTheme",
+    isDark ? "dark" : "light"
+  );
+
+  document.getElementById("themeBtn").innerText =
+    isDark ? "☀️" : "🌙";
+}
+
+function loadTheme(){
+  const saved = localStorage.getItem("akazTheme");
+
+  if(saved === "dark"){
+    document.body.classList.add("dark");
+    document.getElementById("themeBtn").innerText = "☀️";
+  }
+}
+
+loadTheme();
+renderTable();
+updateStats();
+</script>
+
+</body>
+</html>
