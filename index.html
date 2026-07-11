@@ -644,16 +644,15 @@ body.dark .footer{
       <div class="card-tooltip">نظام ذكي لإدارة صناديق الاستقبال، الجرد اليومي، تصنيف الفئات النقدية، وتسليم الإيرادات للإدارة مع سجل كامل للحركات والتأجيلات.</div>
     </div>
 
-    <div class="card coming-soon-card" onclick="showComingSoon()">
-      <div class="badge coming-badge">قريباً</div>
-      <div class="icon">🎯</div>
-      <h3>تحويلات الفعاليات</h3>
-      <h4>Event Referrals</h4>
-      <p>تسجيل ومتابعة المهتمين المحولين من الفعاليات.</p>
-      <div class="card-tooltip">قسم لتسجيل بيانات المهتمين خلال البطولات والفعاليات، ومتابعة التواصل والحجز والحضور وقياس نتائج كل فعالية.</div>
-    </div>
-
+    <div class="card" onclick="go('event-referrals.html')">
+  <div class="icon">🎯</div>
+  <h3>تحويلات الفعاليات</h3>
+  <h4>Event Referrals</h4>
+  <p>تسجيل ومتابعة المهتمين المحولين من الفعاليات.</p>
+  <div class="card-tooltip">
+    تسجيل بيانات المهتمين خلال البطولات والفعاليات، والتواصل معهم عبر الواتساب ومتابعة الحجز والحضور.
   </div>
+</div>
 
 </main>
 
@@ -666,9 +665,7 @@ function go(page){
   window.location.href = page;
 }
 
-function showComingSoon(){
-  alert("قسم تحويلات الفعاليات تحت التجهيز وسيتم تفعيله قريباً");
-}
+
 
 function toggleTheme(){
   document.body.classList.toggle("dark");
