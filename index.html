@@ -248,7 +248,7 @@ body{
 
 .cards.secondary{
   margin-top:26px;
-  grid-template-columns:repeat(5,220px);
+  grid-template-columns:repeat(3,220px);
   justify-content:center;
 }
 
@@ -391,6 +391,27 @@ body{
   z-index:5;
 }
 
+/* بطاقة تحويلات الفعاليات */
+.coming-soon-card{
+  border:1px dashed rgba(0,119,200,.45);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.98),rgba(239,246,255,.96));
+}
+
+.coming-soon-card::before{
+  background:linear-gradient(90deg,#005b9f,#38bdf8);
+}
+
+.coming-soon-card .icon{
+  background:linear-gradient(145deg,#dbeafe,#ffffff);
+}
+
+.coming-soon-card .coming-badge{
+  display:block;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  box-shadow:0 6px 15px rgba(0,91,159,.25);
+}
+
 .footer{
   width:90%;
   max-width:1220px;
@@ -409,7 +430,9 @@ body.dark{
   color:#e2e8f0;
 }
 
-body.dark .hero{background:linear-gradient(135deg,#020617,#1e3a8a)}
+body.dark .hero{
+  background:linear-gradient(135deg,#020617,#1e3a8a);
+}
 
 body.dark .quote-strip,
 body.dark .card{
@@ -418,11 +441,20 @@ body.dark .card{
   box-shadow:0 22px 45px rgba(0,0,0,.28);
 }
 
+body.dark .coming-soon-card{
+  background:linear-gradient(145deg,#1e293b,#172554);
+  border-color:#3b82f6;
+}
+
 body.dark #dailyQuote,
 body.dark .card h3,
-body.dark .section-head h2{color:#93c5fd}
+body.dark .section-head h2{
+  color:#93c5fd;
+}
 
-body.dark .icon{background:#0f172a}
+body.dark .icon{
+  background:#0f172a;
+}
 
 body.dark .top-btn{
   background:#0f172a;
@@ -430,7 +462,9 @@ body.dark .top-btn{
   border:1px solid #334155;
 }
 
-body.dark .footer{color:#cbd5e1}
+body.dark .footer{
+  color:#cbd5e1;
+}
 
 @media(max-width:1100px){
   .hero-inner{
@@ -440,29 +474,45 @@ body.dark .footer{color:#cbd5e1}
   }
 
   .logo-box,
-  .clock-card{justify-self:center}
+  .clock-card{
+    justify-self:center;
+  }
 
-  .center-title h1{font-size:34px}
+  .center-title h1{
+    font-size:34px;
+  }
 
-  .cards{grid-template-columns:repeat(2,1fr)}
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-  .cards.secondary{grid-template-columns:repeat(2,1fr)}
+  .cards.secondary{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:650px){
-  .center-title h1{font-size:26px}
+  .center-title h1{
+    font-size:26px;
+  }
 
   .quote-strip{
     width:92%;
     padding:18px;
   }
 
-  #dailyQuote{font-size:18px}
+  #dailyQuote{
+    font-size:18px;
+  }
 
   .cards,
-  .cards.secondary{grid-template-columns:1fr}
+  .cards.secondary{
+    grid-template-columns:1fr;
+  }
 
-  .card-tooltip{display:none}
+  .card-tooltip{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -594,6 +644,15 @@ body.dark .footer{color:#cbd5e1}
       <div class="card-tooltip">نظام ذكي لإدارة صناديق الاستقبال، الجرد اليومي، تصنيف الفئات النقدية، وتسليم الإيرادات للإدارة مع سجل كامل للحركات والتأجيلات.</div>
     </div>
 
+    <div class="card coming-soon-card" onclick="showComingSoon()">
+      <div class="badge coming-badge">قريباً</div>
+      <div class="icon">🎯</div>
+      <h3>تحويلات الفعاليات</h3>
+      <h4>Event Referrals</h4>
+      <p>تسجيل ومتابعة المهتمين المحولين من الفعاليات.</p>
+      <div class="card-tooltip">قسم لتسجيل بيانات المهتمين خلال البطولات والفعاليات، ومتابعة التواصل والحجز والحضور وقياس نتائج كل فعالية.</div>
+    </div>
+
   </div>
 
 </main>
@@ -607,6 +666,10 @@ function go(page){
   window.location.href = page;
 }
 
+function showComingSoon(){
+  alert("قسم تحويلات الفعاليات تحت التجهيز وسيتم تفعيله قريباً");
+}
+
 function toggleTheme(){
   document.body.classList.toggle("dark");
   const isDark = document.body.classList.contains("dark");
@@ -616,6 +679,7 @@ function toggleTheme(){
 
 function loadTheme(){
   const saved = localStorage.getItem("akazTheme");
+
   if(saved === "dark"){
     document.body.classList.add("dark");
     document.getElementById("themeBtn").innerText = "☀️";
@@ -669,6 +733,7 @@ let quoteIndex = 0;
 
 function rotateQuotes(){
   const el = document.getElementById("dailyQuote");
+
   el.style.opacity = 0;
 
   setTimeout(()=>{
@@ -685,8 +750,8 @@ checkHomeVisitsAlert();
 rotateQuotes();
 setInterval(rotateQuotes,9000);
 </script>
+
 <script type="module" src="tracker.js"></script>
+
 </body>
 </html>
-
-هذا كود الصفحة الرئيسيه اضف عليه اللي اتفقنا عليه وخليه قريبا او اي شي يعني لين وق الاجتماع باقي عليه 5 ايام تقريبا او اسبوع 
