@@ -551,6 +551,169 @@ button{cursor:pointer}
 .pdf-btn{background:linear-gradient(135deg,#005b9f,#0077c8);color:#fff}
 .whatsapp-btn{background:#16a34a;color:#fff}
 
+
+/* إدارة التمارين المخصصة */
+.library-admin-bar{
+  padding:14px 17px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,#f8fbff,#ffffff);
+}
+.add-custom-btn{
+  padding:11px 16px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#16a34a,#22c55e);
+  color:white;
+  font-size:12px;
+  font-weight:900;
+}
+.custom-note{
+  color:#64748b;
+  font-size:11px;
+  line-height:1.7;
+}
+.custom-badge{
+  display:inline-block;
+  margin-top:7px;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#ede9fe;
+  color:#6d28d9;
+  font-size:9px;
+  font-weight:900;
+}
+.custom-actions{
+  display:flex;
+  gap:6px;
+  margin-top:8px;
+}
+.custom-actions button{
+  flex:1;
+  padding:7px 6px;
+  border:0;
+  border-radius:9px;
+  font-size:9.5px;
+  font-weight:900;
+}
+.edit-exercise-btn{background:#e0f2fe;color:#075985}
+.delete-exercise-btn{background:#fee2e2;color:#b91c1c}
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1000000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(15,23,42,.72);
+  backdrop-filter:blur(5px);
+}
+.modal-overlay.show{display:flex}
+.modal-card{
+  width:min(720px,100%);
+  max-height:92vh;
+  overflow:auto;
+  border-radius:24px;
+  background:white;
+  box-shadow:0 30px 80px rgba(0,0,0,.30);
+}
+.modal-head{
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid #e2e8f0;
+  background:linear-gradient(135deg,#f8fbff,#ffffff);
+}
+.modal-head h3{
+  margin:0;
+  color:#005b9f;
+  font-size:20px;
+}
+.modal-close{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:#fee2e2;
+  color:#b91c1c;
+  font-size:18px;
+  font-weight:900;
+}
+.modal-body{padding:20px}
+.modal-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.modal-field{margin-bottom:13px}
+.modal-field.full{grid-column:1/-1}
+.modal-field label{
+  display:block;
+  margin-bottom:6px;
+  color:#334155;
+  font-size:12px;
+  font-weight:900;
+}
+.modal-field input,
+.modal-field select,
+.modal-field textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:11px;
+  outline:none;
+  background:white;
+  font-size:13px;
+}
+.modal-field textarea{
+  min-height:95px;
+  resize:vertical;
+}
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:8px;
+}
+.modal-save{
+  padding:11px 18px;
+  border:0;
+  border-radius:11px;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  font-weight:900;
+}
+.modal-cancel{
+  padding:11px 18px;
+  border:0;
+  border-radius:11px;
+  background:#e2e8f0;
+  color:#334155;
+  font-weight:900;
+}
+body.dark .modal-card{background:#1e293b}
+body.dark .modal-head{background:#0f172a;border-color:#334155}
+body.dark .modal-field label{color:#e2e8f0}
+body.dark .modal-field input,
+body.dark .modal-field select,
+body.dark .modal-field textarea{
+  background:#0f172a;
+  color:#e2e8f0;
+  border-color:#475569;
+}
+@media(max-width:700px){
+  .library-admin-bar{flex-direction:column;align-items:stretch}
+  .modal-grid{grid-template-columns:1fr}
+  .modal-field.full{grid-column:auto}
+}
+
 /* المعاينة و PDF */
 .preview-overlay{
   position:fixed;
@@ -867,7 +1030,7 @@ body.dark .condition-chips{background:#0f172a}
 
   <section class="info-box">
     <strong>طريقة الاستخدام:</strong>
-    اختر منطقة الجسم أولًا، ثم اختر التصنيف داخل المنطقة، وبعدها أضف التمارين للبرنامج وحدد الجرعة العلاجية.  .
+    اختر منطقة الجسم أولًا، ثم اختر التصنيف داخل المنطقة، وبعدها أضف التمارين للبرنامج وحدد الجرعة العلاجية. رابط الفيديو يُحفظ في Firebase ويظهر لجميع أجهزة المركز.
   </section>
 
   <section class="layout">
@@ -954,6 +1117,11 @@ body.dark .condition-chips{background:#0f172a}
 
         <div class="condition-chips" id="conditionChips"></div>
 
+        <div class="library-admin-bar">
+          <button class="add-custom-btn" onclick="openExerciseModal()">➕ إضافة تمرين جديد</button>
+          <div class="custom-note">إذا لم تجد التمرين، أضفه داخل المنطقة الحالية وسيظهر لجميع أجهزة المركز.</div>
+        </div>
+
         <div class="library-summary">
           <span id="libraryCount">التمارين المعروضة: 0</span>
           <span id="selectedCount">المختارة: 0</span>
@@ -992,6 +1160,57 @@ body.dark .condition-chips{background:#0f172a}
   </div>
 </div>
 
+
+<div class="modal-overlay" id="exerciseModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="exerciseModalTitle">إضافة تمرين جديد</h3>
+      <button class="modal-close" onclick="closeExerciseModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="modal-grid">
+
+        <div class="modal-field">
+          <label>المنطقة</label>
+          <select id="customCategory"></select>
+        </div>
+
+        <div class="modal-field">
+          <label>اسم التمرين بالعربي *</label>
+          <input id="customNameAr" placeholder="مثال: رفع الساق مستقيمة">
+        </div>
+
+        <div class="modal-field">
+          <label>الاسم بالإنجليزي *</label>
+          <input id="customNameEn" placeholder="Straight Leg Raise">
+        </div>
+
+        <div class="modal-field">
+          <label>رابط فيديو يوتيوب</label>
+          <input id="customVideoUrl" placeholder="https://www.youtube.com/watch?v=...">
+        </div>
+
+        <div class="modal-field full">
+          <label>وصف طريقة الأداء *</label>
+          <textarea id="customDescription" placeholder="اكتب شرحًا مختصرًا وواضحًا لطريقة أداء التمرين"></textarea>
+        </div>
+
+        <div class="modal-field full">
+          <label>التصنيفات</label>
+          <input id="customTags" placeholder="مثال: تقوية، ACL، بعد عملية">
+        </div>
+
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeExerciseModal()">إلغاء</button>
+        <button class="modal-save" onclick="saveCustomExercise()">حفظ التمرين</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1010,7 +1229,7 @@ if(localStorage.getItem("akazTheme")==="dark"){
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import {
-  getFirestore,collection,addDoc,serverTimestamp,doc,setDoc,onSnapshot
+  getFirestore,collection,addDoc,serverTimestamp,doc,setDoc,onSnapshot,deleteDoc
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
 const firebaseConfig={
@@ -1026,6 +1245,7 @@ const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 const programsRef=collection(db,"homeExercisePrograms");
 const linksRef=collection(db,"exerciseVideoLinks");
+const customExercisesRef=collection(db,"customExercises");
 
 const therapists=[
   "د. حاتم الاحمدي","د. عبدالرحمن السويداء","د. عبدالرحمن السليمي","د. عبدالعزيز الحمدان",
@@ -1050,7 +1270,7 @@ const E=(id,category,nameAr,nameEn,description,tags=[])=>({
   id,category,nameAr,nameEn,description,tags,videoUrl:""
 });
 
-const exercises=[
+let exercises=[
   E("neck-001","الرقبة","سحب الذقن للخلف","Chin Tuck","اجلس باستقامة واسحب الذقن إلى الخلف دون خفض الرأس.",["وضعية","تقوية"]),
   E("neck-002","الرقبة","دوران الرقبة","Neck Rotation","أدر الرأس ببطء إلى أحد الجانبين ضمن المدى المريح.",["مرونة"]),
   E("neck-003","الرقبة","إطالة العضلة شبه المنحرفة","Upper Trapezius Stretch","أمل الرأس باتجاه أحد الكتفين بلطف مع إبقاء الكتف المقابل منخفضًا.",["إطالة"]),
@@ -1144,6 +1364,8 @@ const exercises=[
 let selectedRegion="";
 let selectedTag="الكل";
 let selectedExercises=[];
+let editingCustomId="";
+const ADMIN_PASSWORD="2026";
 
 function isoDate(date){
   const d=new Date(date);
@@ -1226,6 +1448,169 @@ function renderConditionChips(){
     box.appendChild(btn);
   });
 }
+
+
+function fillCustomCategoryOptions(){
+  const select=document.getElementById("customCategory");
+  select.innerHTML="";
+  regions.forEach(region=>{
+    const option=document.createElement("option");
+    option.value=region.name;
+    option.textContent=region.name;
+    select.appendChild(option);
+  });
+}
+
+onSnapshot(customExercisesRef,snapshot=>{
+  exercises=exercises.filter(e=>!e.isCustom);
+
+  snapshot.forEach(item=>{
+    const data=item.data();
+
+    exercises.push({
+      id:item.id,
+      category:data.category||"الركبة",
+      nameAr:data.nameAr||"",
+      nameEn:data.nameEn||"",
+      description:data.description||"",
+      tags:Array.isArray(data.tags)?data.tags:[],
+      videoUrl:data.videoUrl||"",
+      isCustom:true
+    });
+  });
+
+  renderRegions();
+
+  if(selectedRegion){
+    renderConditionChips();
+    renderExerciseLibrary();
+  }
+
+  selectedExercises=selectedExercises.map(selected=>{
+    const latest=exercises.find(e=>e.id===selected.id);
+    return latest ? {...selected,...latest} : selected;
+  });
+
+  renderSelectedExercises();
+});
+
+window.openExerciseModal=function(id=""){
+  editingCustomId=id;
+
+  fillCustomCategoryOptions();
+
+  const exercise=id ? exercises.find(e=>e.id===id && e.isCustom) : null;
+
+  document.getElementById("exerciseModalTitle").innerText=
+    exercise ? "تعديل التمرين المخصص" : "إضافة تمرين جديد";
+
+  document.getElementById("customCategory").value=
+    exercise?.category || selectedRegion || regions[0].name;
+
+  document.getElementById("customNameAr").value=exercise?.nameAr || "";
+  document.getElementById("customNameEn").value=exercise?.nameEn || "";
+  document.getElementById("customDescription").value=exercise?.description || "";
+  document.getElementById("customVideoUrl").value=exercise?.videoUrl || "";
+  document.getElementById("customTags").value=(exercise?.tags || []).join("، ");
+
+  document.getElementById("exerciseModal").classList.add("show");
+};
+
+window.closeExerciseModal=function(){
+  document.getElementById("exerciseModal").classList.remove("show");
+  editingCustomId="";
+};
+
+function normalizeTags(value){
+  return value
+    .split(/[,،]/)
+    .map(tag=>tag.trim())
+    .filter(Boolean)
+    .slice(0,10);
+}
+
+window.saveCustomExercise=async function(){
+  const category=document.getElementById("customCategory").value;
+  const nameAr=document.getElementById("customNameAr").value.trim();
+  const nameEn=document.getElementById("customNameEn").value.trim();
+  const description=document.getElementById("customDescription").value.trim();
+  const videoUrl=document.getElementById("customVideoUrl").value.trim();
+  const tags=normalizeTags(document.getElementById("customTags").value);
+
+  if(!category||!nameAr||!nameEn||!description){
+    showToast("أكمل المنطقة والاسم العربي والإنجليزي والوصف",true);
+    return;
+  }
+
+  if(videoUrl&&!validYoutubeUrl(videoUrl)){
+    showToast("رابط يوتيوب غير صحيح",true);
+    return;
+  }
+
+  const duplicate=exercises.some(e=>
+    e.category===category &&
+    e.nameAr.trim().toLowerCase()===nameAr.toLowerCase() &&
+    e.id!==editingCustomId
+  );
+
+  if(duplicate){
+    showToast("يوجد تمرين بنفس الاسم داخل هذه المنطقة",true);
+    return;
+  }
+
+  const id=editingCustomId || `custom-${Date.now()}`;
+
+  try{
+    await setDoc(doc(db,"customExercises",id),{
+      category,
+      nameAr,
+      nameEn,
+      description,
+      videoUrl,
+      tags,
+      isCustom:true,
+      updatedAt:serverTimestamp(),
+      createdAt:editingCustomId ? undefined : serverTimestamp()
+    },{merge:true});
+
+    closeExerciseModal();
+    showToast(editingCustomId?"تم تعديل التمرين":"تمت إضافة التمرين");
+
+    if(!selectedRegion || selectedRegion!==category){
+      selectRegion(category);
+    }
+  }catch(error){
+    console.error(error);
+    showToast("تعذر حفظ التمرين في Firebase",true);
+  }
+};
+
+window.deleteCustomExercise=async function(id){
+  const exercise=exercises.find(e=>e.id===id && e.isCustom);
+  if(!exercise)return;
+
+  const password=prompt(`أدخل الرقم السري لحذف تمرين:\n${exercise.nameAr}`);
+
+  if(password===null)return;
+
+  if(password!==ADMIN_PASSWORD){
+    showToast("الرقم السري غير صحيح",true);
+    return;
+  }
+
+  if(!confirm("تأكيد حذف التمرين نهائيًا؟"))return;
+
+  try{
+    await deleteDoc(doc(db,"customExercises",id));
+    await deleteDoc(doc(db,"exerciseVideoLinks",id)).catch(()=>{});
+    selectedExercises=selectedExercises.filter(e=>e.id!==id);
+    showToast("تم حذف التمرين");
+  }catch(error){
+    console.error(error);
+    showToast("تعذر حذف التمرين",true);
+  }
+};
+
 
 onSnapshot(linksRef,snapshot=>{
   snapshot.forEach(item=>{
@@ -1328,6 +1713,13 @@ function renderExerciseLibrary(){
         <div class="exercise-en">${escapeHtml(e.nameEn)}</div>
         <div class="exercise-description">${escapeHtml(e.description)}</div>
         <div class="link-status ${hasLink?"ready":"missing"}">${hasLink?"● رابط الفيديو جاهز":"● لا يوجد رابط فيديو"}</div>
+        ${e.isCustom?'<div class="custom-badge">تمرين مخصص</div>':""}
+        ${e.isCustom?`
+          <div class="custom-actions">
+            <button class="edit-exercise-btn" onclick="openExerciseModal('${e.id}')">✏️ تعديل التمرين</button>
+            <button class="delete-exercise-btn" onclick="deleteCustomExercise('${e.id}')">🗑️ حذف</button>
+          </div>
+        `:""}
 
         <div class="card-actions">
           <button class="watch-btn" onclick="watchVideo('${e.id}')">▶ مشاهدة</button>
@@ -1407,6 +1799,7 @@ function renderSelectedExercises(){
         <div class="selected-buttons">
           <button class="selected-watch" onclick="watchVideo('${e.id}')">▶ فتح الفيديو</button>
           <button class="selected-edit" onclick="editVideoLink('${e.id}')">🔗 ${hasLink?"تعديل":"إضافة"} الرابط</button>
+          ${e.isCustom?`<button class="selected-edit" onclick="openExerciseModal('${e.id}')">✏️ تعديل التمرين</button>`:""}
         </div>
 
         <div class="prescription-grid">
