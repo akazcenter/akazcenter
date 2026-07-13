@@ -1,0 +1,2602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>التعاون العلاجي | مركز عكاز</title>
+
+<link rel="icon" type="image/png" href="./logo.png">
+
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --green:#16a34a;
+  --red:#dc2626;
+  --yellow:#d97706;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --background:#f1f5f9;
+  --card:#ffffff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  direction:rtl;
+  background:
+    radial-gradient(circle at 90% 7%,rgba(0,119,200,.12),transparent 28%),
+    radial-gradient(circle at 7% 75%,rgba(245,158,11,.10),transparent 25%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* الهيدر */
+
+.topbar{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#00467d,#0077c8);
+  color:white;
+  padding:22px 5%;
+  box-shadow:0 16px 38px rgba(6,43,79,.23);
+}
+
+.topbar::before{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  right:-110px;
+  top:-150px;
+}
+
+.topbar::after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  background:rgba(245,158,11,.13);
+  left:-90px;
+  bottom:-150px;
+}
+
+.topbar-inner{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:1350px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo-box{
+  width:76px;
+  height:76px;
+  border-radius:22px;
+  background:white;
+  padding:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
+}
+
+.logo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.brand h1{
+  margin:0;
+  font-size:27px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:6px 0 0;
+  color:#dbeafe;
+  font-size:13px;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+}
+
+.top-btn{
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(255,255,255,.95);
+  color:var(--blue);
+  border-radius:14px;
+  padding:11px 16px;
+  font-size:13px;
+  font-weight:900;
+}
+
+/* المحتوى */
+
+.main{
+  width:95%;
+  max-width:1350px;
+  margin:26px auto 45px;
+}
+
+/* الفترة */
+
+.period-box{
+  background:rgba(255,255,255,.97);
+  border:1px solid var(--line);
+  border-radius:21px;
+  padding:17px 20px;
+  margin-bottom:20px;
+  box-shadow:0 12px 28px rgba(15,23,42,.07);
+  text-align:center;
+}
+
+.period-title{
+  color:var(--blue);
+  font-size:17px;
+  font-weight:900;
+}
+
+.period-dates{
+  margin-top:7px;
+  color:#475569;
+  font-size:14px;
+  font-weight:900;
+  direction:ltr;
+}
+
+.period-actions{
+  margin-top:13px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+}
+
+.period-btn{
+  border:0;
+  border-radius:11px;
+  padding:10px 17px;
+  background:#e2e8f0;
+  color:#334155;
+  font-size:13px;
+  font-weight:900;
+}
+
+.period-btn.active{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  box-shadow:0 8px 18px rgba(0,91,159,.22);
+}
+
+/* التنبيه */
+
+.info-box{
+  margin-bottom:20px;
+  padding:16px 19px;
+  border:1px solid #bfdbfe;
+  background:linear-gradient(135deg,#eff6ff,#ffffff);
+  border-radius:19px;
+  color:#164e75;
+  font-size:13px;
+  line-height:1.9;
+  box-shadow:0 10px 24px rgba(15,23,42,.06);
+}
+
+.info-box strong{
+  color:var(--blue);
+}
+
+/* الإحصائيات */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:13px;
+  margin-bottom:21px;
+}
+
+.stat{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.97);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:17px;
+  box-shadow:0 12px 28px rgba(15,23,42,.07);
+}
+
+.stat::after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:rgba(0,119,200,.06);
+  left:-24px;
+  bottom:-28px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
+}
+
+.stat-value{
+  position:relative;
+  z-index:2;
+  margin-top:8px;
+  color:var(--blue);
+  font-size:24px;
+  font-weight:900;
+}
+
+.stat-value.small{
+  font-size:20px;
+}
+
+/* التخطيط */
+
+.layout{
+  display:grid;
+  grid-template-columns:370px 1fr;
+  gap:21px;
+  align-items:start;
+}
+
+.card{
+  background:rgba(255,255,255,.98);
+  border:1px solid var(--line);
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 15px 34px rgba(15,23,42,.08);
+}
+
+.card-head{
+  padding:19px 21px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,#f8fbff,#ffffff);
+}
+
+.card-head h2{
+  margin:0;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+}
+
+.card-head p{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.form-body{
+  padding:20px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#334155;
+  font-size:13px;
+  font-weight:900;
+}
+
+.required{
+  color:var(--red);
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  background:white;
+  color:var(--text);
+  border-radius:12px;
+  padding:11px 12px;
+  font-size:14px;
+  outline:none;
+  transition:.2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.10);
+}
+
+.field textarea{
+  min-height:78px;
+  resize:vertical;
+}
+
+.two-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* الحسبة المباشرة */
+
+.calculation-box{
+  border:1px solid #bfdbfe;
+  background:linear-gradient(135deg,#eff6ff,#f8fbff);
+  border-radius:17px;
+  padding:14px;
+  margin-bottom:15px;
+}
+
+.calculation-title{
+  color:var(--blue);
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:10px;
+}
+
+.calculation-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 0;
+  border-bottom:1px dashed #bfdbfe;
+  font-size:12px;
+}
+
+.calculation-row:last-child{
+  border-bottom:0;
+}
+
+.calculation-row span{
+  color:#475569;
+}
+
+.calculation-row strong{
+  color:var(--blue);
+  direction:ltr;
+}
+
+.save-btn{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:14px 18px;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  font-size:15px;
+  font-weight:900;
+  box-shadow:0 11px 23px rgba(0,91,159,.22);
+}
+
+.save-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+/* الفلاتر */
+
+.tools{
+  padding:15px 17px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+}
+
+.search-box{
+  flex:1;
+  min-width:220px;
+}
+
+.filter-box{
+  width:180px;
+}
+
+.tools input,
+.tools select{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:10px 11px;
+  background:white;
+  outline:none;
+}
+
+/* الجداول */
+
+.table-wrap{
+  width:100%;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  min-width:1400px;
+  border-collapse:collapse;
+}
+
+th{
+  background:#f8fafc;
+  color:#475569;
+  padding:12px 9px;
+  font-size:11.5px;
+  text-align:center;
+  white-space:nowrap;
+  border-bottom:1px solid var(--line);
+}
+
+td{
+  padding:11px 9px;
+  font-size:12px;
+  text-align:center;
+  border-bottom:1px solid #edf2f7;
+  vertical-align:middle;
+}
+
+tr:hover td{
+  background:#f8fbff;
+}
+
+.invoice-number{
+  direction:ltr;
+  display:inline-block;
+  font-weight:900;
+  color:var(--blue);
+}
+
+.amount{
+  direction:ltr;
+  display:inline-block;
+  font-weight:900;
+}
+
+.patient-name{
+  font-weight:900;
+  color:#0f172a;
+}
+
+.status-badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.status-pending{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.status-approved{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.status-rejected{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.action-group{
+  display:flex;
+  justify-content:center;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.action-btn{
+  border:0;
+  border-radius:9px;
+  padding:7px 9px;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.approve-btn{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.reject-btn{
+  background:#fef3c7;
+  color:#92400e;
+}
+
+.pending-btn{
+  background:#e0f2fe;
+  color:#075985;
+}
+
+.delete-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.empty-state{
+  display:none;
+  text-align:center;
+  padding:45px 20px;
+  color:var(--muted);
+}
+
+.empty-icon{
+  font-size:42px;
+  margin-bottom:9px;
+}
+
+.empty-state strong{
+  display:block;
+  color:#334155;
+  margin-bottom:6px;
+}
+
+.loading{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:900;
+}
+
+/* التسويات */
+
+.settlement-card{
+  margin-top:21px;
+}
+
+.settlement-table{
+  min-width:850px;
+}
+
+.negative{
+  color:#b91c1c;
+  font-weight:900;
+}
+
+.positive{
+  color:#15803d;
+  font-weight:900;
+}
+
+.neutral{
+  color:#475569;
+  font-weight:900;
+}
+
+/* إشعار */
+
+.toast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(30px);
+  background:#166534;
+  color:white;
+  border-radius:14px;
+  padding:13px 18px;
+  box-shadow:0 16px 35px rgba(0,0,0,.23);
+  font-size:13px;
+  font-weight:900;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+  z-index:99999;
+}
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+.toast.error{
+  background:#b91c1c;
+}
+
+/* الفوتر */
+
+.footer{
+  width:92%;
+  max-width:1350px;
+  margin:40px auto 22px;
+  padding-top:18px;
+  border-top:1px solid #dbe4ee;
+  text-align:center;
+  color:#64748b;
+  font-size:13px;
+}
+
+/* الوضع الليلي */
+
+body.dark{
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --line:#334155;
+  background:
+    radial-gradient(circle at 90% 8%,rgba(30,64,175,.22),transparent 28%),
+    linear-gradient(180deg,#020617,#0f172a);
+}
+
+body.dark .card,
+body.dark .stat,
+body.dark .period-box{
+  background:#1e293b;
+  border-color:#334155;
+}
+
+body.dark .card-head,
+body.dark th{
+  background:#0f172a;
+}
+
+body.dark .field label,
+body.dark .patient-name,
+body.dark .empty-state strong{
+  color:#e2e8f0;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea{
+  background:#0f172a;
+  color:#e2e8f0;
+  border-color:#475569;
+}
+
+body.dark td{
+  border-color:#334155;
+}
+
+body.dark tr:hover td{
+  background:#172033;
+}
+
+body.dark .calculation-box{
+  background:#172554;
+  border-color:#1d4ed8;
+}
+
+body.dark .info-box{
+  background:#172554;
+  border-color:#1d4ed8;
+  color:#bfdbfe;
+}
+
+/* الجوال */
+
+@media(max-width:1150px){
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:700px){
+  .topbar-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .brand h1{
+    font-size:21px;
+  }
+
+  .top-actions{
+    width:100%;
+  }
+
+  .top-btn{
+    flex:1;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+  }
+
+  .two-fields{
+    grid-template-columns:1fr;
+  }
+
+  .filter-box{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <div class="brand">
+
+      <div class="logo-box">
+        <img
+          src="logo.png"
+          class="logo"
+          alt="شعار مركز عكاز"
+        >
+      </div>
+
+      <div>
+        <h1>التعاون العلاجي</h1>
+        <p>Collaborative Care & Revenue Settlement</p>
+      </div>
+
+    </div>
+
+    <div class="top-actions">
+
+      <button
+        class="top-btn"
+        onclick="window.location.href='index.html'"
+      >
+        🏠 الرئيسية
+      </button>
+
+      <button
+        class="top-btn"
+        id="themeBtn"
+        onclick="toggleTheme()"
+      >
+        🌙
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+<main class="main">
+
+  <section class="period-box">
+
+    <div class="period-title">
+      فترة احتساب الرواتب والمكافآت
+    </div>
+
+    <div
+      class="period-dates"
+      id="periodText"
+    >
+      --
+    </div>
+
+    <div class="period-actions">
+
+      <button
+        class="period-btn active"
+        id="currentPeriodBtn"
+        onclick="setCurrentPeriod()"
+      >
+        الدورة الحالية
+      </button>
+
+      <button
+        class="period-btn"
+        id="previousPeriodBtn"
+        onclick="setPreviousPeriod()"
+      >
+        الدورة السابقة
+      </button>
+
+    </div>
+
+  </section>
+
+  <section class="info-box">
+
+    <strong>آلية الاحتساب:</strong>
+
+    الفاتورة الأصلية تبقى مسجلة في النظام الرئيسي باسم أخصائي واحد.
+
+    عند اعتماد التعاون العلاجي يتم خصم نصف قيمة الفاتورة من الإيراد المحتسب لذلك الأخصائي، وإضافة النصف إلى الأخصائي المتعاون.
+
+    يحتسب لكل أخصائي مكافأة قدرها 5٪ من نصيبه فقط.
+
+  </section>
+
+  <section class="stats">
+
+    <div class="stat">
+      <div class="stat-label">
+        حالات التعاون
+      </div>
+      <div
+        class="stat-value"
+        id="totalRequests"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">
+        بانتظار المراجعة
+      </div>
+      <div
+        class="stat-value"
+        id="pendingRequests"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">
+        الطلبات المعتمدة
+      </div>
+      <div
+        class="stat-value"
+        id="approvedRequests"
+      >
+        0
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">
+        قيمة الفواتير المعتمدة
+      </div>
+      <div
+        class="stat-value small"
+        id="approvedInvoicesTotal"
+      >
+        0 ر.س
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">
+        المبلغ المحوّل للمتعاونين
+      </div>
+      <div
+        class="stat-value small"
+        id="transferredTotal"
+      >
+        0 ر.س
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-label">
+        إجمالي مكافآت التعاون
+      </div>
+      <div
+        class="stat-value small"
+        id="bonusesTotal"
+      >
+        0 ر.س
+      </div>
+    </div>
+
+  </section>
+
+  <section class="layout">
+
+    <!-- نموذج الإضافة -->
+
+    <div class="card">
+
+      <div class="card-head">
+        <h2>إضافة تعاون علاجي</h2>
+        <p>
+          أدخل بيانات الفاتورة كما هي مسجلة في النظام الرئيسي.
+        </p>
+      </div>
+
+      <form
+        class="form-body"
+        id="collaborationForm"
+      >
+
+        <div class="field">
+
+          <label>
+            تاريخ الفاتورة
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="date"
+            id="invoiceDate"
+            required
+          >
+
+        </div>
+
+        <div class="two-fields">
+
+          <div class="field">
+
+            <label>
+              رقم الفاتورة
+              <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="invoiceNumber"
+              placeholder="رقم الفاتورة"
+              maxlength="40"
+              required
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              نوع الفاتورة
+              <span class="required">*</span>
+            </label>
+
+            <select
+              id="invoiceType"
+              required
+            >
+              <option value="">اختر النوع</option>
+              <option value="كشف">كشف</option>
+              <option value="جلسة">جلسة</option>
+              <option value="برنامج علاجي">برنامج علاجي</option>
+              <option value="علاج مائي">علاج مائي</option>
+              <option value="زيارة منزلية">زيارة منزلية</option>
+              <option value="خدمة أخرى">خدمة أخرى</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="two-fields">
+
+          <div class="field">
+
+            <label>
+              اسم المريض
+              <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="patientName"
+              placeholder="اسم المريض"
+              maxlength="80"
+              required
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              رقم الملف
+              <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="fileNumber"
+              placeholder="رقم الملف"
+              maxlength="30"
+              required
+            >
+
+          </div>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            مبلغ الفاتورة
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="number"
+            id="invoiceAmount"
+            placeholder="0.00"
+            min="0.01"
+            step="0.01"
+            inputmode="decimal"
+            required
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            الأخصائي المسجلة باسمه الفاتورة
+            <span class="required">*</span>
+          </label>
+
+          <select
+            id="registeredTherapist"
+            required
+          >
+            <option value="">اختر الأخصائي</option>
+          </select>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            الأخصائي المتعاون
+            <span class="required">*</span>
+          </label>
+
+          <select
+            id="collaboratingTherapist"
+            required
+          >
+            <option value="">اختر الأخصائي</option>
+          </select>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            وصف التعاون العلاجي
+          </label>
+
+          <select id="collaborationType">
+            <option value="">اختياري</option>
+            <option value="تقييم مشترك">تقييم مشترك</option>
+            <option value="تأهيل عصبي">تأهيل عصبي</option>
+            <option value="تأهيل أطفال">تأهيل أطفال</option>
+            <option value="علاج مائي">علاج مائي</option>
+            <option value="تأهيل رياضي">تأهيل رياضي</option>
+            <option value="حالة معقدة">حالة معقدة</option>
+            <option value="خطة علاجية مشتركة">خطة علاجية مشتركة</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+
+        </div>
+
+        <div class="field">
+
+          <label>
+            ملاحظات
+          </label>
+
+          <textarea
+            id="notes"
+            placeholder="اختياري"
+            maxlength="400"
+          ></textarea>
+
+        </div>
+
+        <div class="calculation-box">
+
+          <div class="calculation-title">
+            الحسبة المباشرة
+          </div>
+
+          <div class="calculation-row">
+            <span>قيمة الفاتورة</span>
+            <strong id="calcInvoiceAmount">
+              0.00 ر.س
+            </strong>
+          </div>
+
+          <div class="calculation-row">
+            <span>نصيب كل أخصائي</span>
+            <strong id="calcShare">
+              0.00 ر.س
+            </strong>
+          </div>
+
+          <div class="calculation-row">
+            <span>المبلغ المخصوم من صاحب الفاتورة</span>
+            <strong id="calcDeduction">
+              0.00 ر.س
+            </strong>
+          </div>
+
+          <div class="calculation-row">
+            <span>المبلغ المضاف للأخصائي المتعاون</span>
+            <strong id="calcAddition">
+              0.00 ر.س
+            </strong>
+          </div>
+
+          <div class="calculation-row">
+            <span>مكافأة كل أخصائي 5٪</span>
+            <strong id="calcBonus">
+              0.00 ر.س
+            </strong>
+          </div>
+
+        </div>
+
+        <button
+          type="submit"
+          class="save-btn"
+          id="saveBtn"
+        >
+          إرسال للمراجعة
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- جدول السجلات -->
+
+    <div class="card">
+
+      <div class="card-head">
+        <h2>سجل التعاون العلاجي</h2>
+        <p>
+          الطلبات لا تدخل في التسوية إلا بعد اعتمادها.
+        </p>
+      </div>
+
+      <div class="tools">
+
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="بحث برقم الفاتورة أو المريض أو الأخصائي..."
+          >
+        </div>
+
+        <div class="filter-box">
+          <select id="statusFilter">
+            <option value="">كل الحالات</option>
+            <option value="بانتظار المراجعة">بانتظار المراجعة</option>
+            <option value="معتمد">معتمد</option>
+            <option value="مرفوض">مرفوض</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div
+        class="loading"
+        id="loadingState"
+      >
+        جاري تحميل البيانات...
+      </div>
+
+      <div class="table-wrap">
+
+        <table id="recordsTable">
+
+          <thead>
+            <tr>
+              <th>التاريخ</th>
+              <th>رقم الفاتورة</th>
+              <th>المريض</th>
+              <th>رقم الملف</th>
+              <th>نوع الفاتورة</th>
+              <th>المبلغ</th>
+              <th>الفاتورة باسم</th>
+              <th>الأخصائي المتعاون</th>
+              <th>نصيب كل واحد</th>
+              <th>مكافأة كل واحد</th>
+              <th>الحالة</th>
+              <th>الإجراء</th>
+              <th>حذف</th>
+            </tr>
+          </thead>
+
+          <tbody id="recordsBody"></tbody>
+
+        </table>
+
+        <div
+          class="empty-state"
+          id="emptyState"
+        >
+          <div class="empty-icon">🤝</div>
+          <strong>لا توجد طلبات في هذه الفترة</strong>
+          <span>
+            أول طلب تعاون علاجي سيظهر هنا.
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- جدول التسويات -->
+
+  <section class="card settlement-card">
+
+    <div class="card-head">
+      <h2>تسوية الأخصائيين للفترة</h2>
+      <p>
+        يعتمد هذا الجدول على الطلبات المعتمدة فقط، ويستخدم عند مراجعة مكافآت الرواتب.
+      </p>
+    </div>
+
+    <div class="table-wrap">
+
+      <table class="settlement-table">
+
+        <thead>
+          <tr>
+            <th>الأخصائي</th>
+            <th>عدد حالات التعاون</th>
+            <th>خصم من الإيراد المسجل باسمه</th>
+            <th>إضافة إلى إيراده</th>
+            <th>صافي تسوية الإيراد</th>
+            <th>الإيراد المحتسب من التعاون</th>
+            <th>مكافأة 5٪ من نصيبه</th>
+          </tr>
+        </thead>
+
+        <tbody id="settlementBody"></tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
+</footer>
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "akazTheme",
+    isDark ? "dark" : "light"
+  );
+
+  document.getElementById("themeBtn").innerText =
+    isDark ? "☀️" : "🌙";
+}
+
+(function loadTheme(){
+  const saved =
+    localStorage.getItem("akazTheme");
+
+  if(saved === "dark"){
+    document.body.classList.add("dark");
+
+    document.getElementById("themeBtn").innerText =
+      "☀️";
+  }
+})();
+</script>
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+/* إعدادات Firebase */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app =
+  initializeApp(firebaseConfig);
+
+const db =
+  getFirestore(app);
+
+const collaborationsRef =
+  collection(db,"collaborativeCare");
+
+/* قائمة الأخصائيين */
+
+const therapists = [
+  "د. حاتم الاحمدي",
+  "د. عبدالرحمن السويداء",
+  "د. عبدالرحمن السليمي",
+  "د. عبدالعزيز الحمدان",
+  "د. ريناد حميد",
+  "د. ابتسام سويلم",
+  "د. سلمى فرحان",
+  "د. هند فهيد",
+  "د. أسماء فهيد",
+  "د. مها فريح"
+];
+
+/* المتغيرات */
+
+let records = [];
+
+let periodStart = "";
+let periodEnd = "";
+
+let currentPeriodOffset = 0;
+
+/* عناصر الصفحة */
+
+const form =
+  document.getElementById("collaborationForm");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+const amountInput =
+  document.getElementById("invoiceAmount");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const statusFilter =
+  document.getElementById("statusFilter");
+
+/* أدوات التاريخ */
+
+function isoDate(date){
+  const copy =
+    new Date(date);
+
+  copy.setMinutes(
+    copy.getMinutes()
+    -
+    copy.getTimezoneOffset()
+  );
+
+  return copy
+    .toISOString()
+    .split("T")[0];
+}
+
+function getPayrollPeriod(offset = 0){
+  const now =
+    new Date();
+
+  let year =
+    now.getFullYear();
+
+  let month =
+    now.getMonth();
+
+  if(now.getDate() < 21){
+    month -= 1;
+  }
+
+  month += offset;
+
+  const start =
+    new Date(
+      year,
+      month,
+      21
+    );
+
+  const end =
+    new Date(
+      year,
+      month + 1,
+      20
+    );
+
+  return {
+    start:isoDate(start),
+    end:isoDate(end)
+  };
+}
+
+window.setCurrentPeriod = function(){
+  currentPeriodOffset = 0;
+
+  const period =
+    getPayrollPeriod(0);
+
+  periodStart =
+    period.start;
+
+  periodEnd =
+    period.end;
+
+  document
+    .getElementById("currentPeriodBtn")
+    .classList
+    .add("active");
+
+  document
+    .getElementById("previousPeriodBtn")
+    .classList
+    .remove("active");
+
+  updatePeriodText();
+  renderAll();
+};
+
+window.setPreviousPeriod = function(){
+  currentPeriodOffset = -1;
+
+  const period =
+    getPayrollPeriod(-1);
+
+  periodStart =
+    period.start;
+
+  periodEnd =
+    period.end;
+
+  document
+    .getElementById("previousPeriodBtn")
+    .classList
+    .add("active");
+
+  document
+    .getElementById("currentPeriodBtn")
+    .classList
+    .remove("active");
+
+  updatePeriodText();
+  renderAll();
+};
+
+function updatePeriodText(){
+  document
+    .getElementById("periodText")
+    .innerText =
+      `${periodStart} إلى ${periodEnd}`;
+}
+
+/* تنسيق الأرقام */
+
+function money(value){
+  const amount =
+    Number(value) || 0;
+
+  return (
+    amount.toLocaleString(
+      "en-US",
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    )
+    +
+    " ر.س"
+  );
+}
+
+/* منع النصوص الضارة */
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+/* إشعارات */
+
+function showToast(
+  message,
+  isError = false
+){
+  const toast =
+    document.getElementById("toast");
+
+  toast.innerText =
+    message;
+
+  toast.classList.toggle(
+    "error",
+    isError
+  );
+
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },3000);
+}
+
+/* تعبئة قوائم الأخصائيين */
+
+function fillTherapists(){
+  const registered =
+    document.getElementById(
+      "registeredTherapist"
+    );
+
+  const collaborating =
+    document.getElementById(
+      "collaboratingTherapist"
+    );
+
+  therapists.forEach(name=>{
+    const option1 =
+      document.createElement("option");
+
+    option1.value =
+      name;
+
+    option1.textContent =
+      name;
+
+    registered.appendChild(option1);
+
+    const option2 =
+      document.createElement("option");
+
+    option2.value =
+      name;
+
+    option2.textContent =
+      name;
+
+    collaborating.appendChild(option2);
+  });
+}
+
+/* الحسبة المباشرة */
+
+function updateCalculation(){
+  const invoiceAmount =
+    Number(amountInput.value) || 0;
+
+  const share =
+    invoiceAmount / 2;
+
+  const bonus =
+    share * 0.05;
+
+  document
+    .getElementById("calcInvoiceAmount")
+    .innerText =
+      money(invoiceAmount);
+
+  document
+    .getElementById("calcShare")
+    .innerText =
+      money(share);
+
+  document
+    .getElementById("calcDeduction")
+    .innerText =
+      money(share);
+
+  document
+    .getElementById("calcAddition")
+    .innerText =
+      money(share);
+
+  document
+    .getElementById("calcBonus")
+    .innerText =
+      money(bonus);
+}
+
+amountInput.addEventListener(
+  "input",
+  updateCalculation
+);
+
+/* إضافة طلب */
+
+form.addEventListener(
+  "submit",
+  async event=>{
+
+    event.preventDefault();
+
+    const invoiceDate =
+      document
+        .getElementById("invoiceDate")
+        .value;
+
+    const invoiceNumber =
+      document
+        .getElementById("invoiceNumber")
+        .value
+        .trim();
+
+    const invoiceType =
+      document
+        .getElementById("invoiceType")
+        .value;
+
+    const patientName =
+      document
+        .getElementById("patientName")
+        .value
+        .trim();
+
+    const fileNumber =
+      document
+        .getElementById("fileNumber")
+        .value
+        .trim();
+
+    const invoiceAmount =
+      Number(
+        document
+          .getElementById("invoiceAmount")
+          .value
+      );
+
+    const registeredTherapist =
+      document
+        .getElementById("registeredTherapist")
+        .value;
+
+    const collaboratingTherapist =
+      document
+        .getElementById("collaboratingTherapist")
+        .value;
+
+    const collaborationType =
+      document
+        .getElementById("collaborationType")
+        .value;
+
+    const notes =
+      document
+        .getElementById("notes")
+        .value
+        .trim();
+
+    if(
+      !invoiceDate
+      ||
+      !invoiceNumber
+      ||
+      !invoiceType
+      ||
+      !patientName
+      ||
+      !fileNumber
+      ||
+      !invoiceAmount
+      ||
+      !registeredTherapist
+      ||
+      !collaboratingTherapist
+    ){
+      showToast(
+        "عبّئ جميع البيانات الأساسية",
+        true
+      );
+
+      return;
+    }
+
+    if(invoiceAmount <= 0){
+      showToast(
+        "مبلغ الفاتورة يجب أن يكون أكبر من صفر",
+        true
+      );
+
+      return;
+    }
+
+    if(
+      registeredTherapist
+      ===
+      collaboratingTherapist
+    ){
+      showToast(
+        "لا يمكن اختيار نفس الأخصائي مرتين",
+        true
+      );
+
+      return;
+    }
+
+    const duplicateInvoice =
+      records.some(record=>
+        String(record.invoiceNumber)
+          .trim()
+          .toLowerCase()
+        ===
+        invoiceNumber
+          .toLowerCase()
+      );
+
+    if(duplicateInvoice){
+      showToast(
+        "رقم الفاتورة مسجل مسبقًا",
+        true
+      );
+
+      return;
+    }
+
+    try{
+      saveBtn.disabled = true;
+
+      saveBtn.innerText =
+        "جاري الحفظ...";
+
+      const shareAmount =
+        invoiceAmount / 2;
+
+      const bonusPerTherapist =
+        shareAmount * 0.05;
+
+      await addDoc(
+        collaborationsRef,
+        {
+          invoiceDate,
+          invoiceNumber,
+          invoiceType,
+          patientName,
+          fileNumber,
+          invoiceAmount,
+          registeredTherapist,
+          collaboratingTherapist,
+          collaborationType:
+            collaborationType
+            ||
+            "غير محدد",
+          notes,
+          shareAmount,
+          deductionAmount:shareAmount,
+          additionAmount:shareAmount,
+          bonusPerTherapist,
+          totalBonus:
+            bonusPerTherapist * 2,
+          status:"بانتظار المراجعة",
+          createdAt:serverTimestamp()
+        }
+      );
+
+      form.reset();
+
+      document
+        .getElementById("invoiceDate")
+        .value =
+          isoDate(new Date());
+
+      updateCalculation();
+
+      showToast(
+        "تم إرسال طلب التعاون للمراجعة"
+      );
+    }
+    catch(error){
+      console.error(error);
+
+      showToast(
+        "تعذر حفظ الطلب في Firebase",
+        true
+      );
+    }
+    finally{
+      saveBtn.disabled = false;
+
+      saveBtn.innerText =
+        "إرسال للمراجعة";
+    }
+  }
+);
+
+/* تغيير الحالة */
+
+window.changeStatus =
+  async function(
+    id,
+    newStatus
+  ){
+
+    let message =
+      "";
+
+    if(newStatus === "معتمد"){
+      message =
+        "تأكيد اعتماد الطلب وإدخاله ضمن التسوية؟";
+    }
+    else if(newStatus === "مرفوض"){
+      message =
+        "تأكيد رفض الطلب؟";
+    }
+    else{
+      message =
+        "هل تريد إعادة الطلب إلى انتظار المراجعة؟";
+    }
+
+    if(!confirm(message)){
+      return;
+    }
+
+    try{
+      const updateData = {
+        status:newStatus,
+        updatedAt:serverTimestamp()
+      };
+
+      if(newStatus === "معتمد"){
+        updateData.approvedAt =
+          serverTimestamp();
+      }
+
+      await updateDoc(
+        doc(
+          db,
+          "collaborativeCare",
+          id
+        ),
+        updateData
+      );
+
+      showToast(
+        `تم تحديث الحالة إلى: ${newStatus}`
+      );
+    }
+    catch(error){
+      console.error(error);
+
+      showToast(
+        "تعذر تحديث حالة الطلب",
+        true
+      );
+    }
+  };
+
+/* حذف */
+
+window.deleteRecord =
+  async function(id){
+
+    const record =
+      records.find(
+        item =>
+          item.id === id
+      );
+
+    if(!record){
+      return;
+    }
+
+    const confirmed =
+      confirm(
+        `هل تريد حذف الفاتورة رقم ${record.invoiceNumber}؟`
+      );
+
+    if(!confirmed){
+      return;
+    }
+
+    try{
+      await deleteDoc(
+        doc(
+          db,
+          "collaborativeCare",
+          id
+        )
+      );
+
+      showToast(
+        "تم حذف السجل"
+      );
+    }
+    catch(error){
+      console.error(error);
+
+      showToast(
+        "تعذر حذف السجل",
+        true
+      );
+    }
+  };
+
+/* سجلات الفترة */
+
+function getPeriodRecords(){
+  return records.filter(record=>
+    record.invoiceDate >= periodStart
+    &&
+    record.invoiceDate <= periodEnd
+  );
+}
+
+/* الإحصائيات */
+
+function updateStats(){
+  const periodRecords =
+    getPeriodRecords();
+
+  const approved =
+    periodRecords.filter(
+      record =>
+        record.status === "معتمد"
+    );
+
+  const pending =
+    periodRecords.filter(
+      record =>
+        record.status ===
+        "بانتظار المراجعة"
+    );
+
+  const invoicesTotal =
+    approved.reduce(
+      (sum,record)=>
+        sum
+        +
+        Number(record.invoiceAmount || 0),
+      0
+    );
+
+  const transferredTotal =
+    approved.reduce(
+      (sum,record)=>
+        sum
+        +
+        Number(
+          record.shareAmount
+          ??
+          Number(record.invoiceAmount || 0) / 2
+        ),
+      0
+    );
+
+  const bonusesTotal =
+    approved.reduce(
+      (sum,record)=>
+        sum
+        +
+        Number(
+          record.totalBonus
+          ??
+          (
+            Number(record.invoiceAmount || 0)
+            /
+            2
+            *
+            0.05
+            *
+            2
+          )
+        ),
+      0
+    );
+
+  document
+    .getElementById("totalRequests")
+    .innerText =
+      periodRecords.length;
+
+  document
+    .getElementById("pendingRequests")
+    .innerText =
+      pending.length;
+
+  document
+    .getElementById("approvedRequests")
+    .innerText =
+      approved.length;
+
+  document
+    .getElementById("approvedInvoicesTotal")
+    .innerText =
+      money(invoicesTotal);
+
+  document
+    .getElementById("transferredTotal")
+    .innerText =
+      money(transferredTotal);
+
+  document
+    .getElementById("bonusesTotal")
+    .innerText =
+      money(bonusesTotal);
+}
+
+/* شارة الحالة */
+
+function getStatusClass(status){
+  if(status === "معتمد"){
+    return "status-approved";
+  }
+
+  if(status === "مرفوض"){
+    return "status-rejected";
+  }
+
+  return "status-pending";
+}
+
+/* أزرار الإجراءات */
+
+function createActions(record){
+  if(record.status === "بانتظار المراجعة"){
+    return `
+      <div class="action-group">
+
+        <button
+          class="action-btn approve-btn"
+          onclick="changeStatus('${record.id}','معتمد')"
+        >
+          اعتماد
+        </button>
+
+        <button
+          class="action-btn reject-btn"
+          onclick="changeStatus('${record.id}','مرفوض')"
+        >
+          رفض
+        </button>
+
+      </div>
+    `;
+  }
+
+  if(record.status === "معتمد"){
+    return `
+      <div class="action-group">
+
+        <button
+          class="action-btn pending-btn"
+          onclick="changeStatus('${record.id}','بانتظار المراجعة')"
+        >
+          إلغاء الاعتماد
+        </button>
+
+      </div>
+    `;
+  }
+
+  return `
+    <div class="action-group">
+
+      <button
+        class="action-btn pending-btn"
+        onclick="changeStatus('${record.id}','بانتظار المراجعة')"
+      >
+        إعادة للمراجعة
+      </button>
+
+    </div>
+  `;
+}
+
+/* عرض الجدول */
+
+function renderRecords(){
+  const body =
+    document.getElementById("recordsBody");
+
+  const table =
+    document.getElementById("recordsTable");
+
+  const empty =
+    document.getElementById("emptyState");
+
+  const search =
+    searchInput
+      .value
+      .trim()
+      .toLowerCase();
+
+  const selectedStatus =
+    statusFilter.value;
+
+  let list =
+    getPeriodRecords();
+
+  list =
+    list.filter(record=>{
+
+      const searchableText = `
+        ${record.invoiceNumber || ""}
+        ${record.patientName || ""}
+        ${record.fileNumber || ""}
+        ${record.registeredTherapist || ""}
+        ${record.collaboratingTherapist || ""}
+        ${record.invoiceType || ""}
+      `.toLowerCase();
+
+      const matchesSearch =
+        !search
+        ||
+        searchableText.includes(search);
+
+      const matchesStatus =
+        !selectedStatus
+        ||
+        record.status === selectedStatus;
+
+      return (
+        matchesSearch
+        &&
+        matchesStatus
+      );
+    });
+
+  list.sort(
+    (a,b)=>
+      String(b.invoiceDate)
+        .localeCompare(
+          String(a.invoiceDate)
+        )
+  );
+
+  body.innerHTML = "";
+
+  if(list.length === 0){
+    table.style.display =
+      "none";
+
+    empty.style.display =
+      "block";
+
+    return;
+  }
+
+  table.style.display =
+    "table";
+
+  empty.style.display =
+    "none";
+
+  list.forEach(record=>{
+
+    const invoiceAmount =
+      Number(record.invoiceAmount || 0);
+
+    const shareAmount =
+      Number(
+        record.shareAmount
+        ??
+        invoiceAmount / 2
+      );
+
+    const bonus =
+      Number(
+        record.bonusPerTherapist
+        ??
+        shareAmount * 0.05
+      );
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+      <td>
+        ${escapeHtml(record.invoiceDate)}
+      </td>
+
+      <td>
+        <span class="invoice-number">
+          ${escapeHtml(record.invoiceNumber)}
+        </span>
+      </td>
+
+      <td>
+        <div class="patient-name">
+          ${escapeHtml(record.patientName)}
+        </div>
+      </td>
+
+      <td>
+        ${escapeHtml(record.fileNumber)}
+      </td>
+
+      <td>
+        ${escapeHtml(record.invoiceType)}
+      </td>
+
+      <td>
+        <span class="amount">
+          ${money(invoiceAmount)}
+        </span>
+      </td>
+
+      <td>
+        ${escapeHtml(record.registeredTherapist)}
+      </td>
+
+      <td>
+        ${escapeHtml(record.collaboratingTherapist)}
+      </td>
+
+      <td>
+        <span class="amount">
+          ${money(shareAmount)}
+        </span>
+      </td>
+
+      <td>
+        <span class="amount">
+          ${money(bonus)}
+        </span>
+      </td>
+
+      <td>
+        <span
+          class="status-badge ${getStatusClass(record.status)}"
+        >
+          ${escapeHtml(record.status)}
+        </span>
+      </td>
+
+      <td>
+        ${createActions(record)}
+      </td>
+
+      <td>
+
+        <button
+          class="action-btn delete-btn"
+          onclick="deleteRecord('${record.id}')"
+        >
+          حذف
+        </button>
+
+      </td>
+    `;
+
+    body.appendChild(row);
+  });
+}
+
+/* جدول التسويات */
+
+function renderSettlements(){
+  const body =
+    document.getElementById("settlementBody");
+
+  const approved =
+    getPeriodRecords().filter(
+      record =>
+        record.status === "معتمد"
+    );
+
+  const summary = {};
+
+  therapists.forEach(name=>{
+    summary[name] = {
+      therapist:name,
+      cases:0,
+      deductions:0,
+      additions:0,
+      collaborativeRevenue:0,
+      bonus:0
+    };
+  });
+
+  approved.forEach(record=>{
+
+    const invoiceAmount =
+      Number(record.invoiceAmount || 0);
+
+    const share =
+      Number(
+        record.shareAmount
+        ??
+        invoiceAmount / 2
+      );
+
+    const bonus =
+      Number(
+        record.bonusPerTherapist
+        ??
+        share * 0.05
+      );
+
+    if(!summary[record.registeredTherapist]){
+      summary[record.registeredTherapist] = {
+        therapist:
+          record.registeredTherapist,
+        cases:0,
+        deductions:0,
+        additions:0,
+        collaborativeRevenue:0,
+        bonus:0
+      };
+    }
+
+    if(!summary[record.collaboratingTherapist]){
+      summary[record.collaboratingTherapist] = {
+        therapist:
+          record.collaboratingTherapist,
+        cases:0,
+        deductions:0,
+        additions:0,
+        collaborativeRevenue:0,
+        bonus:0
+      };
+    }
+
+    summary[
+      record.registeredTherapist
+    ].cases += 1;
+
+    summary[
+      record.registeredTherapist
+    ].deductions += share;
+
+    summary[
+      record.registeredTherapist
+    ].collaborativeRevenue += share;
+
+    summary[
+      record.registeredTherapist
+    ].bonus += bonus;
+
+    summary[
+      record.collaboratingTherapist
+    ].cases += 1;
+
+    summary[
+      record.collaboratingTherapist
+    ].additions += share;
+
+    summary[
+      record.collaboratingTherapist
+    ].collaborativeRevenue += share;
+
+    summary[
+      record.collaboratingTherapist
+    ].bonus += bonus;
+  });
+
+  const list =
+    Object
+      .values(summary)
+      .filter(item=>
+        item.cases > 0
+      )
+      .sort(
+        (a,b)=>
+          b.bonus - a.bonus
+      );
+
+  body.innerHTML = "";
+
+  if(list.length === 0){
+    body.innerHTML = `
+      <tr>
+        <td colspan="7">
+          لا توجد طلبات معتمدة في هذه الفترة
+        </td>
+      </tr>
+    `;
+
+    return;
+  }
+
+  list.forEach(item=>{
+
+    const netAdjustment =
+      item.additions
+      -
+      item.deductions;
+
+    let netClass =
+      "neutral";
+
+    let netPrefix =
+      "";
+
+    if(netAdjustment > 0){
+      netClass =
+        "positive";
+
+      netPrefix =
+        "+";
+    }
+    else if(netAdjustment < 0){
+      netClass =
+        "negative";
+    }
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+      <td>
+        <strong>
+          ${escapeHtml(item.therapist)}
+        </strong>
+      </td>
+
+      <td>
+        ${item.cases}
+      </td>
+
+      <td>
+        <span class="negative">
+          - ${money(item.deductions)}
+        </span>
+      </td>
+
+      <td>
+        <span class="positive">
+          + ${money(item.additions)}
+        </span>
+      </td>
+
+      <td>
+        <span class="${netClass}">
+          ${netPrefix}${money(netAdjustment)}
+        </span>
+      </td>
+
+      <td>
+        <span class="amount">
+          ${money(item.collaborativeRevenue)}
+        </span>
+      </td>
+
+      <td>
+        <span class="positive">
+          ${money(item.bonus)}
+        </span>
+      </td>
+    `;
+
+    body.appendChild(row);
+  });
+}
+
+/* تحديث الصفحة */
+
+function renderAll(){
+  updateStats();
+  renderRecords();
+  renderSettlements();
+}
+
+searchInput.addEventListener(
+  "input",
+  renderRecords
+);
+
+statusFilter.addEventListener(
+  "change",
+  renderRecords
+);
+
+/* قراءة Firebase مباشرة */
+
+onSnapshot(
+  collaborationsRef,
+  snapshot=>{
+
+    records = [];
+
+    snapshot.forEach(item=>{
+      records.push({
+        id:item.id,
+        ...item.data()
+      });
+    });
+
+    document
+      .getElementById("loadingState")
+      .style
+      .display =
+        "none";
+
+    renderAll();
+  },
+  error=>{
+    console.error(error);
+
+    document
+      .getElementById("loadingState")
+      .style
+      .display =
+        "none";
+
+    showToast(
+      "تعذر قراءة بيانات التعاون العلاجي من Firebase",
+      true
+    );
+  }
+);
+
+/* التشغيل الأول */
+
+fillTherapists();
+
+document
+  .getElementById("invoiceDate")
+  .value =
+    isoDate(new Date());
+
+window.setCurrentPeriod();
+
+updateCalculation();
+
+</script>
+
+<script
+  type="module"
+  src="tracker.js"
+></script>
+
+</body>
+</html>
