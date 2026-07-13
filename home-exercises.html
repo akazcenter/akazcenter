@@ -78,6 +78,80 @@ button{cursor:pointer}
 }
 .field textarea{min-height:80px;resize:vertical}
 .two-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.region-stage{padding:18px}
+.region-title-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:15px
+}
+.region-title-row h3{margin:0;color:var(--blue);font-size:18px}
+.region-title-row p{margin:4px 0 0;color:var(--muted);font-size:12px}
+.region-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:13px
+}
+.region-card{
+  position:relative;overflow:hidden;min-height:128px;padding:18px 13px;
+  border:1px solid #dbe4ee;border-radius:18px;background:#fff;
+  text-align:center;transition:.22s
+}
+.region-card:hover{
+  transform:translateY(-4px);
+  border-color:#93c5fd;
+  box-shadow:0 14px 28px rgba(15,23,42,.10)
+}
+.region-card::after{
+  content:"";position:absolute;width:75px;height:75px;border-radius:50%;
+  left:-28px;bottom:-33px;background:rgba(0,91,159,.06)
+}
+.region-icon{
+  width:54px;height:54px;margin:0 auto 10px;border-radius:17px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#eef6ff,#fff);
+  box-shadow:inset 0 0 0 1px #e2e8f0;font-size:27px
+}
+.region-card strong{position:relative;z-index:2;display:block;color:var(--blue);font-size:14px}
+.region-card small{position:relative;z-index:2;display:block;margin-top:5px;color:var(--muted);font-size:10px}
+.region-count{
+  position:absolute;top:9px;left:9px;padding:4px 7px;border-radius:999px;
+  background:#e0f2fe;color:#075985;font-size:9px;font-weight:900
+}
+.exercises-stage{display:none}
+.exercises-stage.show{display:block}
+.back-regions{
+  padding:9px 13px;border:0;border-radius:10px;background:#e0f2fe;
+  color:#075985;font-size:12px;font-weight:900
+}
+.selected-region-banner{
+  padding:14px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:linear-gradient(135deg,#eff6ff,#fff);
+  border-bottom:1px solid var(--line)
+}
+.selected-region-name{display:flex;align-items:center;gap:10px}
+.selected-region-name .big-icon{
+  width:42px;height:42px;border-radius:13px;display:flex;align-items:center;
+  justify-content:center;background:#fff;border:1px solid #dbeafe;font-size:22px
+}
+.selected-region-name strong{display:block;color:var(--blue);font-size:15px}
+.selected-region-name small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+.subfilters{
+  padding:12px 17px;display:flex;gap:8px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line);background:#fff
+}
+.filter-chip{
+  padding:8px 12px;border:1px solid #cbd5e1;border-radius:999px;
+  background:#fff;color:#475569;font-size:11px;font-weight:900
+}
+.filter-chip.active{
+  border-color:var(--blue);background:var(--blue);color:#fff;
+  box-shadow:0 7px 15px rgba(0,91,159,.18)
+}
+body.dark .region-card,body.dark .subfilters{background:#1e293b;border-color:#334155}
+body.dark .selected-region-banner{background:#172554}
+body.dark .region-card strong,body.dark .region-title-row h3{color:#93c5fd}
+body.dark .filter-chip{background:#0f172a;color:#cbd5e1;border-color:#475569}
+@media(max-width:1150px){.region-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.region-grid{grid-template-columns:repeat(2,1fr)}}
+
 .library-card{min-height:700px}
 .library-tools{padding:15px 17px;display:grid;grid-template-columns:1fr 210px;gap:10px;border-bottom:1px solid var(--line)}
 .library-summary{
@@ -298,26 +372,51 @@ body.dark .library-summary{background:#0f172a;color:#cbd5e1;border-color:#334155
     </div>
 
     <div class="card library-card">
-      <div class="card-head"><h2>مكتبة التمارين العلاجية</h2><p>اختر المنطقة ثم أضف التمارين المناسبة.</p></div>
-      <div class="library-tools">
-        <input id="exerciseSearch" placeholder="ابحث بالعربي أو الإنجليزي...">
-        <select id="categoryFilter">
-          <option value="الكل">جميع المناطق</option>
-          <option value="الرقبة">الرقبة</option>
-          <option value="الكتف">الكتف</option>
-          <option value="المرفق والرسغ">المرفق والرسغ</option>
-          <option value="أعلى الظهر">أعلى الظهر</option>
-          <option value="أسفل الظهر">أسفل الظهر</option>
-          <option value="الحوض والورك">الحوض والورك</option>
-          <option value="الركبة">الركبة</option>
-          <option value="الكاحل والقدم">الكاحل والقدم</option>
-          <option value="الاتزان">الاتزان</option>
-          <option value="التأهيل العصبي">التأهيل العصبي</option>
-          <option value="التنفس">التنفس</option>
-        </select>
+      <div class="card-head">
+        <h2>مكتبة التمارين العلاجية</h2>
+        <p>اختر منطقة الجسم أولًا، ثم تظهر تمارينها فقط.</p>
       </div>
-      <div class="library-summary"><span id="libraryCount">التمارين المعروضة: 0</span><span id="selectedCount">المختارة: 0</span></div>
-      <div class="library" id="exerciseLibrary"></div>
+
+      <div class="region-stage" id="regionStage">
+        <div class="region-title-row">
+          <div>
+            <h3>اختر منطقة الجسم</h3>
+            <p>لن تظهر التمارين حتى تختار المنطقة المطلوبة.</p>
+          </div>
+        </div>
+        <div class="region-grid" id="regionGrid"></div>
+      </div>
+
+      <div class="exercises-stage" id="exercisesStage">
+        <div class="selected-region-banner">
+          <div class="selected-region-name">
+            <div class="big-icon" id="selectedRegionIcon">🦵</div>
+            <div>
+              <strong id="selectedRegionTitle">الركبة</strong>
+              <small id="selectedRegionSubtitle">تمارين المنطقة المختارة</small>
+            </div>
+          </div>
+          <button class="back-regions" onclick="backToRegions()">← تغيير المنطقة</button>
+        </div>
+
+        <div class="library-tools">
+          <input id="exerciseSearch" placeholder="ابحث داخل تمارين المنطقة...">
+          <select id="sortExercises">
+            <option value="default">الترتيب الافتراضي</option>
+            <option value="ar">حسب الاسم العربي</option>
+            <option value="en">حسب الاسم الإنجليزي</option>
+          </select>
+        </div>
+
+        <div class="subfilters" id="subfilters"></div>
+
+        <div class="library-summary">
+          <span id="libraryCount">التمارين المعروضة: 0</span>
+          <span id="selectedCount">المختارة: 0</span>
+        </div>
+
+        <div class="library" id="exerciseLibrary"></div>
+      </div>
     </div>
   </section>
 
@@ -437,6 +536,55 @@ const exercises=[
   E("breathing-003","التنفس","توسيع القفص الصدري","Thoracic Expansion","خذ شهيقًا عميقًا ووسع القفص الصدري، ثم أخرج الهواء ببطء.")
 ];
 
+
+const regions=[
+  {name:"الرقبة",icon:"🧠",en:"Neck"},
+  {name:"الكتف",icon:"💪",en:"Shoulder"},
+  {name:"المرفق والرسغ",icon:"✋",en:"Elbow & Wrist"},
+  {name:"أعلى الظهر",icon:"🧍",en:"Upper Back"},
+  {name:"أسفل الظهر",icon:"🧘",en:"Lower Back"},
+  {name:"الحوض والورك",icon:"🦴",en:"Hip & Pelvis"},
+  {name:"الركبة",icon:"🦵",en:"Knee"},
+  {name:"الكاحل والقدم",icon:"🦶",en:"Ankle & Foot"},
+  {name:"الاتزان",icon:"⚖️",en:"Balance"},
+  {name:"التأهيل العصبي",icon:"🚶",en:"Neurological Rehab"},
+  {name:"التنفس",icon:"🫁",en:"Breathing"}
+];
+
+const regionFilters={
+  "الرقبة":["الكل","حركة","إطالة","ثبات وتقوية"],
+  "الكتف":["الكل","مدى حركي","إطالة","تقوية"],
+  "المرفق والرسغ":["الكل","حركة","إطالة","تقوية"],
+  "أعلى الظهر":["الكل","حركة","وضعية","تقوية"],
+  "أسفل الظهر":["الكل","حركة","إطالة","تقوية الجذع"],
+  "الحوض والورك":["الكل","حركة","إطالة","تقوية"],
+  "الركبة":["الكل","مدى حركي","تنشيط عضلي","تقوية","وظيفي"],
+  "الكاحل والقدم":["الكل","حركة","إطالة","تقوية"],
+  "الاتزان":["الكل","ثابت","ديناميكي"],
+  "التأهيل العصبي":["الكل","نقل وزن","مشي","جلوس وتوازن"],
+  "التنفس":["الكل","تحكم بالتنفس","توسيع الصدر"]
+};
+
+const exerciseTags={
+  "neck-001":["ثبات وتقوية"],"neck-002":["حركة"],"neck-003":["إطالة"],
+  "shoulder-001":["مدى حركي"],"shoulder-002":["مدى حركي"],"shoulder-003":["مدى حركي","إطالة"],
+  "elbow-001":["حركة"],"wrist-001":["حركة","تقوية"],"wrist-002":["إطالة"],
+  "thoracic-001":["حركة","وضعية"],"thoracic-002":["حركة"],"thoracic-003":["تقوية","وضعية"],
+  "back-001":["حركة","تقوية الجذع"],"back-002":["إطالة"],"back-003":["حركة"],"back-004":["تقوية الجذع"],
+  "hip-001":["تقوية"],"hip-002":["تقوية"],"hip-003":["إطالة"],
+  "knee-001":["تنشيط عضلي","تقوية"],"knee-002":["تنشيط عضلي"],"knee-003":["مدى حركي"],
+  "knee-004":["تقوية"],"knee-005":["وظيفي","تقوية"],"knee-006":["وظيفي","تقوية"],
+  "ankle-001":["حركة"],"ankle-002":["تقوية"],"ankle-003":["إطالة"],"ankle-004":["تقوية"],
+  "balance-001":["ثابت"],"balance-002":["ثابت"],"balance-003":["ثابت","ديناميكي"],
+  "neuro-001":["نقل وزن"],"neuro-002":["مشي"],"neuro-003":["جلوس وتوازن"],
+  "breathing-001":["تحكم بالتنفس"],"breathing-002":["تحكم بالتنفس"],"breathing-003":["توسيع الصدر"]
+};
+
+exercises.forEach(e=>e.tags=exerciseTags[e.id]||[]);
+
+let activeRegion="";
+let activeSubfilter="الكل";
+
 let selectedExercises=[];
 
 function isoDate(date){
@@ -515,20 +663,94 @@ window.watchVideo=function(id){
   window.open(exercise.videoUrl,"_blank","noopener");
 };
 
+function regionIcon(name){
+  return regions.find(r=>r.name===name)?.icon||"🏃";
+}
+
+function renderRegions(){
+  const grid=document.getElementById("regionGrid");
+  grid.innerHTML="";
+
+  regions.forEach(region=>{
+    const count=exercises.filter(e=>e.category===region.name).length;
+    const card=document.createElement("button");
+    card.className="region-card";
+    card.onclick=()=>selectRegion(region.name);
+    card.innerHTML=`
+      <span class="region-count">${count} تمرين</span>
+      <div class="region-icon">${region.icon}</div>
+      <strong>${escapeHtml(region.name)}</strong>
+      <small>${escapeHtml(region.en)}</small>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+window.selectRegion=function(name){
+  activeRegion=name;
+  activeSubfilter="الكل";
+  document.getElementById("regionStage").style.display="none";
+  document.getElementById("exercisesStage").classList.add("show");
+  document.getElementById("selectedRegionIcon").innerText=regionIcon(name);
+  document.getElementById("selectedRegionTitle").innerText=name;
+  document.getElementById("selectedRegionSubtitle").innerText=
+    `${exercises.filter(e=>e.category===name).length} تمرين متاح`;
+  document.getElementById("exerciseSearch").value="";
+  renderSubfilters();
+  renderExerciseLibrary();
+};
+
+window.backToRegions=function(){
+  activeRegion="";
+  activeSubfilter="الكل";
+  document.getElementById("exercisesStage").classList.remove("show");
+  document.getElementById("regionStage").style.display="block";
+  document.getElementById("exerciseLibrary").innerHTML="";
+};
+
+function renderSubfilters(){
+  const box=document.getElementById("subfilters");
+  const filters=regionFilters[activeRegion]||["الكل"];
+  box.innerHTML="";
+
+  filters.forEach(filter=>{
+    const btn=document.createElement("button");
+    btn.className=`filter-chip ${activeSubfilter===filter?"active":""}`;
+    btn.innerText=filter;
+    btn.onclick=()=>{
+      activeSubfilter=filter;
+      renderSubfilters();
+      renderExerciseLibrary();
+    };
+    box.appendChild(btn);
+  });
+}
+
 function renderExerciseLibrary(){
+  if(!activeRegion)return;
+
   const library=document.getElementById("exerciseLibrary");
   const search=document.getElementById("exerciseSearch").value.trim().toLowerCase();
-  const category=document.getElementById("categoryFilter").value;
+  const sort=document.getElementById("sortExercises").value;
 
-  const list=exercises.filter(e=>{
-    const categoryOk=category==="الكل"||e.category===category;
-    const text=`${e.nameAr} ${e.nameEn} ${e.category}`.toLowerCase();
-    return categoryOk&&(!search||text.includes(search));
+  let list=exercises.filter(e=>{
+    const sameRegion=e.category===activeRegion;
+    const matchesTag=activeSubfilter==="الكل"||e.tags.includes(activeSubfilter);
+    const text=`${e.nameAr} ${e.nameEn} ${e.category} ${e.tags.join(" ")}`.toLowerCase();
+    return sameRegion&&matchesTag&&(!search||text.includes(search));
   });
+
+  if(sort==="ar")list.sort((a,b)=>a.nameAr.localeCompare(b.nameAr,"ar"));
+  if(sort==="en")list.sort((a,b)=>a.nameEn.localeCompare(b.nameEn,"en"));
 
   document.getElementById("libraryCount").innerText=`التمارين المعروضة: ${list.length}`;
   document.getElementById("selectedCount").innerText=`المختارة: ${selectedExercises.length}`;
   library.innerHTML="";
+
+  if(!list.length){
+    library.innerHTML='<div style="grid-column:1/-1;padding:45px;text-align:center;color:#64748b">لا توجد تمارين مطابقة لهذا التصنيف.</div>';
+    return;
+  }
 
   list.forEach(e=>{
     const added=selectedExercises.some(x=>x.id===e.id);
@@ -847,11 +1069,11 @@ window.openWhatsApp=function(){
 };
 
 document.getElementById("exerciseSearch").addEventListener("input",renderExerciseLibrary);
-document.getElementById("categoryFilter").addEventListener("change",renderExerciseLibrary);
+document.getElementById("sortExercises").addEventListener("change",renderExerciseLibrary);
 
 fillTherapists();
 document.getElementById("programDate").value=isoDate(new Date());
-renderExerciseLibrary();
+renderRegions();
 renderSelectedExercises();
 </script>
 
