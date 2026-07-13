@@ -21,12 +21,9 @@
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
-  --light:#f8fafc;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -47,11 +44,11 @@ textarea{
   font-family:Tahoma,Arial,sans-serif;
 }
 
-button{
-  cursor:pointer;
-}
+button{cursor:pointer}
 
-/* الهيدر */
+/* =========================
+   الهيدر
+========================= */
 
 .topbar{
   position:relative;
@@ -147,7 +144,9 @@ button{
   font-weight:900;
 }
 
-/* المحتوى */
+/* =========================
+   المحتوى
+========================= */
 
 .main{
   width:95%;
@@ -167,9 +166,7 @@ button{
   box-shadow:0 10px 24px rgba(15,23,42,.06);
 }
 
-.info-box strong{
-  color:var(--blue);
-}
+.info-box strong{color:var(--blue)}
 
 .layout{
   display:grid;
@@ -206,13 +203,9 @@ button{
   line-height:1.8;
 }
 
-.form-body{
-  padding:20px;
-}
+.form-body{padding:20px}
 
-.field{
-  margin-bottom:14px;
-}
+.field{margin-bottom:14px}
 
 .field label{
   display:block;
@@ -222,9 +215,7 @@ button{
   font-weight:900;
 }
 
-.required{
-  color:var(--red);
-}
+.required{color:var(--red)}
 
 .field input,
 .field select,
@@ -258,16 +249,16 @@ button{
   gap:10px;
 }
 
-/* المكتبة */
+/* =========================
+   مكتبة التمارين
+========================= */
 
-.library-card{
-  min-height:700px;
-}
+.library-card{min-height:700px}
 
 .library-tools{
   padding:15px 17px;
   display:grid;
-  grid-template-columns:1fr 190px;
+  grid-template-columns:1fr 210px;
   gap:10px;
   border-bottom:1px solid var(--line);
 }
@@ -280,6 +271,18 @@ button{
   border-radius:12px;
   outline:none;
   background:white;
+}
+
+.library-summary{
+  padding:11px 18px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:#475569;
+  background:#f8fafc;
+  border-bottom:1px solid #e2e8f0;
+  font-size:12px;
+  font-weight:900;
 }
 
 .library{
@@ -303,12 +306,25 @@ button{
   box-shadow:0 15px 28px rgba(15,23,42,.12);
 }
 
+.exercise-category{
+  position:absolute;
+  z-index:3;
+  top:10px;
+  right:10px;
+  padding:5px 9px;
+  border-radius:999px;
+  color:#075985;
+  background:rgba(224,242,254,.94);
+  font-size:10px;
+  font-weight:900;
+}
+
 .exercise-image{
   width:100%;
   height:165px;
   object-fit:contain;
   display:block;
-  padding:10px;
+  padding:8px;
   background:#f8fafc;
   border-bottom:1px solid #e2e8f0;
 }
@@ -323,9 +339,7 @@ button{
   border-bottom:1px solid #e2e8f0;
 }
 
-.exercise-content{
-  padding:14px;
-}
+.exercise-content{padding:14px}
 
 .exercise-content h3{
   margin:0;
@@ -366,15 +380,13 @@ button{
   color:#166534;
 }
 
-/* البرنامج المختار */
+/* =========================
+   التمارين المختارة
+========================= */
 
-.selected-section{
-  margin-top:22px;
-}
+.selected-section{margin-top:22px}
 
-.selected-list{
-  padding:18px;
-}
+.selected-list{padding:18px}
 
 .selected-empty{
   padding:40px 20px;
@@ -388,6 +400,7 @@ button{
 }
 
 .selected-exercise{
+  position:relative;
   display:grid;
   grid-template-columns:155px 1fr 40px;
   gap:16px;
@@ -397,10 +410,6 @@ button{
   border:1px solid #dbe4ee;
   border-radius:18px;
   background:#f8fafc;
-}
-
-.selected-exercise:last-child{
-  margin-bottom:0;
 }
 
 .selected-image{
@@ -449,9 +458,7 @@ button{
   font-size:12px;
 }
 
-.exercise-note{
-  margin-top:9px;
-}
+.exercise-note{margin-top:9px}
 
 .exercise-note textarea{
   width:100%;
@@ -473,7 +480,9 @@ button{
   font-weight:900;
 }
 
-/* الأزرار */
+/* =========================
+   الأزرار
+========================= */
 
 .bottom-actions{
   margin-top:20px;
@@ -511,7 +520,9 @@ button{
   color:white;
 }
 
-/* المعاينة */
+/* =========================
+   المعاينة وصفحات PDF
+========================= */
 
 .preview-overlay{
   position:fixed;
@@ -526,9 +537,7 @@ button{
   backdrop-filter:blur(5px);
 }
 
-.preview-overlay.show{
-  display:flex;
-}
+.preview-overlay.show{display:flex}
 
 .preview-wrapper{
   width:100%;
@@ -536,10 +545,16 @@ button{
 }
 
 .preview-toolbar{
+  position:sticky;
+  top:0;
+  z-index:20;
   margin-bottom:12px;
+  padding:10px;
   display:flex;
   justify-content:flex-start;
   gap:8px;
+  border-radius:13px;
+  background:rgba(15,23,42,.88);
 }
 
 .preview-toolbar button{
@@ -559,37 +574,37 @@ button{
   color:white;
 }
 
-.pdf-document{
+.pdf-pages{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+.pdf-page{
+  position:relative;
   width:794px;
-  min-height:1123px;
+  height:1123px;
   margin:auto;
+  padding:30px 34px 26px;
+  overflow:hidden;
   background:white;
   color:#0f172a;
   box-shadow:0 25px 70px rgba(0,0,0,.32);
 }
 
-.pdf-cover{
-  min-height:1123px;
-  padding:55px;
-  display:flex;
-  flex-direction:column;
-  background:
-    radial-gradient(circle at 95% 5%,rgba(0,119,200,.11),transparent 28%),
-    linear-gradient(180deg,#ffffff,#f7fbff);
-}
-
-.pdf-header{
+.pdf-top{
+  height:82px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:25px;
-  padding-bottom:25px;
+  gap:20px;
+  padding-bottom:13px;
   border-bottom:4px solid var(--orange);
 }
 
 .pdf-logo{
-  width:150px;
-  height:120px;
+  width:105px;
+  height:72px;
   object-fit:contain;
 }
 
@@ -601,31 +616,44 @@ button{
 .pdf-title h1{
   margin:0;
   color:var(--blue);
-  font-size:33px;
+  font-size:25px;
+  font-weight:900;
 }
 
 .pdf-title p{
-  margin:8px 0 0;
+  margin:4px 0 0;
   direction:ltr;
   color:var(--orange);
-  font-size:16px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.pdf-page-number{
+  min-width:75px;
+  direction:ltr;
+  color:#64748b;
+  text-align:left;
+  font-size:11px;
   font-weight:900;
 }
 
 .patient-info-box{
-  margin-top:32px;
-  padding:22px;
+  margin-top:14px;
+  padding:11px 14px;
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px 25px;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px 18px;
   border:1px solid #dbeafe;
-  border-radius:18px;
+  border-radius:13px;
   background:#f8fbff;
 }
 
 .pdf-info-item{
-  font-size:14px;
-  line-height:1.7;
+  overflow:hidden;
+  font-size:10.5px;
+  line-height:1.5;
+  white-space:nowrap;
+  text-overflow:ellipsis;
 }
 
 .pdf-info-item span{
@@ -638,90 +666,146 @@ button{
 }
 
 .pdf-general-instructions{
-  margin-top:24px;
-  padding:18px;
-  border-right:5px solid var(--orange);
-  border-radius:13px;
+  margin-top:10px;
+  padding:9px 12px;
+  border-right:4px solid var(--orange);
+  border-radius:10px;
   background:#fff7ed;
-  font-size:13px;
-  line-height:2;
+  color:#7c2d12;
+  font-size:10.5px;
+  line-height:1.65;
 }
 
-.pdf-exercises{
-  margin-top:28px;
-}
-
-.pdf-exercise{
-  page-break-inside:avoid;
+.pdf-exercises-grid{
+  margin-top:14px;
   display:grid;
-  grid-template-columns:250px 1fr;
-  gap:22px;
-  margin-bottom:22px;
-  padding:18px;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
+
+.pdf-exercise-card{
+  height:202px;
+  display:grid;
+  grid-template-columns:118px 1fr;
+  gap:10px;
+  padding:10px;
+  overflow:hidden;
   border:1px solid #dbe4ee;
-  border-radius:18px;
-  background:white;
+  border-radius:13px;
+  background:#ffffff;
+}
+
+.pdf-exercise-image-wrap{
+  width:118px;
+  height:180px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  background:#f8fafc;
 }
 
 .pdf-exercise-image{
   width:100%;
-  height:220px;
+  height:100%;
   object-fit:contain;
-  border:1px solid #e2e8f0;
-  border-radius:13px;
-  background:#f8fafc;
 }
 
-.pdf-exercise h2{
+.pdf-exercise-content{
+  min-width:0;
+  overflow:hidden;
+}
+
+.pdf-exercise-number{
+  display:inline-flex;
+  width:23px;
+  height:23px;
+  margin-left:5px;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  background:var(--blue);
+  color:white;
+  font-size:11px;
+  font-weight:900;
+}
+
+.pdf-exercise-card h2{
+  display:inline;
   margin:0;
   color:var(--blue);
-  font-size:20px;
+  font-size:13.5px;
+  line-height:1.4;
 }
 
 .pdf-exercise-en{
-  margin-top:4px;
+  margin-top:3px;
   direction:ltr;
   color:var(--orange);
-  font-size:12px;
+  font-size:8.5px;
   font-weight:900;
 }
 
 .pdf-exercise-description{
-  margin-top:11px;
+  margin-top:6px;
   color:#334155;
-  font-size:13px;
-  line-height:1.9;
+  font-size:9.2px;
+  line-height:1.55;
 }
 
 .pdf-dose{
-  margin-top:13px;
-  padding:12px;
-  border-radius:12px;
+  margin-top:7px;
+  padding:6px 8px;
+  border-radius:8px;
   background:#eff6ff;
   color:#075985;
-  font-size:13px;
+  font-size:9px;
   font-weight:900;
-  line-height:1.9;
+  line-height:1.5;
 }
 
 .pdf-note{
-  margin-top:9px;
+  margin-top:5px;
   color:#9a3412;
-  font-size:12px;
-  line-height:1.8;
+  font-size:8.5px;
+  line-height:1.45;
 }
 
 .pdf-footer{
-  margin-top:auto;
-  padding-top:25px;
+  position:absolute;
+  right:34px;
+  left:34px;
+  bottom:15px;
+  padding-top:8px;
   border-top:1px solid #dbe4ee;
   color:#64748b;
-  font-size:11.5px;
-  line-height:1.9;
   text-align:center;
+  font-size:8.5px;
+  line-height:1.5;
 }
 
-/* إشعار */
+.pdf-second-page .pdf-exercises-grid{
+  margin-top:17px;
+}
+
+.pdf-second-page .pdf-exercise-card{
+  height:273px;
+}
+
+.pdf-second-page .pdf-exercise-image-wrap{
+  height:249px;
+}
+
+.pdf-second-page .pdf-exercise-description{
+  font-size:9.5px;
+  line-height:1.6;
+}
+
+/* =========================
+   إشعارات
+========================= */
 
 .toast{
   position:fixed;
@@ -747,11 +831,11 @@ button{
   transform:translateX(-50%) translateY(0);
 }
 
-.toast.error{
-  background:#b91c1c;
-}
+.toast.error{background:#b91c1c}
 
-/* الوضع الليلي */
+/* =========================
+   الوضع الليلي
+========================= */
 
 body.dark{
   --text:#e2e8f0;
@@ -794,7 +878,15 @@ body.dark .selected-exercise{
   border-color:#334155;
 }
 
-/* الجوال */
+body.dark .library-summary{
+  background:#0f172a;
+  color:#cbd5e1;
+  border-color:#334155;
+}
+
+/* =========================
+   الجوال
+========================= */
 
 @media(max-width:1150px){
   .layout{
@@ -838,6 +930,7 @@ body.dark .selected-exercise{
 
   .remove-btn{
     position:absolute;
+    top:10px;
     left:10px;
   }
 
@@ -885,18 +978,16 @@ body.dark .selected-exercise{
 
   <section class="info-box">
     <strong>برنامج التمارين المنزلية:</strong>
-    أدخل بيانات المريض، ثم اختر التمارين المناسبة من المكتبة وحدد الجرعة العلاجية لكل تمرين، وبعدها أنشئ ملف PDF مصورًا ومخصصًا للمريض.
+    أدخل بيانات المريض، ثم اختر التمارين من أي منطقة في الجسم وحدد الجرعة العلاجية. صورة التمرين مخصصة لتوضيح الحركة فقط، أما الاسم والشرح والتكرارات فتُنشأ تلقائيًا داخل ملف PDF.
   </section>
 
   <section class="layout">
-
-    <!-- بيانات المريض -->
 
     <div class="card">
 
       <div class="card-head">
         <h2>بيانات البرنامج</h2>
-        <p>البيانات التي ستظهر داخل ملف المريض.</p>
+        <p>البيانات التي ستظهر في ملف المريض.</p>
       </div>
 
       <div class="form-body">
@@ -907,11 +998,7 @@ body.dark .selected-exercise{
             <span class="required">*</span>
           </label>
 
-          <input
-            type="text"
-            id="patientName"
-            placeholder="اسم المريض"
-          >
+          <input type="text" id="patientName" placeholder="اسم المريض">
         </div>
 
         <div class="two-fields">
@@ -922,11 +1009,7 @@ body.dark .selected-exercise{
               <span class="required">*</span>
             </label>
 
-            <input
-              type="text"
-              id="fileNumber"
-              placeholder="رقم الملف"
-            >
+            <input type="text" id="fileNumber" placeholder="رقم الملف">
           </div>
 
           <div class="field">
@@ -962,7 +1045,7 @@ body.dark .selected-exercise{
           <input
             type="text"
             id="diagnosis"
-            placeholder="مثال: ألم الركبة بعد عملية الرباط الصليبي"
+            placeholder="مثال: ألم أسفل الظهر"
           >
         </div>
 
@@ -970,20 +1053,12 @@ body.dark .selected-exercise{
 
           <div class="field">
             <label>تاريخ إصدار البرنامج</label>
-
-            <input
-              type="date"
-              id="programDate"
-            >
+            <input type="date" id="programDate">
           </div>
 
           <div class="field">
             <label>تاريخ المراجعة القادمة</label>
-
-            <input
-              type="date"
-              id="reviewDate"
-            >
+            <input type="date" id="reviewDate">
           </div>
 
         </div>
@@ -993,7 +1068,7 @@ body.dark .selected-exercise{
 
           <textarea
             id="generalInstructions"
-            placeholder="مثال: تنفيذ التمارين ببطء وعدم تجاوز مستوى الألم المحتمل..."
+            placeholder="مثال: تنفيذ التمارين ببطء والتوقف عند زيادة الألم بشكل واضح."
           ></textarea>
         </div>
 
@@ -1001,13 +1076,11 @@ body.dark .selected-exercise{
 
     </div>
 
-    <!-- مكتبة التمارين -->
-
     <div class="card library-card">
 
       <div class="card-head">
         <h2>مكتبة التمارين العلاجية</h2>
-        <p>النسخة الأولى مخصصة لتمارين الركبة.</p>
+        <p>اختر المنطقة ثم أضف التمارين المناسبة للبرنامج.</p>
       </div>
 
       <div class="library-tools">
@@ -1015,17 +1088,29 @@ body.dark .selected-exercise{
         <input
           type="text"
           id="exerciseSearch"
-          placeholder="ابحث باسم التمرين..."
+          placeholder="ابحث بالعربي أو الإنجليزي..."
         >
 
         <select id="categoryFilter">
+          <option value="الكل">جميع المناطق</option>
+          <option value="الرقبة">الرقبة</option>
+          <option value="الكتف">الكتف</option>
+          <option value="المرفق والرسغ">المرفق والرسغ</option>
+          <option value="أعلى الظهر">أعلى الظهر</option>
+          <option value="أسفل الظهر">أسفل الظهر</option>
+          <option value="الحوض والورك">الحوض والورك</option>
           <option value="الركبة">الركبة</option>
-          <option value="الرقبة" disabled>الرقبة — قريبًا</option>
-          <option value="الكتف" disabled>الكتف — قريبًا</option>
-          <option value="أسفل الظهر" disabled>أسفل الظهر — قريبًا</option>
-          <option value="الكاحل" disabled>الكاحل — قريبًا</option>
+          <option value="الكاحل والقدم">الكاحل والقدم</option>
+          <option value="الاتزان">الاتزان</option>
+          <option value="التأهيل العصبي">التأهيل العصبي</option>
+          <option value="التنفس">التنفس</option>
         </select>
 
+      </div>
+
+      <div class="library-summary">
+        <span id="libraryCount">التمارين المعروضة: 0</span>
+        <span id="selectedCount">المختارة: 0</span>
       </div>
 
       <div class="library" id="exerciseLibrary"></div>
@@ -1034,25 +1119,14 @@ body.dark .selected-exercise{
 
   </section>
 
-  <!-- التمارين المختارة -->
-
   <section class="card selected-section">
 
     <div class="card-head">
       <h2>البرنامج المختار</h2>
-      <p>
-        عدّل الجرعة العلاجية لكل تمرين قبل إنشاء الملف.
-      </p>
+      <p>عدّل المجموعات والتكرارات والثبات لكل تمرين.</p>
     </div>
 
-    <div class="selected-list" id="selectedExercisesList">
-
-      <div class="selected-empty">
-        <div class="icon">🏃</div>
-        لم تتم إضافة أي تمارين حتى الآن.
-      </div>
-
-    </div>
+    <div class="selected-list" id="selectedExercisesList"></div>
 
   </section>
 
@@ -1078,8 +1152,6 @@ body.dark .selected-exercise{
 
 </main>
 
-<!-- المعاينة -->
-
 <div class="preview-overlay" id="previewOverlay">
 
   <div class="preview-wrapper">
@@ -1096,43 +1168,7 @@ body.dark .selected-exercise{
 
     </div>
 
-    <div class="pdf-document" id="pdfDocument">
-
-      <div class="pdf-cover">
-
-        <div class="pdf-header">
-
-          <img
-            src="logo.png"
-            class="pdf-logo"
-            alt="شعار مركز عكاز"
-          >
-
-          <div class="pdf-title">
-            <h1>برنامج التمارين المنزلية</h1>
-            <p>HOME EXERCISE PROGRAM</p>
-          </div>
-
-        </div>
-
-        <div class="patient-info-box" id="pdfPatientInfo"></div>
-
-        <div
-          class="pdf-general-instructions"
-          id="pdfGeneralInstructions"
-        ></div>
-
-        <div class="pdf-exercises" id="pdfExercises"></div>
-
-        <div class="pdf-footer">
-          هذا البرنامج أُعد وفق تقييم أخصائي العلاج الطبيعي، وهو مخصص للمريض المذكور فقط. يجب تنفيذ التمارين بالطريقة الموضحة، والتوقف عند ظهور ألم شديد أو أعراض غير معتادة والتواصل مع المركز أو الأخصائي المعالج.
-          <br>
-          مركز عكاز للعلاج الطبيعي
-        </div>
-
-      </div>
-
-    </div>
+    <div class="pdf-pages" id="pdfPages"></div>
 
   </div>
 
@@ -1177,8 +1213,6 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-/* Firebase */
-
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   authDomain: "akazcenter-89c17.firebaseapp.com",
@@ -1194,8 +1228,6 @@ const db = getFirestore(app);
 const programsRef =
   collection(db,"homeExercisePrograms");
 
-/* الأخصائيون */
-
 const therapists = [
   "د. حاتم الاحمدي",
   "د. عبدالرحمن السويداء",
@@ -1209,16 +1241,192 @@ const therapists = [
   "د. مها فريح"
 ];
 
-/* تمارين الركبة الأولية */
+/*
+كل صورة تكون للتمرين فقط بدون كتابة أو شعار.
+ضع الصور داخل مجلد exercise-images.
+*/
 
 const exercises = [
+
+  /* الرقبة */
+
+  {
+    id:"neck-001",
+    category:"الرقبة",
+    nameAr:"سحب الذقن للخلف",
+    nameEn:"Chin Tuck",
+    image:"exercise-images/neck-chin-tuck.png",
+    description:"اجلس أو قف باستقامة، اسحب الذقن إلى الخلف دون خفض الرأس للأسفل، ثم عد للوضع الطبيعي ببطء."
+  },
+  {
+    id:"neck-002",
+    category:"الرقبة",
+    nameAr:"دوران الرقبة",
+    nameEn:"Neck Rotation",
+    image:"exercise-images/neck-rotation.png",
+    description:"أدر الرأس ببطء إلى أحد الجانبين ضمن المدى المريح، ثم عد للمنتصف وكرر للجهة الأخرى."
+  },
+  {
+    id:"neck-003",
+    category:"الرقبة",
+    nameAr:"إطالة العضلة شبه المنحرفة",
+    nameEn:"Upper Trapezius Stretch",
+    image:"exercise-images/neck-upper-trapezius-stretch.png",
+    description:"أمل الرأس باتجاه أحد الكتفين بلطف مع إبقاء الكتف المقابل منخفضًا، حتى تشعر بإطالة مريحة."
+  },
+
+  /* الكتف */
+
+  {
+    id:"shoulder-001",
+    category:"الكتف",
+    nameAr:"تمرين البندول",
+    nameEn:"Pendulum Exercise",
+    image:"exercise-images/shoulder-pendulum.png",
+    description:"انحنِ للأمام مع دعم الجسم باليد السليمة، واترك الذراع المصابة مرتخية ثم حركها بحركات دائرية صغيرة."
+  },
+  {
+    id:"shoulder-002",
+    category:"الكتف",
+    nameAr:"انزلاق الذراع على الجدار",
+    nameEn:"Wall Slide",
+    image:"exercise-images/shoulder-wall-slide.png",
+    description:"ضع اليد على الجدار وحركها تدريجيًا للأعلى ضمن المدى المريح، ثم أعدها للأسفل ببطء."
+  },
+  {
+    id:"shoulder-003",
+    category:"الكتف",
+    nameAr:"الدوران الخارجي بالعصا",
+    nameEn:"External Rotation With Stick",
+    image:"exercise-images/shoulder-external-rotation-stick.png",
+    description:"أمسك العصا بكلتا اليدين والمرفقان بجانب الجسم، وادفع اليد المصابة للخارج باستخدام اليد الأخرى."
+  },
+
+  /* المرفق والرسغ */
+
+  {
+    id:"elbow-001",
+    category:"المرفق والرسغ",
+    nameAr:"ثني ومد المرفق",
+    nameEn:"Elbow Flexion Extension",
+    image:"exercise-images/elbow-flexion-extension.png",
+    description:"اثنِ المرفق حتى تقترب اليد من الكتف، ثم مد الذراع ببطء ضمن المدى المريح."
+  },
+  {
+    id:"wrist-001",
+    category:"المرفق والرسغ",
+    nameAr:"ثني الرسغ",
+    nameEn:"Wrist Flexion",
+    image:"exercise-images/wrist-flexion.png",
+    description:"اسند الساعد على طاولة واترك اليد خارج الحافة، ثم حرّك الرسغ للأسفل والأعلى ببطء."
+  },
+  {
+    id:"wrist-002",
+    category:"المرفق والرسغ",
+    nameAr:"إطالة باسطات الرسغ",
+    nameEn:"Wrist Extensor Stretch",
+    image:"exercise-images/wrist-extensor-stretch.png",
+    description:"مد الذراع أمامك والمرفق مستقيم، ثم استخدم اليد الأخرى لثني الرسغ بلطف حتى تشعر بالإطالة."
+  },
+
+  /* أعلى الظهر */
+
+  {
+    id:"thoracic-001",
+    category:"أعلى الظهر",
+    nameAr:"مد أعلى الظهر على الكرسي",
+    nameEn:"Thoracic Extension",
+    image:"exercise-images/thoracic-extension-chair.png",
+    description:"اجلس على كرسي وضع اليدين خلف الرأس، ثم مد أعلى الظهر للخلف فوق مسند الكرسي دون تقوس أسفل الظهر."
+  },
+  {
+    id:"thoracic-002",
+    category:"أعلى الظهر",
+    nameAr:"دوران أعلى الظهر",
+    nameEn:"Thoracic Rotation",
+    image:"exercise-images/thoracic-rotation.png",
+    description:"اجلس باستقامة وضع اليدين على الصدر، ثم أدر الجذع ببطء إلى أحد الجانبين وعد للمنتصف."
+  },
+  {
+    id:"thoracic-003",
+    category:"أعلى الظهر",
+    nameAr:"سحب لوحي الكتف",
+    nameEn:"Scapular Retraction",
+    image:"exercise-images/scapular-retraction.png",
+    description:"اسحب لوحي الكتف للخلف وللأسفل دون رفع الكتفين، وحافظ على الرقبة مسترخية."
+  },
+
+  /* أسفل الظهر */
+
+  {
+    id:"back-001",
+    category:"أسفل الظهر",
+    nameAr:"إمالة الحوض",
+    nameEn:"Pelvic Tilt",
+    image:"exercise-images/back-pelvic-tilt.png",
+    description:"استلقِ والركبتان مثنيتان، شد البطن واضغط أسفل الظهر بلطف باتجاه السطح ثم استرخِ."
+  },
+  {
+    id:"back-002",
+    category:"أسفل الظهر",
+    nameAr:"سحب الركبة إلى الصدر",
+    nameEn:"Single Knee To Chest",
+    image:"exercise-images/back-knee-to-chest.png",
+    description:"استلقِ على ظهرك واسحب ركبة واحدة باتجاه الصدر بلطف مع إبقاء الساق الأخرى في وضع مريح."
+  },
+  {
+    id:"back-003",
+    category:"أسفل الظهر",
+    nameAr:"تمرين القطة والجمل",
+    nameEn:"Cat Camel",
+    image:"exercise-images/back-cat-camel.png",
+    description:"اتخذ وضع اليدين والركبتين، ثم قرّب الظهر للأعلى وبعدها اخفضه ببطء ضمن المدى المريح."
+  },
+  {
+    id:"back-004",
+    category:"أسفل الظهر",
+    nameAr:"رفع الحوض",
+    nameEn:"Bridge Exercise",
+    image:"exercise-images/back-bridge.png",
+    description:"استلقِ والركبتان مثنيتان، شد البطن والأرداف وارفع الحوض ببطء ثم انزل بتحكم."
+  },
+
+  /* الحوض والورك */
+
+  {
+    id:"hip-001",
+    category:"الحوض والورك",
+    nameAr:"فتح الركبة جانبًا",
+    nameEn:"Clamshell",
+    image:"exercise-images/hip-clamshell.png",
+    description:"استلقِ على جانبك والركبتان مثنيتان، ارفع الركبة العليا مع إبقاء القدمين متلامستين والحوض ثابتًا."
+  },
+  {
+    id:"hip-002",
+    category:"الحوض والورك",
+    nameAr:"إبعاد الورك واقفًا",
+    nameEn:"Standing Hip Abduction",
+    image:"exercise-images/hip-standing-abduction.png",
+    description:"قف ممسكًا بسطح ثابت، حرّك الساق جانبًا دون ميل الجذع ثم عد ببطء."
+  },
+  {
+    id:"hip-003",
+    category:"الحوض والورك",
+    nameAr:"إطالة مثنيات الورك",
+    nameEn:"Hip Flexor Stretch",
+    image:"exercise-images/hip-flexor-stretch.png",
+    description:"اتخذ وضع الاندفاع مع ركبة خلفية على الأرض، ثم ادفع الحوض للأمام بلطف دون تقوس الظهر."
+  },
+
+  /* الركبة */
+
   {
     id:"knee-001",
     category:"الركبة",
     nameAr:"رفع الساق مستقيمة",
     nameEn:"Straight Leg Raise",
     image:"exercise-images/knee-straight-leg-raise.png",
-    description:"استلقِ على ظهرك، اثنِ الركبة غير المستهدفة، وحافظ على الساق الأخرى مستقيمة ثم ارفعها ببطء إلى مستوى الركبة المثنية وأنزلها بتحكم."
+    description:"استلقِ على ظهرك، اثنِ الركبة غير المستهدفة، وارفع الساق الأخرى مستقيمة ببطء ثم أنزلها بتحكم."
   },
   {
     id:"knee-002",
@@ -1226,7 +1434,7 @@ const exercises = [
     nameAr:"شد العضلة الرباعية",
     nameEn:"Quadriceps Set",
     image:"exercise-images/knee-quadriceps-set.png",
-    description:"استلقِ والساق مستقيمة، شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح مع المحافظة على وضع الساق مستقيمًا."
+    description:"استلقِ والساق مستقيمة، شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح."
   },
   {
     id:"knee-003",
@@ -1234,7 +1442,7 @@ const exercises = [
     nameAr:"انزلاق الكعب",
     nameEn:"Heel Slide",
     image:"exercise-images/knee-heel-slide.png",
-    description:"استلقِ على ظهرك، اسحب الكعب ببطء باتجاه الجسم لثني الركبة ثم أعد الساق إلى وضع الاستقامة."
+    description:"اسحب الكعب ببطء باتجاه الجسم لثني الركبة، ثم أعد الساق إلى وضع الاستقامة."
   },
   {
     id:"knee-004",
@@ -1242,61 +1450,144 @@ const exercises = [
     nameAr:"مد الركبة أثناء الجلوس",
     nameEn:"Seated Knee Extension",
     image:"exercise-images/knee-seated-extension.png",
-    description:"اجلس على كرسي بظهر مستقيم، ارفع القدم ومد الركبة حتى تصبح الساق مستقيمة، ثم عد ببطء."
+    description:"اجلس على كرسي، مد الركبة حتى تصبح الساق مستقيمة ثم عد ببطء."
   },
   {
     id:"knee-005",
     category:"الركبة",
-    nameAr:"رفع الحوض",
-    nameEn:"Bridge Exercise",
-    image:"exercise-images/knee-bridge.png",
-    description:"استلقِ على ظهرك والركبتان مثنيتان، شد عضلات البطن والأرداف وارفع الحوض ببطء ثم انزل بتحكم."
+    nameAr:"الجلوس والوقوف من الكرسي",
+    nameEn:"Sit To Stand",
+    image:"exercise-images/knee-sit-to-stand.png",
+    description:"انحنِ قليلًا للأمام ثم قف باستخدام عضلات الساقين، وارجع للجلوس ببطء."
   },
   {
     id:"knee-006",
     category:"الركبة",
-    nameAr:"الجلوس والوقوف من الكرسي",
-    nameEn:"Sit to Stand",
-    image:"exercise-images/knee-sit-to-stand.png",
-    description:"اجلس على طرف الكرسي، قدم القدمين قليلًا للخلف، انحنِ للأمام ثم قف باستخدام عضلات الساقين وارجع للجلوس ببطء."
-  },
-  {
-    id:"knee-007",
-    category:"الركبة",
-    nameAr:"ثني الركبة واقفًا",
-    nameEn:"Standing Hamstring Curl",
-    image:"exercise-images/knee-standing-hamstring-curl.png",
-    description:"قف ممسكًا بسطح ثابت، اثنِ الركبة وارفع الكعب باتجاه الخلف دون تحريك الفخذ إلى الأمام."
-  },
-  {
-    id:"knee-008",
-    category:"الركبة",
-    nameAr:"رفع الكعبين",
-    nameEn:"Calf Raise",
-    image:"exercise-images/knee-calf-raise.png",
-    description:"قف ممسكًا بسطح ثابت، ارفع الكعبين عن الأرض ببطء ثم انزل بتحكم."
-  },
-  {
-    id:"knee-009",
-    category:"الركبة",
     nameAr:"القرفصاء الجزئية",
     nameEn:"Mini Squat",
     image:"exercise-images/knee-mini-squat.png",
-    description:"قف والقدمان بعرض الكتفين، اثنِ الركبتين قليلًا مع إبقاء الظهر مستقيمًا والركبتين باتجاه القدمين ثم عد للوقوف."
+    description:"اثنِ الركبتين قليلًا مع إبقاء الظهر مستقيمًا والركبتين باتجاه القدمين ثم عد للوقوف."
+  },
+
+  /* الكاحل والقدم */
+
+  {
+    id:"ankle-001",
+    category:"الكاحل والقدم",
+    nameAr:"تحريك الكاحل للأعلى والأسفل",
+    nameEn:"Ankle Pumps",
+    image:"exercise-images/ankle-pumps.png",
+    description:"حرّك القدم باتجاهك ثم ادفعها بعيدًا عنك ضمن المدى المريح."
   },
   {
-    id:"knee-010",
-    category:"الركبة",
-    nameAr:"الصعود على درجة",
-    nameEn:"Step Up",
-    image:"exercise-images/knee-step-up.png",
-    description:"ضع القدم على درجة منخفضة، ادفع بالجسم للأعلى باستخدام الساق المستهدفة ثم انزل ببطء وتحكم."
+    id:"ankle-002",
+    category:"الكاحل والقدم",
+    nameAr:"رفع الكعبين",
+    nameEn:"Calf Raise",
+    image:"exercise-images/ankle-calf-raise.png",
+    description:"قف ممسكًا بسطح ثابت، ارفع الكعبين ببطء ثم انزل بتحكم."
+  },
+  {
+    id:"ankle-003",
+    category:"الكاحل والقدم",
+    nameAr:"إطالة عضلة الساق",
+    nameEn:"Calf Stretch",
+    image:"exercise-images/ankle-calf-stretch.png",
+    description:"ضع القدم المستهدفة للخلف والكعب على الأرض، ثم انقل الوزن للأمام حتى تشعر بإطالة خلف الساق."
+  },
+  {
+    id:"ankle-004",
+    category:"الكاحل والقدم",
+    nameAr:"سحب القدم بالشريط المطاطي",
+    nameEn:"Resisted Dorsiflexion",
+    image:"exercise-images/ankle-resisted-dorsiflexion.png",
+    description:"ثبت الشريط أمام القدم واسحب مقدمة القدم باتجاهك ببطء ثم عد للوضع الأول."
+  },
+
+  /* الاتزان */
+
+  {
+    id:"balance-001",
+    category:"الاتزان",
+    nameAr:"الوقوف والقدمان متقاربتان",
+    nameEn:"Feet Together Balance",
+    image:"exercise-images/balance-feet-together.png",
+    description:"قف قرب سطح ثابت والقدمان متقاربتان، وحافظ على التوازن مع إبقاء النظر للأمام."
+  },
+  {
+    id:"balance-002",
+    category:"الاتزان",
+    nameAr:"الوقوف نصف ترادفي",
+    nameEn:"Semi Tandem Stance",
+    image:"exercise-images/balance-semi-tandem.png",
+    description:"ضع قدمًا أمام الأخرى قليلًا، وحافظ على التوازن قرب سطح ثابت."
+  },
+  {
+    id:"balance-003",
+    category:"الاتزان",
+    nameAr:"الوقوف على قدم واحدة",
+    nameEn:"Single Leg Stance",
+    image:"exercise-images/balance-single-leg.png",
+    description:"قف قرب سطح ثابت وارفع قدمًا عن الأرض، ثم حافظ على التوازن للمدة المحددة."
+  },
+
+  /* التأهيل العصبي */
+
+  {
+    id:"neuro-001",
+    category:"التأهيل العصبي",
+    nameAr:"نقل الوزن جانبًا",
+    nameEn:"Lateral Weight Shift",
+    image:"exercise-images/neuro-lateral-weight-shift.png",
+    description:"قف ممسكًا بسطح ثابت، وانقل وزن الجسم تدريجيًا من جانب إلى آخر."
+  },
+  {
+    id:"neuro-002",
+    category:"التأهيل العصبي",
+    nameAr:"المشي في المكان",
+    nameEn:"Marching In Place",
+    image:"exercise-images/neuro-marching.png",
+    description:"قف قرب سطح ثابت وارفع ركبة ثم الأخرى بالتبادل مع المحافظة على استقامة الجذع."
+  },
+  {
+    id:"neuro-003",
+    category:"التأهيل العصبي",
+    nameAr:"الوصول للأمام أثناء الجلوس",
+    nameEn:"Seated Forward Reach",
+    image:"exercise-images/neuro-seated-reach.png",
+    description:"اجلس بثبات ومد الذراعين للأمام ضمن مدى آمن، ثم عد إلى وضع الجلوس المستقيم."
+  },
+
+  /* التنفس */
+
+  {
+    id:"breathing-001",
+    category:"التنفس",
+    nameAr:"التنفس الحجابي",
+    nameEn:"Diaphragmatic Breathing",
+    image:"exercise-images/breathing-diaphragmatic.png",
+    description:"ضع يدًا على الصدر وأخرى على البطن، خذ شهيقًا ببطء بحيث يرتفع البطن ثم أخرج الهواء بهدوء."
+  },
+  {
+    id:"breathing-002",
+    category:"التنفس",
+    nameAr:"التنفس بشفاه مضمومة",
+    nameEn:"Pursed Lip Breathing",
+    image:"exercise-images/breathing-pursed-lip.png",
+    description:"خذ شهيقًا من الأنف ثم أخرج الهواء ببطء من بين الشفاه المضمومة."
+  },
+  {
+    id:"breathing-003",
+    category:"التنفس",
+    nameAr:"توسيع القفص الصدري",
+    nameEn:"Thoracic Expansion",
+    image:"exercise-images/breathing-thoracic-expansion.png",
+    description:"خذ شهيقًا عميقًا ووسع القفص الصدري، اثبت للحظة ثم أخرج الهواء ببطء."
   }
+
 ];
 
 let selectedExercises = [];
-
-/* أدوات */
 
 function isoDate(date){
   const copy = new Date(date);
@@ -1322,7 +1613,6 @@ function showToast(message,isError = false){
     document.getElementById("toast");
 
   toast.innerText = message;
-
   toast.classList.toggle("error",isError);
   toast.classList.add("show");
 
@@ -1330,8 +1620,6 @@ function showToast(message,isError = false){
     toast.classList.remove("show");
   },3000);
 }
-
-/* الأخصائيون */
 
 function fillTherapists(){
   const select =
@@ -1348,7 +1636,23 @@ function fillTherapists(){
   });
 }
 
-/* مكتبة التمارين */
+function categoryIcon(category){
+  const icons = {
+    "الرقبة":"🧠",
+    "الكتف":"💪",
+    "المرفق والرسغ":"✋",
+    "أعلى الظهر":"🧍",
+    "أسفل الظهر":"🧘",
+    "الحوض والورك":"🦴",
+    "الركبة":"🦵",
+    "الكاحل والقدم":"🦶",
+    "الاتزان":"⚖️",
+    "التأهيل العصبي":"🚶",
+    "التنفس":"🫁"
+  };
+
+  return icons[category] || "🏃";
+}
 
 function renderExerciseLibrary(){
   const library =
@@ -1368,15 +1672,27 @@ function renderExerciseLibrary(){
     exercises.filter(exercise=>{
 
       const matchesCategory =
+        category === "الكل" ||
         exercise.category === category;
+
+      const searchableText = `
+        ${exercise.nameAr}
+        ${exercise.nameEn}
+        ${exercise.category}
+      `.toLowerCase();
 
       const matchesSearch =
         !search ||
-        exercise.nameAr.toLowerCase().includes(search) ||
-        exercise.nameEn.toLowerCase().includes(search);
+        searchableText.includes(search);
 
       return matchesCategory && matchesSearch;
     });
+
+  document.getElementById("libraryCount").innerText =
+    `التمارين المعروضة: ${list.length}`;
+
+  document.getElementById("selectedCount").innerText =
+    `المختارة: ${selectedExercises.length}`;
 
   library.innerHTML = "";
 
@@ -1392,6 +1708,10 @@ function renderExerciseLibrary(){
       "exercise-card";
 
     card.innerHTML = `
+      <div class="exercise-category">
+        ${escapeHtml(exercise.category)}
+      </div>
+
       <img
         src="${exercise.image}"
         class="exercise-image"
@@ -1403,7 +1723,7 @@ function renderExerciseLibrary(){
       >
 
       <div class="exercise-image-fallback">
-        🦵
+        ${categoryIcon(exercise.category)}
       </div>
 
       <div class="exercise-content">
@@ -1457,7 +1777,7 @@ window.addExercise = function(id){
     holdSeconds:0,
     dailyFrequency:1,
     weeklyDays:7,
-    side:"الجهتان",
+    side:"حسب توجيه الأخصائي",
     resistance:"بدون مقاومة",
     note:""
   });
@@ -1484,26 +1804,29 @@ window.updateExerciseField = function(id,field,value){
     return;
   }
 
-  if(
-    field === "sets" ||
-    field === "reps" ||
-    field === "holdSeconds" ||
-    field === "dailyFrequency" ||
-    field === "weeklyDays"
-  ){
+  const numericFields = [
+    "sets",
+    "reps",
+    "holdSeconds",
+    "dailyFrequency",
+    "weeklyDays"
+  ];
+
+  if(numericFields.includes(field)){
     exercise[field] =
-      Number(value) || 0;
+      Math.max(0,Number(value) || 0);
   }
   else{
     exercise[field] = value;
   }
 };
 
-/* عرض التمارين المختارة */
-
 function renderSelectedExercises(){
   const box =
     document.getElementById("selectedExercisesList");
+
+  document.getElementById("selectedCount").innerText =
+    `المختارة: ${selectedExercises.length}`;
 
   if(selectedExercises.length === 0){
     box.innerHTML = `
@@ -1531,7 +1854,9 @@ function renderSelectedExercises(){
         src="${exercise.image}"
         class="selected-image"
         alt="${escapeHtml(exercise.nameAr)}"
-        onerror="this.src='logo.png'"
+        onerror="
+          this.style.display='none';
+        "
       >
 
       <div class="selected-info">
@@ -1602,6 +1927,9 @@ function renderSelectedExercises(){
             <select
               onchange="updateExerciseField('${exercise.id}','side',this.value)"
             >
+              <option ${exercise.side==="حسب توجيه الأخصائي"?"selected":""}>
+                حسب توجيه الأخصائي
+              </option>
               <option ${exercise.side==="الجهتان"?"selected":""}>
                 الجهتان
               </option>
@@ -1657,8 +1985,6 @@ function renderSelectedExercises(){
     box.appendChild(item);
   });
 }
-
-/* التحقق من البيانات */
 
 function getPatientData(){
   return {
@@ -1721,102 +2047,72 @@ function validateProgram(){
   return true;
 }
 
-/* إنشاء المعاينة */
+function createDoseText(exercise){
+  const parts = [];
 
-function buildPreview(){
-  const data =
-    getPatientData();
+  if(exercise.sets > 0){
+    parts.push(`${exercise.sets} مجموعات`);
+  }
 
-  document.getElementById("pdfPatientInfo").innerHTML = `
-    <div class="pdf-info-item">
-      <span>اسم المريض:</span>
-      <strong>${escapeHtml(data.patientName)}</strong>
-    </div>
+  if(exercise.reps > 0){
+    parts.push(`${exercise.reps} تكرارات`);
+  }
 
-    <div class="pdf-info-item">
-      <span>رقم الملف:</span>
-      <strong>${escapeHtml(data.fileNumber)}</strong>
-    </div>
+  if(exercise.holdSeconds > 0){
+    parts.push(`الثبات ${exercise.holdSeconds} ثانية`);
+  }
 
-    <div class="pdf-info-item">
-      <span>الأخصائي المعالج:</span>
-      <strong>${escapeHtml(data.therapist)}</strong>
-    </div>
+  if(exercise.dailyFrequency > 0){
+    parts.push(`${exercise.dailyFrequency} مرة يوميًا`);
+  }
 
-    <div class="pdf-info-item">
-      <span>التشخيص:</span>
-      <strong>${escapeHtml(data.diagnosis || "-")}</strong>
-    </div>
+  if(exercise.weeklyDays > 0){
+    parts.push(`${exercise.weeklyDays} أيام أسبوعيًا`);
+  }
 
-    <div class="pdf-info-item">
-      <span>تاريخ البرنامج:</span>
-      <strong>${escapeHtml(data.programDate || "-")}</strong>
-    </div>
+  if(exercise.side){
+    parts.push(`الجهة: ${exercise.side}`);
+  }
 
-    <div class="pdf-info-item">
-      <span>المراجعة القادمة:</span>
-      <strong>${escapeHtml(data.reviewDate || "-")}</strong>
-    </div>
-  `;
+  if(
+    exercise.resistance &&
+    exercise.resistance !== "بدون مقاومة"
+  ){
+    parts.push(exercise.resistance);
+  }
 
-  document.getElementById("pdfGeneralInstructions").innerHTML = `
-    <strong>التعليمات العامة:</strong><br>
-    ${
-      escapeHtml(
-        data.generalInstructions ||
-        "نفّذ التمارين ببطء وتحكم، والتزم بالجرعة المحددة من الأخصائي المعالج."
-      )
-    }
-  `;
+  return parts.join(" — ");
+}
 
-  const exercisesBox =
-    document.getElementById("pdfExercises");
+function createExerciseCard(exercise,index){
+  return `
+    <div class="pdf-exercise-card">
 
-  exercisesBox.innerHTML = "";
+      <div class="pdf-exercise-image-wrap">
 
-  selectedExercises.forEach((exercise,index)=>{
+        <img
+          src="${exercise.image}"
+          class="pdf-exercise-image"
+          alt="${escapeHtml(exercise.nameAr)}"
+          onerror="
+            this.style.display='none';
+            this.parentElement.innerHTML='<div style=&quot;font-size:45px&quot;>${categoryIcon(exercise.category)}</div>';
+          "
+        >
 
-    let doseText =
-      `${exercise.sets} مجموعات × ${exercise.reps} تكرارات`;
+      </div>
 
-    if(exercise.holdSeconds > 0){
-      doseText +=
-        ` — الثبات ${exercise.holdSeconds} ثانية`;
-    }
+      <div class="pdf-exercise-content">
 
-    doseText +=
-      ` — ${exercise.dailyFrequency} مرة يوميًا`;
+        <div>
+          <span class="pdf-exercise-number">
+            ${index + 1}
+          </span>
 
-    doseText +=
-      ` — ${exercise.weeklyDays} أيام أسبوعيًا`;
-
-    doseText +=
-      ` — الجهة: ${exercise.side}`;
-
-    if(exercise.resistance !== "بدون مقاومة"){
-      doseText +=
-        ` — ${exercise.resistance}`;
-    }
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "pdf-exercise";
-
-    card.innerHTML = `
-      <img
-        src="${exercise.image}"
-        class="pdf-exercise-image"
-        alt="${escapeHtml(exercise.nameAr)}"
-        onerror="this.src='logo.png'"
-      >
-
-      <div>
-
-        <h2>
-          ${index + 1}. ${escapeHtml(exercise.nameAr)}
-        </h2>
+          <h2>
+            ${escapeHtml(exercise.nameAr)}
+          </h2>
+        </div>
 
         <div class="pdf-exercise-en">
           ${escapeHtml(exercise.nameEn)}
@@ -1827,7 +2123,7 @@ function buildPreview(){
         </div>
 
         <div class="pdf-dose">
-          ${escapeHtml(doseText)}
+          ${escapeHtml(createDoseText(exercise))}
         </div>
 
         ${
@@ -1835,7 +2131,7 @@ function buildPreview(){
           ?
           `
           <div class="pdf-note">
-            <strong>ملاحظة الأخصائي:</strong>
+            <strong>ملاحظة:</strong>
             ${escapeHtml(exercise.note)}
           </div>
           `
@@ -1844,9 +2140,176 @@ function buildPreview(){
         }
 
       </div>
+
+    </div>
+  `;
+}
+
+function createPageHeader(pageNumber,totalPages){
+  return `
+    <div class="pdf-top">
+
+      <img
+        src="logo.png"
+        class="pdf-logo"
+        alt="شعار مركز عكاز"
+      >
+
+      <div class="pdf-title">
+        <h1>برنامج التمارين المنزلية</h1>
+        <p>HOME EXERCISE PROGRAM</p>
+      </div>
+
+      <div class="pdf-page-number">
+        ${pageNumber} / ${totalPages}
+      </div>
+
+    </div>
+  `;
+}
+
+function createFooter(){
+  return `
+    <div class="pdf-footer">
+      هذا البرنامج مخصص للمريض المذكور وفق تقييم أخصائي العلاج الطبيعي. أوقف التمرين عند ظهور ألم شديد أو أعراض غير معتادة وتواصل مع المركز.
+      <br>
+      مركز عكاز للعلاج الطبيعي
+    </div>
+  `;
+}
+
+function buildPreview(){
+  const data =
+    getPatientData();
+
+  const pagesBox =
+    document.getElementById("pdfPages");
+
+  pagesBox.innerHTML = "";
+
+  const firstPageExercises =
+    selectedExercises.slice(0,4);
+
+  const remaining =
+    selectedExercises.slice(4);
+
+  const additionalPages = [];
+
+  for(let i=0;i<remaining.length;i+=6){
+    additionalPages.push(
+      remaining.slice(i,i+6)
+    );
+  }
+
+  const totalPages =
+    1 + additionalPages.length;
+
+  const firstPage =
+    document.createElement("div");
+
+  firstPage.className =
+    "pdf-page";
+
+  firstPage.innerHTML = `
+    ${createPageHeader(1,totalPages)}
+
+    <div class="patient-info-box">
+
+      <div class="pdf-info-item">
+        <span>اسم المريض:</span>
+        <strong>${escapeHtml(data.patientName)}</strong>
+      </div>
+
+      <div class="pdf-info-item">
+        <span>رقم الملف:</span>
+        <strong>${escapeHtml(data.fileNumber)}</strong>
+      </div>
+
+      <div class="pdf-info-item">
+        <span>الأخصائي:</span>
+        <strong>${escapeHtml(data.therapist)}</strong>
+      </div>
+
+      <div class="pdf-info-item">
+        <span>التشخيص:</span>
+        <strong>${escapeHtml(data.diagnosis || "-")}</strong>
+      </div>
+
+      <div class="pdf-info-item">
+        <span>تاريخ البرنامج:</span>
+        <strong>${escapeHtml(data.programDate || "-")}</strong>
+      </div>
+
+      <div class="pdf-info-item">
+        <span>المراجعة القادمة:</span>
+        <strong>${escapeHtml(data.reviewDate || "-")}</strong>
+      </div>
+
+    </div>
+
+    <div class="pdf-general-instructions">
+
+      <strong>التعليمات العامة:</strong>
+
+      ${
+        escapeHtml(
+          data.generalInstructions ||
+          "نفذ التمارين ببطء وتحكم، والتزم بالتكرارات المحددة، ولا تتجاوز مستوى الألم المقبول."
+        )
+      }
+
+    </div>
+
+    <div class="pdf-exercises-grid">
+
+      ${
+        firstPageExercises
+          .map((exercise,index)=>
+            createExerciseCard(exercise,index)
+          )
+          .join("")
+      }
+
+    </div>
+
+    ${createFooter()}
+  `;
+
+  pagesBox.appendChild(firstPage);
+
+  additionalPages.forEach((pageExercises,pageIndex)=>{
+
+    const page =
+      document.createElement("div");
+
+    page.className =
+      "pdf-page pdf-second-page";
+
+    const startingIndex =
+      4 + pageIndex * 6;
+
+    page.innerHTML = `
+      ${createPageHeader(pageIndex + 2,totalPages)}
+
+      <div class="pdf-exercises-grid">
+
+        ${
+          pageExercises
+            .map((exercise,index)=>
+              createExerciseCard(
+                exercise,
+                startingIndex + index
+              )
+            )
+            .join("")
+        }
+
+      </div>
+
+      ${createFooter()}
     `;
 
-    exercisesBox.appendChild(card);
+    pagesBox.appendChild(page);
   });
 }
 
@@ -1870,8 +2333,6 @@ window.closePreview = function(){
     .remove("show");
 };
 
-/* حفظ البرنامج */
-
 window.saveProgram = async function(){
   if(!validateProgram()){
     return;
@@ -1884,11 +2345,16 @@ window.saveProgram = async function(){
     await addDoc(programsRef,{
       ...patientData,
 
-      category:"الركبة",
+      categories:[
+        ...new Set(
+          selectedExercises.map(item=>item.category)
+        )
+      ],
 
       exercises:
         selectedExercises.map(exercise=>({
           id:exercise.id,
+          category:exercise.category,
           nameAr:exercise.nameAr,
           nameEn:exercise.nameEn,
           image:exercise.image,
@@ -1924,8 +2390,6 @@ window.saveProgram = async function(){
   }
 };
 
-/* PDF */
-
 window.downloadPDF = async function(){
   if(!validateProgram()){
     return;
@@ -1933,86 +2397,58 @@ window.downloadPDF = async function(){
 
   buildPreview();
 
-  const documentElement =
-    document.getElementById("pdfDocument");
+  const pageElements =
+    Array.from(
+      document.querySelectorAll(".pdf-page")
+    );
 
   showToast(
     "جاري تجهيز ملف PDF..."
   );
 
   try{
-    const canvas =
-      await html2canvas(
-        documentElement,
-        {
-          scale:2,
-          useCORS:true,
-          backgroundColor:"#ffffff"
-        }
-      );
-
-    const imageData =
-      canvas.toDataURL("image/jpeg",0.95);
-
     const {
       jsPDF
     } = window.jspdf;
 
     const pdf =
-      new jsPDF(
-        "p",
-        "mm",
-        "a4"
-      );
+      new jsPDF("p","mm","a4");
 
-    const pageWidth =
-      210;
+    for(
+      let index = 0;
+      index < pageElements.length;
+      index++
+    ){
+      const canvas =
+        await html2canvas(
+          pageElements[index],
+          {
+            scale:2,
+            useCORS:true,
+            allowTaint:true,
+            backgroundColor:"#ffffff",
+            logging:false
+          }
+        );
 
-    const pageHeight =
-      297;
+      const imageData =
+        canvas.toDataURL(
+          "image/jpeg",
+          0.94
+        );
 
-    const imageWidth =
-      pageWidth;
-
-    const imageHeight =
-      canvas.height * imageWidth / canvas.width;
-
-    let heightLeft =
-      imageHeight;
-
-    let position =
-      0;
-
-    pdf.addImage(
-      imageData,
-      "JPEG",
-      0,
-      position,
-      imageWidth,
-      imageHeight
-    );
-
-    heightLeft -=
-      pageHeight;
-
-    while(heightLeft > 0){
-
-      position =
-        heightLeft - imageHeight;
-
-      pdf.addPage();
+      if(index > 0){
+        pdf.addPage();
+      }
 
       pdf.addImage(
         imageData,
         "JPEG",
         0,
-        position,
-        imageWidth,
-        imageHeight
+        0,
+        210,
+        297
       );
-
-      heightLeft -=
-        pageHeight;
     }
 
     const patientName =
@@ -2020,7 +2456,7 @@ window.downloadPDF = async function(){
         .getElementById("patientName")
         .value
         .trim()
-        .replace(/\s+/g,"-");
+        .replace(/[^\u0600-\u06FFa-zA-Z0-9]+/g,"-");
 
     pdf.save(
       `برنامج-تمارين-${patientName || "مريض"}.pdf`
@@ -2039,8 +2475,6 @@ window.downloadPDF = async function(){
     );
   }
 };
-
-/* واتساب */
 
 window.openWhatsApp = function(){
   const data =
@@ -2068,24 +2502,19 @@ window.openWhatsApp = function(){
   }
 
   const message =
-    `أهلًا وسهلًا ${data.patientName || ""}
+`أهلًا وسهلًا ${data.patientName || ""}
 
-مرفق لكم برنامج التمارين المنزلية المعد من أخصائي العلاج الطبيعي في مركز عكاز.
+مرفق لكم برنامج التمارين المنزلية المعد بواسطة أخصائي العلاج الطبيعي في مركز عكاز.
 
-يرجى الالتزام بالتكرارات والتعليمات الموضحة في البرنامج، وفي حال وجود أي استفسار يمكنكم التواصل معنا.
+يرجى الالتزام بالتكرارات والتعليمات الموضحة في البرنامج، والتواصل معنا عند وجود أي استفسار أو ظهور أعراض غير معتادة.
 
 مع تمنياتنا لكم بالشفاء والعافية.`;
 
   const url =
     `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  window.open(
-    url,
-    "_blank"
-  );
+  window.open(url,"_blank");
 };
-
-/* البحث */
 
 document
   .getElementById("exerciseSearch")
@@ -2100,8 +2529,6 @@ document
     "change",
     renderExerciseLibrary
   );
-
-/* التشغيل */
 
 fillTherapists();
 
