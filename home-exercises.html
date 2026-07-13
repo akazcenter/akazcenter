@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>التمارين المنزلية | مركز عكاز</title>
+
+<link rel="icon" type="image/png" href="./logo.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --green:#16a34a;
+  --red:#dc2626;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --light:#f8fafc;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  direction:rtl;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 90% 8%,rgba(0,119,200,.12),transparent 28%),
+    radial-gradient(circle at 8% 72%,rgba(245,158,11,.10),transparent 25%),
+    linear-gradient(180deg,#f9fcff,#eef4f9);
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* الهيدر */
+
+.topbar{
+  position:relative;
+  overflow:hidden;
+  padding:22px 5%;
+  color:white;
+  background:linear-gradient(135deg,#00467d,#0077c8);
+  box-shadow:0 16px 38px rgba(6,43,79,.23);
+}
+
+.topbar::before{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  right:-110px;
+  top:-150px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+}
+
+.topbar::after{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:230px;
+  left:-90px;
+  bottom:-150px;
+  border-radius:50%;
+  background:rgba(245,158,11,.13);
+}
+
+.topbar-inner{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:1450px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo-box{
+  width:78px;
+  height:78px;
+  padding:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:22px;
+  background:white;
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
+}
+
+.logo{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.brand h1{
+  margin:0;
+  font-size:27px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:6px 0 0;
+  color:#dbeafe;
+  font-size:13px;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+}
+
+.top-btn{
+  padding:11px 16px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:14px;
+  background:rgba(255,255,255,.95);
+  color:var(--blue);
+  font-size:13px;
+  font-weight:900;
+}
+
+/* المحتوى */
+
+.main{
+  width:95%;
+  max-width:1450px;
+  margin:26px auto 45px;
+}
+
+.info-box{
+  margin-bottom:20px;
+  padding:17px 20px;
+  border:1px solid #bfdbfe;
+  border-radius:20px;
+  background:linear-gradient(135deg,#eff6ff,#ffffff);
+  color:#164e75;
+  font-size:13px;
+  line-height:1.9;
+  box-shadow:0 10px 24px rgba(15,23,42,.06);
+}
+
+.info-box strong{
+  color:var(--blue);
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:22px;
+  align-items:start;
+}
+
+.card{
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:rgba(255,255,255,.98);
+  box-shadow:0 15px 34px rgba(15,23,42,.08);
+}
+
+.card-head{
+  padding:19px 21px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,#f8fbff,#ffffff);
+}
+
+.card-head h2{
+  margin:0;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+}
+
+.card-head p{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.form-body{
+  padding:20px;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#334155;
+  font-size:13px;
+  font-weight:900;
+}
+
+.required{
+  color:var(--red);
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  outline:none;
+  background:white;
+  color:var(--text);
+  font-size:14px;
+  transition:.2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.10);
+}
+
+.field textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.two-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+/* المكتبة */
+
+.library-card{
+  min-height:700px;
+}
+
+.library-tools{
+  padding:15px 17px;
+  display:grid;
+  grid-template-columns:1fr 190px;
+  gap:10px;
+  border-bottom:1px solid var(--line);
+}
+
+.library-tools input,
+.library-tools select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  outline:none;
+  background:white;
+}
+
+.library{
+  padding:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.exercise-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid #dbe4ee;
+  border-radius:19px;
+  background:white;
+  transition:.22s;
+}
+
+.exercise-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 28px rgba(15,23,42,.12);
+}
+
+.exercise-image{
+  width:100%;
+  height:165px;
+  object-fit:contain;
+  display:block;
+  padding:10px;
+  background:#f8fafc;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.exercise-image-fallback{
+  height:165px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#eff6ff,#ffffff);
+  font-size:55px;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.exercise-content{
+  padding:14px;
+}
+
+.exercise-content h3{
+  margin:0;
+  color:var(--blue);
+  font-size:15px;
+  line-height:1.5;
+}
+
+.exercise-en{
+  margin-top:4px;
+  direction:ltr;
+  color:var(--orange);
+  font-size:10.5px;
+  font-weight:900;
+}
+
+.exercise-description{
+  margin-top:9px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+  min-height:58px;
+}
+
+.add-exercise-btn{
+  width:100%;
+  margin-top:11px;
+  padding:10px;
+  border:0;
+  border-radius:11px;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  font-weight:900;
+}
+
+.add-exercise-btn.added{
+  background:#dcfce7;
+  color:#166534;
+}
+
+/* البرنامج المختار */
+
+.selected-section{
+  margin-top:22px;
+}
+
+.selected-list{
+  padding:18px;
+}
+
+.selected-empty{
+  padding:40px 20px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.selected-empty .icon{
+  font-size:42px;
+  margin-bottom:9px;
+}
+
+.selected-exercise{
+  display:grid;
+  grid-template-columns:155px 1fr 40px;
+  gap:16px;
+  align-items:start;
+  margin-bottom:15px;
+  padding:15px;
+  border:1px solid #dbe4ee;
+  border-radius:18px;
+  background:#f8fafc;
+}
+
+.selected-exercise:last-child{
+  margin-bottom:0;
+}
+
+.selected-image{
+  width:100%;
+  height:135px;
+  object-fit:contain;
+  border-radius:13px;
+  background:white;
+  border:1px solid #e2e8f0;
+}
+
+.selected-info h3{
+  margin:0 0 4px;
+  color:var(--blue);
+  font-size:16px;
+}
+
+.selected-info small{
+  direction:ltr;
+  color:var(--orange);
+  font-weight:900;
+}
+
+.prescription-grid{
+  margin-top:13px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+
+.prescription-field label{
+  display:block;
+  margin-bottom:5px;
+  color:#475569;
+  font-size:10.5px;
+  font-weight:900;
+}
+
+.prescription-field input,
+.prescription-field select{
+  width:100%;
+  padding:9px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  background:white;
+  font-size:12px;
+}
+
+.exercise-note{
+  margin-top:9px;
+}
+
+.exercise-note textarea{
+  width:100%;
+  min-height:55px;
+  padding:9px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  resize:vertical;
+}
+
+.remove-btn{
+  width:34px;
+  height:34px;
+  border:0;
+  border-radius:50%;
+  background:#fee2e2;
+  color:#b91c1c;
+  font-size:17px;
+  font-weight:900;
+}
+
+/* الأزرار */
+
+.bottom-actions{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.action-btn{
+  padding:13px 20px;
+  border:0;
+  border-radius:13px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.preview-btn{
+  background:#e0f2fe;
+  color:#075985;
+}
+
+.save-btn{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.pdf-btn{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+}
+
+.whatsapp-btn{
+  background:#16a34a;
+  color:white;
+}
+
+/* المعاينة */
+
+.preview-overlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding:25px;
+  overflow:auto;
+  background:rgba(15,23,42,.72);
+  backdrop-filter:blur(5px);
+}
+
+.preview-overlay.show{
+  display:flex;
+}
+
+.preview-wrapper{
+  width:100%;
+  max-width:900px;
+}
+
+.preview-toolbar{
+  margin-bottom:12px;
+  display:flex;
+  justify-content:flex-start;
+  gap:8px;
+}
+
+.preview-toolbar button{
+  padding:10px 15px;
+  border:0;
+  border-radius:11px;
+  font-weight:900;
+}
+
+.close-preview{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.download-preview{
+  background:#005b9f;
+  color:white;
+}
+
+.pdf-document{
+  width:794px;
+  min-height:1123px;
+  margin:auto;
+  background:white;
+  color:#0f172a;
+  box-shadow:0 25px 70px rgba(0,0,0,.32);
+}
+
+.pdf-cover{
+  min-height:1123px;
+  padding:55px;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(circle at 95% 5%,rgba(0,119,200,.11),transparent 28%),
+    linear-gradient(180deg,#ffffff,#f7fbff);
+}
+
+.pdf-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  padding-bottom:25px;
+  border-bottom:4px solid var(--orange);
+}
+
+.pdf-logo{
+  width:150px;
+  height:120px;
+  object-fit:contain;
+}
+
+.pdf-title{
+  flex:1;
+  text-align:right;
+}
+
+.pdf-title h1{
+  margin:0;
+  color:var(--blue);
+  font-size:33px;
+}
+
+.pdf-title p{
+  margin:8px 0 0;
+  direction:ltr;
+  color:var(--orange);
+  font-size:16px;
+  font-weight:900;
+}
+
+.patient-info-box{
+  margin-top:32px;
+  padding:22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px 25px;
+  border:1px solid #dbeafe;
+  border-radius:18px;
+  background:#f8fbff;
+}
+
+.pdf-info-item{
+  font-size:14px;
+  line-height:1.7;
+}
+
+.pdf-info-item span{
+  color:#64748b;
+  font-weight:900;
+}
+
+.pdf-info-item strong{
+  color:#0f172a;
+}
+
+.pdf-general-instructions{
+  margin-top:24px;
+  padding:18px;
+  border-right:5px solid var(--orange);
+  border-radius:13px;
+  background:#fff7ed;
+  font-size:13px;
+  line-height:2;
+}
+
+.pdf-exercises{
+  margin-top:28px;
+}
+
+.pdf-exercise{
+  page-break-inside:avoid;
+  display:grid;
+  grid-template-columns:250px 1fr;
+  gap:22px;
+  margin-bottom:22px;
+  padding:18px;
+  border:1px solid #dbe4ee;
+  border-radius:18px;
+  background:white;
+}
+
+.pdf-exercise-image{
+  width:100%;
+  height:220px;
+  object-fit:contain;
+  border:1px solid #e2e8f0;
+  border-radius:13px;
+  background:#f8fafc;
+}
+
+.pdf-exercise h2{
+  margin:0;
+  color:var(--blue);
+  font-size:20px;
+}
+
+.pdf-exercise-en{
+  margin-top:4px;
+  direction:ltr;
+  color:var(--orange);
+  font-size:12px;
+  font-weight:900;
+}
+
+.pdf-exercise-description{
+  margin-top:11px;
+  color:#334155;
+  font-size:13px;
+  line-height:1.9;
+}
+
+.pdf-dose{
+  margin-top:13px;
+  padding:12px;
+  border-radius:12px;
+  background:#eff6ff;
+  color:#075985;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.9;
+}
+
+.pdf-note{
+  margin-top:9px;
+  color:#9a3412;
+  font-size:12px;
+  line-height:1.8;
+}
+
+.pdf-footer{
+  margin-top:auto;
+  padding-top:25px;
+  border-top:1px solid #dbe4ee;
+  color:#64748b;
+  font-size:11.5px;
+  line-height:1.9;
+  text-align:center;
+}
+
+/* إشعار */
+
+.toast{
+  position:fixed;
+  z-index:999999;
+  bottom:24px;
+  left:50%;
+  padding:13px 18px;
+  transform:translateX(-50%) translateY(30px);
+  border-radius:14px;
+  background:#166534;
+  color:white;
+  font-size:13px;
+  font-weight:900;
+  box-shadow:0 16px 35px rgba(0,0,0,.23);
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
+
+.toast.error{
+  background:#b91c1c;
+}
+
+/* الوضع الليلي */
+
+body.dark{
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --line:#334155;
+  background:
+    radial-gradient(circle at 90% 8%,rgba(30,64,175,.22),transparent 28%),
+    linear-gradient(180deg,#020617,#0f172a);
+}
+
+body.dark .card{
+  background:#1e293b;
+  border-color:#334155;
+}
+
+body.dark .card-head{
+  background:#0f172a;
+}
+
+body.dark .field label,
+body.dark .selected-info h3{
+  color:#e2e8f0;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea{
+  background:#0f172a;
+  color:#e2e8f0;
+  border-color:#475569;
+}
+
+body.dark .exercise-card{
+  background:#1e293b;
+  border-color:#334155;
+}
+
+body.dark .selected-exercise{
+  background:#0f172a;
+  border-color:#334155;
+}
+
+/* الجوال */
+
+@media(max-width:1150px){
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  .library{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:700px){
+  .topbar-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .top-actions{
+    width:100%;
+  }
+
+  .top-btn{
+    flex:1;
+  }
+
+  .library-tools{
+    grid-template-columns:1fr;
+  }
+
+  .library{
+    grid-template-columns:1fr;
+  }
+
+  .two-fields{
+    grid-template-columns:1fr;
+  }
+
+  .selected-exercise{
+    grid-template-columns:1fr;
+  }
+
+  .remove-btn{
+    position:absolute;
+    left:10px;
+  }
+
+  .prescription-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .preview-overlay{
+    justify-content:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <div class="brand">
+      <div class="logo-box">
+        <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+      </div>
+
+      <div>
+        <h1>التمارين المنزلية</h1>
+        <p>Home Exercise Program</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button class="top-btn" onclick="location.href='index.html'">
+        🏠 الرئيسية
+      </button>
+
+      <button class="top-btn" id="themeBtn" onclick="toggleTheme()">
+        🌙
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main class="main">
+
+  <section class="info-box">
+    <strong>برنامج التمارين المنزلية:</strong>
+    أدخل بيانات المريض، ثم اختر التمارين المناسبة من المكتبة وحدد الجرعة العلاجية لكل تمرين، وبعدها أنشئ ملف PDF مصورًا ومخصصًا للمريض.
+  </section>
+
+  <section class="layout">
+
+    <!-- بيانات المريض -->
+
+    <div class="card">
+
+      <div class="card-head">
+        <h2>بيانات البرنامج</h2>
+        <p>البيانات التي ستظهر داخل ملف المريض.</p>
+      </div>
+
+      <div class="form-body">
+
+        <div class="field">
+          <label>
+            اسم المريض
+            <span class="required">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="patientName"
+            placeholder="اسم المريض"
+          >
+        </div>
+
+        <div class="two-fields">
+
+          <div class="field">
+            <label>
+              رقم الملف
+              <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="fileNumber"
+              placeholder="رقم الملف"
+            >
+          </div>
+
+          <div class="field">
+            <label>
+              رقم الجوال
+              <span class="required">*</span>
+            </label>
+
+            <input
+              type="tel"
+              id="phoneNumber"
+              placeholder="05xxxxxxxx"
+              inputmode="numeric"
+            >
+          </div>
+
+        </div>
+
+        <div class="field">
+          <label>
+            الأخصائي المعالج
+            <span class="required">*</span>
+          </label>
+
+          <select id="therapist">
+            <option value="">اختر الأخصائي</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>التشخيص / الحالة</label>
+
+          <input
+            type="text"
+            id="diagnosis"
+            placeholder="مثال: ألم الركبة بعد عملية الرباط الصليبي"
+          >
+        </div>
+
+        <div class="two-fields">
+
+          <div class="field">
+            <label>تاريخ إصدار البرنامج</label>
+
+            <input
+              type="date"
+              id="programDate"
+            >
+          </div>
+
+          <div class="field">
+            <label>تاريخ المراجعة القادمة</label>
+
+            <input
+              type="date"
+              id="reviewDate"
+            >
+          </div>
+
+        </div>
+
+        <div class="field">
+          <label>تعليمات عامة للمريض</label>
+
+          <textarea
+            id="generalInstructions"
+            placeholder="مثال: تنفيذ التمارين ببطء وعدم تجاوز مستوى الألم المحتمل..."
+          ></textarea>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- مكتبة التمارين -->
+
+    <div class="card library-card">
+
+      <div class="card-head">
+        <h2>مكتبة التمارين العلاجية</h2>
+        <p>النسخة الأولى مخصصة لتمارين الركبة.</p>
+      </div>
+
+      <div class="library-tools">
+
+        <input
+          type="text"
+          id="exerciseSearch"
+          placeholder="ابحث باسم التمرين..."
+        >
+
+        <select id="categoryFilter">
+          <option value="الركبة">الركبة</option>
+          <option value="الرقبة" disabled>الرقبة — قريبًا</option>
+          <option value="الكتف" disabled>الكتف — قريبًا</option>
+          <option value="أسفل الظهر" disabled>أسفل الظهر — قريبًا</option>
+          <option value="الكاحل" disabled>الكاحل — قريبًا</option>
+        </select>
+
+      </div>
+
+      <div class="library" id="exerciseLibrary"></div>
+
+    </div>
+
+  </section>
+
+  <!-- التمارين المختارة -->
+
+  <section class="card selected-section">
+
+    <div class="card-head">
+      <h2>البرنامج المختار</h2>
+      <p>
+        عدّل الجرعة العلاجية لكل تمرين قبل إنشاء الملف.
+      </p>
+    </div>
+
+    <div class="selected-list" id="selectedExercisesList">
+
+      <div class="selected-empty">
+        <div class="icon">🏃</div>
+        لم تتم إضافة أي تمارين حتى الآن.
+      </div>
+
+    </div>
+
+  </section>
+
+  <div class="bottom-actions">
+
+    <button class="action-btn preview-btn" onclick="openPreview()">
+      👁️ معاينة البرنامج
+    </button>
+
+    <button class="action-btn save-btn" onclick="saveProgram()">
+      💾 حفظ البرنامج
+    </button>
+
+    <button class="action-btn pdf-btn" onclick="downloadPDF()">
+      📄 تحميل PDF
+    </button>
+
+    <button class="action-btn whatsapp-btn" onclick="openWhatsApp()">
+      💬 فتح واتساب المريض
+    </button>
+
+  </div>
+
+</main>
+
+<!-- المعاينة -->
+
+<div class="preview-overlay" id="previewOverlay">
+
+  <div class="preview-wrapper">
+
+    <div class="preview-toolbar">
+
+      <button class="close-preview" onclick="closePreview()">
+        إغلاق
+      </button>
+
+      <button class="download-preview" onclick="downloadPDF()">
+        تحميل PDF
+      </button>
+
+    </div>
+
+    <div class="pdf-document" id="pdfDocument">
+
+      <div class="pdf-cover">
+
+        <div class="pdf-header">
+
+          <img
+            src="logo.png"
+            class="pdf-logo"
+            alt="شعار مركز عكاز"
+          >
+
+          <div class="pdf-title">
+            <h1>برنامج التمارين المنزلية</h1>
+            <p>HOME EXERCISE PROGRAM</p>
+          </div>
+
+        </div>
+
+        <div class="patient-info-box" id="pdfPatientInfo"></div>
+
+        <div
+          class="pdf-general-instructions"
+          id="pdfGeneralInstructions"
+        ></div>
+
+        <div class="pdf-exercises" id="pdfExercises"></div>
+
+        <div class="pdf-footer">
+          هذا البرنامج أُعد وفق تقييم أخصائي العلاج الطبيعي، وهو مخصص للمريض المذكور فقط. يجب تنفيذ التمارين بالطريقة الموضحة، والتوقف عند ظهور ألم شديد أو أعراض غير معتادة والتواصل مع المركز أو الأخصائي المعالج.
+          <br>
+          مركز عكاز للعلاج الطبيعي
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function toggleTheme(){
+  document.body.classList.toggle("dark");
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "akazTheme",
+    isDark ? "dark" : "light"
+  );
+
+  document.getElementById("themeBtn").innerText =
+    isDark ? "☀️" : "🌙";
+}
+
+(function loadTheme(){
+  if(localStorage.getItem("akazTheme") === "dark"){
+    document.body.classList.add("dark");
+    document.getElementById("themeBtn").innerText = "☀️";
+  }
+})();
+</script>
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
+
+/* Firebase */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain: "akazcenter-89c17.firebaseapp.com",
+  projectId: "akazcenter-89c17",
+  storageBucket: "akazcenter-89c17.firebasestorage.app",
+  messagingSenderId: "576111794528",
+  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const programsRef =
+  collection(db,"homeExercisePrograms");
+
+/* الأخصائيون */
+
+const therapists = [
+  "د. حاتم الاحمدي",
+  "د. عبدالرحمن السويداء",
+  "د. عبدالرحمن السليمي",
+  "د. عبدالعزيز الحمدان",
+  "د. ريناد حميد",
+  "د. ابتسام سويلم",
+  "د. سلمى فرحان",
+  "د. هند فهيد",
+  "د. أسماء فهيد",
+  "د. مها فريح"
+];
+
+/* تمارين الركبة الأولية */
+
+const exercises = [
+  {
+    id:"knee-001",
+    category:"الركبة",
+    nameAr:"رفع الساق مستقيمة",
+    nameEn:"Straight Leg Raise",
+    image:"exercise-images/knee-straight-leg-raise.png",
+    description:"استلقِ على ظهرك، اثنِ الركبة غير المستهدفة، وحافظ على الساق الأخرى مستقيمة ثم ارفعها ببطء إلى مستوى الركبة المثنية وأنزلها بتحكم."
+  },
+  {
+    id:"knee-002",
+    category:"الركبة",
+    nameAr:"شد العضلة الرباعية",
+    nameEn:"Quadriceps Set",
+    image:"exercise-images/knee-quadriceps-set.png",
+    description:"استلقِ والساق مستقيمة، شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح مع المحافظة على وضع الساق مستقيمًا."
+  },
+  {
+    id:"knee-003",
+    category:"الركبة",
+    nameAr:"انزلاق الكعب",
+    nameEn:"Heel Slide",
+    image:"exercise-images/knee-heel-slide.png",
+    description:"استلقِ على ظهرك، اسحب الكعب ببطء باتجاه الجسم لثني الركبة ثم أعد الساق إلى وضع الاستقامة."
+  },
+  {
+    id:"knee-004",
+    category:"الركبة",
+    nameAr:"مد الركبة أثناء الجلوس",
+    nameEn:"Seated Knee Extension",
+    image:"exercise-images/knee-seated-extension.png",
+    description:"اجلس على كرسي بظهر مستقيم، ارفع القدم ومد الركبة حتى تصبح الساق مستقيمة، ثم عد ببطء."
+  },
+  {
+    id:"knee-005",
+    category:"الركبة",
+    nameAr:"رفع الحوض",
+    nameEn:"Bridge Exercise",
+    image:"exercise-images/knee-bridge.png",
+    description:"استلقِ على ظهرك والركبتان مثنيتان، شد عضلات البطن والأرداف وارفع الحوض ببطء ثم انزل بتحكم."
+  },
+  {
+    id:"knee-006",
+    category:"الركبة",
+    nameAr:"الجلوس والوقوف من الكرسي",
+    nameEn:"Sit to Stand",
+    image:"exercise-images/knee-sit-to-stand.png",
+    description:"اجلس على طرف الكرسي، قدم القدمين قليلًا للخلف، انحنِ للأمام ثم قف باستخدام عضلات الساقين وارجع للجلوس ببطء."
+  },
+  {
+    id:"knee-007",
+    category:"الركبة",
+    nameAr:"ثني الركبة واقفًا",
+    nameEn:"Standing Hamstring Curl",
+    image:"exercise-images/knee-standing-hamstring-curl.png",
+    description:"قف ممسكًا بسطح ثابت، اثنِ الركبة وارفع الكعب باتجاه الخلف دون تحريك الفخذ إلى الأمام."
+  },
+  {
+    id:"knee-008",
+    category:"الركبة",
+    nameAr:"رفع الكعبين",
+    nameEn:"Calf Raise",
+    image:"exercise-images/knee-calf-raise.png",
+    description:"قف ممسكًا بسطح ثابت، ارفع الكعبين عن الأرض ببطء ثم انزل بتحكم."
+  },
+  {
+    id:"knee-009",
+    category:"الركبة",
+    nameAr:"القرفصاء الجزئية",
+    nameEn:"Mini Squat",
+    image:"exercise-images/knee-mini-squat.png",
+    description:"قف والقدمان بعرض الكتفين، اثنِ الركبتين قليلًا مع إبقاء الظهر مستقيمًا والركبتين باتجاه القدمين ثم عد للوقوف."
+  },
+  {
+    id:"knee-010",
+    category:"الركبة",
+    nameAr:"الصعود على درجة",
+    nameEn:"Step Up",
+    image:"exercise-images/knee-step-up.png",
+    description:"ضع القدم على درجة منخفضة، ادفع بالجسم للأعلى باستخدام الساق المستهدفة ثم انزل ببطء وتحكم."
+  }
+];
+
+let selectedExercises = [];
+
+/* أدوات */
+
+function isoDate(date){
+  const copy = new Date(date);
+
+  copy.setMinutes(
+    copy.getMinutes() - copy.getTimezoneOffset()
+  );
+
+  return copy.toISOString().split("T")[0];
+}
+
+function escapeHtml(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function showToast(message,isError = false){
+  const toast =
+    document.getElementById("toast");
+
+  toast.innerText = message;
+
+  toast.classList.toggle("error",isError);
+  toast.classList.add("show");
+
+  setTimeout(()=>{
+    toast.classList.remove("show");
+  },3000);
+}
+
+/* الأخصائيون */
+
+function fillTherapists(){
+  const select =
+    document.getElementById("therapist");
+
+  therapists.forEach(name=>{
+    const option =
+      document.createElement("option");
+
+    option.value = name;
+    option.textContent = name;
+
+    select.appendChild(option);
+  });
+}
+
+/* مكتبة التمارين */
+
+function renderExerciseLibrary(){
+  const library =
+    document.getElementById("exerciseLibrary");
+
+  const search =
+    document
+      .getElementById("exerciseSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const category =
+    document.getElementById("categoryFilter").value;
+
+  const list =
+    exercises.filter(exercise=>{
+
+      const matchesCategory =
+        exercise.category === category;
+
+      const matchesSearch =
+        !search ||
+        exercise.nameAr.toLowerCase().includes(search) ||
+        exercise.nameEn.toLowerCase().includes(search);
+
+      return matchesCategory && matchesSearch;
+    });
+
+  library.innerHTML = "";
+
+  list.forEach(exercise=>{
+
+    const isAdded =
+      selectedExercises.some(item=>item.id === exercise.id);
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "exercise-card";
+
+    card.innerHTML = `
+      <img
+        src="${exercise.image}"
+        class="exercise-image"
+        alt="${escapeHtml(exercise.nameAr)}"
+        onerror="
+          this.style.display='none';
+          this.nextElementSibling.style.display='flex';
+        "
+      >
+
+      <div class="exercise-image-fallback">
+        🦵
+      </div>
+
+      <div class="exercise-content">
+
+        <h3>
+          ${escapeHtml(exercise.nameAr)}
+        </h3>
+
+        <div class="exercise-en">
+          ${escapeHtml(exercise.nameEn)}
+        </div>
+
+        <div class="exercise-description">
+          ${escapeHtml(exercise.description)}
+        </div>
+
+        <button
+          class="add-exercise-btn ${isAdded ? "added" : ""}"
+          onclick="addExercise('${exercise.id}')"
+        >
+          ${isAdded ? "✓ مضاف للبرنامج" : "إضافة للبرنامج"}
+        </button>
+
+      </div>
+    `;
+
+    library.appendChild(card);
+  });
+}
+
+window.addExercise = function(id){
+  const alreadyAdded =
+    selectedExercises.some(item=>item.id === id);
+
+  if(alreadyAdded){
+    showToast("التمرين مضاف مسبقًا",true);
+    return;
+  }
+
+  const exercise =
+    exercises.find(item=>item.id === id);
+
+  if(!exercise){
+    return;
+  }
+
+  selectedExercises.push({
+    ...exercise,
+    sets:3,
+    reps:10,
+    holdSeconds:0,
+    dailyFrequency:1,
+    weeklyDays:7,
+    side:"الجهتان",
+    resistance:"بدون مقاومة",
+    note:""
+  });
+
+  renderExerciseLibrary();
+  renderSelectedExercises();
+
+  showToast("تمت إضافة التمرين");
+};
+
+window.removeExercise = function(id){
+  selectedExercises =
+    selectedExercises.filter(item=>item.id !== id);
+
+  renderExerciseLibrary();
+  renderSelectedExercises();
+};
+
+window.updateExerciseField = function(id,field,value){
+  const exercise =
+    selectedExercises.find(item=>item.id === id);
+
+  if(!exercise){
+    return;
+  }
+
+  if(
+    field === "sets" ||
+    field === "reps" ||
+    field === "holdSeconds" ||
+    field === "dailyFrequency" ||
+    field === "weeklyDays"
+  ){
+    exercise[field] =
+      Number(value) || 0;
+  }
+  else{
+    exercise[field] = value;
+  }
+};
+
+/* عرض التمارين المختارة */
+
+function renderSelectedExercises(){
+  const box =
+    document.getElementById("selectedExercisesList");
+
+  if(selectedExercises.length === 0){
+    box.innerHTML = `
+      <div class="selected-empty">
+        <div class="icon">🏃</div>
+        لم تتم إضافة أي تمارين حتى الآن.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = "";
+
+  selectedExercises.forEach(exercise=>{
+
+    const item =
+      document.createElement("div");
+
+    item.className =
+      "selected-exercise";
+
+    item.innerHTML = `
+      <img
+        src="${exercise.image}"
+        class="selected-image"
+        alt="${escapeHtml(exercise.nameAr)}"
+        onerror="this.src='logo.png'"
+      >
+
+      <div class="selected-info">
+
+        <h3>
+          ${escapeHtml(exercise.nameAr)}
+        </h3>
+
+        <small>
+          ${escapeHtml(exercise.nameEn)}
+        </small>
+
+        <div class="prescription-grid">
+
+          <div class="prescription-field">
+            <label>المجموعات</label>
+            <input
+              type="number"
+              min="1"
+              value="${exercise.sets}"
+              onchange="updateExerciseField('${exercise.id}','sets',this.value)"
+            >
+          </div>
+
+          <div class="prescription-field">
+            <label>التكرارات</label>
+            <input
+              type="number"
+              min="1"
+              value="${exercise.reps}"
+              onchange="updateExerciseField('${exercise.id}','reps',this.value)"
+            >
+          </div>
+
+          <div class="prescription-field">
+            <label>الثبات بالثواني</label>
+            <input
+              type="number"
+              min="0"
+              value="${exercise.holdSeconds}"
+              onchange="updateExerciseField('${exercise.id}','holdSeconds',this.value)"
+            >
+          </div>
+
+          <div class="prescription-field">
+            <label>مرات يوميًا</label>
+            <input
+              type="number"
+              min="1"
+              value="${exercise.dailyFrequency}"
+              onchange="updateExerciseField('${exercise.id}','dailyFrequency',this.value)"
+            >
+          </div>
+
+          <div class="prescription-field">
+            <label>أيام أسبوعيًا</label>
+            <input
+              type="number"
+              min="1"
+              max="7"
+              value="${exercise.weeklyDays}"
+              onchange="updateExerciseField('${exercise.id}','weeklyDays',this.value)"
+            >
+          </div>
+
+          <div class="prescription-field">
+            <label>الجهة</label>
+            <select
+              onchange="updateExerciseField('${exercise.id}','side',this.value)"
+            >
+              <option ${exercise.side==="الجهتان"?"selected":""}>
+                الجهتان
+              </option>
+              <option ${exercise.side==="اليمين"?"selected":""}>
+                اليمين
+              </option>
+              <option ${exercise.side==="اليسار"?"selected":""}>
+                اليسار
+              </option>
+            </select>
+          </div>
+
+          <div class="prescription-field">
+            <label>المقاومة</label>
+            <select
+              onchange="updateExerciseField('${exercise.id}','resistance',this.value)"
+            >
+              <option ${exercise.resistance==="بدون مقاومة"?"selected":""}>
+                بدون مقاومة
+              </option>
+              <option ${exercise.resistance==="مقاومة خفيفة"?"selected":""}>
+                مقاومة خفيفة
+              </option>
+              <option ${exercise.resistance==="مقاومة متوسطة"?"selected":""}>
+                مقاومة متوسطة
+              </option>
+              <option ${exercise.resistance==="مقاومة قوية"?"selected":""}>
+                مقاومة قوية
+              </option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="exercise-note">
+          <textarea
+            placeholder="ملاحظة خاصة بهذا التمرين"
+            onchange="updateExerciseField('${exercise.id}','note',this.value)"
+          >${escapeHtml(exercise.note)}</textarea>
+        </div>
+
+      </div>
+
+      <button
+        class="remove-btn"
+        onclick="removeExercise('${exercise.id}')"
+        title="حذف التمرين"
+      >
+        ×
+      </button>
+    `;
+
+    box.appendChild(item);
+  });
+}
+
+/* التحقق من البيانات */
+
+function getPatientData(){
+  return {
+    patientName:
+      document.getElementById("patientName").value.trim(),
+
+    fileNumber:
+      document.getElementById("fileNumber").value.trim(),
+
+    phoneNumber:
+      document.getElementById("phoneNumber").value.trim(),
+
+    therapist:
+      document.getElementById("therapist").value,
+
+    diagnosis:
+      document.getElementById("diagnosis").value.trim(),
+
+    programDate:
+      document.getElementById("programDate").value,
+
+    reviewDate:
+      document.getElementById("reviewDate").value,
+
+    generalInstructions:
+      document
+        .getElementById("generalInstructions")
+        .value
+        .trim()
+  };
+}
+
+function validateProgram(){
+  const data =
+    getPatientData();
+
+  if(
+    !data.patientName ||
+    !data.fileNumber ||
+    !data.phoneNumber ||
+    !data.therapist
+  ){
+    showToast(
+      "أكمل اسم المريض ورقم الملف والجوال والأخصائي",
+      true
+    );
+
+    return false;
+  }
+
+  if(selectedExercises.length === 0){
+    showToast(
+      "أضف تمرينًا واحدًا على الأقل",
+      true
+    );
+
+    return false;
+  }
+
+  return true;
+}
+
+/* إنشاء المعاينة */
+
+function buildPreview(){
+  const data =
+    getPatientData();
+
+  document.getElementById("pdfPatientInfo").innerHTML = `
+    <div class="pdf-info-item">
+      <span>اسم المريض:</span>
+      <strong>${escapeHtml(data.patientName)}</strong>
+    </div>
+
+    <div class="pdf-info-item">
+      <span>رقم الملف:</span>
+      <strong>${escapeHtml(data.fileNumber)}</strong>
+    </div>
+
+    <div class="pdf-info-item">
+      <span>الأخصائي المعالج:</span>
+      <strong>${escapeHtml(data.therapist)}</strong>
+    </div>
+
+    <div class="pdf-info-item">
+      <span>التشخيص:</span>
+      <strong>${escapeHtml(data.diagnosis || "-")}</strong>
+    </div>
+
+    <div class="pdf-info-item">
+      <span>تاريخ البرنامج:</span>
+      <strong>${escapeHtml(data.programDate || "-")}</strong>
+    </div>
+
+    <div class="pdf-info-item">
+      <span>المراجعة القادمة:</span>
+      <strong>${escapeHtml(data.reviewDate || "-")}</strong>
+    </div>
+  `;
+
+  document.getElementById("pdfGeneralInstructions").innerHTML = `
+    <strong>التعليمات العامة:</strong><br>
+    ${
+      escapeHtml(
+        data.generalInstructions ||
+        "نفّذ التمارين ببطء وتحكم، والتزم بالجرعة المحددة من الأخصائي المعالج."
+      )
+    }
+  `;
+
+  const exercisesBox =
+    document.getElementById("pdfExercises");
+
+  exercisesBox.innerHTML = "";
+
+  selectedExercises.forEach((exercise,index)=>{
+
+    let doseText =
+      `${exercise.sets} مجموعات × ${exercise.reps} تكرارات`;
+
+    if(exercise.holdSeconds > 0){
+      doseText +=
+        ` — الثبات ${exercise.holdSeconds} ثانية`;
+    }
+
+    doseText +=
+      ` — ${exercise.dailyFrequency} مرة يوميًا`;
+
+    doseText +=
+      ` — ${exercise.weeklyDays} أيام أسبوعيًا`;
+
+    doseText +=
+      ` — الجهة: ${exercise.side}`;
+
+    if(exercise.resistance !== "بدون مقاومة"){
+      doseText +=
+        ` — ${exercise.resistance}`;
+    }
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "pdf-exercise";
+
+    card.innerHTML = `
+      <img
+        src="${exercise.image}"
+        class="pdf-exercise-image"
+        alt="${escapeHtml(exercise.nameAr)}"
+        onerror="this.src='logo.png'"
+      >
+
+      <div>
+
+        <h2>
+          ${index + 1}. ${escapeHtml(exercise.nameAr)}
+        </h2>
+
+        <div class="pdf-exercise-en">
+          ${escapeHtml(exercise.nameEn)}
+        </div>
+
+        <div class="pdf-exercise-description">
+          ${escapeHtml(exercise.description)}
+        </div>
+
+        <div class="pdf-dose">
+          ${escapeHtml(doseText)}
+        </div>
+
+        ${
+          exercise.note
+          ?
+          `
+          <div class="pdf-note">
+            <strong>ملاحظة الأخصائي:</strong>
+            ${escapeHtml(exercise.note)}
+          </div>
+          `
+          :
+          ""
+        }
+
+      </div>
+    `;
+
+    exercisesBox.appendChild(card);
+  });
+}
+
+window.openPreview = function(){
+  if(!validateProgram()){
+    return;
+  }
+
+  buildPreview();
+
+  document
+    .getElementById("previewOverlay")
+    .classList
+    .add("show");
+};
+
+window.closePreview = function(){
+  document
+    .getElementById("previewOverlay")
+    .classList
+    .remove("show");
+};
+
+/* حفظ البرنامج */
+
+window.saveProgram = async function(){
+  if(!validateProgram()){
+    return;
+  }
+
+  const patientData =
+    getPatientData();
+
+  try{
+    await addDoc(programsRef,{
+      ...patientData,
+
+      category:"الركبة",
+
+      exercises:
+        selectedExercises.map(exercise=>({
+          id:exercise.id,
+          nameAr:exercise.nameAr,
+          nameEn:exercise.nameEn,
+          image:exercise.image,
+          description:exercise.description,
+          sets:exercise.sets,
+          reps:exercise.reps,
+          holdSeconds:exercise.holdSeconds,
+          dailyFrequency:exercise.dailyFrequency,
+          weeklyDays:exercise.weeklyDays,
+          side:exercise.side,
+          resistance:exercise.resistance,
+          note:exercise.note
+        })),
+
+      exerciseCount:
+        selectedExercises.length,
+
+      createdAt:
+        serverTimestamp()
+    });
+
+    showToast(
+      "تم حفظ برنامج التمارين بنجاح"
+    );
+  }
+  catch(error){
+    console.error(error);
+
+    showToast(
+      "تعذر حفظ البرنامج في Firebase",
+      true
+    );
+  }
+};
+
+/* PDF */
+
+window.downloadPDF = async function(){
+  if(!validateProgram()){
+    return;
+  }
+
+  buildPreview();
+
+  const documentElement =
+    document.getElementById("pdfDocument");
+
+  showToast(
+    "جاري تجهيز ملف PDF..."
+  );
+
+  try{
+    const canvas =
+      await html2canvas(
+        documentElement,
+        {
+          scale:2,
+          useCORS:true,
+          backgroundColor:"#ffffff"
+        }
+      );
+
+    const imageData =
+      canvas.toDataURL("image/jpeg",0.95);
+
+    const {
+      jsPDF
+    } = window.jspdf;
+
+    const pdf =
+      new jsPDF(
+        "p",
+        "mm",
+        "a4"
+      );
+
+    const pageWidth =
+      210;
+
+    const pageHeight =
+      297;
+
+    const imageWidth =
+      pageWidth;
+
+    const imageHeight =
+      canvas.height * imageWidth / canvas.width;
+
+    let heightLeft =
+      imageHeight;
+
+    let position =
+      0;
+
+    pdf.addImage(
+      imageData,
+      "JPEG",
+      0,
+      position,
+      imageWidth,
+      imageHeight
+    );
+
+    heightLeft -=
+      pageHeight;
+
+    while(heightLeft > 0){
+
+      position =
+        heightLeft - imageHeight;
+
+      pdf.addPage();
+
+      pdf.addImage(
+        imageData,
+        "JPEG",
+        0,
+        position,
+        imageWidth,
+        imageHeight
+      );
+
+      heightLeft -=
+        pageHeight;
+    }
+
+    const patientName =
+      document
+        .getElementById("patientName")
+        .value
+        .trim()
+        .replace(/\s+/g,"-");
+
+    pdf.save(
+      `برنامج-تمارين-${patientName || "مريض"}.pdf`
+    );
+
+    showToast(
+      "تم تحميل ملف PDF"
+    );
+  }
+  catch(error){
+    console.error(error);
+
+    showToast(
+      "تعذر إنشاء ملف PDF",
+      true
+    );
+  }
+};
+
+/* واتساب */
+
+window.openWhatsApp = function(){
+  const data =
+    getPatientData();
+
+  if(!data.phoneNumber){
+    showToast(
+      "أدخل رقم جوال المريض",
+      true
+    );
+
+    return;
+  }
+
+  let phone =
+    data.phoneNumber.replace(/\D/g,"");
+
+  if(phone.startsWith("05")){
+    phone =
+      "966" + phone.substring(1);
+  }
+  else if(phone.startsWith("5")){
+    phone =
+      "966" + phone;
+  }
+
+  const message =
+    `أهلًا وسهلًا ${data.patientName || ""}
+
+مرفق لكم برنامج التمارين المنزلية المعد من أخصائي العلاج الطبيعي في مركز عكاز.
+
+يرجى الالتزام بالتكرارات والتعليمات الموضحة في البرنامج، وفي حال وجود أي استفسار يمكنكم التواصل معنا.
+
+مع تمنياتنا لكم بالشفاء والعافية.`;
+
+  const url =
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(
+    url,
+    "_blank"
+  );
+};
+
+/* البحث */
+
+document
+  .getElementById("exerciseSearch")
+  .addEventListener(
+    "input",
+    renderExerciseLibrary
+  );
+
+document
+  .getElementById("categoryFilter")
+  .addEventListener(
+    "change",
+    renderExerciseLibrary
+  );
+
+/* التشغيل */
+
+fillTherapists();
+
+document.getElementById("programDate").value =
+  isoDate(new Date());
+
+renderExerciseLibrary();
+renderSelectedExercises();
+
+</script>
+
+<script type="module" src="tracker.js"></script>
+
+</body>
+</html>
