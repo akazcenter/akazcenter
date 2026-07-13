@@ -11,12 +11,22 @@
 
 <style>
 :root{
-  --blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;--green:#16a34a;
-  --red:#dc2626;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --green:#16a34a;
+  --red:#dc2626;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --soft:#f8fafc;
 }
 *{box-sizing:border-box}
 body{
-  margin:0;min-height:100vh;direction:rtl;font-family:Tahoma,Arial,sans-serif;
+  margin:0;
+  min-height:100vh;
+  direction:rtl;
+  font-family:Tahoma,Arial,sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 90% 8%,rgba(0,119,200,.12),transparent 28%),
@@ -25,320 +35,827 @@ body{
 }
 button,input,select,textarea{font-family:Tahoma,Arial,sans-serif}
 button{cursor:pointer}
+
 .topbar{
-  position:relative;overflow:hidden;padding:22px 5%;color:#fff;
+  position:relative;
+  overflow:hidden;
+  padding:22px 5%;
+  color:#fff;
   background:linear-gradient(135deg,#00467d,#0077c8);
   box-shadow:0 16px 38px rgba(6,43,79,.23);
 }
-.topbar::before,.topbar::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
-.topbar::before{width:280px;height:280px;right:-110px;top:-150px;background:rgba(255,255,255,.07)}
-.topbar::after{width:230px;height:230px;left:-90px;bottom:-150px;background:rgba(245,158,11,.13)}
+.topbar::before,.topbar::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+.topbar::before{
+  width:280px;height:280px;
+  right:-110px;top:-150px;
+  background:rgba(255,255,255,.07);
+}
+.topbar::after{
+  width:230px;height:230px;
+  left:-90px;bottom:-150px;
+  background:rgba(245,158,11,.13);
+}
 .topbar-inner{
-  position:relative;z-index:2;max-width:1450px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  position:relative;
+  z-index:2;
+  max-width:1450px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
 }
 .brand{display:flex;align-items:center;gap:15px}
 .logo-box{
-  width:78px;height:78px;padding:8px;display:flex;align-items:center;justify-content:center;
-  border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(0,0,0,.20);
+  width:78px;height:78px;padding:8px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:22px;background:#fff;
+  box-shadow:0 12px 28px rgba(0,0,0,.20);
 }
 .logo{width:100%;height:100%;object-fit:contain}
 .brand h1{margin:0;font-size:27px;font-weight:900}
 .brand p{margin:6px 0 0;color:#dbeafe;font-size:13px}
 .top-actions{display:flex;gap:10px}
 .top-btn{
-  padding:11px 16px;border:1px solid rgba(255,255,255,.35);border-radius:14px;
-  background:rgba(255,255,255,.95);color:var(--blue);font-size:13px;font-weight:900;
+  padding:11px 16px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:14px;
+  background:rgba(255,255,255,.95);
+  color:var(--blue);
+  font-size:13px;
+  font-weight:900;
 }
-.main{width:95%;max-width:1450px;margin:26px auto 45px}
+
+.main{
+  width:95%;
+  max-width:1450px;
+  margin:26px auto 45px;
+}
 .info-box{
-  margin-bottom:20px;padding:17px 20px;border:1px solid #bfdbfe;border-radius:20px;
-  background:linear-gradient(135deg,#eff6ff,#fff);color:#164e75;font-size:13px;line-height:1.9;
+  margin-bottom:20px;
+  padding:17px 20px;
+  border:1px solid #bfdbfe;
+  border-radius:20px;
+  background:linear-gradient(135deg,#eff6ff,#fff);
+  color:#164e75;
+  font-size:13px;
+  line-height:1.9;
   box-shadow:0 10px 24px rgba(15,23,42,.06);
 }
 .info-box strong{color:var(--blue)}
-.layout{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:start}
+
 .card{
-  overflow:hidden;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.98);
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:rgba(255,255,255,.98);
   box-shadow:0 15px 34px rgba(15,23,42,.08);
 }
-.card-head{padding:19px 21px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fbff,#fff)}
-.card-head h2{margin:0;color:var(--blue);font-size:20px;font-weight:900}
-.card-head p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.8}
+.card-head{
+  padding:19px 21px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(135deg,#f8fbff,#fff);
+}
+.card-head h2{
+  margin:0;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
+}
+.card-head p{
+  margin:7px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:22px;
+  align-items:start;
+}
 .form-body{padding:20px}
 .field{margin-bottom:14px}
-.field label{display:block;margin-bottom:7px;color:#334155;font-size:13px;font-weight:900}
-.required{color:var(--red)}
-.field input,.field select,.field textarea,.library-tools input,.library-tools select{
-  width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:12px;outline:none;
-  background:#fff;color:var(--text);font-size:14px;transition:.2s;
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#334155;
+  font-size:13px;
+  font-weight:900;
 }
-.field input:focus,.field select:focus,.field textarea:focus,.library-tools input:focus,.library-tools select:focus{
-  border-color:var(--blue2);box-shadow:0 0 0 4px rgba(0,119,200,.10);
+.required{color:var(--red)}
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  outline:none;
+  background:#fff;
+  color:var(--text);
+  font-size:14px;
+  transition:.2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.10);
 }
 .field textarea{min-height:80px;resize:vertical}
-.two-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-
-.region-stage{padding:18px}
-.region-title-row{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  margin-bottom:15px
+.two-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
-.region-title-row h3{margin:0;color:var(--blue);font-size:18px}
-.region-title-row p{margin:4px 0 0;color:var(--muted);font-size:12px}
-.region-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:13px
+
+/* مناطق الجسم */
+.regions-wrap{padding:18px}
+.regions-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 .region-card{
-  position:relative;overflow:hidden;min-height:128px;padding:18px 13px;
-  border:1px solid #dbe4ee;border-radius:18px;background:#fff;
-  text-align:center;transition:.22s
-}
-.region-card:hover{
-  transform:translateY(-4px);
-  border-color:#93c5fd;
-  box-shadow:0 14px 28px rgba(15,23,42,.10)
+  position:relative;
+  min-height:145px;
+  padding:20px 14px;
+  border:1px solid #dbe4ee;
+  border-radius:22px;
+  background:linear-gradient(145deg,#fff,#f8fbff);
+  text-align:center;
+  transition:.22s;
+  overflow:hidden;
 }
 .region-card::after{
-  content:"";position:absolute;width:75px;height:75px;border-radius:50%;
-  left:-28px;bottom:-33px;background:rgba(0,91,159,.06)
+  content:"";
+  position:absolute;
+  width:90px;height:90px;border-radius:50%;
+  left:-25px;bottom:-35px;
+  background:rgba(0,119,200,.06);
+}
+.region-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 30px rgba(15,23,42,.12);
 }
 .region-icon{
-  width:54px;height:54px;margin:0 auto 10px;border-radius:17px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg,#eef6ff,#fff);
-  box-shadow:inset 0 0 0 1px #e2e8f0;font-size:27px
+  position:relative;z-index:2;
+  font-size:38px;
+  margin-bottom:10px;
 }
-.region-card strong{position:relative;z-index:2;display:block;color:var(--blue);font-size:14px}
-.region-card small{position:relative;z-index:2;display:block;margin-top:5px;color:var(--muted);font-size:10px}
+.region-card h3{
+  position:relative;z-index:2;
+  margin:0;
+  color:var(--blue);
+  font-size:17px;
+}
 .region-count{
-  position:absolute;top:9px;left:9px;padding:4px 7px;border-radius:999px;
-  background:#e0f2fe;color:#075985;font-size:9px;font-weight:900
+  position:relative;z-index:2;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
 }
-.exercises-stage{display:none}
-.exercises-stage.show{display:block}
-.back-regions{
-  padding:9px 13px;border:0;border-radius:10px;background:#e0f2fe;
-  color:#075985;font-size:12px;font-weight:900
-}
-.selected-region-banner{
-  padding:14px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:linear-gradient(135deg,#eff6ff,#fff);
-  border-bottom:1px solid var(--line)
-}
-.selected-region-name{display:flex;align-items:center;gap:10px}
-.selected-region-name .big-icon{
-  width:42px;height:42px;border-radius:13px;display:flex;align-items:center;
-  justify-content:center;background:#fff;border:1px solid #dbeafe;font-size:22px
-}
-.selected-region-name strong{display:block;color:var(--blue);font-size:15px}
-.selected-region-name small{display:block;margin-top:3px;color:var(--muted);font-size:10px}
-.subfilters{
-  padding:12px 17px;display:flex;gap:8px;flex-wrap:wrap;
-  border-bottom:1px solid var(--line);background:#fff
-}
-.filter-chip{
-  padding:8px 12px;border:1px solid #cbd5e1;border-radius:999px;
-  background:#fff;color:#475569;font-size:11px;font-weight:900
-}
-.filter-chip.active{
-  border-color:var(--blue);background:var(--blue);color:#fff;
-  box-shadow:0 7px 15px rgba(0,91,159,.18)
-}
-body.dark .region-card,body.dark .subfilters{background:#1e293b;border-color:#334155}
-body.dark .selected-region-banner{background:#172554}
-body.dark .region-card strong,body.dark .region-title-row h3{color:#93c5fd}
-body.dark .filter-chip{background:#0f172a;color:#cbd5e1;border-color:#475569}
-@media(max-width:1150px){.region-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.region-grid{grid-template-columns:repeat(2,1fr)}}
 
-.library-card{min-height:700px}
-.library-tools{padding:15px 17px;display:grid;grid-template-columns:1fr 210px;gap:10px;border-bottom:1px solid var(--line)}
+/* عرض تمارين المنطقة */
+.library-view{display:none}
+.library-view.show{display:block}
+.library-toolbar{
+  padding:15px 17px;
+  display:grid;
+  grid-template-columns:auto 1fr 220px;
+  gap:10px;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+}
+.back-regions-btn{
+  padding:11px 14px;
+  border:0;
+  border-radius:12px;
+  background:#e0f2fe;
+  color:#075985;
+  font-weight:900;
+}
+.library-toolbar input,.library-toolbar select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  outline:none;
+  background:#fff;
+}
 .library-summary{
-  padding:11px 18px;display:flex;justify-content:space-between;gap:10px;
-  color:#475569;background:#f8fafc;border-bottom:1px solid #e2e8f0;font-size:12px;font-weight:900;
+  padding:11px 18px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:#475569;
+  background:#f8fafc;
+  border-bottom:1px solid #e2e8f0;
+  font-size:12px;
+  font-weight:900;
 }
-.library{padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.condition-chips{
+  padding:14px 17px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--line);
+  background:#fff;
+}
+.condition-chip{
+  padding:8px 12px;
+  border:1px solid #dbe4ee;
+  border-radius:999px;
+  background:#fff;
+  color:#475569;
+  font-size:11px;
+  font-weight:900;
+}
+.condition-chip.active{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:#fff;
+  border-color:transparent;
+}
+
+.library{
+  padding:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
 .exercise-card{
-  position:relative;overflow:hidden;border:1px solid #dbe4ee;border-radius:19px;background:#fff;transition:.22s;
+  position:relative;
+  overflow:hidden;
+  border:1px solid #dbe4ee;
+  border-radius:19px;
+  background:#fff;
+  transition:.22s;
 }
-.exercise-card:hover{transform:translateY(-4px);box-shadow:0 15px 28px rgba(15,23,42,.12)}
+.exercise-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 28px rgba(15,23,42,.12);
+}
 .exercise-category{
-  position:absolute;z-index:3;top:10px;right:10px;padding:5px 9px;border-radius:999px;
-  color:#075985;background:rgba(224,242,254,.95);font-size:10px;font-weight:900;
+  position:absolute;
+  z-index:3;
+  top:10px;
+  right:10px;
+  padding:5px 9px;
+  border-radius:999px;
+  color:#075985;
+  background:rgba(224,242,254,.95);
+  font-size:10px;
+  font-weight:900;
+}
+.exercise-tags{
+  position:absolute;
+  z-index:3;
+  top:10px;
+  left:10px;
+  display:flex;
+  gap:4px;
+}
+.exercise-tag{
+  padding:4px 7px;
+  border-radius:999px;
+  background:rgba(255,247,237,.95);
+  color:#9a3412;
+  font-size:8.5px;
+  font-weight:900;
 }
 .video-cover{
-  position:relative;height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;
-  background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.16),transparent 25%),linear-gradient(135deg,#06345d,#0077c8);
+  position:relative;
+  height:160px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(255,255,255,.16),transparent 25%),
+    linear-gradient(135deg,#06345d,#0077c8);
   border-bottom:1px solid #e2e8f0;
 }
 .video-cover::before{
-  content:"";position:absolute;width:160px;height:160px;border-radius:50%;
-  border:1px solid rgba(255,255,255,.13);left:-45px;bottom:-70px;
+  content:"";
+  position:absolute;
+  width:160px;height:160px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.13);
+  left:-45px;bottom:-70px;
 }
 .video-icon{
-  width:64px;height:46px;border-radius:14px;background:#ff0000;
-  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(0,0,0,.25);
+  width:64px;height:46px;
+  border-radius:14px;
+  background:#ff0000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
 }
 .video-icon::after{
-  content:"";margin-right:-4px;border-top:10px solid transparent;border-bottom:10px solid transparent;
+  content:"";
+  margin-right:-4px;
+  border-top:10px solid transparent;
+  border-bottom:10px solid transparent;
   border-left:17px solid #fff;
 }
-.video-label{position:absolute;bottom:12px;color:#fff;font-size:11px;font-weight:900}
+.video-label{
+  position:absolute;
+  bottom:12px;
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+}
 .no-link .video-icon{background:#64748b}
 .no-link .video-label{color:#e2e8f0}
 .exercise-content{padding:14px}
-.exercise-content h3{margin:0;color:var(--blue);font-size:15px;line-height:1.5}
-.exercise-en{margin-top:4px;direction:ltr;color:var(--orange);font-size:10.5px;font-weight:900}
-.exercise-description{margin-top:9px;color:var(--muted);font-size:11px;line-height:1.8;min-height:58px}
-.link-status{margin-top:8px;font-size:10px;font-weight:900}
-.link-status.ready{color:#166534}.link-status.missing{color:#b91c1c}
-.card-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:11px}
-.card-actions button{padding:9px 6px;border:0;border-radius:10px;font-size:10px;font-weight:900}
+.exercise-content h3{
+  margin:0;
+  color:var(--blue);
+  font-size:15px;
+  line-height:1.5;
+}
+.exercise-en{
+  margin-top:4px;
+  direction:ltr;
+  color:var(--orange);
+  font-size:10.5px;
+  font-weight:900;
+}
+.exercise-description{
+  margin-top:9px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.8;
+  min-height:58px;
+}
+.link-status{
+  margin-top:8px;
+  font-size:10px;
+  font-weight:900;
+}
+.link-status.ready{color:#166534}
+.link-status.missing{color:#b91c1c}
+.card-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:7px;
+  margin-top:11px;
+}
+.card-actions button{
+  padding:9px 6px;
+  border:0;
+  border-radius:10px;
+  font-size:10px;
+  font-weight:900;
+}
 .watch-btn{background:#fee2e2;color:#b91c1c}
 .edit-link-btn{background:#fff7ed;color:#9a3412}
-.add-exercise-btn{background:linear-gradient(135deg,#005b9f,#0077c8);color:#fff}
+.add-exercise-btn{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:#fff;
+}
 .add-exercise-btn.added{background:#dcfce7;color:#166534}
+
+/* البرنامج المختار */
 .selected-section{margin-top:22px}
 .selected-list{padding:18px}
-.selected-empty{padding:40px 20px;text-align:center;color:var(--muted)}
-.selected-empty .icon{font-size:42px;margin-bottom:9px}
+.selected-empty{
+  padding:40px 20px;
+  text-align:center;
+  color:var(--muted);
+}
+.selected-empty .icon{
+  font-size:42px;
+  margin-bottom:9px;
+}
 .selected-exercise{
-  position:relative;display:grid;grid-template-columns:155px 1fr 40px;gap:16px;align-items:start;
-  margin-bottom:15px;padding:15px;border:1px solid #dbe4ee;border-radius:18px;background:#f8fafc;
+  position:relative;
+  display:grid;
+  grid-template-columns:155px 1fr 40px;
+  gap:16px;
+  align-items:start;
+  margin-bottom:15px;
+  padding:15px;
+  border:1px solid #dbe4ee;
+  border-radius:18px;
+  background:#f8fafc;
 }
 .selected-video{
-  height:135px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
-  background:linear-gradient(135deg,#06345d,#0077c8);color:#fff;border:1px solid #e2e8f0;
+  height:135px;
+  border-radius:13px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  background:linear-gradient(135deg,#06345d,#0077c8);
+  color:#fff;
+  border:1px solid #e2e8f0;
 }
-.selected-video.no-link{background:linear-gradient(135deg,#334155,#64748b)}
-.selected-video .video-icon{width:54px;height:39px}
-.selected-video span{font-size:10px;font-weight:900;text-align:center;padding:0 8px}
-.selected-info h3{margin:0 0 4px;color:var(--blue);font-size:16px}
-.selected-info small{direction:ltr;color:var(--orange);font-weight:900}
-.selected-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
-.selected-buttons button{padding:8px 11px;border:0;border-radius:9px;font-size:11px;font-weight:900}
+.selected-video.no-link{
+  background:linear-gradient(135deg,#334155,#64748b);
+}
+.selected-video .video-icon{
+  width:54px;height:39px;
+}
+.selected-video span{
+  font-size:10px;
+  font-weight:900;
+  text-align:center;
+  padding:0 8px;
+}
+.selected-info h3{
+  margin:0 0 4px;
+  color:var(--blue);
+  font-size:16px;
+}
+.selected-info small{
+  direction:ltr;
+  color:var(--orange);
+  font-weight:900;
+}
+.selected-buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:9px;
+}
+.selected-buttons button{
+  padding:8px 11px;
+  border:0;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:900;
+}
 .selected-watch{background:#fee2e2;color:#b91c1c}
 .selected-edit{background:#fff7ed;color:#9a3412}
-.prescription-grid{margin-top:13px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-.prescription-field label{display:block;margin-bottom:5px;color:#475569;font-size:10.5px;font-weight:900}
+.prescription-grid{
+  margin-top:13px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+.prescription-field label{
+  display:block;
+  margin-bottom:5px;
+  color:#475569;
+  font-size:10.5px;
+  font-weight:900;
+}
 .prescription-field input,.prescription-field select{
-  width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font-size:12px;
+  width:100%;
+  padding:9px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  background:#fff;
+  font-size:12px;
 }
 .exercise-note{margin-top:9px}
-.exercise-note textarea{width:100%;min-height:55px;padding:9px;border:1px solid #cbd5e1;border-radius:9px;resize:vertical}
-.remove-btn{
-  width:34px;height:34px;border:0;border-radius:50%;background:#fee2e2;color:#b91c1c;font-size:17px;font-weight:900;
+.exercise-note textarea{
+  width:100%;
+  min-height:55px;
+  padding:9px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  resize:vertical;
 }
-.bottom-actions{margin-top:20px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
-.action-btn{padding:13px 20px;border:0;border-radius:13px;font-size:13px;font-weight:900}
+.remove-btn{
+  width:34px;height:34px;
+  border:0;border-radius:50%;
+  background:#fee2e2;
+  color:#b91c1c;
+  font-size:17px;
+  font-weight:900;
+}
+
+.bottom-actions{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.action-btn{
+  padding:13px 20px;
+  border:0;
+  border-radius:13px;
+  font-size:13px;
+  font-weight:900;
+}
 .preview-btn{background:#e0f2fe;color:#075985}
 .save-btn{background:#dcfce7;color:#166534}
 .pdf-btn{background:linear-gradient(135deg,#005b9f,#0077c8);color:#fff}
 .whatsapp-btn{background:#16a34a;color:#fff}
+
+/* المعاينة و PDF */
 .preview-overlay{
-  position:fixed;inset:0;z-index:99999;display:none;align-items:flex-start;justify-content:center;
-  padding:25px;overflow:auto;background:rgba(15,23,42,.72);backdrop-filter:blur(5px);
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:flex-start;
+  justify-content:center;
+  padding:25px;
+  overflow:auto;
+  background:rgba(15,23,42,.72);
+  backdrop-filter:blur(5px);
 }
 .preview-overlay.show{display:flex}
 .preview-wrapper{width:100%;max-width:900px}
 .preview-toolbar{
-  position:sticky;top:0;z-index:20;margin-bottom:12px;padding:10px;display:flex;justify-content:flex-start;gap:8px;
-  border-radius:13px;background:rgba(15,23,42,.88);
+  position:sticky;
+  top:0;
+  z-index:20;
+  margin-bottom:12px;
+  padding:10px;
+  display:flex;
+  justify-content:flex-start;
+  gap:8px;
+  border-radius:13px;
+  background:rgba(15,23,42,.88);
 }
-.preview-toolbar button{padding:10px 15px;border:0;border-radius:11px;font-weight:900}
+.preview-toolbar button{
+  padding:10px 15px;
+  border:0;
+  border-radius:11px;
+  font-weight:900;
+}
 .close-preview{background:#fee2e2;color:#b91c1c}
 .download-preview{background:#005b9f;color:#fff}
-.pdf-pages{display:flex;flex-direction:column;gap:22px}
+.pdf-pages{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
 .pdf-page{
-  position:relative;width:794px;height:1123px;margin:auto;padding:30px 34px 26px;overflow:hidden;
-  background:#fff;color:#0f172a;box-shadow:0 25px 70px rgba(0,0,0,.32);
+  position:relative;
+  width:794px;
+  height:1123px;
+  margin:auto;
+  padding:30px 34px 26px;
+  overflow:hidden;
+  background:#fff;
+  color:#0f172a;
+  box-shadow:0 25px 70px rgba(0,0,0,.32);
 }
 .pdf-top{
-  height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;
-  padding-bottom:13px;border-bottom:4px solid var(--orange);
+  height:82px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:13px;
+  border-bottom:4px solid var(--orange);
 }
 .pdf-logo{width:105px;height:72px;object-fit:contain}
 .pdf-title{flex:1;text-align:right}
-.pdf-title h1{margin:0;color:var(--blue);font-size:25px;font-weight:900}
-.pdf-title p{margin:4px 0 0;direction:ltr;color:var(--orange);font-size:11px;font-weight:900}
-.pdf-page-number{min-width:75px;direction:ltr;color:#64748b;text-align:left;font-size:11px;font-weight:900}
-.patient-info-box{
-  margin-top:14px;padding:11px 14px;display:grid;grid-template-columns:repeat(3,1fr);
-  gap:8px 18px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff;
+.pdf-title h1{
+  margin:0;
+  color:var(--blue);
+  font-size:25px;
+  font-weight:900;
 }
-.pdf-info-item{overflow:hidden;font-size:10.5px;line-height:1.5;white-space:nowrap;text-overflow:ellipsis}
+.pdf-title p{
+  margin:4px 0 0;
+  direction:ltr;
+  color:var(--orange);
+  font-size:11px;
+  font-weight:900;
+}
+.pdf-page-number{
+  min-width:75px;
+  direction:ltr;
+  color:#64748b;
+  text-align:left;
+  font-size:11px;
+  font-weight:900;
+}
+.patient-info-box{
+  margin-top:14px;
+  padding:11px 14px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px 18px;
+  border:1px solid #dbeafe;
+  border-radius:13px;
+  background:#f8fbff;
+}
+.pdf-info-item{
+  overflow:hidden;
+  font-size:10.5px;
+  line-height:1.5;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
 .pdf-info-item span{color:#64748b;font-weight:900}
 .pdf-general-instructions{
-  margin-top:10px;padding:9px 12px;border-right:4px solid var(--orange);border-radius:10px;
-  background:#fff7ed;color:#7c2d12;font-size:10.5px;line-height:1.65;
+  margin-top:10px;
+  padding:9px 12px;
+  border-right:4px solid var(--orange);
+  border-radius:10px;
+  background:#fff7ed;
+  color:#7c2d12;
+  font-size:10.5px;
+  line-height:1.65;
 }
-.pdf-exercises-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.pdf-exercises-grid{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
 .pdf-exercise-card{
-  height:202px;display:grid;grid-template-columns:112px 1fr;gap:10px;padding:10px;overflow:hidden;
-  border:1px solid #dbe4ee;border-radius:13px;background:#fff;
+  height:202px;
+  display:grid;
+  grid-template-columns:112px 1fr;
+  gap:10px;
+  padding:10px;
+  overflow:hidden;
+  border:1px solid #dbe4ee;
+  border-radius:13px;
+  background:#fff;
 }
 .pdf-video-box{
-  width:112px;height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
-  overflow:hidden;border:1px solid #e2e8f0;border-radius:10px;
-  background:linear-gradient(135deg,#06345d,#0077c8);color:#fff;
+  width:112px;height:180px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  overflow:hidden;
+  border:1px solid #e2e8f0;
+  border-radius:10px;
+  background:linear-gradient(135deg,#06345d,#0077c8);
+  color:#fff;
 }
-.pdf-video-box.no-link{background:linear-gradient(135deg,#334155,#64748b)}
-.pdf-video-box .video-icon{width:50px;height:36px;border-radius:11px}
-.pdf-video-box .video-icon::after{border-top-width:8px;border-bottom-width:8px;border-left-width:14px}
-.pdf-video-box span{font-size:8px;font-weight:900;text-align:center;padding:0 6px;line-height:1.5}
+.pdf-video-box.no-link{
+  background:linear-gradient(135deg,#334155,#64748b);
+}
+.pdf-video-box .video-icon{
+  width:50px;height:36px;border-radius:11px;
+}
+.pdf-video-box .video-icon::after{
+  border-top-width:8px;
+  border-bottom-width:8px;
+  border-left-width:14px;
+}
+.pdf-video-box span{
+  font-size:8px;
+  font-weight:900;
+  text-align:center;
+  padding:0 6px;
+  line-height:1.5;
+}
 .pdf-exercise-content{min-width:0;overflow:hidden}
 .pdf-exercise-number{
-  display:inline-flex;width:23px;height:23px;margin-left:5px;align-items:center;justify-content:center;
-  border-radius:8px;background:var(--blue);color:#fff;font-size:11px;font-weight:900;
+  display:inline-flex;
+  width:23px;height:23px;
+  margin-left:5px;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  background:var(--blue);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
 }
-.pdf-exercise-card h2{display:inline;margin:0;color:var(--blue);font-size:13.5px;line-height:1.4}
-.pdf-exercise-en{margin-top:3px;direction:ltr;color:var(--orange);font-size:8.5px;font-weight:900}
-.pdf-exercise-description{margin-top:6px;color:#334155;font-size:9.2px;line-height:1.55}
-.pdf-dose{margin-top:7px;padding:6px 8px;border-radius:8px;background:#eff6ff;color:#075985;font-size:9px;font-weight:900;line-height:1.5}
-.pdf-link-label{margin-top:5px;color:#b91c1c;font-size:8.5px;font-weight:900}
-.pdf-note{margin-top:5px;color:#9a3412;font-size:8.5px;line-height:1.45}
+.pdf-exercise-card h2{
+  display:inline;
+  margin:0;
+  color:var(--blue);
+  font-size:13.5px;
+  line-height:1.4;
+}
+.pdf-exercise-en{
+  margin-top:3px;
+  direction:ltr;
+  color:var(--orange);
+  font-size:8.5px;
+  font-weight:900;
+}
+.pdf-exercise-description{
+  margin-top:6px;
+  color:#334155;
+  font-size:9.2px;
+  line-height:1.55;
+}
+.pdf-dose{
+  margin-top:7px;
+  padding:6px 8px;
+  border-radius:8px;
+  background:#eff6ff;
+  color:#075985;
+  font-size:9px;
+  font-weight:900;
+  line-height:1.5;
+}
+.pdf-link-label{
+  margin-top:5px;
+  color:#b91c1c;
+  font-size:8.5px;
+  font-weight:900;
+}
+.pdf-note{
+  margin-top:5px;
+  color:#9a3412;
+  font-size:8.5px;
+  line-height:1.45;
+}
 .pdf-footer{
-  position:absolute;right:34px;left:34px;bottom:15px;padding-top:8px;border-top:1px solid #dbe4ee;
-  color:#64748b;text-align:center;font-size:8.5px;line-height:1.5;
+  position:absolute;
+  right:34px;
+  left:34px;
+  bottom:15px;
+  padding-top:8px;
+  border-top:1px solid #dbe4ee;
+  color:#64748b;
+  text-align:center;
+  font-size:8.5px;
+  line-height:1.5;
 }
 .pdf-second-page .pdf-exercises-grid{margin-top:17px}
 .pdf-second-page .pdf-exercise-card{height:273px}
 .pdf-second-page .pdf-video-box{height:249px}
 .pdf-second-page .pdf-exercise-description{font-size:9.5px;line-height:1.6}
+
 .toast{
-  position:fixed;z-index:999999;bottom:24px;left:50%;padding:13px 18px;
-  transform:translateX(-50%) translateY(30px);border-radius:14px;background:#166534;color:#fff;
-  font-size:13px;font-weight:900;box-shadow:0 16px 35px rgba(0,0,0,.23);
-  opacity:0;visibility:hidden;transition:.25s;
+  position:fixed;
+  z-index:999999;
+  bottom:24px;
+  left:50%;
+  padding:13px 18px;
+  transform:translateX(-50%) translateY(30px);
+  border-radius:14px;
+  background:#166534;
+  color:#fff;
+  font-size:13px;
+  font-weight:900;
+  box-shadow:0 16px 35px rgba(0,0,0,.23);
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
 }
-.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.toast.show{
+  opacity:1;
+  visibility:visible;
+  transform:translateX(-50%) translateY(0);
+}
 .toast.error{background:#b91c1c}
-body.dark{--text:#e2e8f0;--muted:#94a3b8;--line:#334155;background:linear-gradient(180deg,#020617,#0f172a)}
+
+body.dark{
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --line:#334155;
+  background:linear-gradient(180deg,#020617,#0f172a);
+}
 body.dark .card{background:#1e293b;border-color:#334155}
 body.dark .card-head{background:#0f172a}
 body.dark .field label,body.dark .selected-info h3{color:#e2e8f0}
 body.dark input,body.dark select,body.dark textarea{background:#0f172a;color:#e2e8f0;border-color:#475569}
-body.dark .exercise-card{background:#1e293b;border-color:#334155}
+body.dark .region-card,body.dark .exercise-card{background:#1e293b;border-color:#334155}
 body.dark .selected-exercise{background:#0f172a;border-color:#334155}
 body.dark .library-summary{background:#0f172a;color:#cbd5e1;border-color:#334155}
-@media(max-width:1150px){.layout{grid-template-columns:1fr}.library{grid-template-columns:repeat(2,1fr)}}
+body.dark .condition-chips{background:#0f172a}
+
+@media(max-width:1150px){
+  .layout{grid-template-columns:1fr}
+  .regions-grid{grid-template-columns:repeat(3,1fr)}
+  .library{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:700px){
-  .topbar-inner{flex-direction:column;align-items:flex-start}.top-actions{width:100%}.top-btn{flex:1}
-  .library-tools{grid-template-columns:1fr}.library{grid-template-columns:1fr}.two-fields{grid-template-columns:1fr}
-  .selected-exercise{grid-template-columns:1fr}.remove-btn{position:absolute;top:10px;left:10px}
-  .prescription-grid{grid-template-columns:1fr 1fr}.preview-overlay{justify-content:flex-start}
+  .topbar-inner{flex-direction:column;align-items:flex-start}
+  .top-actions{width:100%}
+  .top-btn{flex:1}
+  .regions-grid{grid-template-columns:repeat(2,1fr)}
+  .library-toolbar{grid-template-columns:1fr}
+  .library{grid-template-columns:1fr}
+  .two-fields{grid-template-columns:1fr}
+  .selected-exercise{grid-template-columns:1fr}
+  .remove-btn{position:absolute;top:10px;left:10px}
+  .prescription-grid{grid-template-columns:1fr 1fr}
+  .preview-overlay{justify-content:flex-start}
 }
 </style>
 </head>
 
 <body>
+
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand">
-      <div class="logo-box"><img src="logo.png" class="logo" alt="شعار مركز عكاز"></div>
-      <div><h1>التمارين المنزلية</h1><p>Home Exercise Program</p></div>
+      <div class="logo-box">
+        <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+      </div>
+      <div>
+        <h1>التمارين المنزلية</h1>
+        <p>Home Exercise Program</p>
+      </div>
     </div>
+
     <div class="top-actions">
       <button class="top-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
       <button class="top-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
@@ -347,68 +864,95 @@ body.dark .library-summary{background:#0f172a;color:#cbd5e1;border-color:#334155
 </header>
 
 <main class="main">
+
   <section class="info-box">
-    <strong>طريقة العمل:</strong>
-    اختر التمرين، واضغط «إضافة/تعديل الرابط» والصق رابط فيديو يوتيوب مباشر. الرابط يُحفظ تلقائيًا في Firebase ويظهر لجميع أجهزة المركز، ثم ينتقل إلى ملف PDF كرابط قابل للضغط.
+    <strong>طريقة الاستخدام:</strong>
+    اختر منطقة الجسم أولًا، ثم اختر التصنيف داخل المنطقة، وبعدها أضف التمارين للبرنامج وحدد الجرعة العلاجية. رابط الفيديو يُحفظ في Firebase ويظهر لجميع أجهزة المركز.
   </section>
 
   <section class="layout">
+
     <div class="card">
-      <div class="card-head"><h2>بيانات البرنامج</h2><p>البيانات التي ستظهر في ملف المريض.</p></div>
-      <div class="form-body">
-        <div class="field"><label>اسم المريض <span class="required">*</span></label><input id="patientName" placeholder="اسم المريض"></div>
-        <div class="two-fields">
-          <div class="field"><label>رقم الملف <span class="required">*</span></label><input id="fileNumber" placeholder="رقم الملف"></div>
-          <div class="field"><label>رقم الجوال <span class="required">*</span></label><input id="phoneNumber" type="tel" inputmode="numeric" placeholder="05xxxxxxxx"></div>
-        </div>
-        <div class="field"><label>الأخصائي المعالج <span class="required">*</span></label><select id="therapist"><option value="">اختر الأخصائي</option></select></div>
-        <div class="field"><label>التشخيص / الحالة</label><input id="diagnosis" placeholder="مثال: ألم أسفل الظهر"></div>
-        <div class="two-fields">
-          <div class="field"><label>تاريخ إصدار البرنامج</label><input type="date" id="programDate"></div>
-          <div class="field"><label>تاريخ المراجعة القادمة</label><input type="date" id="reviewDate"></div>
-        </div>
-        <div class="field"><label>تعليمات عامة للمريض</label><textarea id="generalInstructions" placeholder="مثال: تنفيذ التمارين ببطء والتوقف عند زيادة الألم بشكل واضح."></textarea></div>
-      </div>
-    </div>
-
-    <div class="card library-card">
       <div class="card-head">
-        <h2>مكتبة التمارين العلاجية</h2>
-        <p>اختر منطقة الجسم أولًا، ثم تظهر تمارينها فقط.</p>
+        <h2>بيانات البرنامج</h2>
+        <p>البيانات التي ستظهر داخل ملف المريض.</p>
       </div>
 
-      <div class="region-stage" id="regionStage">
-        <div class="region-title-row">
-          <div>
-            <h3>اختر منطقة الجسم</h3>
-            <p>لن تظهر التمارين حتى تختار المنطقة المطلوبة.</p>
-          </div>
-        </div>
-        <div class="region-grid" id="regionGrid"></div>
-      </div>
-
-      <div class="exercises-stage" id="exercisesStage">
-        <div class="selected-region-banner">
-          <div class="selected-region-name">
-            <div class="big-icon" id="selectedRegionIcon">🦵</div>
-            <div>
-              <strong id="selectedRegionTitle">الركبة</strong>
-              <small id="selectedRegionSubtitle">تمارين المنطقة المختارة</small>
-            </div>
-          </div>
-          <button class="back-regions" onclick="backToRegions()">← تغيير المنطقة</button>
+      <div class="form-body">
+        <div class="field">
+          <label>اسم المريض <span class="required">*</span></label>
+          <input id="patientName" placeholder="اسم المريض">
         </div>
 
-        <div class="library-tools">
-          <input id="exerciseSearch" placeholder="ابحث داخل تمارين المنطقة...">
-          <select id="sortExercises">
-            <option value="default">الترتيب الافتراضي</option>
-            <option value="ar">حسب الاسم العربي</option>
-            <option value="en">حسب الاسم الإنجليزي</option>
+        <div class="two-fields">
+          <div class="field">
+            <label>رقم الملف <span class="required">*</span></label>
+            <input id="fileNumber" placeholder="رقم الملف">
+          </div>
+          <div class="field">
+            <label>رقم الجوال <span class="required">*</span></label>
+            <input id="phoneNumber" type="tel" inputmode="numeric" placeholder="05xxxxxxxx">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>الأخصائي المعالج <span class="required">*</span></label>
+          <select id="therapist">
+            <option value="">اختر الأخصائي</option>
           </select>
         </div>
 
-        <div class="subfilters" id="subfilters"></div>
+        <div class="field">
+          <label>التشخيص / الحالة</label>
+          <input id="diagnosis" placeholder="مثال: ألم أسفل الظهر">
+        </div>
+
+        <div class="two-fields">
+          <div class="field">
+            <label>تاريخ إصدار البرنامج</label>
+            <input type="date" id="programDate">
+          </div>
+          <div class="field">
+            <label>تاريخ المراجعة القادمة</label>
+            <input type="date" id="reviewDate">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>تعليمات عامة للمريض</label>
+          <textarea id="generalInstructions" placeholder="مثال: تنفيذ التمارين ببطء والتوقف عند زيادة الألم بشكل واضح."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div id="regionsView">
+        <div class="card-head">
+          <h2>اختر منطقة الجسم</h2>
+          <p>لن تظهر التمارين إلا بعد اختيار المنطقة.</p>
+        </div>
+        <div class="regions-wrap">
+          <div class="regions-grid" id="regionsGrid"></div>
+        </div>
+      </div>
+
+      <div class="library-view" id="libraryView">
+        <div class="card-head">
+          <h2 id="selectedRegionTitle">تمارين المنطقة</h2>
+          <p>اختر التصنيف أو ابحث باسم التمرين.</p>
+        </div>
+
+        <div class="library-toolbar">
+          <button class="back-regions-btn" onclick="showRegions()">↩ المناطق</button>
+          <input id="exerciseSearch" placeholder="ابحث بالعربي أو الإنجليزي...">
+          <select id="sortFilter">
+            <option value="default">الترتيب الافتراضي</option>
+            <option value="name">حسب الاسم</option>
+            <option value="linked">الروابط الجاهزة أولًا</option>
+          </select>
+        </div>
+
+        <div class="condition-chips" id="conditionChips"></div>
 
         <div class="library-summary">
           <span id="libraryCount">التمارين المعروضة: 0</span>
@@ -418,10 +962,14 @@ body.dark .library-summary{background:#0f172a;color:#cbd5e1;border-color:#334155
         <div class="library" id="exerciseLibrary"></div>
       </div>
     </div>
+
   </section>
 
   <section class="card selected-section">
-    <div class="card-head"><h2>البرنامج المختار</h2><p>عدّل الجرعة العلاجية لكل تمرين.</p></div>
+    <div class="card-head">
+      <h2>البرنامج المختار</h2>
+      <p>عدّل الجرعة العلاجية لكل تمرين قبل إنشاء الملف.</p>
+    </div>
     <div class="selected-list" id="selectedExercisesList"></div>
   </section>
 
@@ -431,6 +979,7 @@ body.dark .library-summary{background:#0f172a;color:#cbd5e1;border-color:#334155
     <button class="action-btn pdf-btn" onclick="downloadPDF()">📄 تحميل PDF</button>
     <button class="action-btn whatsapp-btn" onclick="openWhatsApp()">💬 فتح واتساب المريض</button>
   </div>
+
 </main>
 
 <div class="preview-overlay" id="previewOverlay">
@@ -483,108 +1032,117 @@ const therapists=[
   "د. ريناد حميد","د. ابتسام سويلم","د. سلمى فرحان","د. هند فهيد","د. أسماء فهيد","د. مها فريح"
 ];
 
-const E=(id,category,nameAr,nameEn,description)=>({id,category,nameAr,nameEn,description,videoUrl:""});
+const regions=[
+  {name:"الرقبة",icon:"🧠"},
+  {name:"الكتف",icon:"💪"},
+  {name:"المرفق والرسغ",icon:"✋"},
+  {name:"أعلى الظهر",icon:"🧍"},
+  {name:"أسفل الظهر",icon:"🧘"},
+  {name:"الحوض والورك",icon:"🦴"},
+  {name:"الركبة",icon:"🦵"},
+  {name:"الكاحل والقدم",icon:"🦶"},
+  {name:"الاتزان",icon:"⚖️"},
+  {name:"التأهيل العصبي",icon:"🚶"},
+  {name:"التنفس",icon:"🫁"}
+];
+
+const E=(id,category,nameAr,nameEn,description,tags=[])=>({
+  id,category,nameAr,nameEn,description,tags,videoUrl:""
+});
 
 const exercises=[
-  E("neck-001","الرقبة","سحب الذقن للخلف","Chin Tuck","اجلس أو قف باستقامة، واسحب الذقن إلى الخلف دون خفض الرأس، ثم عد ببطء."),
-  E("neck-002","الرقبة","دوران الرقبة","Neck Rotation","أدر الرأس ببطء إلى أحد الجانبين ضمن المدى المريح، ثم عد للمنتصف وكرر للجهة الأخرى."),
-  E("neck-003","الرقبة","إطالة العضلة شبه المنحرفة","Upper Trapezius Stretch","أمل الرأس باتجاه أحد الكتفين بلطف مع إبقاء الكتف المقابل منخفضًا."),
+  E("neck-001","الرقبة","سحب الذقن للخلف","Chin Tuck","اجلس باستقامة واسحب الذقن إلى الخلف دون خفض الرأس.",["وضعية","تقوية"]),
+  E("neck-002","الرقبة","دوران الرقبة","Neck Rotation","أدر الرأس ببطء إلى أحد الجانبين ضمن المدى المريح.",["مرونة"]),
+  E("neck-003","الرقبة","إطالة العضلة شبه المنحرفة","Upper Trapezius Stretch","أمل الرأس باتجاه أحد الكتفين بلطف مع إبقاء الكتف المقابل منخفضًا.",["إطالة"]),
+  E("neck-004","الرقبة","إطالة العضلة الرافعة للكتف","Levator Scapulae Stretch","أدر الرأس قليلًا ثم انظر للأسفل باتجاه الإبط مع سحب لطيف.",["إطالة"]),
+  E("neck-005","الرقبة","انثناء الرقبة العميق","Deep Neck Flexor Exercise","استلقِ واسحب الذقن للخلف مع رفع بسيط للرأس حسب توجيه الأخصائي.",["تقوية"]),
+  E("neck-006","الرقبة","ثبات الرقبة الأمامي","Neck Isometric Flexion","ضع اليد على الجبهة واضغط دون تحريك الرأس.",["ثبات","تقوية"]),
 
-  E("shoulder-001","الكتف","تمرين البندول","Pendulum Exercise","انحنِ للأمام مع دعم الجسم باليد السليمة، واترك الذراع المصابة مرتخية وحركها بحركات صغيرة."),
-  E("shoulder-002","الكتف","انزلاق الذراع على الجدار","Shoulder Wall Slide","ضع اليد على الجدار وحركها تدريجيًا للأعلى ضمن المدى المريح، ثم أعدها للأسفل ببطء."),
-  E("shoulder-003","الكتف","الدوران الخارجي بالعصا","External Rotation With Stick","أمسك العصا بكلتا اليدين والمرفقان بجانب الجسم، وادفع اليد المصابة للخارج باستخدام اليد الأخرى."),
+  E("shoulder-001","الكتف","تمرين البندول","Pendulum Exercise","اترك الذراع مرتخية وحركها بحركات دائرية صغيرة.",["مرونة","ألم"]),
+  E("shoulder-002","الكتف","انزلاق الذراع على الجدار","Shoulder Wall Slide","حرك اليد تدريجيًا للأعلى على الجدار ثم أعدها للأسفل.",["مرونة"]),
+  E("shoulder-003","الكتف","الدوران الخارجي بالعصا","External Rotation With Stick","ادفع اليد المصابة للخارج باستخدام العصا واليد الأخرى.",["مرونة"]),
+  E("shoulder-004","الكتف","رفع الذراع بالعصا","Shoulder Flexion With Stick","ارفع الذراعين للأعلى باستخدام العصا ضمن المدى المريح.",["مرونة"]),
+  E("shoulder-005","الكتف","الدوران الخارجي بالمطاط","Resisted External Rotation","ثبت المرفق بجانب الجسم واسحب الشريط للخارج.",["تقوية","كفة مدورة"]),
+  E("shoulder-006","الكتف","الدوران الداخلي بالمطاط","Resisted Internal Rotation","اسحب الشريط باتجاه الجسم مع تثبيت المرفق.",["تقوية","كفة مدورة"]),
+  E("shoulder-007","الكتف","رفع الذراع جانبًا","Shoulder Abduction","ارفع الذراع جانبًا ضمن المدى المريح ثم أنزل ببطء.",["تقوية"]),
+  E("shoulder-008","الكتف","تمرين المنشار","Scapular Row","اسحب الذراع للخلف مع تقريب لوح الكتف.",["تقوية","لوح الكتف"]),
 
-  E("elbow-001","المرفق والرسغ","ثني ومد المرفق","Elbow Flexion Extension","اثنِ المرفق حتى تقترب اليد من الكتف، ثم مد الذراع ببطء ضمن المدى المريح."),
-  E("wrist-001","المرفق والرسغ","ثني الرسغ","Wrist Flexion","اسند الساعد على طاولة واترك اليد خارج الحافة، ثم حرك الرسغ للأسفل والأعلى ببطء."),
-  E("wrist-002","المرفق والرسغ","إطالة باسطات الرسغ","Wrist Extensor Stretch","مد الذراع أمامك والمرفق مستقيم، واستخدم اليد الأخرى لثني الرسغ بلطف."),
+  E("elbow-001","المرفق والرسغ","ثني ومد المرفق","Elbow Flexion Extension","اثنِ المرفق ثم مده ببطء ضمن المدى المريح.",["مرونة"]),
+  E("elbow-002","المرفق والرسغ","ثني المرفق بالمقاومة","Biceps Curl","اثنِ المرفق مع مقاومة مناسبة ثم عد ببطء.",["تقوية"]),
+  E("elbow-003","المرفق والرسغ","مد المرفق بالمقاومة","Triceps Extension","مد المرفق ضد مقاومة مناسبة.",["تقوية"]),
+  E("wrist-001","المرفق والرسغ","ثني الرسغ","Wrist Flexion","حرك الرسغ للأسفل والأعلى ببطء.",["مرونة"]),
+  E("wrist-002","المرفق والرسغ","إطالة باسطات الرسغ","Wrist Extensor Stretch","استخدم اليد الأخرى لثني الرسغ بلطف.",["إطالة","مرفق التنس"]),
+  E("wrist-003","المرفق والرسغ","إطالة مثنيات الرسغ","Wrist Flexor Stretch","اسحب الأصابع للخلف بلطف مع استقامة المرفق.",["إطالة"]),
+  E("wrist-004","المرفق والرسغ","تقوية القبضة","Grip Strengthening","اضغط كرة لينة أو أداة قبضة بالجرعة المحددة.",["تقوية"]),
 
-  E("thoracic-001","أعلى الظهر","مد أعلى الظهر على الكرسي","Thoracic Extension","اجلس على كرسي وضع اليدين خلف الرأس، ثم مد أعلى الظهر للخلف فوق مسند الكرسي."),
-  E("thoracic-002","أعلى الظهر","دوران أعلى الظهر","Thoracic Rotation","اجلس باستقامة وضع اليدين على الصدر، ثم أدر الجذع ببطء إلى أحد الجانبين."),
-  E("thoracic-003","أعلى الظهر","سحب لوحي الكتف","Scapular Retraction","اسحب لوحي الكتف للخلف وللأسفل دون رفع الكتفين، وحافظ على الرقبة مسترخية."),
+  E("thoracic-001","أعلى الظهر","مد أعلى الظهر على الكرسي","Thoracic Extension","مد أعلى الظهر للخلف فوق مسند الكرسي.",["مرونة"]),
+  E("thoracic-002","أعلى الظهر","دوران أعلى الظهر","Thoracic Rotation","أدر الجذع ببطء إلى أحد الجانبين.",["مرونة"]),
+  E("thoracic-003","أعلى الظهر","سحب لوحي الكتف","Scapular Retraction","اسحب لوحي الكتف للخلف وللأسفل.",["تقوية","وضعية"]),
+  E("thoracic-004","أعلى الظهر","فتح الكتاب","Open Book Stretch","استلقِ على جانبك وافتح الذراع العليا للخلف مع دوران الجذع.",["مرونة"]),
+  E("thoracic-005","أعلى الظهر","تمرين الحائط للكتفين","Wall Angels","حرك الذراعين على الجدار مع الحفاظ على الوضعية.",["وضعية","تقوية"]),
 
-  E("back-001","أسفل الظهر","إمالة الحوض","Pelvic Tilt","استلقِ والركبتان مثنيتان، شد البطن واضغط أسفل الظهر بلطف باتجاه السطح ثم استرخِ."),
-  E("back-002","أسفل الظهر","سحب الركبة إلى الصدر","Single Knee To Chest","استلقِ على ظهرك واسحب ركبة واحدة باتجاه الصدر بلطف."),
-  E("back-003","أسفل الظهر","تمرين القطة والجمل","Cat Camel","اتخذ وضع اليدين والركبتين، ثم قوس الظهر للأعلى وبعدها اخفضه ببطء."),
-  E("back-004","أسفل الظهر","رفع الحوض","Bridge Exercise","استلقِ والركبتان مثنيتان، شد البطن والأرداف وارفع الحوض ببطء ثم انزل بتحكم."),
+  E("back-001","أسفل الظهر","إمالة الحوض","Pelvic Tilt","شد البطن واضغط أسفل الظهر بلطف باتجاه السطح.",["تحكم","ألم"]),
+  E("back-002","أسفل الظهر","سحب الركبة إلى الصدر","Single Knee To Chest","اسحب ركبة واحدة باتجاه الصدر بلطف.",["إطالة"]),
+  E("back-003","أسفل الظهر","تمرين القطة والجمل","Cat Camel","قوس الظهر للأعلى ثم اخفضه ببطء.",["مرونة"]),
+  E("back-004","أسفل الظهر","رفع الحوض","Bridge Exercise","ارفع الحوض مع شد البطن والأرداف.",["تقوية"]),
+  E("back-005","أسفل الظهر","تمرين الطائر والكلب","Bird Dog","مد ذراعًا وساقًا متعاكستين مع ثبات الجذع.",["تحكم","تقوية"]),
+  E("back-006","أسفل الظهر","تمرين الحشرة الميتة","Dead Bug","حرك الذراع والساق المتعاكستين مع ثبات أسفل الظهر.",["تحكم","تقوية"]),
+  E("back-007","أسفل الظهر","التمدد للخلف على البطن","Prone Press Up","ادفع الجزء العلوي للأعلى مع إبقاء الحوض على السطح.",["ماكينزي","مرونة"]),
+  E("back-008","أسفل الظهر","إطالة الطفل","Child Pose","اجلس للخلف باتجاه الكعبين ومد الذراعين للأمام.",["إطالة"]),
 
-  E("hip-001","الحوض والورك","فتح الركبة جانبًا","Clamshell","استلقِ على جانبك والركبتان مثنيتان، ارفع الركبة العليا مع إبقاء القدمين متلامستين."),
-  E("hip-002","الحوض والورك","إبعاد الورك واقفًا","Standing Hip Abduction","قف ممسكًا بسطح ثابت، حرك الساق جانبًا دون ميل الجذع ثم عد ببطء."),
-  E("hip-003","الحوض والورك","إطالة مثنيات الورك","Hip Flexor Stretch","اتخذ وضع الاندفاع مع ركبة خلفية على الأرض، ثم ادفع الحوض للأمام بلطف."),
+  E("hip-001","الحوض والورك","فتح الركبة جانبًا","Clamshell","ارفع الركبة العليا مع إبقاء القدمين متلامستين.",["تقوية"]),
+  E("hip-002","الحوض والورك","إبعاد الورك واقفًا","Standing Hip Abduction","حرك الساق جانبًا دون ميل الجذع.",["تقوية"]),
+  E("hip-003","الحوض والورك","إطالة مثنيات الورك","Hip Flexor Stretch","ادفع الحوض للأمام بلطف في وضع الاندفاع.",["إطالة"]),
+  E("hip-004","الحوض والورك","رفع الساق جانبًا","Side Lying Hip Abduction","ارفع الساق العليا مستقيمة دون تدوير الحوض.",["تقوية"]),
+  E("hip-005","الحوض والورك","مد الورك واقفًا","Standing Hip Extension","حرك الساق للخلف دون تقوس الظهر.",["تقوية"]),
+  E("hip-006","الحوض والورك","إطالة العضلة الكمثرية","Piriformis Stretch","ضع الكاحل فوق الركبة واسحب الفخذ باتجاه الصدر.",["إطالة"]),
+  E("hip-007","الحوض والورك","المشي الجانبي بالمطاط","Lateral Band Walk","تحرك جانبًا بخطوات قصيرة مع الحفاظ على الشريط مشدودًا.",["تقوية","رياضي"]),
 
-  E("knee-001","الركبة","رفع الساق مستقيمة","Straight Leg Raise","استلقِ على ظهرك، اثنِ الركبة غير المستهدفة، وارفع الساق الأخرى مستقيمة ببطء."),
-  E("knee-002","الركبة","شد العضلة الرباعية","Quadriceps Set","استلقِ والساق مستقيمة، شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح."),
-  E("knee-003","الركبة","انزلاق الكعب","Heel Slide","اسحب الكعب ببطء باتجاه الجسم لثني الركبة، ثم أعد الساق إلى الاستقامة."),
-  E("knee-004","الركبة","مد الركبة أثناء الجلوس","Seated Knee Extension","اجلس على كرسي، مد الركبة حتى تصبح الساق مستقيمة ثم عد ببطء."),
-  E("knee-005","الركبة","الجلوس والوقوف من الكرسي","Sit To Stand","انحنِ قليلًا للأمام ثم قف باستخدام عضلات الساقين، وارجع للجلوس ببطء."),
-  E("knee-006","الركبة","القرفصاء الجزئية","Mini Squat","اثنِ الركبتين قليلًا مع إبقاء الظهر مستقيمًا ثم عد للوقوف."),
+  E("knee-001","الركبة","رفع الساق مستقيمة","Straight Leg Raise","ارفع الساق مستقيمة ببطء ثم أنزلها بتحكم.",["ACL","بعد عملية","تقوية"]),
+  E("knee-002","الركبة","شد العضلة الرباعية","Quadriceps Set","شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح.",["ACL","TKR","بعد عملية"]),
+  E("knee-003","الركبة","انزلاق الكعب","Heel Slide","اسحب الكعب باتجاه الجسم لثني الركبة.",["ACL","TKR","مرونة"]),
+  E("knee-004","الركبة","مد الركبة أثناء الجلوس","Seated Knee Extension","مد الركبة حتى تصبح الساق مستقيمة ثم عد ببطء.",["تقوية"]),
+  E("knee-005","الركبة","الجلوس والوقوف","Sit To Stand","قف من الكرسي ثم ارجع للجلوس بتحكم.",["وظيفي","TKR"]),
+  E("knee-006","الركبة","القرفصاء الجزئية","Mini Squat","اثنِ الركبتين قليلًا ثم عد للوقوف.",["تقوية","ACL"]),
+  E("knee-007","الركبة","الصعود على درجة","Step Up","اصعد على درجة منخفضة باستخدام الساق المستهدفة.",["وظيفي","تقوية"]),
+  E("knee-008","الركبة","النزول من درجة","Step Down","انزل ببطء من الدرجة مع التحكم بالركبة.",["وظيفي","تقوية"]),
+  E("knee-009","الركبة","ثني الركبة واقفًا","Standing Hamstring Curl","اثنِ الركبة وارفع الكعب للخلف.",["تقوية"]),
+  E("knee-010","الركبة","تمرين الصدف مع مطاط","Banded Clamshell","ارفع الركبة العليا ضد مقاومة الشريط.",["تقوية","ACL"]),
+  E("knee-011","الركبة","اندفاع أمامي","Forward Lunge","اخطُ للأمام واثنِ الركبتين ضمن المدى الآمن.",["رياضي","تقوية"]),
+  E("knee-012","الركبة","توازن قدم واحدة","Single Leg Balance","قف على قدم واحدة قرب سطح ثابت.",["اتزان","ACL"]),
 
-  E("ankle-001","الكاحل والقدم","تحريك الكاحل للأعلى والأسفل","Ankle Pumps","حرك القدم باتجاهك ثم ادفعها بعيدًا عنك ضمن المدى المريح."),
-  E("ankle-002","الكاحل والقدم","رفع الكعبين","Calf Raise","قف ممسكًا بسطح ثابت، ارفع الكعبين ببطء ثم انزل بتحكم."),
-  E("ankle-003","الكاحل والقدم","إطالة عضلة الساق","Calf Stretch","ضع القدم المستهدفة للخلف والكعب على الأرض، ثم انقل الوزن للأمام."),
-  E("ankle-004","الكاحل والقدم","سحب القدم بالشريط المطاطي","Resisted Dorsiflexion","ثبت الشريط أمام القدم واسحب مقدمة القدم باتجاهك ببطء."),
+  E("ankle-001","الكاحل والقدم","تحريك الكاحل للأعلى والأسفل","Ankle Pumps","حرك القدم باتجاهك ثم بعيدًا عنك.",["مرونة"]),
+  E("ankle-002","الكاحل والقدم","رفع الكعبين","Calf Raise","ارفع الكعبين ببطء ثم انزل بتحكم.",["تقوية"]),
+  E("ankle-003","الكاحل والقدم","إطالة عضلة الساق","Calf Stretch","ضع القدم للخلف والكعب على الأرض وانقل الوزن للأمام.",["إطالة"]),
+  E("ankle-004","الكاحل والقدم","سحب القدم بالمطاط","Resisted Dorsiflexion","اسحب مقدمة القدم باتجاهك ضد مقاومة الشريط.",["تقوية"]),
+  E("ankle-005","الكاحل والقدم","دفع القدم بالمطاط","Resisted Plantarflexion","ادفع القدم بعيدًا ضد مقاومة الشريط.",["تقوية"]),
+  E("ankle-006","الكاحل والقدم","قلب القدم للداخل بالمطاط","Resisted Inversion","حرك القدم للداخل ضد مقاومة الشريط.",["تقوية"]),
+  E("ankle-007","الكاحل والقدم","قلب القدم للخارج بالمطاط","Resisted Eversion","حرك القدم للخارج ضد مقاومة الشريط.",["تقوية"]),
+  E("ankle-008","الكاحل والقدم","التقاط المنشفة بالأصابع","Towel Scrunch","اسحب المنشفة بأصابع القدم.",["قدم","تقوية"]),
 
-  E("balance-001","الاتزان","الوقوف والقدمان متقاربتان","Feet Together Balance","قف قرب سطح ثابت والقدمان متقاربتان، وحافظ على التوازن."),
-  E("balance-002","الاتزان","الوقوف نصف ترادفي","Semi Tandem Stance","ضع قدمًا أمام الأخرى قليلًا، وحافظ على التوازن قرب سطح ثابت."),
-  E("balance-003","الاتزان","الوقوف على قدم واحدة","Single Leg Stance","قف قرب سطح ثابت وارفع قدمًا عن الأرض، وحافظ على التوازن للمدة المحددة."),
+  E("balance-001","الاتزان","الوقوف والقدمان متقاربتان","Feet Together Balance","قف والقدمان متقاربتان وحافظ على التوازن.",["ثابت"]),
+  E("balance-002","الاتزان","الوقوف نصف ترادفي","Semi Tandem Stance","ضع قدمًا أمام الأخرى قليلًا وحافظ على التوازن.",["ثابت"]),
+  E("balance-003","الاتزان","الوقوف الترادفي","Tandem Stance","ضع قدمًا أمام الأخرى مباشرة وحافظ على التوازن.",["ثابت"]),
+  E("balance-004","الاتزان","الوقوف على قدم واحدة","Single Leg Stance","ارفع قدمًا عن الأرض وحافظ على التوازن.",["ثابت"]),
+  E("balance-005","الاتزان","المشي كعب أمام أصابع","Tandem Walk","امشِ بخط مستقيم بوضع الكعب أمام أصابع القدم الأخرى.",["ديناميكي"]),
+  E("balance-006","الاتزان","نقل الوزن للأمام والخلف","Forward Backward Weight Shift","انقل الوزن للأمام والخلف ضمن مدى آمن.",["ديناميكي"]),
 
-  E("neuro-001","التأهيل العصبي","نقل الوزن جانبًا","Lateral Weight Shift","قف ممسكًا بسطح ثابت، وانقل وزن الجسم تدريجيًا من جانب إلى آخر."),
-  E("neuro-002","التأهيل العصبي","المشي في المكان","Marching In Place","قف قرب سطح ثابت وارفع ركبة ثم الأخرى بالتبادل."),
-  E("neuro-003","التأهيل العصبي","الوصول للأمام أثناء الجلوس","Seated Forward Reach","اجلس بثبات ومد الذراعين للأمام ضمن مدى آمن، ثم عد إلى الجلوس المستقيم."),
+  E("neuro-001","التأهيل العصبي","نقل الوزن جانبًا","Lateral Weight Shift","انقل وزن الجسم تدريجيًا من جانب إلى آخر.",["سكتة","توازن"]),
+  E("neuro-002","التأهيل العصبي","المشي في المكان","Marching In Place","ارفع ركبة ثم الأخرى بالتبادل.",["سكتة","وظيفي"]),
+  E("neuro-003","التأهيل العصبي","الوصول للأمام أثناء الجلوس","Seated Forward Reach","مد الذراعين للأمام ثم عد للجلوس المستقيم.",["تحكم جذع"]),
+  E("neuro-004","التأرجح من الجلوس للوقوف","Sit To Stand Neuro","انتقل من الجلوس للوقوف باستخدام نمط حركة آمن.",["وظيفي","سكتة"]),
+  E("neuro-005","رفع القدم أثناء المشي","Toe Clearance Drill","تدرب على رفع مقدمة القدم أثناء خطوة المشي.",["مشي"]),
+  E("neuro-006","التقدم الجانبي","Side Stepping Neuro","تحرك جانبًا بخطوات قصيرة قرب سطح ثابت.",["توازن","مشي"]),
 
-  E("breathing-001","التنفس","التنفس الحجابي","Diaphragmatic Breathing","ضع يدًا على الصدر وأخرى على البطن، وخذ شهيقًا ببطء بحيث يرتفع البطن."),
-  E("breathing-002","التنفس","التنفس بشفاه مضمومة","Pursed Lip Breathing","خذ شهيقًا من الأنف ثم أخرج الهواء ببطء من بين الشفاه المضمومة."),
-  E("breathing-003","التنفس","توسيع القفص الصدري","Thoracic Expansion","خذ شهيقًا عميقًا ووسع القفص الصدري، ثم أخرج الهواء ببطء.")
+  E("breathing-001","التنفس","التنفس الحجابي","Diaphragmatic Breathing","خذ شهيقًا بحيث يرتفع البطن ثم أخرج الهواء بهدوء.",["استرخاء"]),
+  E("breathing-002","التنفس","التنفس بشفاه مضمومة","Pursed Lip Breathing","أخرج الهواء ببطء من بين الشفاه المضمومة.",["ضيق نفس"]),
+  E("breathing-003","التنفس","توسيع القفص الصدري","Thoracic Expansion","خذ شهيقًا عميقًا ووسع القفص الصدري.",["صدر"]),
+  E("breathing-004","التنفس","السعال المدعوم","Supported Cough","ثبت منطقة البطن أو الصدر حسب تعليمات الأخصائي ثم اسعل.",["صدر","بعد عملية"]),
+  E("breathing-005","التنفس","التنفس الجانبي السفلي","Lateral Costal Breathing","وجه الشهيق نحو جانبي القفص الصدري السفلي.",["صدر"])
 ];
 
-
-const regions=[
-  {name:"الرقبة",icon:"🧠",en:"Neck"},
-  {name:"الكتف",icon:"💪",en:"Shoulder"},
-  {name:"المرفق والرسغ",icon:"✋",en:"Elbow & Wrist"},
-  {name:"أعلى الظهر",icon:"🧍",en:"Upper Back"},
-  {name:"أسفل الظهر",icon:"🧘",en:"Lower Back"},
-  {name:"الحوض والورك",icon:"🦴",en:"Hip & Pelvis"},
-  {name:"الركبة",icon:"🦵",en:"Knee"},
-  {name:"الكاحل والقدم",icon:"🦶",en:"Ankle & Foot"},
-  {name:"الاتزان",icon:"⚖️",en:"Balance"},
-  {name:"التأهيل العصبي",icon:"🚶",en:"Neurological Rehab"},
-  {name:"التنفس",icon:"🫁",en:"Breathing"}
-];
-
-const regionFilters={
-  "الرقبة":["الكل","حركة","إطالة","ثبات وتقوية"],
-  "الكتف":["الكل","مدى حركي","إطالة","تقوية"],
-  "المرفق والرسغ":["الكل","حركة","إطالة","تقوية"],
-  "أعلى الظهر":["الكل","حركة","وضعية","تقوية"],
-  "أسفل الظهر":["الكل","حركة","إطالة","تقوية الجذع"],
-  "الحوض والورك":["الكل","حركة","إطالة","تقوية"],
-  "الركبة":["الكل","مدى حركي","تنشيط عضلي","تقوية","وظيفي"],
-  "الكاحل والقدم":["الكل","حركة","إطالة","تقوية"],
-  "الاتزان":["الكل","ثابت","ديناميكي"],
-  "التأهيل العصبي":["الكل","نقل وزن","مشي","جلوس وتوازن"],
-  "التنفس":["الكل","تحكم بالتنفس","توسيع الصدر"]
-};
-
-const exerciseTags={
-  "neck-001":["ثبات وتقوية"],"neck-002":["حركة"],"neck-003":["إطالة"],
-  "shoulder-001":["مدى حركي"],"shoulder-002":["مدى حركي"],"shoulder-003":["مدى حركي","إطالة"],
-  "elbow-001":["حركة"],"wrist-001":["حركة","تقوية"],"wrist-002":["إطالة"],
-  "thoracic-001":["حركة","وضعية"],"thoracic-002":["حركة"],"thoracic-003":["تقوية","وضعية"],
-  "back-001":["حركة","تقوية الجذع"],"back-002":["إطالة"],"back-003":["حركة"],"back-004":["تقوية الجذع"],
-  "hip-001":["تقوية"],"hip-002":["تقوية"],"hip-003":["إطالة"],
-  "knee-001":["تنشيط عضلي","تقوية"],"knee-002":["تنشيط عضلي"],"knee-003":["مدى حركي"],
-  "knee-004":["تقوية"],"knee-005":["وظيفي","تقوية"],"knee-006":["وظيفي","تقوية"],
-  "ankle-001":["حركة"],"ankle-002":["تقوية"],"ankle-003":["إطالة"],"ankle-004":["تقوية"],
-  "balance-001":["ثابت"],"balance-002":["ثابت"],"balance-003":["ثابت","ديناميكي"],
-  "neuro-001":["نقل وزن"],"neuro-002":["مشي"],"neuro-003":["جلوس وتوازن"],
-  "breathing-001":["تحكم بالتنفس"],"breathing-002":["تحكم بالتنفس"],"breathing-003":["توسيع الصدر"]
-};
-
-exercises.forEach(e=>e.tags=exerciseTags[e.id]||[]);
-
-let activeRegion="";
-let activeSubfilter="الكل";
-
+let selectedRegion="";
+let selectedTag="الكل";
 let selectedExercises=[];
 
 function isoDate(date){
@@ -593,38 +1151,97 @@ function isoDate(date){
   return d.toISOString().split("T")[0];
 }
 function escapeHtml(v){
-  return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+  return String(v??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 function validYoutubeUrl(url){
   return /^https?:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[A-Za-z0-9_-]{6,}/i.test(url.trim());
 }
 function showToast(message,error=false){
   const t=document.getElementById("toast");
-  t.innerText=message;t.classList.toggle("error",error);t.classList.add("show");
+  t.innerText=message;
+  t.classList.toggle("error",error);
+  t.classList.add("show");
   setTimeout(()=>t.classList.remove("show"),3000);
 }
 function fillTherapists(){
   const s=document.getElementById("therapist");
   therapists.forEach(name=>{
-    const o=document.createElement("option");o.value=name;o.textContent=name;s.appendChild(o);
+    const o=document.createElement("option");
+    o.value=name;
+    o.textContent=name;
+    s.appendChild(o);
+  });
+}
+
+function renderRegions(){
+  const grid=document.getElementById("regionsGrid");
+  grid.innerHTML="";
+  regions.forEach(region=>{
+    const count=exercises.filter(e=>e.category===region.name).length;
+    const card=document.createElement("button");
+    card.className="region-card";
+    card.onclick=()=>selectRegion(region.name);
+    card.innerHTML=`
+      <div class="region-icon">${region.icon}</div>
+      <h3>${escapeHtml(region.name)}</h3>
+      <div class="region-count">${count} تمرين</div>`;
+    grid.appendChild(card);
+  });
+}
+
+window.selectRegion=function(region){
+  selectedRegion=region;
+  selectedTag="الكل";
+  document.getElementById("regionsView").style.display="none";
+  document.getElementById("libraryView").classList.add("show");
+  document.getElementById("selectedRegionTitle").innerText=`تمارين ${region}`;
+  document.getElementById("exerciseSearch").value="";
+  renderConditionChips();
+  renderExerciseLibrary();
+};
+
+window.showRegions=function(){
+  document.getElementById("libraryView").classList.remove("show");
+  document.getElementById("regionsView").style.display="block";
+};
+
+function renderConditionChips(){
+  const box=document.getElementById("conditionChips");
+  const tags=[...new Set(exercises.filter(e=>e.category===selectedRegion).flatMap(e=>e.tags))];
+  box.innerHTML="";
+  ["الكل",...tags].forEach(tag=>{
+    const btn=document.createElement("button");
+    btn.className=`condition-chip ${tag===selectedTag?"active":""}`;
+    btn.innerText=tag;
+    btn.onclick=()=>{
+      selectedTag=tag;
+      renderConditionChips();
+      renderExerciseLibrary();
+    };
+    box.appendChild(btn);
   });
 }
 
 onSnapshot(linksRef,snapshot=>{
   snapshot.forEach(item=>{
     const exercise=exercises.find(e=>e.id===item.id);
-    if(exercise) exercise.videoUrl=item.data().videoUrl||"";
+    if(exercise)exercise.videoUrl=item.data().videoUrl||"";
   });
   selectedExercises.forEach(selected=>{
     const source=exercises.find(e=>e.id===selected.id);
-    if(source) selected.videoUrl=source.videoUrl;
+    if(source)selected.videoUrl=source.videoUrl;
   });
-  renderExerciseLibrary();
+  if(selectedRegion)renderExerciseLibrary();
   renderSelectedExercises();
 });
 
 window.editVideoLink=async function(id){
-  const exercise=exercises.find(e=>e.id===id) || selectedExercises.find(e=>e.id===id);
+  const exercise=exercises.find(e=>e.id===id)||selectedExercises.find(e=>e.id===id);
   if(!exercise)return;
 
   const entered=prompt(
@@ -635,7 +1252,7 @@ window.editVideoLink=async function(id){
   if(entered===null)return;
   const url=entered.trim();
 
-  if(url && !validYoutubeUrl(url)){
+  if(url&&!validYoutubeUrl(url)){
     showToast("الرابط غير صحيح. الصق رابط فيديو يوتيوب مباشر.",true);
     return;
   }
@@ -655,7 +1272,7 @@ window.editVideoLink=async function(id){
 };
 
 window.watchVideo=function(id){
-  const exercise=exercises.find(e=>e.id===id) || selectedExercises.find(e=>e.id===id);
+  const exercise=exercises.find(e=>e.id===id)||selectedExercises.find(e=>e.id===id);
   if(!exercise?.videoUrl){
     showToast("أضف رابط الفيديو أولًا",true);
     return;
@@ -663,92 +1280,30 @@ window.watchVideo=function(id){
   window.open(exercise.videoUrl,"_blank","noopener");
 };
 
-function regionIcon(name){
-  return regions.find(r=>r.name===name)?.icon||"🏃";
-}
-
-function renderRegions(){
-  const grid=document.getElementById("regionGrid");
-  grid.innerHTML="";
-
-  regions.forEach(region=>{
-    const count=exercises.filter(e=>e.category===region.name).length;
-    const card=document.createElement("button");
-    card.className="region-card";
-    card.onclick=()=>selectRegion(region.name);
-    card.innerHTML=`
-      <span class="region-count">${count} تمرين</span>
-      <div class="region-icon">${region.icon}</div>
-      <strong>${escapeHtml(region.name)}</strong>
-      <small>${escapeHtml(region.en)}</small>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-window.selectRegion=function(name){
-  activeRegion=name;
-  activeSubfilter="الكل";
-  document.getElementById("regionStage").style.display="none";
-  document.getElementById("exercisesStage").classList.add("show");
-  document.getElementById("selectedRegionIcon").innerText=regionIcon(name);
-  document.getElementById("selectedRegionTitle").innerText=name;
-  document.getElementById("selectedRegionSubtitle").innerText=
-    `${exercises.filter(e=>e.category===name).length} تمرين متاح`;
-  document.getElementById("exerciseSearch").value="";
-  renderSubfilters();
-  renderExerciseLibrary();
-};
-
-window.backToRegions=function(){
-  activeRegion="";
-  activeSubfilter="الكل";
-  document.getElementById("exercisesStage").classList.remove("show");
-  document.getElementById("regionStage").style.display="block";
-  document.getElementById("exerciseLibrary").innerHTML="";
-};
-
-function renderSubfilters(){
-  const box=document.getElementById("subfilters");
-  const filters=regionFilters[activeRegion]||["الكل"];
-  box.innerHTML="";
-
-  filters.forEach(filter=>{
-    const btn=document.createElement("button");
-    btn.className=`filter-chip ${activeSubfilter===filter?"active":""}`;
-    btn.innerText=filter;
-    btn.onclick=()=>{
-      activeSubfilter=filter;
-      renderSubfilters();
-      renderExerciseLibrary();
-    };
-    box.appendChild(btn);
-  });
-}
-
 function renderExerciseLibrary(){
-  if(!activeRegion)return;
-
   const library=document.getElementById("exerciseLibrary");
   const search=document.getElementById("exerciseSearch").value.trim().toLowerCase();
-  const sort=document.getElementById("sortExercises").value;
+  const sort=document.getElementById("sortFilter").value;
 
   let list=exercises.filter(e=>{
-    const sameRegion=e.category===activeRegion;
-    const matchesTag=activeSubfilter==="الكل"||e.tags.includes(activeSubfilter);
-    const text=`${e.nameAr} ${e.nameEn} ${e.category} ${e.tags.join(" ")}`.toLowerCase();
+    const sameRegion=e.category===selectedRegion;
+    const matchesTag=selectedTag==="الكل"||e.tags.includes(selectedTag);
+    const text=`${e.nameAr} ${e.nameEn} ${e.tags.join(" ")}`.toLowerCase();
     return sameRegion&&matchesTag&&(!search||text.includes(search));
   });
 
-  if(sort==="ar")list.sort((a,b)=>a.nameAr.localeCompare(b.nameAr,"ar"));
-  if(sort==="en")list.sort((a,b)=>a.nameEn.localeCompare(b.nameEn,"en"));
+  if(sort==="name"){
+    list.sort((a,b)=>a.nameAr.localeCompare(b.nameAr,"ar"));
+  }else if(sort==="linked"){
+    list.sort((a,b)=>Number(Boolean(b.videoUrl))-Number(Boolean(a.videoUrl)));
+  }
 
   document.getElementById("libraryCount").innerText=`التمارين المعروضة: ${list.length}`;
   document.getElementById("selectedCount").innerText=`المختارة: ${selectedExercises.length}`;
   library.innerHTML="";
 
   if(!list.length){
-    library.innerHTML='<div style="grid-column:1/-1;padding:45px;text-align:center;color:#64748b">لا توجد تمارين مطابقة لهذا التصنيف.</div>';
+    library.innerHTML='<div style="grid-column:1/-1;padding:40px;text-align:center;color:#64748b">لا توجد تمارين مطابقة</div>';
     return;
   }
 
@@ -759,18 +1314,24 @@ function renderExerciseLibrary(){
     card.className="exercise-card";
     card.innerHTML=`
       <div class="exercise-category">${escapeHtml(e.category)}</div>
+      <div class="exercise-tags">
+        ${e.tags.slice(0,2).map(tag=>`<span class="exercise-tag">${escapeHtml(tag)}</span>`).join("")}
+      </div>
+
       <div class="video-cover ${hasLink?"":"no-link"}" onclick="${hasLink?`watchVideo('${e.id}')`:`editVideoLink('${e.id}')`}">
         <div class="video-icon"></div>
         <div class="video-label">${hasLink?"مشاهدة طريقة التمرين":"إضافة رابط الفيديو"}</div>
       </div>
+
       <div class="exercise-content">
         <h3>${escapeHtml(e.nameAr)}</h3>
         <div class="exercise-en">${escapeHtml(e.nameEn)}</div>
         <div class="exercise-description">${escapeHtml(e.description)}</div>
         <div class="link-status ${hasLink?"ready":"missing"}">${hasLink?"● رابط الفيديو جاهز":"● لا يوجد رابط فيديو"}</div>
+
         <div class="card-actions">
           <button class="watch-btn" onclick="watchVideo('${e.id}')">▶ مشاهدة</button>
-          <button class="edit-link-btn" onclick="editVideoLink('${e.id}')">🔗 ${hasLink?"تعديل":"إضافة"} الرابط</button>
+          <button class="edit-link-btn" onclick="editVideoLink('${e.id}')">🔗 ${hasLink?"تعديل":"إضافة"}</button>
           <button class="add-exercise-btn ${added?"added":""}" onclick="addExercise('${e.id}')">${added?"✓ مضاف":"إضافة"}</button>
         </div>
       </div>`;
@@ -780,21 +1341,34 @@ function renderExerciseLibrary(){
 
 window.addExercise=function(id){
   if(selectedExercises.some(e=>e.id===id)){
-    showToast("التمرين مضاف مسبقًا",true);return;
+    showToast("التمرين مضاف مسبقًا",true);
+    return;
   }
+
   const e=exercises.find(x=>x.id===id);
   if(!e)return;
 
   selectedExercises.push({
-    ...e,sets:3,reps:10,holdSeconds:0,dailyFrequency:1,weeklyDays:7,
-    side:"حسب توجيه الأخصائي",resistance:"بدون مقاومة",note:""
+    ...e,
+    sets:3,
+    reps:10,
+    holdSeconds:0,
+    dailyFrequency:1,
+    weeklyDays:7,
+    side:"حسب توجيه الأخصائي",
+    resistance:"بدون مقاومة",
+    note:""
   });
-  renderExerciseLibrary();renderSelectedExercises();showToast("تمت إضافة التمرين");
+
+  renderExerciseLibrary();
+  renderSelectedExercises();
+  showToast("تمت إضافة التمرين");
 };
 
 window.removeExercise=function(id){
   selectedExercises=selectedExercises.filter(e=>e.id!==id);
-  renderExerciseLibrary();renderSelectedExercises();
+  if(selectedRegion)renderExerciseLibrary();
+  renderSelectedExercises();
 };
 
 window.updateExerciseField=function(id,field,value){
@@ -806,7 +1380,8 @@ window.updateExerciseField=function(id,field,value){
 
 function renderSelectedExercises(){
   const box=document.getElementById("selectedExercisesList");
-  document.getElementById("selectedCount").innerText=`المختارة: ${selectedExercises.length}`;
+  const count=document.getElementById("selectedCount");
+  if(count)count.innerText=`المختارة: ${selectedExercises.length}`;
 
   if(!selectedExercises.length){
     box.innerHTML='<div class="selected-empty"><div class="icon">🏃</div>لم تتم إضافة أي تمارين حتى الآن.</div>';
@@ -814,6 +1389,7 @@ function renderSelectedExercises(){
   }
 
   box.innerHTML="";
+
   selectedExercises.forEach(e=>{
     const hasLink=Boolean(e.videoUrl);
     const item=document.createElement("div");
@@ -834,12 +1410,28 @@ function renderSelectedExercises(){
         </div>
 
         <div class="prescription-grid">
-          <div class="prescription-field"><label>المجموعات</label><input type="number" min="1" value="${e.sets}" onchange="updateExerciseField('${e.id}','sets',this.value)"></div>
-          <div class="prescription-field"><label>التكرارات</label><input type="number" min="1" value="${e.reps}" onchange="updateExerciseField('${e.id}','reps',this.value)"></div>
-          <div class="prescription-field"><label>الثبات بالثواني</label><input type="number" min="0" value="${e.holdSeconds}" onchange="updateExerciseField('${e.id}','holdSeconds',this.value)"></div>
-          <div class="prescription-field"><label>مرات يوميًا</label><input type="number" min="1" value="${e.dailyFrequency}" onchange="updateExerciseField('${e.id}','dailyFrequency',this.value)"></div>
-          <div class="prescription-field"><label>أيام أسبوعيًا</label><input type="number" min="1" max="7" value="${e.weeklyDays}" onchange="updateExerciseField('${e.id}','weeklyDays',this.value)"></div>
-          <div class="prescription-field"><label>الجهة</label>
+          <div class="prescription-field">
+            <label>المجموعات</label>
+            <input type="number" min="1" value="${e.sets}" onchange="updateExerciseField('${e.id}','sets',this.value)">
+          </div>
+          <div class="prescription-field">
+            <label>التكرارات</label>
+            <input type="number" min="1" value="${e.reps}" onchange="updateExerciseField('${e.id}','reps',this.value)">
+          </div>
+          <div class="prescription-field">
+            <label>الثبات بالثواني</label>
+            <input type="number" min="0" value="${e.holdSeconds}" onchange="updateExerciseField('${e.id}','holdSeconds',this.value)">
+          </div>
+          <div class="prescription-field">
+            <label>مرات يوميًا</label>
+            <input type="number" min="1" value="${e.dailyFrequency}" onchange="updateExerciseField('${e.id}','dailyFrequency',this.value)">
+          </div>
+          <div class="prescription-field">
+            <label>أيام أسبوعيًا</label>
+            <input type="number" min="1" max="7" value="${e.weeklyDays}" onchange="updateExerciseField('${e.id}','weeklyDays',this.value)">
+          </div>
+          <div class="prescription-field">
+            <label>الجهة</label>
             <select onchange="updateExerciseField('${e.id}','side',this.value)">
               <option ${e.side==="حسب توجيه الأخصائي"?"selected":""}>حسب توجيه الأخصائي</option>
               <option ${e.side==="الجهتان"?"selected":""}>الجهتان</option>
@@ -847,7 +1439,8 @@ function renderSelectedExercises(){
               <option ${e.side==="اليسار"?"selected":""}>اليسار</option>
             </select>
           </div>
-          <div class="prescription-field"><label>المقاومة</label>
+          <div class="prescription-field">
+            <label>المقاومة</label>
             <select onchange="updateExerciseField('${e.id}','resistance',this.value)">
               <option ${e.resistance==="بدون مقاومة"?"selected":""}>بدون مقاومة</option>
               <option ${e.resistance==="مقاومة خفيفة"?"selected":""}>مقاومة خفيفة</option>
@@ -882,12 +1475,17 @@ function getPatientData(){
 
 function validateProgram(){
   const d=getPatientData();
+
   if(!d.patientName||!d.fileNumber||!d.phoneNumber||!d.therapist){
-    showToast("أكمل اسم المريض ورقم الملف والجوال والأخصائي",true);return false;
+    showToast("أكمل اسم المريض ورقم الملف والجوال والأخصائي",true);
+    return false;
   }
+
   if(!selectedExercises.length){
-    showToast("أضف تمرينًا واحدًا على الأقل",true);return false;
+    showToast("أضف تمرينًا واحدًا على الأقل",true);
+    return false;
   }
+
   return true;
 }
 
@@ -911,8 +1509,12 @@ function exerciseCard(e,index){
         <div class="video-icon"></div>
         <span>${hasLink?"اضغط لفتح فيديو طريقة التمرين":"لا يوجد رابط فيديو مضاف"}</span>
       </div>
+
       <div class="pdf-exercise-content">
-        <div><span class="pdf-exercise-number">${index+1}</span><h2>${escapeHtml(e.nameAr)}</h2></div>
+        <div>
+          <span class="pdf-exercise-number">${index+1}</span>
+          <h2>${escapeHtml(e.nameAr)}</h2>
+        </div>
         <div class="pdf-exercise-en">${escapeHtml(e.nameEn)}</div>
         <div class="pdf-exercise-description">${escapeHtml(e.description)}</div>
         <div class="pdf-dose">${escapeHtml(doseText(e))}</div>
@@ -926,7 +1528,10 @@ function pageHeader(number,total){
   return `
     <div class="pdf-top">
       <img src="logo.png" class="pdf-logo">
-      <div class="pdf-title"><h1>برنامج التمارين المنزلية</h1><p>HOME EXERCISE PROGRAM</p></div>
+      <div class="pdf-title">
+        <h1>برنامج التمارين المنزلية</h1>
+        <p>HOME EXERCISE PROGRAM</p>
+      </div>
       <div class="pdf-page-number">${number} / ${total}</div>
     </div>`;
 }
@@ -935,7 +1540,8 @@ function footer(){
   return `
     <div class="pdf-footer">
       يجب الالتزام بتعليمات وجرعة الأخصائي المعالج. أوقف التمرين عند ظهور ألم شديد أو أعراض غير معتادة وتواصل مع المركز.
-      <br>مركز عكاز للعلاج الطبيعي
+      <br>
+      مركز عكاز للعلاج الطبيعي
     </div>`;
 }
 
@@ -947,13 +1553,18 @@ function buildPreview(){
   const first=selectedExercises.slice(0,4);
   const rest=selectedExercises.slice(4);
   const more=[];
-  for(let i=0;i<rest.length;i+=6)more.push(rest.slice(i,i+6));
+
+  for(let i=0;i<rest.length;i+=6){
+    more.push(rest.slice(i,i+6));
+  }
+
   const total=1+more.length;
 
   const p1=document.createElement("div");
   p1.className="pdf-page";
   p1.innerHTML=`
     ${pageHeader(1,total)}
+
     <div class="patient-info-box">
       <div class="pdf-info-item"><span>اسم المريض:</span> <strong>${escapeHtml(d.patientName)}</strong></div>
       <div class="pdf-info-item"><span>رقم الملف:</span> <strong>${escapeHtml(d.fileNumber)}</strong></div>
@@ -962,24 +1573,40 @@ function buildPreview(){
       <div class="pdf-info-item"><span>تاريخ البرنامج:</span> <strong>${escapeHtml(d.programDate||"-")}</strong></div>
       <div class="pdf-info-item"><span>المراجعة القادمة:</span> <strong>${escapeHtml(d.reviewDate||"-")}</strong></div>
     </div>
-    <div class="pdf-general-instructions"><strong>التعليمات العامة:</strong> ${escapeHtml(d.generalInstructions||"نفذ التمارين ببطء وتحكم، والتزم بالتكرارات المحددة، ولا تتجاوز مستوى الألم المقبول.")}</div>
-    <div class="pdf-exercises-grid">${first.map((e,i)=>exerciseCard(e,i)).join("")}</div>
+
+    <div class="pdf-general-instructions">
+      <strong>التعليمات العامة:</strong>
+      ${escapeHtml(d.generalInstructions||"نفذ التمارين ببطء وتحكم، والتزم بالتكرارات المحددة، ولا تتجاوز مستوى الألم المقبول.")}
+    </div>
+
+    <div class="pdf-exercises-grid">
+      ${first.map((e,i)=>exerciseCard(e,i)).join("")}
+    </div>
+
     ${footer()}`;
+
   pages.appendChild(p1);
 
   more.forEach((items,pageIndex)=>{
     const page=document.createElement("div");
     page.className="pdf-page pdf-second-page";
     const start=4+pageIndex*6;
-    page.innerHTML=`${pageHeader(pageIndex+2,total)}<div class="pdf-exercises-grid">${items.map((e,i)=>exerciseCard(e,start+i)).join("")}</div>${footer()}`;
+    page.innerHTML=`
+      ${pageHeader(pageIndex+2,total)}
+      <div class="pdf-exercises-grid">
+        ${items.map((e,i)=>exerciseCard(e,start+i)).join("")}
+      </div>
+      ${footer()}`;
     pages.appendChild(page);
   });
 }
 
 window.openPreview=function(){
   if(!validateProgram())return;
+
   buildPreview();
   document.getElementById("previewOverlay").classList.add("show");
+
   document.querySelectorAll(".pdf-exercise-card").forEach(card=>{
     if(card.dataset.videoUrl){
       card.style.cursor="pointer";
@@ -994,27 +1621,44 @@ window.closePreview=function(){
 
 window.saveProgram=async function(){
   if(!validateProgram())return;
+
   const d=getPatientData();
+
   try{
     await addDoc(programsRef,{
       ...d,
       categories:[...new Set(selectedExercises.map(e=>e.category))],
       exercises:selectedExercises.map(e=>({
-        id:e.id,category:e.category,nameAr:e.nameAr,nameEn:e.nameEn,videoUrl:e.videoUrl,
-        description:e.description,sets:e.sets,reps:e.reps,holdSeconds:e.holdSeconds,
-        dailyFrequency:e.dailyFrequency,weeklyDays:e.weeklyDays,side:e.side,resistance:e.resistance,note:e.note
+        id:e.id,
+        category:e.category,
+        nameAr:e.nameAr,
+        nameEn:e.nameEn,
+        tags:e.tags,
+        videoUrl:e.videoUrl,
+        description:e.description,
+        sets:e.sets,
+        reps:e.reps,
+        holdSeconds:e.holdSeconds,
+        dailyFrequency:e.dailyFrequency,
+        weeklyDays:e.weeklyDays,
+        side:e.side,
+        resistance:e.resistance,
+        note:e.note
       })),
       exerciseCount:selectedExercises.length,
       createdAt:serverTimestamp()
     });
+
     showToast("تم حفظ برنامج التمارين بنجاح");
   }catch(error){
-    console.error(error);showToast("تعذر حفظ البرنامج في Firebase",true);
+    console.error(error);
+    showToast("تعذر حفظ البرنامج في Firebase",true);
   }
 };
 
 window.downloadPDF=async function(){
   if(!validateProgram())return;
+
   buildPreview();
   const pageElements=[...document.querySelectorAll(".pdf-page")];
   showToast("جاري تجهيز ملف PDF...");
@@ -1025,37 +1669,69 @@ window.downloadPDF=async function(){
 
     for(let i=0;i<pageElements.length;i++){
       const pageElement=pageElements[i];
-      const canvas=await html2canvas(pageElement,{scale:2,useCORS:true,backgroundColor:"#fff",logging:false});
+
+      const canvas=await html2canvas(pageElement,{
+        scale:2,
+        useCORS:true,
+        backgroundColor:"#fff",
+        logging:false
+      });
+
       if(i>0)pdf.addPage();
-      pdf.addImage(canvas.toDataURL("image/jpeg",.94),"JPEG",0,0,210,297);
+
+      pdf.addImage(
+        canvas.toDataURL("image/jpeg",.94),
+        "JPEG",
+        0,
+        0,
+        210,
+        297
+      );
 
       const pageRect=pageElement.getBoundingClientRect();
+
       pageElement.querySelectorAll(".pdf-exercise-card").forEach(card=>{
         if(!card.dataset.videoUrl)return;
+
         const r=card.getBoundingClientRect();
         const x=((r.left-pageRect.left)/pageRect.width)*210;
         const y=((r.top-pageRect.top)/pageRect.height)*297;
         const w=(r.width/pageRect.width)*210;
         const h=(r.height/pageRect.height)*297;
+
         pdf.link(x,y,w,h,{url:card.dataset.videoUrl});
       });
     }
 
-    const name=document.getElementById("patientName").value.trim().replace(/[^\u0600-\u06FFa-zA-Z0-9]+/g,"-");
+    const name=document
+      .getElementById("patientName")
+      .value
+      .trim()
+      .replace(/[^\u0600-\u06FFa-zA-Z0-9]+/g,"-");
+
     pdf.save(`برنامج-تمارين-${name||"مريض"}.pdf`);
     showToast("تم تحميل ملف PDF");
   }catch(error){
-    console.error(error);showToast("تعذر إنشاء ملف PDF",true);
+    console.error(error);
+    showToast("تعذر إنشاء ملف PDF",true);
   }
 };
 
 window.openWhatsApp=function(){
   const d=getPatientData();
-  if(!d.phoneNumber){showToast("أدخل رقم جوال المريض",true);return}
+
+  if(!d.phoneNumber){
+    showToast("أدخل رقم جوال المريض",true);
+    return;
+  }
 
   let phone=d.phoneNumber.replace(/\D/g,"");
-  if(phone.startsWith("05"))phone="966"+phone.substring(1);
-  else if(phone.startsWith("5"))phone="966"+phone;
+
+  if(phone.startsWith("05")){
+    phone="966"+phone.substring(1);
+  }else if(phone.startsWith("5")){
+    phone="966"+phone;
+  }
 
   const message=`أهلًا وسهلًا ${d.patientName||""}
 
@@ -1065,18 +1741,22 @@ window.openWhatsApp=function(){
 
 مع تمنياتنا لكم بالشفاء والعافية.`;
 
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,"_blank");
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
 };
 
 document.getElementById("exerciseSearch").addEventListener("input",renderExerciseLibrary);
-document.getElementById("sortExercises").addEventListener("change",renderExerciseLibrary);
+document.getElementById("sortFilter").addEventListener("change",renderExerciseLibrary);
 
 fillTherapists();
-document.getElementById("programDate").value=isoDate(new Date());
 renderRegions();
+document.getElementById("programDate").value=isoDate(new Date());
 renderSelectedExercises();
 </script>
 
 <script type="module" src="tracker.js"></script>
+
 </body>
 </html>
