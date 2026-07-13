@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>التعاون العلاجي | مركز عكاز</title>
-
 <link rel="icon" type="image/png" href="./logo.png">
 
 <style>
@@ -19,8 +18,6 @@
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
-  --background:#f1f5f9;
-  --card:#ffffff;
 }
 
 *{
@@ -29,14 +26,14 @@
 
 body{
   margin:0;
-  font-family:Tahoma,Arial,sans-serif;
+  min-height:100vh;
   direction:rtl;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--text);
   background:
     radial-gradient(circle at 90% 7%,rgba(0,119,200,.12),transparent 28%),
     radial-gradient(circle at 7% 75%,rgba(245,158,11,.10),transparent 25%),
     linear-gradient(180deg,#f9fcff,#eef4f9);
-  color:var(--text);
-  min-height:100vh;
 }
 
 button,
@@ -55,9 +52,9 @@ button{
 .topbar{
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,#00467d,#0077c8);
-  color:white;
   padding:22px 5%;
+  color:white;
+  background:linear-gradient(135deg,#00467d,#0077c8);
   box-shadow:0 16px 38px rgba(6,43,79,.23);
 }
 
@@ -66,10 +63,10 @@ button{
   position:absolute;
   width:280px;
   height:280px;
-  border-radius:50%;
-  background:rgba(255,255,255,.07);
   right:-110px;
   top:-150px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
 }
 
 .topbar::after{
@@ -77,17 +74,17 @@ button{
   position:absolute;
   width:230px;
   height:230px;
-  border-radius:50%;
-  background:rgba(245,158,11,.13);
   left:-90px;
   bottom:-150px;
+  border-radius:50%;
+  background:rgba(245,158,11,.13);
 }
 
 .topbar-inner{
   position:relative;
   z-index:2;
   width:100%;
-  max-width:1350px;
+  max-width:1380px;
   margin:auto;
   display:flex;
   align-items:center;
@@ -104,12 +101,12 @@ button{
 .logo-box{
   width:76px;
   height:76px;
-  border-radius:22px;
-  background:white;
   padding:8px;
   display:flex;
   align-items:center;
   justify-content:center;
+  border-radius:22px;
+  background:white;
   box-shadow:0 12px 28px rgba(0,0,0,.20);
 }
 
@@ -137,11 +134,11 @@ button{
 }
 
 .top-btn{
+  padding:11px 16px;
   border:1px solid rgba(255,255,255,.35);
+  border-radius:14px;
   background:rgba(255,255,255,.95);
   color:var(--blue);
-  border-radius:14px;
-  padding:11px 16px;
   font-size:13px;
   font-weight:900;
 }
@@ -150,20 +147,18 @@ button{
 
 .main{
   width:95%;
-  max-width:1350px;
+  max-width:1380px;
   margin:26px auto 45px;
 }
 
-/* الفترة */
-
 .period-box{
-  background:rgba(255,255,255,.97);
-  border:1px solid var(--line);
-  border-radius:21px;
   padding:17px 20px;
   margin-bottom:20px;
-  box-shadow:0 12px 28px rgba(15,23,42,.07);
   text-align:center;
+  border:1px solid var(--line);
+  border-radius:21px;
+  background:rgba(255,255,255,.97);
+  box-shadow:0 12px 28px rgba(15,23,42,.07);
 }
 
 .period-title{
@@ -174,10 +169,10 @@ button{
 
 .period-dates{
   margin-top:7px;
+  direction:ltr;
   color:#475569;
   font-size:14px;
   font-weight:900;
-  direction:ltr;
 }
 
 .period-actions{
@@ -189,9 +184,9 @@ button{
 }
 
 .period-btn{
+  padding:10px 17px;
   border:0;
   border-radius:11px;
-  padding:10px 17px;
   background:#e2e8f0;
   color:#334155;
   font-size:13px;
@@ -199,19 +194,19 @@ button{
 }
 
 .period-btn.active{
-  background:linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
   box-shadow:0 8px 18px rgba(0,91,159,.22);
 }
 
-/* التنبيه */
+/* توضيح الآلية */
 
 .info-box{
   margin-bottom:20px;
-  padding:16px 19px;
+  padding:17px 19px;
   border:1px solid #bfdbfe;
-  background:linear-gradient(135deg,#eff6ff,#ffffff);
   border-radius:19px;
+  background:linear-gradient(135deg,#eff6ff,#ffffff);
   color:#164e75;
   font-size:13px;
   line-height:1.9;
@@ -220,6 +215,16 @@ button{
 
 .info-box strong{
   color:var(--blue);
+}
+
+.warning-line{
+  display:block;
+  margin-top:7px;
+  padding:9px 12px;
+  border-radius:11px;
+  background:#fff7ed;
+  color:#9a3412;
+  font-weight:900;
 }
 
 /* الإحصائيات */
@@ -234,10 +239,10 @@ button{
 .stat{
   position:relative;
   overflow:hidden;
-  background:rgba(255,255,255,.97);
+  padding:17px;
   border:1px solid var(--line);
   border-radius:20px;
-  padding:17px;
+  background:rgba(255,255,255,.97);
   box-shadow:0 12px 28px rgba(15,23,42,.07);
 }
 
@@ -246,10 +251,10 @@ button{
   position:absolute;
   width:70px;
   height:70px;
-  border-radius:50%;
-  background:rgba(0,119,200,.06);
   left:-24px;
   bottom:-28px;
+  border-radius:50%;
+  background:rgba(0,119,200,.06);
 }
 
 .stat-label{
@@ -268,23 +273,23 @@ button{
 }
 
 .stat-value.small{
-  font-size:20px;
+  font-size:19px;
 }
 
 /* التخطيط */
 
 .layout{
   display:grid;
-  grid-template-columns:370px 1fr;
+  grid-template-columns:375px 1fr;
   gap:21px;
   align-items:start;
 }
 
 .card{
-  background:rgba(255,255,255,.98);
+  overflow:hidden;
   border:1px solid var(--line);
   border-radius:24px;
-  overflow:hidden;
+  background:rgba(255,255,255,.98);
   box-shadow:0 15px 34px rgba(15,23,42,.08);
 }
 
@@ -332,13 +337,13 @@ button{
 .field select,
 .field textarea{
   width:100%;
+  padding:11px 12px;
   border:1px solid #cbd5e1;
+  border-radius:12px;
+  outline:none;
   background:white;
   color:var(--text);
-  border-radius:12px;
-  padding:11px 12px;
   font-size:14px;
-  outline:none;
   transition:.2s;
 }
 
@@ -360,29 +365,29 @@ button{
   gap:10px;
 }
 
-/* الحسبة المباشرة */
+/* الحسبة */
 
 .calculation-box{
-  border:1px solid #bfdbfe;
-  background:linear-gradient(135deg,#eff6ff,#f8fbff);
-  border-radius:17px;
   padding:14px;
   margin-bottom:15px;
+  border:1px solid #bfdbfe;
+  border-radius:17px;
+  background:linear-gradient(135deg,#eff6ff,#f8fbff);
 }
 
 .calculation-title{
+  margin-bottom:10px;
   color:var(--blue);
   font-size:13px;
   font-weight:900;
-  margin-bottom:10px;
 }
 
 .calculation-row{
+  padding:8px 0;
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-  padding:7px 0;
   border-bottom:1px dashed #bfdbfe;
   font-size:12px;
 }
@@ -396,17 +401,45 @@ button{
 }
 
 .calculation-row strong{
-  color:var(--blue);
   direction:ltr;
+  color:var(--blue);
+}
+
+.deduction-row{
+  margin-top:7px;
+  padding:10px;
+  border:1px solid #fecaca;
+  border-radius:11px;
+  background:#fef2f2;
+}
+
+.deduction-row span,
+.deduction-row strong{
+  color:#b91c1c;
+  font-weight:900;
+}
+
+.addition-row{
+  margin-top:7px;
+  padding:10px;
+  border:1px solid #bbf7d0;
+  border-radius:11px;
+  background:#f0fdf4;
+}
+
+.addition-row span,
+.addition-row strong{
+  color:#15803d;
+  font-weight:900;
 }
 
 .save-btn{
   width:100%;
+  padding:14px 18px;
   border:0;
   border-radius:14px;
-  padding:14px 18px;
-  background:linear-gradient(135deg,#005b9f,#0077c8);
   color:white;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
   font-size:15px;
   font-weight:900;
   box-shadow:0 11px 23px rgba(0,91,159,.22);
@@ -417,7 +450,7 @@ button{
   cursor:not-allowed;
 }
 
-/* الفلاتر */
+/* البحث والتصفية */
 
 .tools{
   padding:15px 17px;
@@ -439,14 +472,14 @@ button{
 .tools input,
 .tools select{
   width:100%;
+  padding:10px 11px;
   border:1px solid #cbd5e1;
   border-radius:12px;
-  padding:10px 11px;
-  background:white;
   outline:none;
+  background:white;
 }
 
-/* الجداول */
+/* الجدول */
 
 .table-wrap{
   width:100%;
@@ -455,25 +488,25 @@ button{
 
 table{
   width:100%;
-  min-width:1400px;
+  min-width:1540px;
   border-collapse:collapse;
 }
 
 th{
+  padding:12px 9px;
+  border-bottom:1px solid var(--line);
   background:#f8fafc;
   color:#475569;
-  padding:12px 9px;
   font-size:11.5px;
   text-align:center;
   white-space:nowrap;
-  border-bottom:1px solid var(--line);
 }
 
 td{
   padding:11px 9px;
+  border-bottom:1px solid #edf2f7;
   font-size:12px;
   text-align:center;
-  border-bottom:1px solid #edf2f7;
   vertical-align:middle;
 }
 
@@ -484,8 +517,8 @@ tr:hover td{
 .invoice-number{
   direction:ltr;
   display:inline-block;
-  font-weight:900;
   color:var(--blue);
+  font-weight:900;
 }
 
 .amount{
@@ -495,8 +528,32 @@ tr:hover td{
 }
 
 .patient-name{
-  font-weight:900;
   color:#0f172a;
+  font-weight:900;
+}
+
+.registered-name{
+  color:#b91c1c;
+  font-weight:900;
+}
+
+.collaborator-name{
+  color:#15803d;
+  font-weight:900;
+}
+
+.deduction-text{
+  direction:ltr;
+  display:inline-block;
+  color:#b91c1c;
+  font-weight:900;
+}
+
+.addition-text{
+  direction:ltr;
+  display:inline-block;
+  color:#15803d;
+  font-weight:900;
 }
 
 .status-badge{
@@ -526,14 +583,14 @@ tr:hover td{
 .action-group{
   display:flex;
   justify-content:center;
-  gap:5px;
   flex-wrap:wrap;
+  gap:5px;
 }
 
 .action-btn{
+  padding:7px 9px;
   border:0;
   border-radius:9px;
-  padding:7px 9px;
   font-size:11px;
   font-weight:900;
   white-space:nowrap;
@@ -561,38 +618,38 @@ tr:hover td{
 
 .empty-state{
   display:none;
-  text-align:center;
   padding:45px 20px;
+  text-align:center;
   color:var(--muted);
 }
 
 .empty-icon{
-  font-size:42px;
   margin-bottom:9px;
+  font-size:42px;
 }
 
 .empty-state strong{
   display:block;
-  color:#334155;
   margin-bottom:6px;
+  color:#334155;
 }
 
 .loading{
-  text-align:center;
   padding:35px;
+  text-align:center;
   color:var(--muted);
   font-size:13px;
   font-weight:900;
 }
 
-/* التسويات */
+/* التسوية */
 
 .settlement-card{
   margin-top:21px;
 }
 
 .settlement-table{
-  min-width:850px;
+  min-width:1050px;
 }
 
 .negative{
@@ -610,24 +667,121 @@ tr:hover td{
   font-weight:900;
 }
 
-/* إشعار */
+/* نافذة الرقم السري */
+
+.pin-modal{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  padding:20px;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(15,23,42,.65);
+  backdrop-filter:blur(5px);
+}
+
+.pin-modal.show{
+  display:flex;
+}
+
+.pin-box{
+  width:100%;
+  max-width:380px;
+  padding:24px;
+  border-radius:23px;
+  background:white;
+  box-shadow:0 30px 70px rgba(0,0,0,.30);
+}
+
+.pin-icon{
+  width:62px;
+  height:62px;
+  margin:0 auto 13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:20px;
+  background:#eff6ff;
+  font-size:29px;
+}
+
+.pin-box h3{
+  margin:0;
+  color:var(--blue);
+  text-align:center;
+  font-size:20px;
+}
+
+.pin-box p{
+  margin:8px 0 17px;
+  color:var(--muted);
+  text-align:center;
+  font-size:12px;
+  line-height:1.7;
+}
+
+.pin-input{
+  width:100%;
+  padding:13px;
+  direction:ltr;
+  text-align:center;
+  letter-spacing:7px;
+  border:1px solid #cbd5e1;
+  border-radius:13px;
+  outline:none;
+  font-size:21px;
+  font-weight:900;
+}
+
+.pin-input:focus{
+  border-color:var(--blue2);
+  box-shadow:0 0 0 4px rgba(0,119,200,.10);
+}
+
+.pin-actions{
+  margin-top:14px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.pin-confirm{
+  padding:12px;
+  border:0;
+  border-radius:12px;
+  color:white;
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  font-weight:900;
+}
+
+.pin-cancel{
+  padding:12px;
+  border:0;
+  border-radius:12px;
+  color:#334155;
+  background:#e2e8f0;
+  font-weight:900;
+}
+
+/* الإشعارات */
 
 .toast{
   position:fixed;
+  z-index:9999999;
   bottom:24px;
   left:50%;
+  padding:13px 18px;
   transform:translateX(-50%) translateY(30px);
+  border-radius:14px;
   background:#166534;
   color:white;
-  border-radius:14px;
-  padding:13px 18px;
-  box-shadow:0 16px 35px rgba(0,0,0,.23);
   font-size:13px;
   font-weight:900;
+  box-shadow:0 16px 35px rgba(0,0,0,.23);
   opacity:0;
   visibility:hidden;
   transition:.25s;
-  z-index:99999;
 }
 
 .toast.show{
@@ -640,16 +794,14 @@ tr:hover td{
   background:#b91c1c;
 }
 
-/* الفوتر */
-
 .footer{
   width:92%;
-  max-width:1350px;
+  max-width:1380px;
   margin:40px auto 22px;
   padding-top:18px;
   border-top:1px solid #dbe4ee;
-  text-align:center;
   color:#64748b;
+  text-align:center;
   font-size:13px;
 }
 
@@ -666,7 +818,8 @@ body.dark{
 
 body.dark .card,
 body.dark .stat,
-body.dark .period-box{
+body.dark .period-box,
+body.dark .pin-box{
   background:#1e293b;
   border-color:#334155;
 }
@@ -698,15 +851,21 @@ body.dark tr:hover td{
   background:#172033;
 }
 
-body.dark .calculation-box{
-  background:#172554;
-  border-color:#1d4ed8;
-}
-
+body.dark .calculation-box,
 body.dark .info-box{
   background:#172554;
   border-color:#1d4ed8;
   color:#bfdbfe;
+}
+
+body.dark .deduction-row{
+  background:#450a0a;
+  border-color:#991b1b;
+}
+
+body.dark .addition-row{
+  background:#052e16;
+  border-color:#166534;
 }
 
 /* الجوال */
@@ -758,47 +917,30 @@ body.dark .info-box{
 <body>
 
 <header class="topbar">
-
   <div class="topbar-inner">
 
     <div class="brand">
-
       <div class="logo-box">
-        <img
-          src="logo.png"
-          class="logo"
-          alt="شعار مركز عكاز"
-        >
+        <img src="logo.png" class="logo" alt="شعار مركز عكاز">
       </div>
 
       <div>
         <h1>التعاون العلاجي</h1>
         <p>Collaborative Care & Revenue Settlement</p>
       </div>
-
     </div>
 
     <div class="top-actions">
-
-      <button
-        class="top-btn"
-        onclick="window.location.href='index.html'"
-      >
+      <button class="top-btn" onclick="window.location.href='index.html'">
         🏠 الرئيسية
       </button>
 
-      <button
-        class="top-btn"
-        id="themeBtn"
-        onclick="toggleTheme()"
-      >
+      <button class="top-btn" id="themeBtn" onclick="toggleTheme()">
         🌙
       </button>
-
     </div>
 
   </div>
-
 </header>
 
 <main class="main">
@@ -809,15 +951,11 @@ body.dark .info-box{
       فترة احتساب الرواتب والمكافآت
     </div>
 
-    <div
-      class="period-dates"
-      id="periodText"
-    >
+    <div class="period-dates" id="periodText">
       --
     </div>
 
     <div class="period-actions">
-
       <button
         class="period-btn active"
         id="currentPeriodBtn"
@@ -833,93 +971,58 @@ body.dark .info-box{
       >
         الدورة السابقة
       </button>
-
     </div>
 
   </section>
 
   <section class="info-box">
 
-    <strong>آلية الاحتساب:</strong>
+    <strong>آلية التعاون العلاجي:</strong>
 
-    الفاتورة الأصلية تبقى مسجلة في النظام الرئيسي باسم أخصائي واحد.
+    الفاتورة الأصلية تكون في النظام الرئيسي مسجلة بكامل قيمتها باسم أخصائي واحد.
 
-    عند اعتماد التعاون العلاجي يتم خصم نصف قيمة الفاتورة من الإيراد المحتسب لذلك الأخصائي، وإضافة النصف إلى الأخصائي المتعاون.
+    عند اعتماد التعاون يتم تحويل نصف قيمة الفاتورة للأخصائي المتعاون لأغراض احتساب الإيراد والمكافأة.
 
-    يحتسب لكل أخصائي مكافأة قدرها 5٪ من نصيبه فقط.
+    <span class="warning-line">
+      لذلك يُخصم نصف مبلغ الفاتورة من إيراد الأخصائي المسجلة باسمه الفاتورة، ويضاف النصف نفسه إلى إيراد الأخصائي المتعاون، ثم يحتسب لكل واحد 5٪ من نصيبه فقط.
+    </span>
 
   </section>
 
   <section class="stats">
 
     <div class="stat">
-      <div class="stat-label">
-        حالات التعاون
-      </div>
-      <div
-        class="stat-value"
-        id="totalRequests"
-      >
-        0
-      </div>
+      <div class="stat-label">حالات التعاون</div>
+      <div class="stat-value" id="totalRequests">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        بانتظار المراجعة
-      </div>
-      <div
-        class="stat-value"
-        id="pendingRequests"
-      >
-        0
-      </div>
+      <div class="stat-label">بانتظار المراجعة</div>
+      <div class="stat-value" id="pendingRequests">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        الطلبات المعتمدة
-      </div>
-      <div
-        class="stat-value"
-        id="approvedRequests"
-      >
-        0
-      </div>
+      <div class="stat-label">الطلبات المعتمدة</div>
+      <div class="stat-value" id="approvedRequests">0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        قيمة الفواتير المعتمدة
-      </div>
-      <div
-        class="stat-value small"
-        id="approvedInvoicesTotal"
-      >
+      <div class="stat-label">قيمة الفواتير المعتمدة</div>
+      <div class="stat-value small" id="approvedInvoicesTotal">
         0 ر.س
       </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        المبلغ المحوّل للمتعاونين
-      </div>
-      <div
-        class="stat-value small"
-        id="transferredTotal"
-      >
+      <div class="stat-label">المخصوم من أصحاب الفواتير</div>
+      <div class="stat-value small" id="deductionsTotal">
         0 ر.س
       </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">
-        إجمالي مكافآت التعاون
-      </div>
-      <div
-        class="stat-value small"
-        id="bonusesTotal"
-      >
+      <div class="stat-label">إجمالي مكافآت التعاون</div>
+      <div class="stat-value small" id="bonusesTotal">
         0 ر.س
       </div>
     </div>
@@ -928,41 +1031,29 @@ body.dark .info-box{
 
   <section class="layout">
 
-    <!-- نموذج الإضافة -->
-
     <div class="card">
 
       <div class="card-head">
         <h2>إضافة تعاون علاجي</h2>
         <p>
-          أدخل بيانات الفاتورة كما هي مسجلة في النظام الرئيسي.
+          أدخل الفاتورة كما هي مسجلة في النظام الرئيسي.
         </p>
       </div>
 
-      <form
-        class="form-body"
-        id="collaborationForm"
-      >
+      <form class="form-body" id="collaborationForm">
 
         <div class="field">
-
           <label>
             تاريخ الفاتورة
             <span class="required">*</span>
           </label>
 
-          <input
-            type="date"
-            id="invoiceDate"
-            required
-          >
-
+          <input type="date" id="invoiceDate" required>
         </div>
 
         <div class="two-fields">
 
           <div class="field">
-
             <label>
               رقم الفاتورة
               <span class="required">*</span>
@@ -975,20 +1066,15 @@ body.dark .info-box{
               maxlength="40"
               required
             >
-
           </div>
 
           <div class="field">
-
             <label>
               نوع الفاتورة
               <span class="required">*</span>
             </label>
 
-            <select
-              id="invoiceType"
-              required
-            >
+            <select id="invoiceType" required>
               <option value="">اختر النوع</option>
               <option value="كشف">كشف</option>
               <option value="جلسة">جلسة</option>
@@ -997,7 +1083,6 @@ body.dark .info-box{
               <option value="زيارة منزلية">زيارة منزلية</option>
               <option value="خدمة أخرى">خدمة أخرى</option>
             </select>
-
           </div>
 
         </div>
@@ -1005,7 +1090,6 @@ body.dark .info-box{
         <div class="two-fields">
 
           <div class="field">
-
             <label>
               اسم المريض
               <span class="required">*</span>
@@ -1018,11 +1102,9 @@ body.dark .info-box{
               maxlength="80"
               required
             >
-
           </div>
 
           <div class="field">
-
             <label>
               رقم الملف
               <span class="required">*</span>
@@ -1035,13 +1117,11 @@ body.dark .info-box{
               maxlength="30"
               required
             >
-
           </div>
 
         </div>
 
         <div class="field">
-
           <label>
             مبلغ الفاتورة
             <span class="required">*</span>
@@ -1056,46 +1136,32 @@ body.dark .info-box{
             inputmode="decimal"
             required
           >
-
         </div>
 
         <div class="field">
-
           <label>
             الأخصائي المسجلة باسمه الفاتورة
             <span class="required">*</span>
           </label>
 
-          <select
-            id="registeredTherapist"
-            required
-          >
+          <select id="registeredTherapist" required>
             <option value="">اختر الأخصائي</option>
           </select>
-
         </div>
 
         <div class="field">
-
           <label>
             الأخصائي المتعاون
             <span class="required">*</span>
           </label>
 
-          <select
-            id="collaboratingTherapist"
-            required
-          >
+          <select id="collaboratingTherapist" required>
             <option value="">اختر الأخصائي</option>
           </select>
-
         </div>
 
         <div class="field">
-
-          <label>
-            وصف التعاون العلاجي
-          </label>
+          <label>نوع التعاون العلاجي</label>
 
           <select id="collaborationType">
             <option value="">اختياري</option>
@@ -1105,24 +1171,21 @@ body.dark .info-box{
             <option value="علاج مائي">علاج مائي</option>
             <option value="تأهيل رياضي">تأهيل رياضي</option>
             <option value="حالة معقدة">حالة معقدة</option>
-            <option value="خطة علاجية مشتركة">خطة علاجية مشتركة</option>
+            <option value="خطة علاجية مشتركة">
+              خطة علاجية مشتركة
+            </option>
             <option value="أخرى">أخرى</option>
           </select>
-
         </div>
 
         <div class="field">
-
-          <label>
-            ملاحظات
-          </label>
+          <label>ملاحظات</label>
 
           <textarea
             id="notes"
             placeholder="اختياري"
             maxlength="400"
           ></textarea>
-
         </div>
 
         <div class="calculation-box">
@@ -1132,47 +1195,38 @@ body.dark .info-box{
           </div>
 
           <div class="calculation-row">
-            <span>قيمة الفاتورة</span>
-            <strong id="calcInvoiceAmount">
-              0.00 ر.س
-            </strong>
+            <span>قيمة الفاتورة الأصلية</span>
+            <strong id="calcInvoiceAmount">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row">
-            <span>نصيب كل أخصائي</span>
-            <strong id="calcShare">
-              0.00 ر.س
-            </strong>
+            <span>نصيب كل أخصائي بعد التقسيم</span>
+            <strong id="calcShare">0.00 ر.س</strong>
+          </div>
+
+          <div class="calculation-row deduction-row">
+            <span>يخصم من إيراد صاحب الفاتورة</span>
+            <strong id="calcDeduction">0.00 ر.س</strong>
+          </div>
+
+          <div class="calculation-row addition-row">
+            <span>يضاف إلى إيراد الأخصائي المتعاون</span>
+            <strong id="calcAddition">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row">
-            <span>المبلغ المخصوم من صاحب الفاتورة</span>
-            <strong id="calcDeduction">
-              0.00 ر.س
-            </strong>
+            <span>مكافأة صاحب الفاتورة 5٪ بعد الخصم</span>
+            <strong id="calcRegisteredBonus">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row">
-            <span>المبلغ المضاف للأخصائي المتعاون</span>
-            <strong id="calcAddition">
-              0.00 ر.س
-            </strong>
-          </div>
-
-          <div class="calculation-row">
-            <span>مكافأة كل أخصائي 5٪</span>
-            <strong id="calcBonus">
-              0.00 ر.س
-            </strong>
+            <span>مكافأة الأخصائي المتعاون 5٪</span>
+            <strong id="calcCollaboratorBonus">0.00 ر.س</strong>
           </div>
 
         </div>
 
-        <button
-          type="submit"
-          class="save-btn"
-          id="saveBtn"
-        >
+        <button type="submit" class="save-btn" id="saveBtn">
           إرسال للمراجعة
         </button>
 
@@ -1180,14 +1234,12 @@ body.dark .info-box{
 
     </div>
 
-    <!-- جدول السجلات -->
-
     <div class="card">
 
       <div class="card-head">
         <h2>سجل التعاون العلاجي</h2>
         <p>
-          الطلبات لا تدخل في التسوية إلا بعد اعتمادها.
+          الطلبات لا تؤثر على الإيرادات أو المكافآت إلا بعد اعتماد الإدارة.
         </p>
       </div>
 
@@ -1204,7 +1256,9 @@ body.dark .info-box{
         <div class="filter-box">
           <select id="statusFilter">
             <option value="">كل الحالات</option>
-            <option value="بانتظار المراجعة">بانتظار المراجعة</option>
+            <option value="بانتظار المراجعة">
+              بانتظار المراجعة
+            </option>
             <option value="معتمد">معتمد</option>
             <option value="مرفوض">مرفوض</option>
           </select>
@@ -1212,10 +1266,7 @@ body.dark .info-box{
 
       </div>
 
-      <div
-        class="loading"
-        id="loadingState"
-      >
+      <div class="loading" id="loadingState">
         جاري تحميل البيانات...
       </div>
 
@@ -1229,10 +1280,12 @@ body.dark .info-box{
               <th>رقم الفاتورة</th>
               <th>المريض</th>
               <th>رقم الملف</th>
-              <th>نوع الفاتورة</th>
-              <th>المبلغ</th>
+              <th>النوع</th>
+              <th>قيمة الفاتورة</th>
               <th>الفاتورة باسم</th>
-              <th>الأخصائي المتعاون</th>
+              <th>المتعاون</th>
+              <th>الخصم من صاحب الفاتورة</th>
+              <th>الإضافة للمتعاون</th>
               <th>نصيب كل واحد</th>
               <th>مكافأة كل واحد</th>
               <th>الحالة</th>
@@ -1245,12 +1298,11 @@ body.dark .info-box{
 
         </table>
 
-        <div
-          class="empty-state"
-          id="emptyState"
-        >
+        <div class="empty-state" id="emptyState">
           <div class="empty-icon">🤝</div>
+
           <strong>لا توجد طلبات في هذه الفترة</strong>
+
           <span>
             أول طلب تعاون علاجي سيظهر هنا.
           </span>
@@ -1262,14 +1314,13 @@ body.dark .info-box{
 
   </section>
 
-  <!-- جدول التسويات -->
-
   <section class="card settlement-card">
 
     <div class="card-head">
       <h2>تسوية الأخصائيين للفترة</h2>
+
       <p>
-        يعتمد هذا الجدول على الطلبات المعتمدة فقط، ويستخدم عند مراجعة مكافآت الرواتب.
+        يعتمد هذا الجدول على الطلبات المعتمدة فقط لمراجعة الإيرادات والمكافآت قبل الرواتب.
       </p>
     </div>
 
@@ -1281,11 +1332,11 @@ body.dark .info-box{
           <tr>
             <th>الأخصائي</th>
             <th>عدد حالات التعاون</th>
-            <th>خصم من الإيراد المسجل باسمه</th>
-            <th>إضافة إلى إيراده</th>
-            <th>صافي تسوية الإيراد</th>
-            <th>الإيراد المحتسب من التعاون</th>
-            <th>مكافأة 5٪ من نصيبه</th>
+            <th>يخصم من إيراده</th>
+            <th>يضاف إلى إيراده</th>
+            <th>صافي تعديل الإيراد</th>
+            <th>نصيبه المحتسب من التعاون</th>
+            <th>مكافأته 5٪</th>
           </tr>
         </thead>
 
@@ -1303,10 +1354,46 @@ body.dark .info-box{
   مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
 </footer>
 
-<div
-  class="toast"
-  id="toast"
-></div>
+<!-- نافذة الرقم السري -->
+
+<div class="pin-modal" id="pinModal">
+
+  <div class="pin-box">
+
+    <div class="pin-icon">🔐</div>
+
+    <h3>صلاحية الإدارة</h3>
+
+    <p id="pinMessage">
+      أدخل الرقم السري لإتمام الإجراء
+    </p>
+
+    <input
+      type="password"
+      id="pinInput"
+      class="pin-input"
+      maxlength="8"
+      inputmode="numeric"
+      placeholder="••••"
+    >
+
+    <div class="pin-actions">
+
+      <button class="pin-confirm" id="pinConfirmBtn">
+        تأكيد
+      </button>
+
+      <button class="pin-cancel" onclick="closePinModal()">
+        إلغاء
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 function toggleTheme(){
@@ -1325,14 +1412,9 @@ function toggleTheme(){
 }
 
 (function loadTheme(){
-  const saved =
-    localStorage.getItem("akazTheme");
-
-  if(saved === "dark"){
+  if(localStorage.getItem("akazTheme") === "dark"){
     document.body.classList.add("dark");
-
-    document.getElementById("themeBtn").innerText =
-      "☀️";
+    document.getElementById("themeBtn").innerText = "☀️";
   }
 })();
 </script>
@@ -1354,7 +1436,11 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-/* إعدادات Firebase */
+/* غيّر الرقم من هنا */
+
+const ADMIN_PIN = "2580";
+
+/* Firebase */
 
 const firebaseConfig = {
   apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -1365,16 +1451,11 @@ const firebaseConfig = {
   appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
 };
 
-const app =
-  initializeApp(firebaseConfig);
-
-const db =
-  getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const collaborationsRef =
   collection(db,"collaborativeCare");
-
-/* قائمة الأخصائيين */
 
 const therapists = [
   "د. حاتم الاحمدي",
@@ -1389,16 +1470,11 @@ const therapists = [
   "د. مها فريح"
 ];
 
-/* المتغيرات */
-
 let records = [];
-
 let periodStart = "";
 let periodEnd = "";
 
-let currentPeriodOffset = 0;
-
-/* عناصر الصفحة */
+let pendingProtectedAction = null;
 
 const form =
   document.getElementById("collaborationForm");
@@ -1415,32 +1491,23 @@ const searchInput =
 const statusFilter =
   document.getElementById("statusFilter");
 
-/* أدوات التاريخ */
+/* التاريخ */
 
 function isoDate(date){
-  const copy =
-    new Date(date);
+  const copy = new Date(date);
 
   copy.setMinutes(
-    copy.getMinutes()
-    -
-    copy.getTimezoneOffset()
+    copy.getMinutes() - copy.getTimezoneOffset()
   );
 
-  return copy
-    .toISOString()
-    .split("T")[0];
+  return copy.toISOString().split("T")[0];
 }
 
 function getPayrollPeriod(offset = 0){
-  const now =
-    new Date();
+  const now = new Date();
 
-  let year =
-    now.getFullYear();
-
-  let month =
-    now.getMonth();
+  let year = now.getFullYear();
+  let month = now.getMonth();
 
   if(now.getDate() < 21){
     month -= 1;
@@ -1449,18 +1516,10 @@ function getPayrollPeriod(offset = 0){
   month += offset;
 
   const start =
-    new Date(
-      year,
-      month,
-      21
-    );
+    new Date(year,month,21);
 
   const end =
-    new Date(
-      year,
-      month + 1,
-      20
-    );
+    new Date(year,month + 1,20);
 
   return {
     start:isoDate(start),
@@ -1469,16 +1528,10 @@ function getPayrollPeriod(offset = 0){
 }
 
 window.setCurrentPeriod = function(){
-  currentPeriodOffset = 0;
+  const period = getPayrollPeriod(0);
 
-  const period =
-    getPayrollPeriod(0);
-
-  periodStart =
-    period.start;
-
-  periodEnd =
-    period.end;
+  periodStart = period.start;
+  periodEnd = period.end;
 
   document
     .getElementById("currentPeriodBtn")
@@ -1495,16 +1548,10 @@ window.setCurrentPeriod = function(){
 };
 
 window.setPreviousPeriod = function(){
-  currentPeriodOffset = -1;
+  const period = getPayrollPeriod(-1);
 
-  const period =
-    getPayrollPeriod(-1);
-
-  periodStart =
-    period.start;
-
-  periodEnd =
-    period.end;
+  periodStart = period.start;
+  periodEnd = period.end;
 
   document
     .getElementById("previousPeriodBtn")
@@ -1521,32 +1568,24 @@ window.setPreviousPeriod = function(){
 };
 
 function updatePeriodText(){
-  document
-    .getElementById("periodText")
-    .innerText =
-      `${periodStart} إلى ${periodEnd}`;
+  document.getElementById("periodText").innerText =
+    `${periodStart} إلى ${periodEnd}`;
 }
 
-/* تنسيق الأرقام */
+/* تنسيق */
 
 function money(value){
-  const amount =
-    Number(value) || 0;
+  const amount = Number(value) || 0;
 
   return (
-    amount.toLocaleString(
-      "en-US",
-      {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      }
-    )
+    amount.toLocaleString("en-US",{
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    })
     +
     " ر.س"
   );
 }
-
-/* منع النصوص الضارة */
 
 function escapeHtml(value){
   return String(value ?? "")
@@ -1557,23 +1596,13 @@ function escapeHtml(value){
     .replaceAll("'","&#039;");
 }
 
-/* إشعارات */
-
-function showToast(
-  message,
-  isError = false
-){
+function showToast(message,isError = false){
   const toast =
     document.getElementById("toast");
 
-  toast.innerText =
-    message;
+  toast.innerText = message;
 
-  toast.classList.toggle(
-    "error",
-    isError
-  );
-
+  toast.classList.toggle("error",isError);
   toast.classList.add("show");
 
   setTimeout(()=>{
@@ -1581,39 +1610,93 @@ function showToast(
   },3000);
 }
 
-/* تعبئة قوائم الأخصائيين */
+/* الرقم السري */
+
+function requestAdminPin(message,action){
+  pendingProtectedAction = action;
+
+  document.getElementById("pinMessage").innerText =
+    message;
+
+  document.getElementById("pinInput").value = "";
+
+  document.getElementById("pinModal")
+    .classList
+    .add("show");
+
+  setTimeout(()=>{
+    document.getElementById("pinInput").focus();
+  },100);
+}
+
+window.closePinModal = function(){
+  pendingProtectedAction = null;
+
+  document.getElementById("pinInput").value = "";
+
+  document.getElementById("pinModal")
+    .classList
+    .remove("show");
+};
+
+document
+  .getElementById("pinConfirmBtn")
+  .addEventListener("click",async ()=>{
+
+    const entered =
+      document.getElementById("pinInput").value;
+
+    if(entered !== ADMIN_PIN){
+      showToast("الرقم السري غير صحيح",true);
+      return;
+    }
+
+    const action = pendingProtectedAction;
+
+    window.closePinModal();
+
+    if(typeof action === "function"){
+      await action();
+    }
+  });
+
+document
+  .getElementById("pinInput")
+  .addEventListener("keydown",event=>{
+
+    if(event.key === "Enter"){
+      event.preventDefault();
+
+      document
+        .getElementById("pinConfirmBtn")
+        .click();
+    }
+  });
+
+/* قوائم الأخصائيين */
 
 function fillTherapists(){
   const registered =
-    document.getElementById(
-      "registeredTherapist"
-    );
+    document.getElementById("registeredTherapist");
 
   const collaborating =
-    document.getElementById(
-      "collaboratingTherapist"
-    );
+    document.getElementById("collaboratingTherapist");
 
   therapists.forEach(name=>{
+
     const option1 =
       document.createElement("option");
 
-    option1.value =
-      name;
-
-    option1.textContent =
-      name;
+    option1.value = name;
+    option1.textContent = name;
 
     registered.appendChild(option1);
 
     const option2 =
       document.createElement("option");
 
-    option2.value =
-      name;
-
-    option2.textContent =
-      name;
+    option2.value = name;
+    option2.textContent = name;
 
     collaborating.appendChild(option2);
   });
@@ -1631,351 +1714,344 @@ function updateCalculation(){
   const bonus =
     share * 0.05;
 
-  document
-    .getElementById("calcInvoiceAmount")
-    .innerText =
-      money(invoiceAmount);
+  document.getElementById("calcInvoiceAmount").innerText =
+    money(invoiceAmount);
 
-  document
-    .getElementById("calcShare")
-    .innerText =
-      money(share);
+  document.getElementById("calcShare").innerText =
+    money(share);
 
-  document
-    .getElementById("calcDeduction")
-    .innerText =
-      money(share);
+  document.getElementById("calcDeduction").innerText =
+    `- ${money(share)}`;
 
-  document
-    .getElementById("calcAddition")
-    .innerText =
-      money(share);
+  document.getElementById("calcAddition").innerText =
+    `+ ${money(share)}`;
 
-  document
-    .getElementById("calcBonus")
-    .innerText =
-      money(bonus);
+  document.getElementById("calcRegisteredBonus").innerText =
+    money(bonus);
+
+  document.getElementById("calcCollaboratorBonus").innerText =
+    money(bonus);
 }
 
-amountInput.addEventListener(
-  "input",
-  updateCalculation
-);
+amountInput.addEventListener("input",updateCalculation);
 
-/* إضافة طلب */
+/* إضافة الطلب */
 
-form.addEventListener(
-  "submit",
-  async event=>{
+form.addEventListener("submit",async event=>{
 
-    event.preventDefault();
+  event.preventDefault();
 
-    const invoiceDate =
-      document
-        .getElementById("invoiceDate")
-        .value;
+  const invoiceDate =
+    document.getElementById("invoiceDate").value;
 
-    const invoiceNumber =
-      document
-        .getElementById("invoiceNumber")
-        .value
-        .trim();
+  const invoiceNumber =
+    document.getElementById("invoiceNumber")
+      .value
+      .trim();
 
-    const invoiceType =
-      document
-        .getElementById("invoiceType")
-        .value;
+  const invoiceType =
+    document.getElementById("invoiceType").value;
 
-    const patientName =
-      document
-        .getElementById("patientName")
-        .value
-        .trim();
+  const patientName =
+    document.getElementById("patientName")
+      .value
+      .trim();
 
-    const fileNumber =
-      document
-        .getElementById("fileNumber")
-        .value
-        .trim();
+  const fileNumber =
+    document.getElementById("fileNumber")
+      .value
+      .trim();
 
-    const invoiceAmount =
-      Number(
-        document
-          .getElementById("invoiceAmount")
-          .value
-      );
+  const invoiceAmount =
+    Number(
+      document.getElementById("invoiceAmount").value
+    );
 
-    const registeredTherapist =
-      document
-        .getElementById("registeredTherapist")
-        .value;
+  const registeredTherapist =
+    document.getElementById("registeredTherapist").value;
 
-    const collaboratingTherapist =
-      document
-        .getElementById("collaboratingTherapist")
-        .value;
+  const collaboratingTherapist =
+    document.getElementById("collaboratingTherapist").value;
 
-    const collaborationType =
-      document
-        .getElementById("collaborationType")
-        .value;
+  const collaborationType =
+    document.getElementById("collaborationType").value;
 
-    const notes =
-      document
-        .getElementById("notes")
-        .value
-        .trim();
+  const notes =
+    document.getElementById("notes")
+      .value
+      .trim();
 
-    if(
-      !invoiceDate
-      ||
-      !invoiceNumber
-      ||
-      !invoiceType
-      ||
-      !patientName
-      ||
-      !fileNumber
-      ||
-      !invoiceAmount
-      ||
-      !registeredTherapist
-      ||
-      !collaboratingTherapist
-    ){
-      showToast(
-        "عبّئ جميع البيانات الأساسية",
-        true
-      );
-
-      return;
-    }
-
-    if(invoiceAmount <= 0){
-      showToast(
-        "مبلغ الفاتورة يجب أن يكون أكبر من صفر",
-        true
-      );
-
-      return;
-    }
-
-    if(
-      registeredTherapist
-      ===
-      collaboratingTherapist
-    ){
-      showToast(
-        "لا يمكن اختيار نفس الأخصائي مرتين",
-        true
-      );
-
-      return;
-    }
-
-    const duplicateInvoice =
-      records.some(record=>
-        String(record.invoiceNumber)
-          .trim()
-          .toLowerCase()
-        ===
-        invoiceNumber
-          .toLowerCase()
-      );
-
-    if(duplicateInvoice){
-      showToast(
-        "رقم الفاتورة مسجل مسبقًا",
-        true
-      );
-
-      return;
-    }
-
-    try{
-      saveBtn.disabled = true;
-
-      saveBtn.innerText =
-        "جاري الحفظ...";
-
-      const shareAmount =
-        invoiceAmount / 2;
-
-      const bonusPerTherapist =
-        shareAmount * 0.05;
-
-      await addDoc(
-        collaborationsRef,
-        {
-          invoiceDate,
-          invoiceNumber,
-          invoiceType,
-          patientName,
-          fileNumber,
-          invoiceAmount,
-          registeredTherapist,
-          collaboratingTherapist,
-          collaborationType:
-            collaborationType
-            ||
-            "غير محدد",
-          notes,
-          shareAmount,
-          deductionAmount:shareAmount,
-          additionAmount:shareAmount,
-          bonusPerTherapist,
-          totalBonus:
-            bonusPerTherapist * 2,
-          status:"بانتظار المراجعة",
-          createdAt:serverTimestamp()
-        }
-      );
-
-      form.reset();
-
-      document
-        .getElementById("invoiceDate")
-        .value =
-          isoDate(new Date());
-
-      updateCalculation();
-
-      showToast(
-        "تم إرسال طلب التعاون للمراجعة"
-      );
-    }
-    catch(error){
-      console.error(error);
-
-      showToast(
-        "تعذر حفظ الطلب في Firebase",
-        true
-      );
-    }
-    finally{
-      saveBtn.disabled = false;
-
-      saveBtn.innerText =
-        "إرسال للمراجعة";
-    }
-  }
-);
-
-/* تغيير الحالة */
-
-window.changeStatus =
-  async function(
-    id,
-    newStatus
+  if(
+    !invoiceDate ||
+    !invoiceNumber ||
+    !invoiceType ||
+    !patientName ||
+    !fileNumber ||
+    !invoiceAmount ||
+    !registeredTherapist ||
+    !collaboratingTherapist
   ){
+    showToast("عبّئ جميع البيانات الأساسية",true);
+    return;
+  }
 
-    let message =
-      "";
+  if(invoiceAmount <= 0){
+    showToast(
+      "مبلغ الفاتورة يجب أن يكون أكبر من صفر",
+      true
+    );
+
+    return;
+  }
+
+  if(registeredTherapist === collaboratingTherapist){
+    showToast(
+      "لا يمكن اختيار نفس الأخصائي مرتين",
+      true
+    );
+
+    return;
+  }
+
+  const duplicateInvoice =
+    records.some(record=>
+      String(record.invoiceNumber || "")
+        .trim()
+        .toLowerCase()
+      ===
+      invoiceNumber.toLowerCase()
+    );
+
+  if(duplicateInvoice){
+    showToast("رقم الفاتورة مسجل مسبقًا",true);
+    return;
+  }
+
+  try{
+    saveBtn.disabled = true;
+    saveBtn.innerText = "جاري الحفظ...";
+
+    const shareAmount =
+      invoiceAmount / 2;
+
+    const bonusPerTherapist =
+      shareAmount * 0.05;
+
+    await addDoc(collaborationsRef,{
+      invoiceDate,
+      invoiceNumber,
+      invoiceType,
+      patientName,
+      fileNumber,
+      invoiceAmount,
+      registeredTherapist,
+      collaboratingTherapist,
+      collaborationType:
+        collaborationType || "غير محدد",
+      notes,
+
+      shareAmount,
+
+      deductionFromRegistered:
+        shareAmount,
+
+      additionToCollaborator:
+        shareAmount,
+
+      registeredRevenueAfterSettlement:
+        shareAmount,
+
+      collaboratorRevenue:
+        shareAmount,
+
+      registeredBonus:
+        bonusPerTherapist,
+
+      collaboratorBonus:
+        bonusPerTherapist,
+
+      bonusPerTherapist,
+
+      totalBonus:
+        bonusPerTherapist * 2,
+
+      status:"بانتظار المراجعة",
+
+      createdAt:serverTimestamp()
+    });
+
+    form.reset();
+
+    document.getElementById("invoiceDate").value =
+      isoDate(new Date());
+
+    updateCalculation();
+
+    showToast(
+      "تم إرسال طلب التعاون للمراجعة"
+    );
+  }
+  catch(error){
+    console.error(error);
+
+    showToast(
+      "تعذر حفظ الطلب في Firebase",
+      true
+    );
+  }
+  finally{
+    saveBtn.disabled = false;
+    saveBtn.innerText = "إرسال للمراجعة";
+  }
+});
+
+/* تنفيذ تغيير الحالة */
+
+async function performStatusChange(id,newStatus){
+  let confirmationMessage = "";
+
+  if(newStatus === "معتمد"){
+    confirmationMessage =
+      "سيتم خصم نصف الفاتورة من إيراد الأخصائي المسجلة باسمه وإضافته للأخصائي المتعاون. هل تريد الاعتماد؟";
+  }
+  else if(newStatus === "مرفوض"){
+    confirmationMessage =
+      "تأكيد رفض طلب التعاون؟";
+  }
+  else{
+    confirmationMessage =
+      "تأكيد إلغاء الاعتماد وإعادة الطلب للمراجعة؟";
+  }
+
+  if(!confirm(confirmationMessage)){
+    return;
+  }
+
+  try{
+    const updateData = {
+      status:newStatus,
+      updatedAt:serverTimestamp()
+    };
 
     if(newStatus === "معتمد"){
-      message =
-        "تأكيد اعتماد الطلب وإدخاله ضمن التسوية؟";
-    }
-    else if(newStatus === "مرفوض"){
-      message =
-        "تأكيد رفض الطلب؟";
-    }
-    else{
-      message =
-        "هل تريد إعادة الطلب إلى انتظار المراجعة؟";
+      updateData.approvedAt =
+        serverTimestamp();
     }
 
-    if(!confirm(message)){
-      return;
-    }
+    await updateDoc(
+      doc(db,"collaborativeCare",id),
+      updateData
+    );
 
-    try{
-      const updateData = {
-        status:newStatus,
-        updatedAt:serverTimestamp()
-      };
+    showToast(
+      `تم تحديث الحالة إلى: ${newStatus}`
+    );
+  }
+  catch(error){
+    console.error(error);
 
-      if(newStatus === "معتمد"){
-        updateData.approvedAt =
-          serverTimestamp();
-      }
+    showToast(
+      "تعذر تحديث حالة الطلب",
+      true
+    );
+  }
+}
 
-      await updateDoc(
-        doc(
-          db,
-          "collaborativeCare",
-          id
-        ),
-        updateData
-      );
+/*
+جميع إجراءات الحالة إدارية:
+الاعتماد والرفض وإلغاء الاعتماد وإعادة المراجعة
+تحتاج الرقم السري.
+*/
 
-      showToast(
-        `تم تحديث الحالة إلى: ${newStatus}`
-      );
-    }
-    catch(error){
-      console.error(error);
+window.changeStatus = function(id,newStatus){
 
-      showToast(
-        "تعذر تحديث حالة الطلب",
-        true
-      );
-    }
-  };
+  let message =
+    "أدخل الرقم السري للإدارة لإتمام الإجراء";
 
-/* حذف */
+  if(newStatus === "معتمد"){
+    message =
+      "أدخل الرقم السري لاعتماد التعاون وتنفيذ تسوية الإيرادات";
+  }
+  else if(newStatus === "مرفوض"){
+    message =
+      "أدخل الرقم السري لرفض الطلب";
+  }
+  else{
+    message =
+      "أدخل الرقم السري لإلغاء الاعتماد";
+  }
 
-window.deleteRecord =
-  async function(id){
+  requestAdminPin(
+    message,
+    ()=>performStatusChange(id,newStatus)
+  );
+};
 
-    const record =
-      records.find(
-        item =>
-          item.id === id
-      );
+/* الحذف */
 
-    if(!record){
-      return;
-    }
+async function performDelete(id){
+  const record =
+    records.find(item=>item.id === id);
 
-    const confirmed =
-      confirm(
-        `هل تريد حذف الفاتورة رقم ${record.invoiceNumber}؟`
-      );
+  if(!record){
+    return;
+  }
 
-    if(!confirmed){
-      return;
-    }
+  if(
+    !confirm(
+      `تأكيد حذف الفاتورة رقم ${record.invoiceNumber}؟`
+    )
+  ){
+    return;
+  }
 
-    try{
-      await deleteDoc(
-        doc(
-          db,
-          "collaborativeCare",
-          id
-        )
-      );
+  try{
+    await deleteDoc(
+      doc(db,"collaborativeCare",id)
+    );
 
-      showToast(
-        "تم حذف السجل"
-      );
-    }
-    catch(error){
-      console.error(error);
+    showToast("تم حذف السجل");
+  }
+  catch(error){
+    console.error(error);
 
-      showToast(
-        "تعذر حذف السجل",
-        true
-      );
-    }
-  };
+    showToast("تعذر حذف السجل",true);
+  }
+}
+
+window.deleteRecord = function(id){
+  const record =
+    records.find(item=>item.id === id);
+
+  if(!record){
+    return;
+  }
+
+  /*
+  إذا كان الطلب معتمدًا:
+  الحذف يحتاج رقم سري.
+
+  إذا كان بانتظار المراجعة أو مرفوضًا:
+  الحذف لا يحتاج رقم سري.
+  */
+
+  if(record.status === "معتمد"){
+    requestAdminPin(
+      "السجل معتمد وداخل في التسوية. أدخل الرقم السري لحذفه",
+      ()=>performDelete(id)
+    );
+
+    return;
+  }
+
+  performDelete(id);
+};
 
 /* سجلات الفترة */
 
 function getPeriodRecords(){
   return records.filter(record=>
-    record.invoiceDate >= periodStart
-    &&
+    record.invoiceDate >= periodStart &&
     record.invoiceDate <= periodEnd
   );
 }
@@ -1988,33 +2064,27 @@ function updateStats(){
 
   const approved =
     periodRecords.filter(
-      record =>
-        record.status === "معتمد"
+      record=>record.status === "معتمد"
     );
 
   const pending =
     periodRecords.filter(
-      record =>
-        record.status ===
-        "بانتظار المراجعة"
+      record=>record.status === "بانتظار المراجعة"
     );
 
   const invoicesTotal =
     approved.reduce(
       (sum,record)=>
-        sum
-        +
-        Number(record.invoiceAmount || 0),
+        sum + Number(record.invoiceAmount || 0),
       0
     );
 
-  const transferredTotal =
+  const deductionsTotal =
     approved.reduce(
       (sum,record)=>
-        sum
-        +
+        sum +
         Number(
-          record.shareAmount
+          record.deductionFromRegistered
           ??
           Number(record.invoiceAmount || 0) / 2
         ),
@@ -2024,56 +2094,33 @@ function updateStats(){
   const bonusesTotal =
     approved.reduce(
       (sum,record)=>
-        sum
-        +
+        sum +
         Number(
           record.totalBonus
           ??
-          (
-            Number(record.invoiceAmount || 0)
-            /
-            2
-            *
-            0.05
-            *
-            2
-          )
+          Number(record.invoiceAmount || 0) * 0.05
         ),
       0
     );
 
-  document
-    .getElementById("totalRequests")
-    .innerText =
-      periodRecords.length;
+  document.getElementById("totalRequests").innerText =
+    periodRecords.length;
 
-  document
-    .getElementById("pendingRequests")
-    .innerText =
-      pending.length;
+  document.getElementById("pendingRequests").innerText =
+    pending.length;
 
-  document
-    .getElementById("approvedRequests")
-    .innerText =
-      approved.length;
+  document.getElementById("approvedRequests").innerText =
+    approved.length;
 
-  document
-    .getElementById("approvedInvoicesTotal")
-    .innerText =
-      money(invoicesTotal);
+  document.getElementById("approvedInvoicesTotal").innerText =
+    money(invoicesTotal);
 
-  document
-    .getElementById("transferredTotal")
-    .innerText =
-      money(transferredTotal);
+  document.getElementById("deductionsTotal").innerText =
+    money(deductionsTotal);
 
-  document
-    .getElementById("bonusesTotal")
-    .innerText =
-      money(bonusesTotal);
+  document.getElementById("bonusesTotal").innerText =
+    money(bonusesTotal);
 }
-
-/* شارة الحالة */
 
 function getStatusClass(status){
   if(status === "معتمد"){
@@ -2086,8 +2133,6 @@ function getStatusClass(status){
 
   return "status-pending";
 }
-
-/* أزرار الإجراءات */
 
 function createActions(record){
   if(record.status === "بانتظار المراجعة"){
@@ -2141,7 +2186,7 @@ function createActions(record){
   `;
 }
 
-/* عرض الجدول */
+/* عرض السجلات */
 
 function renderRecords(){
   const body =
@@ -2154,10 +2199,7 @@ function renderRecords(){
     document.getElementById("emptyState");
 
   const search =
-    searchInput
-      .value
-      .trim()
-      .toLowerCase();
+    searchInput.value.trim().toLowerCase();
 
   const selectedStatus =
     statusFilter.value;
@@ -2165,60 +2207,43 @@ function renderRecords(){
   let list =
     getPeriodRecords();
 
-  list =
-    list.filter(record=>{
+  list = list.filter(record=>{
 
-      const searchableText = `
-        ${record.invoiceNumber || ""}
-        ${record.patientName || ""}
-        ${record.fileNumber || ""}
-        ${record.registeredTherapist || ""}
-        ${record.collaboratingTherapist || ""}
-        ${record.invoiceType || ""}
-      `.toLowerCase();
+    const searchableText = `
+      ${record.invoiceNumber || ""}
+      ${record.patientName || ""}
+      ${record.fileNumber || ""}
+      ${record.registeredTherapist || ""}
+      ${record.collaboratingTherapist || ""}
+      ${record.invoiceType || ""}
+    `.toLowerCase();
 
-      const matchesSearch =
-        !search
-        ||
-        searchableText.includes(search);
+    const matchesSearch =
+      !search ||
+      searchableText.includes(search);
 
-      const matchesStatus =
-        !selectedStatus
-        ||
-        record.status === selectedStatus;
+    const matchesStatus =
+      !selectedStatus ||
+      record.status === selectedStatus;
 
-      return (
-        matchesSearch
-        &&
-        matchesStatus
-      );
-    });
+    return matchesSearch && matchesStatus;
+  });
 
-  list.sort(
-    (a,b)=>
-      String(b.invoiceDate)
-        .localeCompare(
-          String(a.invoiceDate)
-        )
+  list.sort((a,b)=>
+    String(b.invoiceDate)
+      .localeCompare(String(a.invoiceDate))
   );
 
   body.innerHTML = "";
 
   if(list.length === 0){
-    table.style.display =
-      "none";
-
-    empty.style.display =
-      "block";
-
+    table.style.display = "none";
+    empty.style.display = "block";
     return;
   }
 
-  table.style.display =
-    "table";
-
-  empty.style.display =
-    "none";
+  table.style.display = "table";
+  empty.style.display = "none";
 
   list.forEach(record=>{
 
@@ -2230,6 +2255,20 @@ function renderRecords(){
         record.shareAmount
         ??
         invoiceAmount / 2
+      );
+
+    const deduction =
+      Number(
+        record.deductionFromRegistered
+        ??
+        shareAmount
+      );
+
+    const addition =
+      Number(
+        record.additionToCollaborator
+        ??
+        shareAmount
       );
 
     const bonus =
@@ -2274,11 +2313,27 @@ function renderRecords(){
       </td>
 
       <td>
-        ${escapeHtml(record.registeredTherapist)}
+        <span class="registered-name">
+          ${escapeHtml(record.registeredTherapist)}
+        </span>
       </td>
 
       <td>
-        ${escapeHtml(record.collaboratingTherapist)}
+        <span class="collaborator-name">
+          ${escapeHtml(record.collaboratingTherapist)}
+        </span>
+      </td>
+
+      <td>
+        <span class="deduction-text">
+          - ${money(deduction)}
+        </span>
+      </td>
+
+      <td>
+        <span class="addition-text">
+          + ${money(addition)}
+        </span>
       </td>
 
       <td>
@@ -2306,14 +2361,12 @@ function renderRecords(){
       </td>
 
       <td>
-
         <button
           class="action-btn delete-btn"
           onclick="deleteRecord('${record.id}')"
         >
           حذف
         </button>
-
       </td>
     `;
 
@@ -2321,7 +2374,7 @@ function renderRecords(){
   });
 }
 
-/* جدول التسويات */
+/* تسوية الأخصائيين */
 
 function renderSettlements(){
   const body =
@@ -2329,8 +2382,7 @@ function renderSettlements(){
 
   const approved =
     getPeriodRecords().filter(
-      record =>
-        record.status === "معتمد"
+      record=>record.status === "معتمد"
     );
 
   const summary = {};
@@ -2367,8 +2419,7 @@ function renderSettlements(){
 
     if(!summary[record.registeredTherapist]){
       summary[record.registeredTherapist] = {
-        therapist:
-          record.registeredTherapist,
+        therapist:record.registeredTherapist,
         cases:0,
         deductions:0,
         additions:0,
@@ -2379,8 +2430,7 @@ function renderSettlements(){
 
     if(!summary[record.collaboratingTherapist]){
       summary[record.collaboratingTherapist] = {
-        therapist:
-          record.collaboratingTherapist,
+        therapist:record.collaboratingTherapist,
         cases:0,
         deductions:0,
         additions:0,
@@ -2389,49 +2439,33 @@ function renderSettlements(){
       };
     }
 
-    summary[
-      record.registeredTherapist
-    ].cases += 1;
+    /*
+    صاحب الفاتورة:
+    الفاتورة الأصلية موجودة كاملة باسمه.
+    نخصم منه نصفها.
+    ويظل نصيبه المحتسب هو النصف الآخر.
+    */
 
-    summary[
-      record.registeredTherapist
-    ].deductions += share;
+    summary[record.registeredTherapist].cases += 1;
+    summary[record.registeredTherapist].deductions += share;
+    summary[record.registeredTherapist].collaborativeRevenue += share;
+    summary[record.registeredTherapist].bonus += bonus;
 
-    summary[
-      record.registeredTherapist
-    ].collaborativeRevenue += share;
+    /*
+    المتعاون:
+    نضيف له نصف الفاتورة.
+    */
 
-    summary[
-      record.registeredTherapist
-    ].bonus += bonus;
-
-    summary[
-      record.collaboratingTherapist
-    ].cases += 1;
-
-    summary[
-      record.collaboratingTherapist
-    ].additions += share;
-
-    summary[
-      record.collaboratingTherapist
-    ].collaborativeRevenue += share;
-
-    summary[
-      record.collaboratingTherapist
-    ].bonus += bonus;
+    summary[record.collaboratingTherapist].cases += 1;
+    summary[record.collaboratingTherapist].additions += share;
+    summary[record.collaboratingTherapist].collaborativeRevenue += share;
+    summary[record.collaboratingTherapist].bonus += bonus;
   });
 
   const list =
-    Object
-      .values(summary)
-      .filter(item=>
-        item.cases > 0
-      )
-      .sort(
-        (a,b)=>
-          b.bonus - a.bonus
-      );
+    Object.values(summary)
+      .filter(item=>item.cases > 0)
+      .sort((a,b)=>b.bonus - a.bonus);
 
   body.innerHTML = "";
 
@@ -2450,26 +2484,17 @@ function renderSettlements(){
   list.forEach(item=>{
 
     const netAdjustment =
-      item.additions
-      -
-      item.deductions;
+      item.additions - item.deductions;
 
-    let netClass =
-      "neutral";
-
-    let netPrefix =
-      "";
+    let netClass = "neutral";
+    let netPrefix = "";
 
     if(netAdjustment > 0){
-      netClass =
-        "positive";
-
-      netPrefix =
-        "+";
+      netClass = "positive";
+      netPrefix = "+";
     }
     else if(netAdjustment < 0){
-      netClass =
-        "negative";
+      netClass = "negative";
     }
 
     const row =
@@ -2521,8 +2546,6 @@ function renderSettlements(){
   });
 }
 
-/* تحديث الصفحة */
-
 function renderAll(){
   updateStats();
   renderRecords();
@@ -2539,7 +2562,7 @@ statusFilter.addEventListener(
   renderRecords
 );
 
-/* قراءة Firebase مباشرة */
+/* Firebase */
 
 onSnapshot(
   collaborationsRef,
@@ -2554,22 +2577,16 @@ onSnapshot(
       });
     });
 
-    document
-      .getElementById("loadingState")
-      .style
-      .display =
-        "none";
+    document.getElementById("loadingState").style.display =
+      "none";
 
     renderAll();
   },
   error=>{
     console.error(error);
 
-    document
-      .getElementById("loadingState")
-      .style
-      .display =
-        "none";
+    document.getElementById("loadingState").style.display =
+      "none";
 
     showToast(
       "تعذر قراءة بيانات التعاون العلاجي من Firebase",
@@ -2578,14 +2595,12 @@ onSnapshot(
   }
 );
 
-/* التشغيل الأول */
+/* التشغيل */
 
 fillTherapists();
 
-document
-  .getElementById("invoiceDate")
-  .value =
-    isoDate(new Date());
+document.getElementById("invoiceDate").value =
+  isoDate(new Date());
 
 window.setCurrentPeriod();
 
@@ -2593,10 +2608,7 @@ updateCalculation();
 
 </script>
 
-<script
-  type="module"
-  src="tracker.js"
-></script>
+<script type="module" src="tracker.js"></script>
 
 </body>
 </html>
