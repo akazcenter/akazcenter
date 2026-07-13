@@ -3,1094 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>التمارين المنزلية | مركز عكاز</title>
-
-<link rel="icon" type="image/png" href="./logo.png">
+<link rel="icon" href="logo.png">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 :root{
-  --blue:#005b9f;
-  --blue2:#0077c8;
-  --orange:#f59e0b;
-  --green:#16a34a;
-  --red:#dc2626;
-  --text:#0f172a;
-  --muted:#64748b;
-  --line:#e2e8f0;
+  --blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;--green:#16a34a;
+  --red:#dc2626;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;
 }
-
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  min-height:100vh;
-  direction:rtl;
-  font-family:Tahoma,Arial,sans-serif;
+  margin:0;min-height:100vh;direction:rtl;font-family:Tahoma,Arial,sans-serif;
   color:var(--text);
   background:
     radial-gradient(circle at 90% 8%,rgba(0,119,200,.12),transparent 28%),
     radial-gradient(circle at 8% 72%,rgba(245,158,11,.10),transparent 25%),
     linear-gradient(180deg,#f9fcff,#eef4f9);
 }
-
-button,
-input,
-select,
-textarea{
-  font-family:Tahoma,Arial,sans-serif;
-}
-
+button,input,select,textarea{font-family:Tahoma,Arial,sans-serif}
 button{cursor:pointer}
-
-/* =========================
-   الهيدر
-========================= */
-
 .topbar{
-  position:relative;
-  overflow:hidden;
-  padding:22px 5%;
-  color:white;
+  position:relative;overflow:hidden;padding:22px 5%;color:#fff;
   background:linear-gradient(135deg,#00467d,#0077c8);
   box-shadow:0 16px 38px rgba(6,43,79,.23);
 }
-
-.topbar::before{
-  content:"";
-  position:absolute;
-  width:280px;
-  height:280px;
-  right:-110px;
-  top:-150px;
-  border-radius:50%;
-  background:rgba(255,255,255,.07);
-}
-
-.topbar::after{
-  content:"";
-  position:absolute;
-  width:230px;
-  height:230px;
-  left:-90px;
-  bottom:-150px;
-  border-radius:50%;
-  background:rgba(245,158,11,.13);
-}
-
+.topbar::before,.topbar::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.topbar::before{width:280px;height:280px;right:-110px;top:-150px;background:rgba(255,255,255,.07)}
+.topbar::after{width:230px;height:230px;left:-90px;bottom:-150px;background:rgba(245,158,11,.13)}
 .topbar-inner{
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:1450px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:18px;
+  position:relative;z-index:2;max-width:1450px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
 }
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-
+.brand{display:flex;align-items:center;gap:15px}
 .logo-box{
-  width:78px;
-  height:78px;
-  padding:8px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:22px;
-  background:white;
-  box-shadow:0 12px 28px rgba(0,0,0,.20);
+  width:78px;height:78px;padding:8px;display:flex;align-items:center;justify-content:center;
+  border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(0,0,0,.20);
 }
-
-.logo{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-.brand h1{
-  margin:0;
-  font-size:27px;
-  font-weight:900;
-}
-
-.brand p{
-  margin:6px 0 0;
-  color:#dbeafe;
-  font-size:13px;
-}
-
-.top-actions{
-  display:flex;
-  gap:10px;
-}
-
+.logo{width:100%;height:100%;object-fit:contain}
+.brand h1{margin:0;font-size:27px;font-weight:900}
+.brand p{margin:6px 0 0;color:#dbeafe;font-size:13px}
+.top-actions{display:flex;gap:10px}
 .top-btn{
-  padding:11px 16px;
-  border:1px solid rgba(255,255,255,.35);
-  border-radius:14px;
-  background:rgba(255,255,255,.95);
-  color:var(--blue);
-  font-size:13px;
-  font-weight:900;
+  padding:11px 16px;border:1px solid rgba(255,255,255,.35);border-radius:14px;
+  background:rgba(255,255,255,.95);color:var(--blue);font-size:13px;font-weight:900;
 }
-
-/* =========================
-   المحتوى
-========================= */
-
-.main{
-  width:95%;
-  max-width:1450px;
-  margin:26px auto 45px;
-}
-
+.main{width:95%;max-width:1450px;margin:26px auto 45px}
 .info-box{
-  margin-bottom:20px;
-  padding:17px 20px;
-  border:1px solid #bfdbfe;
-  border-radius:20px;
-  background:linear-gradient(135deg,#eff6ff,#ffffff);
-  color:#164e75;
-  font-size:13px;
-  line-height:1.9;
+  margin-bottom:20px;padding:17px 20px;border:1px solid #bfdbfe;border-radius:20px;
+  background:linear-gradient(135deg,#eff6ff,#fff);color:#164e75;font-size:13px;line-height:1.9;
   box-shadow:0 10px 24px rgba(15,23,42,.06);
 }
-
 .info-box strong{color:var(--blue)}
-
-.layout{
-  display:grid;
-  grid-template-columns:360px 1fr;
-  gap:22px;
-  align-items:start;
-}
-
+.layout{display:grid;grid-template-columns:360px 1fr;gap:22px;align-items:start}
 .card{
-  overflow:hidden;
-  border:1px solid var(--line);
-  border-radius:24px;
-  background:rgba(255,255,255,.98);
+  overflow:hidden;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.98);
   box-shadow:0 15px 34px rgba(15,23,42,.08);
 }
-
-.card-head{
-  padding:19px 21px;
-  border-bottom:1px solid var(--line);
-  background:linear-gradient(135deg,#f8fbff,#ffffff);
-}
-
-.card-head h2{
-  margin:0;
-  color:var(--blue);
-  font-size:20px;
-  font-weight:900;
-}
-
-.card-head p{
-  margin:7px 0 0;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.8;
-}
-
+.card-head{padding:19px 21px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,#f8fbff,#fff)}
+.card-head h2{margin:0;color:var(--blue);font-size:20px;font-weight:900}
+.card-head p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.8}
 .form-body{padding:20px}
-
 .field{margin-bottom:14px}
-
-.field label{
-  display:block;
-  margin-bottom:7px;
-  color:#334155;
-  font-size:13px;
-  font-weight:900;
-}
-
+.field label{display:block;margin-bottom:7px;color:#334155;font-size:13px;font-weight:900}
 .required{color:var(--red)}
-
-.field input,
-.field select,
-.field textarea{
-  width:100%;
-  padding:11px 12px;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  outline:none;
-  background:white;
-  color:var(--text);
-  font-size:14px;
-  transition:.2s;
+.field input,.field select,.field textarea,.library-tools input,.library-tools select{
+  width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:12px;outline:none;
+  background:#fff;color:var(--text);font-size:14px;transition:.2s;
 }
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  border-color:var(--blue2);
-  box-shadow:0 0 0 4px rgba(0,119,200,.10);
+.field input:focus,.field select:focus,.field textarea:focus,.library-tools input:focus,.library-tools select:focus{
+  border-color:var(--blue2);box-shadow:0 0 0 4px rgba(0,119,200,.10);
 }
-
-.field textarea{
-  min-height:80px;
-  resize:vertical;
-}
-
-.two-fields{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-/* =========================
-   مكتبة التمارين
-========================= */
-
+.field textarea{min-height:80px;resize:vertical}
+.two-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .library-card{min-height:700px}
-
-.library-tools{
-  padding:15px 17px;
-  display:grid;
-  grid-template-columns:1fr 210px;
-  gap:10px;
-  border-bottom:1px solid var(--line);
-}
-
-.library-tools input,
-.library-tools select{
-  width:100%;
-  padding:11px 12px;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  outline:none;
-  background:white;
-}
-
+.library-tools{padding:15px 17px;display:grid;grid-template-columns:1fr 210px;gap:10px;border-bottom:1px solid var(--line)}
 .library-summary{
-  padding:11px 18px;
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  color:#475569;
-  background:#f8fafc;
-  border-bottom:1px solid #e2e8f0;
-  font-size:12px;
-  font-weight:900;
+  padding:11px 18px;display:flex;justify-content:space-between;gap:10px;
+  color:#475569;background:#f8fafc;border-bottom:1px solid #e2e8f0;font-size:12px;font-weight:900;
 }
-
-.library{
-  padding:18px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
+.library{padding:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .exercise-card{
-  position:relative;
-  overflow:hidden;
-  border:1px solid #dbe4ee;
-  border-radius:19px;
-  background:white;
-  transition:.22s;
+  position:relative;overflow:hidden;border:1px solid #dbe4ee;border-radius:19px;background:#fff;transition:.22s;
 }
-
-.exercise-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 28px rgba(15,23,42,.12);
-}
-
+.exercise-card:hover{transform:translateY(-4px);box-shadow:0 15px 28px rgba(15,23,42,.12)}
 .exercise-category{
-  position:absolute;
-  z-index:3;
-  top:10px;
-  right:10px;
-  padding:5px 9px;
-  border-radius:999px;
-  color:#075985;
-  background:rgba(224,242,254,.94);
-  font-size:10px;
-  font-weight:900;
+  position:absolute;z-index:3;top:10px;right:10px;padding:5px 9px;border-radius:999px;
+  color:#075985;background:rgba(224,242,254,.95);font-size:10px;font-weight:900;
 }
-
-.exercise-image{
-  width:100%;
-  height:165px;
-  object-fit:contain;
-  display:block;
-  padding:8px;
-  background:#f8fafc;
+.video-cover{
+  position:relative;height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.16),transparent 25%),linear-gradient(135deg,#06345d,#0077c8);
   border-bottom:1px solid #e2e8f0;
 }
-
-.exercise-image-fallback{
-  height:165px;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(145deg,#eff6ff,#ffffff);
-  font-size:55px;
-  border-bottom:1px solid #e2e8f0;
+.video-cover::before{
+  content:"";position:absolute;width:160px;height:160px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.13);left:-45px;bottom:-70px;
 }
-
+.video-icon{
+  width:64px;height:46px;border-radius:14px;background:#ff0000;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
+.video-icon::after{
+  content:"";margin-right:-4px;border-top:10px solid transparent;border-bottom:10px solid transparent;
+  border-left:17px solid #fff;
+}
+.video-label{position:absolute;bottom:12px;color:#fff;font-size:11px;font-weight:900}
+.no-link .video-icon{background:#64748b}
+.no-link .video-label{color:#e2e8f0}
 .exercise-content{padding:14px}
-
-.exercise-content h3{
-  margin:0;
-  color:var(--blue);
-  font-size:15px;
-  line-height:1.5;
-}
-
-.exercise-en{
-  margin-top:4px;
-  direction:ltr;
-  color:var(--orange);
-  font-size:10.5px;
-  font-weight:900;
-}
-
-.exercise-description{
-  margin-top:9px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.8;
-  min-height:58px;
-}
-
-.add-exercise-btn{
-  width:100%;
-  margin-top:11px;
-  padding:10px;
-  border:0;
-  border-radius:11px;
-  background:linear-gradient(135deg,#005b9f,#0077c8);
-  color:white;
-  font-weight:900;
-}
-
-.add-exercise-btn.added{
-  background:#dcfce7;
-  color:#166534;
-}
-
-/* =========================
-   التمارين المختارة
-========================= */
-
+.exercise-content h3{margin:0;color:var(--blue);font-size:15px;line-height:1.5}
+.exercise-en{margin-top:4px;direction:ltr;color:var(--orange);font-size:10.5px;font-weight:900}
+.exercise-description{margin-top:9px;color:var(--muted);font-size:11px;line-height:1.8;min-height:58px}
+.link-status{margin-top:8px;font-size:10px;font-weight:900}
+.link-status.ready{color:#166534}.link-status.missing{color:#b91c1c}
+.card-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:11px}
+.card-actions button{padding:9px 6px;border:0;border-radius:10px;font-size:10px;font-weight:900}
+.watch-btn{background:#fee2e2;color:#b91c1c}
+.edit-link-btn{background:#fff7ed;color:#9a3412}
+.add-exercise-btn{background:linear-gradient(135deg,#005b9f,#0077c8);color:#fff}
+.add-exercise-btn.added{background:#dcfce7;color:#166534}
 .selected-section{margin-top:22px}
-
 .selected-list{padding:18px}
-
-.selected-empty{
-  padding:40px 20px;
-  text-align:center;
-  color:var(--muted);
-}
-
-.selected-empty .icon{
-  font-size:42px;
-  margin-bottom:9px;
-}
-
+.selected-empty{padding:40px 20px;text-align:center;color:var(--muted)}
+.selected-empty .icon{font-size:42px;margin-bottom:9px}
 .selected-exercise{
-  position:relative;
-  display:grid;
-  grid-template-columns:155px 1fr 40px;
-  gap:16px;
-  align-items:start;
-  margin-bottom:15px;
-  padding:15px;
-  border:1px solid #dbe4ee;
-  border-radius:18px;
-  background:#f8fafc;
+  position:relative;display:grid;grid-template-columns:155px 1fr 40px;gap:16px;align-items:start;
+  margin-bottom:15px;padding:15px;border:1px solid #dbe4ee;border-radius:18px;background:#f8fafc;
 }
-
-.selected-image{
-  width:100%;
-  height:135px;
-  object-fit:contain;
-  border-radius:13px;
-  background:white;
-  border:1px solid #e2e8f0;
+.selected-video{
+  height:135px;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
+  background:linear-gradient(135deg,#06345d,#0077c8);color:#fff;border:1px solid #e2e8f0;
 }
-
-.selected-info h3{
-  margin:0 0 4px;
-  color:var(--blue);
-  font-size:16px;
+.selected-video.no-link{background:linear-gradient(135deg,#334155,#64748b)}
+.selected-video .video-icon{width:54px;height:39px}
+.selected-video span{font-size:10px;font-weight:900;text-align:center;padding:0 8px}
+.selected-info h3{margin:0 0 4px;color:var(--blue);font-size:16px}
+.selected-info small{direction:ltr;color:var(--orange);font-weight:900}
+.selected-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.selected-buttons button{padding:8px 11px;border:0;border-radius:9px;font-size:11px;font-weight:900}
+.selected-watch{background:#fee2e2;color:#b91c1c}
+.selected-edit{background:#fff7ed;color:#9a3412}
+.prescription-grid{margin-top:13px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.prescription-field label{display:block;margin-bottom:5px;color:#475569;font-size:10.5px;font-weight:900}
+.prescription-field input,.prescription-field select{
+  width:100%;padding:9px;border:1px solid #cbd5e1;border-radius:9px;background:#fff;font-size:12px;
 }
-
-.selected-info small{
-  direction:ltr;
-  color:var(--orange);
-  font-weight:900;
-}
-
-.prescription-grid{
-  margin-top:13px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-}
-
-.prescription-field label{
-  display:block;
-  margin-bottom:5px;
-  color:#475569;
-  font-size:10.5px;
-  font-weight:900;
-}
-
-.prescription-field input,
-.prescription-field select{
-  width:100%;
-  padding:9px;
-  border:1px solid #cbd5e1;
-  border-radius:9px;
-  background:white;
-  font-size:12px;
-}
-
 .exercise-note{margin-top:9px}
-
-.exercise-note textarea{
-  width:100%;
-  min-height:55px;
-  padding:9px;
-  border:1px solid #cbd5e1;
-  border-radius:9px;
-  resize:vertical;
-}
-
+.exercise-note textarea{width:100%;min-height:55px;padding:9px;border:1px solid #cbd5e1;border-radius:9px;resize:vertical}
 .remove-btn{
-  width:34px;
-  height:34px;
-  border:0;
-  border-radius:50%;
-  background:#fee2e2;
-  color:#b91c1c;
-  font-size:17px;
-  font-weight:900;
+  width:34px;height:34px;border:0;border-radius:50%;background:#fee2e2;color:#b91c1c;font-size:17px;font-weight:900;
 }
-
-/* =========================
-   الأزرار
-========================= */
-
-.bottom-actions{
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.action-btn{
-  padding:13px 20px;
-  border:0;
-  border-radius:13px;
-  font-size:13px;
-  font-weight:900;
-}
-
-.preview-btn{
-  background:#e0f2fe;
-  color:#075985;
-}
-
-.save-btn{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.pdf-btn{
-  background:linear-gradient(135deg,#005b9f,#0077c8);
-  color:white;
-}
-
-.whatsapp-btn{
-  background:#16a34a;
-  color:white;
-}
-
-/* =========================
-   المعاينة وصفحات PDF
-========================= */
-
+.bottom-actions{margin-top:20px;display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.action-btn{padding:13px 20px;border:0;border-radius:13px;font-size:13px;font-weight:900}
+.preview-btn{background:#e0f2fe;color:#075985}
+.save-btn{background:#dcfce7;color:#166534}
+.pdf-btn{background:linear-gradient(135deg,#005b9f,#0077c8);color:#fff}
+.whatsapp-btn{background:#16a34a;color:#fff}
 .preview-overlay{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-  display:none;
-  align-items:flex-start;
-  justify-content:center;
-  padding:25px;
-  overflow:auto;
-  background:rgba(15,23,42,.72);
-  backdrop-filter:blur(5px);
+  position:fixed;inset:0;z-index:99999;display:none;align-items:flex-start;justify-content:center;
+  padding:25px;overflow:auto;background:rgba(15,23,42,.72);backdrop-filter:blur(5px);
 }
-
 .preview-overlay.show{display:flex}
-
-.preview-wrapper{
-  width:100%;
-  max-width:900px;
-}
-
+.preview-wrapper{width:100%;max-width:900px}
 .preview-toolbar{
-  position:sticky;
-  top:0;
-  z-index:20;
-  margin-bottom:12px;
-  padding:10px;
-  display:flex;
-  justify-content:flex-start;
-  gap:8px;
-  border-radius:13px;
-  background:rgba(15,23,42,.88);
+  position:sticky;top:0;z-index:20;margin-bottom:12px;padding:10px;display:flex;justify-content:flex-start;gap:8px;
+  border-radius:13px;background:rgba(15,23,42,.88);
 }
-
-.preview-toolbar button{
-  padding:10px 15px;
-  border:0;
-  border-radius:11px;
-  font-weight:900;
-}
-
-.close-preview{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.download-preview{
-  background:#005b9f;
-  color:white;
-}
-
-.pdf-pages{
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-}
-
+.preview-toolbar button{padding:10px 15px;border:0;border-radius:11px;font-weight:900}
+.close-preview{background:#fee2e2;color:#b91c1c}
+.download-preview{background:#005b9f;color:#fff}
+.pdf-pages{display:flex;flex-direction:column;gap:22px}
 .pdf-page{
-  position:relative;
-  width:794px;
-  height:1123px;
-  margin:auto;
-  padding:30px 34px 26px;
-  overflow:hidden;
-  background:white;
-  color:#0f172a;
-  box-shadow:0 25px 70px rgba(0,0,0,.32);
+  position:relative;width:794px;height:1123px;margin:auto;padding:30px 34px 26px;overflow:hidden;
+  background:#fff;color:#0f172a;box-shadow:0 25px 70px rgba(0,0,0,.32);
 }
-
 .pdf-top{
-  height:82px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  padding-bottom:13px;
-  border-bottom:4px solid var(--orange);
+  height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding-bottom:13px;border-bottom:4px solid var(--orange);
 }
-
-.pdf-logo{
-  width:105px;
-  height:72px;
-  object-fit:contain;
-}
-
-.pdf-title{
-  flex:1;
-  text-align:right;
-}
-
-.pdf-title h1{
-  margin:0;
-  color:var(--blue);
-  font-size:25px;
-  font-weight:900;
-}
-
-.pdf-title p{
-  margin:4px 0 0;
-  direction:ltr;
-  color:var(--orange);
-  font-size:11px;
-  font-weight:900;
-}
-
-.pdf-page-number{
-  min-width:75px;
-  direction:ltr;
-  color:#64748b;
-  text-align:left;
-  font-size:11px;
-  font-weight:900;
-}
-
+.pdf-logo{width:105px;height:72px;object-fit:contain}
+.pdf-title{flex:1;text-align:right}
+.pdf-title h1{margin:0;color:var(--blue);font-size:25px;font-weight:900}
+.pdf-title p{margin:4px 0 0;direction:ltr;color:var(--orange);font-size:11px;font-weight:900}
+.pdf-page-number{min-width:75px;direction:ltr;color:#64748b;text-align:left;font-size:11px;font-weight:900}
 .patient-info-box{
-  margin-top:14px;
-  padding:11px 14px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px 18px;
-  border:1px solid #dbeafe;
-  border-radius:13px;
-  background:#f8fbff;
+  margin-top:14px;padding:11px 14px;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px 18px;border:1px solid #dbeafe;border-radius:13px;background:#f8fbff;
 }
-
-.pdf-info-item{
-  overflow:hidden;
-  font-size:10.5px;
-  line-height:1.5;
-  white-space:nowrap;
-  text-overflow:ellipsis;
-}
-
-.pdf-info-item span{
-  color:#64748b;
-  font-weight:900;
-}
-
-.pdf-info-item strong{
-  color:#0f172a;
-}
-
+.pdf-info-item{overflow:hidden;font-size:10.5px;line-height:1.5;white-space:nowrap;text-overflow:ellipsis}
+.pdf-info-item span{color:#64748b;font-weight:900}
 .pdf-general-instructions{
-  margin-top:10px;
-  padding:9px 12px;
-  border-right:4px solid var(--orange);
-  border-radius:10px;
-  background:#fff7ed;
-  color:#7c2d12;
-  font-size:10.5px;
-  line-height:1.65;
+  margin-top:10px;padding:9px 12px;border-right:4px solid var(--orange);border-radius:10px;
+  background:#fff7ed;color:#7c2d12;font-size:10.5px;line-height:1.65;
 }
-
-.pdf-exercises-grid{
-  margin-top:14px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:11px;
-}
-
+.pdf-exercises-grid{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .pdf-exercise-card{
-  height:202px;
-  display:grid;
-  grid-template-columns:118px 1fr;
-  gap:10px;
-  padding:10px;
-  overflow:hidden;
-  border:1px solid #dbe4ee;
-  border-radius:13px;
-  background:#ffffff;
+  height:202px;display:grid;grid-template-columns:112px 1fr;gap:10px;padding:10px;overflow:hidden;
+  border:1px solid #dbe4ee;border-radius:13px;background:#fff;
 }
-
-.pdf-exercise-image-wrap{
-  width:118px;
-  height:180px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  border:1px solid #e2e8f0;
-  border-radius:10px;
-  background:#f8fafc;
+.pdf-video-box{
+  width:112px;height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
+  overflow:hidden;border:1px solid #e2e8f0;border-radius:10px;
+  background:linear-gradient(135deg,#06345d,#0077c8);color:#fff;
 }
-
-.pdf-exercise-image{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-
-.pdf-exercise-content{
-  min-width:0;
-  overflow:hidden;
-}
-
+.pdf-video-box.no-link{background:linear-gradient(135deg,#334155,#64748b)}
+.pdf-video-box .video-icon{width:50px;height:36px;border-radius:11px}
+.pdf-video-box .video-icon::after{border-top-width:8px;border-bottom-width:8px;border-left-width:14px}
+.pdf-video-box span{font-size:8px;font-weight:900;text-align:center;padding:0 6px;line-height:1.5}
+.pdf-exercise-content{min-width:0;overflow:hidden}
 .pdf-exercise-number{
-  display:inline-flex;
-  width:23px;
-  height:23px;
-  margin-left:5px;
-  align-items:center;
-  justify-content:center;
-  border-radius:8px;
-  background:var(--blue);
-  color:white;
-  font-size:11px;
-  font-weight:900;
+  display:inline-flex;width:23px;height:23px;margin-left:5px;align-items:center;justify-content:center;
+  border-radius:8px;background:var(--blue);color:#fff;font-size:11px;font-weight:900;
 }
-
-.pdf-exercise-card h2{
-  display:inline;
-  margin:0;
-  color:var(--blue);
-  font-size:13.5px;
-  line-height:1.4;
-}
-
-.pdf-exercise-en{
-  margin-top:3px;
-  direction:ltr;
-  color:var(--orange);
-  font-size:8.5px;
-  font-weight:900;
-}
-
-.pdf-exercise-description{
-  margin-top:6px;
-  color:#334155;
-  font-size:9.2px;
-  line-height:1.55;
-}
-
-.pdf-dose{
-  margin-top:7px;
-  padding:6px 8px;
-  border-radius:8px;
-  background:#eff6ff;
-  color:#075985;
-  font-size:9px;
-  font-weight:900;
-  line-height:1.5;
-}
-
-.pdf-note{
-  margin-top:5px;
-  color:#9a3412;
-  font-size:8.5px;
-  line-height:1.45;
-}
-
+.pdf-exercise-card h2{display:inline;margin:0;color:var(--blue);font-size:13.5px;line-height:1.4}
+.pdf-exercise-en{margin-top:3px;direction:ltr;color:var(--orange);font-size:8.5px;font-weight:900}
+.pdf-exercise-description{margin-top:6px;color:#334155;font-size:9.2px;line-height:1.55}
+.pdf-dose{margin-top:7px;padding:6px 8px;border-radius:8px;background:#eff6ff;color:#075985;font-size:9px;font-weight:900;line-height:1.5}
+.pdf-link-label{margin-top:5px;color:#b91c1c;font-size:8.5px;font-weight:900}
+.pdf-note{margin-top:5px;color:#9a3412;font-size:8.5px;line-height:1.45}
 .pdf-footer{
-  position:absolute;
-  right:34px;
-  left:34px;
-  bottom:15px;
-  padding-top:8px;
-  border-top:1px solid #dbe4ee;
-  color:#64748b;
-  text-align:center;
-  font-size:8.5px;
-  line-height:1.5;
+  position:absolute;right:34px;left:34px;bottom:15px;padding-top:8px;border-top:1px solid #dbe4ee;
+  color:#64748b;text-align:center;font-size:8.5px;line-height:1.5;
 }
-
-.pdf-second-page .pdf-exercises-grid{
-  margin-top:17px;
-}
-
-.pdf-second-page .pdf-exercise-card{
-  height:273px;
-}
-
-.pdf-second-page .pdf-exercise-image-wrap{
-  height:249px;
-}
-
-.pdf-second-page .pdf-exercise-description{
-  font-size:9.5px;
-  line-height:1.6;
-}
-
-/* =========================
-   إشعارات
-========================= */
-
+.pdf-second-page .pdf-exercises-grid{margin-top:17px}
+.pdf-second-page .pdf-exercise-card{height:273px}
+.pdf-second-page .pdf-video-box{height:249px}
+.pdf-second-page .pdf-exercise-description{font-size:9.5px;line-height:1.6}
 .toast{
-  position:fixed;
-  z-index:999999;
-  bottom:24px;
-  left:50%;
-  padding:13px 18px;
-  transform:translateX(-50%) translateY(30px);
-  border-radius:14px;
-  background:#166534;
-  color:white;
-  font-size:13px;
-  font-weight:900;
-  box-shadow:0 16px 35px rgba(0,0,0,.23);
-  opacity:0;
-  visibility:hidden;
-  transition:.25s;
+  position:fixed;z-index:999999;bottom:24px;left:50%;padding:13px 18px;
+  transform:translateX(-50%) translateY(30px);border-radius:14px;background:#166534;color:#fff;
+  font-size:13px;font-weight:900;box-shadow:0 16px 35px rgba(0,0,0,.23);
+  opacity:0;visibility:hidden;transition:.25s;
 }
-
-.toast.show{
-  opacity:1;
-  visibility:visible;
-  transform:translateX(-50%) translateY(0);
-}
-
+.toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 .toast.error{background:#b91c1c}
-
-/* =========================
-   الوضع الليلي
-========================= */
-
-body.dark{
-  --text:#e2e8f0;
-  --muted:#94a3b8;
-  --line:#334155;
-  background:
-    radial-gradient(circle at 90% 8%,rgba(30,64,175,.22),transparent 28%),
-    linear-gradient(180deg,#020617,#0f172a);
-}
-
-body.dark .card{
-  background:#1e293b;
-  border-color:#334155;
-}
-
-body.dark .card-head{
-  background:#0f172a;
-}
-
-body.dark .field label,
-body.dark .selected-info h3{
-  color:#e2e8f0;
-}
-
-body.dark input,
-body.dark select,
-body.dark textarea{
-  background:#0f172a;
-  color:#e2e8f0;
-  border-color:#475569;
-}
-
-body.dark .exercise-card{
-  background:#1e293b;
-  border-color:#334155;
-}
-
-body.dark .selected-exercise{
-  background:#0f172a;
-  border-color:#334155;
-}
-
-body.dark .library-summary{
-  background:#0f172a;
-  color:#cbd5e1;
-  border-color:#334155;
-}
-
-/* =========================
-   الجوال
-========================= */
-
-@media(max-width:1150px){
-  .layout{
-    grid-template-columns:1fr;
-  }
-
-  .library{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
+body.dark{--text:#e2e8f0;--muted:#94a3b8;--line:#334155;background:linear-gradient(180deg,#020617,#0f172a)}
+body.dark .card{background:#1e293b;border-color:#334155}
+body.dark .card-head{background:#0f172a}
+body.dark .field label,body.dark .selected-info h3{color:#e2e8f0}
+body.dark input,body.dark select,body.dark textarea{background:#0f172a;color:#e2e8f0;border-color:#475569}
+body.dark .exercise-card{background:#1e293b;border-color:#334155}
+body.dark .selected-exercise{background:#0f172a;border-color:#334155}
+body.dark .library-summary{background:#0f172a;color:#cbd5e1;border-color:#334155}
+@media(max-width:1150px){.layout{grid-template-columns:1fr}.library{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){
-  .topbar-inner{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .top-actions{
-    width:100%;
-  }
-
-  .top-btn{
-    flex:1;
-  }
-
-  .library-tools{
-    grid-template-columns:1fr;
-  }
-
-  .library{
-    grid-template-columns:1fr;
-  }
-
-  .two-fields{
-    grid-template-columns:1fr;
-  }
-
-  .selected-exercise{
-    grid-template-columns:1fr;
-  }
-
-  .remove-btn{
-    position:absolute;
-    top:10px;
-    left:10px;
-  }
-
-  .prescription-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .preview-overlay{
-    justify-content:flex-start;
-  }
+  .topbar-inner{flex-direction:column;align-items:flex-start}.top-actions{width:100%}.top-btn{flex:1}
+  .library-tools{grid-template-columns:1fr}.library{grid-template-columns:1fr}.two-fields{grid-template-columns:1fr}
+  .selected-exercise{grid-template-columns:1fr}.remove-btn{position:absolute;top:10px;left:10px}
+  .prescription-grid{grid-template-columns:1fr 1fr}.preview-overlay{justify-content:flex-start}
 }
 </style>
 </head>
 
 <body>
-
 <header class="topbar">
   <div class="topbar-inner">
-
     <div class="brand">
-      <div class="logo-box">
-        <img src="logo.png" class="logo" alt="شعار مركز عكاز">
-      </div>
-
-      <div>
-        <h1>التمارين المنزلية</h1>
-        <p>Home Exercise Program</p>
-      </div>
+      <div class="logo-box"><img src="logo.png" class="logo" alt="شعار مركز عكاز"></div>
+      <div><h1>التمارين المنزلية</h1><p>Home Exercise Program</p></div>
     </div>
-
     <div class="top-actions">
-      <button class="top-btn" onclick="location.href='index.html'">
-        🏠 الرئيسية
-      </button>
-
-      <button class="top-btn" id="themeBtn" onclick="toggleTheme()">
-        🌙
-      </button>
+      <button class="top-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+      <button class="top-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
     </div>
-
   </div>
 </header>
 
 <main class="main">
-
   <section class="info-box">
-    <strong>برنامج التمارين المنزلية:</strong>
-    أدخل بيانات المريض، ثم اختر التمارين من أي منطقة في الجسم وحدد الجرعة العلاجية. صورة التمرين مخصصة لتوضيح الحركة فقط، أما الاسم والشرح والتكرارات فتُنشأ تلقائيًا داخل ملف PDF.
+    <strong>طريقة العمل:</strong>
+    اختر التمرين، واضغط «إضافة/تعديل الرابط» والصق رابط فيديو يوتيوب مباشر. الرابط يُحفظ تلقائيًا في Firebase ويظهر لجميع أجهزة المركز، ثم ينتقل إلى ملف PDF كرابط قابل للضغط.
   </section>
 
   <section class="layout">
-
     <div class="card">
-
-      <div class="card-head">
-        <h2>بيانات البرنامج</h2>
-        <p>البيانات التي ستظهر في ملف المريض.</p>
-      </div>
-
+      <div class="card-head"><h2>بيانات البرنامج</h2><p>البيانات التي ستظهر في ملف المريض.</p></div>
       <div class="form-body">
-
-        <div class="field">
-          <label>
-            اسم المريض
-            <span class="required">*</span>
-          </label>
-
-          <input type="text" id="patientName" placeholder="اسم المريض">
-        </div>
-
+        <div class="field"><label>اسم المريض <span class="required">*</span></label><input id="patientName" placeholder="اسم المريض"></div>
         <div class="two-fields">
-
-          <div class="field">
-            <label>
-              رقم الملف
-              <span class="required">*</span>
-            </label>
-
-            <input type="text" id="fileNumber" placeholder="رقم الملف">
-          </div>
-
-          <div class="field">
-            <label>
-              رقم الجوال
-              <span class="required">*</span>
-            </label>
-
-            <input
-              type="tel"
-              id="phoneNumber"
-              placeholder="05xxxxxxxx"
-              inputmode="numeric"
-            >
-          </div>
-
+          <div class="field"><label>رقم الملف <span class="required">*</span></label><input id="fileNumber" placeholder="رقم الملف"></div>
+          <div class="field"><label>رقم الجوال <span class="required">*</span></label><input id="phoneNumber" type="tel" inputmode="numeric" placeholder="05xxxxxxxx"></div>
         </div>
-
-        <div class="field">
-          <label>
-            الأخصائي المعالج
-            <span class="required">*</span>
-          </label>
-
-          <select id="therapist">
-            <option value="">اختر الأخصائي</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>التشخيص / الحالة</label>
-
-          <input
-            type="text"
-            id="diagnosis"
-            placeholder="مثال: ألم أسفل الظهر"
-          >
-        </div>
-
+        <div class="field"><label>الأخصائي المعالج <span class="required">*</span></label><select id="therapist"><option value="">اختر الأخصائي</option></select></div>
+        <div class="field"><label>التشخيص / الحالة</label><input id="diagnosis" placeholder="مثال: ألم أسفل الظهر"></div>
         <div class="two-fields">
-
-          <div class="field">
-            <label>تاريخ إصدار البرنامج</label>
-            <input type="date" id="programDate">
-          </div>
-
-          <div class="field">
-            <label>تاريخ المراجعة القادمة</label>
-            <input type="date" id="reviewDate">
-          </div>
-
+          <div class="field"><label>تاريخ إصدار البرنامج</label><input type="date" id="programDate"></div>
+          <div class="field"><label>تاريخ المراجعة القادمة</label><input type="date" id="reviewDate"></div>
         </div>
-
-        <div class="field">
-          <label>تعليمات عامة للمريض</label>
-
-          <textarea
-            id="generalInstructions"
-            placeholder="مثال: تنفيذ التمارين ببطء والتوقف عند زيادة الألم بشكل واضح."
-          ></textarea>
-        </div>
-
+        <div class="field"><label>تعليمات عامة للمريض</label><textarea id="generalInstructions" placeholder="مثال: تنفيذ التمارين ببطء والتوقف عند زيادة الألم بشكل واضح."></textarea></div>
       </div>
-
     </div>
 
     <div class="card library-card">
-
-      <div class="card-head">
-        <h2>مكتبة التمارين العلاجية</h2>
-        <p>اختر المنطقة ثم أضف التمارين المناسبة للبرنامج.</p>
-      </div>
-
+      <div class="card-head"><h2>مكتبة التمارين العلاجية</h2><p>اختر المنطقة ثم أضف التمارين المناسبة.</p></div>
       <div class="library-tools">
-
-        <input
-          type="text"
-          id="exerciseSearch"
-          placeholder="ابحث بالعربي أو الإنجليزي..."
-        >
-
+        <input id="exerciseSearch" placeholder="ابحث بالعربي أو الإنجليزي...">
         <select id="categoryFilter">
           <option value="الكل">جميع المناطق</option>
           <option value="الرقبة">الرقبة</option>
@@ -1105,73 +315,33 @@ body.dark .library-summary{
           <option value="التأهيل العصبي">التأهيل العصبي</option>
           <option value="التنفس">التنفس</option>
         </select>
-
       </div>
-
-      <div class="library-summary">
-        <span id="libraryCount">التمارين المعروضة: 0</span>
-        <span id="selectedCount">المختارة: 0</span>
-      </div>
-
+      <div class="library-summary"><span id="libraryCount">التمارين المعروضة: 0</span><span id="selectedCount">المختارة: 0</span></div>
       <div class="library" id="exerciseLibrary"></div>
-
     </div>
-
   </section>
 
   <section class="card selected-section">
-
-    <div class="card-head">
-      <h2>البرنامج المختار</h2>
-      <p>عدّل المجموعات والتكرارات والثبات لكل تمرين.</p>
-    </div>
-
+    <div class="card-head"><h2>البرنامج المختار</h2><p>عدّل الجرعة العلاجية لكل تمرين.</p></div>
     <div class="selected-list" id="selectedExercisesList"></div>
-
   </section>
 
   <div class="bottom-actions">
-
-    <button class="action-btn preview-btn" onclick="openPreview()">
-      👁️ معاينة البرنامج
-    </button>
-
-    <button class="action-btn save-btn" onclick="saveProgram()">
-      💾 حفظ البرنامج
-    </button>
-
-    <button class="action-btn pdf-btn" onclick="downloadPDF()">
-      📄 تحميل PDF
-    </button>
-
-    <button class="action-btn whatsapp-btn" onclick="openWhatsApp()">
-      💬 فتح واتساب المريض
-    </button>
-
+    <button class="action-btn preview-btn" onclick="openPreview()">👁️ معاينة البرنامج</button>
+    <button class="action-btn save-btn" onclick="saveProgram()">💾 حفظ البرنامج</button>
+    <button class="action-btn pdf-btn" onclick="downloadPDF()">📄 تحميل PDF</button>
+    <button class="action-btn whatsapp-btn" onclick="openWhatsApp()">💬 فتح واتساب المريض</button>
   </div>
-
 </main>
 
 <div class="preview-overlay" id="previewOverlay">
-
   <div class="preview-wrapper">
-
     <div class="preview-toolbar">
-
-      <button class="close-preview" onclick="closePreview()">
-        إغلاق
-      </button>
-
-      <button class="download-preview" onclick="downloadPDF()">
-        تحميل PDF
-      </button>
-
+      <button class="close-preview" onclick="closePreview()">إغلاق</button>
+      <button class="download-preview" onclick="downloadPDF()">تحميل PDF</button>
     </div>
-
     <div class="pdf-pages" id="pdfPages"></div>
-
   </div>
-
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1179,1368 +349,512 @@ body.dark .library-summary{
 <script>
 function toggleTheme(){
   document.body.classList.toggle("dark");
-
-  const isDark =
-    document.body.classList.contains("dark");
-
-  localStorage.setItem(
-    "akazTheme",
-    isDark ? "dark" : "light"
-  );
-
-  document.getElementById("themeBtn").innerText =
-    isDark ? "☀️" : "🌙";
+  const dark=document.body.classList.contains("dark");
+  localStorage.setItem("akazTheme",dark?"dark":"light");
+  document.getElementById("themeBtn").innerText=dark?"☀️":"🌙";
 }
-
-(function loadTheme(){
-  if(localStorage.getItem("akazTheme") === "dark"){
-    document.body.classList.add("dark");
-    document.getElementById("themeBtn").innerText = "☀️";
-  }
-})();
+if(localStorage.getItem("akazTheme")==="dark"){
+  document.body.classList.add("dark");
+  document.getElementById("themeBtn").innerText="☀️";
+}
 </script>
 
 <script type="module">
-
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
 import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp
+  getFirestore,collection,addDoc,serverTimestamp,doc,setDoc,onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
-  authDomain: "akazcenter-89c17.firebaseapp.com",
-  projectId: "akazcenter-89c17",
-  storageBucket: "akazcenter-89c17.firebasestorage.app",
-  messagingSenderId: "576111794528",
-  appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+const firebaseConfig={
+  apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+  authDomain:"akazcenter-89c17.firebaseapp.com",
+  projectId:"akazcenter-89c17",
+  storageBucket:"akazcenter-89c17.firebasestorage.app",
+  messagingSenderId:"576111794528",
+  appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app=initializeApp(firebaseConfig);
+const db=getFirestore(app);
+const programsRef=collection(db,"homeExercisePrograms");
+const linksRef=collection(db,"exerciseVideoLinks");
 
-const programsRef =
-  collection(db,"homeExercisePrograms");
-
-const therapists = [
-  "د. حاتم الاحمدي",
-  "د. عبدالرحمن السويداء",
-  "د. عبدالرحمن السليمي",
-  "د. عبدالعزيز الحمدان",
-  "د. ريناد حميد",
-  "د. ابتسام سويلم",
-  "د. سلمى فرحان",
-  "د. هند فهيد",
-  "د. أسماء فهيد",
-  "د. مها فريح"
+const therapists=[
+  "د. حاتم الاحمدي","د. عبدالرحمن السويداء","د. عبدالرحمن السليمي","د. عبدالعزيز الحمدان",
+  "د. ريناد حميد","د. ابتسام سويلم","د. سلمى فرحان","د. هند فهيد","د. أسماء فهيد","د. مها فريح"
 ];
 
-/*
-كل صورة تكون للتمرين فقط بدون كتابة أو شعار.
-ضع الصور داخل مجلد exercise-images.
-*/
+const E=(id,category,nameAr,nameEn,description)=>({id,category,nameAr,nameEn,description,videoUrl:""});
 
-const exercises = [
+const exercises=[
+  E("neck-001","الرقبة","سحب الذقن للخلف","Chin Tuck","اجلس أو قف باستقامة، واسحب الذقن إلى الخلف دون خفض الرأس، ثم عد ببطء."),
+  E("neck-002","الرقبة","دوران الرقبة","Neck Rotation","أدر الرأس ببطء إلى أحد الجانبين ضمن المدى المريح، ثم عد للمنتصف وكرر للجهة الأخرى."),
+  E("neck-003","الرقبة","إطالة العضلة شبه المنحرفة","Upper Trapezius Stretch","أمل الرأس باتجاه أحد الكتفين بلطف مع إبقاء الكتف المقابل منخفضًا."),
 
-  /* الرقبة */
+  E("shoulder-001","الكتف","تمرين البندول","Pendulum Exercise","انحنِ للأمام مع دعم الجسم باليد السليمة، واترك الذراع المصابة مرتخية وحركها بحركات صغيرة."),
+  E("shoulder-002","الكتف","انزلاق الذراع على الجدار","Shoulder Wall Slide","ضع اليد على الجدار وحركها تدريجيًا للأعلى ضمن المدى المريح، ثم أعدها للأسفل ببطء."),
+  E("shoulder-003","الكتف","الدوران الخارجي بالعصا","External Rotation With Stick","أمسك العصا بكلتا اليدين والمرفقان بجانب الجسم، وادفع اليد المصابة للخارج باستخدام اليد الأخرى."),
 
-  {
-    id:"neck-001",
-    category:"الرقبة",
-    nameAr:"سحب الذقن للخلف",
-    nameEn:"Chin Tuck",
-    image:"exercise-images/neck-chin-tuck.png",
-    description:"اجلس أو قف باستقامة، اسحب الذقن إلى الخلف دون خفض الرأس للأسفل، ثم عد للوضع الطبيعي ببطء."
-  },
-  {
-    id:"neck-002",
-    category:"الرقبة",
-    nameAr:"دوران الرقبة",
-    nameEn:"Neck Rotation",
-    image:"exercise-images/neck-rotation.png",
-    description:"أدر الرأس ببطء إلى أحد الجانبين ضمن المدى المريح، ثم عد للمنتصف وكرر للجهة الأخرى."
-  },
-  {
-    id:"neck-003",
-    category:"الرقبة",
-    nameAr:"إطالة العضلة شبه المنحرفة",
-    nameEn:"Upper Trapezius Stretch",
-    image:"exercise-images/neck-upper-trapezius-stretch.png",
-    description:"أمل الرأس باتجاه أحد الكتفين بلطف مع إبقاء الكتف المقابل منخفضًا، حتى تشعر بإطالة مريحة."
-  },
+  E("elbow-001","المرفق والرسغ","ثني ومد المرفق","Elbow Flexion Extension","اثنِ المرفق حتى تقترب اليد من الكتف، ثم مد الذراع ببطء ضمن المدى المريح."),
+  E("wrist-001","المرفق والرسغ","ثني الرسغ","Wrist Flexion","اسند الساعد على طاولة واترك اليد خارج الحافة، ثم حرك الرسغ للأسفل والأعلى ببطء."),
+  E("wrist-002","المرفق والرسغ","إطالة باسطات الرسغ","Wrist Extensor Stretch","مد الذراع أمامك والمرفق مستقيم، واستخدم اليد الأخرى لثني الرسغ بلطف."),
 
-  /* الكتف */
+  E("thoracic-001","أعلى الظهر","مد أعلى الظهر على الكرسي","Thoracic Extension","اجلس على كرسي وضع اليدين خلف الرأس، ثم مد أعلى الظهر للخلف فوق مسند الكرسي."),
+  E("thoracic-002","أعلى الظهر","دوران أعلى الظهر","Thoracic Rotation","اجلس باستقامة وضع اليدين على الصدر، ثم أدر الجذع ببطء إلى أحد الجانبين."),
+  E("thoracic-003","أعلى الظهر","سحب لوحي الكتف","Scapular Retraction","اسحب لوحي الكتف للخلف وللأسفل دون رفع الكتفين، وحافظ على الرقبة مسترخية."),
 
-  {
-    id:"shoulder-001",
-    category:"الكتف",
-    nameAr:"تمرين البندول",
-    nameEn:"Pendulum Exercise",
-    image:"exercise-images/shoulder-pendulum.png",
-    description:"انحنِ للأمام مع دعم الجسم باليد السليمة، واترك الذراع المصابة مرتخية ثم حركها بحركات دائرية صغيرة."
-  },
-  {
-    id:"shoulder-002",
-    category:"الكتف",
-    nameAr:"انزلاق الذراع على الجدار",
-    nameEn:"Wall Slide",
-    image:"exercise-images/shoulder-wall-slide.png",
-    description:"ضع اليد على الجدار وحركها تدريجيًا للأعلى ضمن المدى المريح، ثم أعدها للأسفل ببطء."
-  },
-  {
-    id:"shoulder-003",
-    category:"الكتف",
-    nameAr:"الدوران الخارجي بالعصا",
-    nameEn:"External Rotation With Stick",
-    image:"exercise-images/shoulder-external-rotation-stick.png",
-    description:"أمسك العصا بكلتا اليدين والمرفقان بجانب الجسم، وادفع اليد المصابة للخارج باستخدام اليد الأخرى."
-  },
+  E("back-001","أسفل الظهر","إمالة الحوض","Pelvic Tilt","استلقِ والركبتان مثنيتان، شد البطن واضغط أسفل الظهر بلطف باتجاه السطح ثم استرخِ."),
+  E("back-002","أسفل الظهر","سحب الركبة إلى الصدر","Single Knee To Chest","استلقِ على ظهرك واسحب ركبة واحدة باتجاه الصدر بلطف."),
+  E("back-003","أسفل الظهر","تمرين القطة والجمل","Cat Camel","اتخذ وضع اليدين والركبتين، ثم قوس الظهر للأعلى وبعدها اخفضه ببطء."),
+  E("back-004","أسفل الظهر","رفع الحوض","Bridge Exercise","استلقِ والركبتان مثنيتان، شد البطن والأرداف وارفع الحوض ببطء ثم انزل بتحكم."),
 
-  /* المرفق والرسغ */
+  E("hip-001","الحوض والورك","فتح الركبة جانبًا","Clamshell","استلقِ على جانبك والركبتان مثنيتان، ارفع الركبة العليا مع إبقاء القدمين متلامستين."),
+  E("hip-002","الحوض والورك","إبعاد الورك واقفًا","Standing Hip Abduction","قف ممسكًا بسطح ثابت، حرك الساق جانبًا دون ميل الجذع ثم عد ببطء."),
+  E("hip-003","الحوض والورك","إطالة مثنيات الورك","Hip Flexor Stretch","اتخذ وضع الاندفاع مع ركبة خلفية على الأرض، ثم ادفع الحوض للأمام بلطف."),
 
-  {
-    id:"elbow-001",
-    category:"المرفق والرسغ",
-    nameAr:"ثني ومد المرفق",
-    nameEn:"Elbow Flexion Extension",
-    image:"exercise-images/elbow-flexion-extension.png",
-    description:"اثنِ المرفق حتى تقترب اليد من الكتف، ثم مد الذراع ببطء ضمن المدى المريح."
-  },
-  {
-    id:"wrist-001",
-    category:"المرفق والرسغ",
-    nameAr:"ثني الرسغ",
-    nameEn:"Wrist Flexion",
-    image:"exercise-images/wrist-flexion.png",
-    description:"اسند الساعد على طاولة واترك اليد خارج الحافة، ثم حرّك الرسغ للأسفل والأعلى ببطء."
-  },
-  {
-    id:"wrist-002",
-    category:"المرفق والرسغ",
-    nameAr:"إطالة باسطات الرسغ",
-    nameEn:"Wrist Extensor Stretch",
-    image:"exercise-images/wrist-extensor-stretch.png",
-    description:"مد الذراع أمامك والمرفق مستقيم، ثم استخدم اليد الأخرى لثني الرسغ بلطف حتى تشعر بالإطالة."
-  },
+  E("knee-001","الركبة","رفع الساق مستقيمة","Straight Leg Raise","استلقِ على ظهرك، اثنِ الركبة غير المستهدفة، وارفع الساق الأخرى مستقيمة ببطء."),
+  E("knee-002","الركبة","شد العضلة الرباعية","Quadriceps Set","استلقِ والساق مستقيمة، شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح."),
+  E("knee-003","الركبة","انزلاق الكعب","Heel Slide","اسحب الكعب ببطء باتجاه الجسم لثني الركبة، ثم أعد الساق إلى الاستقامة."),
+  E("knee-004","الركبة","مد الركبة أثناء الجلوس","Seated Knee Extension","اجلس على كرسي، مد الركبة حتى تصبح الساق مستقيمة ثم عد ببطء."),
+  E("knee-005","الركبة","الجلوس والوقوف من الكرسي","Sit To Stand","انحنِ قليلًا للأمام ثم قف باستخدام عضلات الساقين، وارجع للجلوس ببطء."),
+  E("knee-006","الركبة","القرفصاء الجزئية","Mini Squat","اثنِ الركبتين قليلًا مع إبقاء الظهر مستقيمًا ثم عد للوقوف."),
 
-  /* أعلى الظهر */
+  E("ankle-001","الكاحل والقدم","تحريك الكاحل للأعلى والأسفل","Ankle Pumps","حرك القدم باتجاهك ثم ادفعها بعيدًا عنك ضمن المدى المريح."),
+  E("ankle-002","الكاحل والقدم","رفع الكعبين","Calf Raise","قف ممسكًا بسطح ثابت، ارفع الكعبين ببطء ثم انزل بتحكم."),
+  E("ankle-003","الكاحل والقدم","إطالة عضلة الساق","Calf Stretch","ضع القدم المستهدفة للخلف والكعب على الأرض، ثم انقل الوزن للأمام."),
+  E("ankle-004","الكاحل والقدم","سحب القدم بالشريط المطاطي","Resisted Dorsiflexion","ثبت الشريط أمام القدم واسحب مقدمة القدم باتجاهك ببطء."),
 
-  {
-    id:"thoracic-001",
-    category:"أعلى الظهر",
-    nameAr:"مد أعلى الظهر على الكرسي",
-    nameEn:"Thoracic Extension",
-    image:"exercise-images/thoracic-extension-chair.png",
-    description:"اجلس على كرسي وضع اليدين خلف الرأس، ثم مد أعلى الظهر للخلف فوق مسند الكرسي دون تقوس أسفل الظهر."
-  },
-  {
-    id:"thoracic-002",
-    category:"أعلى الظهر",
-    nameAr:"دوران أعلى الظهر",
-    nameEn:"Thoracic Rotation",
-    image:"exercise-images/thoracic-rotation.png",
-    description:"اجلس باستقامة وضع اليدين على الصدر، ثم أدر الجذع ببطء إلى أحد الجانبين وعد للمنتصف."
-  },
-  {
-    id:"thoracic-003",
-    category:"أعلى الظهر",
-    nameAr:"سحب لوحي الكتف",
-    nameEn:"Scapular Retraction",
-    image:"exercise-images/scapular-retraction.png",
-    description:"اسحب لوحي الكتف للخلف وللأسفل دون رفع الكتفين، وحافظ على الرقبة مسترخية."
-  },
+  E("balance-001","الاتزان","الوقوف والقدمان متقاربتان","Feet Together Balance","قف قرب سطح ثابت والقدمان متقاربتان، وحافظ على التوازن."),
+  E("balance-002","الاتزان","الوقوف نصف ترادفي","Semi Tandem Stance","ضع قدمًا أمام الأخرى قليلًا، وحافظ على التوازن قرب سطح ثابت."),
+  E("balance-003","الاتزان","الوقوف على قدم واحدة","Single Leg Stance","قف قرب سطح ثابت وارفع قدمًا عن الأرض، وحافظ على التوازن للمدة المحددة."),
 
-  /* أسفل الظهر */
+  E("neuro-001","التأهيل العصبي","نقل الوزن جانبًا","Lateral Weight Shift","قف ممسكًا بسطح ثابت، وانقل وزن الجسم تدريجيًا من جانب إلى آخر."),
+  E("neuro-002","التأهيل العصبي","المشي في المكان","Marching In Place","قف قرب سطح ثابت وارفع ركبة ثم الأخرى بالتبادل."),
+  E("neuro-003","التأهيل العصبي","الوصول للأمام أثناء الجلوس","Seated Forward Reach","اجلس بثبات ومد الذراعين للأمام ضمن مدى آمن، ثم عد إلى الجلوس المستقيم."),
 
-  {
-    id:"back-001",
-    category:"أسفل الظهر",
-    nameAr:"إمالة الحوض",
-    nameEn:"Pelvic Tilt",
-    image:"exercise-images/back-pelvic-tilt.png",
-    description:"استلقِ والركبتان مثنيتان، شد البطن واضغط أسفل الظهر بلطف باتجاه السطح ثم استرخِ."
-  },
-  {
-    id:"back-002",
-    category:"أسفل الظهر",
-    nameAr:"سحب الركبة إلى الصدر",
-    nameEn:"Single Knee To Chest",
-    image:"exercise-images/back-knee-to-chest.png",
-    description:"استلقِ على ظهرك واسحب ركبة واحدة باتجاه الصدر بلطف مع إبقاء الساق الأخرى في وضع مريح."
-  },
-  {
-    id:"back-003",
-    category:"أسفل الظهر",
-    nameAr:"تمرين القطة والجمل",
-    nameEn:"Cat Camel",
-    image:"exercise-images/back-cat-camel.png",
-    description:"اتخذ وضع اليدين والركبتين، ثم قرّب الظهر للأعلى وبعدها اخفضه ببطء ضمن المدى المريح."
-  },
-  {
-    id:"back-004",
-    category:"أسفل الظهر",
-    nameAr:"رفع الحوض",
-    nameEn:"Bridge Exercise",
-    image:"exercise-images/back-bridge.png",
-    description:"استلقِ والركبتان مثنيتان، شد البطن والأرداف وارفع الحوض ببطء ثم انزل بتحكم."
-  },
-
-  /* الحوض والورك */
-
-  {
-    id:"hip-001",
-    category:"الحوض والورك",
-    nameAr:"فتح الركبة جانبًا",
-    nameEn:"Clamshell",
-    image:"exercise-images/hip-clamshell.png",
-    description:"استلقِ على جانبك والركبتان مثنيتان، ارفع الركبة العليا مع إبقاء القدمين متلامستين والحوض ثابتًا."
-  },
-  {
-    id:"hip-002",
-    category:"الحوض والورك",
-    nameAr:"إبعاد الورك واقفًا",
-    nameEn:"Standing Hip Abduction",
-    image:"exercise-images/hip-standing-abduction.png",
-    description:"قف ممسكًا بسطح ثابت، حرّك الساق جانبًا دون ميل الجذع ثم عد ببطء."
-  },
-  {
-    id:"hip-003",
-    category:"الحوض والورك",
-    nameAr:"إطالة مثنيات الورك",
-    nameEn:"Hip Flexor Stretch",
-    image:"exercise-images/hip-flexor-stretch.png",
-    description:"اتخذ وضع الاندفاع مع ركبة خلفية على الأرض، ثم ادفع الحوض للأمام بلطف دون تقوس الظهر."
-  },
-
-  /* الركبة */
-
-  {
-    id:"knee-001",
-    category:"الركبة",
-    nameAr:"رفع الساق مستقيمة",
-    nameEn:"Straight Leg Raise",
-    image:"exercise-images/knee-straight-leg-raise.png",
-    description:"استلقِ على ظهرك، اثنِ الركبة غير المستهدفة، وارفع الساق الأخرى مستقيمة ببطء ثم أنزلها بتحكم."
-  },
-  {
-    id:"knee-002",
-    category:"الركبة",
-    nameAr:"شد العضلة الرباعية",
-    nameEn:"Quadriceps Set",
-    image:"exercise-images/knee-quadriceps-set.png",
-    description:"استلقِ والساق مستقيمة، شد عضلة الفخذ واضغط خلف الركبة باتجاه السطح."
-  },
-  {
-    id:"knee-003",
-    category:"الركبة",
-    nameAr:"انزلاق الكعب",
-    nameEn:"Heel Slide",
-    image:"exercise-images/knee-heel-slide.png",
-    description:"اسحب الكعب ببطء باتجاه الجسم لثني الركبة، ثم أعد الساق إلى وضع الاستقامة."
-  },
-  {
-    id:"knee-004",
-    category:"الركبة",
-    nameAr:"مد الركبة أثناء الجلوس",
-    nameEn:"Seated Knee Extension",
-    image:"exercise-images/knee-seated-extension.png",
-    description:"اجلس على كرسي، مد الركبة حتى تصبح الساق مستقيمة ثم عد ببطء."
-  },
-  {
-    id:"knee-005",
-    category:"الركبة",
-    nameAr:"الجلوس والوقوف من الكرسي",
-    nameEn:"Sit To Stand",
-    image:"exercise-images/knee-sit-to-stand.png",
-    description:"انحنِ قليلًا للأمام ثم قف باستخدام عضلات الساقين، وارجع للجلوس ببطء."
-  },
-  {
-    id:"knee-006",
-    category:"الركبة",
-    nameAr:"القرفصاء الجزئية",
-    nameEn:"Mini Squat",
-    image:"exercise-images/knee-mini-squat.png",
-    description:"اثنِ الركبتين قليلًا مع إبقاء الظهر مستقيمًا والركبتين باتجاه القدمين ثم عد للوقوف."
-  },
-
-  /* الكاحل والقدم */
-
-  {
-    id:"ankle-001",
-    category:"الكاحل والقدم",
-    nameAr:"تحريك الكاحل للأعلى والأسفل",
-    nameEn:"Ankle Pumps",
-    image:"exercise-images/ankle-pumps.png",
-    description:"حرّك القدم باتجاهك ثم ادفعها بعيدًا عنك ضمن المدى المريح."
-  },
-  {
-    id:"ankle-002",
-    category:"الكاحل والقدم",
-    nameAr:"رفع الكعبين",
-    nameEn:"Calf Raise",
-    image:"exercise-images/ankle-calf-raise.png",
-    description:"قف ممسكًا بسطح ثابت، ارفع الكعبين ببطء ثم انزل بتحكم."
-  },
-  {
-    id:"ankle-003",
-    category:"الكاحل والقدم",
-    nameAr:"إطالة عضلة الساق",
-    nameEn:"Calf Stretch",
-    image:"exercise-images/ankle-calf-stretch.png",
-    description:"ضع القدم المستهدفة للخلف والكعب على الأرض، ثم انقل الوزن للأمام حتى تشعر بإطالة خلف الساق."
-  },
-  {
-    id:"ankle-004",
-    category:"الكاحل والقدم",
-    nameAr:"سحب القدم بالشريط المطاطي",
-    nameEn:"Resisted Dorsiflexion",
-    image:"exercise-images/ankle-resisted-dorsiflexion.png",
-    description:"ثبت الشريط أمام القدم واسحب مقدمة القدم باتجاهك ببطء ثم عد للوضع الأول."
-  },
-
-  /* الاتزان */
-
-  {
-    id:"balance-001",
-    category:"الاتزان",
-    nameAr:"الوقوف والقدمان متقاربتان",
-    nameEn:"Feet Together Balance",
-    image:"exercise-images/balance-feet-together.png",
-    description:"قف قرب سطح ثابت والقدمان متقاربتان، وحافظ على التوازن مع إبقاء النظر للأمام."
-  },
-  {
-    id:"balance-002",
-    category:"الاتزان",
-    nameAr:"الوقوف نصف ترادفي",
-    nameEn:"Semi Tandem Stance",
-    image:"exercise-images/balance-semi-tandem.png",
-    description:"ضع قدمًا أمام الأخرى قليلًا، وحافظ على التوازن قرب سطح ثابت."
-  },
-  {
-    id:"balance-003",
-    category:"الاتزان",
-    nameAr:"الوقوف على قدم واحدة",
-    nameEn:"Single Leg Stance",
-    image:"exercise-images/balance-single-leg.png",
-    description:"قف قرب سطح ثابت وارفع قدمًا عن الأرض، ثم حافظ على التوازن للمدة المحددة."
-  },
-
-  /* التأهيل العصبي */
-
-  {
-    id:"neuro-001",
-    category:"التأهيل العصبي",
-    nameAr:"نقل الوزن جانبًا",
-    nameEn:"Lateral Weight Shift",
-    image:"exercise-images/neuro-lateral-weight-shift.png",
-    description:"قف ممسكًا بسطح ثابت، وانقل وزن الجسم تدريجيًا من جانب إلى آخر."
-  },
-  {
-    id:"neuro-002",
-    category:"التأهيل العصبي",
-    nameAr:"المشي في المكان",
-    nameEn:"Marching In Place",
-    image:"exercise-images/neuro-marching.png",
-    description:"قف قرب سطح ثابت وارفع ركبة ثم الأخرى بالتبادل مع المحافظة على استقامة الجذع."
-  },
-  {
-    id:"neuro-003",
-    category:"التأهيل العصبي",
-    nameAr:"الوصول للأمام أثناء الجلوس",
-    nameEn:"Seated Forward Reach",
-    image:"exercise-images/neuro-seated-reach.png",
-    description:"اجلس بثبات ومد الذراعين للأمام ضمن مدى آمن، ثم عد إلى وضع الجلوس المستقيم."
-  },
-
-  /* التنفس */
-
-  {
-    id:"breathing-001",
-    category:"التنفس",
-    nameAr:"التنفس الحجابي",
-    nameEn:"Diaphragmatic Breathing",
-    image:"exercise-images/breathing-diaphragmatic.png",
-    description:"ضع يدًا على الصدر وأخرى على البطن، خذ شهيقًا ببطء بحيث يرتفع البطن ثم أخرج الهواء بهدوء."
-  },
-  {
-    id:"breathing-002",
-    category:"التنفس",
-    nameAr:"التنفس بشفاه مضمومة",
-    nameEn:"Pursed Lip Breathing",
-    image:"exercise-images/breathing-pursed-lip.png",
-    description:"خذ شهيقًا من الأنف ثم أخرج الهواء ببطء من بين الشفاه المضمومة."
-  },
-  {
-    id:"breathing-003",
-    category:"التنفس",
-    nameAr:"توسيع القفص الصدري",
-    nameEn:"Thoracic Expansion",
-    image:"exercise-images/breathing-thoracic-expansion.png",
-    description:"خذ شهيقًا عميقًا ووسع القفص الصدري، اثبت للحظة ثم أخرج الهواء ببطء."
-  }
-
+  E("breathing-001","التنفس","التنفس الحجابي","Diaphragmatic Breathing","ضع يدًا على الصدر وأخرى على البطن، وخذ شهيقًا ببطء بحيث يرتفع البطن."),
+  E("breathing-002","التنفس","التنفس بشفاه مضمومة","Pursed Lip Breathing","خذ شهيقًا من الأنف ثم أخرج الهواء ببطء من بين الشفاه المضمومة."),
+  E("breathing-003","التنفس","توسيع القفص الصدري","Thoracic Expansion","خذ شهيقًا عميقًا ووسع القفص الصدري، ثم أخرج الهواء ببطء.")
 ];
 
-let selectedExercises = [];
+let selectedExercises=[];
 
 function isoDate(date){
-  const copy = new Date(date);
-
-  copy.setMinutes(
-    copy.getMinutes() - copy.getTimezoneOffset()
-  );
-
-  return copy.toISOString().split("T")[0];
+  const d=new Date(date);
+  d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
+  return d.toISOString().split("T")[0];
 }
-
-function escapeHtml(value){
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function escapeHtml(v){
+  return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
 }
-
-function showToast(message,isError = false){
-  const toast =
-    document.getElementById("toast");
-
-  toast.innerText = message;
-  toast.classList.toggle("error",isError);
-  toast.classList.add("show");
-
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },3000);
+function validYoutubeUrl(url){
+  return /^https?:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[A-Za-z0-9_-]{6,}/i.test(url.trim());
 }
-
+function showToast(message,error=false){
+  const t=document.getElementById("toast");
+  t.innerText=message;t.classList.toggle("error",error);t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),3000);
+}
 function fillTherapists(){
-  const select =
-    document.getElementById("therapist");
-
+  const s=document.getElementById("therapist");
   therapists.forEach(name=>{
-    const option =
-      document.createElement("option");
-
-    option.value = name;
-    option.textContent = name;
-
-    select.appendChild(option);
+    const o=document.createElement("option");o.value=name;o.textContent=name;s.appendChild(o);
   });
 }
 
-function categoryIcon(category){
-  const icons = {
-    "الرقبة":"🧠",
-    "الكتف":"💪",
-    "المرفق والرسغ":"✋",
-    "أعلى الظهر":"🧍",
-    "أسفل الظهر":"🧘",
-    "الحوض والورك":"🦴",
-    "الركبة":"🦵",
-    "الكاحل والقدم":"🦶",
-    "الاتزان":"⚖️",
-    "التأهيل العصبي":"🚶",
-    "التنفس":"🫁"
-  };
+onSnapshot(linksRef,snapshot=>{
+  snapshot.forEach(item=>{
+    const exercise=exercises.find(e=>e.id===item.id);
+    if(exercise) exercise.videoUrl=item.data().videoUrl||"";
+  });
+  selectedExercises.forEach(selected=>{
+    const source=exercises.find(e=>e.id===selected.id);
+    if(source) selected.videoUrl=source.videoUrl;
+  });
+  renderExerciseLibrary();
+  renderSelectedExercises();
+});
 
-  return icons[category] || "🏃";
-}
+window.editVideoLink=async function(id){
+  const exercise=exercises.find(e=>e.id===id) || selectedExercises.find(e=>e.id===id);
+  if(!exercise)return;
+
+  const entered=prompt(
+    `الصق رابط يوتيوب المباشر لتمرين:\n${exercise.nameAr}\n\nمثال:\nhttps://www.youtube.com/watch?v=XXXXXXXXXXX`,
+    exercise.videoUrl||""
+  );
+
+  if(entered===null)return;
+  const url=entered.trim();
+
+  if(url && !validYoutubeUrl(url)){
+    showToast("الرابط غير صحيح. الصق رابط فيديو يوتيوب مباشر.",true);
+    return;
+  }
+
+  try{
+    await setDoc(doc(db,"exerciseVideoLinks",exercise.id),{
+      videoUrl:url,
+      nameAr:exercise.nameAr,
+      nameEn:exercise.nameEn,
+      updatedAt:serverTimestamp()
+    });
+    showToast(url?"تم حفظ رابط الفيديو":"تم حذف رابط الفيديو");
+  }catch(error){
+    console.error(error);
+    showToast("تعذر حفظ الرابط في Firebase",true);
+  }
+};
+
+window.watchVideo=function(id){
+  const exercise=exercises.find(e=>e.id===id) || selectedExercises.find(e=>e.id===id);
+  if(!exercise?.videoUrl){
+    showToast("أضف رابط الفيديو أولًا",true);
+    return;
+  }
+  window.open(exercise.videoUrl,"_blank","noopener");
+};
 
 function renderExerciseLibrary(){
-  const library =
-    document.getElementById("exerciseLibrary");
+  const library=document.getElementById("exerciseLibrary");
+  const search=document.getElementById("exerciseSearch").value.trim().toLowerCase();
+  const category=document.getElementById("categoryFilter").value;
 
-  const search =
-    document
-      .getElementById("exerciseSearch")
-      .value
-      .trim()
-      .toLowerCase();
+  const list=exercises.filter(e=>{
+    const categoryOk=category==="الكل"||e.category===category;
+    const text=`${e.nameAr} ${e.nameEn} ${e.category}`.toLowerCase();
+    return categoryOk&&(!search||text.includes(search));
+  });
 
-  const category =
-    document.getElementById("categoryFilter").value;
+  document.getElementById("libraryCount").innerText=`التمارين المعروضة: ${list.length}`;
+  document.getElementById("selectedCount").innerText=`المختارة: ${selectedExercises.length}`;
+  library.innerHTML="";
 
-  const list =
-    exercises.filter(exercise=>{
-
-      const matchesCategory =
-        category === "الكل" ||
-        exercise.category === category;
-
-      const searchableText = `
-        ${exercise.nameAr}
-        ${exercise.nameEn}
-        ${exercise.category}
-      `.toLowerCase();
-
-      const matchesSearch =
-        !search ||
-        searchableText.includes(search);
-
-      return matchesCategory && matchesSearch;
-    });
-
-  document.getElementById("libraryCount").innerText =
-    `التمارين المعروضة: ${list.length}`;
-
-  document.getElementById("selectedCount").innerText =
-    `المختارة: ${selectedExercises.length}`;
-
-  library.innerHTML = "";
-
-  list.forEach(exercise=>{
-
-    const isAdded =
-      selectedExercises.some(item=>item.id === exercise.id);
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "exercise-card";
-
-    card.innerHTML = `
-      <div class="exercise-category">
-        ${escapeHtml(exercise.category)}
+  list.forEach(e=>{
+    const added=selectedExercises.some(x=>x.id===e.id);
+    const hasLink=Boolean(e.videoUrl);
+    const card=document.createElement("div");
+    card.className="exercise-card";
+    card.innerHTML=`
+      <div class="exercise-category">${escapeHtml(e.category)}</div>
+      <div class="video-cover ${hasLink?"":"no-link"}" onclick="${hasLink?`watchVideo('${e.id}')`:`editVideoLink('${e.id}')`}">
+        <div class="video-icon"></div>
+        <div class="video-label">${hasLink?"مشاهدة طريقة التمرين":"إضافة رابط الفيديو"}</div>
       </div>
-
-      <img
-        src="${exercise.image}"
-        class="exercise-image"
-        alt="${escapeHtml(exercise.nameAr)}"
-        onerror="
-          this.style.display='none';
-          this.nextElementSibling.style.display='flex';
-        "
-      >
-
-      <div class="exercise-image-fallback">
-        ${categoryIcon(exercise.category)}
-      </div>
-
       <div class="exercise-content">
-
-        <h3>
-          ${escapeHtml(exercise.nameAr)}
-        </h3>
-
-        <div class="exercise-en">
-          ${escapeHtml(exercise.nameEn)}
+        <h3>${escapeHtml(e.nameAr)}</h3>
+        <div class="exercise-en">${escapeHtml(e.nameEn)}</div>
+        <div class="exercise-description">${escapeHtml(e.description)}</div>
+        <div class="link-status ${hasLink?"ready":"missing"}">${hasLink?"● رابط الفيديو جاهز":"● لا يوجد رابط فيديو"}</div>
+        <div class="card-actions">
+          <button class="watch-btn" onclick="watchVideo('${e.id}')">▶ مشاهدة</button>
+          <button class="edit-link-btn" onclick="editVideoLink('${e.id}')">🔗 ${hasLink?"تعديل":"إضافة"} الرابط</button>
+          <button class="add-exercise-btn ${added?"added":""}" onclick="addExercise('${e.id}')">${added?"✓ مضاف":"إضافة"}</button>
         </div>
-
-        <div class="exercise-description">
-          ${escapeHtml(exercise.description)}
-        </div>
-
-        <button
-          class="add-exercise-btn ${isAdded ? "added" : ""}"
-          onclick="addExercise('${exercise.id}')"
-        >
-          ${isAdded ? "✓ مضاف للبرنامج" : "إضافة للبرنامج"}
-        </button>
-
-      </div>
-    `;
-
+      </div>`;
     library.appendChild(card);
   });
 }
 
-window.addExercise = function(id){
-  const alreadyAdded =
-    selectedExercises.some(item=>item.id === id);
-
-  if(alreadyAdded){
-    showToast("التمرين مضاف مسبقًا",true);
-    return;
+window.addExercise=function(id){
+  if(selectedExercises.some(e=>e.id===id)){
+    showToast("التمرين مضاف مسبقًا",true);return;
   }
-
-  const exercise =
-    exercises.find(item=>item.id === id);
-
-  if(!exercise){
-    return;
-  }
+  const e=exercises.find(x=>x.id===id);
+  if(!e)return;
 
   selectedExercises.push({
-    ...exercise,
-    sets:3,
-    reps:10,
-    holdSeconds:0,
-    dailyFrequency:1,
-    weeklyDays:7,
-    side:"حسب توجيه الأخصائي",
-    resistance:"بدون مقاومة",
-    note:""
+    ...e,sets:3,reps:10,holdSeconds:0,dailyFrequency:1,weeklyDays:7,
+    side:"حسب توجيه الأخصائي",resistance:"بدون مقاومة",note:""
   });
-
-  renderExerciseLibrary();
-  renderSelectedExercises();
-
-  showToast("تمت إضافة التمرين");
+  renderExerciseLibrary();renderSelectedExercises();showToast("تمت إضافة التمرين");
 };
 
-window.removeExercise = function(id){
-  selectedExercises =
-    selectedExercises.filter(item=>item.id !== id);
-
-  renderExerciseLibrary();
-  renderSelectedExercises();
+window.removeExercise=function(id){
+  selectedExercises=selectedExercises.filter(e=>e.id!==id);
+  renderExerciseLibrary();renderSelectedExercises();
 };
 
-window.updateExerciseField = function(id,field,value){
-  const exercise =
-    selectedExercises.find(item=>item.id === id);
-
-  if(!exercise){
-    return;
-  }
-
-  const numericFields = [
-    "sets",
-    "reps",
-    "holdSeconds",
-    "dailyFrequency",
-    "weeklyDays"
-  ];
-
-  if(numericFields.includes(field)){
-    exercise[field] =
-      Math.max(0,Number(value) || 0);
-  }
-  else{
-    exercise[field] = value;
-  }
+window.updateExerciseField=function(id,field,value){
+  const e=selectedExercises.find(x=>x.id===id);
+  if(!e)return;
+  const nums=["sets","reps","holdSeconds","dailyFrequency","weeklyDays"];
+  e[field]=nums.includes(field)?Math.max(0,Number(value)||0):value;
 };
 
 function renderSelectedExercises(){
-  const box =
-    document.getElementById("selectedExercisesList");
+  const box=document.getElementById("selectedExercisesList");
+  document.getElementById("selectedCount").innerText=`المختارة: ${selectedExercises.length}`;
 
-  document.getElementById("selectedCount").innerText =
-    `المختارة: ${selectedExercises.length}`;
-
-  if(selectedExercises.length === 0){
-    box.innerHTML = `
-      <div class="selected-empty">
-        <div class="icon">🏃</div>
-        لم تتم إضافة أي تمارين حتى الآن.
-      </div>
-    `;
-
+  if(!selectedExercises.length){
+    box.innerHTML='<div class="selected-empty"><div class="icon">🏃</div>لم تتم إضافة أي تمارين حتى الآن.</div>';
     return;
   }
 
-  box.innerHTML = "";
-
-  selectedExercises.forEach(exercise=>{
-
-    const item =
-      document.createElement("div");
-
-    item.className =
-      "selected-exercise";
-
-    item.innerHTML = `
-      <img
-        src="${exercise.image}"
-        class="selected-image"
-        alt="${escapeHtml(exercise.nameAr)}"
-        onerror="
-          this.style.display='none';
-        "
-      >
+  box.innerHTML="";
+  selectedExercises.forEach(e=>{
+    const hasLink=Boolean(e.videoUrl);
+    const item=document.createElement("div");
+    item.className="selected-exercise";
+    item.innerHTML=`
+      <div class="selected-video ${hasLink?"":"no-link"}" onclick="${hasLink?`watchVideo('${e.id}')`:`editVideoLink('${e.id}')`}">
+        <div class="video-icon"></div>
+        <span>${hasLink?"اضغط لمشاهدة التمرين":"اضغط لإضافة رابط الفيديو"}</span>
+      </div>
 
       <div class="selected-info">
+        <h3>${escapeHtml(e.nameAr)}</h3>
+        <small>${escapeHtml(e.nameEn)}</small>
 
-        <h3>
-          ${escapeHtml(exercise.nameAr)}
-        </h3>
-
-        <small>
-          ${escapeHtml(exercise.nameEn)}
-        </small>
+        <div class="selected-buttons">
+          <button class="selected-watch" onclick="watchVideo('${e.id}')">▶ فتح الفيديو</button>
+          <button class="selected-edit" onclick="editVideoLink('${e.id}')">🔗 ${hasLink?"تعديل":"إضافة"} الرابط</button>
+        </div>
 
         <div class="prescription-grid">
-
-          <div class="prescription-field">
-            <label>المجموعات</label>
-            <input
-              type="number"
-              min="1"
-              value="${exercise.sets}"
-              onchange="updateExerciseField('${exercise.id}','sets',this.value)"
-            >
-          </div>
-
-          <div class="prescription-field">
-            <label>التكرارات</label>
-            <input
-              type="number"
-              min="1"
-              value="${exercise.reps}"
-              onchange="updateExerciseField('${exercise.id}','reps',this.value)"
-            >
-          </div>
-
-          <div class="prescription-field">
-            <label>الثبات بالثواني</label>
-            <input
-              type="number"
-              min="0"
-              value="${exercise.holdSeconds}"
-              onchange="updateExerciseField('${exercise.id}','holdSeconds',this.value)"
-            >
-          </div>
-
-          <div class="prescription-field">
-            <label>مرات يوميًا</label>
-            <input
-              type="number"
-              min="1"
-              value="${exercise.dailyFrequency}"
-              onchange="updateExerciseField('${exercise.id}','dailyFrequency',this.value)"
-            >
-          </div>
-
-          <div class="prescription-field">
-            <label>أيام أسبوعيًا</label>
-            <input
-              type="number"
-              min="1"
-              max="7"
-              value="${exercise.weeklyDays}"
-              onchange="updateExerciseField('${exercise.id}','weeklyDays',this.value)"
-            >
-          </div>
-
-          <div class="prescription-field">
-            <label>الجهة</label>
-            <select
-              onchange="updateExerciseField('${exercise.id}','side',this.value)"
-            >
-              <option ${exercise.side==="حسب توجيه الأخصائي"?"selected":""}>
-                حسب توجيه الأخصائي
-              </option>
-              <option ${exercise.side==="الجهتان"?"selected":""}>
-                الجهتان
-              </option>
-              <option ${exercise.side==="اليمين"?"selected":""}>
-                اليمين
-              </option>
-              <option ${exercise.side==="اليسار"?"selected":""}>
-                اليسار
-              </option>
+          <div class="prescription-field"><label>المجموعات</label><input type="number" min="1" value="${e.sets}" onchange="updateExerciseField('${e.id}','sets',this.value)"></div>
+          <div class="prescription-field"><label>التكرارات</label><input type="number" min="1" value="${e.reps}" onchange="updateExerciseField('${e.id}','reps',this.value)"></div>
+          <div class="prescription-field"><label>الثبات بالثواني</label><input type="number" min="0" value="${e.holdSeconds}" onchange="updateExerciseField('${e.id}','holdSeconds',this.value)"></div>
+          <div class="prescription-field"><label>مرات يوميًا</label><input type="number" min="1" value="${e.dailyFrequency}" onchange="updateExerciseField('${e.id}','dailyFrequency',this.value)"></div>
+          <div class="prescription-field"><label>أيام أسبوعيًا</label><input type="number" min="1" max="7" value="${e.weeklyDays}" onchange="updateExerciseField('${e.id}','weeklyDays',this.value)"></div>
+          <div class="prescription-field"><label>الجهة</label>
+            <select onchange="updateExerciseField('${e.id}','side',this.value)">
+              <option ${e.side==="حسب توجيه الأخصائي"?"selected":""}>حسب توجيه الأخصائي</option>
+              <option ${e.side==="الجهتان"?"selected":""}>الجهتان</option>
+              <option ${e.side==="اليمين"?"selected":""}>اليمين</option>
+              <option ${e.side==="اليسار"?"selected":""}>اليسار</option>
             </select>
           </div>
-
-          <div class="prescription-field">
-            <label>المقاومة</label>
-            <select
-              onchange="updateExerciseField('${exercise.id}','resistance',this.value)"
-            >
-              <option ${exercise.resistance==="بدون مقاومة"?"selected":""}>
-                بدون مقاومة
-              </option>
-              <option ${exercise.resistance==="مقاومة خفيفة"?"selected":""}>
-                مقاومة خفيفة
-              </option>
-              <option ${exercise.resistance==="مقاومة متوسطة"?"selected":""}>
-                مقاومة متوسطة
-              </option>
-              <option ${exercise.resistance==="مقاومة قوية"?"selected":""}>
-                مقاومة قوية
-              </option>
+          <div class="prescription-field"><label>المقاومة</label>
+            <select onchange="updateExerciseField('${e.id}','resistance',this.value)">
+              <option ${e.resistance==="بدون مقاومة"?"selected":""}>بدون مقاومة</option>
+              <option ${e.resistance==="مقاومة خفيفة"?"selected":""}>مقاومة خفيفة</option>
+              <option ${e.resistance==="مقاومة متوسطة"?"selected":""}>مقاومة متوسطة</option>
+              <option ${e.resistance==="مقاومة قوية"?"selected":""}>مقاومة قوية</option>
             </select>
           </div>
-
         </div>
 
         <div class="exercise-note">
-          <textarea
-            placeholder="ملاحظة خاصة بهذا التمرين"
-            onchange="updateExerciseField('${exercise.id}','note',this.value)"
-          >${escapeHtml(exercise.note)}</textarea>
+          <textarea placeholder="ملاحظة خاصة بهذا التمرين" onchange="updateExerciseField('${e.id}','note',this.value)">${escapeHtml(e.note)}</textarea>
         </div>
-
       </div>
 
-      <button
-        class="remove-btn"
-        onclick="removeExercise('${exercise.id}')"
-        title="حذف التمرين"
-      >
-        ×
-      </button>
-    `;
-
+      <button class="remove-btn" onclick="removeExercise('${e.id}')">×</button>`;
     box.appendChild(item);
   });
 }
 
 function getPatientData(){
   return {
-    patientName:
-      document.getElementById("patientName").value.trim(),
-
-    fileNumber:
-      document.getElementById("fileNumber").value.trim(),
-
-    phoneNumber:
-      document.getElementById("phoneNumber").value.trim(),
-
-    therapist:
-      document.getElementById("therapist").value,
-
-    diagnosis:
-      document.getElementById("diagnosis").value.trim(),
-
-    programDate:
-      document.getElementById("programDate").value,
-
-    reviewDate:
-      document.getElementById("reviewDate").value,
-
-    generalInstructions:
-      document
-        .getElementById("generalInstructions")
-        .value
-        .trim()
+    patientName:document.getElementById("patientName").value.trim(),
+    fileNumber:document.getElementById("fileNumber").value.trim(),
+    phoneNumber:document.getElementById("phoneNumber").value.trim(),
+    therapist:document.getElementById("therapist").value,
+    diagnosis:document.getElementById("diagnosis").value.trim(),
+    programDate:document.getElementById("programDate").value,
+    reviewDate:document.getElementById("reviewDate").value,
+    generalInstructions:document.getElementById("generalInstructions").value.trim()
   };
 }
 
 function validateProgram(){
-  const data =
-    getPatientData();
-
-  if(
-    !data.patientName ||
-    !data.fileNumber ||
-    !data.phoneNumber ||
-    !data.therapist
-  ){
-    showToast(
-      "أكمل اسم المريض ورقم الملف والجوال والأخصائي",
-      true
-    );
-
-    return false;
+  const d=getPatientData();
+  if(!d.patientName||!d.fileNumber||!d.phoneNumber||!d.therapist){
+    showToast("أكمل اسم المريض ورقم الملف والجوال والأخصائي",true);return false;
   }
-
-  if(selectedExercises.length === 0){
-    showToast(
-      "أضف تمرينًا واحدًا على الأقل",
-      true
-    );
-
-    return false;
+  if(!selectedExercises.length){
+    showToast("أضف تمرينًا واحدًا على الأقل",true);return false;
   }
-
   return true;
 }
 
-function createDoseText(exercise){
-  const parts = [];
-
-  if(exercise.sets > 0){
-    parts.push(`${exercise.sets} مجموعات`);
-  }
-
-  if(exercise.reps > 0){
-    parts.push(`${exercise.reps} تكرارات`);
-  }
-
-  if(exercise.holdSeconds > 0){
-    parts.push(`الثبات ${exercise.holdSeconds} ثانية`);
-  }
-
-  if(exercise.dailyFrequency > 0){
-    parts.push(`${exercise.dailyFrequency} مرة يوميًا`);
-  }
-
-  if(exercise.weeklyDays > 0){
-    parts.push(`${exercise.weeklyDays} أيام أسبوعيًا`);
-  }
-
-  if(exercise.side){
-    parts.push(`الجهة: ${exercise.side}`);
-  }
-
-  if(
-    exercise.resistance &&
-    exercise.resistance !== "بدون مقاومة"
-  ){
-    parts.push(exercise.resistance);
-  }
-
-  return parts.join(" — ");
+function doseText(e){
+  const p=[];
+  if(e.sets>0)p.push(`${e.sets} مجموعات`);
+  if(e.reps>0)p.push(`${e.reps} تكرارات`);
+  if(e.holdSeconds>0)p.push(`الثبات ${e.holdSeconds} ثانية`);
+  if(e.dailyFrequency>0)p.push(`${e.dailyFrequency} مرة يوميًا`);
+  if(e.weeklyDays>0)p.push(`${e.weeklyDays} أيام أسبوعيًا`);
+  if(e.side)p.push(`الجهة: ${e.side}`);
+  if(e.resistance&&e.resistance!=="بدون مقاومة")p.push(e.resistance);
+  return p.join(" — ");
 }
 
-function createExerciseCard(exercise,index){
+function exerciseCard(e,index){
+  const hasLink=Boolean(e.videoUrl);
   return `
-    <div class="pdf-exercise-card">
-
-      <div class="pdf-exercise-image-wrap">
-
-        <img
-          src="${exercise.image}"
-          class="pdf-exercise-image"
-          alt="${escapeHtml(exercise.nameAr)}"
-          onerror="
-            this.style.display='none';
-            this.parentElement.innerHTML='<div style=&quot;font-size:45px&quot;>${categoryIcon(exercise.category)}</div>';
-          "
-        >
-
+    <div class="pdf-exercise-card" data-video-url="${escapeHtml(e.videoUrl)}">
+      <div class="pdf-video-box ${hasLink?"":"no-link"}">
+        <div class="video-icon"></div>
+        <span>${hasLink?"اضغط لفتح فيديو طريقة التمرين":"لا يوجد رابط فيديو مضاف"}</span>
       </div>
-
       <div class="pdf-exercise-content">
-
-        <div>
-          <span class="pdf-exercise-number">
-            ${index + 1}
-          </span>
-
-          <h2>
-            ${escapeHtml(exercise.nameAr)}
-          </h2>
-        </div>
-
-        <div class="pdf-exercise-en">
-          ${escapeHtml(exercise.nameEn)}
-        </div>
-
-        <div class="pdf-exercise-description">
-          ${escapeHtml(exercise.description)}
-        </div>
-
-        <div class="pdf-dose">
-          ${escapeHtml(createDoseText(exercise))}
-        </div>
-
-        ${
-          exercise.note
-          ?
-          `
-          <div class="pdf-note">
-            <strong>ملاحظة:</strong>
-            ${escapeHtml(exercise.note)}
-          </div>
-          `
-          :
-          ""
-        }
-
+        <div><span class="pdf-exercise-number">${index+1}</span><h2>${escapeHtml(e.nameAr)}</h2></div>
+        <div class="pdf-exercise-en">${escapeHtml(e.nameEn)}</div>
+        <div class="pdf-exercise-description">${escapeHtml(e.description)}</div>
+        <div class="pdf-dose">${escapeHtml(doseText(e))}</div>
+        <div class="pdf-link-label">${hasLink?"▶ اضغط على البطاقة للمشاهدة":"الرابط غير مضاف لهذا التمرين"}</div>
+        ${e.note?`<div class="pdf-note"><strong>ملاحظة:</strong> ${escapeHtml(e.note)}</div>`:""}
       </div>
-
-    </div>
-  `;
+    </div>`;
 }
 
-function createPageHeader(pageNumber,totalPages){
+function pageHeader(number,total){
   return `
     <div class="pdf-top">
-
-      <img
-        src="logo.png"
-        class="pdf-logo"
-        alt="شعار مركز عكاز"
-      >
-
-      <div class="pdf-title">
-        <h1>برنامج التمارين المنزلية</h1>
-        <p>HOME EXERCISE PROGRAM</p>
-      </div>
-
-      <div class="pdf-page-number">
-        ${pageNumber} / ${totalPages}
-      </div>
-
-    </div>
-  `;
+      <img src="logo.png" class="pdf-logo">
+      <div class="pdf-title"><h1>برنامج التمارين المنزلية</h1><p>HOME EXERCISE PROGRAM</p></div>
+      <div class="pdf-page-number">${number} / ${total}</div>
+    </div>`;
 }
 
-function createFooter(){
+function footer(){
   return `
     <div class="pdf-footer">
-      هذا البرنامج مخصص للمريض المذكور وفق تقييم أخصائي العلاج الطبيعي. أوقف التمرين عند ظهور ألم شديد أو أعراض غير معتادة وتواصل مع المركز.
-      <br>
-      مركز عكاز للعلاج الطبيعي
-    </div>
-  `;
+      يجب الالتزام بتعليمات وجرعة الأخصائي المعالج. أوقف التمرين عند ظهور ألم شديد أو أعراض غير معتادة وتواصل مع المركز.
+      <br>مركز عكاز للعلاج الطبيعي
+    </div>`;
 }
 
 function buildPreview(){
-  const data =
-    getPatientData();
+  const d=getPatientData();
+  const pages=document.getElementById("pdfPages");
+  pages.innerHTML="";
 
-  const pagesBox =
-    document.getElementById("pdfPages");
+  const first=selectedExercises.slice(0,4);
+  const rest=selectedExercises.slice(4);
+  const more=[];
+  for(let i=0;i<rest.length;i+=6)more.push(rest.slice(i,i+6));
+  const total=1+more.length;
 
-  pagesBox.innerHTML = "";
-
-  const firstPageExercises =
-    selectedExercises.slice(0,4);
-
-  const remaining =
-    selectedExercises.slice(4);
-
-  const additionalPages = [];
-
-  for(let i=0;i<remaining.length;i+=6){
-    additionalPages.push(
-      remaining.slice(i,i+6)
-    );
-  }
-
-  const totalPages =
-    1 + additionalPages.length;
-
-  const firstPage =
-    document.createElement("div");
-
-  firstPage.className =
-    "pdf-page";
-
-  firstPage.innerHTML = `
-    ${createPageHeader(1,totalPages)}
-
+  const p1=document.createElement("div");
+  p1.className="pdf-page";
+  p1.innerHTML=`
+    ${pageHeader(1,total)}
     <div class="patient-info-box">
-
-      <div class="pdf-info-item">
-        <span>اسم المريض:</span>
-        <strong>${escapeHtml(data.patientName)}</strong>
-      </div>
-
-      <div class="pdf-info-item">
-        <span>رقم الملف:</span>
-        <strong>${escapeHtml(data.fileNumber)}</strong>
-      </div>
-
-      <div class="pdf-info-item">
-        <span>الأخصائي:</span>
-        <strong>${escapeHtml(data.therapist)}</strong>
-      </div>
-
-      <div class="pdf-info-item">
-        <span>التشخيص:</span>
-        <strong>${escapeHtml(data.diagnosis || "-")}</strong>
-      </div>
-
-      <div class="pdf-info-item">
-        <span>تاريخ البرنامج:</span>
-        <strong>${escapeHtml(data.programDate || "-")}</strong>
-      </div>
-
-      <div class="pdf-info-item">
-        <span>المراجعة القادمة:</span>
-        <strong>${escapeHtml(data.reviewDate || "-")}</strong>
-      </div>
-
+      <div class="pdf-info-item"><span>اسم المريض:</span> <strong>${escapeHtml(d.patientName)}</strong></div>
+      <div class="pdf-info-item"><span>رقم الملف:</span> <strong>${escapeHtml(d.fileNumber)}</strong></div>
+      <div class="pdf-info-item"><span>الأخصائي:</span> <strong>${escapeHtml(d.therapist)}</strong></div>
+      <div class="pdf-info-item"><span>التشخيص:</span> <strong>${escapeHtml(d.diagnosis||"-")}</strong></div>
+      <div class="pdf-info-item"><span>تاريخ البرنامج:</span> <strong>${escapeHtml(d.programDate||"-")}</strong></div>
+      <div class="pdf-info-item"><span>المراجعة القادمة:</span> <strong>${escapeHtml(d.reviewDate||"-")}</strong></div>
     </div>
+    <div class="pdf-general-instructions"><strong>التعليمات العامة:</strong> ${escapeHtml(d.generalInstructions||"نفذ التمارين ببطء وتحكم، والتزم بالتكرارات المحددة، ولا تتجاوز مستوى الألم المقبول.")}</div>
+    <div class="pdf-exercises-grid">${first.map((e,i)=>exerciseCard(e,i)).join("")}</div>
+    ${footer()}`;
+  pages.appendChild(p1);
 
-    <div class="pdf-general-instructions">
-
-      <strong>التعليمات العامة:</strong>
-
-      ${
-        escapeHtml(
-          data.generalInstructions ||
-          "نفذ التمارين ببطء وتحكم، والتزم بالتكرارات المحددة، ولا تتجاوز مستوى الألم المقبول."
-        )
-      }
-
-    </div>
-
-    <div class="pdf-exercises-grid">
-
-      ${
-        firstPageExercises
-          .map((exercise,index)=>
-            createExerciseCard(exercise,index)
-          )
-          .join("")
-      }
-
-    </div>
-
-    ${createFooter()}
-  `;
-
-  pagesBox.appendChild(firstPage);
-
-  additionalPages.forEach((pageExercises,pageIndex)=>{
-
-    const page =
-      document.createElement("div");
-
-    page.className =
-      "pdf-page pdf-second-page";
-
-    const startingIndex =
-      4 + pageIndex * 6;
-
-    page.innerHTML = `
-      ${createPageHeader(pageIndex + 2,totalPages)}
-
-      <div class="pdf-exercises-grid">
-
-        ${
-          pageExercises
-            .map((exercise,index)=>
-              createExerciseCard(
-                exercise,
-                startingIndex + index
-              )
-            )
-            .join("")
-        }
-
-      </div>
-
-      ${createFooter()}
-    `;
-
-    pagesBox.appendChild(page);
+  more.forEach((items,pageIndex)=>{
+    const page=document.createElement("div");
+    page.className="pdf-page pdf-second-page";
+    const start=4+pageIndex*6;
+    page.innerHTML=`${pageHeader(pageIndex+2,total)}<div class="pdf-exercises-grid">${items.map((e,i)=>exerciseCard(e,start+i)).join("")}</div>${footer()}`;
+    pages.appendChild(page);
   });
 }
 
-window.openPreview = function(){
-  if(!validateProgram()){
-    return;
-  }
-
+window.openPreview=function(){
+  if(!validateProgram())return;
   buildPreview();
-
-  document
-    .getElementById("previewOverlay")
-    .classList
-    .add("show");
+  document.getElementById("previewOverlay").classList.add("show");
+  document.querySelectorAll(".pdf-exercise-card").forEach(card=>{
+    if(card.dataset.videoUrl){
+      card.style.cursor="pointer";
+      card.onclick=()=>window.open(card.dataset.videoUrl,"_blank","noopener");
+    }
+  });
 };
 
-window.closePreview = function(){
-  document
-    .getElementById("previewOverlay")
-    .classList
-    .remove("show");
+window.closePreview=function(){
+  document.getElementById("previewOverlay").classList.remove("show");
 };
 
-window.saveProgram = async function(){
-  if(!validateProgram()){
-    return;
-  }
-
-  const patientData =
-    getPatientData();
-
+window.saveProgram=async function(){
+  if(!validateProgram())return;
+  const d=getPatientData();
   try{
     await addDoc(programsRef,{
-      ...patientData,
-
-      categories:[
-        ...new Set(
-          selectedExercises.map(item=>item.category)
-        )
-      ],
-
-      exercises:
-        selectedExercises.map(exercise=>({
-          id:exercise.id,
-          category:exercise.category,
-          nameAr:exercise.nameAr,
-          nameEn:exercise.nameEn,
-          image:exercise.image,
-          description:exercise.description,
-          sets:exercise.sets,
-          reps:exercise.reps,
-          holdSeconds:exercise.holdSeconds,
-          dailyFrequency:exercise.dailyFrequency,
-          weeklyDays:exercise.weeklyDays,
-          side:exercise.side,
-          resistance:exercise.resistance,
-          note:exercise.note
-        })),
-
-      exerciseCount:
-        selectedExercises.length,
-
-      createdAt:
-        serverTimestamp()
+      ...d,
+      categories:[...new Set(selectedExercises.map(e=>e.category))],
+      exercises:selectedExercises.map(e=>({
+        id:e.id,category:e.category,nameAr:e.nameAr,nameEn:e.nameEn,videoUrl:e.videoUrl,
+        description:e.description,sets:e.sets,reps:e.reps,holdSeconds:e.holdSeconds,
+        dailyFrequency:e.dailyFrequency,weeklyDays:e.weeklyDays,side:e.side,resistance:e.resistance,note:e.note
+      })),
+      exerciseCount:selectedExercises.length,
+      createdAt:serverTimestamp()
     });
-
-    showToast(
-      "تم حفظ برنامج التمارين بنجاح"
-    );
-  }
-  catch(error){
-    console.error(error);
-
-    showToast(
-      "تعذر حفظ البرنامج في Firebase",
-      true
-    );
+    showToast("تم حفظ برنامج التمارين بنجاح");
+  }catch(error){
+    console.error(error);showToast("تعذر حفظ البرنامج في Firebase",true);
   }
 };
 
-window.downloadPDF = async function(){
-  if(!validateProgram()){
-    return;
-  }
-
+window.downloadPDF=async function(){
+  if(!validateProgram())return;
   buildPreview();
-
-  const pageElements =
-    Array.from(
-      document.querySelectorAll(".pdf-page")
-    );
-
-  showToast(
-    "جاري تجهيز ملف PDF..."
-  );
+  const pageElements=[...document.querySelectorAll(".pdf-page")];
+  showToast("جاري تجهيز ملف PDF...");
 
   try{
-    const {
-      jsPDF
-    } = window.jspdf;
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF("p","mm","a4");
 
-    const pdf =
-      new jsPDF("p","mm","a4");
+    for(let i=0;i<pageElements.length;i++){
+      const pageElement=pageElements[i];
+      const canvas=await html2canvas(pageElement,{scale:2,useCORS:true,backgroundColor:"#fff",logging:false});
+      if(i>0)pdf.addPage();
+      pdf.addImage(canvas.toDataURL("image/jpeg",.94),"JPEG",0,0,210,297);
 
-    for(
-      let index = 0;
-      index < pageElements.length;
-      index++
-    ){
-      const canvas =
-        await html2canvas(
-          pageElements[index],
-          {
-            scale:2,
-            useCORS:true,
-            allowTaint:true,
-            backgroundColor:"#ffffff",
-            logging:false
-          }
-        );
-
-      const imageData =
-        canvas.toDataURL(
-          "image/jpeg",
-          0.94
-        );
-
-      if(index > 0){
-        pdf.addPage();
-      }
-
-      pdf.addImage(
-        imageData,
-        "JPEG",
-        0,
-        0,
-        210,
-        297
-      );
+      const pageRect=pageElement.getBoundingClientRect();
+      pageElement.querySelectorAll(".pdf-exercise-card").forEach(card=>{
+        if(!card.dataset.videoUrl)return;
+        const r=card.getBoundingClientRect();
+        const x=((r.left-pageRect.left)/pageRect.width)*210;
+        const y=((r.top-pageRect.top)/pageRect.height)*297;
+        const w=(r.width/pageRect.width)*210;
+        const h=(r.height/pageRect.height)*297;
+        pdf.link(x,y,w,h,{url:card.dataset.videoUrl});
+      });
     }
 
-    const patientName =
-      document
-        .getElementById("patientName")
-        .value
-        .trim()
-        .replace(/[^\u0600-\u06FFa-zA-Z0-9]+/g,"-");
-
-    pdf.save(
-      `برنامج-تمارين-${patientName || "مريض"}.pdf`
-    );
-
-    showToast(
-      "تم تحميل ملف PDF"
-    );
-  }
-  catch(error){
-    console.error(error);
-
-    showToast(
-      "تعذر إنشاء ملف PDF",
-      true
-    );
+    const name=document.getElementById("patientName").value.trim().replace(/[^\u0600-\u06FFa-zA-Z0-9]+/g,"-");
+    pdf.save(`برنامج-تمارين-${name||"مريض"}.pdf`);
+    showToast("تم تحميل ملف PDF");
+  }catch(error){
+    console.error(error);showToast("تعذر إنشاء ملف PDF",true);
   }
 };
 
-window.openWhatsApp = function(){
-  const data =
-    getPatientData();
+window.openWhatsApp=function(){
+  const d=getPatientData();
+  if(!d.phoneNumber){showToast("أدخل رقم جوال المريض",true);return}
 
-  if(!data.phoneNumber){
-    showToast(
-      "أدخل رقم جوال المريض",
-      true
-    );
+  let phone=d.phoneNumber.replace(/\D/g,"");
+  if(phone.startsWith("05"))phone="966"+phone.substring(1);
+  else if(phone.startsWith("5"))phone="966"+phone;
 
-    return;
-  }
-
-  let phone =
-    data.phoneNumber.replace(/\D/g,"");
-
-  if(phone.startsWith("05")){
-    phone =
-      "966" + phone.substring(1);
-  }
-  else if(phone.startsWith("5")){
-    phone =
-      "966" + phone;
-  }
-
-  const message =
-`أهلًا وسهلًا ${data.patientName || ""}
+  const message=`أهلًا وسهلًا ${d.patientName||""}
 
 مرفق لكم برنامج التمارين المنزلية المعد بواسطة أخصائي العلاج الطبيعي في مركز عكاز.
 
-يرجى الالتزام بالتكرارات والتعليمات الموضحة في البرنامج، والتواصل معنا عند وجود أي استفسار أو ظهور أعراض غير معتادة.
+يمكنكم الضغط على بطاقة كل تمرين داخل الملف لفتح فيديو توضيحي، مع ضرورة الالتزام بالجرعة والتعليمات المكتوبة من الأخصائي المعالج.
 
 مع تمنياتنا لكم بالشفاء والعافية.`;
 
-  const url =
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-  window.open(url,"_blank");
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,"_blank");
 };
 
-document
-  .getElementById("exerciseSearch")
-  .addEventListener(
-    "input",
-    renderExerciseLibrary
-  );
-
-document
-  .getElementById("categoryFilter")
-  .addEventListener(
-    "change",
-    renderExerciseLibrary
-  );
+document.getElementById("exerciseSearch").addEventListener("input",renderExerciseLibrary);
+document.getElementById("categoryFilter").addEventListener("change",renderExerciseLibrary);
 
 fillTherapists();
-
-document.getElementById("programDate").value =
-  isoDate(new Date());
-
+document.getElementById("programDate").value=isoDate(new Date());
 renderExerciseLibrary();
 renderSelectedExercises();
-
 </script>
 
 <script type="module" src="tracker.js"></script>
-
 </body>
 </html>
