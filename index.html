@@ -164,7 +164,9 @@ body{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  box-shadow:inset 0 0 0 7px rgba(255,255,255,.08),0 12px 26px rgba(0,0,0,.25);
+  box-shadow:
+    inset 0 0 0 7px rgba(255,255,255,.08),
+    0 12px 26px rgba(0,0,0,.25);
 }
 
 #clockTime{
@@ -248,7 +250,7 @@ body{
 
 .cards.secondary{
   margin-top:26px;
-  grid-template-columns:repeat(3,220px);
+  grid-template-columns:repeat(4,220px);
   justify-content:center;
 }
 
@@ -391,27 +393,6 @@ body{
   z-index:5;
 }
 
-/* بطاقة تحويلات الفعاليات */
-.coming-soon-card{
-  border:1px dashed rgba(0,119,200,.45);
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.98),rgba(239,246,255,.96));
-}
-
-.coming-soon-card::before{
-  background:linear-gradient(90deg,#005b9f,#38bdf8);
-}
-
-.coming-soon-card .icon{
-  background:linear-gradient(145deg,#dbeafe,#ffffff);
-}
-
-.coming-soon-card .coming-badge{
-  display:block;
-  background:linear-gradient(135deg,#005b9f,#0077c8);
-  box-shadow:0 6px 15px rgba(0,91,159,.25);
-}
-
 .footer{
   width:90%;
   max-width:1220px;
@@ -439,11 +420,6 @@ body.dark .card{
   background:#1e293b;
   border-color:#334155;
   box-shadow:0 22px 45px rgba(0,0,0,.28);
-}
-
-body.dark .coming-soon-card{
-  background:linear-gradient(145deg,#1e293b,#172554);
-  border-color:#3b82f6;
 }
 
 body.dark #dailyQuote,
@@ -520,35 +496,84 @@ body.dark .footer{
 <body>
 
 <header class="hero">
-  <button class="top-btn admin-btn" onclick="go('admin.html')" title="الإدارة">🔐</button>
-  <button class="top-btn" onclick="toggleTheme()" id="themeBtn" title="الوضع الليلي">🌙</button>
+
+  <button
+    class="top-btn admin-btn"
+    onclick="go('admin.html')"
+    title="الإدارة"
+  >
+    🔐
+  </button>
+
+  <button
+    class="top-btn"
+    onclick="toggleTheme()"
+    id="themeBtn"
+    title="الوضع الليلي"
+  >
+    🌙
+  </button>
 
   <div class="hero-inner">
+
     <div class="logo-box">
-      <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+      <img
+        src="logo.png"
+        class="logo"
+        alt="شعار مركز عكاز"
+      >
     </div>
 
     <div class="center-title">
-      <div class="eyebrow">بوابة المركز الشاملة</div>
-      <h1>مركز عكاز للعلاج الطبيعي</h1>
-      <p>واجهة داخلية موحدة لإدارة أنظمة المركز اليومية</p>
+      <div class="eyebrow">
+        بوابة المركز الشاملة
+      </div>
+
+      <h1>
+        مركز عكاز للعلاج الطبيعي
+      </h1>
+
+      <p>
+        واجهة داخلية موحدة لإدارة أنظمة المركز اليومية
+      </p>
     </div>
 
     <div class="clock-card">
+
       <div class="clock-circle">
-        <div id="clockTime">00:00:00</div>
-        <div class="live-label">LIVE</div>
+        <div id="clockTime">
+          00:00:00
+        </div>
+
+        <div class="live-label">
+          LIVE
+        </div>
       </div>
-      <div id="clockDateAr">--</div>
-      <div id="clockDateEn">--</div>
+
+      <div id="clockDateAr">
+        --
+      </div>
+
+      <div id="clockDateEn">
+        --
+      </div>
+
     </div>
+
   </div>
+
 </header>
 
 <section class="quote-strip">
+
   <span class="heart">💙</span>
-  <h2 id="dailyQuote">كل مريض يدخل... هو أمانة ومسؤولية</h2>
+
+  <h2 id="dailyQuote">
+    كل مريض يدخل... هو أمانة ومسؤولية
+  </h2>
+
   <span class="heart">💙</span>
+
 </section>
 
 <main class="main">
@@ -559,100 +584,186 @@ body.dark .footer{
 
   <div class="cards">
 
-    <div class="card" onclick="go('work-schedule.html')">
+    <div
+      class="card"
+      onclick="go('work-schedule.html')"
+    >
       <div class="icon">📋</div>
       <h3>جدول الدوام</h3>
       <h4>Work Schedule</h4>
       <p>إدارة جداول الدوام واعتمادها.</p>
-      <div class="card-tooltip">يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام "غير محدد" في نظام اكتفاء.</div>
+
+      <div class="card-tooltip">
+        يتم تحديث الجدول كل يوم سبت ويجب اعتماده بالتواريخ ليكون رسمي، وفي حال عدم الاعتماد يظهر الدوام غير محدد في نظام اكتفاء.
+      </div>
     </div>
 
-    <div class="card" onclick="go('kids-rooms.html')">
+    <div
+      class="card"
+      onclick="go('kids-rooms.html')"
+    >
       <div class="icon">👶</div>
       <h3>غرف الأطفال</h3>
       <h4>Pediatric Rooms</h4>
       <p>حجز غرف الأطفال حسب الدور والوقت.</p>
-      <div class="card-tooltip">يتم الحجز حسب الوقت والأخصائي، مع إمكانية عرض الجدول الأسبوعي كاملًا والتصفية باسم الأخصائي.</div>
+
+      <div class="card-tooltip">
+        يتم الحجز حسب الوقت والأخصائي، مع إمكانية عرض الجدول الأسبوعي كاملًا والتصفية باسم الأخصائي.
+      </div>
     </div>
 
-    <div class="card" onclick="go('hydrotherapy.html')">
+    <div
+      class="card"
+      onclick="go('hydrotherapy.html')"
+    >
       <div class="icon">💧</div>
       <h3>العلاج المائي</h3>
       <h4>Hydrotherapy</h4>
       <p>تنظيم حجوزات العلاج المائي.</p>
-      <div class="card-tooltip">يتم تنظيم الحجز داخل النظام حسب الأيام والأوقات المحددة، وأي تعديل يظهر مباشرة للجميع.</div>
+
+      <div class="card-tooltip">
+        يتم تنظيم الحجز داخل النظام حسب الأيام والأوقات المحددة، وأي تعديل يظهر مباشرة للجميع.
+      </div>
     </div>
 
-    <div class="card" onclick="go('home-visits.html')">
-      <div class="badge" id="homeVisitsBadge">20</div>
+    <div
+      class="card"
+      onclick="go('home-visits.html')"
+    >
+      <div
+        class="badge"
+        id="homeVisitsBadge"
+      >
+        20
+      </div>
+
       <div class="icon">🏠</div>
       <h3>الزيارات المنزلية</h3>
       <h4>Home Visits</h4>
       <p>تسجيل الزيارات للفترة الشهرية.</p>
-      <div class="card-tooltip">يتم تسجيل جميع الزيارات داخل النظام مباشرة للفترة من 21 إلى 20، ولن يتم اعتماد أي ملفات خارجية أو إكسل.</div>
+
+      <div class="card-tooltip">
+        يتم تسجيل جميع الزيارات داخل النظام مباشرة للفترة من 21 إلى 20، ولن يتم اعتماد أي ملفات خارجية أو إكسل.
+      </div>
     </div>
 
-    <div class="card" onclick="go('suggestions.html')">
+    <div
+      class="card"
+      onclick="go('suggestions.html')"
+    >
       <div class="icon">💡</div>
       <h3>الاقتراحات</h3>
       <h4>Suggestions</h4>
       <p>إرسال اقتراحات تطوير العمل.</p>
-      <div class="card-tooltip">مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض.</div>
+
+      <div class="card-tooltip">
+        مساحة داخلية لاستقبال أفكار ومقترحات الموظفين التي تساعد في تطوير العمل وتحسين تجربة المريض.
+      </div>
     </div>
 
   </div>
 
   <div class="cards secondary">
 
-    <div class="card" onclick="go('functional-assessments.html')">
+    <div
+      class="card"
+      onclick="go('functional-assessments.html')"
+    >
       <div class="icon">📈</div>
       <h3>التقييمات الوظيفية</h3>
       <h4>Functional Assessments</h4>
       <p>نماذج تقييم وتأهيل احترافية.</p>
-      <div class="card-tooltip">نماذج تقييم وظيفي تساعد الأخصائي في توثيق التقدم وإصدار تقرير إرشادي للمريض عند الحاجة.</div>
+
+      <div class="card-tooltip">
+        نماذج تقييم وظيفي تساعد الأخصائي في توثيق التقدم وإصدار تقرير إرشادي للمريض عند الحاجة.
+      </div>
     </div>
 
-    <div class="card" onclick="go('therapist-planners.html')">
+    <div
+      class="card"
+      onclick="go('therapist-planners.html')"
+    >
       <div class="icon">📅</div>
       <h3>جدول الأخصائيين</h3>
       <h4>Therapist Schedule</h4>
       <p>تنظيم الجلسات اليومية لكل أخصائي حسب الوقت والحالة.</p>
-      <div class="card-tooltip">جدول خاص لكل أخصائي يساعده على تنظيم المرضى حسب مدة الجلسة ونوع الحالة، مع عرض اليوم والأسبوع والحجوزات القادمة.</div>
+
+      <div class="card-tooltip">
+        جدول خاص لكل أخصائي يساعده على تنظيم المرضى حسب مدة الجلسة ونوع الحالة، مع عرض اليوم والأسبوع والحجوزات القادمة.
+      </div>
     </div>
 
-    <div class="card" onclick="go('new-assessment-entry.html')">
+    <div
+      class="card"
+      onclick="go('new-assessment-entry.html')"
+    >
       <div class="icon">🩺</div>
       <h3>توزيع الكشف الجديد</h3>
       <h4>New Assessment Queue</h4>
       <p>تنظيم توزيع حالات الكشف الجديد بين الأخصائيين حسب الدور.</p>
-      <div class="card-tooltip">قسم خاص بالاستقبال لتوزيع حالات الكشف الجديد على أخصائيي الرجال والنساء، مع إحصائيات وسجل يومي واضح.</div>
+
+      <div class="card-tooltip">
+        قسم خاص بالاستقبال لتوزيع حالات الكشف الجديد على أخصائيي الرجال والنساء، مع إحصائيات وسجل يومي واضح.
+      </div>
     </div>
 
-    <div class="card" onclick="go('forms.html')">
+    <div
+      class="card"
+      onclick="go('forms.html')"
+    >
       <div class="icon">📄</div>
       <h3>النماذج الإدارية</h3>
       <h4>Administrative Forms</h4>
       <p>إنشاء وطباعة وتحميل النماذج الرسمية.</p>
-      <div class="card-tooltip">صفحة خاصة بإنشاء نماذج الاسترداد وتحويل الجلسات وطباعتها أو تحميلها PDF.</div>
+
+      <div class="card-tooltip">
+        صفحة خاصة بإنشاء نماذج الاسترداد وتحويل الجلسات وطباعتها أو تحميلها PDF.
+      </div>
     </div>
 
-    <div class="card" onclick="go('cash-management.html')">
+    <div
+      class="card"
+      onclick="go('cash-management.html')"
+    >
       <div class="icon">💵</div>
       <h3>إدارة النقدية</h3>
       <h4>Cash Management</h4>
       <p>إدارة العهد والصناديق وتسليم الإيرادات اليومية.</p>
-      <div class="card-tooltip">نظام ذكي لإدارة صناديق الاستقبال، الجرد اليومي، تصنيف الفئات النقدية، وتسليم الإيرادات للإدارة مع سجل كامل للحركات والتأجيلات.</div>
+
+      <div class="card-tooltip">
+        نظام ذكي لإدارة صناديق الاستقبال، الجرد اليومي، تصنيف الفئات النقدية، وتسليم الإيرادات للإدارة مع سجل كامل للحركات والتأجيلات.
+      </div>
     </div>
 
-    <div class="card" onclick="go('event-referrals.html')">
-  <div class="icon">🎯</div>
-  <h3>تحويلات الفعاليات</h3>
-  <h4>Event Referrals</h4>
-  <p>تسجيل ومتابعة المهتمين المحولين من الفعاليات.</p>
-  <div class="card-tooltip">
-    تسجيل بيانات المهتمين خلال البطولات والفعاليات، والتواصل معهم عبر الواتساب ومتابعة الحجز والحضور.
+    <div
+      class="card"
+      onclick="go('event-referrals.html')"
+    >
+      <div class="icon">🎯</div>
+      <h3>تحويلات الفعاليات</h3>
+      <h4>Event Referrals</h4>
+      <p>تسجيل ومتابعة المهتمين المحولين من الفعاليات.</p>
+
+      <div class="card-tooltip">
+        تسجيل بيانات المهتمين خلال البطولات والفعاليات، والتواصل معهم عبر الواتساب ومتابعة الحجز والحضور.
+      </div>
+    </div>
+
+    <div
+      class="card"
+      onclick="go('collaborative-care.html')"
+    >
+      <div class="icon">🤝</div>
+      <h3>التعاون العلاجي</h3>
+      <h4>Collaborative Care</h4>
+      <p>تسجيل الفواتير المشتركة بين أخصائيين واحتساب التسوية.</p>
+
+      <div class="card-tooltip">
+        يتم تسجيل رقم الفاتورة وبيانات المريض والأخصائي المسجلة باسمه الفاتورة والأخصائي المتعاون، ثم تقسيم قيمة الفاتورة مناصفة واحتساب مكافأة 5٪ لكل أخصائي من نصيبه.
+      </div>
+    </div>
+
   </div>
-</div>
 
 </main>
 
@@ -665,21 +776,30 @@ function go(page){
   window.location.href = page;
 }
 
-
-
 function toggleTheme(){
   document.body.classList.toggle("dark");
-  const isDark = document.body.classList.contains("dark");
-  localStorage.setItem("akazTheme", isDark ? "dark" : "light");
-  document.getElementById("themeBtn").innerText = isDark ? "☀️" : "🌙";
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "akazTheme",
+    isDark ? "dark" : "light"
+  );
+
+  document.getElementById("themeBtn").innerText =
+    isDark ? "☀️" : "🌙";
 }
 
 function loadTheme(){
-  const saved = localStorage.getItem("akazTheme");
+  const saved =
+    localStorage.getItem("akazTheme");
 
   if(saved === "dark"){
     document.body.classList.add("dark");
-    document.getElementById("themeBtn").innerText = "☀️";
+
+    document.getElementById("themeBtn").innerText =
+      "☀️";
   }
 }
 
@@ -690,30 +810,41 @@ function updateClock(){
     now.toLocaleTimeString("en-GB");
 
   document.getElementById("clockDateAr").innerText =
-    now.toLocaleDateString("ar-SA",{
-      weekday:"long",
-      year:"numeric",
-      month:"long",
-      day:"numeric"
-    });
+    now.toLocaleDateString(
+      "ar-SA",
+      {
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+      }
+    );
 
   document.getElementById("clockDateEn").innerText =
-    now.toLocaleDateString("en-GB",{
-      weekday:"long",
-      year:"numeric",
-      month:"long",
-      day:"numeric"
-    });
+    now.toLocaleDateString(
+      "en-GB",
+      {
+        weekday:"long",
+        year:"numeric",
+        month:"long",
+        day:"numeric"
+      }
+    );
 }
 
 function checkHomeVisitsAlert(){
   const today = new Date();
   const day = today.getDate();
-  const badge = document.getElementById("homeVisitsBadge");
 
-  if(!badge) return;
+  const badge =
+    document.getElementById("homeVisitsBadge");
 
-  badge.style.display = day === 20 ? "block" : "none";
+  if(!badge){
+    return;
+  }
+
+  badge.style.display =
+    day === 20 ? "block" : "none";
 }
 
 const quotes = [
@@ -729,26 +860,45 @@ const quotes = [
 let quoteIndex = 0;
 
 function rotateQuotes(){
-  const el = document.getElementById("dailyQuote");
+  const el =
+    document.getElementById("dailyQuote");
 
   el.style.opacity = 0;
 
   setTimeout(()=>{
-    el.innerText = quotes[quoteIndex];
+    el.innerText =
+      quotes[quoteIndex];
+
     el.style.opacity = 1;
-    quoteIndex = (quoteIndex + 1) % quotes.length;
+
+    quoteIndex =
+      (quoteIndex + 1) % quotes.length;
   },350);
 }
 
 loadTheme();
+
 updateClock();
-setInterval(updateClock,1000);
+
+setInterval(
+  updateClock,
+  1000
+);
+
 checkHomeVisitsAlert();
+
 rotateQuotes();
-setInterval(rotateQuotes,9000);
+
+setInterval(
+  rotateQuotes,
+  9000
+);
 </script>
 
-<script type="module" src="tracker.js"></script>
+<script
+  type="module"
+  src="tracker.js"
+></script>
 
 </body>
 </html>
