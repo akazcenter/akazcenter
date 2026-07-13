@@ -14,15 +14,12 @@
   --orange:#f59e0b;
   --green:#16a34a;
   --red:#dc2626;
-  --yellow:#d97706;
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -43,9 +40,7 @@ textarea{
   font-family:Tahoma,Arial,sans-serif;
 }
 
-button{
-  cursor:pointer;
-}
+button{cursor:pointer}
 
 /* الهيدر */
 
@@ -199,7 +194,7 @@ button{
   box-shadow:0 8px 18px rgba(0,91,159,.22);
 }
 
-/* توضيح الآلية */
+/* شرح الآلية */
 
 .info-box{
   margin-bottom:20px;
@@ -219,8 +214,8 @@ button{
 
 .warning-line{
   display:block;
-  margin-top:7px;
-  padding:9px 12px;
+  margin-top:8px;
+  padding:10px 12px;
   border-radius:11px;
   background:#fff7ed;
   color:#9a3412;
@@ -313,13 +308,9 @@ button{
   line-height:1.8;
 }
 
-.form-body{
-  padding:20px;
-}
+.form-body{padding:20px}
 
-.field{
-  margin-bottom:14px;
-}
+.field{margin-bottom:14px}
 
 .field label{
   display:block;
@@ -329,9 +320,7 @@ button{
   font-weight:900;
 }
 
-.required{
-  color:var(--red);
-}
+.required{color:var(--red)}
 
 .field input,
 .field select,
@@ -450,7 +439,7 @@ button{
   cursor:not-allowed;
 }
 
-/* البحث والتصفية */
+/* البحث */
 
 .tools{
   padding:15px 17px;
@@ -488,7 +477,7 @@ button{
 
 table{
   width:100%;
-  min-width:1540px;
+  min-width:1550px;
   border-collapse:collapse;
 }
 
@@ -642,7 +631,7 @@ tr:hover td{
   font-weight:900;
 }
 
-/* التسوية */
+/* تسوية العمولات */
 
 .settlement-card{
   margin-top:21px;
@@ -926,7 +915,7 @@ body.dark .addition-row{
 
       <div>
         <h1>التعاون العلاجي</h1>
-        <p>Collaborative Care & Revenue Settlement</p>
+        <p>Collaborative Care & Commission Settlement</p>
       </div>
     </div>
 
@@ -948,7 +937,7 @@ body.dark .addition-row{
   <section class="period-box">
 
     <div class="period-title">
-      فترة احتساب الرواتب والمكافآت
+      فترة احتساب الرواتب والعمولات
     </div>
 
     <div class="period-dates" id="periodText">
@@ -977,14 +966,14 @@ body.dark .addition-row{
 
   <section class="info-box">
 
-    <strong>آلية التعاون العلاجي:</strong>
+    <strong>آلية احتساب العمولة:</strong>
 
-    الفاتورة الأصلية تكون في النظام الرئيسي مسجلة بكامل قيمتها باسم أخصائي واحد.
+    الفاتورة تبقى بكامل قيمتها ضمن دخل الأخصائي المسجلة باسمه في النظام الرئيسي، ولا يتم خصم أي مبلغ من دخله.
 
-    عند اعتماد التعاون يتم تحويل نصف قيمة الفاتورة للأخصائي المتعاون لأغراض احتساب الإيراد والمكافأة.
+    أنت تحسب عمولة الأخصائي بنسبة 5٪ من إجمالي دخله المعتاد.
 
     <span class="warning-line">
-      لذلك يُخصم نصف مبلغ الفاتورة من إيراد الأخصائي المسجلة باسمه الفاتورة، ويضاف النصف نفسه إلى إيراد الأخصائي المتعاون، ثم يحتسب لكل واحد 5٪ من نصيبه فقط.
+      عند اعتماد التعاون يُخصم نصف عمولة الفاتورة من عمولة الأخصائي المسجلة باسمه، ويضاف النصف نفسه إلى عمولة الأخصائي المتعاون. وبذلك يحصل كل أخصائي على 2.5٪ من قيمة الفاتورة.
     </span>
 
   </section>
@@ -1014,15 +1003,15 @@ body.dark .addition-row{
     </div>
 
     <div class="stat">
-      <div class="stat-label">المخصوم من أصحاب الفواتير</div>
-      <div class="stat-value small" id="deductionsTotal">
+      <div class="stat-label">العمولات المحوّلة للمتعاونين</div>
+      <div class="stat-value small" id="transferredCommissionTotal">
         0 ر.س
       </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">إجمالي مكافآت التعاون</div>
-      <div class="stat-value small" id="bonusesTotal">
+      <div class="stat-label">عمولة الفواتير المشتركة 5٪</div>
+      <div class="stat-value small" id="fullCommissionTotal">
         0 ر.س
       </div>
     </div>
@@ -1036,7 +1025,7 @@ body.dark .addition-row{
       <div class="card-head">
         <h2>إضافة تعاون علاجي</h2>
         <p>
-          أدخل الفاتورة كما هي مسجلة في النظام الرئيسي.
+          أدخل بيانات الفاتورة كما هي مسجلة في النظام الرئيسي.
         </p>
       </div>
 
@@ -1191,37 +1180,37 @@ body.dark .addition-row{
         <div class="calculation-box">
 
           <div class="calculation-title">
-            الحسبة المباشرة
+            حسبة العمولة المباشرة
           </div>
 
           <div class="calculation-row">
-            <span>قيمة الفاتورة الأصلية</span>
+            <span>قيمة الفاتورة</span>
             <strong id="calcInvoiceAmount">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row">
-            <span>نصيب كل أخصائي بعد التقسيم</span>
-            <strong id="calcShare">0.00 ر.س</strong>
+            <span>عمولة الفاتورة كاملة 5٪</span>
+            <strong id="calcFullCommission">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row deduction-row">
-            <span>يخصم من إيراد صاحب الفاتورة</span>
-            <strong id="calcDeduction">0.00 ر.س</strong>
+            <span>يخصم من عمولة صاحب الفاتورة</span>
+            <strong id="calcCommissionDeduction">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row addition-row">
-            <span>يضاف إلى إيراد الأخصائي المتعاون</span>
-            <strong id="calcAddition">0.00 ر.س</strong>
+            <span>يضاف إلى عمولة الأخصائي المتعاون</span>
+            <strong id="calcCommissionAddition">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row">
-            <span>مكافأة صاحب الفاتورة 5٪ بعد الخصم</span>
-            <strong id="calcRegisteredBonus">0.00 ر.س</strong>
+            <span>عمولة صاحب الفاتورة بعد التقسيم</span>
+            <strong id="calcRegisteredCommission">0.00 ر.س</strong>
           </div>
 
           <div class="calculation-row">
-            <span>مكافأة الأخصائي المتعاون 5٪</span>
-            <strong id="calcCollaboratorBonus">0.00 ر.س</strong>
+            <span>عمولة الأخصائي المتعاون</span>
+            <strong id="calcCollaboratorCommission">0.00 ر.س</strong>
           </div>
 
         </div>
@@ -1239,7 +1228,7 @@ body.dark .addition-row{
       <div class="card-head">
         <h2>سجل التعاون العلاجي</h2>
         <p>
-          الطلبات لا تؤثر على الإيرادات أو المكافآت إلا بعد اعتماد الإدارة.
+          لا تنفذ أي تسوية على العمولات إلا بعد اعتماد الإدارة.
         </p>
       </div>
 
@@ -1284,10 +1273,10 @@ body.dark .addition-row{
               <th>قيمة الفاتورة</th>
               <th>الفاتورة باسم</th>
               <th>المتعاون</th>
-              <th>الخصم من صاحب الفاتورة</th>
-              <th>الإضافة للمتعاون</th>
-              <th>نصيب كل واحد</th>
-              <th>مكافأة كل واحد</th>
+              <th>عمولة الفاتورة 5٪</th>
+              <th>الخصم من عمولة صاحب الفاتورة</th>
+              <th>الإضافة إلى عمولة المتعاون</th>
+              <th>عمولة كل واحد</th>
               <th>الحالة</th>
               <th>الإجراء</th>
               <th>حذف</th>
@@ -1317,10 +1306,10 @@ body.dark .addition-row{
   <section class="card settlement-card">
 
     <div class="card-head">
-      <h2>تسوية الأخصائيين للفترة</h2>
+      <h2>تسوية عمولات الأخصائيين</h2>
 
       <p>
-        يعتمد هذا الجدول على الطلبات المعتمدة فقط لمراجعة الإيرادات والمكافآت قبل الرواتب.
+        تُضاف هذه التسويات إلى حسبة عمولة 5٪ الأساسية لكل أخصائي قبل إيداع الراتب.
       </p>
     </div>
 
@@ -1332,11 +1321,9 @@ body.dark .addition-row{
           <tr>
             <th>الأخصائي</th>
             <th>عدد حالات التعاون</th>
-            <th>يخصم من إيراده</th>
-            <th>يضاف إلى إيراده</th>
-            <th>صافي تعديل الإيراد</th>
-            <th>نصيبه المحتسب من التعاون</th>
-            <th>مكافأته 5٪</th>
+            <th>يخصم من عمولته</th>
+            <th>يضاف إلى عمولته</th>
+            <th>صافي تعديل العمولة</th>
           </tr>
         </thead>
 
@@ -1354,7 +1341,7 @@ body.dark .addition-row{
   مركز عكاز للعلاج الطبيعي © Akaz Physiotherapy Center
 </footer>
 
-<!-- نافذة الرقم السري -->
+<!-- الرقم السري -->
 
 <div class="pin-modal" id="pinModal">
 
@@ -1436,7 +1423,7 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-/* غيّر الرقم من هنا */
+/* الرقم السري */
 
 const ADMIN_PIN = "9999";
 
@@ -1473,7 +1460,6 @@ const therapists = [
 let records = [];
 let periodStart = "";
 let periodEnd = "";
-
 let pendingProtectedAction = null;
 
 const form =
@@ -1491,7 +1477,7 @@ const searchInput =
 const statusFilter =
   document.getElementById("statusFilter");
 
-/* التاريخ */
+/* التواريخ */
 
 function isoDate(date){
   const copy = new Date(date);
@@ -1610,7 +1596,7 @@ function showToast(message,isError = false){
   },3000);
 }
 
-/* الرقم السري */
+/* نافذة الرقم السري */
 
 function requestAdminPin(message,action){
   pendingProtectedAction = action;
@@ -1673,7 +1659,7 @@ document
     }
   });
 
-/* قوائم الأخصائيين */
+/* الأخصائيون */
 
 function fillTherapists(){
   const registered =
@@ -1702,35 +1688,49 @@ function fillTherapists(){
   });
 }
 
-/* الحسبة المباشرة */
+/* حسبة العمولة */
+
+function getCommissionValues(invoiceAmount){
+  const fullCommission =
+    invoiceAmount * 0.05;
+
+  const transferredCommission =
+    fullCommission / 2;
+
+  return {
+    fullCommission,
+    transferredCommission,
+    registeredCommission:
+      transferredCommission,
+    collaboratorCommission:
+      transferredCommission
+  };
+}
 
 function updateCalculation(){
   const invoiceAmount =
     Number(amountInput.value) || 0;
 
-  const share =
-    invoiceAmount / 2;
-
-  const bonus =
-    share * 0.05;
+  const values =
+    getCommissionValues(invoiceAmount);
 
   document.getElementById("calcInvoiceAmount").innerText =
     money(invoiceAmount);
 
-  document.getElementById("calcShare").innerText =
-    money(share);
+  document.getElementById("calcFullCommission").innerText =
+    money(values.fullCommission);
 
-  document.getElementById("calcDeduction").innerText =
-    `- ${money(share)}`;
+  document.getElementById("calcCommissionDeduction").innerText =
+    `- ${money(values.transferredCommission)}`;
 
-  document.getElementById("calcAddition").innerText =
-    `+ ${money(share)}`;
+  document.getElementById("calcCommissionAddition").innerText =
+    `+ ${money(values.transferredCommission)}`;
 
-  document.getElementById("calcRegisteredBonus").innerText =
-    money(bonus);
+  document.getElementById("calcRegisteredCommission").innerText =
+    money(values.registeredCommission);
 
-  document.getElementById("calcCollaboratorBonus").innerText =
-    money(bonus);
+  document.getElementById("calcCollaboratorCommission").innerText =
+    money(values.collaboratorCommission);
 }
 
 amountInput.addEventListener("input",updateCalculation);
@@ -1831,11 +1831,8 @@ form.addEventListener("submit",async event=>{
     saveBtn.disabled = true;
     saveBtn.innerText = "جاري الحفظ...";
 
-    const shareAmount =
-      invoiceAmount / 2;
-
-    const bonusPerTherapist =
-      shareAmount * 0.05;
+    const values =
+      getCommissionValues(invoiceAmount);
 
     await addDoc(collaborationsRef,{
       invoiceDate,
@@ -1850,30 +1847,22 @@ form.addEventListener("submit",async event=>{
         collaborationType || "غير محدد",
       notes,
 
-      shareAmount,
+      commissionRate:0.05,
 
-      deductionFromRegistered:
-        shareAmount,
+      fullCommission:
+        values.fullCommission,
 
-      additionToCollaborator:
-        shareAmount,
+      commissionDeductionFromRegistered:
+        values.transferredCommission,
 
-      registeredRevenueAfterSettlement:
-        shareAmount,
+      commissionAdditionToCollaborator:
+        values.transferredCommission,
 
-      collaboratorRevenue:
-        shareAmount,
+      registeredCommissionAfterSplit:
+        values.registeredCommission,
 
-      registeredBonus:
-        bonusPerTherapist,
-
-      collaboratorBonus:
-        bonusPerTherapist,
-
-      bonusPerTherapist,
-
-      totalBonus:
-        bonusPerTherapist * 2,
+      collaboratorCommission:
+        values.collaboratorCommission,
 
       status:"بانتظار المراجعة",
 
@@ -1905,14 +1894,14 @@ form.addEventListener("submit",async event=>{
   }
 });
 
-/* تنفيذ تغيير الحالة */
+/* تغيير الحالة */
 
 async function performStatusChange(id,newStatus){
   let confirmationMessage = "";
 
   if(newStatus === "معتمد"){
     confirmationMessage =
-      "سيتم خصم نصف الفاتورة من إيراد الأخصائي المسجلة باسمه وإضافته للأخصائي المتعاون. هل تريد الاعتماد؟";
+      "سيتم خصم نصف عمولة الفاتورة من الأخصائي المسجلة باسمه وإضافتها إلى عمولة الأخصائي المتعاون. تأكيد الاعتماد؟";
   }
   else if(newStatus === "مرفوض"){
     confirmationMessage =
@@ -1957,12 +1946,6 @@ async function performStatusChange(id,newStatus){
   }
 }
 
-/*
-جميع إجراءات الحالة إدارية:
-الاعتماد والرفض وإلغاء الاعتماد وإعادة المراجعة
-تحتاج الرقم السري.
-*/
-
 window.changeStatus = function(id,newStatus){
 
   let message =
@@ -1970,7 +1953,7 @@ window.changeStatus = function(id,newStatus){
 
   if(newStatus === "معتمد"){
     message =
-      "أدخل الرقم السري لاعتماد التعاون وتنفيذ تسوية الإيرادات";
+      "أدخل الرقم السري لاعتماد تحويل نصف العمولة";
   }
   else if(newStatus === "مرفوض"){
     message =
@@ -2027,17 +2010,9 @@ window.deleteRecord = function(id){
     return;
   }
 
-  /*
-  إذا كان الطلب معتمدًا:
-  الحذف يحتاج رقم سري.
-
-  إذا كان بانتظار المراجعة أو مرفوضًا:
-  الحذف لا يحتاج رقم سري.
-  */
-
   if(record.status === "معتمد"){
     requestAdminPin(
-      "السجل معتمد وداخل في التسوية. أدخل الرقم السري لحذفه",
+      "السجل معتمد وداخل في تسوية العمولات. أدخل الرقم السري لحذفه",
       ()=>performDelete(id)
     );
 
@@ -2079,24 +2054,24 @@ function updateStats(){
       0
     );
 
-  const deductionsTotal =
+  const transferredCommissionTotal =
     approved.reduce(
       (sum,record)=>
         sum +
         Number(
-          record.deductionFromRegistered
+          record.commissionAdditionToCollaborator
           ??
-          Number(record.invoiceAmount || 0) / 2
+          Number(record.invoiceAmount || 0) * 0.025
         ),
       0
     );
 
-  const bonusesTotal =
+  const fullCommissionTotal =
     approved.reduce(
       (sum,record)=>
         sum +
         Number(
-          record.totalBonus
+          record.fullCommission
           ??
           Number(record.invoiceAmount || 0) * 0.05
         ),
@@ -2115,11 +2090,11 @@ function updateStats(){
   document.getElementById("approvedInvoicesTotal").innerText =
     money(invoicesTotal);
 
-  document.getElementById("deductionsTotal").innerText =
-    money(deductionsTotal);
+  document.getElementById("transferredCommissionTotal").innerText =
+    money(transferredCommissionTotal);
 
-  document.getElementById("bonusesTotal").innerText =
-    money(bonusesTotal);
+  document.getElementById("fullCommissionTotal").innerText =
+    money(fullCommissionTotal);
 }
 
 function getStatusClass(status){
@@ -2186,7 +2161,7 @@ function createActions(record){
   `;
 }
 
-/* عرض السجلات */
+/* جدول السجلات */
 
 function renderRecords(){
   const body =
@@ -2250,32 +2225,35 @@ function renderRecords(){
     const invoiceAmount =
       Number(record.invoiceAmount || 0);
 
-    const shareAmount =
+    const values =
+      getCommissionValues(invoiceAmount);
+
+    const fullCommission =
       Number(
-        record.shareAmount
+        record.fullCommission
         ??
-        invoiceAmount / 2
+        values.fullCommission
       );
 
-    const deduction =
+    const commissionDeduction =
       Number(
-        record.deductionFromRegistered
+        record.commissionDeductionFromRegistered
         ??
-        shareAmount
+        values.transferredCommission
       );
 
-    const addition =
+    const commissionAddition =
       Number(
-        record.additionToCollaborator
+        record.commissionAdditionToCollaborator
         ??
-        shareAmount
+        values.transferredCommission
       );
 
-    const bonus =
+    const commissionEach =
       Number(
-        record.bonusPerTherapist
+        record.collaboratorCommission
         ??
-        shareAmount * 0.05
+        values.collaboratorCommission
       );
 
     const row =
@@ -2325,26 +2303,26 @@ function renderRecords(){
       </td>
 
       <td>
+        <span class="amount">
+          ${money(fullCommission)}
+        </span>
+      </td>
+
+      <td>
         <span class="deduction-text">
-          - ${money(deduction)}
+          - ${money(commissionDeduction)}
         </span>
       </td>
 
       <td>
         <span class="addition-text">
-          + ${money(addition)}
+          + ${money(commissionAddition)}
         </span>
       </td>
 
       <td>
         <span class="amount">
-          ${money(shareAmount)}
-        </span>
-      </td>
-
-      <td>
-        <span class="amount">
-          ${money(bonus)}
+          ${money(commissionEach)}
         </span>
       </td>
 
@@ -2374,7 +2352,7 @@ function renderRecords(){
   });
 }
 
-/* تسوية الأخصائيين */
+/* تسوية العمولات */
 
 function renderSettlements(){
   const body =
@@ -2392,9 +2370,7 @@ function renderSettlements(){
       therapist:name,
       cases:0,
       deductions:0,
-      additions:0,
-      collaborativeRevenue:0,
-      bonus:0
+      additions:0
     };
   });
 
@@ -2403,18 +2379,11 @@ function renderSettlements(){
     const invoiceAmount =
       Number(record.invoiceAmount || 0);
 
-    const share =
+    const transferredCommission =
       Number(
-        record.shareAmount
+        record.commissionAdditionToCollaborator
         ??
-        invoiceAmount / 2
-      );
-
-    const bonus =
-      Number(
-        record.bonusPerTherapist
-        ??
-        share * 0.05
+        invoiceAmount * 0.025
       );
 
     if(!summary[record.registeredTherapist]){
@@ -2422,9 +2391,7 @@ function renderSettlements(){
         therapist:record.registeredTherapist,
         cases:0,
         deductions:0,
-        additions:0,
-        collaborativeRevenue:0,
-        bonus:0
+        additions:0
       };
     }
 
@@ -2433,46 +2400,40 @@ function renderSettlements(){
         therapist:record.collaboratingTherapist,
         cases:0,
         deductions:0,
-        additions:0,
-        collaborativeRevenue:0,
-        bonus:0
+        additions:0
       };
     }
 
-    /*
-    صاحب الفاتورة:
-    الفاتورة الأصلية موجودة كاملة باسمه.
-    نخصم منه نصفها.
-    ويظل نصيبه المحتسب هو النصف الآخر.
-    */
-
     summary[record.registeredTherapist].cases += 1;
-    summary[record.registeredTherapist].deductions += share;
-    summary[record.registeredTherapist].collaborativeRevenue += share;
-    summary[record.registeredTherapist].bonus += bonus;
 
-    /*
-    المتعاون:
-    نضيف له نصف الفاتورة.
-    */
+    summary[record.registeredTherapist].deductions +=
+      transferredCommission;
 
     summary[record.collaboratingTherapist].cases += 1;
-    summary[record.collaboratingTherapist].additions += share;
-    summary[record.collaboratingTherapist].collaborativeRevenue += share;
-    summary[record.collaboratingTherapist].bonus += bonus;
+
+    summary[record.collaboratingTherapist].additions +=
+      transferredCommission;
   });
 
   const list =
     Object.values(summary)
       .filter(item=>item.cases > 0)
-      .sort((a,b)=>b.bonus - a.bonus);
+      .sort((a,b)=>{
+        const netA =
+          a.additions - a.deductions;
+
+        const netB =
+          b.additions - b.deductions;
+
+        return netB - netA;
+      });
 
   body.innerHTML = "";
 
   if(list.length === 0){
     body.innerHTML = `
       <tr>
-        <td colspan="7">
+        <td colspan="5">
           لا توجد طلبات معتمدة في هذه الفترة
         </td>
       </tr>
@@ -2526,18 +2487,6 @@ function renderSettlements(){
       <td>
         <span class="${netClass}">
           ${netPrefix}${money(netAdjustment)}
-        </span>
-      </td>
-
-      <td>
-        <span class="amount">
-          ${money(item.collaborativeRevenue)}
-        </span>
-      </td>
-
-      <td>
-        <span class="positive">
-          ${money(item.bonus)}
         </span>
       </td>
     `;
