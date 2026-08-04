@@ -3,50 +3,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>النماذج الإدارية</title>
+
 <link rel="icon" href="logo.png">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
-:root{--blue:#005b9f;--blue2:#0077c8;--orange:#f59e0b;--text:#0f172a;--muted:#64748b;--line:#dbe3ee}
-*{box-sizing:border-box}
-body{margin:0;font-family:Tahoma,Arial,sans-serif;background:linear-gradient(180deg,#f8fbff,#eef4f9);color:var(--text)}
-.topbar{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:22px 34px;display:flex;justify-content:space-between;align-items:center;border-bottom-left-radius:32px;box-shadow:0 16px 38px rgba(8,52,95,.22)}
-.brand{display:flex;align-items:center;gap:16px}
-.logo{width:72px;height:72px;background:white;object-fit:contain;border-radius:18px;padding:7px}
-.brand h1{margin:0;font-size:28px;font-weight:900}
-.brand p{margin:5px 0 0;direction:ltr;color:#dbeafe;font-size:13px;font-weight:700}
-.btn{border:none;border-radius:12px;padding:11px 16px;font-weight:900;cursor:pointer;font-family:Tahoma,Arial}
-.btn-white{background:white;color:var(--blue)}
-.btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white}
-.btn-orange{background:#fff7ed;color:#92400e;border:1px solid #fed7aa}
-.main{width:94%;max-width:1180px;margin:28px auto}
-.intro{background:white;border:1px solid var(--line);border-radius:24px;padding:22px;text-align:center;box-shadow:0 12px 30px rgba(15,23,42,.07);margin-bottom:22px}
-.intro h2{margin:0;color:var(--blue);font-size:28px;font-weight:900}
-.intro p{color:var(--muted);line-height:1.8;margin:10px 0 0}
-.cards{display:grid;grid-template-columns:repeat(2,260px);gap:22px;justify-content:center;margin-top:25px}
-.card{background:white;border:1px solid var(--line);border-radius:26px;padding:28px 18px;text-align:center;box-shadow:0 16px 38px rgba(15,23,42,.09);cursor:pointer;position:relative;overflow:hidden}
-.card:before{content:"";position:absolute;top:0;right:0;width:100%;height:6px;background:linear-gradient(90deg,var(--orange),#ffd28a)}
-.icon{width:64px;height:64px;margin:0 auto 14px;border-radius:22px;background:#eef6ff;display:flex;align-items:center;justify-content:center;font-size:30px}
-.card h3{margin:0;color:var(--blue);font-size:22px;font-weight:900}
-.card h4{margin:7px 0;color:var(--orange);font-size:12px}
-.card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
-.workspace{display:none;grid-template-columns:360px 1fr;gap:20px}
-.panel,.paper{background:white;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 30px rgba(15,23,42,.07)}
-.panel{padding:18px}
-.panel h3{margin:0 0 14px;color:var(--blue);font-size:22px;font-weight:900}
-.form-grid{display:grid;grid-template-columns:1fr;gap:11px}
-.field label{display:block;font-size:13px;font-weight:900;color:#334155;margin-bottom:6px}
-input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px;font-family:Tahoma,Arial;font-size:14px;background:white}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
-.paper{padding:22px}
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#dbe3ee;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
+  color:var(--text);
+}
+
+.topbar{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  padding:22px 34px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom-left-radius:32px;
+  box-shadow:0 16px 38px rgba(8,52,95,.22);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.logo{
+  width:72px;
+  height:72px;
+  background:white;
+  object-fit:contain;
+  border-radius:18px;
+  padding:7px;
+}
+
+.brand h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+}
+
+.brand p{
+  margin:5px 0 0;
+  direction:ltr;
+  color:#dbeafe;
+  font-size:13px;
+  font-weight:700;
+}
+
+.btn{
+  border:none;
+  border-radius:12px;
+  padding:11px 16px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+.btn-white{
+  background:white;
+  color:var(--blue);
+}
+
+.btn-blue{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+}
+
+.btn-orange{
+  background:#fff7ed;
+  color:#92400e;
+  border:1px solid #fed7aa;
+}
+
+.main{
+  width:94%;
+  max-width:1250px;
+  margin:28px auto;
+}
+
+.intro{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+  margin-bottom:22px;
+}
+
+.intro h2{
+  margin:0;
+  color:var(--blue);
+  font-size:28px;
+  font-weight:900;
+}
+
+.intro p{
+  color:var(--muted);
+  line-height:1.8;
+  margin:10px 0 0;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,260px);
+  gap:22px;
+  justify-content:center;
+  margin-top:25px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:0 16px 38px rgba(15,23,42,.09);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:.2s ease;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 20px 45px rgba(15,23,42,.13);
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:6px;
+  background:linear-gradient(90deg,var(--orange),#ffd28a);
+}
+
+.icon{
+  width:64px;
+  height:64px;
+  margin:0 auto 14px;
+  border-radius:22px;
+  background:#eef6ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+}
+
+.card h3{
+  margin:0;
+  color:var(--blue);
+  font-size:21px;
+  font-weight:900;
+}
+
+.card h4{
+  margin:7px 0;
+  color:var(--orange);
+  font-size:12px;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.workspace{
+  display:none;
+  grid-template-columns:360px 1fr;
+  gap:20px;
+  align-items:start;
+}
+
+.panel,
+.paper{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 12px 30px rgba(15,23,42,.07);
+}
+
+.panel{
+  padding:18px;
+  position:sticky;
+  top:15px;
+  max-height:calc(100vh - 30px);
+  overflow-y:auto;
+}
+
+.panel h3{
+  margin:0 0 14px;
+  color:var(--blue);
+  font-size:22px;
+  font-weight:900;
+}
+
+.section-label{
+  margin:15px 0 10px;
+  padding:9px 11px;
+  border-radius:10px;
+  background:#eef6ff;
+  color:var(--blue);
+  font-size:13px;
+  font-weight:900;
+  border-right:4px solid var(--blue);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:11px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:900;
+  color:#334155;
+  margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:12px;
+  padding:11px;
+  font-family:Tahoma,Arial,sans-serif;
+  font-size:14px;
+  background:white;
+}
+
+textarea{
+  resize:vertical;
+  min-height:85px;
+  line-height:1.7;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  outline:none;
+  border-color:var(--blue2);
+  box-shadow:0 0 0 3px rgba(0,119,200,.10);
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.actions.single{
+  grid-template-columns:1fr;
+}
+
+.paper{
+  padding:22px;
+  overflow:auto;
+}
 
 .form-paper{
   background:white;
   padding:9mm 11mm;
   border:1px solid #cbd5e1;
   width:190mm;
-  height:277mm;
+  min-height:277mm;
   max-width:190mm;
   margin:auto;
   display:flex;
@@ -56,12 +305,60 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
   unicode-bidi:plaintext;
 }
 
-.paper-head{display:flex;justify-content:space-between;align-items:center;padding-top:4px;margin-bottom:18px}
-.paper-logo{width:125px;height:82px;object-fit:contain}
-.paper-title{text-align:center;flex:1}
-.paper-title h2{margin:0;color:#111827;font-size:18px;font-weight:900}
-.form-content{flex:1;display:flex;flex-direction:column}
-.info-table{width:100%;border-collapse:collapse;margin-top:6px}
+.paper-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:4px;
+  margin-bottom:16px;
+}
+
+.paper-logo{
+  width:125px;
+  height:82px;
+  object-fit:contain;
+}
+
+.paper-title{
+  text-align:center;
+  flex:1;
+}
+
+.paper-title h2{
+  margin:0;
+  color:#111827;
+  font-size:18px;
+  font-weight:900;
+}
+
+.paper-title p{
+  margin:5px 0 0;
+  color:#64748b;
+  font-size:10px;
+  font-weight:700;
+}
+
+.form-content{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+
+.form-section-title{
+  margin:8px 0 4px;
+  padding:6px 9px;
+  background:#eef6ff;
+  border-right:4px solid var(--blue);
+  color:#111827;
+  font-size:12px;
+  font-weight:900;
+}
+
+.info-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:6px;
+}
 
 .info-table th,
 .info-table td{
@@ -76,11 +373,43 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
   unicode-bidi:plaintext;
 }
 
-.info-table th{width:31%;font-weight:900;background:#f8fafc}
-.value{font-weight:900}
-.blank{height:26px}
-.reason-title{font-size:12.5px;font-weight:900;margin:12px 0 3px;direction:rtl;unicode-bidi:plaintext}
-.lines{border-top:1px solid #aaa;height:18px;margin-top:5px}
+.info-table th{
+  width:31%;
+  font-weight:900;
+  background:#f8fafc;
+}
+
+.value{
+  font-weight:900;
+}
+
+.blank{
+  height:26px;
+}
+
+.reason-title{
+  font-size:12.5px;
+  font-weight:900;
+  margin:12px 0 3px;
+  direction:rtl;
+  unicode-bidi:plaintext;
+}
+
+.reason-box{
+  border:1px solid #777;
+  min-height:58px;
+  padding:8px;
+  font-size:12px;
+  line-height:1.7;
+  font-weight:700;
+  white-space:pre-wrap;
+}
+
+.lines{
+  border-top:1px solid #aaa;
+  height:18px;
+  margin-top:5px;
+}
 
 .footer-note{
   direction:rtl;
@@ -90,6 +419,19 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
   font-size:12px;
   color:#111827;
   line-height:1.9;
+  font-weight:800;
+}
+
+.declaration-box{
+  direction:rtl;
+  unicode-bidi:plaintext;
+  border:1px solid #777;
+  background:#fafafa;
+  padding:10px 12px;
+  margin-top:12px;
+  font-size:11.5px;
+  line-height:1.9;
+  text-align:justify;
   font-weight:800;
 }
 
@@ -104,7 +446,20 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
   font-weight:900;
 }
 
-.sign-line{border-bottom:1px dotted #222;height:18px}
+.sign-row.three{
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.sign-box{
+  min-width:0;
+}
+
+.sign-line{
+  border-bottom:1px dotted #222;
+  height:18px;
+  margin-top:3px;
+}
 
 .notice{
   direction:rtl;
@@ -126,18 +481,109 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
   text-align:center!important;
 }
 
-.hidden{display:none!important}
+.hidden{
+  display:none!important;
+}
 
 @media print{
-  @page{size:A4 portrait;margin:6mm}
-  body{background:white}
-  .topbar,.intro,.panel,.cards{display:none!important}
-  .main{width:100%;margin:0}
-  .workspace{display:block!important}
-  .paper{box-shadow:none;border:none;padding:0}
-  .form-paper{border:none;width:100%;max-width:100%;height:calc(297mm - 12mm);padding:0;page-break-inside:avoid;break-inside:avoid}
+  @page{
+    size:A4 portrait;
+    margin:6mm;
+  }
+
+  body{
+    background:white;
+  }
+
+  .topbar,
+  .intro,
+  .panel,
+  .cards{
+    display:none!important;
+  }
+
+  .main{
+    width:100%;
+    max-width:none;
+    margin:0;
+  }
+
+  .workspace{
+    display:block!important;
+  }
+
+  .paper{
+    box-shadow:none;
+    border:none;
+    padding:0;
+    overflow:visible;
+  }
+
+  .form-paper{
+    border:none;
+    width:100%;
+    max-width:100%;
+    min-height:calc(297mm - 12mm);
+    padding:0;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
 }
-@media(max-width:950px){.workspace{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+
+@media(max-width:1050px){
+  .workspace{
+    grid-template-columns:1fr;
+  }
+
+  .panel{
+    position:static;
+    max-height:none;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,260px);
+  }
+}
+
+@media(max-width:650px){
+  .topbar{
+    padding:16px;
+    border-bottom-left-radius:20px;
+  }
+
+  .brand h1{
+    font-size:20px;
+  }
+
+  .brand p{
+    font-size:10px;
+  }
+
+  .logo{
+    width:55px;
+    height:55px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    width:100%;
+  }
+
+  .main{
+    width:96%;
+  }
+
+  .paper{
+    padding:8px;
+  }
+
+  .form-paper{
+    transform-origin:top right;
+  }
+}
 </style>
 </head>
 
@@ -145,59 +591,148 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
 
 <div class="topbar">
   <div class="brand">
-    <img src="logo.png" class="logo">
-    <div><h1>النماذج الإدارية</h1><p>Administrative Forms</p></div>
+    <img src="logo.png" class="logo" alt="شعار مركز عكاز">
+
+    <div>
+      <h1>النماذج الإدارية</h1>
+      <p>Administrative Forms</p>
+    </div>
   </div>
-  <button class="btn btn-white" onclick="location.href='index.html'">الرئيسية</button>
+
+  <button class="btn btn-white" onclick="location.href='index.html'">
+    الرئيسية
+  </button>
 </div>
 
 <div class="main">
+
   <div class="intro" id="introBox">
     <h2>نماذج مركز عكاز</h2>
-    <p>اختر النموذج المطلوب، ثم عبئ البيانات، وبعدها اطبع أو حمل PDF.</p>
+
+    <p>
+      اختر النموذج المطلوب، ثم عبئ البيانات، وبعدها اطبع النموذج أو حمله بصيغة PDF.
+    </p>
+
     <div class="cards">
+
       <div class="card" onclick="openForm('refund')">
-        <div class="icon">💳</div><h3>استمارة استرداد</h3><h4>Refund Form</h4><p>طلب استرداد مبلغ الجلسات.</p>
+        <div class="icon">💳</div>
+        <h3>استمارة استرداد</h3>
+        <h4>Refund Form</h4>
+        <p>طلب استرداد مبلغ الجلسات المتبقية.</p>
       </div>
-      <div class="card" onclick="openForm('transfer')">
-        <div class="icon">🔄</div><h3>استمارة تحويل جلسات</h3><h4>Sessions Transfer</h4><p>تحويل الجلسات المتبقية من أخصائي إلى آخر.</p>
+
+      <div class="card" onclick="openForm('therapistTransfer')">
+        <div class="icon">🔄</div>
+        <h3>تحويل إلى أخصائي آخر</h3>
+        <h4>Therapist Transfer</h4>
+        <p>تحويل الجلسات المتبقية من أخصائي إلى أخصائي آخر.</p>
       </div>
+
+      <div class="card" onclick="openForm('patientTransfer')">
+        <div class="icon">🤝</div>
+        <h3>تحويل إلى مريض آخر</h3>
+        <h4>Patient Transfer</h4>
+        <p>التنازل عن الجلسات المتبقية وتحويلها إلى مستفيد آخر.</p>
+      </div>
+
     </div>
   </div>
 
   <div class="workspace" id="workspace">
+
     <div class="panel">
+
       <h3 id="panelTitle">بيانات النموذج</h3>
 
       <div class="form-grid">
-        <div class="field"><label>اسم المريض</label><input id="patientName" oninput="updateForm()"></div>
-        <div class="field"><label>رقم الهوية</label><input id="nationalId" oninput="updateForm()"></div>
-        <div class="field"><label>رقم الملف الطبي</label><input id="fileNo" oninput="updateForm()"></div>
-        <div class="field"><label>رقم الجوال</label><input id="phone" oninput="updateForm()"></div>
-        <div class="field"><label>اسم الخدمة</label><input id="serviceName" oninput="updateForm()"></div>
-        <div class="field"><label>رقم الفاتورة</label><input id="invoiceNo" oninput="updateForm()"></div>
+
+        <div class="section-label">
+          بيانات المريض الأساسي
+        </div>
+
+        <div class="field">
+          <label>اسم المريض</label>
+          <input id="patientName" oninput="updateForm()">
+        </div>
+
+        <div class="field">
+          <label>رقم الهوية</label>
+          <input id="nationalId" oninput="updateForm()">
+        </div>
+
+        <div class="field">
+          <label>رقم الملف الطبي</label>
+          <input id="fileNo" oninput="updateForm()">
+        </div>
+
+        <div class="field">
+          <label>رقم الجوال</label>
+          <input id="phone" oninput="updateForm()">
+        </div>
+
+        <div class="section-label">
+          بيانات الخدمة والجلسات
+        </div>
+
+        <div class="field">
+          <label>اسم الخدمة</label>
+          <input id="serviceName" oninput="updateForm()">
+        </div>
+
+        <div class="field">
+          <label>رقم الفاتورة</label>
+          <input id="invoiceNo" oninput="updateForm()">
+        </div>
 
         <div class="field refund-field">
           <label>اسم الأخصائي/ة</label>
           <select id="refundTherapistName" onchange="updateForm()"></select>
         </div>
 
-        <div class="field transfer-field">
+        <div class="field therapist-transfer-field">
           <label>اسم الأخصائي السابق</label>
           <select id="oldTherapistName" onchange="updateForm()"></select>
         </div>
 
-        <div class="field transfer-field">
+        <div class="field therapist-transfer-field">
           <label>اسم الأخصائي المحول له</label>
           <select id="newTherapistName" onchange="updateForm()"></select>
         </div>
 
-        <div class="field"><label>عدد الجلسات في البرنامج</label><input type="number" id="totalSessions" oninput="updateForm()"></div>
-        <div class="field"><label>عدد الجلسات المستنفدة</label><input type="number" id="usedSessions" oninput="updateForm()"></div>
-        <div class="field"><label>المبلغ المدفوع</label><input type="number" id="paidAmount" oninput="updateForm()"></div>
+        <div class="field">
+          <label>عدد الجلسات في البرنامج</label>
+          <input
+            type="number"
+            min="0"
+            id="totalSessions"
+            oninput="updateForm()"
+          >
+        </div>
+
+        <div class="field">
+          <label>عدد الجلسات المستنفدة</label>
+          <input
+            type="number"
+            min="0"
+            id="usedSessions"
+            oninput="updateForm()"
+          >
+        </div>
+
+        <div class="field">
+          <label>المبلغ المدفوع</label>
+          <input
+            type="number"
+            min="0"
+            id="paidAmount"
+            oninput="updateForm()"
+          >
+        </div>
 
         <div class="field">
           <label>طريقة الدفع</label>
+
           <select id="paymentMethod" onchange="updateForm()">
             <option value="">اختر طريقة الدفع</option>
             <option value="تمارا">تمارا</option>
@@ -212,124 +747,629 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
 
         <div class="field refund-field">
           <label>سعر الجلسة الواحدة</label>
-          <input type="number" id="sessionPrice" oninput="updateForm()" placeholder="مثال: 150 أو 180">
+
+          <input
+            type="number"
+            min="0"
+            id="sessionPrice"
+            oninput="updateForm()"
+            placeholder="مثال: 150 أو 180"
+          >
         </div>
+
+        <div class="patient-transfer-field section-label">
+          بيانات المستفيد الجديد
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>اسم المستفيد الجديد</label>
+          <input id="beneficiaryName" oninput="updateForm()">
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>رقم هوية المستفيد</label>
+          <input id="beneficiaryNationalId" oninput="updateForm()">
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>رقم الملف الطبي للمستفيد</label>
+          <input id="beneficiaryFileNo" oninput="updateForm()">
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>رقم جوال المستفيد أو ولي أمره</label>
+          <input id="beneficiaryPhone" oninput="updateForm()">
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>صلة القرابة أو العلاقة بالمريض</label>
+          <input
+            id="beneficiaryRelation"
+            oninput="updateForm()"
+            placeholder="مثال: قريب، معرفة، لا توجد قرابة"
+          >
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>صفة مقدم الطلب للمستفيد</label>
+
+          <select id="beneficiaryApplicantType" onchange="updateForm()">
+            <option value="">اختر الصفة</option>
+            <option value="المستفيد نفسه">المستفيد نفسه</option>
+            <option value="ولي الأمر">ولي الأمر</option>
+            <option value="الوصي الشرعي">الوصي الشرعي</option>
+            <option value="أحد الأقارب">أحد الأقارب</option>
+            <option value="أخرى">أخرى</option>
+          </select>
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>نوع التحويل</label>
+
+          <select id="patientTransferType" onchange="updateForm()">
+            <option value="">اختر نوع التحويل</option>
+            <option value="تبرع دون مقابل">
+              تبرع دون مقابل
+            </option>
+            <option value="تنازل دون مقابل">
+              تنازل دون مقابل
+            </option>
+            <option value="تحويل بموافقة الطرفين">
+              تحويل بموافقة الطرفين
+            </option>
+          </select>
+        </div>
+
+        <div class="field patient-transfer-field">
+          <label>سبب تحويل الجلسات</label>
+
+          <textarea
+            id="patientTransferReason"
+            oninput="updateForm()"
+            placeholder="مثال: رغبة المريض في التبرع بالجلسات المتبقية لأحد مستفيدي ذوي الاحتياجات الخاصة"
+          ></textarea>
+        </div>
+
       </div>
 
       <div class="actions">
-        <button class="btn btn-blue" onclick="window.print()">طباعة</button>
-        <button class="btn btn-orange" onclick="downloadPDF()">تحميل PDF</button>
+        <button class="btn btn-blue" onclick="window.print()">
+          طباعة
+        </button>
+
+        <button class="btn btn-orange" onclick="downloadPDF()">
+          تحميل PDF
+        </button>
       </div>
-      <div class="actions">
-        <button class="btn btn-white" onclick="backToCards()">رجوع للنماذج</button>
+
+      <div class="actions single">
+        <button class="btn btn-white" onclick="backToCards()">
+          رجوع للنماذج
+        </button>
       </div>
+
     </div>
 
     <div class="paper">
 
+      <!-- نموذج الاسترداد -->
+
       <div id="refundPaper" class="form-paper">
+
         <div class="paper-head">
-          <img src="logo.png" class="paper-logo">
-          <div class="paper-title"><h2>استمارة طلب استرداد مبلغ الجلسات</h2></div>
+          <img src="logo.png" class="paper-logo" alt="شعار مركز عكاز">
+
+          <div class="paper-title">
+            <h2>استمارة طلب استرداد مبلغ الجلسات</h2>
+          </div>
+
           <div style="width:125px"></div>
         </div>
 
         <div class="form-content">
-          <table class="info-table">
-            <tr><th>اسم المريض</th><td class="value" id="vPatientName">—</td></tr>
-            <tr><th>اسم مقدم الطلب</th><td class="blank"></td></tr>
-            <tr><th>صلة القرابة</th><td class="blank"></td></tr>
-            <tr><th>رقم الهوية الوطنية للمريض</th><td id="vNationalId">—</td></tr>
-            <tr><th>رقم الملف الطبي</th><td id="vFileNo">—</td></tr>
-            <tr><th>رقم جوال التواصل</th><td id="vPhone">—</td></tr>
 
-            <tr class="bank-row"><th>اسم البنك المحول عن طريقه</th><td class="blank"></td></tr>
-            <tr class="bank-row"><th>رقم الحساب البنكي</th><td class="blank"></td></tr>
-            <tr class="bank-row"><th>اسم صاحب الحساب البنكي<br><span style="color:red;font-size:10px">(الاسم كما الموجود في الحساب البنكي)</span></th><td class="blank"></td></tr>
+          <table class="info-table">
+
+            <tr>
+              <th>اسم المريض</th>
+              <td class="value" id="vPatientName">—</td>
+            </tr>
+
+            <tr>
+              <th>اسم مقدم الطلب</th>
+              <td class="blank"></td>
+            </tr>
+
+            <tr>
+              <th>صلة القرابة</th>
+              <td class="blank"></td>
+            </tr>
+
+            <tr>
+              <th>رقم الهوية الوطنية للمريض</th>
+              <td id="vNationalId">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الملف الطبي</th>
+              <td id="vFileNo">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم جوال التواصل</th>
+              <td id="vPhone">—</td>
+            </tr>
+
+            <tr class="bank-row">
+              <th>اسم البنك المحول عن طريقه</th>
+              <td class="blank"></td>
+            </tr>
+
+            <tr class="bank-row">
+              <th>رقم الحساب البنكي</th>
+              <td class="blank"></td>
+            </tr>
+
+            <tr class="bank-row">
+              <th>
+                اسم صاحب الحساب البنكي
+                <br>
+                <span style="color:red;font-size:10px">
+                  الاسم كما هو موجود في الحساب البنكي
+                </span>
+              </th>
+
+              <td class="blank"></td>
+            </tr>
 
             <tr id="installmentRefundRow" class="hidden">
               <th>طريقة الاسترداد</th>
-              <td id="vInstallmentRefundText" class="refund-method-note">—</td>
+
+              <td
+                id="vInstallmentRefundText"
+                class="refund-method-note"
+              >
+                —
+              </td>
             </tr>
 
-            <tr><th>تاريخ الطلب</th><td id="vDate">—</td></tr>
+            <tr>
+              <th>تاريخ الطلب</th>
+              <td id="vDate">—</td>
+            </tr>
+
           </table>
 
-          <div class="reason-title">- سبب طلب استرداد المبلغ للمريض:</div>
-          <div class="lines"></div><div class="lines"></div><div class="lines"></div>
+          <div class="reason-title">
+            - سبب طلب استرداد المبلغ للمريض:
+          </div>
+
+          <div class="lines"></div>
+          <div class="lines"></div>
+          <div class="lines"></div>
 
           <table class="info-table">
-            <tr><th>اسم الخدمة</th><td id="vServiceName">—</td></tr>
-            <tr><th>رقم الفاتورة</th><td id="vInvoiceNo">—</td></tr>
-            <tr><th>اسم الأخصائي</th><td id="vRefundTherapistName">—</td></tr>
-            <tr><th>عدد الجلسات المستوفاة من البرنامج</th><td id="vUsedSessions">0</td></tr>
-            <tr><th>عدد الجلسات المتبقية من البرنامج</th><td id="vRemainingSessions">0</td></tr>
-            <tr><th>سعر الخدمة المدفوعة</th><td id="vPaidAmount">0</td></tr>
-            <tr><th>طريقة الدفع</th><td id="vPaymentMethod">—</td></tr>
-            <tr><th>سعر الخدمة للجلسة الواحدة في المركز</th><td id="vSessionPrice">0</td></tr>
-            <tr><th>المبلغ المتبقي للاسترداد</th><td id="vRefundAmount">0</td></tr>
+
+            <tr>
+              <th>اسم الخدمة</th>
+              <td id="vServiceName">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الفاتورة</th>
+              <td id="vInvoiceNo">—</td>
+            </tr>
+
+            <tr>
+              <th>اسم الأخصائي</th>
+              <td id="vRefundTherapistName">—</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات المستوفاة من البرنامج</th>
+              <td id="vUsedSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات المتبقية من البرنامج</th>
+              <td id="vRemainingSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>سعر الخدمة المدفوعة</th>
+              <td id="vPaidAmount">0</td>
+            </tr>
+
+            <tr>
+              <th>طريقة الدفع</th>
+              <td id="vPaymentMethod">—</td>
+            </tr>
+
+            <tr>
+              <th>سعر الخدمة للجلسة الواحدة في المركز</th>
+              <td id="vSessionPrice">0</td>
+            </tr>
+
+            <tr>
+              <th>المبلغ المتبقي للاسترداد</th>
+              <td id="vRefundAmount">0</td>
+            </tr>
+
           </table>
 
           <div class="footer-note">
-            أقر أنا الموقع أدناه بالاطلاع على النقاط المذكورة أعلاه، وأتعهد بأن جميع المعلومات المذكورة صحيحة، ولم يسبق رفع طلب استرداد عن نفس الفاتورة.
+            أقر أنا الموقع أدناه بالاطلاع على النقاط المذكورة أعلاه،
+            وأتعهد بأن جميع المعلومات المذكورة صحيحة، ولم يسبق رفع
+            طلب استرداد عن نفس الفاتورة.
           </div>
 
           <div class="sign-row">
-            <div><span>الاسم</span><span> / </span><div class="sign-line"></div></div>
-            <div><span>التوقيع</span><span> / </span><div class="sign-line"></div></div>
+
+            <div class="sign-box">
+              <span>الاسم /</span>
+              <div class="sign-line"></div>
+            </div>
+
+            <div class="sign-box">
+              <span>التوقيع /</span>
+              <div class="sign-line"></div>
+            </div>
+
           </div>
 
           <div class="notice">
-            * ملاحظة: تتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد التأكد من أحقية استحقاق المريض للمبلغ.<br>
-            * ملاحظة: في حال كان الدفع عن طريق تمارا أو تابي، يتم الاسترداد من خلال نفس الجهة ولا يلزم إدخال بيانات الحساب البنكي.<br>
-            * ملاحظة: عند الدفع بغير تمارا أو تابي، يرجى إرفاق صورة من الآيبان البنكي للعميل.
+            * ملاحظة: تتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد
+            التأكد من أحقية استحقاق المريض للمبلغ.
+            <br>
+
+            * ملاحظة: في حال كان الدفع عن طريق تمارا أو تابي، يتم
+            الاسترداد من خلال نفس الجهة ولا يلزم إدخال بيانات الحساب
+            البنكي.
+            <br>
+
+            * ملاحظة: عند الدفع بغير تمارا أو تابي، يرجى إرفاق صورة
+            من الآيبان البنكي للعميل.
           </div>
+
         </div>
       </div>
 
-      <div id="transferPaper" class="form-paper hidden">
+      <!-- نموذج التحويل إلى أخصائي آخر -->
+
+      <div id="therapistTransferPaper" class="form-paper hidden">
+
         <div class="paper-head">
-          <img src="logo.png" class="paper-logo">
-          <div class="paper-title"><h2>استمارة تحويل الجلسات المتبقية</h2></div>
+
+          <img src="logo.png" class="paper-logo" alt="شعار مركز عكاز">
+
+          <div class="paper-title">
+            <h2>استمارة تحويل الجلسات إلى أخصائي آخر</h2>
+          </div>
+
           <div style="width:125px"></div>
+
         </div>
 
         <div class="form-content">
+
           <table class="info-table">
-            <tr><th>اسم المريض</th><td class="value" id="tPatientName">—</td></tr>
-            <tr><th>رقم الهوية الوطنية للمريض</th><td id="tNationalId">—</td></tr>
-            <tr><th>رقم الملف الطبي</th><td id="tFileNo">—</td></tr>
-            <tr><th>رقم جوال التواصل</th><td id="tPhone">—</td></tr>
-            <tr><th>تاريخ الطلب</th><td id="tDate">—</td></tr>
+
+            <tr>
+              <th>اسم المريض</th>
+              <td class="value" id="tPatientName">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الهوية الوطنية للمريض</th>
+              <td id="tNationalId">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الملف الطبي</th>
+              <td id="tFileNo">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم جوال التواصل</th>
+              <td id="tPhone">—</td>
+            </tr>
+
+            <tr>
+              <th>تاريخ الطلب</th>
+              <td id="tDate">—</td>
+            </tr>
+
           </table>
 
-          <div class="reason-title">- سبب طلب تحويل الجلسات:</div>
-          <div class="lines"></div><div class="lines"></div><div class="lines"></div>
+          <div class="reason-title">
+            - سبب طلب تحويل الجلسات:
+          </div>
+
+          <div class="lines"></div>
+          <div class="lines"></div>
+          <div class="lines"></div>
 
           <table class="info-table">
-            <tr><th>اسم الخدمة</th><td id="tServiceName">—</td></tr>
-            <tr><th>رقم الفاتورة</th><td id="tInvoiceNo">—</td></tr>
-            <tr><th>عدد الجلسات في البرنامج</th><td id="tTotalSessions">0</td></tr>
-            <tr><th>عدد الجلسات المستنفدة</th><td id="tUsedSessions">0</td></tr>
-            <tr><th>عدد الجلسات المتبقية للتحويل</th><td id="tRemainingSessions">0</td></tr>
-            <tr><th>سعر الخدمة المدفوعة</th><td id="tPaidAmount">0</td></tr>
-            <tr><th>طريقة الدفع</th><td id="tPaymentMethod">—</td></tr>
-            <tr><th>الأخصائي السابق</th><td id="tOldTherapistName">—</td></tr>
-            <tr><th>الأخصائي المحول له</th><td id="tNewTherapistName">—</td></tr>
+
+            <tr>
+              <th>اسم الخدمة</th>
+              <td id="tServiceName">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الفاتورة</th>
+              <td id="tInvoiceNo">—</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات في البرنامج</th>
+              <td id="tTotalSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات المستنفدة</th>
+              <td id="tUsedSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات المتبقية للتحويل</th>
+              <td id="tRemainingSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>سعر الخدمة المدفوعة</th>
+              <td id="tPaidAmount">0</td>
+            </tr>
+
+            <tr>
+              <th>طريقة الدفع</th>
+              <td id="tPaymentMethod">—</td>
+            </tr>
+
+            <tr>
+              <th>الأخصائي السابق</th>
+              <td id="tOldTherapistName">—</td>
+            </tr>
+
+            <tr>
+              <th>الأخصائي المحول له</th>
+              <td id="tNewTherapistName">—</td>
+            </tr>
+
           </table>
 
           <div class="footer-note">
-            أقر أنا الموقع أدناه بصحة البيانات المذكورة، وأوافق على تحويل الجلسات المتبقية إلى الأخصائي الموضح أعلاه حسب سياسة مركز عكاز للعلاج الطبيعي.
+            أقر أنا الموقع أدناه بصحة البيانات المذكورة، وأوافق على
+            تحويل الجلسات المتبقية إلى الأخصائي الموضح أعلاه حسب
+            سياسة مركز عكاز للعلاج الطبيعي.
           </div>
 
           <div class="sign-row">
-            <div><span>الاسم</span><span> / </span><div class="sign-line"></div></div>
-            <div><span>التوقيع</span><span> / </span><div class="sign-line"></div></div>
+
+            <div class="sign-box">
+              <span>الاسم /</span>
+              <div class="sign-line"></div>
+            </div>
+
+            <div class="sign-box">
+              <span>التوقيع /</span>
+              <div class="sign-line"></div>
+            </div>
+
           </div>
 
           <div class="notice">
-            * ملاحظة: يتم إبلاغ الأخصائي السابق والأخصائي المحول له من قبل الاستقبال لتنسيق المواعيد.
+            * ملاحظة: يتم إبلاغ الأخصائي السابق والأخصائي المحول له
+            من قبل الاستقبال لتنسيق المواعيد.
           </div>
+
+        </div>
+      </div>
+
+      <!-- نموذج التحويل إلى مريض آخر -->
+
+      <div id="patientTransferPaper" class="form-paper hidden">
+
+        <div class="paper-head">
+
+          <img src="logo.png" class="paper-logo" alt="شعار مركز عكاز">
+
+          <div class="paper-title">
+            <h2>إقرار التنازل وتحويل الجلسات إلى مستفيد آخر</h2>
+            <p>تنازل نهائي عن الجلسات العلاجية المتبقية دون مقابل مالي</p>
+          </div>
+
+          <div style="width:125px"></div>
+
+        </div>
+
+        <div class="form-content">
+
+          <div class="form-section-title">
+            أولاً: بيانات المريض المتنازل عن الجلسات
+          </div>
+
+          <table class="info-table">
+
+            <tr>
+              <th>اسم المريض</th>
+              <td class="value" id="pDonorName">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الهوية الوطنية</th>
+              <td id="pDonorNationalId">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الملف الطبي</th>
+              <td id="pDonorFileNo">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم جوال التواصل</th>
+              <td id="pDonorPhone">—</td>
+            </tr>
+
+            <tr>
+              <th>تاريخ الطلب</th>
+              <td id="pTransferDate">—</td>
+            </tr>
+
+          </table>
+
+          <div class="form-section-title">
+            ثانياً: بيانات المستفيد المحول إليه الجلسات
+          </div>
+
+          <table class="info-table">
+
+            <tr>
+              <th>اسم المستفيد الجديد</th>
+              <td class="value" id="pBeneficiaryName">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الهوية الوطنية</th>
+              <td id="pBeneficiaryNationalId">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الملف الطبي</th>
+              <td id="pBeneficiaryFileNo">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الجوال</th>
+              <td id="pBeneficiaryPhone">—</td>
+            </tr>
+
+            <tr>
+              <th>صلة القرابة أو العلاقة</th>
+              <td id="pBeneficiaryRelation">—</td>
+            </tr>
+
+            <tr>
+              <th>صفة مقدم الطلب للمستفيد</th>
+              <td id="pBeneficiaryApplicantType">—</td>
+            </tr>
+
+          </table>
+
+          <div class="form-section-title">
+            ثالثاً: بيانات الجلسات المحولة
+          </div>
+
+          <table class="info-table">
+
+            <tr>
+              <th>اسم الخدمة</th>
+              <td id="pServiceName">—</td>
+            </tr>
+
+            <tr>
+              <th>رقم الفاتورة</th>
+              <td id="pInvoiceNo">—</td>
+            </tr>
+
+            <tr>
+              <th>عدد جلسات البرنامج</th>
+              <td id="pTotalSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات المستنفدة</th>
+              <td id="pUsedSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>عدد الجلسات المتبقية المحولة</th>
+              <td id="pRemainingSessions">0</td>
+            </tr>
+
+            <tr>
+              <th>القيمة الأصلية للخدمة المدفوعة</th>
+              <td id="pPaidAmount">0</td>
+            </tr>
+
+            <tr>
+              <th>طريقة الدفع الأصلية</th>
+              <td id="pPaymentMethod">—</td>
+            </tr>
+
+            <tr>
+              <th>نوع التحويل</th>
+              <td id="pPatientTransferType">—</td>
+            </tr>
+
+          </table>
+
+          <div class="reason-title">
+            سبب التنازل وتحويل الجلسات:
+          </div>
+
+          <div class="reason-box" id="pPatientTransferReason">
+            —
+          </div>
+
+          <div class="declaration-box">
+            أقر أنا المريض المتنازل عن الجلسات أو من يمثله نظامًا،
+            بأنني أرغب بكامل إرادتي في التنازل عن جميع الجلسات
+            العلاجية المتبقية الموضحة في هذا النموذج وتحويلها إلى
+            المستفيد المذكور أعلاه دون أي مقابل مالي من مركز عكاز
+            للعلاج الطبيعي.
+            <br><br>
+
+            كما أقر بأن هذا التنازل نهائي، ولا يحق لي بعد اعتماده
+            المطالبة باستعادة الجلسات المحولة أو استرداد قيمتها
+            المالية كليًا أو جزئيًا. ويخضع قبول التحويل لموافقة
+            إدارة المركز، وملاءمة الخدمة للحالة الصحية للمستفيد،
+            وتوفر المواعيد، والسياسات والإجراءات المعتمدة في المركز.
+          </div>
+
+          <div class="sign-row three">
+
+            <div class="sign-box">
+              <span>المريض المتنازل أو ممثله</span>
+              <br>
+              <span>الاسم /</span>
+              <div class="sign-line"></div>
+              <span>التوقيع /</span>
+              <div class="sign-line"></div>
+            </div>
+
+            <div class="sign-box">
+              <span>المستفيد أو ولي أمره</span>
+              <br>
+              <span>الاسم /</span>
+              <div class="sign-line"></div>
+              <span>التوقيع /</span>
+              <div class="sign-line"></div>
+            </div>
+
+            <div class="sign-box">
+              <span>اعتماد المركز</span>
+              <br>
+              <span>الاسم /</span>
+              <div class="sign-line"></div>
+              <span>التوقيع /</span>
+              <div class="sign-line"></div>
+            </div>
+
+          </div>
+
+          <div class="notice">
+            * لا يتم تنفيذ التحويل إلا بعد اعتماد إدارة المركز.
+            <br>
+
+            * الجلسات المحولة لا تستبدل بمبلغ مالي ولا يعاد تحويلها
+            إلى المريض السابق بعد اعتماد الطلب.
+            <br>
+
+            * قد يتطلب المستفيد الجديد تقييمًا علاجيًا قبل بدء
+            الجلسات، وتحدد الخطة العلاجية وفق حالته وتوصية الأخصائي.
+          </div>
+
         </div>
       </div>
 
@@ -341,55 +1381,170 @@ input,select{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:11px
 let currentForm = "refund";
 
 const therapists = [
-  "د: حاتم الاحمدي","د: عبدالرحمن السويداء","د: عبدالرحمن السليمي","د: عبدالعزيز الحمدان",
-  "د: ريناد حميد","د: ابتسام سويلم","د: سلمى فرحان","د: أسماء فهيد","د: هند فهيد","د: مها فريح"
+  "د: حاتم الاحمدي",
+  "د: عبدالرحمن السويداء",
+  "د: عبدالرحمن السليمي",
+  "د: عبدالعزيز الحمدان",
+  "د: ريناد حميد",
+  "د: ابتسام سويلم",
+  "د: سلمى فرحان",
+  "د: أسماء فهيد",
+  "د: هند فهيد",
+  "د: مها فريح"
 ];
 
+function getElement(id){
+  return document.getElementById(id);
+}
+
 function fillTherapists(){
-  const options = `<option value="">اختر الأخصائي</option>` + therapists.map(n=>`<option value="${n}">${n}</option>`).join("");
-  refundTherapistName.innerHTML = options;
-  oldTherapistName.innerHTML = options;
-  newTherapistName.innerHTML = options;
+  const options =
+    `<option value="">اختر الأخصائي</option>` +
+    therapists.map(name =>
+      `<option value="${name}">${name}</option>`
+    ).join("");
+
+  getElement("refundTherapistName").innerHTML = options;
+  getElement("oldTherapistName").innerHTML = options;
+  getElement("newTherapistName").innerHTML = options;
+}
+
+function showElements(className, show){
+  document.querySelectorAll("." + className).forEach(element => {
+    element.style.display = show ? "block" : "none";
+  });
 }
 
 function toggleFields(){
-  document.querySelectorAll(".refund-field").forEach(e=>e.style.display = currentForm === "refund" ? "block" : "none");
-  document.querySelectorAll(".transfer-field").forEach(e=>e.style.display = currentForm === "transfer" ? "block" : "none");
+  showElements(
+    "refund-field",
+    currentForm === "refund"
+  );
+
+  showElements(
+    "therapist-transfer-field",
+    currentForm === "therapistTransfer"
+  );
+
+  showElements(
+    "patient-transfer-field",
+    currentForm === "patientTransfer"
+  );
+}
+
+function hideAllPapers(){
+  getElement("refundPaper").classList.add("hidden");
+  getElement("therapistTransferPaper").classList.add("hidden");
+  getElement("patientTransferPaper").classList.add("hidden");
 }
 
 function openForm(type){
   currentForm = type;
-  introBox.style.display = "none";
-  workspace.style.display = "grid";
-  refundPaper.classList.toggle("hidden", type !== "refund");
-  transferPaper.classList.toggle("hidden", type !== "transfer");
-  panelTitle.innerText = type === "refund" ? "بيانات استمارة الاسترداد" : "بيانات استمارة تحويل الجلسات";
+
+  getElement("introBox").style.display = "none";
+  getElement("workspace").style.display = "grid";
+
+  hideAllPapers();
+
+  if(type === "refund"){
+    getElement("refundPaper").classList.remove("hidden");
+    getElement("panelTitle").innerText =
+      "بيانات استمارة الاسترداد";
+  }
+
+  if(type === "therapistTransfer"){
+    getElement("therapistTransferPaper").classList.remove("hidden");
+    getElement("panelTitle").innerText =
+      "بيانات تحويل الجلسات إلى أخصائي آخر";
+  }
+
+  if(type === "patientTransfer"){
+    getElement("patientTransferPaper").classList.remove("hidden");
+    getElement("panelTitle").innerText =
+      "بيانات تحويل الجلسات إلى مريض آخر";
+  }
+
   toggleFields();
   updateForm();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
 function backToCards(){
-  workspace.style.display = "none";
-  introBox.style.display = "block";
+  getElement("workspace").style.display = "none";
+  getElement("introBox").style.display = "block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
-function val(id){return document.getElementById(id).value || "—"}
-function num(id){return Number(document.getElementById(id).value || 0)}
-function set(id,value){document.getElementById(id).innerText = value}
+function val(id){
+  const element = getElement(id);
+
+  if(!element){
+    return "—";
+  }
+
+  const value = element.value.trim();
+
+  return value || "—";
+}
+
+function num(id){
+  const element = getElement(id);
+
+  if(!element){
+    return 0;
+  }
+
+  return Number(element.value || 0);
+}
+
+function set(id,value){
+  const element = getElement(id);
+
+  if(element){
+    element.innerText = value;
+  }
+}
+
+function formatAmount(amount){
+  return Number(amount || 0).toLocaleString("ar-SA") + " ريال";
+}
+
+function getToday(){
+  return new Date().toLocaleDateString("ar-SA",{
+    year:"numeric",
+    month:"2-digit",
+    day:"2-digit"
+  });
+}
 
 function updateBankRows(method){
-  const isInstallment = method === "تمارا" || method === "تابي";
+  const isInstallment =
+    method === "تمارا" ||
+    method === "تابي";
 
-  document.querySelectorAll(".bank-row").forEach(row=>{
-    row.classList.toggle("hidden", isInstallment);
+  document.querySelectorAll(".bank-row").forEach(row => {
+    row.classList.toggle("hidden",isInstallment);
   });
 
-  installmentRefundRow.classList.toggle("hidden", !isInstallment);
+  getElement("installmentRefundRow")
+    .classList
+    .toggle("hidden",!isInstallment);
 
   if(isInstallment){
-    vInstallmentRefundText.innerText = `يتم الاسترداد من خلال ${method} حسب إجراءات الجهة ولا يلزم إدخال بيانات الحساب البنكي.`;
+    set(
+      "vInstallmentRefundText",
+      `يتم الاسترداد من خلال ${method} حسب إجراءات الجهة، ولا يلزم إدخال بيانات الحساب البنكي.`
+    );
   }else{
-    vInstallmentRefundText.innerText = "—";
+    set("vInstallmentRefundText","—");
   }
 }
 
@@ -398,57 +1553,216 @@ function updateForm(){
   const used = num("usedSessions");
   const paid = num("paidAmount");
   const price = num("sessionPrice");
-  const remaining = Math.max(total - used, 0);
-  const refund = Math.max(paid - (used * price), 0);
-  const today = new Date().toLocaleDateString("ar-SA");
+
+  const remaining = Math.max(total - used,0);
+  const refund = Math.max(paid - (used * price),0);
+
+  const today = getToday();
   const method = val("paymentMethod");
 
   updateBankRows(method);
 
-  set("vPatientName", val("patientName"));
-  set("vNationalId", val("nationalId"));
-  set("vFileNo", val("fileNo"));
-  set("vPhone", val("phone"));
-  set("vDate", today);
-  set("vServiceName", val("serviceName"));
-  set("vInvoiceNo", val("invoiceNo"));
-  set("vRefundTherapistName", val("refundTherapistName"));
-  set("vUsedSessions", used);
-  set("vRemainingSessions", remaining);
-  set("vPaidAmount", paid);
-  set("vPaymentMethod", method);
-  set("vSessionPrice", price);
-  set("vRefundAmount", refund);
+  /* نموذج الاسترداد */
 
-  set("tPatientName", val("patientName"));
-  set("tNationalId", val("nationalId"));
-  set("tFileNo", val("fileNo"));
-  set("tPhone", val("phone"));
-  set("tDate", today);
-  set("tServiceName", val("serviceName"));
-  set("tInvoiceNo", val("invoiceNo"));
-  set("tTotalSessions", total);
-  set("tUsedSessions", used);
-  set("tRemainingSessions", remaining);
-  set("tPaidAmount", paid);
-  set("tPaymentMethod", method);
-  set("tOldTherapistName", val("oldTherapistName"));
-  set("tNewTherapistName", val("newTherapistName"));
+  set("vPatientName",val("patientName"));
+  set("vNationalId",val("nationalId"));
+  set("vFileNo",val("fileNo"));
+  set("vPhone",val("phone"));
+  set("vDate",today);
+  set("vServiceName",val("serviceName"));
+  set("vInvoiceNo",val("invoiceNo"));
+  set("vRefundTherapistName",val("refundTherapistName"));
+  set("vUsedSessions",used);
+  set("vRemainingSessions",remaining);
+  set("vPaidAmount",formatAmount(paid));
+  set("vPaymentMethod",method);
+  set("vSessionPrice",formatAmount(price));
+  set("vRefundAmount",formatAmount(refund));
+
+  /* نموذج التحويل إلى أخصائي آخر */
+
+  set("tPatientName",val("patientName"));
+  set("tNationalId",val("nationalId"));
+  set("tFileNo",val("fileNo"));
+  set("tPhone",val("phone"));
+  set("tDate",today);
+  set("tServiceName",val("serviceName"));
+  set("tInvoiceNo",val("invoiceNo"));
+  set("tTotalSessions",total);
+  set("tUsedSessions",used);
+  set("tRemainingSessions",remaining);
+  set("tPaidAmount",formatAmount(paid));
+  set("tPaymentMethod",method);
+  set("tOldTherapistName",val("oldTherapistName"));
+  set("tNewTherapistName",val("newTherapistName"));
+
+  /* نموذج التحويل إلى مريض آخر */
+
+  set("pDonorName",val("patientName"));
+  set("pDonorNationalId",val("nationalId"));
+  set("pDonorFileNo",val("fileNo"));
+  set("pDonorPhone",val("phone"));
+  set("pTransferDate",today);
+
+  set("pBeneficiaryName",val("beneficiaryName"));
+  set(
+    "pBeneficiaryNationalId",
+    val("beneficiaryNationalId")
+  );
+  set(
+    "pBeneficiaryFileNo",
+    val("beneficiaryFileNo")
+  );
+  set(
+    "pBeneficiaryPhone",
+    val("beneficiaryPhone")
+  );
+  set(
+    "pBeneficiaryRelation",
+    val("beneficiaryRelation")
+  );
+  set(
+    "pBeneficiaryApplicantType",
+    val("beneficiaryApplicantType")
+  );
+
+  set("pServiceName",val("serviceName"));
+  set("pInvoiceNo",val("invoiceNo"));
+  set("pTotalSessions",total);
+  set("pUsedSessions",used);
+  set("pRemainingSessions",remaining);
+  set("pPaidAmount",formatAmount(paid));
+  set("pPaymentMethod",method);
+  set(
+    "pPatientTransferType",
+    val("patientTransferType")
+  );
+  set(
+    "pPatientTransferReason",
+    val("patientTransferReason")
+  );
+}
+
+function validatePatientTransfer(){
+  const requiredFields = [
+    {
+      id:"patientName",
+      name:"اسم المريض المتنازل"
+    },
+    {
+      id:"nationalId",
+      name:"رقم هوية المريض المتنازل"
+    },
+    {
+      id:"beneficiaryName",
+      name:"اسم المستفيد الجديد"
+    },
+    {
+      id:"beneficiaryNationalId",
+      name:"رقم هوية المستفيد الجديد"
+    },
+    {
+      id:"patientTransferType",
+      name:"نوع التحويل"
+    }
+  ];
+
+  for(const field of requiredFields){
+    const element = getElement(field.id);
+
+    if(!element.value.trim()){
+      alert(`يرجى إدخال ${field.name}`);
+      element.focus();
+      return false;
+    }
+  }
+
+  const remaining =
+    Math.max(
+      num("totalSessions") -
+      num("usedSessions"),
+      0
+    );
+
+  if(remaining <= 0){
+    alert("لا توجد جلسات متبقية يمكن تحويلها.");
+    return false;
+  }
+
+  return true;
+}
+
+function getCurrentPaper(){
+  if(currentForm === "refund"){
+    return getElement("refundPaper");
+  }
+
+  if(currentForm === "therapistTransfer"){
+    return getElement("therapistTransferPaper");
+  }
+
+  return getElement("patientTransferPaper");
+}
+
+function getCurrentTitle(){
+  if(currentForm === "refund"){
+    return "استمارة استرداد";
+  }
+
+  if(currentForm === "therapistTransfer"){
+    return "تحويل جلسات إلى أخصائي آخر";
+  }
+
+  return "تحويل جلسات إلى مريض آخر";
 }
 
 function downloadPDF(){
-  const element = currentForm === "refund" ? refundPaper : transferPaper;
-  const name = patientName.value || "form";
-  const title = currentForm === "refund" ? "استمارة استرداد" : "استمارة تحويل جلسات";
+  if(
+    currentForm === "patientTransfer" &&
+    !validatePatientTransfer()
+  ){
+    return;
+  }
 
-  html2pdf().set({
-    margin:[0.05,0.05,0.05,0.05],
-    filename:`${title} ${name}.pdf`,
-    image:{type:"jpeg",quality:1},
-    html2canvas:{scale:4,useCORS:true,scrollY:0,letterRendering:true},
-    jsPDF:{unit:"in",format:"a4",orientation:"portrait"},
-    pagebreak:{mode:["avoid-all"]}
-  }).from(element).save();
+  const element = getCurrentPaper();
+  const name =
+    getElement("patientName").value.trim() ||
+    "نموذج";
+
+  const title = getCurrentTitle();
+
+  html2pdf()
+    .set({
+      margin:[0.05,0.05,0.05,0.05],
+
+      filename:
+        `${title} - ${name}.pdf`,
+
+      image:{
+        type:"jpeg",
+        quality:1
+      },
+
+      html2canvas:{
+        scale:4,
+        useCORS:true,
+        scrollY:0,
+        letterRendering:true,
+        backgroundColor:"#ffffff"
+      },
+
+      jsPDF:{
+        unit:"in",
+        format:"a4",
+        orientation:"portrait"
+      },
+
+      pagebreak:{
+        mode:["avoid-all","css","legacy"]
+      }
+    })
+    .from(element)
+    .save();
 }
 
 fillTherapists();
