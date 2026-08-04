@@ -249,8 +249,7 @@ body{
 }
 
 input,
-select,
-textarea{
+select{
   width:100%;
   border:1px solid #cbd5e1;
   border-radius:12px;
@@ -260,15 +259,8 @@ textarea{
   background:white;
 }
 
-textarea{
-  resize:vertical;
-  min-height:85px;
-  line-height:1.7;
-}
-
 input:focus,
-select:focus,
-textarea:focus{
+select:focus{
   outline:none;
   border-color:var(--blue2);
   box-shadow:0 0 0 3px rgba(0,119,200,.10);
@@ -395,16 +387,6 @@ textarea:focus{
   unicode-bidi:plaintext;
 }
 
-.reason-box{
-  border:1px solid #777;
-  min-height:58px;
-  padding:8px;
-  font-size:12px;
-  line-height:1.7;
-  font-weight:700;
-  white-space:pre-wrap;
-}
-
 .lines{
   border-top:1px solid #aaa;
   height:18px;
@@ -446,11 +428,6 @@ textarea:focus{
   font-weight:900;
 }
 
-.sign-row.three{
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
 .sign-box{
   min-width:0;
 }
@@ -479,6 +456,80 @@ textarea:focus{
   border:1px solid #fed7aa;
   font-weight:900;
   text-align:center!important;
+}
+
+/* تنسيق مختصر لنموذج تحويل الجلسات إلى مستفيد آخر */
+
+#patientTransferPaper{
+  padding:7mm 9mm;
+}
+
+#patientTransferPaper .paper-head{
+  margin-bottom:7px;
+}
+
+#patientTransferPaper .paper-logo{
+  width:105px;
+  height:65px;
+}
+
+#patientTransferPaper .paper-title h2{
+  font-size:16px;
+}
+
+#patientTransferPaper .paper-title p{
+  margin-top:3px;
+  font-size:9px;
+}
+
+#patientTransferPaper .form-section-title{
+  margin:4px 0 2px;
+  padding:4px 7px;
+  font-size:10.5px;
+}
+
+#patientTransferPaper .info-table{
+  margin-top:2px;
+}
+
+#patientTransferPaper .info-table th,
+#patientTransferPaper .info-table td{
+  padding:3px 6px;
+  font-size:10px;
+  height:21px;
+}
+
+#patientTransferPaper .reason-title{
+  margin:6px 0 2px;
+  font-size:10.5px;
+}
+
+#patientTransferPaper .lines{
+  height:14px;
+  margin-top:2px;
+}
+
+#patientTransferPaper .declaration-box{
+  padding:6px 8px;
+  margin-top:6px;
+  font-size:9.8px;
+  line-height:1.55;
+}
+
+#patientTransferPaper .sign-row{
+  margin-top:7px;
+  gap:20px;
+  font-size:10.5px;
+}
+
+#patientTransferPaper .sign-line{
+  height:16px;
+}
+
+#patientTransferPaper .notice{
+  font-size:9px;
+  line-height:1.45;
+  padding-top:5px;
 }
 
 .hidden{
@@ -527,6 +578,10 @@ textarea:focus{
     padding:0;
     page-break-inside:avoid;
     break-inside:avoid;
+  }
+
+  #patientTransferPaper{
+    min-height:auto;
   }
 }
 
@@ -808,32 +863,16 @@ textarea:focus{
 
           <select id="patientTransferType" onchange="updateForm()">
             <option value="">اختر نوع التحويل</option>
-            <option value="تبرع دون مقابل">
-              تبرع دون مقابل
-            </option>
-            <option value="تنازل دون مقابل">
-              تنازل دون مقابل
-            </option>
-            <option value="تحويل بموافقة الطرفين">
-              تحويل بموافقة الطرفين
-            </option>
+            <option value="تبرع دون مقابل">تبرع دون مقابل</option>
+            <option value="تنازل دون مقابل">تنازل دون مقابل</option>
+            <option value="تحويل بموافقة الطرفين">تحويل بموافقة الطرفين</option>
           </select>
-        </div>
-
-        <div class="field patient-transfer-field">
-          <label>سبب تحويل الجلسات</label>
-
-          <textarea
-            id="patientTransferReason"
-            oninput="updateForm()"
-            placeholder="مثال: رغبة المريض في التبرع بالجلسات المتبقية لأحد مستفيدي ذوي الاحتياجات الخاصة"
-          ></textarea>
         </div>
 
       </div>
 
       <div class="actions">
-        <button class="btn btn-blue" onclick="window.print()">
+        <button class="btn btn-blue" onclick="printCurrentForm()">
           طباعة
         </button>
 
@@ -1018,17 +1057,11 @@ textarea:focus{
           </div>
 
           <div class="notice">
-            * ملاحظة: تتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد
-            التأكد من أحقية استحقاق المريض للمبلغ.
+            * ملاحظة: تتم الموافقة على الطلب وصرف مبلغ الاسترداد بعد التأكد من أحقية استحقاق المريض للمبلغ.
             <br>
-
-            * ملاحظة: في حال كان الدفع عن طريق تمارا أو تابي، يتم
-            الاسترداد من خلال نفس الجهة ولا يلزم إدخال بيانات الحساب
-            البنكي.
+            * ملاحظة: في حال كان الدفع عن طريق تمارا أو تابي، يتم الاسترداد من خلال نفس الجهة ولا يلزم إدخال بيانات الحساب البنكي.
             <br>
-
-            * ملاحظة: عند الدفع بغير تمارا أو تابي، يرجى إرفاق صورة
-            من الآيبان البنكي للعميل.
+            * ملاحظة: عند الدفع بغير تمارا أو تابي، يرجى إرفاق صورة من الآيبان البنكي للعميل.
           </div>
 
         </div>
@@ -1159,8 +1192,7 @@ textarea:focus{
           </div>
 
           <div class="notice">
-            * ملاحظة: يتم إبلاغ الأخصائي السابق والأخصائي المحول له
-            من قبل الاستقبال لتنسيق المواعيد.
+            * ملاحظة: يتم إبلاغ الأخصائي السابق والأخصائي المحول له من قبل الاستقبال لتنسيق المواعيد.
           </div>
 
         </div>
@@ -1179,7 +1211,7 @@ textarea:focus{
             <p>تنازل نهائي عن الجلسات العلاجية المتبقية دون مقابل مالي</p>
           </div>
 
-          <div style="width:125px"></div>
+          <div style="width:105px"></div>
 
         </div>
 
@@ -1305,53 +1337,25 @@ textarea:focus{
           </table>
 
           <div class="reason-title">
-            سبب التنازل وتحويل الجلسات:
+            - سبب التنازل وتحويل الجلسات:
           </div>
 
-          <div class="reason-box" id="pPatientTransferReason">
-            —
-          </div>
+          <div class="lines"></div>
+          <div class="lines"></div>
+          <div class="lines"></div>
 
           <div class="declaration-box">
-            أقر أنا المريض المتنازل عن الجلسات أو من يمثله نظامًا،
-            بأنني أرغب بكامل إرادتي في التنازل عن جميع الجلسات
-            العلاجية المتبقية الموضحة في هذا النموذج وتحويلها إلى
-            المستفيد المذكور أعلاه دون أي مقابل مالي من مركز عكاز
-            للعلاج الطبيعي.
-            <br><br>
-
-            كما أقر بأن هذا التنازل نهائي، ولا يحق لي بعد اعتماده
-            المطالبة باستعادة الجلسات المحولة أو استرداد قيمتها
-            المالية كليًا أو جزئيًا. ويخضع قبول التحويل لموافقة
-            إدارة المركز، وملاءمة الخدمة للحالة الصحية للمستفيد،
-            وتوفر المواعيد، والسياسات والإجراءات المعتمدة في المركز.
+            أقر أنا الموقع أدناه بأنني أرغب بكامل إرادتي في التنازل عن الجلسات العلاجية المتبقية الموضحة أعلاه وتحويلها إلى المستفيد المذكور، دون أي مقابل مالي من مركز عكاز للعلاج الطبيعي، وأقر بأن هذا التنازل نهائي ولا يحق لي بعد اعتماده المطالبة باستعادة الجلسات المحولة أو استرداد قيمتها المالية كليًا أو جزئيًا، ويخضع تنفيذ الطلب لموافقة إدارة المركز والسياسات والإجراءات المعتمدة.
           </div>
 
-          <div class="sign-row three">
+          <div class="sign-row">
 
             <div class="sign-box">
-              <span>المريض المتنازل أو ممثله</span>
-              <br>
               <span>الاسم /</span>
-              <div class="sign-line"></div>
-              <span>التوقيع /</span>
               <div class="sign-line"></div>
             </div>
 
             <div class="sign-box">
-              <span>المستفيد أو ولي أمره</span>
-              <br>
-              <span>الاسم /</span>
-              <div class="sign-line"></div>
-              <span>التوقيع /</span>
-              <div class="sign-line"></div>
-            </div>
-
-            <div class="sign-box">
-              <span>اعتماد المركز</span>
-              <br>
-              <span>الاسم /</span>
-              <div class="sign-line"></div>
               <span>التوقيع /</span>
               <div class="sign-line"></div>
             </div>
@@ -1359,15 +1363,11 @@ textarea:focus{
           </div>
 
           <div class="notice">
-            * لا يتم تنفيذ التحويل إلا بعد اعتماد إدارة المركز.
+            * لا يتم تنفيذ التحويل إلا بعد موافقة إدارة المركز.
             <br>
-
-            * الجلسات المحولة لا تستبدل بمبلغ مالي ولا يعاد تحويلها
-            إلى المريض السابق بعد اعتماد الطلب.
+            * لا تستبدل الجلسات المحولة بمبلغ مالي ولا تعاد للمتنازل بعد اعتماد الطلب.
             <br>
-
-            * قد يتطلب المستفيد الجديد تقييمًا علاجيًا قبل بدء
-            الجلسات، وتحدد الخطة العلاجية وفق حالته وتوصية الأخصائي.
+            * يخضع المستفيد الجديد للتقييم العلاجي وتحديد مدى ملاءمة الخدمة لحالته.
           </div>
 
         </div>
@@ -1605,26 +1605,11 @@ function updateForm(){
   set("pTransferDate",today);
 
   set("pBeneficiaryName",val("beneficiaryName"));
-  set(
-    "pBeneficiaryNationalId",
-    val("beneficiaryNationalId")
-  );
-  set(
-    "pBeneficiaryFileNo",
-    val("beneficiaryFileNo")
-  );
-  set(
-    "pBeneficiaryPhone",
-    val("beneficiaryPhone")
-  );
-  set(
-    "pBeneficiaryRelation",
-    val("beneficiaryRelation")
-  );
-  set(
-    "pBeneficiaryApplicantType",
-    val("beneficiaryApplicantType")
-  );
+  set("pBeneficiaryNationalId",val("beneficiaryNationalId"));
+  set("pBeneficiaryFileNo",val("beneficiaryFileNo"));
+  set("pBeneficiaryPhone",val("beneficiaryPhone"));
+  set("pBeneficiaryRelation",val("beneficiaryRelation"));
+  set("pBeneficiaryApplicantType",val("beneficiaryApplicantType"));
 
   set("pServiceName",val("serviceName"));
   set("pInvoiceNo",val("invoiceNo"));
@@ -1633,14 +1618,7 @@ function updateForm(){
   set("pRemainingSessions",remaining);
   set("pPaidAmount",formatAmount(paid));
   set("pPaymentMethod",method);
-  set(
-    "pPatientTransferType",
-    val("patientTransferType")
-  );
-  set(
-    "pPatientTransferReason",
-    val("patientTransferReason")
-  );
+  set("pPatientTransferType",val("patientTransferType"));
 }
 
 function validatePatientTransfer(){
@@ -1716,6 +1694,17 @@ function getCurrentTitle(){
   return "تحويل جلسات إلى مريض آخر";
 }
 
+function printCurrentForm(){
+  if(
+    currentForm === "patientTransfer" &&
+    !validatePatientTransfer()
+  ){
+    return;
+  }
+
+  window.print();
+}
+
 function downloadPDF(){
   if(
     currentForm === "patientTransfer" &&
@@ -1725,6 +1714,7 @@ function downloadPDF(){
   }
 
   const element = getCurrentPaper();
+
   const name =
     getElement("patientName").value.trim() ||
     "نموذج";
