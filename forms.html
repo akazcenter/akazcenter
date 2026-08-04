@@ -24,11 +24,16 @@
   box-sizing:border-box;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:linear-gradient(180deg,#f8fbff,#eef4f9);
   color:var(--text);
+}
+
+body{
+  background:linear-gradient(180deg,#f8fbff,#eef4f9);
 }
 
 .topbar{
@@ -97,8 +102,8 @@ body{
 }
 
 .main{
-  width:94%;
-  max-width:1250px;
+  width:96%;
+  max-width:1320px;
   margin:28px auto;
 }
 
@@ -195,7 +200,7 @@ body{
 
 .workspace{
   display:none;
-  grid-template-columns:360px 1fr;
+  grid-template-columns:350px minmax(0,1fr);
   gap:20px;
   align-items:start;
 }
@@ -278,42 +283,52 @@ select:focus{
 }
 
 .paper{
-  padding:22px;
+  padding:20px;
   overflow:auto;
 }
 
+/* المقاس الأساسي الموحد لجميع النماذج */
+
 .form-paper{
-  background:white;
-  padding:9mm 11mm;
+  width:210mm;
+  height:297mm;
+  min-width:210mm;
+  max-width:210mm;
+  min-height:297mm;
+  max-height:297mm;
+  margin:0 auto;
+  padding:10mm 12mm;
   border:1px solid #cbd5e1;
-  width:190mm;
-  min-height:277mm;
-  max-width:190mm;
-  margin:auto;
+  background:#fff;
+  color:#111827;
   display:flex;
   flex-direction:column;
-  color:#111827;
   direction:rtl;
   unicode-bidi:plaintext;
+  overflow:hidden;
+  page-break-inside:avoid;
+  break-inside:avoid;
 }
 
 .paper-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding-top:4px;
-  margin-bottom:16px;
+  flex:0 0 auto;
+  min-height:28mm;
+  margin-bottom:4mm;
 }
 
 .paper-logo{
-  width:125px;
-  height:82px;
+  width:32mm;
+  height:22mm;
   object-fit:contain;
 }
 
 .paper-title{
   text-align:center;
   flex:1;
+  padding:0 5mm;
 }
 
 .paper-title h2{
@@ -321,52 +336,65 @@ select:focus{
   color:#111827;
   font-size:18px;
   font-weight:900;
+  line-height:1.5;
 }
 
 .paper-title p{
-  margin:5px 0 0;
+  margin:4px 0 0;
   color:#64748b;
   font-size:10px;
   font-weight:700;
 }
 
+.paper-head-space{
+  width:32mm;
+  height:22mm;
+  flex:0 0 32mm;
+}
+
 .form-content{
   flex:1;
+  min-height:0;
   display:flex;
   flex-direction:column;
 }
 
 .form-section-title{
-  margin:8px 0 4px;
-  padding:6px 9px;
+  margin:7px 0 3px;
+  padding:5px 8px;
   background:#eef6ff;
   border-right:4px solid var(--blue);
   color:#111827;
-  font-size:12px;
+  font-size:11.5px;
   font-weight:900;
+  flex:0 0 auto;
 }
 
 .info-table{
   width:100%;
   border-collapse:collapse;
-  margin-top:6px;
+  table-layout:fixed;
+  margin-top:5px;
+  flex:0 0 auto;
 }
 
 .info-table th,
 .info-table td{
   border:1px solid #555;
-  padding:6px 8px;
-  font-size:12px;
+  padding:5px 7px;
+  font-size:11.5px;
   text-align:right;
   vertical-align:middle;
-  height:26px;
+  height:25px;
   font-weight:700;
   direction:rtl;
   unicode-bidi:plaintext;
+  line-height:1.35;
+  overflow-wrap:anywhere;
 }
 
 .info-table th{
-  width:31%;
+  width:32%;
   font-weight:900;
   background:#f8fafc;
 }
@@ -376,32 +404,35 @@ select:focus{
 }
 
 .blank{
-  height:26px;
+  height:25px;
 }
 
 .reason-title{
-  font-size:12.5px;
+  font-size:12px;
   font-weight:900;
-  margin:12px 0 3px;
+  margin:10px 0 2px;
   direction:rtl;
   unicode-bidi:plaintext;
+  flex:0 0 auto;
 }
 
 .lines{
   border-top:1px solid #aaa;
-  height:18px;
-  margin-top:5px;
+  height:17px;
+  margin-top:4px;
+  flex:0 0 auto;
 }
 
 .footer-note{
   direction:rtl;
   unicode-bidi:plaintext;
   text-align:center;
-  margin-top:14px;
-  font-size:12px;
+  margin-top:12px;
+  font-size:11.5px;
   color:#111827;
-  line-height:1.9;
+  line-height:1.8;
   font-weight:800;
+  flex:0 0 auto;
 }
 
 .declaration-box{
@@ -409,12 +440,13 @@ select:focus{
   unicode-bidi:plaintext;
   border:1px solid #777;
   background:#fafafa;
-  padding:10px 12px;
-  margin-top:12px;
-  font-size:11.5px;
-  line-height:1.9;
+  padding:8px 10px;
+  margin-top:8px;
+  font-size:10.5px;
+  line-height:1.7;
   text-align:justify;
   font-weight:800;
+  flex:0 0 auto;
 }
 
 .sign-row{
@@ -424,8 +456,9 @@ select:focus{
   grid-template-columns:1fr 1fr;
   gap:24px;
   margin-top:12px;
-  font-size:12px;
+  font-size:11.5px;
   font-weight:900;
+  flex:0 0 auto;
 }
 
 .sign-box{
@@ -442,12 +475,13 @@ select:focus{
   direction:rtl;
   unicode-bidi:plaintext;
   margin-top:auto;
-  font-size:11px;
-  line-height:1.7;
+  font-size:10px;
+  line-height:1.65;
   color:#b91c1c;
   font-weight:900;
   text-align:right;
   padding-top:8px;
+  flex:0 0 auto;
 }
 
 .refund-method-note{
@@ -458,34 +492,47 @@ select:focus{
   text-align:center!important;
 }
 
-/* تنسيق مختصر لنموذج تحويل الجلسات إلى مستفيد آخر */
+/* نموذج التحويل إلى مستفيد آخر:
+   نفس حجم A4 الخارجي، لكن المحتوى الداخلي أكثر اختصارًا */
 
 #patientTransferPaper{
-  padding:7mm 9mm;
+  padding:8mm 11mm;
 }
 
 #patientTransferPaper .paper-head{
-  margin-bottom:7px;
+  min-height:22mm;
+  margin-bottom:2mm;
 }
 
 #patientTransferPaper .paper-logo{
-  width:105px;
-  height:65px;
+  width:28mm;
+  height:18mm;
+}
+
+#patientTransferPaper .paper-head-space{
+  width:28mm;
+  height:18mm;
+  flex-basis:28mm;
+}
+
+#patientTransferPaper .paper-title{
+  padding:0 3mm;
 }
 
 #patientTransferPaper .paper-title h2{
-  font-size:16px;
+  font-size:15px;
+  line-height:1.35;
 }
 
 #patientTransferPaper .paper-title p{
-  margin-top:3px;
-  font-size:9px;
+  margin-top:2px;
+  font-size:8.5px;
 }
 
 #patientTransferPaper .form-section-title{
-  margin:4px 0 2px;
-  padding:4px 7px;
-  font-size:10.5px;
+  margin:3px 0 2px;
+  padding:3px 6px;
+  font-size:10px;
 }
 
 #patientTransferPaper .info-table{
@@ -495,41 +542,46 @@ select:focus{
 #patientTransferPaper .info-table th,
 #patientTransferPaper .info-table td{
   padding:3px 6px;
-  font-size:10px;
-  height:21px;
+  font-size:9.8px;
+  height:20px;
+  line-height:1.25;
+}
+
+#patientTransferPaper .info-table th{
+  width:33%;
 }
 
 #patientTransferPaper .reason-title{
-  margin:6px 0 2px;
-  font-size:10.5px;
+  margin:5px 0 1px;
+  font-size:10px;
 }
 
 #patientTransferPaper .lines{
-  height:14px;
+  height:13px;
   margin-top:2px;
 }
 
 #patientTransferPaper .declaration-box{
   padding:6px 8px;
-  margin-top:6px;
-  font-size:9.8px;
+  margin-top:5px;
+  font-size:9.3px;
   line-height:1.55;
 }
 
 #patientTransferPaper .sign-row{
-  margin-top:7px;
+  margin-top:6px;
   gap:20px;
-  font-size:10.5px;
+  font-size:10px;
 }
 
 #patientTransferPaper .sign-line{
-  height:16px;
+  height:15px;
 }
 
 #patientTransferPaper .notice{
-  font-size:9px;
-  line-height:1.45;
-  padding-top:5px;
+  font-size:8.8px;
+  line-height:1.4;
+  padding-top:4px;
 }
 
 .hidden{
@@ -539,11 +591,17 @@ select:focus{
 @media print{
   @page{
     size:A4 portrait;
-    margin:6mm;
+    margin:0;
   }
 
+  html,
   body{
-    background:white;
+    width:210mm;
+    height:297mm;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    overflow:hidden!important;
   }
 
   .topbar,
@@ -554,38 +612,53 @@ select:focus{
   }
 
   .main{
-    width:100%;
-    max-width:none;
-    margin:0;
+    width:210mm!important;
+    max-width:210mm!important;
+    height:297mm!important;
+    margin:0!important;
+    padding:0!important;
   }
 
   .workspace{
     display:block!important;
+    width:210mm!important;
+    height:297mm!important;
+    margin:0!important;
+    padding:0!important;
   }
 
   .paper{
-    box-shadow:none;
-    border:none;
-    padding:0;
-    overflow:visible;
+    width:210mm!important;
+    height:297mm!important;
+    margin:0!important;
+    padding:0!important;
+    border:none!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
   }
 
   .form-paper{
-    border:none;
-    width:100%;
-    max-width:100%;
-    min-height:calc(297mm - 12mm);
-    padding:0;
-    page-break-inside:avoid;
-    break-inside:avoid;
-  }
-
-  #patientTransferPaper{
-    min-height:auto;
+    width:210mm!important;
+    height:297mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    min-height:297mm!important;
+    max-height:297mm!important;
+    margin:0!important;
+    border:none!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+    page-break-before:avoid!important;
+    page-break-after:avoid!important;
+    page-break-inside:avoid!important;
+    break-before:avoid!important;
+    break-after:avoid!important;
+    break-inside:avoid!important;
   }
 }
 
-@media(max-width:1050px){
+@media(max-width:1100px){
   .workspace{
     grid-template-columns:1fr;
   }
@@ -598,9 +671,14 @@ select:focus{
   .cards{
     grid-template-columns:repeat(2,260px);
   }
+
+  .paper{
+    display:flex;
+    justify-content:flex-start;
+  }
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
   .topbar{
     padding:16px;
     border-bottom-left-radius:20px;
@@ -633,10 +711,7 @@ select:focus{
 
   .paper{
     padding:8px;
-  }
-
-  .form-paper{
-    transform-origin:top right;
+    justify-content:flex-start;
   }
 }
 </style>
@@ -757,32 +832,17 @@ select:focus{
 
         <div class="field">
           <label>عدد الجلسات في البرنامج</label>
-          <input
-            type="number"
-            min="0"
-            id="totalSessions"
-            oninput="updateForm()"
-          >
+          <input type="number" min="0" id="totalSessions" oninput="updateForm()">
         </div>
 
         <div class="field">
           <label>عدد الجلسات المستنفدة</label>
-          <input
-            type="number"
-            min="0"
-            id="usedSessions"
-            oninput="updateForm()"
-          >
+          <input type="number" min="0" id="usedSessions" oninput="updateForm()">
         </div>
 
         <div class="field">
           <label>المبلغ المدفوع</label>
-          <input
-            type="number"
-            min="0"
-            id="paidAmount"
-            oninput="updateForm()"
-          >
+          <input type="number" min="0" id="paidAmount" oninput="updateForm()">
         </div>
 
         <div class="field">
@@ -838,6 +898,7 @@ select:focus{
 
         <div class="field patient-transfer-field">
           <label>صلة القرابة أو العلاقة بالمريض</label>
+
           <input
             id="beneficiaryRelation"
             oninput="updateForm()"
@@ -891,8 +952,6 @@ select:focus{
 
     <div class="paper">
 
-      <!-- نموذج الاسترداد -->
-
       <div id="refundPaper" class="form-paper">
 
         <div class="paper-head">
@@ -902,13 +961,12 @@ select:focus{
             <h2>استمارة طلب استرداد مبلغ الجلسات</h2>
           </div>
 
-          <div style="width:125px"></div>
+          <div class="paper-head-space"></div>
         </div>
 
         <div class="form-content">
 
           <table class="info-table">
-
             <tr>
               <th>اسم المريض</th>
               <td class="value" id="vPatientName">—</td>
@@ -953,21 +1011,17 @@ select:focus{
               <th>
                 اسم صاحب الحساب البنكي
                 <br>
-                <span style="color:red;font-size:10px">
+                <span style="color:red;font-size:9px">
                   الاسم كما هو موجود في الحساب البنكي
                 </span>
               </th>
-
               <td class="blank"></td>
             </tr>
 
             <tr id="installmentRefundRow" class="hidden">
               <th>طريقة الاسترداد</th>
 
-              <td
-                id="vInstallmentRefundText"
-                class="refund-method-note"
-              >
+              <td id="vInstallmentRefundText" class="refund-method-note">
                 —
               </td>
             </tr>
@@ -976,7 +1030,6 @@ select:focus{
               <th>تاريخ الطلب</th>
               <td id="vDate">—</td>
             </tr>
-
           </table>
 
           <div class="reason-title">
@@ -988,7 +1041,6 @@ select:focus{
           <div class="lines"></div>
 
           <table class="info-table">
-
             <tr>
               <th>اسم الخدمة</th>
               <td id="vServiceName">—</td>
@@ -1033,7 +1085,6 @@ select:focus{
               <th>المبلغ المتبقي للاسترداد</th>
               <td id="vRefundAmount">0</td>
             </tr>
-
           </table>
 
           <div class="footer-note">
@@ -1043,7 +1094,6 @@ select:focus{
           </div>
 
           <div class="sign-row">
-
             <div class="sign-box">
               <span>الاسم /</span>
               <div class="sign-line"></div>
@@ -1053,7 +1103,6 @@ select:focus{
               <span>التوقيع /</span>
               <div class="sign-line"></div>
             </div>
-
           </div>
 
           <div class="notice">
@@ -1067,26 +1116,21 @@ select:focus{
         </div>
       </div>
 
-      <!-- نموذج التحويل إلى أخصائي آخر -->
-
       <div id="therapistTransferPaper" class="form-paper hidden">
 
         <div class="paper-head">
-
           <img src="logo.png" class="paper-logo" alt="شعار مركز عكاز">
 
           <div class="paper-title">
             <h2>استمارة تحويل الجلسات إلى أخصائي آخر</h2>
           </div>
 
-          <div style="width:125px"></div>
-
+          <div class="paper-head-space"></div>
         </div>
 
         <div class="form-content">
 
           <table class="info-table">
-
             <tr>
               <th>اسم المريض</th>
               <td class="value" id="tPatientName">—</td>
@@ -1111,7 +1155,6 @@ select:focus{
               <th>تاريخ الطلب</th>
               <td id="tDate">—</td>
             </tr>
-
           </table>
 
           <div class="reason-title">
@@ -1123,7 +1166,6 @@ select:focus{
           <div class="lines"></div>
 
           <table class="info-table">
-
             <tr>
               <th>اسم الخدمة</th>
               <td id="tServiceName">—</td>
@@ -1168,7 +1210,6 @@ select:focus{
               <th>الأخصائي المحول له</th>
               <td id="tNewTherapistName">—</td>
             </tr>
-
           </table>
 
           <div class="footer-note">
@@ -1178,7 +1219,6 @@ select:focus{
           </div>
 
           <div class="sign-row">
-
             <div class="sign-box">
               <span>الاسم /</span>
               <div class="sign-line"></div>
@@ -1188,7 +1228,6 @@ select:focus{
               <span>التوقيع /</span>
               <div class="sign-line"></div>
             </div>
-
           </div>
 
           <div class="notice">
@@ -1198,12 +1237,9 @@ select:focus{
         </div>
       </div>
 
-      <!-- نموذج التحويل إلى مريض آخر -->
-
       <div id="patientTransferPaper" class="form-paper hidden">
 
         <div class="paper-head">
-
           <img src="logo.png" class="paper-logo" alt="شعار مركز عكاز">
 
           <div class="paper-title">
@@ -1211,8 +1247,7 @@ select:focus{
             <p>تنازل نهائي عن الجلسات العلاجية المتبقية دون مقابل مالي</p>
           </div>
 
-          <div style="width:105px"></div>
-
+          <div class="paper-head-space"></div>
         </div>
 
         <div class="form-content">
@@ -1222,7 +1257,6 @@ select:focus{
           </div>
 
           <table class="info-table">
-
             <tr>
               <th>اسم المريض</th>
               <td class="value" id="pDonorName">—</td>
@@ -1247,7 +1281,6 @@ select:focus{
               <th>تاريخ الطلب</th>
               <td id="pTransferDate">—</td>
             </tr>
-
           </table>
 
           <div class="form-section-title">
@@ -1255,7 +1288,6 @@ select:focus{
           </div>
 
           <table class="info-table">
-
             <tr>
               <th>اسم المستفيد الجديد</th>
               <td class="value" id="pBeneficiaryName">—</td>
@@ -1285,7 +1317,6 @@ select:focus{
               <th>صفة مقدم الطلب للمستفيد</th>
               <td id="pBeneficiaryApplicantType">—</td>
             </tr>
-
           </table>
 
           <div class="form-section-title">
@@ -1293,7 +1324,6 @@ select:focus{
           </div>
 
           <table class="info-table">
-
             <tr>
               <th>اسم الخدمة</th>
               <td id="pServiceName">—</td>
@@ -1333,7 +1363,6 @@ select:focus{
               <th>نوع التحويل</th>
               <td id="pPatientTransferType">—</td>
             </tr>
-
           </table>
 
           <div class="reason-title">
@@ -1349,7 +1378,6 @@ select:focus{
           </div>
 
           <div class="sign-row">
-
             <div class="sign-box">
               <span>الاسم /</span>
               <div class="sign-line"></div>
@@ -1359,7 +1387,6 @@ select:focus{
               <span>التوقيع /</span>
               <div class="sign-line"></div>
             </div>
-
           </div>
 
           <div class="notice">
@@ -1490,7 +1517,7 @@ function val(id){
     return "—";
   }
 
-  const value = element.value.trim();
+  const value = String(element.value || "").trim();
 
   return value || "—";
 }
@@ -1502,7 +1529,9 @@ function num(id){
     return 0;
   }
 
-  return Number(element.value || 0);
+  const value = Number(element.value || 0);
+
+  return Number.isFinite(value) ? value : 0;
 }
 
 function set(id,value){
@@ -1549,10 +1578,10 @@ function updateBankRows(method){
 }
 
 function updateForm(){
-  const total = num("totalSessions");
-  const used = num("usedSessions");
-  const paid = num("paidAmount");
-  const price = num("sessionPrice");
+  const total = Math.max(num("totalSessions"),0);
+  const used = Math.max(num("usedSessions"),0);
+  const paid = Math.max(num("paidAmount"),0);
+  const price = Math.max(num("sessionPrice"),0);
 
   const remaining = Math.max(total - used,0);
   const refund = Math.max(paid - (used * price),0);
@@ -1561,8 +1590,6 @@ function updateForm(){
   const method = val("paymentMethod");
 
   updateBankRows(method);
-
-  /* نموذج الاسترداد */
 
   set("vPatientName",val("patientName"));
   set("vNationalId",val("nationalId"));
@@ -1579,8 +1606,6 @@ function updateForm(){
   set("vSessionPrice",formatAmount(price));
   set("vRefundAmount",formatAmount(refund));
 
-  /* نموذج التحويل إلى أخصائي آخر */
-
   set("tPatientName",val("patientName"));
   set("tNationalId",val("nationalId"));
   set("tFileNo",val("fileNo"));
@@ -1595,8 +1620,6 @@ function updateForm(){
   set("tPaymentMethod",method);
   set("tOldTherapistName",val("oldTherapistName"));
   set("tNewTherapistName",val("newTherapistName"));
-
-  /* نموذج التحويل إلى مريض آخر */
 
   set("pDonorName",val("patientName"));
   set("pDonorNationalId",val("nationalId"));
@@ -1648,7 +1671,7 @@ function validatePatientTransfer(){
   for(const field of requiredFields){
     const element = getElement(field.id);
 
-    if(!element.value.trim()){
+    if(!String(element.value || "").trim()){
       alert(`يرجى إدخال ${field.name}`);
       element.focus();
       return false;
@@ -1694,65 +1717,111 @@ function getCurrentTitle(){
   return "تحويل جلسات إلى مريض آخر";
 }
 
-function printCurrentForm(){
+function validateBeforeOutput(){
   if(
     currentForm === "patientTransfer" &&
     !validatePatientTransfer()
   ){
-    return;
+    return false;
   }
 
-  window.print();
+  return true;
 }
 
-function downloadPDF(){
-  if(
-    currentForm === "patientTransfer" &&
-    !validatePatientTransfer()
-  ){
+function printCurrentForm(){
+  if(!validateBeforeOutput()){
     return;
   }
+
+  updateForm();
+
+  setTimeout(() => {
+    window.print();
+  },150);
+}
+
+async function waitForImages(element){
+  const images = Array.from(element.querySelectorAll("img"));
+
+  await Promise.all(
+    images.map(image => {
+      if(image.complete){
+        return Promise.resolve();
+      }
+
+      return new Promise(resolve => {
+        image.onload = resolve;
+        image.onerror = resolve;
+      });
+    })
+  );
+}
+
+async function downloadPDF(){
+  if(!validateBeforeOutput()){
+    return;
+  }
+
+  updateForm();
 
   const element = getCurrentPaper();
 
-  const name =
-    getElement("patientName").value.trim() ||
+  const patient =
+    String(getElement("patientName").value || "").trim() ||
     "نموذج";
 
   const title = getCurrentTitle();
 
-  html2pdf()
-    .set({
-      margin:[0.05,0.05,0.05,0.05],
+  await waitForImages(element);
 
-      filename:
-        `${title} - ${name}.pdf`,
+  document.body.classList.add("pdf-generating");
 
-      image:{
-        type:"jpeg",
-        quality:1
-      },
+  try{
+    await html2pdf()
+      .set({
+        margin:0,
 
-      html2canvas:{
-        scale:4,
-        useCORS:true,
-        scrollY:0,
-        letterRendering:true,
-        backgroundColor:"#ffffff"
-      },
+        filename:
+          `${title} - ${patient}.pdf`,
 
-      jsPDF:{
-        unit:"in",
-        format:"a4",
-        orientation:"portrait"
-      },
+        image:{
+          type:"jpeg",
+          quality:1
+        },
 
-      pagebreak:{
-        mode:["avoid-all","css","legacy"]
-      }
-    })
-    .from(element)
-    .save();
+        html2canvas:{
+          scale:3,
+          useCORS:true,
+          allowTaint:true,
+          scrollX:0,
+          scrollY:0,
+          windowWidth:element.scrollWidth,
+          windowHeight:element.scrollHeight,
+          backgroundColor:"#ffffff",
+          letterRendering:true,
+          logging:false
+        },
+
+        jsPDF:{
+          unit:"mm",
+          format:[210,297],
+          orientation:"portrait",
+          compress:true
+        },
+
+        pagebreak:{
+          mode:["avoid-all","css","legacy"]
+        }
+      })
+      .from(element)
+      .save();
+
+  }catch(error){
+    console.error(error);
+    alert("تعذر إنشاء ملف PDF، يرجى المحاولة مرة أخرى.");
+  }finally{
+    document.body.classList.remove("pdf-generating");
+  }
 }
 
 fillTherapists();
