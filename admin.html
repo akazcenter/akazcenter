@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>لوحة التحكم | مركز عكاز للعلاج الطبيعي</title>
 
 <style>
@@ -13,17 +14,16 @@
   --green:#16a34a;
   --red:#dc2626;
   --yellow:#ca8a04;
-  --bg:#f5f8fc;
-  --card:#ffffff;
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
   --soft-blue:#eef7ff;
-  --soft-orange:#fff7ed;
   --shadow:0 18px 45px rgba(15,23,42,.08);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -34,7 +34,9 @@ body{
   color:var(--text);
 }
 
-button,input,select{
+button,
+input,
+select{
   font-family:inherit;
 }
 
@@ -43,11 +45,10 @@ button{
   cursor:pointer;
 }
 
-.layout{
-  min-height:100vh;
-}
+/* =========================
+   LOGIN
+========================= */
 
-/* LOGIN */
 .login-wrap{
   min-height:100vh;
   display:flex;
@@ -59,12 +60,11 @@ button{
 .login-card{
   width:100%;
   max-width:430px;
-  background:rgba(255,255,255,.92);
-  border:1px solid rgba(226,232,240,.9);
+  background:white;
+  border:1px solid var(--line);
   border-radius:28px;
   padding:30px;
   box-shadow:var(--shadow);
-  backdrop-filter:blur(12px);
 }
 
 .logo-badge{
@@ -72,14 +72,13 @@ button{
   height:70px;
   border-radius:22px;
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#fff;
+  color:white;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:26px;
   font-weight:900;
   margin:0 auto 16px;
-  box-shadow:0 15px 30px rgba(0,91,159,.25);
 }
 
 .login-card h2{
@@ -101,7 +100,7 @@ button{
   padding:13px 14px;
   border-radius:14px;
   border:1px solid var(--line);
-  background:#fff;
+  background:white;
   outline:none;
   font-size:15px;
 }
@@ -117,10 +116,9 @@ button{
   padding:13px 16px;
   border-radius:14px;
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#fff;
+  color:white;
   font-weight:900;
   font-size:15px;
-  box-shadow:0 12px 24px rgba(0,91,159,.20);
 }
 
 .error{
@@ -135,14 +133,17 @@ button{
   font-weight:700;
 }
 
-/* APP */
+/* =========================
+   APP
+========================= */
+
 .app{
   display:none;
 }
 
 .topbar{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#fff;
+  color:white;
   padding:22px 26px;
   border-bottom-left-radius:34px;
   border-bottom-right-radius:34px;
@@ -181,7 +182,7 @@ button{
 .ghost-btn{
   padding:10px 14px;
   border-radius:14px;
-  color:#fff;
+  color:white;
   background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.26);
   font-weight:800;
@@ -193,7 +194,10 @@ button{
   padding:0 18px 30px;
 }
 
-/* STATUS */
+/* =========================
+   STATUS
+========================= */
+
 .status-bar{
   display:grid;
   grid-template-columns:1fr auto;
@@ -203,56 +207,114 @@ button{
 }
 
 .alert{
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-right:6px solid var(--green);
   padding:15px 18px;
   border-radius:18px;
   box-shadow:0 10px 28px rgba(15,23,42,.06);
   font-weight:900;
+  line-height:1.8;
 }
 
-.alert.danger{border-right-color:var(--red); background:#fff7f7}
-.alert.warn{border-right-color:var(--yellow); background:#fffaf0}
+.alert.danger{
+  border-right-color:var(--red);
+  background:#fff7f7;
+}
+
+.alert.warn{
+  border-right-color:var(--yellow);
+  background:#fffaf0;
+}
 
 .clock{
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   padding:13px 16px;
   border-radius:18px;
   box-shadow:0 10px 28px rgba(15,23,42,.06);
   color:var(--muted);
   font-weight:800;
-  min-width:210px;
+  min-width:220px;
   text-align:center;
 }
 
-/* STATS */
+/* =========================
+   APPROVAL STATUS
+========================= */
+
+.schedule-watch{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-bottom:18px;
+}
+
+.watch-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:17px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+}
+
+.watch-card.active{
+  border-color:#bbf7d0;
+  background:#f7fff9;
+}
+
+.watch-card.expired{
+  border-color:#fecaca;
+  background:#fff7f7;
+}
+
+.watch-title{
+  color:var(--blue);
+  font-size:17px;
+  font-weight:900;
+}
+
+.watch-state{
+  margin-top:9px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.watch-state.green{
+  color:#166534;
+}
+
+.watch-state.red{
+  color:#b91c1c;
+}
+
+.watch-state.orange{
+  color:#92400e;
+}
+
+.watch-date{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* =========================
+   MAIN CARDS
+========================= */
+
 .stats-grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-columns:repeat(4,1fr);
   gap:14px;
 }
 
 .card{
-  background:rgba(255,255,255,.95);
-  border:1px solid rgba(226,232,240,.9);
+  background:white;
+  border:1px solid var(--line);
   border-radius:22px;
   padding:18px;
   box-shadow:0 12px 30px rgba(15,23,42,.06);
-  position:relative;
-  overflow:hidden;
-}
-
-.card:before{
-  content:"";
-  position:absolute;
-  width:80px;
-  height:80px;
-  border-radius:50%;
-  background:rgba(245,158,11,.12);
-  left:-28px;
-  top:-28px;
 }
 
 .card-title{
@@ -266,23 +328,85 @@ button{
   color:var(--blue);
   font-size:34px;
   font-weight:900;
-  line-height:1;
+}
+
+.card-number.small{
+  font-size:18px;
+  line-height:1.6;
 }
 
 .card-note{
   margin-top:10px;
   color:var(--muted);
   font-size:12px;
+  line-height:1.8;
 }
 
-/* TOOLS */
+/* =========================
+   LATEST
+========================= */
+
+.latest-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:18px;
+}
+
+.latest-box{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:17px;
+  box-shadow:0 12px 30px rgba(15,23,42,.06);
+}
+
+.latest-box h3{
+  margin:0 0 12px;
+  color:var(--blue);
+  font-size:17px;
+}
+
+.latest-line{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-bottom:9px;
+  background:#fbfdff;
+}
+
+.latest-line:last-child{
+  margin-bottom:0;
+}
+
+.latest-line strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.latest-line .meta{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+.latest-line .stamp{
+  margin-top:5px;
+  color:var(--blue);
+  font-size:12px;
+  font-weight:900;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
 .tools{
   margin-top:18px;
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:22px;
   padding:14px;
-  box-shadow:0 12px 30px rgba(15,23,42,.06);
   display:grid;
   grid-template-columns:1fr 190px 190px;
   gap:12px;
@@ -296,7 +420,10 @@ button{
   font-weight:900;
 }
 
-/* TABS */
+/* =========================
+   TABS
+========================= */
+
 .tabs{
   display:flex;
   gap:10px;
@@ -307,23 +434,25 @@ button{
 .tab{
   padding:11px 16px;
   border-radius:14px;
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   color:var(--text);
   font-weight:900;
-  box-shadow:0 8px 18px rgba(15,23,42,.04);
 }
 
 .tab.active{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:#fff;
+  color:white;
   border-color:transparent;
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
+
 .section{
   margin-top:14px;
-  background:#fff;
+  background:white;
   border:1px solid var(--line);
   border-radius:24px;
   padding:18px;
@@ -349,7 +478,6 @@ button{
 .badge{
   display:inline-flex;
   align-items:center;
-  gap:6px;
   padding:7px 10px;
   border-radius:999px;
   background:var(--soft-blue);
@@ -360,7 +488,7 @@ button{
 
 .table-wrap{
   width:100%;
-  overflow-x:auto;
+  overflow:auto;
   border:1px solid var(--line);
   border-radius:18px;
 }
@@ -368,10 +496,11 @@ button{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:760px;
+  min-width:950px;
 }
 
-th,td{
+th,
+td{
   padding:12px 10px;
   text-align:center;
   border-bottom:1px solid var(--line);
@@ -397,65 +526,104 @@ tr:hover td{
   border-radius:18px;
 }
 
-.item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#fbfdff;
-  margin-bottom:10px;
+.big-change{
+  background:linear-gradient(135deg,#f8fbff,#ffffff);
+  border:1px solid #bfdbfe;
+  border-radius:18px;
+  padding:17px;
+  margin-bottom:14px;
+  line-height:2;
 }
 
-.item strong{
+.big-change h3{
+  margin:0 0 7px;
   color:var(--blue);
+}
+
+.big-change .date{
+  color:#b45309;
+  font-weight:900;
+}
+
+.pill{
+  display:inline-block;
+  padding:6px 9px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  background:#fff7ed;
+  color:#92400e;
+}
+
+.pill.green{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.pill.red{
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.pill.blue{
+  background:#e0f2fe;
+  color:#075985;
 }
 
 .muted{
   color:var(--muted);
   font-size:12px;
+  line-height:1.9;
 }
 
-.pill{
-  padding:6px 9px;
-  border-radius:999px;
-  font-weight:900;
-  font-size:12px;
-  background:var(--soft-orange);
-  color:#92400e;
-}
+/* =========================
+   MOBILE
+========================= */
 
-.progress{
-  height:10px;
-  background:#e5e7eb;
-  border-radius:999px;
-  overflow:hidden;
-  margin-top:8px;
-}
-
-.progress span{
-  display:block;
-  height:100%;
-  background:linear-gradient(90deg,var(--orange),var(--blue2));
-  width:0;
-}
-
-/* RESPONSIVE */
 @media(max-width:950px){
-  .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .tools{grid-template-columns:1fr}
-  .status-bar{grid-template-columns:1fr}
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .schedule-watch{
+    grid-template-columns:1fr;
+  }
+
+  .latest-grid{
+    grid-template-columns:1fr;
+  }
+
+  .tools{
+    grid-template-columns:1fr;
+  }
+
+  .status-bar{
+    grid-template-columns:1fr;
+  }
 }
 
 @media(max-width:560px){
-  .stats-grid{grid-template-columns:1fr}
-  .topbar{padding:18px}
-  .brand h1{font-size:20px}
-  .main{padding:0 12px 24px}
-  .section{padding:14px}
-  .card-number{font-size:30px}
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .topbar{
+    padding:18px;
+  }
+
+  .brand h1{
+    font-size:20px;
+  }
+
+  .main{
+    padding:0 12px 24px;
+  }
+
+  .section{
+    padding:14px;
+  }
 }
 </style>
 </head>
@@ -465,619 +633,2323 @@ tr:hover td{
 <div class="layout">
 
   <!-- LOGIN -->
+
   <div id="loginView" class="login-wrap">
+
     <div class="login-card">
-      <div class="logo-badge">ع</div>
-      <h2>دخول الإدارة</h2>
-      <p>لوحة متابعة العمليات والجداول والحركة اليومية داخل مركز عكاز.</p>
-      <input id="code" class="field" type="password" placeholder="أدخل رمز الدخول" />
-      <button class="primary-btn" onclick="login()">دخول</button>
-      <div id="loginError" class="error">رمز الدخول غير صحيح</div>
+
+      <div class="logo-badge">
+        ع
+      </div>
+
+      <h2>
+        دخول الإدارة
+      </h2>
+
+      <p>
+        متابعة جداول الموظفين وآخر التعديلات والاعتمادات.
+      </p>
+
+      <input
+        id="code"
+        class="field"
+        type="password"
+        placeholder="أدخل رمز الدخول"
+      >
+
+      <button
+        class="primary-btn"
+        onclick="login()"
+      >
+        دخول
+      </button>
+
+      <div
+        id="loginError"
+        class="error"
+      >
+        رمز الدخول غير صحيح
+      </div>
+
     </div>
+
   </div>
 
   <!-- APP -->
+
   <div id="appView" class="app">
 
     <header class="topbar">
+
       <div class="topbar-inner">
+
         <div class="brand">
-          <h1>لوحة التحكم - مركز عكاز للعلاج الطبيعي</h1>
-          <span>متابعة مباشرة للعمليات، الجداول، المتصلين، السجلات، والاعتمادات</span>
+
+          <h1>
+            لوحة التحكم - مركز عكاز للعلاج الطبيعي
+          </h1>
+
+          <span>
+            متابعة مباشرة للجداول وآخر التعديلات والاعتمادات
+          </span>
+
         </div>
+
         <div class="top-actions">
-          <button class="ghost-btn" onclick="refreshDashboard()">تحديث البيانات</button>
-          <button class="ghost-btn" onclick="logout()">خروج</button>
+
+          <button
+            class="ghost-btn"
+            onclick="location.href='index.html'"
+          >
+            الرئيسية
+          </button>
+
+          <button
+            class="ghost-btn"
+            onclick="refreshDashboard()"
+          >
+            تحديث البيانات
+          </button>
+
+          <button
+            class="ghost-btn"
+            onclick="logout()"
+          >
+            خروج
+          </button>
+
         </div>
+
       </div>
+
     </header>
 
     <main class="main">
 
+      <!-- ALERT -->
+
       <div class="status-bar">
-        <div id="alertBox" class="alert">جاري تحميل بيانات النظام...</div>
-        <div id="clockBox" class="clock">—</div>
+
+        <div
+          id="alertBox"
+          class="alert"
+        >
+          جاري تحميل بيانات النظام...
+        </div>
+
+        <div
+          id="clockBox"
+          class="clock"
+        >
+          —
+        </div>
+
       </div>
 
+      <!-- APPROVAL STATUS -->
+
+      <section
+        id="scheduleWatch"
+        class="schedule-watch"
+      ></section>
+
+      <!-- QUICK CARDS -->
+
       <section class="stats-grid">
+
         <div class="card">
-          <div class="card-title">إجمالي الجلسات المجدولة</div>
-          <div class="card-number" id="sessions">0</div>
-          <div class="card-note">من جدول therapistSchedules</div>
+
+          <div class="card-title">
+            آخر تعديل على جدول الدوام
+          </div>
+
+          <div
+            class="card-number small"
+            id="lastScheduleEdit"
+          >
+            —
+          </div>
+
+          <div
+            class="card-note"
+            id="lastScheduleEditNote"
+          >
+            جاري التحميل
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">الكشوفات الجديدة</div>
-          <div class="card-number" id="newCases">0</div>
-          <div class="card-note">من جدول newAssessments</div>
+
+          <div class="card-title">
+            آخر تعديل على اعتماد الجدول
+          </div>
+
+          <div
+            class="card-number small"
+            id="lastApproval"
+          >
+            —
+          </div>
+
+          <div
+            class="card-note"
+            id="lastApprovalNote"
+          >
+            جاري التحميل
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">كشوفات بالاسم</div>
-          <div class="card-number" id="byName">0</div>
-          <div class="card-note">الحالات المحجوزة باسم أخصائي</div>
+
+          <div class="card-title">
+            خانات الدوام المحفوظة
+          </div>
+
+          <div
+            class="card-number"
+            id="workScheduleCount"
+          >
+            0
+          </div>
+
+          <div class="card-note">
+            البيانات الحالية في جدول الدوام
+          </div>
+
         </div>
 
         <div class="card">
-          <div class="card-title">أعلى ضغط حاليًا</div>
-          <div class="card-number" id="topTherapist">—</div>
-          <div class="card-note" id="topTherapistNote">حسب عدد الجلسات</div>
+
+          <div class="card-title">
+            طلبات تعديل الشفتات الجديدة
+          </div>
+
+          <div
+            class="card-number"
+            id="newShiftRequests"
+          >
+            0
+          </div>
+
+          <div class="card-note">
+            طلبات لم تتم مراجعتها بعد
+          </div>
+
         </div>
+
       </section>
+
+      <!-- LATEST -->
+
+      <section class="latest-grid">
+
+        <div class="latest-box">
+
+          <h3>
+            🕒 آخر تعديلات جداول الدوام
+          </h3>
+
+          <div id="latestScheduleChanges"></div>
+
+        </div>
+
+        <div class="latest-box">
+
+          <h3>
+            ✅ آخر الاعتمادات
+          </h3>
+
+          <div id="latestApprovalChanges"></div>
+
+        </div>
+
+      </section>
+
+      <!-- SEARCH -->
 
       <section class="tools">
-        <input id="searchInput" class="field" placeholder="بحث سريع داخل النتائج: اسم، صفحة، عملية..." oninput="renderCurrentTab()" />
-        <select id="limitSelect" class="field" onchange="renderCurrentTab()">
-          <option value="15">عرض آخر 15</option>
-          <option value="30">عرض آخر 30</option>
-          <option value="100">عرض آخر 100</option>
-          <option value="all">عرض الكل</option>
+
+        <input
+          id="searchInput"
+          class="field"
+          placeholder="بحث بالاسم أو القسم أو اليوم أو الشفت..."
+          oninput="renderCurrentTab()"
+        >
+
+        <select
+          id="limitSelect"
+          class="field"
+          onchange="renderCurrentTab()"
+        >
+
+          <option value="15">
+            عرض آخر 15
+          </option>
+
+          <option value="30">
+            عرض آخر 30
+          </option>
+
+          <option value="100">
+            عرض آخر 100
+          </option>
+
+          <option value="all">
+            عرض الكل
+          </option>
+
         </select>
-        <button class="tool-btn" onclick="exportCurrentTab()">تصدير CSV</button>
+
+        <button
+          class="tool-btn"
+          onclick="exportCurrentTab()"
+        >
+          تصدير CSV
+        </button>
+
       </section>
 
+      <!-- TABS -->
+
       <nav class="tabs">
-        <button class="tab active" data-tab="overview" onclick="openTab('overview',this)">نظرة عامة</button>
-        <button class="tab" data-tab="schedules" onclick="openTab('schedules',this)">الجداول</button>
-        <button class="tab" data-tab="assessments" onclick="openTab('assessments',this)">الكشوفات</button>
-        <button class="tab" data-tab="online" onclick="openTab('online',this)">المتصلين</button>
-        <button class="tab" data-tab="logs" onclick="openTab('logs',this)">سجل العمليات</button>
-        <button class="tab" data-tab="analytics" onclick="openTab('analytics',this)">الإحصائيات</button>
-        <button class="tab" data-tab="approvals" onclick="openTab('approvals',this)">الاعتمادات</button>
+
+        <button
+          class="tab active"
+          onclick="openTab('scheduleChanges',this)"
+        >
+          آخر تعديلات الدوام
+        </button>
+
+        <button
+          class="tab"
+          onclick="openTab('approvals',this)"
+        >
+          اعتمادات الجداول
+        </button>
+
+        <button
+          class="tab"
+          onclick="openTab('overview',this)"
+        >
+          نظرة عامة
+        </button>
+
+        <button
+          class="tab"
+          onclick="openTab('logs',this)"
+        >
+          سجل العمليات
+        </button>
+
       </nav>
 
-      <section id="tabContent" class="section"></section>
+      <section
+        id="tabContent"
+        class="section"
+      ></section>
 
     </main>
+
   </div>
+
 </div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
 import {
   getFirestore,
   collection,
-  onSnapshot,
-  query,
-  orderBy,
-  limit
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-/* Firebase */
+/* =========================
+   FIREBASE
+========================= */
+
 const app = initializeApp({
-  apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
-  projectId:"akazcenter-89c17"
+
+  apiKey:
+    "AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
+
+  authDomain:
+    "akazcenter-89c17.firebaseapp.com",
+
+  projectId:
+    "akazcenter-89c17",
+
+  storageBucket:
+    "akazcenter-89c17.firebasestorage.app",
+
+  messagingSenderId:
+    "576111794528",
+
+  appId:
+    "1:576111794528:web:b7ee436f5bd0b60c4a6605"
+
 });
 
-const db = getFirestore(app);
+const db =
+  getFirestore(app);
 
-/* تنبيه مهم:
-   رمز الدخول هنا مجرد حماية واجهة فقط، وليس حماية حقيقية.
-   لو الموقع بيكون منشور للعامة، الأفضل تستخدم Firebase Authentication + Security Rules.
-*/
-const CODE = "164321";
+const CODE =
+  "164321";
+
+/* =========================
+   STATE
+========================= */
 
 const state = {
-  currentTab: "overview",
-  sessions: [],
-  assessments: [],
-  online: [],
-  logs: [],
-  approvals: []
+
+  currentTab:
+    "scheduleChanges",
+
+  workSchedule:
+    [],
+
+  scheduleSettings:
+    [],
+
+  shiftRequests:
+    [],
+
+  logs:
+    []
+
 };
 
-const unsubscribers = [];
+const unsubscribers =
+  [];
+
+/* =========================
+   NAMES
+========================= */
+
+const sectionNames = {
+
+  men:
+    "قسم الرجال",
+
+  women:
+    "قسم النساء",
+
+  reception:
+    "الاستقبال"
+
+};
+
+const shiftNames = {
+
+  single:
+    "شفت واحد 1-9",
+
+  single12:
+    "شفت واحد 12-8",
+
+  single1:
+    "شفت واحد 1-9",
+
+  split:
+    "شفتين"
+
+};
+
+const arabicDays = [
+
+  "السبت",
+  "الأحد",
+  "الاثنين",
+  "الثلاثاء",
+  "الأربعاء",
+  "الخميس"
+
+];
+
+/* =========================
+   HELPERS
+========================= */
 
 function safeText(value){
-  if(value === null || value === undefined || value === "") return "—";
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "—";
+  }
+
   return String(value);
 }
 
-function formatDate(value){
+function normalizeText(value){
+
+  return String(
+    value || ""
+  )
+  .toLowerCase()
+  .trim();
+}
+
+function dateObject(value){
+
   try{
-    if(!value) return "—";
-    if(value.seconds) return new Date(value.seconds * 1000).toLocaleString("ar-SA");
-    if(value.toDate) return value.toDate().toLocaleString("ar-SA");
-    return new Date(value).toLocaleString("ar-SA");
-  }catch(e){
-    return "—";
+
+    if(!value){
+      return null;
+    }
+
+    if(value.seconds){
+
+      return new Date(
+        value.seconds * 1000
+      );
+    }
+
+    if(
+      typeof value.toDate === "function"
+    ){
+
+      return value.toDate();
+    }
+
+    const date =
+      new Date(value);
+
+    if(
+      isNaN(
+        date.getTime()
+      )
+    ){
+      return null;
+    }
+
+    return date;
+
+  }
+  catch(error){
+
+    return null;
   }
 }
 
-function normalizeText(value){
-  return String(value || "").toLowerCase().trim();
+function formatDate(value){
+
+  const date =
+    dateObject(value);
+
+  if(!date){
+    return "—";
+  }
+
+  return date.toLocaleString(
+    "ar-SA",
+    {
+      year:"numeric",
+      month:"2-digit",
+      day:"2-digit",
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit"
+    }
+  );
+}
+
+function getTimestamp(value){
+
+  const date =
+    dateObject(value);
+
+  return date
+    ? date.getTime()
+    : 0;
+}
+
+function todayISO(){
+
+  const date =
+    new Date();
+
+  date.setMinutes(
+    date.getMinutes() -
+    date.getTimezoneOffset()
+  );
+
+  return date
+    .toISOString()
+    .split("T")[0];
 }
 
 function getSearch(){
-  return normalizeText(document.getElementById("searchInput")?.value);
-}
 
-function applySearch(rows, keys){
-  const s = getSearch();
-  if(!s) return rows;
-  return rows.filter(row => keys.some(k => normalizeText(row[k]).includes(s)));
+  return normalizeText(
+    document
+      .getElementById("searchInput")
+      ?.value
+  );
 }
 
 function applyLimit(rows){
-  const value = document.getElementById("limitSelect")?.value || "15";
-  if(value === "all") return rows;
-  return rows.slice(0, Number(value));
+
+  const value =
+    document
+      .getElementById("limitSelect")
+      ?.value || "15";
+
+  if(value === "all"){
+
+    return rows;
+  }
+
+  return rows.slice(
+    0,
+    Number(value)
+  );
 }
 
-function setAlert(text, type="ok"){
-  const box = document.getElementById("alertBox");
-  box.className = "alert";
-  if(type === "danger") box.classList.add("danger");
-  if(type === "warn") box.classList.add("warn");
-  box.textContent = text;
+function setAlert(
+  text,
+  type = "ok"
+){
+
+  const box =
+    document
+      .getElementById("alertBox");
+
+  box.className =
+    "alert";
+
+  if(type === "danger"){
+
+    box.classList.add(
+      "danger"
+    );
+  }
+
+  if(type === "warn"){
+
+    box.classList.add(
+      "warn"
+    );
+  }
+
+  box.textContent =
+    text;
 }
 
 function updateClock(){
-  const el = document.getElementById("clockBox");
-  if(!el) return;
-  el.textContent = new Date().toLocaleString("ar-SA", {
-    weekday:"long",
-    year:"numeric",
-    month:"long",
-    day:"numeric",
-    hour:"2-digit",
-    minute:"2-digit"
-  });
-}
 
-setInterval(updateClock, 30000);
-updateClock();
+  const element =
+    document
+      .getElementById("clockBox");
 
-/* Login */
-window.login = () => {
-  const code = document.getElementById("code").value.trim();
-  const error = document.getElementById("loginError");
-
-  if(code !== CODE){
-    error.style.display = "block";
+  if(!element){
     return;
   }
 
-  sessionStorage.setItem("akaz_admin_login", "1");
+  element.textContent =
+    new Date()
+      .toLocaleString(
+        "ar-SA",
+        {
+          weekday:"long",
+          year:"numeric",
+          month:"long",
+          day:"numeric",
+          hour:"2-digit",
+          minute:"2-digit"
+        }
+      );
+}
+
+setInterval(
+  updateClock,
+  30000
+);
+
+updateClock();
+
+/* =========================
+   LOGIN
+========================= */
+
+window.login = function(){
+
+  const code =
+    document
+      .getElementById("code")
+      .value
+      .trim();
+
+  const error =
+    document
+      .getElementById("loginError");
+
+  if(code !== CODE){
+
+    error.style.display =
+      "block";
+
+    return;
+  }
+
+  sessionStorage.setItem(
+    "akaz_admin_login",
+    "1"
+  );
+
   showApp();
 };
 
-window.logout = () => {
-  sessionStorage.removeItem("akaz_admin_login");
+window.logout = function(){
+
+  sessionStorage.removeItem(
+    "akaz_admin_login"
+  );
+
   location.reload();
 };
 
 function showApp(){
-  document.getElementById("loginView").style.display = "none";
-  document.getElementById("appView").style.display = "block";
+
+  document
+    .getElementById("loginView")
+    .style
+    .display =
+    "none";
+
+  document
+    .getElementById("appView")
+    .style
+    .display =
+    "block";
+
   startListeners();
 }
 
-if(sessionStorage.getItem("akaz_admin_login") === "1"){
+if(
+  sessionStorage.getItem(
+    "akaz_admin_login"
+  ) === "1"
+){
+
   showApp();
 }
 
-/* Data */
-function startListeners(){
-  if(unsubscribers.length) return;
+/* =========================
+   PARSE SCHEDULE
+========================= */
 
-  unsubscribers.push(onSnapshot(collection(db,"therapistSchedules"), snap=>{
-    state.sessions = [];
-    snap.forEach(d => state.sessions.push({ id:d.id, ...d.data() }));
-    updateStats();
-    renderCurrentTab();
-  }, err => setAlert("تعذر تحميل الجلسات: " + err.message, "danger")));
+function parseScheduleRecord(record){
 
-  unsubscribers.push(onSnapshot(collection(db,"newAssessments"), snap=>{
-    state.assessments = [];
-    snap.forEach(d => state.assessments.push({ id:d.id, ...d.data() }));
-    updateStats();
-    renderCurrentTab();
-  }, err => setAlert("تعذر تحميل الكشوفات: " + err.message, "danger")));
+  let day =
+    record.day || "";
 
-  unsubscribers.push(onSnapshot(collection(db,"activeDevices"), snap=>{
-    state.online = [];
-    snap.forEach(d => state.online.push({ id:d.id, ...d.data() }));
-    renderCurrentTab();
-  }, err => setAlert("تعذر تحميل الأجهزة المتصلة: " + err.message, "danger")));
+  let slot =
+    record.slot ?? "";
 
-  unsubscribers.push(onSnapshot(collection(db,"activityLogs"), snap=>{
-    state.logs = [];
-    snap.forEach(d => state.logs.push({ id:d.id, ...d.data() }));
-    state.logs.sort((a,b)=>(b.time?.seconds || 0) - (a.time?.seconds || 0));
-    renderCurrentTab();
-  }, err => setAlert("تعذر تحميل سجل العمليات: " + err.message, "danger")));
+  if(!day){
 
-  unsubscribers.push(onSnapshot(collection(db,"approvals"), snap=>{
-    state.approvals = [];
-    snap.forEach(d => state.approvals.push({ id:d.id, ...d.data() }));
-    renderCurrentTab();
-  }, () => {
-    state.approvals = [];
-    renderCurrentTab();
-  }));
+    arabicDays.forEach(
+      dayName=>{
 
-  openTab("overview", document.querySelector(".tab.active"));
-}
+        if(
+          record.id.includes(
+            `_${dayName}_`
+          )
+        ){
 
-window.refreshDashboard = () => {
-  updateStats();
-  renderCurrentTab();
-  setAlert("تم تحديث عرض البيانات", "ok");
-};
-
-function updateStats(){
-  const sessionsTotal = state.sessions.length;
-  const assessmentsTotal = state.assessments.length;
-  const byNameTotal = state.assessments.filter(x => x.type === "name" || x.byName === true).length;
-
-  document.getElementById("sessions").textContent = sessionsTotal;
-  document.getElementById("newCases").textContent = assessmentsTotal;
-  document.getElementById("byName").textContent = byNameTotal;
-
-  const count = {};
-  state.sessions.forEach(x => {
-    const name = x.therapist || x.therapistName || x.name;
-    if(name) count[name] = (count[name] || 0) + 1;
-  });
-
-  let topName = "—";
-  let topCount = 0;
-  Object.keys(count).forEach(name => {
-    if(count[name] > topCount){
-      topName = name;
-      topCount = count[name];
-    }
-  });
-
-  document.getElementById("topTherapist").textContent = topName;
-  document.getElementById("topTherapistNote").textContent = topCount ? `${topCount} جلسة مجدولة` : "لا يوجد بيانات كافية";
-
-  if(assessmentsTotal > 20){
-    setAlert("ضغط عالي اليوم: عدد الكشوفات الجديدة تجاوز 20", "danger");
-  }else if(sessionsTotal > 45){
-    setAlert("تنبيه: عدد الجلسات المجدولة مرتفع ويحتاج متابعة", "warn");
-  }else{
-    setAlert("الوضع مستقر والبيانات تعمل بشكل طبيعي", "ok");
+          day =
+            dayName;
+        }
+      }
+    );
   }
+
+  if(slot === ""){
+
+    const parts =
+      record.id.split("_");
+
+    slot =
+      parts[
+        parts.length - 1
+      ] || "";
+  }
+
+  return {
+
+    ...record,
+
+    sectionLabel:
+      sectionNames[
+        record.section
+      ] ||
+      record.section ||
+      "غير محدد",
+
+    shiftLabel:
+      shiftNames[
+        record.shift
+      ] ||
+      record.shift ||
+      "غير محدد",
+
+    dayLabel:
+      day ||
+      "غير محدد",
+
+    slotLabel:
+      slot
+
+  };
 }
 
-/* Tabs */
-window.openTab = function(tab, el){
-  state.currentTab = tab;
+/* =========================
+   FIREBASE LISTENERS
+========================= */
 
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-  if(el) el.classList.add("active");
+function startListeners(){
 
-  renderCurrentTab();
-};
-
-window.renderCurrentTab = function(){
-  const tab = state.currentTab;
-  if(tab === "overview") renderOverview();
-  if(tab === "schedules") renderSchedules();
-  if(tab === "assessments") renderAssessments();
-  if(tab === "online") renderOnline();
-  if(tab === "logs") renderLogs();
-  if(tab === "analytics") renderAnalytics();
-  if(tab === "approvals") renderApprovals();
-};
-
-function content(html){
-  document.getElementById("tabContent").innerHTML = html;
-}
-
-function renderOverview(){
-  const therapists = {};
-  state.sessions.forEach(x => {
-    const name = x.therapist || x.therapistName || x.name || "غير محدد";
-    therapists[name] = (therapists[name] || 0) + 1;
-  });
-
-  const rows = Object.entries(therapists)
-    .sort((a,b)=>b[1]-a[1])
-    .map(([name,total]) => ({ name, total }));
-
-  const max = Math.max(...rows.map(r=>r.total), 1);
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">نظرة عامة على تشغيل الموقع</h2>
-      <span class="badge">آخر تحديث مباشر من Firebase</span>
-    </div>
-
-    <div class="item">
-      <div>
-        <strong>ملخص سريع</strong>
-        <div class="muted">الجلسات: ${state.sessions.length} | الكشوفات: ${state.assessments.length} | المتصلين: ${state.online.length} | العمليات المسجلة: ${state.logs.length}</div>
-      </div>
-      <span class="pill">Live</span>
-    </div>
-
-    <h3 class="section-title" style="font-size:16px;margin:18px 0 12px">توزيع الجلسات حسب الأخصائي</h3>
-    ${
-      rows.length
-      ? rows.map(r => `
-          <div class="item">
-            <div style="width:100%">
-              <strong>${safeText(r.name)}</strong>
-              <div class="muted">${r.total} جلسة</div>
-              <div class="progress"><span style="width:${Math.round((r.total/max)*100)}%"></span></div>
-            </div>
-          </div>
-        `).join("")
-      : `<div class="empty">لا يوجد بيانات جلسات حتى الآن</div>`
-    }
-  `);
-}
-
-function renderSchedules(){
-  let rows = applySearch(state.sessions, ["therapist","therapistName","name","day","time","department","room"]);
-  rows = applyLimit(rows);
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">الجداول والجلسات</h2>
-      <span class="badge">${rows.length} نتيجة معروضة</span>
-    </div>
-
-    ${rows.length ? `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>الأخصائي</th>
-            <th>القسم</th>
-            <th>اليوم</th>
-            <th>الوقت</th>
-            <th>الغرفة/المكان</th>
-            <th>ملاحظات</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(x => `
-            <tr>
-              <td>${safeText(x.therapist || x.therapistName || x.name)}</td>
-              <td>${safeText(x.department || x.section)}</td>
-              <td>${safeText(x.day || x.date)}</td>
-              <td>${safeText(x.time || x.slot)}</td>
-              <td>${safeText(x.room || x.location)}</td>
-              <td>${safeText(x.note || x.notes)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>` : `<div class="empty">لا توجد جلسات مطابقة للبحث</div>`}
-  `);
-}
-
-function renderAssessments(){
-  let rows = applySearch(state.assessments, ["patient","patientName","therapist","type","status","createdBy"]);
-  rows = applyLimit(rows);
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">الكشوفات الجديدة</h2>
-      <span class="badge">${rows.length} نتيجة معروضة</span>
-    </div>
-
-    ${rows.length ? `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>المريض</th>
-            <th>النوع</th>
-            <th>الأخصائي</th>
-            <th>الحالة</th>
-            <th>المدخل</th>
-            <th>التاريخ</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(x => `
-            <tr>
-              <td>${safeText(x.patient || x.patientName)}</td>
-              <td>${safeText(x.type)}</td>
-              <td>${safeText(x.therapist || x.therapistName)}</td>
-              <td>${safeText(x.status)}</td>
-              <td>${safeText(x.createdBy || x.receptionist)}</td>
-              <td>${formatDate(x.createdAt || x.time || x.date)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>` : `<div class="empty">لا توجد كشوفات مطابقة للبحث</div>`}
-  `);
-}
-
-function renderOnline(){
-  let rows = applySearch(state.online, ["page","device","user","name","lastSeen"]);
-  rows = applyLimit(rows);
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">الأجهزة والمتصلين الآن</h2>
-      <span class="badge">${state.online.length} متصل</span>
-    </div>
-
-    ${
-      rows.length
-      ? rows.map(x => `
-          <div class="item">
-            <div>
-              <strong>${safeText(x.page || "صفحة غير محددة")}</strong>
-              <div class="muted">${safeText(x.user || x.name || x.device)} | آخر ظهور: ${formatDate(x.lastSeen || x.time)}</div>
-            </div>
-            <span class="pill">متصل</span>
-          </div>
-        `).join("")
-      : `<div class="empty">لا يوجد أجهزة متصلة الآن</div>`
-    }
-  `);
-}
-
-function renderLogs(){
-  let rows = applySearch(state.logs, ["page","action","user","name","details"]);
-  rows = applyLimit(rows);
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">سجل جميع العمليات</h2>
-      <span class="badge">${rows.length} عملية معروضة</span>
-    </div>
-
-    ${rows.length ? `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>الوقت</th>
-            <th>المستخدم/الجهاز</th>
-            <th>الصفحة</th>
-            <th>العملية</th>
-            <th>التفاصيل</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(x => `
-            <tr>
-              <td>${formatDate(x.time || x.createdAt)}</td>
-              <td>${safeText(x.user || x.name || x.device)}</td>
-              <td>${safeText(x.page)}</td>
-              <td>${safeText(x.action)}</td>
-              <td>${safeText(x.details || x.note)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>` : `<div class="empty">لا يوجد سجل عمليات حتى الآن</div>`}
-  `);
-}
-
-function renderAnalytics(){
-  const totalSessions = state.sessions.length;
-  const totalAssessments = state.assessments.length;
-  const online = state.online.length;
-  const logs = state.logs.length;
-  const byName = state.assessments.filter(x => x.type === "name" || x.byName === true).length;
-  const byNameRate = totalAssessments ? Math.round((byName / totalAssessments) * 100) : 0;
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">الإحصائيات التشغيلية</h2>
-      <span class="badge">تحليل مباشر</span>
-    </div>
-
-    <div class="stats-grid">
-      <div class="card"><div class="card-title">نسبة الكشوفات بالاسم</div><div class="card-number">${byNameRate}%</div><div class="card-note">${byName} من ${totalAssessments}</div></div>
-      <div class="card"><div class="card-title">متوسط العمليات لكل جلسة</div><div class="card-number">${totalSessions ? (logs / totalSessions).toFixed(1) : 0}</div><div class="card-note">تقريبي حسب السجل</div></div>
-      <div class="card"><div class="card-title">الأجهزة المتصلة</div><div class="card-number">${online}</div><div class="card-note">عدد مباشر</div></div>
-      <div class="card"><div class="card-title">إجمالي العمليات</div><div class="card-number">${logs}</div><div class="card-note">من activityLogs</div></div>
-    </div>
-  `);
-}
-
-function renderApprovals(){
-  let rows = applySearch(state.approvals, ["type","status","approvedBy","requestedBy","note"]);
-  rows = applyLimit(rows);
-
-  content(`
-    <div class="section-head">
-      <h2 class="section-title">الاعتمادات</h2>
-      <span class="badge">${rows.length} اعتماد معروض</span>
-    </div>
-
-    ${rows.length ? `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>النوع</th>
-            <th>الحالة</th>
-            <th>طالب الاعتماد</th>
-            <th>المعتمد</th>
-            <th>التاريخ</th>
-            <th>ملاحظة</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows.map(x => `
-            <tr>
-              <td>${safeText(x.type || x.title)}</td>
-              <td>${safeText(x.status)}</td>
-              <td>${safeText(x.requestedBy)}</td>
-              <td>${safeText(x.approvedBy)}</td>
-              <td>${formatDate(x.time || x.createdAt || x.updatedAt)}</td>
-              <td>${safeText(x.note || x.notes)}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    </div>` : `<div class="empty">لا توجد اعتمادات مسجلة. إذا لم تستخدم collection باسم approvals بيظهر هذا القسم فارغ.</div>`}
-  `);
-}
-
-/* Export */
-window.exportCurrentTab = function(){
-  let rows = [];
-  const tab = state.currentTab;
-
-  if(tab === "schedules") rows = state.sessions;
-  else if(tab === "assessments") rows = state.assessments;
-  else if(tab === "online") rows = state.online;
-  else if(tab === "logs") rows = state.logs;
-  else if(tab === "approvals") rows = state.approvals;
-  else rows = [
-    { label:"sessions", value:state.sessions.length },
-    { label:"assessments", value:state.assessments.length },
-    { label:"online", value:state.online.length },
-    { label:"logs", value:state.logs.length }
-  ];
-
-  if(!rows.length){
-    alert("لا توجد بيانات للتصدير");
+  if(
+    unsubscribers.length
+  ){
     return;
   }
 
-  const keys = Array.from(new Set(rows.flatMap(r => Object.keys(r))));
+  /* جداول الدوام */
+
+  unsubscribers.push(
+
+    onSnapshot(
+
+      collection(
+        db,
+        "workSchedule"
+      ),
+
+      snapshot=>{
+
+        state.workSchedule =
+          [];
+
+        snapshot.forEach(
+          item=>{
+
+            state.workSchedule.push(
+
+              parseScheduleRecord({
+
+                id:
+                  item.id,
+
+                ...item.data()
+
+              })
+
+            );
+          }
+        );
+
+        state.workSchedule.sort(
+          (a,b)=>
+            getTimestamp(
+              b.updatedAt
+            ) -
+            getTimestamp(
+              a.updatedAt
+            )
+        );
+
+        updateManagementSummary();
+
+        renderCurrentTab();
+      },
+
+      error=>{
+
+        setAlert(
+          "تعذر تحميل جداول الدوام: " +
+          error.message,
+          "danger"
+        );
+      }
+    )
+
+  );
+
+  /* الاعتمادات */
+
+  unsubscribers.push(
+
+    onSnapshot(
+
+      collection(
+        db,
+        "workScheduleSettings"
+      ),
+
+      snapshot=>{
+
+        state.scheduleSettings =
+          [];
+
+        snapshot.forEach(
+          item=>{
+
+            state.scheduleSettings.push({
+
+              id:
+                item.id,
+
+              ...item.data()
+
+            });
+          }
+        );
+
+        state.scheduleSettings.sort(
+          (a,b)=>
+            getTimestamp(
+              b.updatedAt
+            ) -
+            getTimestamp(
+              a.updatedAt
+            )
+        );
+
+        updateManagementSummary();
+
+        renderCurrentTab();
+      },
+
+      error=>{
+
+        setAlert(
+          "تعذر تحميل اعتمادات الجداول: " +
+          error.message,
+          "danger"
+        );
+      }
+    )
+
+  );
+
+  /* طلبات تعديل الشفتات */
+
+  unsubscribers.push(
+
+    onSnapshot(
+
+      collection(
+        db,
+        "shiftRequests"
+      ),
+
+      snapshot=>{
+
+        state.shiftRequests =
+          [];
+
+        snapshot.forEach(
+          item=>{
+
+            state.shiftRequests.push({
+
+              id:
+                item.id,
+
+              ...item.data()
+
+            });
+          }
+        );
+
+        updateManagementSummary();
+      }
+
+    )
+
+  );
+
+  /* سجل العمليات */
+
+  unsubscribers.push(
+
+    onSnapshot(
+
+      collection(
+        db,
+        "activityLogs"
+      ),
+
+      snapshot=>{
+
+        state.logs =
+          [];
+
+        snapshot.forEach(
+          item=>{
+
+            state.logs.push({
+
+              id:
+                item.id,
+
+              ...item.data()
+
+            });
+          }
+        );
+
+        state.logs.sort(
+          (a,b)=>
+            getTimestamp(
+              b.time ||
+              b.createdAt
+            ) -
+            getTimestamp(
+              a.time ||
+              a.createdAt
+            )
+        );
+
+        renderCurrentTab();
+      }
+
+    )
+
+  );
+
+  openTab(
+    "scheduleChanges",
+    document.querySelector(
+      ".tab.active"
+    )
+  );
+}
+
+/* =========================
+   MANAGEMENT SUMMARY
+========================= */
+
+function updateManagementSummary(){
+
+  const count =
+    state.workSchedule.length;
+
+  document
+    .getElementById(
+      "workScheduleCount"
+    )
+    .textContent =
+    count;
+
+  const requestCount =
+    state.shiftRequests.filter(
+      item=>
+        item.status === "new"
+    ).length;
+
+  document
+    .getElementById(
+      "newShiftRequests"
+    )
+    .textContent =
+    requestCount;
+
+  /* آخر تعديل جدول */
+
+  const latestSchedule =
+    state.workSchedule[0];
+
+  if(latestSchedule){
+
+    document
+      .getElementById(
+        "lastScheduleEdit"
+      )
+      .textContent =
+      `${latestSchedule.sectionLabel} - ${safeText(latestSchedule.employee)}`;
+
+    document
+      .getElementById(
+        "lastScheduleEditNote"
+      )
+      .textContent =
+      `${latestSchedule.dayLabel} | ${latestSchedule.shiftLabel} | ${formatDate(latestSchedule.updatedAt)}`;
+
+  }else{
+
+    document
+      .getElementById(
+        "lastScheduleEdit"
+      )
+      .textContent =
+      "لا توجد بيانات";
+
+    document
+      .getElementById(
+        "lastScheduleEditNote"
+      )
+      .textContent =
+      "لم يتم العثور على تعديلات محفوظة";
+  }
+
+  /* آخر اعتماد */
+
+  const latestApproval =
+    state.scheduleSettings[0];
+
+  if(latestApproval){
+
+    const section =
+      sectionNames[
+        latestApproval.section
+      ] ||
+      sectionNames[
+        latestApproval.id
+      ] ||
+      latestApproval.id;
+
+    document
+      .getElementById(
+        "lastApproval"
+      )
+      .textContent =
+      `${section} - ${latestApproval.approved ? "معتمد" : "غير معتمد"}`;
+
+    document
+      .getElementById(
+        "lastApprovalNote"
+      )
+      .textContent =
+      `${latestApproval.startDate || "—"} إلى ${latestApproval.endDate || "—"} | آخر تعديل ${formatDate(latestApproval.updatedAt)}`;
+
+  }else{
+
+    document
+      .getElementById(
+        "lastApproval"
+      )
+      .textContent =
+      "لا توجد اعتمادات";
+
+    document
+      .getElementById(
+        "lastApprovalNote"
+      )
+      .textContent =
+      "—";
+  }
+
+  renderScheduleWatch();
+
+  renderLatestBoxes();
+
+  updateMainAlert();
+}
+
+/* =========================
+   APPROVAL CARDS
+========================= */
+
+function renderScheduleWatch(){
+
+  const box =
+    document
+      .getElementById(
+        "scheduleWatch"
+      );
+
+  const today =
+    todayISO();
+
+  const sections = [
+    "men",
+    "women",
+    "reception"
+  ];
+
+  box.innerHTML =
+    sections
+      .map(
+        section=>{
+
+          const settings =
+            state.scheduleSettings.find(
+              item=>
+                item.section === section ||
+                item.id === section
+            );
+
+          let cardClass =
+            "";
+
+          let stateClass =
+            "orange";
+
+          let status =
+            "غير معتمد";
+
+          let dates =
+            "لم يتم تحديد فترة اعتماد";
+
+          if(
+            settings &&
+            settings.approved &&
+            settings.startDate &&
+            settings.endDate
+          ){
+
+            dates =
+              `من ${settings.startDate} إلى ${settings.endDate}`;
+
+            if(
+              today >
+              settings.endDate
+            ){
+
+              cardClass =
+                "expired";
+
+              stateClass =
+                "red";
+
+              status =
+                "⚠️ انتهى الاعتماد - يرجى التجديد";
+
+            }else if(
+              today <
+              settings.startDate
+            ){
+
+              stateClass =
+                "orange";
+
+              status =
+                "اعتماد قادم ولم يبدأ بعد";
+
+            }else{
+
+              cardClass =
+                "active";
+
+              stateClass =
+                "green";
+
+              status =
+                "✓ الاعتماد ساري";
+            }
+          }
+
+          return `
+            <div class="watch-card ${cardClass}">
+
+              <div class="watch-title">
+                ${sectionNames[section]}
+              </div>
+
+              <div class="watch-state ${stateClass}">
+                ${status}
+              </div>
+
+              <div class="watch-date">
+                ${dates}
+              </div>
+
+              <div class="watch-date">
+                آخر تعديل على الاعتماد:
+                ${settings ? formatDate(settings.updatedAt) : "—"}
+              </div>
+
+            </div>
+          `;
+        }
+      )
+      .join("");
+}
+
+/* =========================
+   LATEST BOXES
+========================= */
+
+function renderLatestBoxes(){
+
+  const scheduleBox =
+    document
+      .getElementById(
+        "latestScheduleChanges"
+      );
+
+  const approvalBox =
+    document
+      .getElementById(
+        "latestApprovalChanges"
+      );
+
+  const latestSchedules =
+    state.workSchedule.slice(
+      0,
+      5
+    );
+
+  if(
+    latestSchedules.length
+  ){
+
+    scheduleBox.innerHTML =
+      latestSchedules
+        .map(
+          item=>`
+            <div class="latest-line">
+
+              <strong>
+                ${item.sectionLabel}
+                —
+                ${safeText(item.employee)}
+              </strong>
+
+              <div class="meta">
+                ${item.dayLabel}
+                |
+                ${item.shiftLabel}
+                |
+                الخانة ${safeText(item.slotLabel)}
+              </div>
+
+              <div class="stamp">
+                ${formatDate(item.updatedAt)}
+              </div>
+
+            </div>
+          `
+        )
+        .join("");
+
+  }else{
+
+    scheduleBox.innerHTML =
+      `
+        <div class="empty">
+          لا توجد تعديلات محفوظة
+        </div>
+      `;
+  }
+
+  const latestApprovals =
+    state.scheduleSettings.slice(
+      0,
+      5
+    );
+
+  if(
+    latestApprovals.length
+  ){
+
+    approvalBox.innerHTML =
+      latestApprovals
+        .map(
+          item=>{
+
+            const section =
+              sectionNames[
+                item.section
+              ] ||
+              sectionNames[
+                item.id
+              ] ||
+              item.id;
+
+            return `
+              <div class="latest-line">
+
+                <strong>
+                  ${section}
+                  —
+                  ${item.approved ? "معتمد" : "إلغاء اعتماد"}
+                </strong>
+
+                <div class="meta">
+                  ${item.startDate || "—"}
+                  إلى
+                  ${item.endDate || "—"}
+                </div>
+
+                <div class="stamp">
+                  ${formatDate(item.updatedAt)}
+                </div>
+
+              </div>
+            `;
+          }
+        )
+        .join("");
+
+  }else{
+
+    approvalBox.innerHTML =
+      `
+        <div class="empty">
+          لا توجد بيانات اعتماد
+        </div>
+      `;
+  }
+}
+
+/* =========================
+   MAIN ALERT
+========================= */
+
+function updateMainAlert(){
+
+  const today =
+    todayISO();
+
+  const expired =
+    state.scheduleSettings.filter(
+      item=>
+        item.approved &&
+        item.endDate &&
+        today > item.endDate
+    );
+
+  if(
+    expired.length
+  ){
+
+    const names =
+      expired
+        .map(
+          item=>
+            sectionNames[
+              item.section
+            ] ||
+            sectionNames[
+              item.id
+            ] ||
+            item.id
+        )
+        .join("، ");
+
+    setAlert(
+      `⚠️ يوجد اعتماد منتهي ويحتاج تجديد: ${names}`,
+      "danger"
+    );
+
+    return;
+  }
+
+  const latest =
+    state.workSchedule[0];
+
+  if(latest){
+
+    setAlert(
+      `آخر تعديل على الدوام: ${latest.sectionLabel} - ${latest.dayLabel} - ${latest.shiftLabel} - ${safeText(latest.employee)} - ${formatDate(latest.updatedAt)}`,
+      "ok"
+    );
+
+  }else{
+
+    setAlert(
+      "لا توجد بيانات في جدول الدوام حتى الآن",
+      "warn"
+    );
+  }
+}
+
+/* =========================
+   REFRESH
+========================= */
+
+window.refreshDashboard = function(){
+
+  updateManagementSummary();
+
+  renderCurrentTab();
+
+  setAlert(
+    "تم تحديث عرض البيانات",
+    "ok"
+  );
+};
+
+/* =========================
+   TABS
+========================= */
+
+window.openTab =
+function(
+  tab,
+  element
+){
+
+  state.currentTab =
+    tab;
+
+  document
+    .querySelectorAll(
+      ".tab"
+    )
+    .forEach(
+      item=>
+        item.classList.remove(
+          "active"
+        )
+    );
+
+  if(element){
+
+    element
+      .classList
+      .add(
+        "active"
+      );
+  }
+
+  renderCurrentTab();
+};
+
+window.renderCurrentTab =
+function(){
+
+  if(
+    state.currentTab ===
+    "scheduleChanges"
+  ){
+
+    renderScheduleChanges();
+  }
+
+  if(
+    state.currentTab ===
+    "approvals"
+  ){
+
+    renderApprovals();
+  }
+
+  if(
+    state.currentTab ===
+    "overview"
+  ){
+
+    renderOverview();
+  }
+
+  if(
+    state.currentTab ===
+    "logs"
+  ){
+
+    renderLogs();
+  }
+};
+
+function content(html){
+
+  document
+    .getElementById(
+      "tabContent"
+    )
+    .innerHTML =
+    html;
+}
+
+/* =========================
+   SCHEDULE CHANGES
+========================= */
+
+function renderScheduleChanges(){
+
+  const search =
+    getSearch();
+
+  let rows =
+    state.workSchedule.filter(
+      item=>{
+
+        if(!search){
+          return true;
+        }
+
+        const text =
+          `
+          ${item.employee || ""}
+          ${item.sectionLabel || ""}
+          ${item.shiftLabel || ""}
+          ${item.dayLabel || ""}
+          ${item.id || ""}
+          `
+          .toLowerCase();
+
+        return text.includes(
+          search
+        );
+      }
+    );
+
+  rows =
+    applyLimit(rows);
+
+  const latest =
+    state.workSchedule[0];
+
+  content(`
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        آخر تعديلات جداول الدوام
+      </h2>
+
+      <span class="badge">
+        ${rows.length} سجل معروض
+      </span>
+
+    </div>
+
+    ${
+      latest
+      ?
+      `
+        <div class="big-change">
+
+          <h3>
+            آخر تعديل موجود في النظام
+          </h3>
+
+          <div>
+            <strong>القسم:</strong>
+            ${latest.sectionLabel}
+          </div>
+
+          <div>
+            <strong>اليوم:</strong>
+            ${latest.dayLabel}
+          </div>
+
+          <div>
+            <strong>الشفت:</strong>
+            ${latest.shiftLabel}
+          </div>
+
+          <div>
+            <strong>الموظف:</strong>
+            ${safeText(latest.employee)}
+          </div>
+
+          <div class="date">
+            التاريخ والوقت:
+            ${formatDate(latest.updatedAt)}
+          </div>
+
+        </div>
+      `
+      :
+      ""
+    }
+
+    ${
+      rows.length
+      ?
+      `
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  آخر تعديل
+                </th>
+
+                <th>
+                  القسم
+                </th>
+
+                <th>
+                  اليوم
+                </th>
+
+                <th>
+                  نوع الشفت
+                </th>
+
+                <th>
+                  الموظف
+                </th>
+
+                <th>
+                  الخانة
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                rows
+                  .map(
+                    item=>`
+                      <tr>
+
+                        <td>
+                          <strong>
+                            ${formatDate(item.updatedAt)}
+                          </strong>
+                        </td>
+
+                        <td>
+                          ${item.sectionLabel}
+                        </td>
+
+                        <td>
+                          ${item.dayLabel}
+                        </td>
+
+                        <td>
+                          ${item.shiftLabel}
+                        </td>
+
+                        <td>
+                          ${safeText(item.employee)}
+                        </td>
+
+                        <td>
+                          ${safeText(item.slotLabel)}
+                        </td>
+
+                      </tr>
+                    `
+                  )
+                  .join("")
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+      `
+      :
+      `
+        <div class="empty">
+          لا توجد تعديلات مطابقة
+        </div>
+      `
+    }
+
+    <div
+      class="muted"
+      style="margin-top:14px"
+    >
+      يعرض هذا القسم آخر وقت محفوظ لكل خانة موجودة حاليًا في جدول الدوام.
+    </div>
+
+  `);
+}
+
+/* =========================
+   APPROVALS
+========================= */
+
+function renderApprovals(){
+
+  const today =
+    todayISO();
+
+  let rows =
+    state.scheduleSettings.map(
+      item=>({
+
+        ...item,
+
+        sectionLabel:
+          sectionNames[
+            item.section
+          ] ||
+          sectionNames[
+            item.id
+          ] ||
+          item.id
+
+      })
+    );
+
+  rows =
+    applyLimit(rows);
+
+  content(`
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        اعتمادات جداول الدوام
+      </h2>
+
+      <span class="badge">
+        ${rows.length} قسم
+      </span>
+
+    </div>
+
+    ${
+      rows.length
+      ?
+      `
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  القسم
+                </th>
+
+                <th>
+                  الحالة
+                </th>
+
+                <th>
+                  بداية الاعتماد
+                </th>
+
+                <th>
+                  نهاية الاعتماد
+                </th>
+
+                <th>
+                  آخر تعديل
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                rows
+                  .map(
+                    item=>{
+
+                      let status =
+                        "غير معتمد";
+
+                      let pillClass =
+                        "red";
+
+                      if(
+                        item.approved &&
+                        item.startDate &&
+                        item.endDate
+                      ){
+
+                        if(
+                          today >
+                          item.endDate
+                        ){
+
+                          status =
+                            "منتهي - يرجى التجديد";
+
+                          pillClass =
+                            "red";
+
+                        }else if(
+                          today <
+                          item.startDate
+                        ){
+
+                          status =
+                            "معتمد ولم يبدأ";
+
+                          pillClass =
+                            "";
+
+                        }else{
+
+                          status =
+                            "ساري";
+
+                          pillClass =
+                            "green";
+                        }
+                      }
+
+                      return `
+                        <tr>
+
+                          <td>
+                            <strong>
+                              ${item.sectionLabel}
+                            </strong>
+                          </td>
+
+                          <td>
+                            <span class="pill ${pillClass}">
+                              ${status}
+                            </span>
+                          </td>
+
+                          <td>
+                            ${safeText(item.startDate)}
+                          </td>
+
+                          <td>
+                            ${safeText(item.endDate)}
+                          </td>
+
+                          <td>
+                            <strong>
+                              ${formatDate(item.updatedAt)}
+                            </strong>
+                          </td>
+
+                        </tr>
+                      `;
+                    }
+                  )
+                  .join("")
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+      `
+      :
+      `
+        <div class="empty">
+          لا توجد اعتمادات مسجلة
+        </div>
+      `
+    }
+
+  `);
+}
+
+/* =========================
+   OVERVIEW
+========================= */
+
+function renderOverview(){
+
+  const latestSchedule =
+    state.workSchedule[0];
+
+  const latestApproval =
+    state.scheduleSettings[0];
+
+  content(`
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        نظرة عامة إدارية
+      </h2>
+
+      <span class="badge">
+        بيانات مباشرة من Firebase
+      </span>
+
+    </div>
+
+    <div class="big-change">
+
+      <h3>
+        آخر تعديل على الدوام
+      </h3>
+
+      ${
+        latestSchedule
+        ?
+        `
+          ${latestSchedule.sectionLabel}
+          |
+          ${latestSchedule.dayLabel}
+          |
+          ${latestSchedule.shiftLabel}
+          |
+          ${safeText(latestSchedule.employee)}
+          <div class="date">
+            ${formatDate(latestSchedule.updatedAt)}
+          </div>
+        `
+        :
+        "لا توجد بيانات"
+      }
+
+    </div>
+
+    <div class="big-change">
+
+      <h3>
+        آخر تعديل على الاعتماد
+      </h3>
+
+      ${
+        latestApproval
+        ?
+        `
+          ${
+            sectionNames[
+              latestApproval.section
+            ] ||
+            sectionNames[
+              latestApproval.id
+            ] ||
+            latestApproval.id
+          }
+          |
+          ${latestApproval.startDate || "—"}
+          إلى
+          ${latestApproval.endDate || "—"}
+
+          <div class="date">
+            ${formatDate(latestApproval.updatedAt)}
+          </div>
+        `
+        :
+        "لا توجد بيانات"
+      }
+
+    </div>
+
+  `);
+}
+
+/* =========================
+   LOGS
+========================= */
+
+function renderLogs(){
+
+  const search =
+    getSearch();
+
+  let rows =
+    state.logs.filter(
+      item=>{
+
+        if(!search){
+          return true;
+        }
+
+        const text =
+          `
+          ${item.page || ""}
+          ${item.action || ""}
+          ${item.user || ""}
+          ${item.name || ""}
+          ${item.details || ""}
+          `
+          .toLowerCase();
+
+        return text.includes(
+          search
+        );
+      }
+    );
+
+  rows =
+    applyLimit(rows);
+
+  content(`
+
+    <div class="section-head">
+
+      <h2 class="section-title">
+        سجل العمليات
+      </h2>
+
+      <span class="badge">
+        ${rows.length} عملية
+      </span>
+
+    </div>
+
+    ${
+      rows.length
+      ?
+      `
+        <div class="table-wrap">
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  الوقت
+                </th>
+
+                <th>
+                  المستخدم / الجهاز
+                </th>
+
+                <th>
+                  الصفحة
+                </th>
+
+                <th>
+                  العملية
+                </th>
+
+                <th>
+                  التفاصيل
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              ${
+                rows
+                  .map(
+                    item=>`
+                      <tr>
+
+                        <td>
+                          ${formatDate(
+                            item.time ||
+                            item.createdAt
+                          )}
+                        </td>
+
+                        <td>
+                          ${safeText(
+                            item.user ||
+                            item.name ||
+                            item.device
+                          )}
+                        </td>
+
+                        <td>
+                          ${safeText(item.page)}
+                        </td>
+
+                        <td>
+                          ${safeText(item.action)}
+                        </td>
+
+                        <td>
+                          ${safeText(
+                            item.details ||
+                            item.note
+                          )}
+                        </td>
+
+                      </tr>
+                    `
+                  )
+                  .join("")
+              }
+
+            </tbody>
+
+          </table>
+
+        </div>
+      `
+      :
+      `
+        <div class="empty">
+          لا يوجد سجل عمليات
+        </div>
+      `
+    }
+
+  `);
+}
+
+/* =========================
+   EXPORT
+========================= */
+
+window.exportCurrentTab =
+function(){
+
+  let rows =
+    [];
+
+  const tab =
+    state.currentTab;
+
+  if(
+    tab ===
+    "scheduleChanges"
+  ){
+
+    rows =
+      state.workSchedule.map(
+        item=>({
+
+          lastUpdate:
+            formatDate(
+              item.updatedAt
+            ),
+
+          section:
+            item.sectionLabel,
+
+          day:
+            item.dayLabel,
+
+          shift:
+            item.shiftLabel,
+
+          employee:
+            item.employee,
+
+          slot:
+            item.slotLabel
+
+        })
+      );
+
+  }else if(
+    tab ===
+    "approvals"
+  ){
+
+    rows =
+      state.scheduleSettings.map(
+        item=>({
+
+          section:
+            sectionNames[
+              item.section
+            ] ||
+            sectionNames[
+              item.id
+            ] ||
+            item.id,
+
+          approved:
+            item.approved,
+
+          startDate:
+            item.startDate,
+
+          endDate:
+            item.endDate,
+
+          lastUpdate:
+            formatDate(
+              item.updatedAt
+            )
+
+        })
+      );
+
+  }else{
+
+    rows =
+      state.logs;
+  }
+
+  if(
+    !rows.length
+  ){
+
+    alert(
+      "لا توجد بيانات للتصدير"
+    );
+
+    return;
+  }
+
+  const keys =
+    Array.from(
+      new Set(
+        rows.flatMap(
+          row=>
+            Object.keys(row)
+        )
+      )
+    );
+
   const csv = [
+
     keys.join(","),
-    ...rows.map(row => keys.map(k => `"${String(row[k] ?? "").replaceAll('"','""')}"`).join(","))
+
+    ...rows.map(
+      row=>
+        keys
+          .map(
+            key=>
+              `"${String(
+                row[key] ?? ""
+              ).replaceAll(
+                '"',
+                '""'
+              )}"`
+          )
+          .join(",")
+    )
+
   ].join("\n");
 
-  const blob = new Blob(["\ufeff" + csv], { type:"text/csv;charset=utf-8;" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `akaz-${tab}-${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
+  const blob =
+    new Blob(
+      [
+        "\ufeff" +
+        csv
+      ],
+      {
+        type:
+          "text/csv;charset=utf-8;"
+      }
+    );
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+  link.href =
+    url;
+
+  link.download =
+    `akaz-${tab}-${new Date().toISOString().slice(0,10)}.csv`;
+
+  link.click();
+
+  URL.revokeObjectURL(
+    url
+  );
 };
+
 </script>
 
-<!-- إذا عندك ملف tracker.js للتتبع خله بنفس المجلد -->
-<script type="module" src="tracker.js"></script>
+<script
+  type="module"
+  src="tracker.js"
+></script>
 
 </body>
 </html>
