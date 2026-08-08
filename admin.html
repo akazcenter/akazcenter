@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>لوحة التحكم | مركز عكاز للعلاج الطبيعي</title>
+<link rel="icon" type="image/png" href="./logo.png">
 
 <style>
 :root{
@@ -67,18 +68,24 @@ button{
   box-shadow:var(--shadow);
 }
 
-.logo-badge{
-  width:70px;
-  height:70px;
-  border-radius:22px;
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
+.logo-box{
+  width:82px;
+  height:82px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:26px;
-  font-weight:900;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
   margin:0 auto 16px;
+  box-shadow:0 12px 28px rgba(15,23,42,.10);
+  padding:8px;
+}
+
+.logo-box img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
 
 .login-card h2{
@@ -158,6 +165,21 @@ button{
   justify-content:space-between;
   gap:18px;
   flex-wrap:wrap;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.brand-logo{
+  width:62px;
+  height:62px;
+  border-radius:17px;
+  background:white;
+  padding:6px;
+  object-fit:contain;
 }
 
 .brand h1{
@@ -240,7 +262,7 @@ button{
 }
 
 /* =========================
-   APPROVAL STATUS
+   CURRENT APPROVAL STATUS
 ========================= */
 
 .schedule-watch{
@@ -300,7 +322,7 @@ button{
 }
 
 /* =========================
-   MAIN CARDS
+   STATS
 ========================= */
 
 .stats-grid{
@@ -496,7 +518,7 @@ button{
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:950px;
+  min-width:980px;
 }
 
 th,
@@ -524,6 +546,7 @@ tr:hover td{
   background:#f8fafc;
   border:1px dashed var(--line);
   border-radius:18px;
+  line-height:1.9;
 }
 
 .big-change{
@@ -570,6 +593,34 @@ tr:hover td{
   color:#075985;
 }
 
+.pill.gray{
+  background:#f1f5f9;
+  color:#475569;
+}
+
+.source-tag{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.source-current{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.source-history{
+  background:#e0f2fe;
+  color:#075985;
+}
+
+.source-log{
+  background:#fef3c7;
+  color:#92400e;
+}
+
 .muted{
   color:var(--muted);
   font-size:12px;
@@ -577,12 +628,12 @@ tr:hover td{
 }
 
 /* =========================
-   APPROVAL HISTORY FILTER
+   APPROVAL FILTER
 ========================= */
 
 .approval-filter{
   display:grid;
-  grid-template-columns:220px 1fr 1fr 160px;
+  grid-template-columns:210px 1fr 1fr 160px;
   gap:10px;
   padding:14px;
   margin-bottom:15px;
@@ -599,7 +650,7 @@ tr:hover td{
   font-weight:900;
 }
 
-.approval-filter .filter-btn{
+.filter-btn{
   align-self:end;
   height:45px;
   border-radius:12px;
@@ -614,12 +665,6 @@ tr:hover td{
   justify-content:space-between;
   gap:10px;
   margin:20px 0 12px;
-}
-
-.history-title h3{
-  margin:0;
-  color:var(--blue);
-  font-size:17px;
 }
 
 /* =========================
@@ -667,6 +712,11 @@ tr:hover td{
     font-size:20px;
   }
 
+  .brand-logo{
+    width:52px;
+    height:52px;
+  }
+
   .main{
     padding:0 12px 24px;
   }
@@ -686,20 +736,20 @@ tr:hover td{
 
 <div class="layout">
 
+  <!-- LOGIN -->
+
   <div id="loginView" class="login-wrap">
 
     <div class="login-card">
 
-      <div class="logo-badge">
-        ع
+      <div class="logo-box">
+        <img src="logo.png" alt="مركز عكاز">
       </div>
 
-      <h2>
-        دخول الإدارة
-      </h2>
+      <h2>دخول الإدارة</h2>
 
       <p>
-        متابعة جداول الموظفين وآخر التعديلات والاعتمادات.
+        متابعة جداول الموظفين، آخر التعديلات، واعتمادات الجداول.
       </p>
 
       <input
@@ -727,6 +777,8 @@ tr:hover td{
 
   </div>
 
+  <!-- APP -->
+
   <div id="appView" class="app">
 
     <header class="topbar">
@@ -735,13 +787,23 @@ tr:hover td{
 
         <div class="brand">
 
-          <h1>
-            لوحة التحكم - مركز عكاز للعلاج الطبيعي
-          </h1>
+          <img
+            src="logo.png"
+            class="brand-logo"
+            alt="مركز عكاز"
+          >
 
-          <span>
-            متابعة مباشرة للجداول وآخر التعديلات وأرشيف الاعتمادات
-          </span>
+          <div>
+
+            <h1>
+              لوحة التحكم - مركز عكاز للعلاج الطبيعي
+            </h1>
+
+            <span>
+              متابعة مباشرة للجداول وآخر التعديلات واعتمادات الدوام
+            </span>
+
+          </div>
 
         </div>
 
@@ -826,7 +888,7 @@ tr:hover td{
         <div class="card">
 
           <div class="card-title">
-            آخر تعديل على اعتماد الجدول
+            آخر اعتماد / تعديل اعتماد
           </div>
 
           <div
@@ -859,7 +921,7 @@ tr:hover td{
           </div>
 
           <div class="card-note">
-            البيانات الحالية في جدول الدوام
+            البيانات الحالية في workSchedule
           </div>
 
         </div>
@@ -867,18 +929,18 @@ tr:hover td{
         <div class="card">
 
           <div class="card-title">
-            طلبات تعديل الشفتات الجديدة
+            سجلات الاعتماد المكتشفة
           </div>
 
           <div
             class="card-number"
-            id="newShiftRequests"
+            id="approvalRecordsCount"
           >
             0
           </div>
 
           <div class="card-note">
-            طلبات لم تتم مراجعتها بعد
+            من الاعتماد الحالي + الأرشيف + سجل العمليات
           </div>
 
         </div>
@@ -900,7 +962,7 @@ tr:hover td{
         <div class="latest-box">
 
           <h3>
-            ✅ آخر الاعتمادات
+            ✅ آخر عمليات الاعتماد
           </h3>
 
           <div id="latestApprovalChanges"></div>
@@ -914,7 +976,7 @@ tr:hover td{
         <input
           id="searchInput"
           class="field"
-          placeholder="بحث بالاسم أو القسم أو اليوم أو الشفت..."
+          placeholder="بحث بالاسم أو القسم أو التاريخ أو الشفت..."
           oninput="renderCurrentTab()"
         >
 
@@ -1006,6 +1068,10 @@ import {
   onSnapshot
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+/* =========================
+   FIREBASE
+========================= */
+
 const app = initializeApp({
 
   apiKey:
@@ -1034,6 +1100,10 @@ const db =
 const CODE =
   "164321";
 
+/* =========================
+   STATE
+========================= */
+
 const state = {
 
   currentTab:
@@ -1052,12 +1122,19 @@ const state = {
     [],
 
   logs:
+    [],
+
+  combinedApprovals:
     []
 
 };
 
 const unsubscribers =
   [];
+
+/* =========================
+   LABELS
+========================= */
 
 const sectionNames = {
 
@@ -1089,15 +1166,17 @@ const shiftNames = {
 };
 
 const arabicDays = [
-
   "السبت",
   "الأحد",
   "الاثنين",
   "الثلاثاء",
   "الأربعاء",
   "الخميس"
-
 ];
+
+/* =========================
+   HELPERS
+========================= */
 
 function safeText(value){
 
@@ -1137,7 +1216,8 @@ function dateObject(value){
     }
 
     if(
-      typeof value.toDate === "function"
+      typeof value.toDate ===
+      "function"
     ){
 
       return value.toDate();
@@ -1244,6 +1324,10 @@ function setAlert(
     document
       .getElementById("alertBox");
 
+  if(!box){
+    return;
+  }
+
   box.className =
     "alert";
 
@@ -1291,7 +1375,12 @@ setInterval(
 
 updateClock();
 
-window.login = function(){
+/* =========================
+   LOGIN
+========================= */
+
+window.login =
+function(){
 
   const code =
     document
@@ -1319,7 +1408,8 @@ window.login = function(){
   showApp();
 };
 
-window.logout = function(){
+window.logout =
+function(){
 
   sessionStorage.removeItem(
     "akaz_admin_login"
@@ -1354,6 +1444,10 @@ if(
   showApp();
 }
 
+/* =========================
+   WORK SCHEDULE PARSER
+========================= */
+
 function parseScheduleRecord(record){
 
   let day =
@@ -1368,10 +1462,12 @@ function parseScheduleRecord(record){
       dayName=>{
 
         if(
-          record.id.includes(
-            `_${dayName}_`
-          )
+          String(record.id)
+            .includes(
+              `_${dayName}_`
+            )
         ){
+
           day =
             dayName;
         }
@@ -1382,7 +1478,8 @@ function parseScheduleRecord(record){
   if(slot === ""){
 
     const parts =
-      record.id.split("_");
+      String(record.id)
+        .split("_");
 
     slot =
       parts[
@@ -1418,6 +1515,403 @@ function parseScheduleRecord(record){
   };
 }
 
+/* =========================
+   SECTION DETECTION
+========================= */
+
+function detectSectionFromText(text){
+
+  const value =
+    normalizeText(text);
+
+  if(
+    value.includes("women") ||
+    value.includes("نساء") ||
+    value.includes("النساء")
+  ){
+    return "women";
+  }
+
+  if(
+    value.includes("men") ||
+    value.includes("رجال") ||
+    value.includes("الرجال")
+  ){
+    return "men";
+  }
+
+  if(
+    value.includes("reception") ||
+    value.includes("استقبال") ||
+    value.includes("الاستقبال")
+  ){
+    return "reception";
+  }
+
+  return "";
+}
+
+/* =========================
+   EXTRACT YYYY-MM-DD DATES
+========================= */
+
+function extractDatesFromText(text){
+
+  const value =
+    String(text || "");
+
+  const matches =
+    value.match(
+      /\b20\d{2}[-\/]\d{1,2}[-\/]\d{1,2}\b/g
+    ) || [];
+
+  return matches.map(
+    item=>{
+
+      const parts =
+        item.split(
+          /[-\/]/
+        );
+
+      const y =
+        parts[0];
+
+      const m =
+        String(
+          parts[1]
+        ).padStart(
+          2,
+          "0"
+        );
+
+      const d =
+        String(
+          parts[2]
+        ).padStart(
+          2,
+          "0"
+        );
+
+      return `${y}-${m}-${d}`;
+    }
+  );
+}
+
+/* =========================
+   APPROVAL LOG DETECTION
+========================= */
+
+function isApprovalRelatedLog(log){
+
+  const text =
+    normalizeText(
+      `
+      ${log.page || ""}
+      ${log.action || ""}
+      ${log.details || ""}
+      ${log.note || ""}
+      ${log.title || ""}
+      ${log.type || ""}
+      `
+    );
+
+  const hasApprovalWord =
+    text.includes("اعتماد") ||
+    text.includes("approve") ||
+    text.includes("approved") ||
+    text.includes("approval");
+
+  const hasScheduleWord =
+    text.includes("دوام") ||
+    text.includes("جدول") ||
+    text.includes("schedule") ||
+    text.includes("work-schedule") ||
+    text.includes("workschedule");
+
+  return (
+    hasApprovalWord &&
+    hasScheduleWord
+  );
+}
+
+/* =========================
+   CONVERT LOG TO APPROVAL
+========================= */
+
+function convertLogToApproval(log){
+
+  const allText =
+    `
+    ${log.page || ""}
+    ${log.action || ""}
+    ${log.details || ""}
+    ${log.note || ""}
+    ${log.title || ""}
+    ${log.type || ""}
+    `;
+
+  const dates =
+    extractDatesFromText(
+      allText
+    );
+
+  let startDate =
+    log.startDate ||
+    log.approvalStart ||
+    log.fromDate ||
+    dates[0] ||
+    "";
+
+  let endDate =
+    log.endDate ||
+    log.approvalEnd ||
+    log.toDate ||
+    dates[1] ||
+    "";
+
+  const section =
+    log.section ||
+    detectSectionFromText(
+      allText
+    );
+
+  const lowered =
+    normalizeText(
+      allText
+    );
+
+  const cancelled =
+    lowered.includes("إلغاء اعتماد") ||
+    lowered.includes("cancel approval") ||
+    lowered.includes("cancelapproval");
+
+  return {
+
+    id:
+      `log_${log.id}`,
+
+    section,
+
+    startDate,
+
+    endDate,
+
+    approved:
+      !cancelled,
+
+    action:
+      cancelled
+        ? "إلغاء اعتماد"
+        : "اعتماد / تعديل اعتماد",
+
+    eventTime:
+      log.time ||
+      log.createdAt ||
+      log.updatedAt,
+
+    source:
+      "activityLogs",
+
+    originalLog:
+      log
+
+  };
+}
+
+/* =========================
+   BUILD COMBINED APPROVALS
+========================= */
+
+function rebuildCombinedApprovals(){
+
+  const rows =
+    [];
+
+  /* 1 — الاعتماد الحالي */
+
+  state.scheduleSettings.forEach(
+    item=>{
+
+      rows.push({
+
+        id:
+          `current_${item.id}`,
+
+        section:
+          item.section ||
+          item.id,
+
+        startDate:
+          item.startDate || "",
+
+        endDate:
+          item.endDate || "",
+
+        approved:
+          item.approved !== false,
+
+        action:
+          item.approved === false
+            ? "إلغاء اعتماد"
+            : "اعتماد حالي",
+
+        eventTime:
+          item.updatedAt,
+
+        source:
+          "workScheduleSettings"
+
+      });
+    }
+  );
+
+  /* 2 — الأرشيف المستقل */
+
+  state.approvalHistory.forEach(
+    item=>{
+
+      rows.push({
+
+        id:
+          `history_${item.id}`,
+
+        section:
+          item.section || "",
+
+        startDate:
+          item.startDate || "",
+
+        endDate:
+          item.endDate || "",
+
+        approved:
+          item.approved !== false,
+
+        action:
+          item.action ||
+          (
+            item.approved === false
+              ? "إلغاء اعتماد"
+              : "اعتماد"
+          ),
+
+        eventTime:
+          item.approvedAt ||
+          item.createdAt ||
+          item.updatedAt,
+
+        source:
+          "workScheduleApprovalHistory"
+
+      });
+    }
+  );
+
+  /* 3 — سجل العمليات القديم */
+
+  state.logs
+    .filter(
+      isApprovalRelatedLog
+    )
+    .forEach(
+      log=>{
+
+        rows.push(
+          convertLogToApproval(
+            log
+          )
+        );
+      }
+    );
+
+  /* =========================
+     إزالة التكرار
+  ========================= */
+
+  const unique =
+    [];
+
+  const fingerprints =
+    new Set();
+
+  rows
+    .sort(
+      (a,b)=>
+        getTimestamp(
+          b.eventTime
+        ) -
+        getTimestamp(
+          a.eventTime
+        )
+    )
+    .forEach(
+      item=>{
+
+        const fingerprint =
+          [
+            item.section || "",
+            item.startDate || "",
+            item.endDate || "",
+            item.approved === false
+              ? "0"
+              : "1"
+          ]
+          .join("|");
+
+        /*
+          إذا كان نفس القسم ونفس الفترة ونفس الحالة
+          نحتفظ بالأقدم في الترتيب الحالي
+          وهو المصدر الذي ظهر أولًا بعد الفرز بالتاريخ.
+        */
+
+        if(
+          !fingerprints.has(
+            fingerprint
+          )
+        ){
+
+          fingerprints.add(
+            fingerprint
+          );
+
+          unique.push(
+            item
+          );
+        }
+      }
+    );
+
+  state.combinedApprovals =
+    unique.sort(
+      (a,b)=>
+        getTimestamp(
+          b.eventTime
+        ) -
+        getTimestamp(
+          a.eventTime
+        )
+    );
+
+  const countBox =
+    document.getElementById(
+      "approvalRecordsCount"
+    );
+
+  if(countBox){
+
+    countBox.textContent =
+      state.combinedApprovals.length;
+  }
+
+  updateManagementSummary();
+
+  renderCurrentTab();
+}
+
+/* =========================
+   FIREBASE LISTENERS
+========================= */
+
 function startListeners(){
 
   if(
@@ -1426,9 +1920,7 @@ function startListeners(){
     return;
   }
 
-  /* =========================
-     جدول الدوام الحالي
-  ========================= */
+  /* workSchedule */
 
   unsubscribers.push(
 
@@ -1480,18 +1972,15 @@ function startListeners(){
       error=>{
 
         setAlert(
-          "تعذر تحميل جداول الدوام: " +
+          "تعذر تحميل جدول الدوام: " +
           error.message,
           "danger"
         );
       }
     )
-
   );
 
-  /* =========================
-     الاعتماد الحالي
-  ========================= */
+  /* workScheduleSettings */
 
   unsubscribers.push(
 
@@ -1531,26 +2020,21 @@ function startListeners(){
             )
         );
 
-        updateManagementSummary();
-
-        renderCurrentTab();
+        rebuildCombinedApprovals();
       },
 
       error=>{
 
         setAlert(
-          "تعذر تحميل الاعتمادات الحالية: " +
+          "تعذر تحميل اعتماد الجداول: " +
           error.message,
           "danger"
         );
       }
     )
-
   );
 
-  /* =========================
-     أرشيف الاعتمادات
-  ========================= */
+  /* workScheduleApprovalHistory */
 
   unsubscribers.push(
 
@@ -1580,44 +2064,25 @@ function startListeners(){
           }
         );
 
-        state.approvalHistory.sort(
-          (a,b)=>
-            getTimestamp(
-              b.approvedAt ||
-              b.createdAt ||
-              b.updatedAt
-            ) -
-            getTimestamp(
-              a.approvedAt ||
-              a.createdAt ||
-              a.updatedAt
-            )
-        );
-
-        renderLatestBoxes();
-
-        renderCurrentTab();
+        rebuildCombinedApprovals();
       },
 
       error=>{
 
-        console.error(
-          "Approval history error:",
+        console.log(
+          "لا يوجد أرشيف مستقل حاليًا",
           error
         );
 
         state.approvalHistory =
           [];
 
-        renderCurrentTab();
+        rebuildCombinedApprovals();
       }
     )
-
   );
 
-  /* =========================
-     طلبات الشفتات
-  ========================= */
+  /* shiftRequests */
 
   unsubscribers.push(
 
@@ -1648,15 +2113,19 @@ function startListeners(){
         );
 
         updateManagementSummary();
+      },
+
+      error=>{
+
+        console.log(
+          "shiftRequests error",
+          error
+        );
       }
-
     )
-
   );
 
-  /* =========================
-     سجل العمليات
-  ========================= */
+  /* activityLogs */
 
   unsubscribers.push(
 
@@ -1690,22 +2159,35 @@ function startListeners(){
           (a,b)=>
             getTimestamp(
               b.time ||
-              b.createdAt
+              b.createdAt ||
+              b.updatedAt
             ) -
             getTimestamp(
               a.time ||
-              a.createdAt
+              a.createdAt ||
+              a.updatedAt
             )
         );
 
-        renderCurrentTab();
+        rebuildCombinedApprovals();
+      },
+
+      error=>{
+
+        console.log(
+          "activityLogs error",
+          error
+        );
+
+        state.logs =
+          [];
+
+        rebuildCombinedApprovals();
       }
-
     )
-
   );
 
-  openTab(
+  window.openTab(
     "scheduleChanges",
     document.querySelector(
       ".tab.active"
@@ -1713,24 +2195,24 @@ function startListeners(){
   );
 }
 
+/* =========================
+   MANAGEMENT SUMMARY
+========================= */
+
 function updateManagementSummary(){
 
-  document
-    .getElementById(
+  const countBox =
+    document.getElementById(
       "workScheduleCount"
-    )
-    .textContent =
-    state.workSchedule.length;
+    );
 
-  document
-    .getElementById(
-      "newShiftRequests"
-    )
-    .textContent =
-    state.shiftRequests.filter(
-      item=>
-        item.status === "new"
-    ).length;
+  if(countBox){
+
+    countBox.textContent =
+      state.workSchedule.length;
+  }
+
+  /* آخر تعديل في الدوام */
 
   const latestSchedule =
     state.workSchedule[0];
@@ -1768,8 +2250,10 @@ function updateManagementSummary(){
       "لم يتم العثور على تعديلات محفوظة";
   }
 
+  /* آخر عملية اعتماد من جميع المصادر */
+
   const latestApproval =
-    state.scheduleSettings[0];
+    state.combinedApprovals[0];
 
   if(latestApproval){
 
@@ -1777,24 +2261,22 @@ function updateManagementSummary(){
       sectionNames[
         latestApproval.section
       ] ||
-      sectionNames[
-        latestApproval.id
-      ] ||
-      latestApproval.id;
+      latestApproval.section ||
+      "غير محدد";
 
     document
       .getElementById(
         "lastApproval"
       )
       .textContent =
-      `${section} - ${latestApproval.approved ? "معتمد" : "غير معتمد"}`;
+      `${section} - ${latestApproval.action}`;
 
     document
       .getElementById(
         "lastApprovalNote"
       )
       .textContent =
-      `${latestApproval.startDate || "—"} إلى ${latestApproval.endDate || "—"} | آخر تعديل ${formatDate(latestApproval.updatedAt)}`;
+      `${latestApproval.startDate || "—"} إلى ${latestApproval.endDate || "—"} | ${formatDate(latestApproval.eventTime)}`;
 
   }else{
 
@@ -1803,7 +2285,7 @@ function updateManagementSummary(){
         "lastApproval"
       )
       .textContent =
-      "لا توجد اعتمادات";
+      "لا توجد سجلات";
 
     document
       .getElementById(
@@ -1813,6 +2295,17 @@ function updateManagementSummary(){
       "—";
   }
 
+  const approvalRecordsCount =
+    document.getElementById(
+      "approvalRecordsCount"
+    );
+
+  if(approvalRecordsCount){
+
+    approvalRecordsCount.textContent =
+      state.combinedApprovals.length;
+  }
+
   renderScheduleWatch();
 
   renderLatestBoxes();
@@ -1820,13 +2313,20 @@ function updateManagementSummary(){
   updateMainAlert();
 }
 
+/* =========================
+   CURRENT APPROVAL CARDS
+========================= */
+
 function renderScheduleWatch(){
 
   const box =
-    document
-      .getElementById(
-        "scheduleWatch"
-      );
+    document.getElementById(
+      "scheduleWatch"
+    );
+
+  if(!box){
+    return;
+  }
 
   const today =
     todayISO();
@@ -1838,116 +2338,168 @@ function renderScheduleWatch(){
   ];
 
   box.innerHTML =
-    sections.map(
-      section=>{
+    sections
+      .map(
+        section=>{
 
-        const settings =
-          state.scheduleSettings.find(
-            item=>
-              item.section === section ||
-              item.id === section
-          );
+          const settings =
+            state.scheduleSettings.find(
+              item=>
+                item.section ===
+                section ||
+                item.id ===
+                section
+            );
 
-        let cardClass =
-          "";
+          let cardClass =
+            "";
 
-        let stateClass =
-          "orange";
+          let stateClass =
+            "orange";
 
-        let status =
-          "غير معتمد";
+          let status =
+            "غير معتمد";
 
-        let dates =
-          "لم يتم تحديد فترة اعتماد";
-
-        if(
-          settings &&
-          settings.approved &&
-          settings.startDate &&
-          settings.endDate
-        ){
-
-          dates =
-            `من ${settings.startDate} إلى ${settings.endDate}`;
+          let dates =
+            "لم يتم تحديد فترة اعتماد";
 
           if(
-            today >
+            settings &&
+            settings.approved &&
+            settings.startDate &&
             settings.endDate
           ){
 
-            cardClass =
-              "expired";
+            dates =
+              `من ${settings.startDate} إلى ${settings.endDate}`;
 
-            stateClass =
-              "red";
+            if(
+              today >
+              settings.endDate
+            ){
 
-            status =
-              "⚠️ انتهى الاعتماد - يرجى التجديد";
+              cardClass =
+                "expired";
 
-          }else if(
-            today <
-            settings.startDate
-          ){
+              stateClass =
+                "red";
 
-            stateClass =
-              "orange";
+              status =
+                "⚠️ انتهى الاعتماد - يرجى التجديد";
 
-            status =
-              "اعتماد قادم ولم يبدأ بعد";
+            }else if(
+              today <
+              settings.startDate
+            ){
 
-          }else{
+              stateClass =
+                "orange";
 
-            cardClass =
-              "active";
+              status =
+                "اعتماد قادم ولم يبدأ بعد";
 
-            stateClass =
-              "green";
+            }else{
 
-            status =
-              "✓ الاعتماد ساري";
+              cardClass =
+                "active";
+
+              stateClass =
+                "green";
+
+              status =
+                "✓ الاعتماد ساري";
+            }
           }
+
+          return `
+            <div class="watch-card ${cardClass}">
+
+              <div class="watch-title">
+                ${sectionNames[section]}
+              </div>
+
+              <div class="watch-state ${stateClass}">
+                ${status}
+              </div>
+
+              <div class="watch-date">
+                ${dates}
+              </div>
+
+              <div class="watch-date">
+                آخر تحديث:
+                ${
+                  settings
+                    ? formatDate(
+                        settings.updatedAt
+                      )
+                    : "—"
+                }
+              </div>
+
+            </div>
+          `;
         }
-
-        return `
-          <div class="watch-card ${cardClass}">
-
-            <div class="watch-title">
-              ${sectionNames[section]}
-            </div>
-
-            <div class="watch-state ${stateClass}">
-              ${status}
-            </div>
-
-            <div class="watch-date">
-              ${dates}
-            </div>
-
-            <div class="watch-date">
-              آخر تعديل على الاعتماد:
-              ${settings ? formatDate(settings.updatedAt) : "—"}
-            </div>
-
-          </div>
-        `;
-      }
-    )
-    .join("");
+      )
+      .join("");
 }
+
+/* =========================
+   SOURCE LABEL
+========================= */
+
+function sourceLabel(source){
+
+  if(
+    source ===
+    "workScheduleSettings"
+  ){
+
+    return `
+      <span class="source-tag source-current">
+        الاعتماد الحالي
+      </span>
+    `;
+  }
+
+  if(
+    source ===
+    "workScheduleApprovalHistory"
+  ){
+
+    return `
+      <span class="source-tag source-history">
+        أرشيف الاعتماد
+      </span>
+    `;
+  }
+
+  return `
+    <span class="source-tag source-log">
+      سجل العمليات
+    </span>
+  `;
+}
+
+/* =========================
+   LATEST BOXES
+========================= */
 
 function renderLatestBoxes(){
 
   const scheduleBox =
-    document
-      .getElementById(
-        "latestScheduleChanges"
-      );
+    document.getElementById(
+      "latestScheduleChanges"
+    );
 
   const approvalBox =
-    document
-      .getElementById(
-        "latestApprovalChanges"
-      );
+    document.getElementById(
+      "latestApprovalChanges"
+    );
+
+  if(!scheduleBox || !approvalBox){
+    return;
+  }
 
   const latestSchedules =
     state.workSchedule.slice(
@@ -1960,32 +2512,33 @@ function renderLatestBoxes(){
   ){
 
     scheduleBox.innerHTML =
-      latestSchedules.map(
-        item=>`
-          <div class="latest-line">
+      latestSchedules
+        .map(
+          item=>`
+            <div class="latest-line">
 
-            <strong>
-              ${item.sectionLabel}
-              —
-              ${safeText(item.employee)}
-            </strong>
+              <strong>
+                ${item.sectionLabel}
+                —
+                ${safeText(item.employee)}
+              </strong>
 
-            <div class="meta">
-              ${item.dayLabel}
-              |
-              ${item.shiftLabel}
-              |
-              الخانة ${safeText(item.slotLabel)}
+              <div class="meta">
+                ${item.dayLabel}
+                |
+                ${item.shiftLabel}
+                |
+                الخانة ${safeText(item.slotLabel)}
+              </div>
+
+              <div class="stamp">
+                ${formatDate(item.updatedAt)}
+              </div>
+
             </div>
-
-            <div class="stamp">
-              ${formatDate(item.updatedAt)}
-            </div>
-
-          </div>
-        `
-      )
-      .join("");
+          `
+        )
+        .join("");
 
   }else{
 
@@ -1997,13 +2550,8 @@ function renderLatestBoxes(){
       `;
   }
 
-  const approvalSource =
-    state.approvalHistory.length
-      ? state.approvalHistory
-      : state.scheduleSettings;
-
   const latestApprovals =
-    approvalSource.slice(
+    state.combinedApprovals.slice(
       0,
       5
     );
@@ -2013,57 +2561,60 @@ function renderLatestBoxes(){
   ){
 
     approvalBox.innerHTML =
-      latestApprovals.map(
-        item=>{
+      latestApprovals
+        .map(
+          item=>{
 
-          const section =
-            sectionNames[
-              item.section
-            ] ||
-            sectionNames[
-              item.id
-            ] ||
-            item.id;
+            const section =
+              sectionNames[
+                item.section
+              ] ||
+              item.section ||
+              "غير محدد";
 
-          return `
-            <div class="latest-line">
+            return `
+              <div class="latest-line">
 
-              <strong>
-                ${section}
-                —
-                ${item.approved === false ? "إلغاء اعتماد" : "اعتماد"}
-              </strong>
+                <strong>
+                  ${section}
+                  —
+                  ${item.action}
+                </strong>
 
-              <div class="meta">
-                ${item.startDate || "—"}
-                إلى
-                ${item.endDate || "—"}
+                <div class="meta">
+                  ${item.startDate || "—"}
+                  إلى
+                  ${item.endDate || "—"}
+                </div>
+
+                <div class="meta">
+                  ${sourceLabel(item.source)}
+                </div>
+
+                <div class="stamp">
+                  ${formatDate(item.eventTime)}
+                </div>
+
               </div>
-
-              <div class="stamp">
-                ${formatDate(
-                  item.approvedAt ||
-                  item.createdAt ||
-                  item.updatedAt
-                )}
-              </div>
-
-            </div>
-          `;
-        }
-      )
-      .join("");
+            `;
+          }
+        )
+        .join("");
 
   }else{
 
     approvalBox.innerHTML =
       `
         <div class="empty">
-          لا توجد بيانات اعتماد
+          لا توجد عمليات اعتماد مسجلة
         </div>
       `;
   }
 }
+
+/* =========================
+   ALERT
+========================= */
 
 function updateMainAlert(){
 
@@ -2075,25 +2626,23 @@ function updateMainAlert(){
       item=>
         item.approved &&
         item.endDate &&
-        today > item.endDate
+        today >
+        item.endDate
     );
 
-  if(
-    expired.length
-  ){
+  if(expired.length){
 
     const names =
-      expired.map(
-        item=>
-          sectionNames[
-            item.section
-          ] ||
-          sectionNames[
+      expired
+        .map(
+          item=>
+            sectionNames[
+              item.section ||
+              item.id
+            ] ||
             item.id
-          ] ||
-          item.id
-      )
-      .join("، ");
+        )
+        .join("، ");
 
     setAlert(
       `⚠️ يوجد اعتماد منتهي ويحتاج تجديد: ${names}`,
@@ -2122,8 +2671,14 @@ function updateMainAlert(){
   }
 }
 
+/* =========================
+   REFRESH
+========================= */
+
 window.refreshDashboard =
 function(){
+
+  rebuildCombinedApprovals();
 
   updateManagementSummary();
 
@@ -2134,6 +2689,10 @@ function(){
     "ok"
   );
 };
+
+/* =========================
+   TABS
+========================= */
 
 window.openTab =
 function(
@@ -2174,6 +2733,7 @@ function(){
     state.currentTab ===
     "scheduleChanges"
   ){
+
     renderScheduleChanges();
   }
 
@@ -2181,6 +2741,7 @@ function(){
     state.currentTab ===
     "approvals"
   ){
+
     renderApprovals();
   }
 
@@ -2188,6 +2749,7 @@ function(){
     state.currentTab ===
     "overview"
   ){
+
     renderOverview();
   }
 
@@ -2195,6 +2757,7 @@ function(){
     state.currentTab ===
     "logs"
   ){
+
     renderLogs();
   }
 };
@@ -2208,6 +2771,10 @@ function content(html){
     .innerHTML =
     html;
 }
+
+/* =========================
+   SCHEDULE CHANGES
+========================= */
 
 function renderScheduleChanges(){
 
@@ -2223,14 +2790,15 @@ function renderScheduleChanges(){
         }
 
         const text =
-          `
-          ${item.employee || ""}
-          ${item.sectionLabel || ""}
-          ${item.shiftLabel || ""}
-          ${item.dayLabel || ""}
-          ${item.id || ""}
-          `
-          .toLowerCase();
+          normalizeText(
+            `
+            ${item.employee || ""}
+            ${item.sectionLabel || ""}
+            ${item.shiftLabel || ""}
+            ${item.dayLabel || ""}
+            ${item.id || ""}
+            `
+          );
 
         return text.includes(
           search
@@ -2288,8 +2856,13 @@ function renderScheduleChanges(){
             ${safeText(latest.employee)}
           </div>
 
+          <div>
+            <strong>الخانة:</strong>
+            ${safeText(latest.slotLabel)}
+          </div>
+
           <div class="date">
-            التاريخ والوقت:
+            آخر تعديل:
             ${formatDate(latest.updatedAt)}
           </div>
 
@@ -2324,7 +2897,7 @@ function renderScheduleChanges(){
                 </th>
 
                 <th>
-                  نوع الشفت
+                  الشفت
                 </th>
 
                 <th>
@@ -2342,40 +2915,41 @@ function renderScheduleChanges(){
             <tbody>
 
               ${
-                rows.map(
-                  item=>`
-                    <tr>
+                rows
+                  .map(
+                    item=>`
+                      <tr>
 
-                      <td>
-                        <strong>
-                          ${formatDate(item.updatedAt)}
-                        </strong>
-                      </td>
+                        <td>
+                          <strong>
+                            ${formatDate(item.updatedAt)}
+                          </strong>
+                        </td>
 
-                      <td>
-                        ${item.sectionLabel}
-                      </td>
+                        <td>
+                          ${item.sectionLabel}
+                        </td>
 
-                      <td>
-                        ${item.dayLabel}
-                      </td>
+                        <td>
+                          ${item.dayLabel}
+                        </td>
 
-                      <td>
-                        ${item.shiftLabel}
-                      </td>
+                        <td>
+                          ${item.shiftLabel}
+                        </td>
 
-                      <td>
-                        ${safeText(item.employee)}
-                      </td>
+                        <td>
+                          ${safeText(item.employee)}
+                        </td>
 
-                      <td>
-                        ${safeText(item.slotLabel)}
-                      </td>
+                        <td>
+                          ${safeText(item.slotLabel)}
+                        </td>
 
-                    </tr>
-                  `
-                )
-                .join("")
+                      </tr>
+                    `
+                  )
+                  .join("")
               }
 
             </tbody>
@@ -2396,200 +2970,28 @@ function renderScheduleChanges(){
       class="muted"
       style="margin-top:14px"
     >
-      يعرض هذا القسم آخر وقت محفوظ لكل خانة موجودة حاليًا في جدول الدوام.
+      هذه البيانات مأخوذة مباشرة من workSchedule وتعرض آخر وقت تعديل محفوظ لكل خانة حالية.
     </div>
 
   `);
 }
 
 /* =========================
-   APPROVAL ARCHIVE
+   APPROVALS
 ========================= */
 
 function renderApprovals(){
-
-  const today =
-    todayISO();
-
-  const currentRows =
-    state.scheduleSettings.map(
-      item=>({
-
-        ...item,
-
-        sectionLabel:
-          sectionNames[
-            item.section
-          ] ||
-          sectionNames[
-            item.id
-          ] ||
-          item.id
-
-      })
-    );
 
   content(`
 
     <div class="section-head">
 
       <h2 class="section-title">
-        اعتمادات جداول الدوام
+        سجل اعتمادات جداول الدوام
       </h2>
 
       <span class="badge">
-        الاعتماد الحالي + الأرشيف
-      </span>
-
-    </div>
-
-    ${
-      currentRows.length
-      ?
-      `
-        <div class="table-wrap">
-
-          <table>
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  القسم
-                </th>
-
-                <th>
-                  الحالة الحالية
-                </th>
-
-                <th>
-                  بداية الاعتماد
-                </th>
-
-                <th>
-                  نهاية الاعتماد
-                </th>
-
-                <th>
-                  آخر تعديل
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              ${
-                currentRows.map(
-                  item=>{
-
-                    let status =
-                      "غير معتمد";
-
-                    let pillClass =
-                      "red";
-
-                    if(
-                      item.approved &&
-                      item.startDate &&
-                      item.endDate
-                    ){
-
-                      if(
-                        today >
-                        item.endDate
-                      ){
-
-                        status =
-                          "منتهي - يرجى التجديد";
-
-                        pillClass =
-                          "red";
-
-                      }else if(
-                        today <
-                        item.startDate
-                      ){
-
-                        status =
-                          "معتمد ولم يبدأ";
-
-                        pillClass =
-                          "";
-
-                      }else{
-
-                        status =
-                          "ساري";
-
-                        pillClass =
-                          "green";
-                      }
-                    }
-
-                    return `
-                      <tr>
-
-                        <td>
-                          <strong>
-                            ${item.sectionLabel}
-                          </strong>
-                        </td>
-
-                        <td>
-                          <span class="pill ${pillClass}">
-                            ${status}
-                          </span>
-                        </td>
-
-                        <td>
-                          ${safeText(item.startDate)}
-                        </td>
-
-                        <td>
-                          ${safeText(item.endDate)}
-                        </td>
-
-                        <td>
-                          <strong>
-                            ${formatDate(item.updatedAt)}
-                          </strong>
-                        </td>
-
-                      </tr>
-                    `;
-                  }
-                )
-                .join("")
-              }
-
-            </tbody>
-
-          </table>
-
-        </div>
-      `
-      :
-      `
-        <div class="empty">
-          لا توجد اعتمادات حالية
-        </div>
-      `
-    }
-
-    <div class="history-title">
-
-      <h3>
-        أرشيف الاعتمادات السابقة
-      </h3>
-
-      <span
-        class="badge"
-        id="approvalHistoryCount"
-      >
-        ${state.approvalHistory.length} سجل
+        ${state.combinedApprovals.length} سجل مكتشف
       </span>
 
     </div>
@@ -2631,7 +3033,7 @@ function renderApprovals(){
       <div>
 
         <label>
-          من تاريخ
+          من تاريخ بداية الاعتماد
         </label>
 
         <input
@@ -2646,7 +3048,7 @@ function renderApprovals(){
       <div>
 
         <label>
-          إلى تاريخ
+          إلى تاريخ بداية الاعتماد
         </label>
 
         <input
@@ -2730,20 +3132,25 @@ function renderApprovalHistoryTable(){
   const sectionFilter =
     document.getElementById(
       "approvalSectionFilter"
-    )?.value || "all";
+    )?.value ||
+    "all";
 
   const fromDate =
     document.getElementById(
       "approvalFromDate"
-    )?.value || "";
+    )?.value ||
+    "";
 
   const toDate =
     document.getElementById(
       "approvalToDate"
-    )?.value || "";
+    )?.value ||
+    "";
 
   let rows =
-    [...state.approvalHistory];
+    [
+      ...state.combinedApprovals
+    ];
 
   if(
     sectionFilter !==
@@ -2763,10 +3170,8 @@ function renderApprovalHistoryTable(){
     rows =
       rows.filter(
         item=>
-          (
-            item.startDate ||
-            ""
-          ) >=
+          !item.startDate ||
+          item.startDate >=
           fromDate
       );
   }
@@ -2776,10 +3181,8 @@ function renderApprovalHistoryTable(){
     rows =
       rows.filter(
         item=>
-          (
-            item.startDate ||
-            ""
-          ) <=
+          !item.startDate ||
+          item.startDate <=
           toDate
       );
   }
@@ -2793,7 +3196,7 @@ function renderApprovalHistoryTable(){
       rows.filter(
         item=>{
 
-          const sectionName =
+          const section =
             sectionNames[
               item.section
             ] ||
@@ -2801,14 +3204,15 @@ function renderApprovalHistoryTable(){
             "";
 
           const text =
-            `
-            ${sectionName}
-            ${item.startDate || ""}
-            ${item.endDate || ""}
-            ${item.action || ""}
-            ${item.approvedBy || ""}
-            `
-            .toLowerCase();
+            normalizeText(
+              `
+              ${section}
+              ${item.startDate || ""}
+              ${item.endDate || ""}
+              ${item.action || ""}
+              ${item.source || ""}
+              `
+            );
 
           return text.includes(
             search
@@ -2820,41 +3224,27 @@ function renderApprovalHistoryTable(){
   rows =
     applyLimit(rows);
 
-  const count =
-    document.getElementById(
-      "approvalHistoryCount"
-    );
-
-  if(count){
-
-    count.innerText =
-      `${rows.length} سجل معروض`;
-  }
-
   if(
-    !state.approvalHistory.length
+    !state.combinedApprovals.length
   ){
 
     box.innerHTML =
       `
         <div class="empty">
-          لا يوجد أرشيف اعتمادات حتى الآن.<br><br>
-          سيبدأ الأرشيف بالظهور بعد تعديل صفحة جدول الدوام لتسجيل كل اعتماد داخل
-          workScheduleApprovalHistory.
+          لم يتم العثور على أي اعتماد في
+          workScheduleSettings أو workScheduleApprovalHistory أو activityLogs.
         </div>
       `;
 
     return;
   }
 
-  if(
-    !rows.length
-  ){
+  if(!rows.length){
 
     box.innerHTML =
       `
         <div class="empty">
-          لا توجد اعتمادات مطابقة للتحديد
+          لا توجد سجلات مطابقة للتحديد.
         </div>
       `;
 
@@ -2872,11 +3262,11 @@ function renderApprovalHistoryTable(){
             <tr>
 
               <th>
-                القسم
+                وقت العملية
               </th>
 
               <th>
-                فترة الاعتماد
+                القسم
               </th>
 
               <th>
@@ -2892,7 +3282,7 @@ function renderApprovalHistoryTable(){
               </th>
 
               <th>
-                وقت تسجيل الاعتماد
+                مصدر السجل
               </th>
 
             </tr>
@@ -2902,76 +3292,62 @@ function renderApprovalHistoryTable(){
           <tbody>
 
             ${
-              rows.map(
-                item=>{
+              rows
+                .map(
+                  item=>{
 
-                  const section =
-                    sectionNames[
-                      item.section
-                    ] ||
-                    item.section ||
-                    "غير محدد";
+                    const section =
+                      sectionNames[
+                        item.section
+                      ] ||
+                      item.section ||
+                      "غير محدد";
 
-                  const action =
-                    item.approved === false
-                      ? "إلغاء اعتماد"
-                      : (
-                          item.action ||
-                          "اعتماد"
-                        );
+                    const pillClass =
+                      item.approved === false
+                        ? "red"
+                        : "green";
 
-                  return `
-                    <tr>
+                    return `
+                      <tr>
 
-                      <td>
-                        <strong>
-                          ${section}
-                        </strong>
-                      </td>
+                        <td>
+                          <strong>
+                            ${formatDate(item.eventTime)}
+                          </strong>
+                        </td>
 
-                      <td>
-                        ${safeText(item.startDate)}
-                        ←
-                        ${safeText(item.endDate)}
-                      </td>
+                        <td>
+                          <strong>
+                            ${section}
+                          </strong>
+                        </td>
 
-                      <td>
-                        ${safeText(item.startDate)}
-                      </td>
+                        <td>
+                          ${safeText(item.startDate)}
+                        </td>
 
-                      <td>
-                        ${safeText(item.endDate)}
-                      </td>
+                        <td>
+                          ${safeText(item.endDate)}
+                        </td>
 
-                      <td>
+                        <td>
 
-                        <span
-                          class="pill ${
-                            item.approved === false
-                              ? "red"
-                              : "green"
-                          }"
-                        >
-                          ${action}
-                        </span>
+                          <span class="pill ${pillClass}">
+                            ${safeText(item.action)}
+                          </span>
 
-                      </td>
+                        </td>
 
-                      <td>
-                        <strong>
-                          ${formatDate(
-                            item.approvedAt ||
-                            item.createdAt ||
-                            item.updatedAt
-                          )}
-                        </strong>
-                      </td>
+                        <td>
+                          ${sourceLabel(item.source)}
+                        </td>
 
-                    </tr>
-                  `;
-                }
-              )
-              .join("")
+                      </tr>
+                    `;
+                  }
+                )
+                .join("")
             }
 
           </tbody>
@@ -2979,8 +3355,19 @@ function renderApprovalHistoryTable(){
         </table>
 
       </div>
+
+      <div
+        class="muted"
+        style="margin-top:14px"
+      >
+        الاعتماد الحالي مأخوذ من workScheduleSettings، وأي اعتماد سابق مسجل في activityLogs أو workScheduleApprovalHistory سيظهر في نفس الجدول تلقائيًا.
+      </div>
     `;
 }
+
+/* =========================
+   OVERVIEW
+========================= */
 
 function renderOverview(){
 
@@ -2988,10 +3375,14 @@ function renderOverview(){
     state.workSchedule[0];
 
   const latestApproval =
-    state.scheduleSettings[0];
+    state.combinedApprovals[0];
 
-  const latestHistory =
-    state.approvalHistory[0];
+  const approvalLogs =
+    state.combinedApprovals.filter(
+      item=>
+        item.source ===
+        "activityLogs"
+    );
 
   content(`
 
@@ -3010,7 +3401,7 @@ function renderOverview(){
     <div class="big-change">
 
       <h3>
-        آخر تعديل على الدوام
+        آخر تعديل على جدول الموظفين
       </h3>
 
       ${
@@ -3038,7 +3429,7 @@ function renderOverview(){
     <div class="big-change">
 
       <h3>
-        آخر اعتماد حالي
+        آخر عملية اعتماد مكتشفة
       </h3>
 
       ${
@@ -3049,18 +3440,27 @@ function renderOverview(){
             sectionNames[
               latestApproval.section
             ] ||
-            sectionNames[
-              latestApproval.id
-            ] ||
-            latestApproval.id
+            latestApproval.section ||
+            "غير محدد"
           }
+
           |
           ${latestApproval.startDate || "—"}
+
           إلى
+
           ${latestApproval.endDate || "—"}
 
+          |
+
+          ${latestApproval.action}
+
           <div class="date">
-            ${formatDate(latestApproval.updatedAt)}
+            ${formatDate(latestApproval.eventTime)}
+          </div>
+
+          <div style="margin-top:5px">
+            ${sourceLabel(latestApproval.source)}
           </div>
         `
         :
@@ -3072,41 +3472,25 @@ function renderOverview(){
     <div class="big-change">
 
       <h3>
-        آخر سجل في أرشيف الاعتمادات
+        الاعتمادات القديمة المكتشفة من سجل العمليات
       </h3>
 
-      ${
-        latestHistory
-        ?
-        `
-          ${
-            sectionNames[
-              latestHistory.section
-            ] ||
-            latestHistory.section ||
-            "غير محدد"
-          }
-          |
-          ${latestHistory.startDate || "—"}
-          إلى
-          ${latestHistory.endDate || "—"}
+      <strong>
+        ${approvalLogs.length} سجل
+      </strong>
 
-          <div class="date">
-            ${formatDate(
-              latestHistory.approvedAt ||
-              latestHistory.createdAt ||
-              latestHistory.updatedAt
-            )}
-          </div>
-        `
-        :
-        "لم يبدأ أرشيف الاعتمادات بعد"
-      }
+      <div class="muted">
+        إذا كان tracker.js سجّل الاعتمادات السابقة فستظهر هنا وفي تبويب اعتمادات الجداول.
+      </div>
 
     </div>
 
   `);
 }
+
+/* =========================
+   LOGS
+========================= */
 
 function renderLogs(){
 
@@ -3122,14 +3506,16 @@ function renderLogs(){
         }
 
         const text =
-          `
-          ${item.page || ""}
-          ${item.action || ""}
-          ${item.user || ""}
-          ${item.name || ""}
-          ${item.details || ""}
-          `
-          .toLowerCase();
+          normalizeText(
+            `
+            ${item.page || ""}
+            ${item.action || ""}
+            ${item.user || ""}
+            ${item.name || ""}
+            ${item.details || ""}
+            ${item.note || ""}
+            `
+          );
 
         return text.includes(
           search
@@ -3149,7 +3535,7 @@ function renderLogs(){
       </h2>
 
       <span class="badge">
-        ${rows.length} عملية
+        ${rows.length} عملية معروضة
       </span>
 
     </div>
@@ -3193,44 +3579,46 @@ function renderLogs(){
             <tbody>
 
               ${
-                rows.map(
-                  item=>`
-                    <tr>
+                rows
+                  .map(
+                    item=>`
+                      <tr>
 
-                      <td>
-                        ${formatDate(
-                          item.time ||
-                          item.createdAt
-                        )}
-                      </td>
+                        <td>
+                          ${formatDate(
+                            item.time ||
+                            item.createdAt ||
+                            item.updatedAt
+                          )}
+                        </td>
 
-                      <td>
-                        ${safeText(
-                          item.user ||
-                          item.name ||
-                          item.device
-                        )}
-                      </td>
+                        <td>
+                          ${safeText(
+                            item.user ||
+                            item.name ||
+                            item.device
+                          )}
+                        </td>
 
-                      <td>
-                        ${safeText(item.page)}
-                      </td>
+                        <td>
+                          ${safeText(item.page)}
+                        </td>
 
-                      <td>
-                        ${safeText(item.action)}
-                      </td>
+                        <td>
+                          ${safeText(item.action)}
+                        </td>
 
-                      <td>
-                        ${safeText(
-                          item.details ||
-                          item.note
-                        )}
-                      </td>
+                        <td>
+                          ${safeText(
+                            item.details ||
+                            item.note
+                          )}
+                        </td>
 
-                    </tr>
-                  `
-                )
-                .join("")
+                      </tr>
+                    `
+                  )
+                  .join("")
               }
 
             </tbody>
@@ -3242,13 +3630,17 @@ function renderLogs(){
       :
       `
         <div class="empty">
-          لا يوجد سجل عمليات
+          لا يوجد سجل عمليات مطابق.
         </div>
       `
     }
 
   `);
 }
+
+/* =========================
+   EXPORT
+========================= */
 
 window.exportCurrentTab =
 function(){
@@ -3296,85 +3688,87 @@ function(){
     "approvals"
   ){
 
-    if(
-      state.approvalHistory.length
-    ){
+    rows =
+      state.combinedApprovals.map(
+        item=>({
 
-      rows =
-        state.approvalHistory.map(
-          item=>({
+          eventTime:
+            formatDate(
+              item.eventTime
+            ),
 
-            section:
-              sectionNames[
-                item.section
-              ] ||
-              item.section,
+          section:
+            sectionNames[
+              item.section
+            ] ||
+            item.section,
 
-            startDate:
-              item.startDate,
+          startDate:
+            item.startDate,
 
-            endDate:
-              item.endDate,
+          endDate:
+            item.endDate,
 
-            approved:
-              item.approved !== false,
+          action:
+            item.action,
 
-            action:
-              item.action ||
-              "اعتماد",
+          source:
+            item.source
 
-            approvalTime:
-              formatDate(
-                item.approvedAt ||
-                item.createdAt ||
-                item.updatedAt
-              )
+        })
+      );
 
-          })
-        );
-
-    }else{
-
-      rows =
-        state.scheduleSettings.map(
-          item=>({
-
-            section:
-              sectionNames[
-                item.section
-              ] ||
-              sectionNames[
-                item.id
-              ] ||
-              item.id,
-
-            approved:
-              item.approved,
-
-            startDate:
-              item.startDate,
-
-            endDate:
-              item.endDate,
-
-            lastUpdate:
-              formatDate(
-                item.updatedAt
-              )
-
-          })
-        );
-    }
-
-  }else{
+  }else if(
+    tab ===
+    "logs"
+  ){
 
     rows =
       state.logs;
+
+  }else{
+
+    rows = [
+
+      {
+        label:
+          "workSchedule",
+        value:
+          state.workSchedule.length
+      },
+
+      {
+        label:
+          "scheduleSettings",
+        value:
+          state.scheduleSettings.length
+      },
+
+      {
+        label:
+          "approvalHistory",
+        value:
+          state.approvalHistory.length
+      },
+
+      {
+        label:
+          "detectedApprovals",
+        value:
+          state.combinedApprovals.length
+      },
+
+      {
+        label:
+          "activityLogs",
+        value:
+          state.logs.length
+      }
+
+    ];
   }
 
-  if(
-    !rows.length
-  ){
+  if(!rows.length){
 
     alert(
       "لا توجد بيانات للتصدير"
@@ -3399,16 +3793,18 @@ function(){
 
     ...rows.map(
       row=>
-        keys.map(
-          key=>
-            `"${String(
-              row[key] ?? ""
-            ).replaceAll(
-              '"',
-              '""'
-            )}"`
-        )
-        .join(",")
+        keys
+          .map(
+            key=>
+              `"${String(
+                row[key] ?? ""
+              )
+              .replaceAll(
+                '"',
+                '""'
+              )}"`
+          )
+          .join(",")
     )
 
   ].join("\n");
