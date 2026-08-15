@@ -7,13 +7,59 @@
 <link rel="icon" type="image/png" href="./logo.png">
 
 <style>
-body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0f172a}
-.topbar{background:linear-gradient(135deg,#005b9f,#0077c8);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.brand{display:flex;align-items:center;gap:14px}
-.logo{width:70px;height:70px;object-fit:contain;background:white;border-radius:16px;padding:7px}
-.brand h2{margin:0;font-size:24px}
-.brand p{margin:4px 0 0;font-size:13px;opacity:.9}
-.home-btn{background:white;color:#005b9f;border:none;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:bold}
+body{
+  margin:0;
+  font-family:Tahoma,Arial;
+  direction:rtl;
+  background:#f1f5f9;
+  color:#0f172a
+}
+
+.topbar{
+  background:linear-gradient(135deg,#005b9f,#0077c8);
+  color:white;
+  padding:18px 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  object-fit:contain;
+  background:white;
+  border-radius:16px;
+  padding:7px
+}
+
+.brand h2{
+  margin:0;
+  font-size:24px
+}
+
+.brand p{
+  margin:4px 0 0;
+  font-size:13px;
+  opacity:.9
+}
+
+.home-btn{
+  background:white;
+  color:#005b9f;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold
+}
 
 .section-selector{
   width:96%;
@@ -40,10 +86,27 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
   font-weight:bold
 }
 
-.section-card:hover{transform:translateY(-7px);box-shadow:0 20px 45px rgba(15,23,42,.14);background:#eef6ff}
-.section-card .icon{font-size:38px;margin-bottom:12px}
-.section-card h3{margin:0;font-size:22px}
-.section-card p{margin:7px 0 0;color:#f59e0b;direction:ltr}
+.section-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 20px 45px rgba(15,23,42,.14);
+  background:#eef6ff
+}
+
+.section-card .icon{
+  font-size:38px;
+  margin-bottom:12px
+}
+
+.section-card h3{
+  margin:0;
+  font-size:22px
+}
+
+.section-card p{
+  margin:7px 0 0;
+  color:#f59e0b;
+  direction:ltr
+}
 
 .badge{
   position:absolute;
@@ -62,37 +125,130 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
   padding:0 8px
 }
 
-.workspace,.requests-workspace{display:none}
-.controls{display:flex;justify-content:center;gap:12px;margin:22px;flex-wrap:wrap}
-.controls button{padding:11px 25px;border:none;background:#005b9f;color:white;border-radius:10px;cursor:pointer;font-weight:bold}
-.controls button.active{background:#f59e0b}
-.section-title{text-align:center;color:#005b9f;margin:15px 0}
+.workspace,
+.requests-workspace{
+  display:none
+}
 
-.approval-card,.request-box{
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin:22px;
+  flex-wrap:wrap
+}
+
+.controls button{
+  padding:11px 25px;
+  border:none;
+  background:#005b9f;
+  color:white;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold
+}
+
+.controls button.active{
+  background:#f59e0b
+}
+
+.section-title{
+  text-align:center;
+  color:#005b9f;
+  margin:15px 0
+}
+
+.approval-card,
+.request-box{
   width:96%;
   margin:15px auto 20px;
   background:white;
   border:1px solid #e2e8f0;
   border-radius:18px;
   box-shadow:0 6px 20px #0001;
-  padding:18px
+  padding:18px;
+  box-sizing:border-box
 }
 
-.approval-card{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:22px}
-.approval-fields{display:flex;align-items:flex-end;gap:20px;flex-wrap:wrap}
-.approval-fields>div{display:flex;flex-direction:column;min-width:180px}
-.approval-fields label{font-weight:bold;color:#005b9f;display:block;margin-bottom:5px}
-.approval-fields input{width:180px;height:40px;border:1px solid #cbd5e1;border-radius:9px;padding:0 10px;font-family:Tahoma,Arial}
-.approve-btn,.cancel-approve-btn{height:40px;white-space:nowrap;padding:10px 15px;border-radius:10px;cursor:pointer;font-weight:bold}
-.approve-btn{background:#dcfce7;color:#166534;border:1px solid #86efac}
-.cancel-approve-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca}
-.approval-status{font-weight:bold;padding:10px 15px;border-radius:999px;background:#eef6ff;color:#005b9f}
-.approval-status.expired{background:#fee2e2;color:#b91c1c}
+.approval-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding:22px
+}
+
+.approval-fields{
+  display:flex;
+  align-items:flex-end;
+  gap:20px;
+  flex-wrap:wrap
+}
+
+.approval-fields>div{
+  display:flex;
+  flex-direction:column;
+  min-width:180px
+}
+
+.approval-fields label{
+  font-weight:bold;
+  color:#005b9f;
+  display:block;
+  margin-bottom:5px
+}
+
+.approval-fields input{
+  width:180px;
+  height:40px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  padding:0 10px;
+  font-family:Tahoma,Arial;
+  box-sizing:border-box
+}
+
+.approve-btn,
+.cancel-approve-btn{
+  height:40px;
+  white-space:nowrap;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold
+}
+
+.approve-btn{
+  background:#dcfce7;
+  color:#166534;
+  border:1px solid #86efac
+}
+
+.cancel-approve-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+  border:1px solid #fecaca
+}
+
+.approval-status{
+  font-weight:bold;
+  padding:10px 15px;
+  border-radius:999px;
+  background:#eef6ff;
+  color:#005b9f
+}
+
+.approval-status.expired{
+  background:#fee2e2;
+  color:#b91c1c
+}
 
 .expired-alert{
   width:96%;
   margin:15px auto;
   padding:16px 18px;
+  box-sizing:border-box;
   border:1px solid #fecaca;
   border-radius:15px;
   background:#fff1f2;
@@ -105,25 +261,270 @@ body{margin:0;font-family:Tahoma,Arial;direction:rtl;background:#f1f5f9;color:#0
 }
 
 @keyframes pulseAlert{
-  0%,100%{transform:scale(1);box-shadow:0 8px 20px rgba(185,28,28,.08)}
-  50%{transform:scale(1.01);box-shadow:0 10px 28px rgba(185,28,28,.18)}
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 8px 20px rgba(185,28,28,.08)
+  }
+
+  50%{
+    transform:scale(1.01);
+    box-shadow:0 10px 28px rgba(185,28,28,.18)
+  }
 }
 
-.schedule-box{width:96%;margin:24px auto;background:white;border-radius:18px;box-shadow:0 6px 20px #0001;overflow:hidden;border:1px solid #e2e8f0}
-.box-title{background:#f59e0b;color:white;padding:14px 18px;font-size:21px;font-weight:bold;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.table-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.copy-btn{background:#e0f2fe;color:#075985;border:1px solid #bae6fd;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
-.clear-btn{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:7px 13px;border-radius:9px;cursor:pointer;font-weight:bold}
-.table-wrap{overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:950px}
-th{background:#005b9f;color:white;padding:12px;font-size:16px}
-td{border:1px solid #d7dee8;padding:8px;text-align:center;background:white}
-.shift-label{background:#eef6ff;width:240px;color:#005b9f;font-weight:bold}
-.shift-name{display:block;font-size:20px;margin-bottom:7px}
-.shift-time{display:block;direction:ltr;font-size:16px;color:#334155;font-weight:bold;line-height:1.7}
-.slot{margin-bottom:7px;border-radius:9px;padding:4px}
+/* =========================
+   اكتفاء
+========================= */
 
-select,input,textarea{
+.iktifa-card{
+  width:96%;
+  margin:15px auto 25px;
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:18px;
+  box-shadow:0 6px 20px #0001;
+  padding:22px;
+  box-sizing:border-box
+}
+
+.iktifa-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap
+}
+
+.iktifa-title{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.iktifa-icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:#eef6ff;
+  color:#005b9f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px
+}
+
+.iktifa-title h3{
+  margin:0;
+  color:#005b9f;
+  font-size:20px
+}
+
+.iktifa-title p{
+  margin:5px 0 0;
+  color:#64748b;
+  font-size:13px
+}
+
+.iktifa-status{
+  padding:10px 16px;
+  border-radius:999px;
+  font-weight:900;
+  background:#fef3c7;
+  color:#92400e;
+  border:1px solid #fde68a
+}
+
+.iktifa-status.done{
+  background:#dcfce7;
+  color:#166534;
+  border-color:#86efac
+}
+
+.iktifa-status.disabled{
+  background:#f1f5f9;
+  color:#64748b;
+  border-color:#cbd5e1
+}
+
+.iktifa-details{
+  margin-top:16px;
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  padding:14px 16px;
+  line-height:1.9;
+  color:#334155;
+  font-size:14px
+}
+
+.iktifa-admin{
+  margin-top:16px;
+  border-top:1px solid #e2e8f0;
+  padding-top:16px
+}
+
+.iktifa-admin-title{
+  font-weight:900;
+  color:#005b9f;
+  margin-bottom:10px
+}
+
+.iktifa-admin-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap
+}
+
+.iktifa-admin-row input{
+  width:220px;
+  max-width:100%;
+  height:42px;
+  box-sizing:border-box
+}
+
+.iktifa-confirm-btn{
+  border:none;
+  background:#16a34a;
+  color:white;
+  padding:11px 16px;
+  height:42px;
+  border-radius:10px;
+  font-weight:900;
+  cursor:pointer
+}
+
+.iktifa-confirm-btn:disabled{
+  background:#94a3b8;
+  cursor:not-allowed
+}
+
+.iktifa-cancel-btn{
+  border:1px solid #fecaca;
+  background:#fee2e2;
+  color:#b91c1c;
+  padding:11px 16px;
+  height:42px;
+  border-radius:10px;
+  font-weight:900;
+  cursor:pointer
+}
+
+.iktifa-cancel-btn:disabled{
+  opacity:.5;
+  cursor:not-allowed
+}
+
+.iktifa-note{
+  color:#64748b;
+  font-size:12px;
+  margin-top:10px
+}
+
+.schedule-box{
+  width:96%;
+  margin:24px auto;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 6px 20px #0001;
+  overflow:hidden;
+  border:1px solid #e2e8f0
+}
+
+.box-title{
+  background:#f59e0b;
+  color:white;
+  padding:14px 18px;
+  font-size:21px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px
+}
+
+.table-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex-wrap:wrap
+}
+
+.copy-btn{
+  background:#e0f2fe;
+  color:#075985;
+  border:1px solid #bae6fd;
+  padding:7px 13px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold
+}
+
+.clear-btn{
+  background:#fee2e2;
+  color:#b91c1c;
+  border:1px solid #fecaca;
+  padding:7px 13px;
+  border-radius:9px;
+  cursor:pointer;
+  font-weight:bold
+}
+
+.table-wrap{
+  overflow:auto
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:950px
+}
+
+th{
+  background:#005b9f;
+  color:white;
+  padding:12px;
+  font-size:16px
+}
+
+td{
+  border:1px solid #d7dee8;
+  padding:8px;
+  text-align:center;
+  background:white
+}
+
+.shift-label{
+  background:#eef6ff;
+  width:240px;
+  color:#005b9f;
+  font-weight:bold
+}
+
+.shift-name{
+  display:block;
+  font-size:20px;
+  margin-bottom:7px
+}
+
+.shift-time{
+  display:block;
+  direction:ltr;
+  font-size:16px;
+  color:#334155;
+  font-weight:bold;
+  line-height:1.7
+}
+
+.slot{
+  margin-bottom:7px;
+  border-radius:9px;
+  padding:4px
+}
+
+select,
+input,
+textarea{
   width:96%;
   border-radius:9px;
   border:1px solid #cbd5e1;
@@ -134,39 +535,228 @@ select,input,textarea{
   color:#0f172a
 }
 
-select{height:43px;text-align:center}
-input{height:43px;padding:0 10px}
-textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
-.note{text-align:center;color:#b91c1c;font-weight:bold;margin:18px}
+select{
+  height:43px;
+  text-align:center
+}
 
-.request-choice{width:96%;margin:30px auto;display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.request-card{background:white;border:1px solid #e2e8f0;border-radius:22px;padding:34px 20px;text-align:center;cursor:pointer;box-shadow:0 12px 30px rgba(15,23,42,.08);transition:.25s}
-.request-card:hover{transform:translateY(-6px);background:#eef6ff}
-.request-card .icon{font-size:40px;margin-bottom:12px}
-.request-card h3{color:#005b9f;font-size:24px;margin:0}
-.request-card p{color:#64748b;margin:8px 0 0}
-.form-row{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:12px}
-.request-box h2{color:#005b9f;text-align:center;margin-top:0}
-.request-box label{display:block;color:#005b9f;font-weight:bold;margin:12px 0 6px}
-.main-btn{width:100%;border:none;background:#005b9f;color:white;padding:13px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:14px}
-.back-btn{width:100%;border:none;background:#eef6ff;color:#005b9f;padding:13px;border-radius:12px;font-weight:900;cursor:pointer;margin-top:10px}
-.request-item{background:#f8fbff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;margin-bottom:12px;cursor:pointer}
-.request-item.new{border-color:#fecaca;background:#fff7f7}
-.request-meta{color:#005b9f;font-weight:900;line-height:1.8}
-.request-text{color:#334155;line-height:1.8;margin-top:8px;white-space:pre-wrap}
-.delete-request{background:#fee2e2;color:#b91c1c;border:1px solid #fecaca;padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:bold;margin-top:10px}
-.empty{text-align:center;color:#64748b;background:#f8fafc;border-radius:14px;padding:20px}
+input{
+  height:43px;
+  padding:0 10px
+}
+
+textarea{
+  height:130px;
+  padding:12px;
+  resize:vertical;
+  line-height:1.8
+}
+
+.note{
+  text-align:center;
+  color:#b91c1c;
+  font-weight:bold;
+  margin:18px
+}
+
+.request-choice{
+  width:96%;
+  margin:30px auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px
+}
+
+.request-card{
+  background:white;
+  border:1px solid #e2e8f0;
+  border-radius:22px;
+  padding:34px 20px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 12px 30px rgba(15,23,42,.08);
+  transition:.25s
+}
+
+.request-card:hover{
+  transform:translateY(-6px);
+  background:#eef6ff
+}
+
+.request-card .icon{
+  font-size:40px;
+  margin-bottom:12px
+}
+
+.request-card h3{
+  color:#005b9f;
+  font-size:24px;
+  margin:0
+}
+
+.request-card p{
+  color:#64748b;
+  margin:8px 0 0
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-bottom:12px
+}
+
+.request-box h2{
+  color:#005b9f;
+  text-align:center;
+  margin-top:0
+}
+
+.request-box label{
+  display:block;
+  color:#005b9f;
+  font-weight:bold;
+  margin:12px 0 6px
+}
+
+.main-btn{
+  width:100%;
+  border:none;
+  background:#005b9f;
+  color:white;
+  padding:13px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  margin-top:14px
+}
+
+.back-btn{
+  width:100%;
+  border:none;
+  background:#eef6ff;
+  color:#005b9f;
+  padding:13px;
+  border-radius:12px;
+  font-weight:900;
+  cursor:pointer;
+  margin-top:10px
+}
+
+.request-item{
+  background:#f8fbff;
+  border:1px solid #e2e8f0;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:12px;
+  cursor:pointer
+}
+
+.request-item.new{
+  border-color:#fecaca;
+  background:#fff7f7
+}
+
+.request-meta{
+  color:#005b9f;
+  font-weight:900;
+  line-height:1.8
+}
+
+.request-text{
+  color:#334155;
+  line-height:1.8;
+  margin-top:8px;
+  white-space:pre-wrap
+}
+
+.delete-request{
+  background:#fee2e2;
+  color:#b91c1c;
+  border:1px solid #fecaca;
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+  margin-top:10px
+}
+
+.empty{
+  text-align:center;
+  color:#64748b;
+  background:#f8fafc;
+  border-radius:14px;
+  padding:20px
+}
 
 @media(max-width:800px){
-  .topbar{flex-direction:column;text-align:center}
-  .brand{flex-direction:column}
-  .logo{width:85px;height:85px}
-  .home-btn{width:100%}
-  .section-selector,.request-choice{grid-template-columns:1fr}
-  table{min-width:1050px}
-  .box-title{flex-direction:column}
-  .approval-card{justify-content:center;text-align:center}
-  .form-row{grid-template-columns:1fr}
+
+  .topbar{
+    flex-direction:column;
+    text-align:center
+  }
+
+  .brand{
+    flex-direction:column
+  }
+
+  .logo{
+    width:85px;
+    height:85px
+  }
+
+  .home-btn{
+    width:100%
+  }
+
+  .section-selector,
+  .request-choice{
+    grid-template-columns:1fr
+  }
+
+  table{
+    min-width:1050px
+  }
+
+  .box-title{
+    flex-direction:column
+  }
+
+  .approval-card{
+    justify-content:center;
+    text-align:center
+  }
+
+  .approval-fields{
+    justify-content:center
+  }
+
+  .form-row{
+    grid-template-columns:1fr
+  }
+
+  .iktifa-header{
+    flex-direction:column;
+    align-items:stretch
+  }
+
+  .iktifa-status{
+    text-align:center
+  }
+
+  .iktifa-admin-row{
+    flex-direction:column;
+    align-items:stretch
+  }
+
+  .iktifa-admin-row input{
+    width:100%
+  }
+
+  .iktifa-confirm-btn,
+  .iktifa-cancel-btn{
+    width:100%
+  }
 }
 </style>
 </head>
@@ -181,96 +771,288 @@ textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
       <p>Staff Work Schedule</p>
     </div>
   </div>
-  <button class="home-btn" onclick="location.href='index.html'">🏠 الرئيسية</button>
+
+  <button
+    class="home-btn"
+    onclick="location.href='index.html'"
+  >
+    🏠 الرئيسية
+  </button>
 </div>
 
 <div id="sectionSelector" class="section-selector">
-  <div class="section-card" onclick="openSection('men')">
+
+  <div
+    class="section-card"
+    onclick="openSection('men')"
+  >
     <div class="icon">👨‍⚕️</div>
     <h3>قسم الرجال</h3>
     <p>Men Department</p>
   </div>
 
-  <div class="section-card" onclick="openSection('women')">
+  <div
+    class="section-card"
+    onclick="openSection('women')"
+  >
     <div class="icon">👩‍⚕️</div>
     <h3>قسم النساء</h3>
     <p>Women Department</p>
   </div>
 
-  <div class="section-card" onclick="openSection('reception')">
+  <div
+    class="section-card"
+    onclick="openSection('reception')"
+  >
     <div class="icon">🛎️</div>
     <h3>الاستقبال</h3>
     <p>Reception</p>
   </div>
 
-  <div class="section-card" onclick="openShiftRequests()">
-    <div class="badge" id="shiftRequestsBadge">0</div>
+  <div
+    class="section-card"
+    onclick="openShiftRequests()"
+  >
+    <div
+      class="badge"
+      id="shiftRequestsBadge"
+    >
+      0
+    </div>
+
     <div class="icon">🔁</div>
     <h3>طلبات تعديل الشفتات</h3>
     <p>Shift Requests</p>
   </div>
+
 </div>
 
 <div id="workspace" class="workspace">
+
   <div class="controls">
-    <button id="menBtn" onclick="switchSection('men')">قسم الرجال</button>
-    <button id="womenBtn" onclick="switchSection('women')">قسم النساء</button>
-    <button id="receptionBtn" onclick="switchSection('reception')">الاستقبال</button>
+
+    <button
+      id="menBtn"
+      onclick="switchSection('men')"
+    >
+      قسم الرجال
+    </button>
+
+    <button
+      id="womenBtn"
+      onclick="switchSection('women')"
+    >
+      قسم النساء
+    </button>
+
+    <button
+      id="receptionBtn"
+      onclick="switchSection('reception')"
+    >
+      الاستقبال
+    </button>
+
   </div>
 
-  <h2 id="sectionTitle" class="section-title"></h2>
+  <h2
+    id="sectionTitle"
+    class="section-title"
+  ></h2>
 
+  <!-- اعتماد الجدول -->
   <div class="approval-card">
+
     <div class="approval-fields">
+
       <div>
         <label>بداية اعتماد الجدول</label>
-        <input type="date" id="approvalStart">
+
+        <input
+          type="date"
+          id="approvalStart"
+        >
       </div>
 
       <div>
         <label>نهاية اعتماد الجدول</label>
-        <input type="date" id="approvalEnd">
+
+        <input
+          type="date"
+          id="approvalEnd"
+        >
       </div>
 
-      <button class="approve-btn" onclick="approveSchedule()">اعتماد الجدول</button>
-      <button class="cancel-approve-btn" onclick="cancelApproval()">إلغاء الاعتماد</button>
+      <button
+        class="approve-btn"
+        onclick="approveSchedule()"
+      >
+        اعتماد الجدول
+      </button>
+
+      <button
+        class="cancel-approve-btn"
+        onclick="cancelApproval()"
+      >
+        إلغاء الاعتماد
+      </button>
+
     </div>
 
-    <div id="approvalStatus" class="approval-status">الجدول غير معتمد</div>
+    <div
+      id="approvalStatus"
+      class="approval-status"
+    >
+      الجدول غير معتمد
+    </div>
+
   </div>
 
-  <div id="expiredAlert" class="expired-alert">
+  <div
+    id="expiredAlert"
+    class="expired-alert"
+  >
     ⚠️ انتهى اعتماد الجدول، يرجى تجديد فترة الاعتماد
   </div>
+
+
+  <!-- ======================================
+       اعتماد رفع الحضور على اكتفاء
+  ======================================= -->
+
+  <div class="iktifa-card">
+
+    <div class="iktifa-header">
+
+      <div class="iktifa-title">
+
+        <div class="iktifa-icon">
+          ✅
+        </div>
+
+        <div>
+          <h3>رفع الحضور على اكتفاء</h3>
+          <p>Iktifa Attendance Confirmation</p>
+        </div>
+
+      </div>
+
+      <div
+        id="iktifaStatus"
+        class="iktifa-status disabled"
+      >
+        بانتظار اعتماد الجدول
+      </div>
+
+    </div>
+
+    <div
+      id="iktifaDetails"
+      class="iktifa-details"
+    >
+      يجب اعتماد الجدول أولاً قبل تأكيد رفع الحضور على اكتفاء.
+    </div>
+
+    <div class="iktifa-admin">
+
+      <div class="iktifa-admin-title">
+        🔐 اعتماد الإدارة
+      </div>
+
+      <div class="iktifa-admin-row">
+
+        <input
+          type="password"
+          id="iktifaAdminCode"
+          placeholder="أدخل رمز الإدارة"
+          maxlength="10"
+        >
+
+        <button
+          id="iktifaConfirmBtn"
+          class="iktifa-confirm-btn"
+          onclick="confirmIktifaUpload()"
+        >
+          تأكيد رفع الحضور على اكتفاء
+        </button>
+
+        <button
+          id="iktifaCancelBtn"
+          class="iktifa-cancel-btn"
+          onclick="cancelIktifaUpload()"
+        >
+          إلغاء تأكيد الرفع
+        </button>
+
+      </div>
+
+      <div class="iktifa-note">
+        خاص بالإدارة — يتم ربط التأكيد بفترة اعتماد الجدول الحالية.
+      </div>
+
+    </div>
+
+  </div>
+
 
   <div id="tablesArea"></div>
 
   <div class="note">
     أي تعديل يتم حفظه تلقائيًا ويظهر لجميع الموظفين
   </div>
+
 </div>
 
-<div id="requestsWorkspace" class="requests-workspace">
-  <div id="requestChoice" class="request-choice">
-    <div class="request-card" onclick="showEmployeeRequest()">
+
+<!-- ======================================
+     طلبات تعديل الشفتات
+======================================= -->
+
+<div
+  id="requestsWorkspace"
+  class="requests-workspace"
+>
+
+  <div
+    id="requestChoice"
+    class="request-choice"
+  >
+
+    <div
+      class="request-card"
+      onclick="showEmployeeRequest()"
+    >
       <div class="icon">👨‍⚕️</div>
       <h3>الموظفين</h3>
       <p>إرسال طلب تعديل أو تبديل شفت</p>
     </div>
 
-    <div class="request-card" onclick="showAdminRequestLogin()">
+    <div
+      class="request-card"
+      onclick="showAdminRequestLogin()"
+    >
       <div class="icon">🔐</div>
       <h3>الإدارة</h3>
       <p>عرض ومتابعة طلبات التعديل</p>
     </div>
+
   </div>
 
-  <div id="employeeRequestBox" class="request-box" style="display:none">
+
+  <!-- نموذج الموظف -->
+
+  <div
+    id="employeeRequestBox"
+    class="request-box"
+    style="display:none"
+  >
+
     <h2>طلب تعديل شفت</h2>
 
     <div class="form-row">
+
       <div>
         <label>اسم الموظف</label>
+
         <select id="requestEmployee">
           <option value="">اختر اسمك</option>
           <option>د. حاتم الاحمدي</option>
@@ -291,6 +1073,7 @@ textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
 
       <div>
         <label>القسم</label>
+
         <select id="requestSection">
           <option value="">اختر القسم</option>
           <option>قسم الرجال</option>
@@ -298,9 +1081,12 @@ textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
           <option>الاستقبال</option>
         </select>
       </div>
+
     </div>
 
+
     <div class="form-row">
+
       <div>
         <label>تاريخ الشفت</label>
         <input type="date" id="requestDate">
@@ -308,6 +1094,7 @@ textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
 
       <div>
         <label>نوع الطلب</label>
+
         <select id="requestType">
           <option value="">اختر نوع الطلب</option>
           <option>تبديل شفت</option>
@@ -316,9 +1103,12 @@ textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
           <option>ملاحظة دوام</option>
         </select>
       </div>
+
     </div>
 
+
     <label>الموظف الآخر / اختياري</label>
+
     <select id="requestSecondEmployee">
       <option value="">لا يوجد</option>
       <option>د. حاتم الاحمدي</option>
@@ -336,30 +1126,96 @@ textarea{height:130px;padding:12px;resize:vertical;line-height:1.8}
       <option>أ. شهد خلف</option>
     </select>
 
+
     <label>تفاصيل الطلب</label>
-    <textarea id="requestDetails" placeholder="مثال: أرغب بتبديل شفت يوم الاثنين مع موظف آخر بسبب..."></textarea>
 
-    <button class="main-btn" onclick="sendShiftRequest()">إرسال الطلب للإدارة</button>
-    <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
+    <textarea
+      id="requestDetails"
+      placeholder="مثال: أرغب بتبديل شفت يوم الاثنين مع موظف آخر بسبب..."
+    ></textarea>
+
+    <button
+      class="main-btn"
+      onclick="sendShiftRequest()"
+    >
+      إرسال الطلب للإدارة
+    </button>
+
+    <button
+      class="back-btn"
+      onclick="backToRequestsChoice()"
+    >
+      رجوع
+    </button>
+
   </div>
 
-  <div id="adminRequestLoginBox" class="request-box" style="display:none">
+
+  <!-- دخول الإدارة -->
+
+  <div
+    id="adminRequestLoginBox"
+    class="request-box"
+    style="display:none"
+  >
+
     <h2>دخول الإدارة</h2>
+
     <label>الرمز السري</label>
-    <input type="password" id="requestAdminCode" placeholder="ادخل الرمز السري">
-    <button class="main-btn" onclick="adminShiftLogin()">دخول</button>
-    <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
+
+    <input
+      type="password"
+      id="requestAdminCode"
+      placeholder="ادخل الرمز السري"
+    >
+
+    <button
+      class="main-btn"
+      onclick="adminShiftLogin()"
+    >
+      دخول
+    </button>
+
+    <button
+      class="back-btn"
+      onclick="backToRequestsChoice()"
+    >
+      رجوع
+    </button>
+
   </div>
 
-  <div id="adminRequestsBox" class="request-box" style="display:none">
+
+  <!-- قائمة الطلبات -->
+
+  <div
+    id="adminRequestsBox"
+    class="request-box"
+    style="display:none"
+  >
+
     <h2>طلبات تعديل الشفتات</h2>
+
     <div id="shiftRequestsList"></div>
-    <button class="back-btn" onclick="backToRequestsChoice()">رجوع</button>
+
+    <button
+      class="back-btn"
+      onclick="backToRequestsChoice()"
+    >
+      رجوع
+    </button>
+
   </div>
+
 </div>
 
+
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+
 import {
   getFirestore,
   collection,
@@ -374,6 +1230,11 @@ import {
   orderBy
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
+
+/* =====================================
+   FIREBASE
+===================================== */
+
 const firebaseConfig={
   apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
   authDomain:"akazcenter-89c17.firebaseapp.com",
@@ -386,24 +1247,60 @@ const firebaseConfig={
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 
-const workRef=collection(db,"workSchedule");
-const settingsRef=collection(db,"workScheduleSettings");
-const shiftRequestsRef=collection(db,"shiftRequests");
+
+const workRef=
+  collection(db,"workSchedule");
+
+const settingsRef=
+  collection(db,"workScheduleSettings");
+
+const shiftRequestsRef=
+  collection(db,"shiftRequests");
+
+
+/* =====================================
+   الرموز السرية
+===================================== */
 
 const ADMIN_CODE="164321";
 
+/* رمز اعتماد اكتفاء */
+const IKTIFA_ADMIN_CODE="9999";
+
+
+/* =====================================
+   VARIABLES
+===================================== */
+
 let currentSection="";
+
 let savedData={};
+
 let settingsData={};
+
 let shiftRequestsData=[];
 
-const days=["السبت","الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+
+/* =====================================
+   الأيام والأقسام
+===================================== */
+
+const days=[
+  "السبت",
+  "الأحد",
+  "الاثنين",
+  "الثلاثاء",
+  "الأربعاء",
+  "الخميس"
+];
+
 
 const sectionTitles={
   men:"قسم الرجال",
   women:"قسم النساء",
   reception:"الاستقبال"
 };
+
 
 const shiftNames={
   single:"شفت واحد",
@@ -412,30 +1309,53 @@ const shiftNames={
   split:"شفتين"
 };
 
+
 const shiftTimes={
+
   men:{
     single:"01:00 PM - 09:00 PM",
     split:"09:00 AM - 01:00 PM<br>04:00 PM - 08:00 PM"
   },
+
   women:{
     single12:"12:00 PM - 08:00 PM",
     single1:"01:00 PM - 09:00 PM",
     split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
   },
+
   reception:{
     single12:"12:00 PM - 08:00 PM",
     single1:"01:00 PM - 09:00 PM",
     split:"09:00 AM - 12:00 PM<br>04:00 PM - 09:00 PM"
   }
+
 };
+
 
 const slotsCount={
-  men:{single:2,split:2},
-  women:{single12:3,single1:3,split:3},
-  reception:{single12:1,single1:1,split:2}
+
+  men:{
+    single:2,
+    split:2
+  },
+
+  women:{
+    single12:3,
+    single1:3,
+    split:3
+  },
+
+  reception:{
+    single12:1,
+    single1:1,
+    split:2
+  }
+
 };
 
+
 const employees={
+
   men:{
     "—":"#ffffff",
     "د. حاتم الاحمدي":"#c7d2fe",
@@ -443,6 +1363,7 @@ const employees={
     "د. عبدالرحمن السليمي":"#fbcfe8",
     "د. عبدالعزيز الحمدان":"#fecaca"
   },
+
   women:{
     "—":"#ffffff",
     "د. ريناد حميد":"#fca5a5",
@@ -452,643 +1373,2322 @@ const employees={
     "د. أسماء فهيد":"#a5f3fc",
     "د. مها فريح":"#bfdbfe"
   },
+
   reception:{
     "—":"#ffffff",
     "أ. مرام ناصر":"#bae6fd",
     "أ. أشواق سعود":"#bbf7d0",
     "أ. شهد خلف":"#fde68a"
   }
+
 };
 
+
+/* =====================================
+   التاريخ
+===================================== */
+
 function todayISO(){
+
   const d=new Date();
-  d.setMinutes(d.getMinutes()-d.getTimezoneOffset());
-  return d.toISOString().split("T")[0];
+
+  d.setMinutes(
+    d.getMinutes()-d.getTimezoneOffset()
+  );
+
+  return d
+    .toISOString()
+    .split("T")[0];
 }
 
-function makeId(section,shift,day,slot){
-  return `${section}_${shift}_${day}_${slot}`.replaceAll(" ","_");
+
+/* =====================================
+   IDs
+===================================== */
+
+function makeId(
+  section,
+  shift,
+  day,
+  slot
+){
+
+  return `${section}_${shift}_${day}_${slot}`
+    .replaceAll(" ","_");
 }
 
-function isSectionApproved(section=currentSection){
+
+/* =====================================
+   اعتماد الجدول
+===================================== */
+
+function isSectionApproved(
+  section=currentSection
+){
+
   const s=settingsData[section];
-  if(!s||!s.approved||!s.startDate||!s.endDate)return false;
+
+  if(
+    !s ||
+    !s.approved ||
+    !s.startDate ||
+    !s.endDate
+  ){
+    return false;
+  }
+
   const today=todayISO();
-  return today>=s.startDate&&today<=s.endDate;
+
+  return (
+    today>=s.startDate &&
+    today<=s.endDate
+  );
 }
 
-function getApprovalText(section=currentSection){
+
+function hasScheduleApproval(
+  section=currentSection
+){
+
   const s=settingsData[section];
 
-  if(!s||!s.approved||!s.startDate||!s.endDate){
+  return !!(
+    s &&
+    s.approved &&
+    s.startDate &&
+    s.endDate
+  );
+}
+
+
+function getApprovalText(
+  section=currentSection
+){
+
+  const s=settingsData[section];
+
+  if(
+    !s ||
+    !s.approved ||
+    !s.startDate ||
+    !s.endDate
+  ){
+
     return "الجدول غير معتمد";
+
   }
 
   const today=todayISO();
 
   if(today<s.startDate){
+
     return `جدول ${sectionTitles[section]} معتمد ويبدأ من ${s.startDate} إلى ${s.endDate}`;
+
   }
 
   if(today>s.endDate){
+
     return `انتهى اعتماد جدول ${sectionTitles[section]} بتاريخ ${s.endDate}`;
+
   }
 
   return `جدول ${sectionTitles[section]} معتمد من ${s.startDate} إلى ${s.endDate}`;
 }
 
+
 function updateApprovalUI(){
-  if(!currentSection)return;
+
+  if(!currentSection){
+    return;
+  }
 
   const s=settingsData[currentSection];
-  const status=document.getElementById("approvalStatus");
-  const expiredAlert=document.getElementById("expiredAlert");
 
-  document.getElementById("approvalStart").value=s?.startDate||"";
-  document.getElementById("approvalEnd").value=s?.endDate||"";
+  const status=
+    document.getElementById("approvalStatus");
 
-  status.innerText=getApprovalText(currentSection);
+  const expiredAlert=
+    document.getElementById("expiredAlert");
+
+
+  document.getElementById(
+    "approvalStart"
+  ).value=s?.startDate||"";
+
+
+  document.getElementById(
+    "approvalEnd"
+  ).value=s?.endDate||"";
+
+
+  status.innerText=
+    getApprovalText(currentSection);
+
+
   status.classList.remove("expired");
+
   expiredAlert.style.display="none";
 
-  if(s&&s.approved&&s.endDate&&todayISO()>s.endDate){
+
+  if(
+    s &&
+    s.approved &&
+    s.endDate &&
+    todayISO()>s.endDate
+  ){
+
     status.classList.add("expired");
+
     expiredAlert.style.display="block";
+
+  }
+
+  updateIktifaUI();
+
+}
+
+
+/* =====================================
+   اكتفاء
+===================================== */
+
+function isIktifaConfirmed(
+  section=currentSection
+){
+
+  const s=settingsData[section];
+
+  if(
+    !s ||
+    !s.approved ||
+    !s.startDate ||
+    !s.endDate
+  ){
+    return false;
+  }
+
+  return !!(
+    s.iktifaUploaded === true &&
+    s.iktifaStartDate === s.startDate &&
+    s.iktifaEndDate === s.endDate
+  );
+}
+
+
+function formatFirebaseDate(value){
+
+  if(!value){
+    return "";
+  }
+
+  try{
+
+    let date;
+
+    if(typeof value.toDate==="function"){
+
+      date=value.toDate();
+
+    }else if(value.seconds){
+
+      date=
+        new Date(value.seconds*1000);
+
+    }else{
+
+      date=
+        new Date(value);
+
+    }
+
+    return date.toLocaleString(
+      "ar-SA",
+      {
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit",
+        hour:"2-digit",
+        minute:"2-digit"
+      }
+    );
+
+  }catch(error){
+
+    return "";
+
   }
 }
 
-function warnIfApproved(actionText){
-  if(!isSectionApproved(currentSection))return true;
+
+function updateIktifaUI(){
+
+  if(!currentSection){
+    return;
+  }
+
+  const status=
+    document.getElementById("iktifaStatus");
+
+  const details=
+    document.getElementById("iktifaDetails");
+
+  const confirmBtn=
+    document.getElementById("iktifaConfirmBtn");
+
+  const cancelBtn=
+    document.getElementById("iktifaCancelBtn");
+
+  const s=settingsData[currentSection];
+
+
+  if(
+    !s ||
+    !s.approved ||
+    !s.startDate ||
+    !s.endDate
+  ){
+
+    status.className=
+      "iktifa-status disabled";
+
+    status.innerText=
+      "بانتظار اعتماد الجدول";
+
+    details.innerHTML=`
+      يجب اعتماد جدول
+      <strong>${sectionTitles[currentSection]}</strong>
+      أولاً قبل تأكيد رفع الحضور على اكتفاء.
+    `;
+
+    confirmBtn.disabled=true;
+
+    cancelBtn.disabled=true;
+
+    return;
+  }
+
+
+  const confirmed=
+    isIktifaConfirmed(currentSection);
+
+
+  if(confirmed){
+
+    status.className=
+      "iktifa-status done";
+
+    status.innerText=
+      "تم رفع الحضور ✅";
+
+
+    const uploadedTime=
+      formatFirebaseDate(
+        s.iktifaUploadedAt
+      );
+
+
+    details.innerHTML=`
+      <strong>
+        تم تأكيد رفع الحضور على اكتفاء
+      </strong>
+      <br>
+
+      القسم:
+      <strong>
+        ${sectionTitles[currentSection]}
+      </strong>
+      <br>
+
+      الفترة:
+      <strong>
+        ${s.startDate}
+        إلى
+        ${s.endDate}
+      </strong>
+      ${
+        uploadedTime
+        ? `<br>وقت التأكيد: <strong>${uploadedTime}</strong>`
+        : ""
+      }
+    `;
+
+    confirmBtn.disabled=true;
+
+    cancelBtn.disabled=false;
+
+  }else{
+
+    status.className=
+      "iktifa-status";
+
+    status.innerText=
+      "لم يتم تأكيد الرفع";
+
+
+    details.innerHTML=`
+      جدول
+      <strong>
+        ${sectionTitles[currentSection]}
+      </strong>
+      معتمد للفترة
+      <strong>
+        ${s.startDate}
+        إلى
+        ${s.endDate}
+      </strong>
+      <br>
+      ولم يتم حتى الآن تأكيد رفع الحضور على اكتفاء.
+    `;
+
+    confirmBtn.disabled=false;
+
+    cancelBtn.disabled=true;
+
+  }
+
+}
+
+
+window.confirmIktifaUpload=
+async function(){
+
+  if(!currentSection){
+    return;
+  }
+
+
+  const s=
+    settingsData[currentSection];
+
+
+  if(
+    !s ||
+    !s.approved ||
+    !s.startDate ||
+    !s.endDate
+  ){
+
+    alert(
+      "يجب اعتماد الجدول وتحديد فترة الاعتماد أولاً"
+    );
+
+    return;
+  }
+
+
+  if(
+    isIktifaConfirmed(currentSection)
+  ){
+
+    alert(
+      "تم تأكيد رفع الحضور على اكتفاء لهذه الفترة مسبقًا"
+    );
+
+    return;
+  }
+
+
+  const code=
+    document
+      .getElementById(
+        "iktifaAdminCode"
+      )
+      .value
+      .trim();
+
+
+  if(code!==IKTIFA_ADMIN_CODE){
+
+    alert(
+      "رمز الإدارة غير صحيح"
+    );
+
+    return;
+  }
+
+
+  const confirmed=
+    confirm(
+      `تأكيد رفع الحضور على اكتفاء؟\n\n`+
+      `القسم: ${sectionTitles[currentSection]}\n`+
+      `الفترة: ${s.startDate} إلى ${s.endDate}\n\n`+
+      `بعد التأكيد ستظهر الحالة بأن الرفع تم.`
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  await setDoc(
+    doc(
+      db,
+      "workScheduleSettings",
+      currentSection
+    ),
+    {
+
+      iktifaUploaded:true,
+
+      iktifaStartDate:s.startDate,
+
+      iktifaEndDate:s.endDate,
+
+      iktifaUploadedAt:new Date()
+
+    },
+    {
+      merge:true
+    }
+  );
+
+
+  document.getElementById(
+    "iktifaAdminCode"
+  ).value="";
+
+
+  alert(
+    "تم تأكيد رفع الحضور على اكتفاء بنجاح"
+  );
+
+};
+
+
+window.cancelIktifaUpload=
+async function(){
+
+  if(!currentSection){
+    return;
+  }
+
+
+  const s=
+    settingsData[currentSection];
+
+
+  if(
+    !isIktifaConfirmed(currentSection)
+  ){
+
+    alert(
+      "لا يوجد تأكيد رفع حالي لإلغائه"
+    );
+
+    return;
+  }
+
+
+  const code=
+    document
+      .getElementById(
+        "iktifaAdminCode"
+      )
+      .value
+      .trim();
+
+
+  if(code!==IKTIFA_ADMIN_CODE){
+
+    alert(
+      "أدخل رمز الإدارة 9999 لإلغاء التأكيد"
+    );
+
+    return;
+  }
+
+
+  const confirmed=
+    confirm(
+      `هل أنت متأكد من إلغاء تأكيد رفع الحضور على اكتفاء؟\n\n`+
+      `القسم: ${sectionTitles[currentSection]}\n`+
+      `الفترة: ${s.startDate} إلى ${s.endDate}`
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  await setDoc(
+    doc(
+      db,
+      "workScheduleSettings",
+      currentSection
+    ),
+    {
+
+      iktifaUploaded:false,
+
+      iktifaStartDate:s.startDate,
+
+      iktifaEndDate:s.endDate,
+
+      iktifaUploadedAt:null
+
+    },
+    {
+      merge:true
+    }
+  );
+
+
+  document.getElementById(
+    "iktifaAdminCode"
+  ).value="";
+
+
+  alert(
+    "تم إلغاء تأكيد رفع الحضور على اكتفاء"
+  );
+
+};
+
+
+/* =====================================
+   تحذير تعديل الجدول المعتمد
+===================================== */
+
+function warnIfApproved(
+  actionText
+){
+
+  if(
+    !isSectionApproved(currentSection)
+  ){
+    return true;
+  }
+
 
   return confirm(
     `جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد ${actionText}؟`
   );
+
 }
+
+
+/* =====================================
+   رسم الجداول
+===================================== */
 
 function renderTables(){
-  if(!currentSection)return;
 
-  const area=document.getElementById("tablesArea");
-  area.innerHTML="";
-
-  if(currentSection==="women"){
-    area.innerHTML+=buildTable(
-      "دوام شفت واحد 12-8",
-      "single12",
-      "شفت واحد",
-      shiftTimes.women.single12
-    );
-
-    area.innerHTML+=buildTable(
-      "دوام شفت واحد 1-9",
-      "single1",
-      "شفت واحد",
-      shiftTimes.women.single1
-    );
-
-    area.innerHTML+=buildTable(
-      "دوام شفتين",
-      "split",
-      "شفتين",
-      shiftTimes.women.split
-    );
-  }else if(currentSection==="reception"){
-    area.innerHTML+=buildTable(
-      "دوام شفت واحد 12-8",
-      "single12",
-      "شفت واحد",
-      shiftTimes.reception.single12
-    );
-
-    area.innerHTML+=buildTable(
-      "دوام شفت واحد 1-9",
-      "single1",
-      "شفت واحد",
-      shiftTimes.reception.single1
-    );
-
-    area.innerHTML+=buildTable(
-      "دوام شفتين",
-      "split",
-      "شفتين",
-      shiftTimes.reception.split
-    );
-  }else{
-    area.innerHTML+=buildTable(
-      "دوام شفت واحد",
-      "single",
-      "شفت واحد",
-      shiftTimes.men.single
-    );
-
-    area.innerHTML+=buildTable(
-      "دوام شفتين",
-      "split",
-      "شفتين",
-      shiftTimes.men.split
-    );
+  if(!currentSection){
+    return;
   }
 
-  document.querySelectorAll("#tablesArea select").forEach(colorCell);
+
+  const area=
+    document.getElementById(
+      "tablesArea"
+    );
+
+
+  area.innerHTML="";
+
+
+  if(currentSection==="women"){
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفت واحد 12-8",
+        "single12",
+        "شفت واحد",
+        shiftTimes.women.single12
+      );
+
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفت واحد 1-9",
+        "single1",
+        "شفت واحد",
+        shiftTimes.women.single1
+      );
+
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفتين",
+        "split",
+        "شفتين",
+        shiftTimes.women.split
+      );
+
+  }
+
+  else if(
+    currentSection==="reception"
+  ){
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفت واحد 12-8",
+        "single12",
+        "شفت واحد",
+        shiftTimes.reception.single12
+      );
+
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفت واحد 1-9",
+        "single1",
+        "شفت واحد",
+        shiftTimes.reception.single1
+      );
+
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفتين",
+        "split",
+        "شفتين",
+        shiftTimes.reception.split
+      );
+
+  }
+
+  else{
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفت واحد",
+        "single",
+        "شفت واحد",
+        shiftTimes.men.single
+      );
+
+
+    area.innerHTML+=
+      buildTable(
+        "دوام شفتين",
+        "split",
+        "شفتين",
+        shiftTimes.men.split
+      );
+
+  }
+
+
+  document
+    .querySelectorAll(
+      "#tablesArea select"
+    )
+    .forEach(colorCell);
+
 }
 
-function buildTable(title,shift,label,time){
+
+/* =====================================
+   بناء الجدول
+===================================== */
+
+function buildTable(
+  title,
+  shift,
+  label,
+  time
+){
+
   let html=`
     <div class="schedule-box">
+
       <div class="box-title">
-        <span>${title}</span>
+
+        <span>
+          ${title}
+        </span>
+
         <div class="table-actions">
-          <button class="copy-btn" onclick="copySaturday('${shift}')">
+
+          <button
+            class="copy-btn"
+            onclick="copySaturday('${shift}')"
+          >
             نسخ السبت لباقي الأسبوع
           </button>
 
-          <button class="clear-btn" onclick="clearSchedule('${shift}')">
+          <button
+            class="clear-btn"
+            onclick="clearSchedule('${shift}')"
+          >
             🗑️ حذف هذا الجدول
           </button>
+
         </div>
+
       </div>
 
       <div class="table-wrap">
+
         <table>
+
           <tr>
-            <th>نوع الدوام</th>
+
+            <th>
+              نوع الدوام
+            </th>
   `;
 
+
   days.forEach(day=>{
-    html+=`<th>${day}</th>`;
+
+    html+=`
+      <th>
+        ${day}
+      </th>
+    `;
+
   });
+
 
   html+=`
           </tr>
+
           <tr>
+
             <td class="shift-label">
-              <span class="shift-name">${label}</span>
-              <span class="shift-time">${time}</span>
+
+              <span class="shift-name">
+                ${label}
+              </span>
+
+              <span class="shift-time">
+                ${time}
+              </span>
+
             </td>
   `;
 
+
   days.forEach(day=>{
+
     html+="<td>";
 
-    for(let i=0;i<slotsCount[currentSection][shift];i++){
-      const id=makeId(currentSection,shift,day,i);
-      const value=savedData[id]?.employee||"—";
-      html+=createSelect(id,value);
+
+    for(
+      let i=0;
+      i<slotsCount[currentSection][shift];
+      i++
+    ){
+
+      const id=
+        makeId(
+          currentSection,
+          shift,
+          day,
+          i
+        );
+
+
+      const value=
+        savedData[id]?.employee
+        ||
+        "—";
+
+
+      html+=
+        createSelect(
+          id,
+          value
+        );
+
     }
 
+
     html+="</td>";
+
   });
+
 
   html+=`
           </tr>
+
         </table>
+
       </div>
+
     </div>
   `;
 
+
   return html;
+
 }
 
-function createSelect(id,value){
+
+/* =====================================
+   Select الموظفين
+===================================== */
+
+function createSelect(
+  id,
+  value
+){
+
   let options="";
 
-  for(const name in employees[currentSection]){
+
+  for(
+    const name in employees[currentSection]
+  ){
+
     options+=`
-      <option value="${name}" ${name===value?"selected":""}>
+      <option
+        value="${name}"
+        ${name===value ? "selected" : ""}
+      >
         ${name}
       </option>
     `;
+
   }
+
 
   return `
     <div class="slot">
-      <select data-id="${id}" onchange="save(this)">
+
+      <select
+        data-id="${id}"
+        onchange="save(this)"
+      >
         ${options}
       </select>
+
     </div>
   `;
+
 }
 
-function colorCell(select){
-  const wrapper=select.parentElement;
-  const color=employees[currentSection][select.value]||"#ffffff";
 
-  wrapper.style.background=color;
-  select.style.color=select.value==="—"?"#0f172a":"#000";
-  select.style.fontWeight="bold";
+/* =====================================
+   تلوين الموظف
+===================================== */
+
+function colorCell(
+  select
+){
+
+  const wrapper=
+    select.parentElement;
+
+
+  const color=
+    employees[currentSection][select.value]
+    ||
+    "#ffffff";
+
+
+  wrapper.style.background=
+    color;
+
+
+  select.style.color=
+    select.value==="—"
+    ? "#0f172a"
+    : "#000";
+
+
+  select.style.fontWeight=
+    "bold";
+
 }
 
-function isDuplicateInSameDay(select){
-  const selected=select.value;
-  if(selected==="—")return false;
 
-  const td=select.closest("td");
-  const row=td.parentElement;
-  const dayIndex=Array.from(row.children).indexOf(td);
+/* =====================================
+   منع التكرار بنفس اليوم
+===================================== */
+
+function isDuplicateInSameDay(
+  select
+){
+
+  const selected=
+    select.value;
+
+
+  if(selected==="—"){
+    return false;
+  }
+
+
+  const td=
+    select.closest("td");
+
+
+  const row=
+    td.parentElement;
+
+
+  const dayIndex=
+    Array
+      .from(row.children)
+      .indexOf(td);
+
 
   let count=0;
 
-  document.querySelectorAll("#tablesArea table tr").forEach(rowItem=>{
-    const cells=rowItem.children;
 
-    if(cells.length>dayIndex){
-      cells[dayIndex].querySelectorAll("select").forEach(item=>{
-        if(item.value===selected)count++;
-      });
-    }
-  });
+  document
+    .querySelectorAll(
+      "#tablesArea table tr"
+    )
+    .forEach(rowItem=>{
+
+      const cells=
+        rowItem.children;
+
+
+      if(cells.length>dayIndex){
+
+        cells[dayIndex]
+          .querySelectorAll(
+            "select"
+          )
+          .forEach(item=>{
+
+            if(
+              item.value===selected
+            ){
+              count++;
+            }
+
+          });
+
+      }
+
+    });
+
 
   return count>1;
+
 }
+
+
+/* =====================================
+   تحديد نوع الشفت من ID
+===================================== */
 
 function getShiftFromId(id){
-  if(id.includes("_single12_"))return "single12";
-  if(id.includes("_single1_"))return "single1";
-  if(id.includes("_single_"))return "single";
+
+  if(
+    id.includes("_single12_")
+  ){
+    return "single12";
+  }
+
+
+  if(
+    id.includes("_single1_")
+  ){
+    return "single1";
+  }
+
+
+  if(
+    id.includes("_single_")
+  ){
+    return "single";
+  }
+
+
   return "split";
+
 }
 
-window.save=async function(el){
-  const id=el.dataset.id;
-  const oldValue=savedData[id]?.employee||"—";
-  const value=el.value;
 
-  if(isSectionApproved(currentSection)&&value!==oldValue){
-    const approved=confirm(
-      `جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد تعديل هذه الخانة؟`
-    );
+/* =====================================
+   حفظ خانة
+===================================== */
+
+window.save=
+async function(el){
+
+  const id=
+    el.dataset.id;
+
+
+  const oldValue=
+    savedData[id]?.employee
+    ||
+    "—";
+
+
+  const value=
+    el.value;
+
+
+  if(
+    isSectionApproved(currentSection)
+    &&
+    value!==oldValue
+  ){
+
+    const approved=
+      confirm(
+        `جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد تعديل هذه الخانة؟`
+      );
+
 
     if(!approved){
-      el.value=oldValue;
+
+      el.value=
+        oldValue;
+
       colorCell(el);
+
       return;
+
     }
+
   }
 
-  if(isDuplicateInSameDay(el)){
-    alert("هذا الاسم موجود مسبقًا في نفس اليوم");
+
+  if(
+    isDuplicateInSameDay(el)
+  ){
+
+    alert(
+      "هذا الاسم موجود مسبقًا في نفس اليوم"
+    );
+
+
     el.value="—";
+
     colorCell(el);
-    await deleteDoc(doc(db,"workSchedule",id));
+
+
+    await deleteDoc(
+      doc(
+        db,
+        "workSchedule",
+        id
+      )
+    );
+
+
     return;
+
   }
+
 
   colorCell(el);
 
+
   if(value==="—"){
-    await deleteDoc(doc(db,"workSchedule",id));
+
+    await deleteDoc(
+      doc(
+        db,
+        "workSchedule",
+        id
+      )
+    );
+
+    return;
+
+  }
+
+
+  await setDoc(
+    doc(
+      db,
+      "workSchedule",
+      id
+    ),
+    {
+
+      id,
+
+      section:currentSection,
+
+      shift:
+        getShiftFromId(id),
+
+      employee:value,
+
+      updatedAt:new Date()
+
+    }
+  );
+
+};
+
+
+/* =====================================
+   نسخ السبت
+===================================== */
+
+window.copySaturday=
+async function(shift){
+
+  if(
+    !warnIfApproved(
+      `نسخ السبت لباقي الأسبوع في ${shiftNames[shift]}`
+    )
+  ){
     return;
   }
 
-  await setDoc(doc(db,"workSchedule",id),{
-    id,
-    section:currentSection,
-    shift:getShiftFromId(id),
-    employee:value,
-    updatedAt:new Date()
-  });
-};
 
-window.copySaturday=async function(shift){
-  if(!warnIfApproved(`نسخ السبت لباقي الأسبوع في ${shiftNames[shift]}`))return;
+  if(
+    !confirm(
+      `هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع في ${sectionTitles[currentSection]} - ${shiftNames[shift]}؟`
+    )
+  ){
+    return;
+  }
 
-  if(!confirm(
-    `هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع في ${sectionTitles[currentSection]} - ${shiftNames[shift]}؟`
-  ))return;
 
-  const otherDays=["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس"];
+  const otherDays=[
+    "الأحد",
+    "الاثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس"
+  ];
+
+
   const writes=[];
 
-  for(let i=0;i<slotsCount[currentSection][shift];i++){
-    const saturdayId=makeId(currentSection,shift,"السبت",i);
-    const employee=savedData[saturdayId]?.employee||"—";
 
-    for(const day of otherDays){
-      const targetId=makeId(currentSection,shift,day,i);
+  for(
+    let i=0;
+    i<slotsCount[currentSection][shift];
+    i++
+  ){
+
+    const saturdayId=
+      makeId(
+        currentSection,
+        shift,
+        "السبت",
+        i
+      );
+
+
+    const employee=
+      savedData[saturdayId]?.employee
+      ||
+      "—";
+
+
+    for(
+      const day of otherDays
+    ){
+
+      const targetId=
+        makeId(
+          currentSection,
+          shift,
+          day,
+          i
+        );
+
 
       if(employee==="—"){
-        writes.push(deleteDoc(doc(db,"workSchedule",targetId)));
-      }else{
+
         writes.push(
-          setDoc(doc(db,"workSchedule",targetId),{
-            id:targetId,
-            section:currentSection,
-            shift,
-            employee,
-            updatedAt:new Date()
-          })
+
+          deleteDoc(
+            doc(
+              db,
+              "workSchedule",
+              targetId
+            )
+          )
+
         );
+
+      }else{
+
+        writes.push(
+
+          setDoc(
+            doc(
+              db,
+              "workSchedule",
+              targetId
+            ),
+            {
+
+              id:targetId,
+
+              section:
+                currentSection,
+
+              shift,
+
+              employee,
+
+              updatedAt:
+                new Date()
+
+            }
+          )
+
+        );
+
       }
+
     }
+
   }
+
 
   await Promise.all(writes);
-  alert("تم نسخ يوم السبت لباقي أيام الأسبوع");
+
+
+  alert(
+    "تم نسخ يوم السبت لباقي أيام الأسبوع"
+  );
+
 };
 
-window.clearSchedule=async function(shift){
-  if(!warnIfApproved(`حذف جدول ${shiftNames[shift]}`))return;
 
-  if(!confirm(
-    `متأكد تبغى تحذف جدول ${sectionTitles[currentSection]} - ${shiftNames[shift]} فقط؟`
-  ))return;
+/* =====================================
+   حذف جدول شفت
+===================================== */
 
-  const snapshot=await getDocs(workRef);
+window.clearSchedule=
+async function(shift){
+
+  if(
+    !warnIfApproved(
+      `حذف جدول ${shiftNames[shift]}`
+    )
+  ){
+    return;
+  }
+
+
+  if(
+    !confirm(
+      `متأكد تبغى تحذف جدول ${sectionTitles[currentSection]} - ${shiftNames[shift]} فقط؟`
+    )
+  ){
+    return;
+  }
+
+
+  const snapshot=
+    await getDocs(workRef);
+
+
   const deletes=[];
 
-  snapshot.forEach(item=>{
-    const id=item.id;
 
-    if(id.startsWith(`${currentSection}_${shift}_`)){
-      deletes.push(deleteDoc(doc(db,"workSchedule",id)));
+  snapshot.forEach(item=>{
+
+    const id=
+      item.id;
+
+
+    if(
+      id.startsWith(
+        `${currentSection}_${shift}_`
+      )
+    ){
+
+      deletes.push(
+
+        deleteDoc(
+          doc(
+            db,
+            "workSchedule",
+            id
+          )
+        )
+
+      );
+
     }
+
   });
+
 
   await Promise.all(deletes);
-  alert("تم حذف الجدول المحدد فقط");
+
+
+  alert(
+    "تم حذف الجدول المحدد فقط"
+  );
+
 };
 
-window.approveSchedule=async function(){
-  const startDate=document.getElementById("approvalStart").value;
-  const endDate=document.getElementById("approvalEnd").value;
 
-  if(!startDate||!endDate){
-    alert("حدد تاريخ البداية والنهاية");
+/* =====================================
+   اعتماد الجدول
+===================================== */
+
+window.approveSchedule=
+async function(){
+
+  const startDate=
+    document
+      .getElementById(
+        "approvalStart"
+      )
+      .value;
+
+
+  const endDate=
+    document
+      .getElementById(
+        "approvalEnd"
+      )
+      .value;
+
+
+  if(
+    !startDate ||
+    !endDate
+  ){
+
+    alert(
+      "حدد تاريخ البداية والنهاية"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    endDate<startDate
+  ){
+
+    alert(
+      "تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      `اعتماد جدول ${sectionTitles[currentSection]} من ${startDate} إلى ${endDate}؟`
+    )
+  ){
     return;
   }
 
-  if(endDate<startDate){
-    alert("تاريخ النهاية لا يمكن أن يكون قبل تاريخ البداية");
-    return;
-  }
 
-  if(!confirm(
-    `اعتماد جدول ${sectionTitles[currentSection]} من ${startDate} إلى ${endDate}؟`
-  ))return;
+  const oldSettings=
+    settingsData[currentSection];
 
-  await setDoc(doc(db,"workScheduleSettings",currentSection),{
-    section:currentSection,
-    approved:true,
+
+  const samePeriod=
+    oldSettings?.startDate===startDate
+    &&
+    oldSettings?.endDate===endDate;
+
+
+  const data={
+
+    section:
+      currentSection,
+
+    approved:
+      true,
+
     startDate,
+
     endDate,
-    updatedAt:new Date()
-  });
 
-  alert("تم اعتماد الجدول");
+    updatedAt:
+      new Date()
+
+  };
+
+
+  /*
+    إذا تغيرت الفترة،
+    نلغي اعتماد اكتفاء السابق
+  */
+  if(!samePeriod){
+
+    data.iktifaUploaded=false;
+
+    data.iktifaStartDate=startDate;
+
+    data.iktifaEndDate=endDate;
+
+    data.iktifaUploadedAt=null;
+
+  }
+
+
+  await setDoc(
+    doc(
+      db,
+      "workScheduleSettings",
+      currentSection
+    ),
+    data,
+    {
+      merge:true
+    }
+  );
+
+
+  alert(
+    "تم اعتماد الجدول"
+  );
+
 };
 
-window.cancelApproval=async function(){
-  if(!confirm(
-    `إلغاء اعتماد جدول ${sectionTitles[currentSection]}؟`
-  ))return;
 
-  await setDoc(doc(db,"workScheduleSettings",currentSection),{
-    section:currentSection,
-    approved:false,
-    startDate:"",
-    endDate:"",
-    updatedAt:new Date()
-  });
+/* =====================================
+   إلغاء اعتماد الجدول
+===================================== */
 
-  alert("تم إلغاء الاعتماد");
+window.cancelApproval=
+async function(){
+
+  if(
+    !confirm(
+      `إلغاء اعتماد جدول ${sectionTitles[currentSection]}؟`
+    )
+  ){
+    return;
+  }
+
+
+  await setDoc(
+    doc(
+      db,
+      "workScheduleSettings",
+      currentSection
+    ),
+    {
+
+      section:
+        currentSection,
+
+      approved:
+        false,
+
+      startDate:
+        "",
+
+      endDate:
+        "",
+
+      updatedAt:
+        new Date(),
+
+      iktifaUploaded:
+        false,
+
+      iktifaStartDate:
+        "",
+
+      iktifaEndDate:
+        "",
+
+      iktifaUploadedAt:
+        null
+
+    },
+    {
+      merge:true
+    }
+  );
+
+
+  document.getElementById(
+    "iktifaAdminCode"
+  ).value="";
+
+
+  alert(
+    "تم إلغاء الاعتماد"
+  );
+
 };
 
-window.openSection=function(section){
-  document.getElementById("sectionSelector").style.display="none";
-  document.getElementById("requestsWorkspace").style.display="none";
-  document.getElementById("workspace").style.display="block";
+
+/* =====================================
+   فتح قسم
+===================================== */
+
+window.openSection=
+function(section){
+
+  document.getElementById(
+    "sectionSelector"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "requestsWorkspace"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "workspace"
+  ).style.display=
+    "block";
+
+
   switchSection(section);
+
 };
 
-window.openShiftRequests=function(){
-  document.getElementById("sectionSelector").style.display="none";
-  document.getElementById("workspace").style.display="none";
-  document.getElementById("requestsWorkspace").style.display="block";
+
+/* =====================================
+   فتح طلبات الشفتات
+===================================== */
+
+window.openShiftRequests=
+function(){
+
+  document.getElementById(
+    "sectionSelector"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "workspace"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "requestsWorkspace"
+  ).style.display=
+    "block";
+
+
   backToRequestsChoice();
+
 };
 
-window.switchSection=function(section){
-  currentSection=section;
 
-  document.getElementById("sectionTitle").innerText=sectionTitles[section];
-  document.getElementById("menBtn").classList.toggle("active",section==="men");
-  document.getElementById("womenBtn").classList.toggle("active",section==="women");
-  document.getElementById("receptionBtn").classList.toggle("active",section==="reception");
+/* =====================================
+   التنقل بين الأقسام
+===================================== */
+
+window.switchSection=
+function(section){
+
+  currentSection=
+    section;
+
+
+  document.getElementById(
+    "sectionTitle"
+  ).innerText=
+    sectionTitles[section];
+
+
+  document.getElementById(
+    "menBtn"
+  ).classList.toggle(
+    "active",
+    section==="men"
+  );
+
+
+  document.getElementById(
+    "womenBtn"
+  ).classList.toggle(
+    "active",
+    section==="women"
+  );
+
+
+  document.getElementById(
+    "receptionBtn"
+  ).classList.toggle(
+    "active",
+    section==="reception"
+  );
+
+
+  document.getElementById(
+    "iktifaAdminCode"
+  ).value="";
+
 
   updateApprovalUI();
+
   renderTables();
+
 };
 
-window.showEmployeeRequest=function(){
-  document.getElementById("requestChoice").style.display="none";
-  document.getElementById("employeeRequestBox").style.display="block";
-  document.getElementById("adminRequestLoginBox").style.display="none";
-  document.getElementById("adminRequestsBox").style.display="none";
+
+/* =====================================
+   طلبات الموظفين
+===================================== */
+
+window.showEmployeeRequest=
+function(){
+
+  document.getElementById(
+    "requestChoice"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "employeeRequestBox"
+  ).style.display=
+    "block";
+
+
+  document.getElementById(
+    "adminRequestLoginBox"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "adminRequestsBox"
+  ).style.display=
+    "none";
+
 };
 
-window.showAdminRequestLogin=function(){
-  document.getElementById("requestChoice").style.display="none";
-  document.getElementById("employeeRequestBox").style.display="none";
-  document.getElementById("adminRequestLoginBox").style.display="block";
-  document.getElementById("adminRequestsBox").style.display="none";
+
+window.showAdminRequestLogin=
+function(){
+
+  document.getElementById(
+    "requestChoice"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "employeeRequestBox"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "adminRequestLoginBox"
+  ).style.display=
+    "block";
+
+
+  document.getElementById(
+    "adminRequestsBox"
+  ).style.display=
+    "none";
+
 };
 
-window.backToRequestsChoice=function(){
-  document.getElementById("requestChoice").style.display="grid";
-  document.getElementById("employeeRequestBox").style.display="none";
-  document.getElementById("adminRequestLoginBox").style.display="none";
-  document.getElementById("adminRequestsBox").style.display="none";
+
+window.backToRequestsChoice=
+function(){
+
+  document.getElementById(
+    "requestChoice"
+  ).style.display=
+    "grid";
+
+
+  document.getElementById(
+    "employeeRequestBox"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "adminRequestLoginBox"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "adminRequestsBox"
+  ).style.display=
+    "none";
+
 };
 
-window.sendShiftRequest=async function(){
-  const employee=document.getElementById("requestEmployee").value;
-  const section=document.getElementById("requestSection").value;
-  const date=document.getElementById("requestDate").value;
-  const type=document.getElementById("requestType").value;
-  const secondEmployee=document.getElementById("requestSecondEmployee").value;
-  const details=document.getElementById("requestDetails").value.trim();
 
-  if(!employee||!section||!date||!type||!details){
-    alert("أكمل بيانات الطلب");
+/* =====================================
+   إرسال طلب تعديل شفت
+===================================== */
+
+window.sendShiftRequest=
+async function(){
+
+  const employee=
+    document.getElementById(
+      "requestEmployee"
+    ).value;
+
+
+  const section=
+    document.getElementById(
+      "requestSection"
+    ).value;
+
+
+  const date=
+    document.getElementById(
+      "requestDate"
+    ).value;
+
+
+  const type=
+    document.getElementById(
+      "requestType"
+    ).value;
+
+
+  const secondEmployee=
+    document.getElementById(
+      "requestSecondEmployee"
+    ).value;
+
+
+  const details=
+    document.getElementById(
+      "requestDetails"
+    ).value.trim();
+
+
+  if(
+    !employee ||
+    !section ||
+    !date ||
+    !type ||
+    !details
+  ){
+
+    alert(
+      "أكمل بيانات الطلب"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "بعد إرسال الطلب سيظهر للإدارة ولا يمكن تعديله. هل تريد الإرسال؟"
+    )
+  ){
     return;
   }
 
-  if(!confirm(
-    "بعد إرسال الطلب سيظهر للإدارة ولا يمكن تعديله. هل تريد الإرسال؟"
-  ))return;
 
-  await addDoc(shiftRequestsRef,{
-    employee,
-    section,
-    date,
-    type,
-    secondEmployee,
-    details,
-    status:"new",
-    createdAt:new Date()
-  });
+  await addDoc(
+    shiftRequestsRef,
+    {
 
-  alert("تم إرسال الطلب للإدارة");
+      employee,
 
-  document.getElementById("requestEmployee").value="";
-  document.getElementById("requestSection").value="";
-  document.getElementById("requestDate").value="";
-  document.getElementById("requestType").value="";
-  document.getElementById("requestSecondEmployee").value="";
-  document.getElementById("requestDetails").value="";
+      section,
+
+      date,
+
+      type,
+
+      secondEmployee,
+
+      details,
+
+      status:
+        "new",
+
+      createdAt:
+        new Date()
+
+    }
+  );
+
+
+  alert(
+    "تم إرسال الطلب للإدارة"
+  );
+
+
+  document.getElementById(
+    "requestEmployee"
+  ).value="";
+
+
+  document.getElementById(
+    "requestSection"
+  ).value="";
+
+
+  document.getElementById(
+    "requestDate"
+  ).value="";
+
+
+  document.getElementById(
+    "requestType"
+  ).value="";
+
+
+  document.getElementById(
+    "requestSecondEmployee"
+  ).value="";
+
+
+  document.getElementById(
+    "requestDetails"
+  ).value="";
+
 
   backToRequestsChoice();
+
 };
 
-window.adminShiftLogin=async function(){
-  const code=document.getElementById("requestAdminCode").value;
 
-  if(code!==ADMIN_CODE){
-    alert("الرمز غير صحيح");
+/* =====================================
+   دخول الإدارة للطلبات
+===================================== */
+
+window.adminShiftLogin=
+async function(){
+
+  const code=
+    document.getElementById(
+      "requestAdminCode"
+    ).value;
+
+
+  if(
+    code!==ADMIN_CODE
+  ){
+
+    alert(
+      "الرمز غير صحيح"
+    );
+
     return;
+
   }
 
-  document.getElementById("requestChoice").style.display="none";
-  document.getElementById("employeeRequestBox").style.display="none";
-  document.getElementById("adminRequestLoginBox").style.display="none";
-  document.getElementById("adminRequestsBox").style.display="block";
+
+  document.getElementById(
+    "requestChoice"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "employeeRequestBox"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "adminRequestLoginBox"
+  ).style.display=
+    "none";
+
+
+  document.getElementById(
+    "adminRequestsBox"
+  ).style.display=
+    "block";
+
 
   renderShiftRequests();
+
+
   await markShiftRequestsSeen();
+
 };
 
-function formatDate(createdAt){
-  if(!createdAt)return "";
-  if(createdAt.seconds){
-    return new Date(createdAt.seconds*1000).toLocaleString("ar-SA");
+
+/* =====================================
+   تنسيق تاريخ الطلب
+===================================== */
+
+function formatDate(
+  createdAt
+){
+
+  if(!createdAt){
+    return "";
   }
+
+
+  if(createdAt.seconds){
+
+    return new Date(
+      createdAt.seconds*1000
+    ).toLocaleString(
+      "ar-SA"
+    );
+
+  }
+
+
   return "";
+
 }
 
-function renderShiftRequests(){
-  const list=document.getElementById("shiftRequestsList");
 
-  if(shiftRequestsData.length===0){
-    list.innerHTML=`<div class="empty">لا توجد طلبات تعديل حتى الآن</div>`;
+/* =====================================
+   رسم الطلبات
+===================================== */
+
+function renderShiftRequests(){
+
+  const list=
+    document.getElementById(
+      "shiftRequestsList"
+    );
+
+
+  if(
+    shiftRequestsData.length===0
+  ){
+
+    list.innerHTML=`
+      <div class="empty">
+        لا توجد طلبات تعديل حتى الآن
+      </div>
+    `;
+
     return;
+
   }
+
 
   list.innerHTML="";
 
-  shiftRequestsData.forEach(item=>{
-    list.innerHTML+=`
-      <div class="request-item ${item.status==="new"?"new":""}">
-        <div class="request-meta">
-          ${item.status==="new"?"🔴 طلب جديد<br>":""}
-          الموظف: ${item.employee}<br>
-          القسم: ${item.section}<br>
-          التاريخ: ${item.date}<br>
-          نوع الطلب: ${item.type}<br>
-          الموظف الآخر: ${item.secondEmployee||"لا يوجد"}<br>
-          وقت الإرسال: ${formatDate(item.createdAt)}
-        </div>
 
-        <div class="request-text">${item.details}</div>
+  shiftRequestsData.forEach(
+    item=>{
 
-        <button
-          class="delete-request"
-          onclick="deleteShiftRequest('${item.id}')"
+      list.innerHTML+=`
+
+        <div
+          class="request-item ${
+            item.status==="new"
+            ? "new"
+            : ""
+          }"
         >
-          حذف الطلب
-        </button>
-      </div>
-    `;
-  });
+
+          <div class="request-meta">
+
+            ${
+              item.status==="new"
+              ? "🔴 طلب جديد<br>"
+              : ""
+            }
+
+            الموظف:
+            ${item.employee}
+            <br>
+
+            القسم:
+            ${item.section}
+            <br>
+
+            التاريخ:
+            ${item.date}
+            <br>
+
+            نوع الطلب:
+            ${item.type}
+            <br>
+
+            الموظف الآخر:
+            ${
+              item.secondEmployee
+              ||
+              "لا يوجد"
+            }
+            <br>
+
+            وقت الإرسال:
+            ${
+              formatDate(
+                item.createdAt
+              )
+            }
+
+          </div>
+
+          <div class="request-text">
+            ${item.details}
+          </div>
+
+          <button
+            class="delete-request"
+            onclick="deleteShiftRequest('${item.id}')"
+          >
+            حذف الطلب
+          </button>
+
+        </div>
+      `;
+
+    }
+  );
+
 }
+
+
+/* =====================================
+   تعليم الطلبات كمقروءة
+===================================== */
 
 async function markShiftRequestsSeen(){
+
   const updates=[];
 
-  shiftRequestsData.forEach(item=>{
-    if(item.status==="new"){
-      updates.push(
-        updateDoc(doc(db,"shiftRequests",item.id),{
-          status:"seen"
-        })
-      );
+
+  shiftRequestsData.forEach(
+    item=>{
+
+      if(
+        item.status==="new"
+      ){
+
+        updates.push(
+
+          updateDoc(
+            doc(
+              db,
+              "shiftRequests",
+              item.id
+            ),
+            {
+              status:"seen"
+            }
+          )
+
+        );
+
+      }
+
     }
-  });
+  );
+
 
   await Promise.all(updates);
+
 }
 
-window.deleteShiftRequest=async function(id){
-  if(!confirm(
-    "سيتم حذف الطلب نهائيًا، هل أنت متأكد؟"
-  ))return;
 
-  await deleteDoc(doc(db,"shiftRequests",id));
+/* =====================================
+   حذف طلب
+===================================== */
+
+window.deleteShiftRequest=
+async function(id){
+
+  if(
+    !confirm(
+      "سيتم حذف الطلب نهائيًا، هل أنت متأكد؟"
+    )
+  ){
+    return;
+  }
+
+
+  await deleteDoc(
+    doc(
+      db,
+      "shiftRequests",
+      id
+    )
+  );
+
 };
 
+
+/* =====================================
+   عداد الطلبات الجديدة
+===================================== */
+
 function updateShiftBadge(){
-  const count=shiftRequestsData.filter(item=>item.status==="new").length;
-  const badge=document.getElementById("shiftRequestsBadge");
+
+  const count=
+    shiftRequestsData
+      .filter(
+        item=>
+          item.status==="new"
+      )
+      .length;
+
+
+  const badge=
+    document.getElementById(
+      "shiftRequestsBadge"
+    );
+
 
   if(count>0){
-    badge.style.display="flex";
-    badge.innerText=count;
+
+    badge.style.display=
+      "flex";
+
+    badge.innerText=
+      count;
+
   }else{
-    badge.style.display="none";
+
+    badge.style.display=
+      "none";
+
   }
+
 }
 
-onSnapshot(workRef,snapshot=>{
-  savedData={};
 
-  snapshot.forEach(item=>{
-    savedData[item.id]=item.data();
-  });
+/* =====================================
+   FIREBASE LISTENERS
+===================================== */
 
-  renderTables();
-});
 
-onSnapshot(settingsRef,snapshot=>{
-  settingsData={};
+/* جدول الدوام */
 
-  snapshot.forEach(item=>{
-    settingsData[item.id]=item.data();
-  });
+onSnapshot(
+  workRef,
+  snapshot=>{
 
-  updateApprovalUI();
-});
+    savedData={};
 
-const shiftQuery=query(
-  shiftRequestsRef,
-  orderBy("createdAt","desc")
+
+    snapshot.forEach(
+      item=>{
+
+        savedData[item.id]=
+          item.data();
+
+      }
+    );
+
+
+    renderTables();
+
+  }
 );
 
-onSnapshot(shiftQuery,snapshot=>{
-  shiftRequestsData=[];
 
-  snapshot.forEach(item=>{
-    shiftRequestsData.push({
-      id:item.id,
-      ...item.data()
-    });
-  });
+/* إعدادات الاعتماد واكتفاء */
 
-  updateShiftBadge();
+onSnapshot(
+  settingsRef,
+  snapshot=>{
 
-  const adminVisible=
-    document.getElementById("adminRequestsBox").style.display==="block";
+    settingsData={};
 
-  if(adminVisible){
-    renderShiftRequests();
-  }
-});
 
-setInterval(()=>{
-  if(currentSection){
+    snapshot.forEach(
+      item=>{
+
+        settingsData[item.id]=
+          item.data();
+
+      }
+    );
+
+
     updateApprovalUI();
+
+    updateIktifaUI();
+
   }
-},60000);
+);
+
+
+/* طلبات تعديل الشفتات */
+
+const shiftQuery=
+  query(
+    shiftRequestsRef,
+    orderBy(
+      "createdAt",
+      "desc"
+    )
+  );
+
+
+onSnapshot(
+  shiftQuery,
+  snapshot=>{
+
+    shiftRequestsData=[];
+
+
+    snapshot.forEach(
+      item=>{
+
+        shiftRequestsData.push({
+
+          id:item.id,
+
+          ...item.data()
+
+        });
+
+      }
+    );
+
+
+    updateShiftBadge();
+
+
+    const adminVisible=
+      document.getElementById(
+        "adminRequestsBox"
+      ).style.display
+      ===
+      "block";
+
+
+    if(adminVisible){
+
+      renderShiftRequests();
+
+    }
+
+  }
+);
+
+
+/* =====================================
+   تحديث حالة الاعتماد كل دقيقة
+===================================== */
+
+setInterval(
+  ()=>{
+
+    if(currentSection){
+
+      updateApprovalUI();
+
+      updateIktifaUI();
+
+    }
+
+  },
+  60000
+);
+
 </script>
 
-<script type="module" src="tracker.js"></script>
+<script
+  type="module"
+  src="tracker.js"
+></script>
+
 </body>
 </html>
