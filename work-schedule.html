@@ -1591,7 +1591,7 @@ function todayISO(){
 
 /* =========================
    تنسيق التاريخ والوقت
-   بتوقيت السعودية
+   لاعتماد الجدول
 ========================= */
 
 function formatDateTime(value){
@@ -1650,6 +1650,61 @@ function formatDateTime(value){
       ).format(date);
 
     return `${datePart} - ${timePart}`;
+
+  }catch(error){
+
+    return "";
+
+  }
+}
+
+/* =========================
+   تنسيق التاريخ فقط
+   لاكتفاء
+========================= */
+
+function formatDateOnly(value){
+
+  if(!value){
+    return "";
+  }
+
+  try{
+
+    let date;
+
+    if(
+      typeof value.toDate==="function"
+    ){
+
+      date=
+        value.toDate();
+
+    }else if(
+      value.seconds
+    ){
+
+      date=
+        new Date(
+          value.seconds*1000
+        );
+
+    }else{
+
+      date=
+        new Date(value);
+
+    }
+
+    return new Intl.DateTimeFormat(
+      "ar-SA-u-ca-gregory-nu-latn",
+      {
+        timeZone:"Asia/Riyadh",
+        year:"numeric",
+        month:"2-digit",
+        day:"2-digit"
+      }
+    ).format(date);
 
   }catch(error){
 
@@ -1788,7 +1843,7 @@ function updateApprovalUI(){
   expiredAlert.style.display=
     "none";
 
-  /* تاريخ ووقت اعتماد الجدول */
+  /* وقت وتاريخ ضغط زر اعتماد الجدول */
 
   if(
     s &&
@@ -1805,7 +1860,7 @@ function updateApprovalUI(){
       "block";
 
     approvalTime.innerHTML=
-      `🕒 تاريخ ووقت اعتماد الجدول: <strong>${formattedApproval}</strong>`;
+      `🕒 تم اعتماد الجدول بتاريخ ووقت: <strong>${formattedApproval}</strong>`;
 
   }else{
 
@@ -1932,11 +1987,6 @@ function updateIktifaUI(){
       currentSection
     );
 
-  const approvedTime=
-    formatDateTime(
-      s.approvedAt
-    );
-
   if(confirmed){
 
     status.className=
@@ -1945,8 +1995,8 @@ function updateIktifaUI(){
     status.innerText=
       "تم الرفع على اكتفاء ✅";
 
-    const uploadedTime=
-      formatDateTime(
+    const uploadedDate=
+      formatDateOnly(
         s.iktifaUploadedAt
       );
 
@@ -1973,21 +2023,11 @@ function updateIktifaUI(){
       </strong>
 
       ${
-        approvedTime
+        uploadedDate
         ?
         `<br>
-         🕒 تاريخ ووقت اعتماد الجدول:
-         <strong>${approvedTime}</strong>`
-        :
-        ""
-      }
-
-      ${
-        uploadedTime
-        ?
-        `<br>
-         🕒 تاريخ ووقت الرفع على اكتفاء:
-         <strong>${uploadedTime}</strong>`
+         📅 تاريخ الرفع على اكتفاء:
+         <strong>${uploadedDate}</strong>`
         :
         ""
       }
@@ -2028,16 +2068,6 @@ function updateIktifaUI(){
         إلى
         ${s.endDate}
       </strong>
-
-      ${
-        approvedTime
-        ?
-        `<br>
-         🕒 تاريخ ووقت اعتماد الجدول:
-         <strong>${approvedTime}</strong>`
-        :
-        ""
-      }
 
       <br>
 
@@ -2258,7 +2288,7 @@ async function(){
       `تأكيد رفع الحضور على اكتفاء؟\n\n`+
       `القسم: ${sectionTitles[currentSection]}\n`+
       `الفترة: ${s.startDate} إلى ${s.endDate}\n\n`+
-      `سيتم تسجيل تاريخ ووقت التأكيد تلقائيًا.`
+      `سيتم تسجيل تاريخ الرفع تلقائيًا.`
     );
 
   if(!confirmed){
@@ -3143,6 +3173,9 @@ async function(){
     &&
     oldSettings?.endDate===endDate;
 
+  const now=
+    new Date();
+
   const data={
 
     section:
@@ -3155,12 +3188,12 @@ async function(){
 
     endDate,
 
-    /* تسجيل تاريخ ووقت الاعتماد */
+    /* لحظة ضغط زر الاعتماد */
     approvedAt:
-      new Date(),
+      now,
 
     updatedAt:
-      new Date()
+      now
 
   };
 
@@ -3193,7 +3226,7 @@ async function(){
   );
 
   alert(
-    "تم اعتماد الجدول وتسجيل تاريخ ووقت الاعتماد"
+    "تم اعتماد الجدول"
   );
 
 };
