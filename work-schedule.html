@@ -158,6 +158,10 @@ body{
   margin:15px 0
 }
 
+/* =========================
+   اعتماد الجدول
+========================= */
+
 .approval-card,
 .request-box{
   width:96%;
@@ -357,7 +361,35 @@ body{
   font-size:14px
 }
 
-.iktifa-admin{
+/* زر الإدارة الصغير */
+
+.iktifa-admin-entry{
+  margin-top:14px;
+  display:flex;
+  justify-content:flex-end
+}
+
+.iktifa-admin-open-btn{
+  border:1px solid #cbd5e1;
+  background:#f8fafc;
+  color:#475569;
+  padding:9px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:900;
+  font-family:Tahoma,Arial
+}
+
+.iktifa-admin-open-btn:hover{
+  background:#eef6ff;
+  color:#005b9f;
+  border-color:#bae6fd
+}
+
+/* دخول الإدارة */
+
+.iktifa-admin-box{
+  display:none;
   margin-top:16px;
   border-top:1px solid #e2e8f0;
   padding-top:16px
@@ -383,6 +415,18 @@ body{
   box-sizing:border-box
 }
 
+.iktifa-login-btn{
+  border:none;
+  background:#005b9f;
+  color:white;
+  padding:11px 18px;
+  height:42px;
+  border-radius:10px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:Tahoma,Arial
+}
+
 .iktifa-confirm-btn{
   border:none;
   background:#16a34a;
@@ -391,7 +435,8 @@ body{
   height:42px;
   border-radius:10px;
   font-weight:900;
-  cursor:pointer
+  cursor:pointer;
+  font-family:Tahoma,Arial
 }
 
 .iktifa-confirm-btn:disabled{
@@ -407,7 +452,8 @@ body{
   height:42px;
   border-radius:10px;
   font-weight:900;
-  cursor:pointer
+  cursor:pointer;
+  font-family:Tahoma,Arial
 }
 
 .iktifa-cancel-btn:disabled{
@@ -415,11 +461,21 @@ body{
   cursor:not-allowed
 }
 
-.iktifa-note{
-  color:#64748b;
-  font-size:12px;
-  margin-top:10px
+.iktifa-close-btn{
+  border:1px solid #cbd5e1;
+  background:#f8fafc;
+  color:#475569;
+  padding:11px 16px;
+  height:42px;
+  border-radius:10px;
+  font-weight:900;
+  cursor:pointer;
+  font-family:Tahoma,Arial
 }
+
+/* =========================
+   الجداول
+========================= */
 
 .schedule-box{
   width:96%;
@@ -559,6 +615,10 @@ textarea{
   margin:18px
 }
 
+/* =========================
+   طلبات الشفتات
+========================= */
+
 .request-choice{
   width:96%;
   margin:30px auto;
@@ -689,6 +749,10 @@ textarea{
   padding:20px
 }
 
+/* =========================
+   الجوال
+========================= */
+
 @media(max-width:800px){
 
   .topbar{
@@ -744,6 +808,14 @@ textarea{
     text-align:center
   }
 
+  .iktifa-admin-entry{
+    justify-content:center
+  }
+
+  .iktifa-admin-open-btn{
+    width:100%
+  }
+
   .iktifa-admin-row{
     flex-direction:column;
     align-items:stretch
@@ -753,8 +825,10 @@ textarea{
     width:100%
   }
 
+  .iktifa-login-btn,
   .iktifa-confirm-btn,
-  .iktifa-cancel-btn{
+  .iktifa-cancel-btn,
+  .iktifa-close-btn{
     width:100%
   }
 }
@@ -763,13 +837,21 @@ textarea{
 
 <body>
 
+<!-- =========================
+     الأعلى
+========================= -->
+
 <div class="topbar">
+
   <div class="brand">
+
     <img src="logo.png" class="logo">
+
     <div>
       <h2>جدول دوام الموظفين</h2>
       <p>Staff Work Schedule</p>
     </div>
+
   </div>
 
   <button
@@ -778,7 +860,12 @@ textarea{
   >
     🏠 الرئيسية
   </button>
+
 </div>
+
+<!-- =========================
+     اختيار القسم
+========================= -->
 
 <div id="sectionSelector" class="section-selector">
 
@@ -813,6 +900,7 @@ textarea{
     class="section-card"
     onclick="openShiftRequests()"
   >
+
     <div
       class="badge"
       id="shiftRequestsBadge"
@@ -823,9 +911,14 @@ textarea{
     <div class="icon">🔁</div>
     <h3>طلبات تعديل الشفتات</h3>
     <p>Shift Requests</p>
+
   </div>
 
 </div>
+
+<!-- =========================
+     مساحة الدوام
+========================= -->
 
 <div id="workspace" class="workspace">
 
@@ -859,27 +952,38 @@ textarea{
     class="section-title"
   ></h2>
 
-  <!-- اعتماد الجدول -->
+  <!-- =========================
+       اعتماد الجدول
+  ========================= -->
+
   <div class="approval-card">
 
     <div class="approval-fields">
 
       <div>
-        <label>بداية اعتماد الجدول</label>
+
+        <label>
+          بداية اعتماد الجدول
+        </label>
 
         <input
           type="date"
           id="approvalStart"
         >
+
       </div>
 
       <div>
-        <label>نهاية اعتماد الجدول</label>
+
+        <label>
+          نهاية اعتماد الجدول
+        </label>
 
         <input
           type="date"
           id="approvalEnd"
         >
+
       </div>
 
       <button
@@ -914,10 +1018,9 @@ textarea{
     ⚠️ انتهى اعتماد الجدول، يرجى تجديد فترة الاعتماد
   </div>
 
-
-  <!-- ======================================
-       اعتماد رفع الحضور على اكتفاء
-  ======================================= -->
+  <!-- =========================
+       حالة اكتفاء
+  ========================= -->
 
   <div class="iktifa-card">
 
@@ -926,12 +1029,19 @@ textarea{
       <div class="iktifa-title">
 
         <div class="iktifa-icon">
-          ✅
+          📋
         </div>
 
         <div>
-          <h3>رفع الحضور على اكتفاء</h3>
-          <p>Iktifa Attendance Confirmation</p>
+
+          <h3>
+            حالة رفع الحضور على اكتفاء
+          </h3>
+
+          <p>
+            Iktifa Attendance Status
+          </p>
+
         </div>
 
       </div>
@@ -945,17 +1055,37 @@ textarea{
 
     </div>
 
+    <!-- هذه المعلومات يشاهدها الجميع -->
+
     <div
       id="iktifaDetails"
       class="iktifa-details"
     >
-      يجب اعتماد الجدول أولاً قبل تأكيد رفع الحضور على اكتفاء.
+      يجب اعتماد الجدول أولاً.
     </div>
 
-    <div class="iktifa-admin">
+    <!-- الموظف يرى هذا الزر فقط -->
+
+    <div class="iktifa-admin-entry">
+
+      <button
+        class="iktifa-admin-open-btn"
+        onclick="openIktifaAdmin()"
+      >
+        🔐 إدارة اكتفاء
+      </button>
+
+    </div>
+
+    <!-- لا تظهر خانة الرمز إلا بعد الضغط -->
+
+    <div
+      id="iktifaLoginBox"
+      class="iktifa-admin-box"
+    >
 
       <div class="iktifa-admin-title">
-        🔐 اعتماد الإدارة
+        🔐 دخول الإدارة
       </div>
 
       <div class="iktifa-admin-row">
@@ -968,11 +1098,42 @@ textarea{
         >
 
         <button
+          class="iktifa-login-btn"
+          onclick="loginIktifaAdmin()"
+        >
+          دخول
+        </button>
+
+        <button
+          class="iktifa-close-btn"
+          onclick="closeIktifaAdmin()"
+        >
+          إلغاء
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- لوحة الإدارة مخفية بالكامل حتى نجاح الرمز -->
+
+    <div
+      id="iktifaAdminPanel"
+      class="iktifa-admin-box"
+    >
+
+      <div class="iktifa-admin-title">
+        ⚙️ إدارة حالة اكتفاء
+      </div>
+
+      <div class="iktifa-admin-row">
+
+        <button
           id="iktifaConfirmBtn"
           class="iktifa-confirm-btn"
           onclick="confirmIktifaUpload()"
         >
-          تأكيد رفع الحضور على اكتفاء
+          ✅ تأكيد رفع الحضور على اكتفاء
         </button>
 
         <button
@@ -983,16 +1144,20 @@ textarea{
           إلغاء تأكيد الرفع
         </button>
 
-      </div>
+        <button
+          class="iktifa-close-btn"
+          onclick="closeIktifaAdmin()"
+        >
+          إغلاق الإدارة
+        </button>
 
-      <div class="iktifa-note">
-        خاص بالإدارة — يتم ربط التأكيد بفترة اعتماد الجدول الحالية.
       </div>
 
     </div>
 
   </div>
 
+  <!-- الجداول -->
 
   <div id="tablesArea"></div>
 
@@ -1002,10 +1167,9 @@ textarea{
 
 </div>
 
-
-<!-- ======================================
+<!-- =========================
      طلبات تعديل الشفتات
-======================================= -->
+========================= -->
 
 <div
   id="requestsWorkspace"
@@ -1021,24 +1185,43 @@ textarea{
       class="request-card"
       onclick="showEmployeeRequest()"
     >
-      <div class="icon">👨‍⚕️</div>
-      <h3>الموظفين</h3>
-      <p>إرسال طلب تعديل أو تبديل شفت</p>
+
+      <div class="icon">
+        👨‍⚕️
+      </div>
+
+      <h3>
+        الموظفين
+      </h3>
+
+      <p>
+        إرسال طلب تعديل أو تبديل شفت
+      </p>
+
     </div>
 
     <div
       class="request-card"
       onclick="showAdminRequestLogin()"
     >
-      <div class="icon">🔐</div>
-      <h3>الإدارة</h3>
-      <p>عرض ومتابعة طلبات التعديل</p>
+
+      <div class="icon">
+        🔐
+      </div>
+
+      <h3>
+        الإدارة
+      </h3>
+
+      <p>
+        عرض ومتابعة طلبات التعديل
+      </p>
+
     </div>
 
   </div>
 
-
-  <!-- نموذج الموظف -->
+  <!-- طلب الموظف -->
 
   <div
     id="employeeRequestBox"
@@ -1046,88 +1229,226 @@ textarea{
     style="display:none"
   >
 
-    <h2>طلب تعديل شفت</h2>
+    <h2>
+      طلب تعديل شفت
+    </h2>
 
     <div class="form-row">
 
       <div>
-        <label>اسم الموظف</label>
+
+        <label>
+          اسم الموظف
+        </label>
 
         <select id="requestEmployee">
-          <option value="">اختر اسمك</option>
-          <option>د. حاتم الاحمدي</option>
-          <option>د. عبدالرحمن السويداء</option>
-          <option>د. عبدالرحمن السليمي</option>
-          <option>د. عبدالعزيز الحمدان</option>
-          <option>د. ريناد حميد</option>
-          <option>د. ابتسام سويلم</option>
-          <option>د. سلمى فرحان</option>
-          <option>د. هند فهيد</option>
-          <option>د. أسماء فهيد</option>
-          <option>د. مها فريح</option>
-          <option>أ. مرام ناصر</option>
-          <option>أ. أشواق سعود</option>
-          <option>أ. شهد خلف</option>
+
+          <option value="">
+            اختر اسمك
+          </option>
+
+          <option>
+            د. حاتم الاحمدي
+          </option>
+
+          <option>
+            د. عبدالرحمن السويداء
+          </option>
+
+          <option>
+            د. عبدالرحمن السليمي
+          </option>
+
+          <option>
+            د. عبدالعزيز الحمدان
+          </option>
+
+          <option>
+            د. ريناد حميد
+          </option>
+
+          <option>
+            د. ابتسام سويلم
+          </option>
+
+          <option>
+            د. سلمى فرحان
+          </option>
+
+          <option>
+            د. هند فهيد
+          </option>
+
+          <option>
+            د. أسماء فهيد
+          </option>
+
+          <option>
+            د. مها فريح
+          </option>
+
+          <option>
+            أ. مرام ناصر
+          </option>
+
+          <option>
+            أ. أشواق سعود
+          </option>
+
+          <option>
+            أ. شهد خلف
+          </option>
+
         </select>
+
       </div>
 
       <div>
-        <label>القسم</label>
+
+        <label>
+          القسم
+        </label>
 
         <select id="requestSection">
-          <option value="">اختر القسم</option>
-          <option>قسم الرجال</option>
-          <option>قسم النساء</option>
-          <option>الاستقبال</option>
+
+          <option value="">
+            اختر القسم
+          </option>
+
+          <option>
+            قسم الرجال
+          </option>
+
+          <option>
+            قسم النساء
+          </option>
+
+          <option>
+            الاستقبال
+          </option>
+
         </select>
+
       </div>
 
     </div>
-
 
     <div class="form-row">
 
       <div>
-        <label>تاريخ الشفت</label>
-        <input type="date" id="requestDate">
+
+        <label>
+          تاريخ الشفت
+        </label>
+
+        <input
+          type="date"
+          id="requestDate"
+        >
+
       </div>
 
       <div>
-        <label>نوع الطلب</label>
+
+        <label>
+          نوع الطلب
+        </label>
 
         <select id="requestType">
-          <option value="">اختر نوع الطلب</option>
-          <option>تبديل شفت</option>
-          <option>تعديل وقت</option>
-          <option>تغطية شفت</option>
-          <option>ملاحظة دوام</option>
+
+          <option value="">
+            اختر نوع الطلب
+          </option>
+
+          <option>
+            تبديل شفت
+          </option>
+
+          <option>
+            تعديل وقت
+          </option>
+
+          <option>
+            تغطية شفت
+          </option>
+
+          <option>
+            ملاحظة دوام
+          </option>
+
         </select>
+
       </div>
 
     </div>
 
-
-    <label>الموظف الآخر / اختياري</label>
+    <label>
+      الموظف الآخر / اختياري
+    </label>
 
     <select id="requestSecondEmployee">
-      <option value="">لا يوجد</option>
-      <option>د. حاتم الاحمدي</option>
-      <option>د. عبدالرحمن السويداء</option>
-      <option>د. عبدالرحمن السليمي</option>
-      <option>د. عبدالعزيز الحمدان</option>
-      <option>د. ريناد حميد</option>
-      <option>د. ابتسام سويلم</option>
-      <option>د. سلمى فرحان</option>
-      <option>د. هند فهيد</option>
-      <option>د. أسماء فهيد</option>
-      <option>د. مها فريح</option>
-      <option>أ. مرام ناصر</option>
-      <option>أ. أشواق سعود</option>
-      <option>أ. شهد خلف</option>
+
+      <option value="">
+        لا يوجد
+      </option>
+
+      <option>
+        د. حاتم الاحمدي
+      </option>
+
+      <option>
+        د. عبدالرحمن السويداء
+      </option>
+
+      <option>
+        د. عبدالرحمن السليمي
+      </option>
+
+      <option>
+        د. عبدالعزيز الحمدان
+      </option>
+
+      <option>
+        د. ريناد حميد
+      </option>
+
+      <option>
+        د. ابتسام سويلم
+      </option>
+
+      <option>
+        د. سلمى فرحان
+      </option>
+
+      <option>
+        د. هند فهيد
+      </option>
+
+      <option>
+        د. أسماء فهيد
+      </option>
+
+      <option>
+        د. مها فريح
+      </option>
+
+      <option>
+        أ. مرام ناصر
+      </option>
+
+      <option>
+        أ. أشواق سعود
+      </option>
+
+      <option>
+        أ. شهد خلف
+      </option>
+
     </select>
 
-
-    <label>تفاصيل الطلب</label>
+    <label>
+      تفاصيل الطلب
+    </label>
 
     <textarea
       id="requestDetails"
@@ -1150,8 +1471,7 @@ textarea{
 
   </div>
 
-
-  <!-- دخول الإدارة -->
+  <!-- دخول الإدارة للطلبات -->
 
   <div
     id="adminRequestLoginBox"
@@ -1159,9 +1479,13 @@ textarea{
     style="display:none"
   >
 
-    <h2>دخول الإدارة</h2>
+    <h2>
+      دخول الإدارة
+    </h2>
 
-    <label>الرمز السري</label>
+    <label>
+      الرمز السري
+    </label>
 
     <input
       type="password"
@@ -1185,7 +1509,6 @@ textarea{
 
   </div>
 
-
   <!-- قائمة الطلبات -->
 
   <div
@@ -1194,7 +1517,9 @@ textarea{
     style="display:none"
   >
 
-    <h2>طلبات تعديل الشفتات</h2>
+    <h2>
+      طلبات تعديل الشفتات
+    </h2>
 
     <div id="shiftRequestsList"></div>
 
@@ -1208,7 +1533,6 @@ textarea{
   </div>
 
 </div>
-
 
 <script type="module">
 
@@ -1230,10 +1554,9 @@ import {
   orderBy
 } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
 
-
-/* =====================================
+/* =========================
    FIREBASE
-===================================== */
+========================= */
 
 const firebaseConfig={
   apiKey:"AIzaSyArYShiKgAnblA4aDEIr7zAM2q7oHbATJQ",
@@ -1244,9 +1567,11 @@ const firebaseConfig={
   appId:"1:576111794528:web:b7ee436f5bd0b60c4a6605"
 };
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
+const app=
+  initializeApp(firebaseConfig);
 
+const db=
+  getFirestore(app);
 
 const workRef=
   collection(db,"workSchedule");
@@ -1257,20 +1582,17 @@ const settingsRef=
 const shiftRequestsRef=
   collection(db,"shiftRequests");
 
-
-/* =====================================
-   الرموز السرية
-===================================== */
+/* =========================
+   الرموز
+========================= */
 
 const ADMIN_CODE="164321";
 
-/* رمز اعتماد اكتفاء */
 const IKTIFA_ADMIN_CODE="9999";
 
-
-/* =====================================
-   VARIABLES
-===================================== */
+/* =========================
+   المتغيرات
+========================= */
 
 let currentSection="";
 
@@ -1280,10 +1602,11 @@ let settingsData={};
 
 let shiftRequestsData=[];
 
+let iktifaAdminLoggedIn=false;
 
-/* =====================================
-   الأيام والأقسام
-===================================== */
+/* =========================
+   البيانات
+========================= */
 
 const days=[
   "السبت",
@@ -1294,13 +1617,11 @@ const days=[
   "الخميس"
 ];
 
-
 const sectionTitles={
   men:"قسم الرجال",
   women:"قسم النساء",
   reception:"الاستقبال"
 };
-
 
 const shiftNames={
   single:"شفت واحد",
@@ -1308,7 +1629,6 @@ const shiftNames={
   single1:"شفت واحد 1-9",
   split:"شفتين"
 };
-
 
 const shiftTimes={
 
@@ -1331,7 +1651,6 @@ const shiftTimes={
 
 };
 
-
 const slotsCount={
 
   men:{
@@ -1352,7 +1671,6 @@ const slotsCount={
   }
 
 };
-
 
 const employees={
 
@@ -1383,10 +1701,9 @@ const employees={
 
 };
 
-
-/* =====================================
+/* =========================
    التاريخ
-===================================== */
+========================= */
 
 function todayISO(){
 
@@ -1401,10 +1718,9 @@ function todayISO(){
     .split("T")[0];
 }
 
-
-/* =====================================
-   IDs
-===================================== */
+/* =========================
+   ID
+========================= */
 
 function makeId(
   section,
@@ -1417,16 +1733,16 @@ function makeId(
     .replaceAll(" ","_");
 }
 
-
-/* =====================================
+/* =========================
    اعتماد الجدول
-===================================== */
+========================= */
 
 function isSectionApproved(
   section=currentSection
 ){
 
-  const s=settingsData[section];
+  const s=
+    settingsData[section];
 
   if(
     !s ||
@@ -1437,7 +1753,8 @@ function isSectionApproved(
     return false;
   }
 
-  const today=todayISO();
+  const today=
+    todayISO();
 
   return (
     today>=s.startDate &&
@@ -1445,27 +1762,12 @@ function isSectionApproved(
   );
 }
 
-
-function hasScheduleApproval(
-  section=currentSection
-){
-
-  const s=settingsData[section];
-
-  return !!(
-    s &&
-    s.approved &&
-    s.startDate &&
-    s.endDate
-  );
-}
-
-
 function getApprovalText(
   section=currentSection
 ){
 
-  const s=settingsData[section];
+  const s=
+    settingsData[section];
 
   if(
     !s ||
@@ -1478,7 +1780,8 @@ function getApprovalText(
 
   }
 
-  const today=todayISO();
+  const today=
+    todayISO();
 
   if(today<s.startDate){
 
@@ -1495,40 +1798,44 @@ function getApprovalText(
   return `جدول ${sectionTitles[section]} معتمد من ${s.startDate} إلى ${s.endDate}`;
 }
 
-
 function updateApprovalUI(){
 
   if(!currentSection){
     return;
   }
 
-  const s=settingsData[currentSection];
+  const s=
+    settingsData[currentSection];
 
   const status=
-    document.getElementById("approvalStatus");
+    document.getElementById(
+      "approvalStatus"
+    );
 
   const expiredAlert=
-    document.getElementById("expiredAlert");
-
+    document.getElementById(
+      "expiredAlert"
+    );
 
   document.getElementById(
     "approvalStart"
-  ).value=s?.startDate||"";
-
+  ).value=
+    s?.startDate||"";
 
   document.getElementById(
     "approvalEnd"
-  ).value=s?.endDate||"";
-
+  ).value=
+    s?.endDate||"";
 
   status.innerText=
     getApprovalText(currentSection);
 
+  status.classList.remove(
+    "expired"
+  );
 
-  status.classList.remove("expired");
-
-  expiredAlert.style.display="none";
-
+  expiredAlert.style.display=
+    "none";
 
   if(
     s &&
@@ -1537,9 +1844,12 @@ function updateApprovalUI(){
     todayISO()>s.endDate
   ){
 
-    status.classList.add("expired");
+    status.classList.add(
+      "expired"
+    );
 
-    expiredAlert.style.display="block";
+    expiredAlert.style.display=
+      "block";
 
   }
 
@@ -1547,16 +1857,16 @@ function updateApprovalUI(){
 
 }
 
-
-/* =====================================
+/* =========================
    اكتفاء
-===================================== */
+========================= */
 
 function isIktifaConfirmed(
   section=currentSection
 ){
 
-  const s=settingsData[section];
+  const s=
+    settingsData[section];
 
   if(
     !s ||
@@ -1568,14 +1878,15 @@ function isIktifaConfirmed(
   }
 
   return !!(
-    s.iktifaUploaded === true &&
-    s.iktifaStartDate === s.startDate &&
-    s.iktifaEndDate === s.endDate
+    s.iktifaUploaded===true &&
+    s.iktifaStartDate===s.startDate &&
+    s.iktifaEndDate===s.endDate
   );
 }
 
-
-function formatFirebaseDate(value){
+function formatFirebaseDate(
+  value
+){
 
   if(!value){
     return "";
@@ -1585,14 +1896,20 @@ function formatFirebaseDate(value){
 
     let date;
 
-    if(typeof value.toDate==="function"){
+    if(
+      typeof value.toDate==="function"
+    ){
 
       date=value.toDate();
 
-    }else if(value.seconds){
+    }else if(
+      value.seconds
+    ){
 
       date=
-        new Date(value.seconds*1000);
+        new Date(
+          value.seconds*1000
+        );
 
     }else{
 
@@ -1619,6 +1936,9 @@ function formatFirebaseDate(value){
   }
 }
 
+/* =========================
+   تحديث واجهة اكتفاء
+========================= */
 
 function updateIktifaUI(){
 
@@ -1627,19 +1947,27 @@ function updateIktifaUI(){
   }
 
   const status=
-    document.getElementById("iktifaStatus");
+    document.getElementById(
+      "iktifaStatus"
+    );
 
   const details=
-    document.getElementById("iktifaDetails");
+    document.getElementById(
+      "iktifaDetails"
+    );
 
   const confirmBtn=
-    document.getElementById("iktifaConfirmBtn");
+    document.getElementById(
+      "iktifaConfirmBtn"
+    );
 
   const cancelBtn=
-    document.getElementById("iktifaCancelBtn");
+    document.getElementById(
+      "iktifaCancelBtn"
+    );
 
-  const s=settingsData[currentSection];
-
+  const s=
+    settingsData[currentSection];
 
   if(
     !s ||
@@ -1655,9 +1983,11 @@ function updateIktifaUI(){
       "بانتظار اعتماد الجدول";
 
     details.innerHTML=`
-      يجب اعتماد جدول
-      <strong>${sectionTitles[currentSection]}</strong>
-      أولاً قبل تأكيد رفع الحضور على اكتفاء.
+      جدول
+      <strong>
+        ${sectionTitles[currentSection]}
+      </strong>
+      غير معتمد حتى الآن.
     `;
 
     confirmBtn.disabled=true;
@@ -1667,10 +1997,10 @@ function updateIktifaUI(){
     return;
   }
 
-
   const confirmed=
-    isIktifaConfirmed(currentSection);
-
+    isIktifaConfirmed(
+      currentSection
+    );
 
   if(confirmed){
 
@@ -1678,25 +2008,25 @@ function updateIktifaUI(){
       "iktifa-status done";
 
     status.innerText=
-      "تم رفع الحضور ✅";
-
+      "تم الرفع على اكتفاء ✅";
 
     const uploadedTime=
       formatFirebaseDate(
         s.iktifaUploadedAt
       );
 
-
     details.innerHTML=`
       <strong>
-        تم تأكيد رفع الحضور على اكتفاء
+        تم اعتماد الجدول ورفع الحضور على اكتفاء بنجاح.
       </strong>
+
       <br>
 
       القسم:
       <strong>
         ${sectionTitles[currentSection]}
       </strong>
+
       <br>
 
       الفترة:
@@ -1705,10 +2035,15 @@ function updateIktifaUI(){
         إلى
         ${s.endDate}
       </strong>
+
       ${
         uploadedTime
-        ? `<br>وقت التأكيد: <strong>${uploadedTime}</strong>`
-        : ""
+        ?
+        `<br>
+         تاريخ تأكيد الرفع:
+         <strong>${uploadedTime}</strong>`
+        :
+        ""
       }
     `;
 
@@ -1722,22 +2057,34 @@ function updateIktifaUI(){
       "iktifa-status";
 
     status.innerText=
-      "لم يتم تأكيد الرفع";
-
+      "لم يتم الرفع على اكتفاء ⏳";
 
     details.innerHTML=`
-      جدول
+      <strong>
+        تم اعتماد الجدول.
+      </strong>
+
+      <br>
+
+      القسم:
       <strong>
         ${sectionTitles[currentSection]}
       </strong>
-      معتمد للفترة
+
+      <br>
+
+      الفترة:
       <strong>
         ${s.startDate}
         إلى
         ${s.endDate}
       </strong>
+
       <br>
-      ولم يتم حتى الآن تأكيد رفع الحضور على اكتفاء.
+
+      <span style="color:#92400e;font-weight:900">
+        لم يتم تأكيد رفع الحضور على اكتفاء حتى الآن.
+      </span>
     `;
 
     confirmBtn.disabled=false;
@@ -1748,18 +2095,168 @@ function updateIktifaUI(){
 
 }
 
+/* =========================
+   فتح إدارة اكتفاء
+========================= */
+
+window.openIktifaAdmin=
+function(){
+
+  if(
+    iktifaAdminLoggedIn
+  ){
+
+    document.getElementById(
+      "iktifaAdminPanel"
+    ).style.display=
+      "block";
+
+    return;
+  }
+
+  const loginBox=
+    document.getElementById(
+      "iktifaLoginBox"
+    );
+
+  if(
+    loginBox.style.display==="block"
+  ){
+
+    loginBox.style.display=
+      "none";
+
+  }else{
+
+    loginBox.style.display=
+      "block";
+
+    setTimeout(()=>{
+
+      document.getElementById(
+        "iktifaAdminCode"
+      ).focus();
+
+    },100);
+
+  }
+
+};
+
+/* =========================
+   تسجيل دخول إدارة اكتفاء
+========================= */
+
+window.loginIktifaAdmin=
+function(){
+
+  const input=
+    document.getElementById(
+      "iktifaAdminCode"
+    );
+
+  const code=
+    input.value.trim();
+
+  if(
+    code!==IKTIFA_ADMIN_CODE
+  ){
+
+    alert(
+      "رمز الإدارة غير صحيح"
+    );
+
+    input.value="";
+
+    input.focus();
+
+    return;
+  }
+
+  iktifaAdminLoggedIn=true;
+
+  input.value="";
+
+  document.getElementById(
+    "iktifaLoginBox"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "iktifaAdminPanel"
+  ).style.display=
+    "block";
+
+  updateIktifaUI();
+
+};
+
+/* =========================
+   إغلاق إدارة اكتفاء
+========================= */
+
+window.closeIktifaAdmin=
+function(){
+
+  iktifaAdminLoggedIn=false;
+
+  document.getElementById(
+    "iktifaAdminCode"
+  ).value="";
+
+  document.getElementById(
+    "iktifaLoginBox"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "iktifaAdminPanel"
+  ).style.display=
+    "none";
+
+};
+
+/* Enter على الرمز */
+
+document.getElementById(
+  "iktifaAdminCode"
+).addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key==="Enter"){
+
+      window.loginIktifaAdmin();
+
+    }
+
+  }
+);
+
+/* =========================
+   تأكيد رفع اكتفاء
+========================= */
 
 window.confirmIktifaUpload=
 async function(){
+
+  if(
+    !iktifaAdminLoggedIn
+  ){
+
+    alert(
+      "يجب الدخول كإدارة أولاً"
+    );
+
+    return;
+  }
 
   if(!currentSection){
     return;
   }
 
-
   const s=
     settingsData[currentSection];
-
 
   if(
     !s ||
@@ -1775,9 +2272,10 @@ async function(){
     return;
   }
 
-
   if(
-    isIktifaConfirmed(currentSection)
+    isIktifaConfirmed(
+      currentSection
+    )
   ){
 
     alert(
@@ -1787,39 +2285,17 @@ async function(){
     return;
   }
 
-
-  const code=
-    document
-      .getElementById(
-        "iktifaAdminCode"
-      )
-      .value
-      .trim();
-
-
-  if(code!==IKTIFA_ADMIN_CODE){
-
-    alert(
-      "رمز الإدارة غير صحيح"
-    );
-
-    return;
-  }
-
-
   const confirmed=
     confirm(
       `تأكيد رفع الحضور على اكتفاء؟\n\n`+
       `القسم: ${sectionTitles[currentSection]}\n`+
       `الفترة: ${s.startDate} إلى ${s.endDate}\n\n`+
-      `بعد التأكيد ستظهر الحالة بأن الرفع تم.`
+      `سيظهر للموظفين أن الحضور تم رفعه على اكتفاء.`
     );
-
 
   if(!confirmed){
     return;
   }
-
 
   await setDoc(
     doc(
@@ -1831,11 +2307,14 @@ async function(){
 
       iktifaUploaded:true,
 
-      iktifaStartDate:s.startDate,
+      iktifaStartDate:
+        s.startDate,
 
-      iktifaEndDate:s.endDate,
+      iktifaEndDate:
+        s.endDate,
 
-      iktifaUploadedAt:new Date()
+      iktifaUploadedAt:
+        new Date()
 
     },
     {
@@ -1843,33 +2322,41 @@ async function(){
     }
   );
 
-
-  document.getElementById(
-    "iktifaAdminCode"
-  ).value="";
-
-
   alert(
     "تم تأكيد رفع الحضور على اكتفاء بنجاح"
   );
 
 };
 
+/* =========================
+   إلغاء رفع اكتفاء
+========================= */
 
 window.cancelIktifaUpload=
 async function(){
+
+  if(
+    !iktifaAdminLoggedIn
+  ){
+
+    alert(
+      "يجب الدخول كإدارة أولاً"
+    );
+
+    return;
+  }
 
   if(!currentSection){
     return;
   }
 
-
   const s=
     settingsData[currentSection];
 
-
   if(
-    !isIktifaConfirmed(currentSection)
+    !isIktifaConfirmed(
+      currentSection
+    )
   ){
 
     alert(
@@ -1879,26 +2366,6 @@ async function(){
     return;
   }
 
-
-  const code=
-    document
-      .getElementById(
-        "iktifaAdminCode"
-      )
-      .value
-      .trim();
-
-
-  if(code!==IKTIFA_ADMIN_CODE){
-
-    alert(
-      "أدخل رمز الإدارة 9999 لإلغاء التأكيد"
-    );
-
-    return;
-  }
-
-
   const confirmed=
     confirm(
       `هل أنت متأكد من إلغاء تأكيد رفع الحضور على اكتفاء؟\n\n`+
@@ -1906,11 +2373,9 @@ async function(){
       `الفترة: ${s.startDate} إلى ${s.endDate}`
     );
 
-
   if(!confirmed){
     return;
   }
-
 
   await setDoc(
     doc(
@@ -1922,11 +2387,14 @@ async function(){
 
       iktifaUploaded:false,
 
-      iktifaStartDate:s.startDate,
+      iktifaStartDate:
+        s.startDate,
 
-      iktifaEndDate:s.endDate,
+      iktifaEndDate:
+        s.endDate,
 
-      iktifaUploadedAt:null
+      iktifaUploadedAt:
+        null
 
     },
     {
@@ -1934,33 +2402,27 @@ async function(){
     }
   );
 
-
-  document.getElementById(
-    "iktifaAdminCode"
-  ).value="";
-
-
   alert(
     "تم إلغاء تأكيد رفع الحضور على اكتفاء"
   );
 
 };
 
-
-/* =====================================
-   تحذير تعديل الجدول المعتمد
-===================================== */
+/* =========================
+   تحذير الجدول المعتمد
+========================= */
 
 function warnIfApproved(
   actionText
 ){
 
   if(
-    !isSectionApproved(currentSection)
+    !isSectionApproved(
+      currentSection
+    )
   ){
     return true;
   }
-
 
   return confirm(
     `جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد ${actionText}؟`
@@ -1968,10 +2430,9 @@ function warnIfApproved(
 
 }
 
-
-/* =====================================
+/* =========================
    رسم الجداول
-===================================== */
+========================= */
 
 function renderTables(){
 
@@ -1979,17 +2440,16 @@ function renderTables(){
     return;
   }
 
-
   const area=
     document.getElementById(
       "tablesArea"
     );
 
-
   area.innerHTML="";
 
-
-  if(currentSection==="women"){
+  if(
+    currentSection==="women"
+  ){
 
     area.innerHTML+=
       buildTable(
@@ -1999,7 +2459,6 @@ function renderTables(){
         shiftTimes.women.single12
       );
 
-
     area.innerHTML+=
       buildTable(
         "دوام شفت واحد 1-9",
@@ -2007,7 +2466,6 @@ function renderTables(){
         "شفت واحد",
         shiftTimes.women.single1
       );
-
 
     area.innerHTML+=
       buildTable(
@@ -2017,9 +2475,7 @@ function renderTables(){
         shiftTimes.women.split
       );
 
-  }
-
-  else if(
+  }else if(
     currentSection==="reception"
   ){
 
@@ -2031,7 +2487,6 @@ function renderTables(){
         shiftTimes.reception.single12
       );
 
-
     area.innerHTML+=
       buildTable(
         "دوام شفت واحد 1-9",
@@ -2039,7 +2494,6 @@ function renderTables(){
         "شفت واحد",
         shiftTimes.reception.single1
       );
-
 
     area.innerHTML+=
       buildTable(
@@ -2049,9 +2503,7 @@ function renderTables(){
         shiftTimes.reception.split
       );
 
-  }
-
-  else{
+  }else{
 
     area.innerHTML+=
       buildTable(
@@ -2060,7 +2512,6 @@ function renderTables(){
         "شفت واحد",
         shiftTimes.men.single
       );
-
 
     area.innerHTML+=
       buildTable(
@@ -2072,19 +2523,19 @@ function renderTables(){
 
   }
 
-
   document
     .querySelectorAll(
       "#tablesArea select"
     )
-    .forEach(colorCell);
+    .forEach(
+      colorCell
+    );
 
 }
 
-
-/* =====================================
+/* =========================
    بناء الجدول
-===================================== */
+========================= */
 
 function buildTable(
   title,
@@ -2133,17 +2584,17 @@ function buildTable(
             </th>
   `;
 
+  days.forEach(
+    day=>{
 
-  days.forEach(day=>{
+      html+=`
+        <th>
+          ${day}
+        </th>
+      `;
 
-    html+=`
-      <th>
-        ${day}
-      </th>
-    `;
-
-  });
-
+    }
+  );
 
   html+=`
           </tr>
@@ -2163,46 +2614,42 @@ function buildTable(
             </td>
   `;
 
+  days.forEach(
+    day=>{
 
-  days.forEach(day=>{
+      html+="<td>";
 
-    html+="<td>";
+      for(
+        let i=0;
+        i<slotsCount[currentSection][shift];
+        i++
+      ){
 
+        const id=
+          makeId(
+            currentSection,
+            shift,
+            day,
+            i
+          );
 
-    for(
-      let i=0;
-      i<slotsCount[currentSection][shift];
-      i++
-    ){
+        const value=
+          savedData[id]?.employee
+          ||
+          "—";
 
-      const id=
-        makeId(
-          currentSection,
-          shift,
-          day,
-          i
-        );
+        html+=
+          createSelect(
+            id,
+            value
+          );
 
+      }
 
-      const value=
-        savedData[id]?.employee
-        ||
-        "—";
-
-
-      html+=
-        createSelect(
-          id,
-          value
-        );
+      html+="</td>";
 
     }
-
-
-    html+="</td>";
-
-  });
-
+  );
 
   html+=`
           </tr>
@@ -2214,15 +2661,13 @@ function buildTable(
     </div>
   `;
 
-
   return html;
 
 }
 
-
-/* =====================================
-   Select الموظفين
-===================================== */
+/* =========================
+   خيارات الموظفين
+========================= */
 
 function createSelect(
   id,
@@ -2230,7 +2675,6 @@ function createSelect(
 ){
 
   let options="";
-
 
   for(
     const name in employees[currentSection]
@@ -2247,7 +2691,6 @@ function createSelect(
 
   }
 
-
   return `
     <div class="slot">
 
@@ -2263,10 +2706,9 @@ function createSelect(
 
 }
 
-
-/* =====================================
-   تلوين الموظف
-===================================== */
+/* =========================
+   تلوين الخانات
+========================= */
 
 function colorCell(
   select
@@ -2275,32 +2717,29 @@ function colorCell(
   const wrapper=
     select.parentElement;
 
-
   const color=
     employees[currentSection][select.value]
     ||
     "#ffffff";
 
-
   wrapper.style.background=
     color;
 
-
   select.style.color=
     select.value==="—"
-    ? "#0f172a"
-    : "#000";
-
+    ?
+    "#0f172a"
+    :
+    "#000";
 
   select.style.fontWeight=
     "bold";
 
 }
 
-
-/* =====================================
-   منع التكرار بنفس اليوم
-===================================== */
+/* =========================
+   منع التكرار
+========================= */
 
 function isDuplicateInSameDay(
   select
@@ -2309,100 +2748,101 @@ function isDuplicateInSameDay(
   const selected=
     select.value;
 
-
-  if(selected==="—"){
+  if(
+    selected==="—"
+  ){
     return false;
   }
-
 
   const td=
     select.closest("td");
 
-
   const row=
     td.parentElement;
-
 
   const dayIndex=
     Array
       .from(row.children)
       .indexOf(td);
 
-
   let count=0;
-
 
   document
     .querySelectorAll(
       "#tablesArea table tr"
     )
-    .forEach(rowItem=>{
+    .forEach(
+      rowItem=>{
 
-      const cells=
-        rowItem.children;
+        const cells=
+          rowItem.children;
 
+        if(
+          cells.length>dayIndex
+        ){
 
-      if(cells.length>dayIndex){
+          cells[dayIndex]
+            .querySelectorAll(
+              "select"
+            )
+            .forEach(
+              item=>{
 
-        cells[dayIndex]
-          .querySelectorAll(
-            "select"
-          )
-          .forEach(item=>{
+                if(
+                  item.value===selected
+                ){
+                  count++;
+                }
 
-            if(
-              item.value===selected
-            ){
-              count++;
-            }
+              }
+            );
 
-          });
+        }
 
       }
-
-    });
-
+    );
 
   return count>1;
 
 }
 
-
-/* =====================================
-   تحديد نوع الشفت من ID
-===================================== */
+/* =========================
+   نوع الشفت
+========================= */
 
 function getShiftFromId(id){
 
   if(
-    id.includes("_single12_")
+    id.includes(
+      "_single12_"
+    )
   ){
     return "single12";
   }
 
-
   if(
-    id.includes("_single1_")
+    id.includes(
+      "_single1_"
+    )
   ){
     return "single1";
   }
 
-
   if(
-    id.includes("_single_")
+    id.includes(
+      "_single_"
+    )
   ){
     return "single";
   }
-
 
   return "split";
 
 }
 
-
-/* =====================================
-   حفظ خانة
-===================================== */
+/* =========================
+   حفظ الدوام
+========================= */
 
 window.save=
 async function(el){
@@ -2410,19 +2850,18 @@ async function(el){
   const id=
     el.dataset.id;
 
-
   const oldValue=
     savedData[id]?.employee
     ||
     "—";
 
-
   const value=
     el.value;
 
-
   if(
-    isSectionApproved(currentSection)
+    isSectionApproved(
+      currentSection
+    )
     &&
     value!==oldValue
   ){
@@ -2431,7 +2870,6 @@ async function(el){
       confirm(
         `جدول ${sectionTitles[currentSection]} معتمد حاليًا.\n\nهل تريد تعديل هذه الخانة؟`
       );
-
 
     if(!approved){
 
@@ -2446,21 +2884,21 @@ async function(el){
 
   }
 
-
   if(
-    isDuplicateInSameDay(el)
+    isDuplicateInSameDay(
+      el
+    )
   ){
 
     alert(
       "هذا الاسم موجود مسبقًا في نفس اليوم"
     );
 
-
-    el.value="—";
+    el.value=
+      "—";
 
     colorCell(el);
 
-
     await deleteDoc(
       doc(
         db,
@@ -2469,16 +2907,15 @@ async function(el){
       )
     );
 
-
     return;
 
   }
-
 
   colorCell(el);
 
-
-  if(value==="—"){
+  if(
+    value==="—"
+  ){
 
     await deleteDoc(
       doc(
@@ -2491,7 +2928,6 @@ async function(el){
     return;
 
   }
-
 
   await setDoc(
     doc(
@@ -2503,24 +2939,26 @@ async function(el){
 
       id,
 
-      section:currentSection,
+      section:
+        currentSection,
 
       shift:
         getShiftFromId(id),
 
-      employee:value,
+      employee:
+        value,
 
-      updatedAt:new Date()
+      updatedAt:
+        new Date()
 
     }
   );
 
 };
 
-
-/* =====================================
+/* =========================
    نسخ السبت
-===================================== */
+========================= */
 
 window.copySaturday=
 async function(shift){
@@ -2533,7 +2971,6 @@ async function(shift){
     return;
   }
 
-
   if(
     !confirm(
       `هل تريد نسخ أسماء يوم السبت لباقي أيام الأسبوع في ${sectionTitles[currentSection]} - ${shiftNames[shift]}؟`
@@ -2541,7 +2978,6 @@ async function(shift){
   ){
     return;
   }
-
 
   const otherDays=[
     "الأحد",
@@ -2551,9 +2987,7 @@ async function(shift){
     "الخميس"
   ];
 
-
   const writes=[];
-
 
   for(
     let i=0;
@@ -2569,12 +3003,10 @@ async function(shift){
         i
       );
 
-
     const employee=
       savedData[saturdayId]?.employee
       ||
       "—";
-
 
     for(
       const day of otherDays
@@ -2588,11 +3020,11 @@ async function(shift){
           i
         );
 
-
-      if(employee==="—"){
+      if(
+        employee==="—"
+      ){
 
         writes.push(
-
           deleteDoc(
             doc(
               db,
@@ -2600,7 +3032,6 @@ async function(shift){
               targetId
             )
           )
-
         );
 
       }else{
@@ -2638,9 +3069,9 @@ async function(shift){
 
   }
 
-
-  await Promise.all(writes);
-
+  await Promise.all(
+    writes
+  );
 
   alert(
     "تم نسخ يوم السبت لباقي أيام الأسبوع"
@@ -2648,10 +3079,9 @@ async function(shift){
 
 };
 
-
-/* =====================================
-   حذف جدول شفت
-===================================== */
+/* =========================
+   حذف الجدول
+========================= */
 
 window.clearSchedule=
 async function(shift){
@@ -2664,7 +3094,6 @@ async function(shift){
     return;
   }
 
-
   if(
     !confirm(
       `متأكد تبغى تحذف جدول ${sectionTitles[currentSection]} - ${shiftNames[shift]} فقط؟`
@@ -2673,45 +3102,43 @@ async function(shift){
     return;
   }
 
-
   const snapshot=
-    await getDocs(workRef);
-
+    await getDocs(
+      workRef
+    );
 
   const deletes=[];
 
+  snapshot.forEach(
+    item=>{
 
-  snapshot.forEach(item=>{
+      const id=
+        item.id;
 
-    const id=
-      item.id;
-
-
-    if(
-      id.startsWith(
-        `${currentSection}_${shift}_`
-      )
-    ){
-
-      deletes.push(
-
-        deleteDoc(
-          doc(
-            db,
-            "workSchedule",
-            id
-          )
+      if(
+        id.startsWith(
+          `${currentSection}_${shift}_`
         )
+      ){
 
-      );
+        deletes.push(
+          deleteDoc(
+            doc(
+              db,
+              "workSchedule",
+              id
+            )
+          )
+        );
+
+      }
 
     }
+  );
 
-  });
-
-
-  await Promise.all(deletes);
-
+  await Promise.all(
+    deletes
+  );
 
   alert(
     "تم حذف الجدول المحدد فقط"
@@ -2719,29 +3146,22 @@ async function(shift){
 
 };
 
-
-/* =====================================
+/* =========================
    اعتماد الجدول
-===================================== */
+========================= */
 
 window.approveSchedule=
 async function(){
 
   const startDate=
-    document
-      .getElementById(
-        "approvalStart"
-      )
-      .value;
-
+    document.getElementById(
+      "approvalStart"
+    ).value;
 
   const endDate=
-    document
-      .getElementById(
-        "approvalEnd"
-      )
-      .value;
-
+    document.getElementById(
+      "approvalEnd"
+    ).value;
 
   if(
     !startDate ||
@@ -2753,9 +3173,7 @@ async function(){
     );
 
     return;
-
   }
-
 
   if(
     endDate<startDate
@@ -2766,9 +3184,7 @@ async function(){
     );
 
     return;
-
   }
-
 
   if(
     !confirm(
@@ -2778,16 +3194,13 @@ async function(){
     return;
   }
 
-
   const oldSettings=
     settingsData[currentSection];
-
 
   const samePeriod=
     oldSettings?.startDate===startDate
     &&
     oldSettings?.endDate===endDate;
-
 
   const data={
 
@@ -2806,23 +3219,26 @@ async function(){
 
   };
 
-
   /*
-    إذا تغيرت الفترة،
-    نلغي اعتماد اكتفاء السابق
+    إذا تغيرت فترة الاعتماد
+    يلغي تأكيد اكتفاء السابق
   */
+
   if(!samePeriod){
 
-    data.iktifaUploaded=false;
+    data.iktifaUploaded=
+      false;
 
-    data.iktifaStartDate=startDate;
+    data.iktifaStartDate=
+      startDate;
 
-    data.iktifaEndDate=endDate;
+    data.iktifaEndDate=
+      endDate;
 
-    data.iktifaUploadedAt=null;
+    data.iktifaUploadedAt=
+      null;
 
   }
-
 
   await setDoc(
     doc(
@@ -2836,17 +3252,15 @@ async function(){
     }
   );
 
-
   alert(
     "تم اعتماد الجدول"
   );
 
 };
 
-
-/* =====================================
+/* =========================
    إلغاء اعتماد الجدول
-===================================== */
+========================= */
 
 window.cancelApproval=
 async function(){
@@ -2858,7 +3272,6 @@ async function(){
   ){
     return;
   }
-
 
   await setDoc(
     doc(
@@ -2901,11 +3314,7 @@ async function(){
     }
   );
 
-
-  document.getElementById(
-    "iktifaAdminCode"
-  ).value="";
-
+  closeIktifaAdmin();
 
   alert(
     "تم إلغاء الاعتماد"
@@ -2913,10 +3322,9 @@ async function(){
 
 };
 
-
-/* =====================================
-   فتح قسم
-===================================== */
+/* =========================
+   فتح القسم
+========================= */
 
 window.openSection=
 function(section){
@@ -2926,57 +3334,53 @@ function(section){
   ).style.display=
     "none";
 
-
   document.getElementById(
     "requestsWorkspace"
   ).style.display=
     "none";
-
 
   document.getElementById(
     "workspace"
   ).style.display=
     "block";
 
-
-  switchSection(section);
+  switchSection(
+    section
+  );
 
 };
 
-
-/* =====================================
+/* =========================
    فتح طلبات الشفتات
-===================================== */
+========================= */
 
 window.openShiftRequests=
 function(){
+
+  closeIktifaAdmin();
 
   document.getElementById(
     "sectionSelector"
   ).style.display=
     "none";
 
-
   document.getElementById(
     "workspace"
   ).style.display=
     "none";
-
 
   document.getElementById(
     "requestsWorkspace"
   ).style.display=
     "block";
 
-
   backToRequestsChoice();
 
 };
 
-
-/* =====================================
-   التنقل بين الأقسام
-===================================== */
+/* =========================
+   تبديل القسم
+========================= */
 
 window.switchSection=
 function(section){
@@ -2984,12 +3388,32 @@ function(section){
   currentSection=
     section;
 
+  /*
+    عند الانتقال لقسم مختلف
+    يغلق دخول إدارة اكتفاء
+  */
+
+  iktifaAdminLoggedIn=
+    false;
+
+  document.getElementById(
+    "iktifaAdminCode"
+  ).value="";
+
+  document.getElementById(
+    "iktifaLoginBox"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "iktifaAdminPanel"
+  ).style.display=
+    "none";
 
   document.getElementById(
     "sectionTitle"
   ).innerText=
     sectionTitles[section];
-
 
   document.getElementById(
     "menBtn"
@@ -2998,14 +3422,12 @@ function(section){
     section==="men"
   );
 
-
   document.getElementById(
     "womenBtn"
   ).classList.toggle(
     "active",
     section==="women"
   );
-
 
   document.getElementById(
     "receptionBtn"
@@ -3014,22 +3436,15 @@ function(section){
     section==="reception"
   );
 
-
-  document.getElementById(
-    "iktifaAdminCode"
-  ).value="";
-
-
   updateApprovalUI();
 
   renderTables();
 
 };
 
-
-/* =====================================
-   طلبات الموظفين
-===================================== */
+/* =========================
+   الموظفين - الطلبات
+========================= */
 
 window.showEmployeeRequest=
 function(){
@@ -3039,18 +3454,15 @@ function(){
   ).style.display=
     "none";
 
-
   document.getElementById(
     "employeeRequestBox"
   ).style.display=
     "block";
 
-
   document.getElementById(
     "adminRequestLoginBox"
   ).style.display=
     "none";
-
 
   document.getElementById(
     "adminRequestsBox"
@@ -3058,7 +3470,6 @@ function(){
     "none";
 
 };
-
 
 window.showAdminRequestLogin=
 function(){
@@ -3068,18 +3479,15 @@ function(){
   ).style.display=
     "none";
 
-
   document.getElementById(
     "employeeRequestBox"
   ).style.display=
     "none";
 
-
   document.getElementById(
     "adminRequestLoginBox"
   ).style.display=
     "block";
-
 
   document.getElementById(
     "adminRequestsBox"
@@ -3087,7 +3495,6 @@ function(){
     "none";
 
 };
-
 
 window.backToRequestsChoice=
 function(){
@@ -3097,18 +3504,15 @@ function(){
   ).style.display=
     "grid";
 
-
   document.getElementById(
     "employeeRequestBox"
   ).style.display=
     "none";
 
-
   document.getElementById(
     "adminRequestLoginBox"
   ).style.display=
     "none";
-
 
   document.getElementById(
     "adminRequestsBox"
@@ -3117,10 +3521,9 @@ function(){
 
 };
 
-
-/* =====================================
-   إرسال طلب تعديل شفت
-===================================== */
+/* =========================
+   إرسال طلب
+========================= */
 
 window.sendShiftRequest=
 async function(){
@@ -3130,36 +3533,30 @@ async function(){
       "requestEmployee"
     ).value;
 
-
   const section=
     document.getElementById(
       "requestSection"
     ).value;
-
 
   const date=
     document.getElementById(
       "requestDate"
     ).value;
 
-
   const type=
     document.getElementById(
       "requestType"
     ).value;
-
 
   const secondEmployee=
     document.getElementById(
       "requestSecondEmployee"
     ).value;
 
-
   const details=
     document.getElementById(
       "requestDetails"
     ).value.trim();
-
 
   if(
     !employee ||
@@ -3174,9 +3571,7 @@ async function(){
     );
 
     return;
-
   }
-
 
   if(
     !confirm(
@@ -3185,7 +3580,6 @@ async function(){
   ){
     return;
   }
-
 
   await addDoc(
     shiftRequestsRef,
@@ -3212,50 +3606,41 @@ async function(){
     }
   );
 
-
   alert(
     "تم إرسال الطلب للإدارة"
   );
-
 
   document.getElementById(
     "requestEmployee"
   ).value="";
 
-
   document.getElementById(
     "requestSection"
   ).value="";
-
 
   document.getElementById(
     "requestDate"
   ).value="";
 
-
   document.getElementById(
     "requestType"
   ).value="";
-
 
   document.getElementById(
     "requestSecondEmployee"
   ).value="";
 
-
   document.getElementById(
     "requestDetails"
   ).value="";
-
 
   backToRequestsChoice();
 
 };
 
-
-/* =====================================
-   دخول الإدارة للطلبات
-===================================== */
+/* =========================
+   دخول إدارة الطلبات
+========================= */
 
 window.adminShiftLogin=
 async function(){
@@ -3264,7 +3649,6 @@ async function(){
     document.getElementById(
       "requestAdminCode"
     ).value;
-
 
   if(
     code!==ADMIN_CODE
@@ -3275,45 +3659,37 @@ async function(){
     );
 
     return;
-
   }
-
 
   document.getElementById(
     "requestChoice"
   ).style.display=
     "none";
 
-
   document.getElementById(
     "employeeRequestBox"
   ).style.display=
     "none";
-
 
   document.getElementById(
     "adminRequestLoginBox"
   ).style.display=
     "none";
 
-
   document.getElementById(
     "adminRequestsBox"
   ).style.display=
     "block";
 
-
   renderShiftRequests();
-
 
   await markShiftRequestsSeen();
 
 };
 
-
-/* =====================================
-   تنسيق تاريخ الطلب
-===================================== */
+/* =========================
+   تاريخ الطلب
+========================= */
 
 function formatDate(
   createdAt
@@ -3323,8 +3699,9 @@ function formatDate(
     return "";
   }
 
-
-  if(createdAt.seconds){
+  if(
+    createdAt.seconds
+  ){
 
     return new Date(
       createdAt.seconds*1000
@@ -3334,15 +3711,13 @@ function formatDate(
 
   }
 
-
   return "";
 
 }
 
-
-/* =====================================
+/* =========================
    رسم الطلبات
-===================================== */
+========================= */
 
 function renderShiftRequests(){
 
@@ -3350,7 +3725,6 @@ function renderShiftRequests(){
     document.getElementById(
       "shiftRequestsList"
     );
-
 
   if(
     shiftRequestsData.length===0
@@ -3363,12 +3737,9 @@ function renderShiftRequests(){
     `;
 
     return;
-
   }
 
-
   list.innerHTML="";
-
 
   shiftRequestsData.forEach(
     item=>{
@@ -3378,8 +3749,10 @@ function renderShiftRequests(){
         <div
           class="request-item ${
             item.status==="new"
-            ? "new"
-            : ""
+            ?
+            "new"
+            :
+            ""
           }"
         >
 
@@ -3387,8 +3760,10 @@ function renderShiftRequests(){
 
             ${
               item.status==="new"
-              ? "🔴 طلب جديد<br>"
-              : ""
+              ?
+              "🔴 طلب جديد<br>"
+              :
+              ""
             }
 
             الموظف:
@@ -3443,15 +3818,13 @@ function renderShiftRequests(){
 
 }
 
-
-/* =====================================
-   تعليم الطلبات كمقروءة
-===================================== */
+/* =========================
+   قراءة الطلبات
+========================= */
 
 async function markShiftRequestsSeen(){
 
   const updates=[];
-
 
   shiftRequestsData.forEach(
     item=>{
@@ -3461,7 +3834,6 @@ async function markShiftRequestsSeen(){
       ){
 
         updates.push(
-
           updateDoc(
             doc(
               db,
@@ -3472,7 +3844,6 @@ async function markShiftRequestsSeen(){
               status:"seen"
             }
           )
-
         );
 
       }
@@ -3480,15 +3851,15 @@ async function markShiftRequestsSeen(){
     }
   );
 
-
-  await Promise.all(updates);
+  await Promise.all(
+    updates
+  );
 
 }
 
-
-/* =====================================
+/* =========================
    حذف طلب
-===================================== */
+========================= */
 
 window.deleteShiftRequest=
 async function(id){
@@ -3501,7 +3872,6 @@ async function(id){
     return;
   }
 
-
   await deleteDoc(
     doc(
       db,
@@ -3512,10 +3882,9 @@ async function(id){
 
 };
 
-
-/* =====================================
-   عداد الطلبات الجديدة
-===================================== */
+/* =========================
+   عداد الطلبات
+========================= */
 
 function updateShiftBadge(){
 
@@ -3527,14 +3896,14 @@ function updateShiftBadge(){
       )
       .length;
 
-
   const badge=
     document.getElementById(
       "shiftRequestsBadge"
     );
 
-
-  if(count>0){
+  if(
+    count>0
+  ){
 
     badge.style.display=
       "flex";
@@ -3551,20 +3920,15 @@ function updateShiftBadge(){
 
 }
 
-
-/* =====================================
-   FIREBASE LISTENERS
-===================================== */
-
-
-/* جدول الدوام */
+/* =========================
+   FIREBASE
+========================= */
 
 onSnapshot(
   workRef,
   snapshot=>{
 
     savedData={};
-
 
     snapshot.forEach(
       item=>{
@@ -3575,21 +3939,16 @@ onSnapshot(
       }
     );
 
-
     renderTables();
 
   }
 );
-
-
-/* إعدادات الاعتماد واكتفاء */
 
 onSnapshot(
   settingsRef,
   snapshot=>{
 
     settingsData={};
-
 
     snapshot.forEach(
       item=>{
@@ -3600,16 +3959,10 @@ onSnapshot(
       }
     );
 
-
     updateApprovalUI();
-
-    updateIktifaUI();
 
   }
 );
-
-
-/* طلبات تعديل الشفتات */
 
 const shiftQuery=
   query(
@@ -3620,20 +3973,19 @@ const shiftQuery=
     )
   );
 
-
 onSnapshot(
   shiftQuery,
   snapshot=>{
 
     shiftRequestsData=[];
 
-
     snapshot.forEach(
       item=>{
 
         shiftRequestsData.push({
 
-          id:item.id,
+          id:
+            item.id,
 
           ...item.data()
 
@@ -3642,9 +3994,7 @@ onSnapshot(
       }
     );
 
-
     updateShiftBadge();
-
 
     const adminVisible=
       document.getElementById(
@@ -3653,8 +4003,9 @@ onSnapshot(
       ===
       "block";
 
-
-    if(adminVisible){
+    if(
+      adminVisible
+    ){
 
       renderShiftRequests();
 
@@ -3663,19 +4014,18 @@ onSnapshot(
   }
 );
 
-
-/* =====================================
-   تحديث حالة الاعتماد كل دقيقة
-===================================== */
+/* =========================
+   تحديث كل دقيقة
+========================= */
 
 setInterval(
   ()=>{
 
-    if(currentSection){
+    if(
+      currentSection
+    ){
 
       updateApprovalUI();
-
-      updateIktifaUI();
 
     }
 
