@@ -1,34 +1,57 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>التأهيل الافتراضي | مركز عكاز</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<link rel="icon" href="logo.png">
+<title>
+  VR Rehabilitation Lab | Akaz
+</title>
+
+<link
+  rel="icon"
+  href="logo.png"
+>
 
 <style>
 
+/* ==============================
+   ROOT
+============================== */
+
 :root{
+
   --blue:#005b9f;
   --blue2:#0077c8;
-  --orange:#f59e0b;
 
   --purple:#6d28d9;
   --purple2:#7c3aed;
+
   --cyan:#06b6d4;
 
   --green:#16a34a;
+  --green2:#22c55e;
+
+  --orange:#f59e0b;
+
   --red:#dc2626;
 
   --text:#0f172a;
+
   --muted:#64748b;
 
   --line:#e2e8f0;
 
   --card:#ffffff;
+
   --bg:#f4f8fc;
+
 }
 
 *{
@@ -40,6 +63,7 @@ html{
 }
 
 body{
+
   margin:0;
 
   font-family:
@@ -47,21 +71,22 @@ body{
     Arial,
     sans-serif;
 
-  direction:rtl;
-
   color:var(--text);
 
   background:
+
     radial-gradient(
-      circle at 90% 5%,
+      circle at 90% 7%,
       rgba(124,58,237,.10),
-      transparent 27%
-    ),
-    radial-gradient(
-      circle at 5% 60%,
-      rgba(6,182,212,.08),
       transparent 28%
     ),
+
+    radial-gradient(
+      circle at 8% 70%,
+      rgba(6,182,212,.09),
+      transparent 26%
+    ),
+
     linear-gradient(
       180deg,
       #f8fbff,
@@ -69,6 +94,7 @@ body{
     );
 
   min-height:100vh;
+
 }
 
 /* ==============================
@@ -76,11 +102,12 @@ body{
 ============================== */
 
 .topbar{
-  min-height:92px;
+
+  min-height:88px;
 
   padding:
-    14px
-    32px;
+    13px
+    30px;
 
   display:flex;
 
@@ -90,92 +117,112 @@ body{
 
   gap:20px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #061b35,
-      #173f77,
-      #5b21b6
-    );
-
-  color:white;
-
-  box-shadow:
-    0 18px 42px
-    rgba(15,23,42,.18);
-
   position:sticky;
 
   top:0;
 
   z-index:1000;
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #061b35,
+      #154372,
+      #5b21b6
+    );
+
+  box-shadow:
+
+    0 18px 42px
+    rgba(15,23,42,.20);
+
 }
 
 .brand{
+
   display:flex;
 
   align-items:center;
 
   gap:14px;
+
 }
 
 .brand-logo{
-  width:60px;
 
-  height:60px;
+  width:58px;
 
-  object-fit:contain;
+  height:58px;
 
   padding:5px;
+
+  object-fit:contain;
 
   border-radius:16px;
 
   background:white;
 
   box-shadow:
+
     0 9px 24px
     rgba(0,0,0,.20);
+
 }
 
 .brand h1{
+
   margin:0;
 
-  font-size:22px;
+  font-size:21px;
 
   font-weight:900;
+
 }
 
 .brand p{
+
   margin:
     5px
     0
     0;
 
+  font-size:11px;
+
   color:#dbeafe;
 
-  font-size:12px;
 }
 
 .top-actions{
+
   display:flex;
 
   align-items:center;
 
-  gap:10px;
+  gap:9px;
+
 }
 
 .top-btn{
+
   min-height:42px;
-
-  border:none;
-
-  border-radius:13px;
 
   padding:
     9px
     14px;
 
-  cursor:pointer;
+  border-radius:13px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.22);
+
+  background:
+    rgba(255,255,255,.12);
+
+  color:white;
 
   font-family:
     Tahoma,
@@ -183,26 +230,24 @@ body{
 
   font-weight:900;
 
-  background:
-    rgba(255,255,255,.12);
-
-  border:
-    1px solid
-    rgba(255,255,255,.22);
-
-  color:white;
+  cursor:pointer;
 
   transition:.2s;
+
 }
 
 .top-btn:hover{
+
   background:
-    rgba(255,255,255,.20);
+    rgba(255,255,255,.22);
+
 }
 
 .exit-btn{
+
   background:
     rgba(220,38,38,.20);
+
 }
 
 /* ==============================
@@ -210,14 +255,16 @@ body{
 ============================== */
 
 .page{
+
   width:94%;
 
-  max-width:1450px;
+  max-width:1400px;
 
   margin:
     30px
     auto
     70px;
+
 }
 
 /* ==============================
@@ -225,6 +272,7 @@ body{
 ============================== */
 
 .hero{
+
   position:relative;
 
   overflow:hidden;
@@ -235,58 +283,66 @@ body{
     1.35fr
     .65fr;
 
-  gap:25px;
-
   align-items:center;
 
+  gap:28px;
+
   padding:
-    34px
-    38px;
+    38px
+    40px;
 
   border-radius:32px;
 
   background:
+
     linear-gradient(
       135deg,
       #ffffff,
-      #f4f1ff
+      #f5f3ff
     );
 
   border:
     1px solid
-    #e9e2ff;
+    #e8e2ff;
 
   box-shadow:
+
     0 22px 50px
     rgba(15,23,42,.10);
+
 }
 
 .hero::before{
+
   content:"";
 
   position:absolute;
 
-  width:280px;
+  width:330px;
 
-  height:280px;
+  height:330px;
 
   border-radius:50%;
 
-  left:-100px;
+  right:-130px;
 
-  top:-120px;
+  top:-140px;
 
   background:
-    rgba(124,58,237,.10);
+    rgba(124,58,237,.09);
+
 }
 
-.hero-copy{
+.hero-content{
+
   position:relative;
 
   z-index:2;
+
 }
 
 .hero-tag{
+
   display:inline-flex;
 
   align-items:center;
@@ -299,59 +355,60 @@ body{
 
   border-radius:999px;
 
-  background:
-    #ede9fe;
+  background:#ede9fe;
 
-  color:
-    #5b21b6;
+  color:#5b21b6;
 
-  font-size:12px;
+  font-size:11px;
 
   font-weight:900;
+
 }
 
 .hero h2{
-  margin:
-    13px
-    0
-    8px;
 
-  font-size:32px;
+  margin:
+    14px
+    0
+    9px;
+
+  font-size:35px;
+
+  line-height:1.4;
 
   color:#172554;
 
-  line-height:1.5;
 }
 
 .hero p{
-  max-width:760px;
 
   margin:0;
 
-  color:
-    var(--muted);
+  max-width:760px;
+
+  color:var(--muted);
+
+  font-size:14px;
 
   line-height:1.9;
 
-  font-size:14px;
 }
 
-.hero-visual{
-  min-height:180px;
+.vr-visual{
 
   display:flex;
 
+  justify-content:center;
+
   align-items:center;
 
-  justify-content:center;
 }
 
 .vr-orb{
-  width:180px;
 
-  height:180px;
+  width:185px;
 
-  border-radius:50%;
+  height:185px;
 
   display:flex;
 
@@ -359,91 +416,31 @@ body{
 
   justify-content:center;
 
-  font-size:76px;
+  border-radius:50%;
+
+  font-size:78px;
 
   background:
+
     linear-gradient(
       145deg,
       #ddd6fe,
-      #ecfeff
+      #cffafe
     );
 
   border:
     8px solid
-    rgba(255,255,255,.75);
+    rgba(255,255,255,.80);
 
   box-shadow:
+
     0 22px 50px
-    rgba(91,33,182,.22),
+    rgba(91,33,182,.23),
+
     inset
-    0
-    0
-    0
-    1px
+    0 0 0 1px
     #c4b5fd;
-}
 
-/* ==============================
-   SUMMARY
-============================== */
-
-.summary-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
-
-  gap:18px;
-
-  margin-top:24px;
-}
-
-.summary-card{
-  background:white;
-
-  border:
-    1px solid
-    var(--line);
-
-  border-radius:22px;
-
-  padding:20px;
-
-  box-shadow:
-    0 14px 34px
-    rgba(15,23,42,.07);
-}
-
-.summary-label{
-  color:
-    var(--muted);
-
-  font-size:12px;
-
-  font-weight:900;
-}
-
-.summary-value{
-  margin-top:8px;
-
-  font-size:28px;
-
-  font-weight:900;
-
-  color:
-    var(--blue);
-}
-
-.summary-sub{
-  margin-top:5px;
-
-  color:
-    #94a3b8;
-
-  font-size:11px;
 }
 
 /* ==============================
@@ -451,7 +448,12 @@ body{
 ============================== */
 
 .section{
+
   margin-top:28px;
+
+  padding:27px;
+
+  border-radius:30px;
 
   background:
     rgba(255,255,255,.96);
@@ -460,760 +462,42 @@ body{
     1px solid
     var(--line);
 
-  border-radius:30px;
-
-  padding:
-    26px;
-
   box-shadow:
+
     0 18px 42px
     rgba(15,23,42,.07);
+
 }
 
 .section-head{
+
   display:flex;
 
-  align-items:center;
-
   justify-content:space-between;
+
+  align-items:center;
 
   gap:15px;
 
   margin-bottom:22px;
+
 }
 
 .section-title{
+
   display:flex;
 
   align-items:center;
 
-  gap:11px;
+  gap:12px;
+
 }
 
 .section-icon{
-  width:46px;
 
-  height:46px;
+  width:48px;
 
-  border-radius:15px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:22px;
-
-  background:
-    #eef6ff;
-}
-
-.section-title h3{
-  margin:0;
-
-  color:
-    #0b4776;
-
-  font-size:22px;
-
-  font-weight:900;
-}
-
-.section-title p{
-  margin:
-    5px
-    0
-    0;
-
-  color:
-    var(--muted);
-
-  font-size:12px;
-}
-
-/* ==============================
-   FORM
-============================== */
-
-.form-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
-
-  gap:17px;
-}
-
-.field{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:7px;
-}
-
-.field.wide{
-  grid-column:
-    span 2;
-}
-
-.field.full{
-  grid-column:
-    1 / -1;
-}
-
-label{
-  font-size:12px;
-
-  font-weight:900;
-
-  color:
-    #334155;
-}
-
-input,
-select,
-textarea{
-  width:100%;
-
-  min-height:47px;
-
-  border:
-    1.5px solid
-    #dce4ee;
-
-  border-radius:14px;
-
-  padding:
-    10px
-    12px;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-size:13px;
-
-  outline:none;
-
-  color:
-    #0f172a;
-
-  background:
-    #fbfdff;
-
-  transition:.18s;
-}
-
-textarea{
-  min-height:95px;
-
-  resize:vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:
-    #7c3aed;
-
-  box-shadow:
-    0
-    0
-    0
-    4px
-    rgba(124,58,237,.08);
-
-  background:white;
-}
-
-.range-wrap{
-  padding:
-    11px
-    12px;
-
-  border:
-    1px solid
-    #e2e8f0;
-
-  border-radius:14px;
-
-  background:#f8fafc;
-}
-
-.range-top{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:8px;
-
-  font-size:12px;
-
-  font-weight:900;
-}
-
-.range-value{
-  color:
-    #6d28d9;
-}
-
-input[type="range"]{
-  min-height:auto;
-
-  padding:0;
-
-  accent-color:
-    #7c3aed;
-}
-
-/* ==============================
-   PROGRAM CARDS
-============================== */
-
-.programs{
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
-
-  gap:16px;
-}
-
-.program{
-  border:
-    2px solid
-    #e2e8f0;
-
-  border-radius:20px;
-
-  padding:
-    18px;
-
-  cursor:pointer;
-
-  background:white;
-
-  transition:.2s;
-
-  position:relative;
-}
-
-.program:hover{
-  transform:
-    translateY(-3px);
-
-  border-color:
-    #c4b5fd;
-}
-
-.program.active{
-  border-color:
-    #7c3aed;
-
-  background:
-    #faf8ff;
-
-  box-shadow:
-    0
-    12px
-    30px
-    rgba(124,58,237,.11);
-}
-
-.program-icon{
-  font-size:31px;
-}
-
-.program h4{
-  margin:
-    10px
-    0
-    6px;
-
-  color:
-    #312e81;
-
-  font-size:16px;
-}
-
-.program p{
-  margin:0;
-
-  font-size:11.5px;
-
-  line-height:1.7;
-
-  color:
-    var(--muted);
-}
-
-.program-check{
-  display:none;
-
-  position:absolute;
-
-  top:12px;
-
-  left:12px;
-
-  width:24px;
-
-  height:24px;
-
-  border-radius:50%;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:white;
-
-  background:
-    #7c3aed;
-
-  font-size:13px;
-}
-
-.program.active
-.program-check{
-  display:flex;
-}
-
-/* ==============================
-   BUTTONS
-============================== */
-
-.actions{
-  display:flex;
-
-  justify-content:flex-end;
-
-  gap:10px;
-
-  margin-top:20px;
-}
-
-.btn{
-  border:none;
-
-  border-radius:14px;
-
-  min-height:46px;
-
-  padding:
-    10px
-    18px;
-
-  cursor:pointer;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-size:13px;
-
-  font-weight:900;
-
-  transition:.2s;
-}
-
-.btn:hover{
-  transform:
-    translateY(-1px);
-}
-
-.btn-primary{
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #5b21b6,
-      #7c3aed
-    );
-
-  box-shadow:
-    0 11px 25px
-    rgba(91,33,182,.20);
-}
-
-.btn-blue{
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #005b9f,
-      #0077c8
-    );
-}
-
-.btn-green{
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #15803d,
-      #22c55e
-    );
-}
-
-.btn-light{
-  color:#334155;
-
-  background:
-    #f1f5f9;
-
-  border:
-    1px solid
-    #e2e8f0;
-}
-
-.btn-danger{
-  color:#b91c1c;
-
-  background:
-    #fee2e2;
-}
-
-/* ==============================
-   SESSION SCREEN
-============================== */
-
-.session-panel{
-  display:none;
-
-  margin-top:27px;
-
-  border-radius:30px;
-
-  overflow:hidden;
-
-  border:
-    1px solid
-    #d8d4ff;
-
-  box-shadow:
-    0 20px 48px
-    rgba(49,46,129,.10);
-}
-
-.session-panel.show{
-  display:block;
-}
-
-.session-stage{
-  min-height:500px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
-  color:white;
-
-  padding:35px;
-
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(76,201,240,.25),
-      transparent 24%
-    ),
-    radial-gradient(
-      circle at 20% 70%,
-      rgba(124,58,237,.25),
-      transparent 30%
-    ),
-    linear-gradient(
-      160deg,
-      #06152a,
-      #103c66,
-      #2e1065
-    );
-}
-
-.session-grid{
-  position:absolute;
-
-  inset:0;
-
-  opacity:.13;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.30)
-      1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.30)
-      1px,
-      transparent 1px
-    );
-
-  background-size:
-    45px
-    45px;
-
-  transform:
-    perspective(500px)
-    rotateX(50deg)
-    scale(1.4);
-
-  transform-origin:
-    center bottom;
-}
-
-.session-content{
-  position:relative;
-
-  z-index:3;
-
-  width:100%;
-}
-
-.session-label{
-  display:inline-block;
-
-  padding:
-    7px
-    13px;
-
-  border-radius:999px;
-
-  background:
-    rgba(255,255,255,.12);
-
-  border:
-    1px solid
-    rgba(255,255,255,.20);
-
-  font-size:12px;
-
-  font-weight:900;
-}
-
-.session-title{
-  margin:
-    15px
-    0
-    4px;
-
-  font-size:28px;
-}
-
-.patient-live{
-  color:
-    #bae6fd;
-
-  margin-bottom:22px;
-
-  font-size:13px;
-}
-
-.target-zone{
-  position:relative;
-
-  width:300px;
-
-  height:230px;
-
-  margin:
-    0
-    auto
-    22px;
-}
-
-.target{
-  position:absolute;
-
-  width:67px;
-
-  height:67px;
-
-  border-radius:50%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:
-    linear-gradient(
-      145deg,
-      #fef08a,
-      #f59e0b
-    );
-
-  color:
-    #713f12;
-
-  font-weight:900;
-
-  font-size:18px;
-
-  border:
-    5px solid
-    rgba(255,255,255,.55);
-
-  box-shadow:
-    0 0 35px
-    rgba(245,158,11,.50);
-
-  transition:
-    .3s ease;
-}
-
-.target.hit{
-  transform:
-    scale(.75);
-
-  opacity:.30;
-}
-
-.target1{
-  top:12px;
-  right:15px;
-}
-
-.target2{
-  top:20px;
-  left:25px;
-}
-
-.target3{
-  bottom:12px;
-  right:65px;
-}
-
-.target4{
-  bottom:20px;
-  left:40px;
-}
-
-.live-stats{
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      150px
-    );
-
-  justify-content:center;
-
-  gap:12px;
-}
-
-.live-stat{
-  padding:
-    12px
-    10px;
-
-  background:
-    rgba(255,255,255,.10);
-
-  border:
-    1px solid
-    rgba(255,255,255,.16);
-
-  border-radius:17px;
-
-  backdrop-filter:
-    blur(9px);
-}
-
-.live-stat-value{
-  font-size:22px;
-
-  font-weight:900;
-}
-
-.live-stat-label{
-  margin-top:3px;
-
-  font-size:10px;
-
-  color:#dbeafe;
-}
-
-/* ==============================
-   RESULTS
-============================== */
-
-.result-box{
-  display:none;
-
-  margin-top:25px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #f0fdf4,
-      #ffffff
-    );
-
-  border:
-    1px solid
-    #bbf7d0;
-
-  border-radius:27px;
-
-  padding:
-    25px;
-}
-
-.result-box.show{
-  display:block;
-}
-
-.result-header{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  margin-bottom:20px;
-}
-
-.result-title{
-  display:flex;
-
-  align-items:center;
-
-  gap:11px;
-}
-
-.result-title-icon{
-  width:50px;
-
-  height:50px;
+  height:48px;
 
   border-radius:16px;
 
@@ -1223,135 +507,221 @@ input[type="range"]{
 
   justify-content:center;
 
-  background:
-    #dcfce7;
+  background:#eef6ff;
 
-  color:
-    #15803d;
+  font-size:23px;
 
-  font-size:25px;
 }
 
-.result-title h3{
+.section-title h3{
+
   margin:0;
 
-  color:#166534;
-}
+  color:#0b4776;
 
-.result-title p{
-  margin:
-    4px
-    0
-    0;
-
-  color:
-    var(--muted);
-
-  font-size:11px;
-}
-
-.result-grid{
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      5,
-      1fr
-    );
-
-  gap:13px;
-}
-
-.result-stat{
-  background:white;
-
-  border:
-    1px solid
-    #dcfce7;
-
-  border-radius:17px;
-
-  padding:16px;
-
-  text-align:center;
-}
-
-.result-value{
   font-size:23px;
 
   font-weight:900;
 
-  color:
-    #15803d;
 }
 
-.result-label{
-  margin-top:5px;
+.section-title p{
 
-  color:
-    var(--muted);
+  margin:
+    5px
+    0
+    0;
 
-  font-size:10.5px;
+  color:var(--muted);
+
+  font-size:12px;
+
 }
 
 /* ==============================
-   TABLE
+   GAME CARDS
 ============================== */
 
-.table-wrap{
-  width:100%;
+.games{
 
-  overflow:auto;
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:20px;
+
+}
+
+.game-card{
+
+  position:relative;
+
+  min-height:285px;
+
+  padding:22px;
+
+  border-radius:26px;
+
+  overflow:hidden;
+
+  cursor:pointer;
 
   border:
     1px solid
     #e2e8f0;
 
-  border-radius:19px;
-}
-
-table{
-  width:100%;
-
-  border-collapse:collapse;
-
-  min-width:900px;
-
   background:white;
+
+  transition:.25s;
+
+  box-shadow:
+
+    0 14px 34px
+    rgba(15,23,42,.07);
+
 }
 
-th,
-td{
-  padding:
-    14px
-    13px;
+.game-card::before{
 
-  border-bottom:
+  content:"";
+
+  position:absolute;
+
+  inset:
+    0
+    0
+    auto
+    0;
+
+  height:6px;
+
+}
+
+.game-card:hover{
+
+  transform:
+    translateY(-7px);
+
+  box-shadow:
+
+    0 23px 48px
+    rgba(15,23,42,.14);
+
+}
+
+.game-card.apple::before{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #16a34a,
+      #84cc16
+    );
+
+}
+
+.game-card.balance::before{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #2563eb,
+      #06b6d4
+    );
+
+}
+
+.game-card.steps::before{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #f59e0b,
+      #f97316
+    );
+
+}
+
+.game-card.bubbles::before{
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #7c3aed,
+      #ec4899
+    );
+
+}
+
+.game-icon{
+
+  width:76px;
+
+  height:76px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:23px;
+
+  margin-bottom:17px;
+
+  font-size:39px;
+
+  background:#f8fafc;
+
+  border:
     1px solid
-    #edf2f7;
+    #e2e8f0;
 
-  text-align:right;
+}
+
+.game-card h4{
+
+  margin:0;
+
+  font-size:19px;
+
+  color:#172554;
+
+}
+
+.game-card p{
+
+  min-height:63px;
+
+  margin:
+    9px
+    0
+    16px;
+
+  color:var(--muted);
 
   font-size:12px;
+
+  line-height:1.75;
+
 }
 
-th{
-  background:
-    #f8fafc;
+.game-tags{
 
-  color:
-    #334155;
+  display:flex;
 
-  font-weight:900;
+  flex-wrap:wrap;
+
+  gap:6px;
+
 }
 
-tbody tr:hover{
-  background:
-    #fafcff;
-}
-
-.status{
-  display:inline-flex;
+.game-tag{
 
   padding:
     5px
@@ -1359,127 +729,1398 @@ tbody tr:hover{
 
   border-radius:999px;
 
+  background:#f1f5f9;
+
+  color:#475569;
+
   font-size:10px;
 
   font-weight:900;
+
 }
 
-.status-good{
-  background:
-    #dcfce7;
+.play-button{
 
-  color:
-    #166534;
-}
+  margin-top:18px;
 
-.status-medium{
-  background:
-    #fef3c7;
+  width:100%;
 
-  color:
-    #92400e;
-}
+  min-height:43px;
 
-/* ==============================
-   EMPTY
-============================== */
+  border:none;
 
-.empty{
-  text-align:center;
+  border-radius:13px;
 
-  padding:
-    40px
-    15px;
-
-  color:
-    #94a3b8;
-}
-
-.empty-icon{
-  font-size:43px;
-
-  margin-bottom:10px;
-}
-
-/* ==============================
-   TOAST
-============================== */
-
-.toast{
-  position:fixed;
-
-  bottom:25px;
-
-  left:25px;
-
-  min-width:250px;
-
-  max-width:380px;
-
-  padding:
-    14px
-    17px;
-
-  border-radius:14px;
+  cursor:pointer;
 
   color:white;
 
-  background:
-    #0f172a;
-
-  box-shadow:
-    0 18px 40px
-    rgba(0,0,0,.25);
+  font-family:
+    Tahoma,
+    Arial;
 
   font-size:12px;
 
   font-weight:900;
 
-  z-index:99999;
+  background:
 
-  opacity:0;
+    linear-gradient(
+      135deg,
+      #005b9f,
+      #0077c8
+    );
 
-  visibility:hidden;
-
-  transform:
-    translateY(10px);
-
-  transition:.25s;
-}
-
-.toast.show{
-  opacity:1;
-
-  visibility:visible;
-
-  transform:
-    translateY(0);
 }
 
 /* ==============================
-   DARK
+   GAME AREA
+============================== */
+
+.game-wrapper{
+
+  display:none;
+
+  margin-top:28px;
+
+}
+
+.game-wrapper.show{
+
+  display:block;
+
+}
+
+.game-shell{
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  border:
+    1px solid
+    #dbe2f3;
+
+  box-shadow:
+
+    0 25px 60px
+    rgba(15,23,42,.15);
+
+}
+
+.game-toolbar{
+
+  min-height:68px;
+
+  padding:
+    12px
+    18px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  background:#0f172a;
+
+  color:white;
+
+}
+
+.game-toolbar-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.game-toolbar-icon{
+
+  font-size:27px;
+
+}
+
+.game-toolbar h3{
+
+  margin:0;
+
+  font-size:16px;
+
+}
+
+.game-toolbar p{
+
+  margin:
+    3px
+    0
+    0;
+
+  font-size:10px;
+
+  color:#cbd5e1;
+
+}
+
+.game-toolbar-actions{
+
+  display:flex;
+
+  gap:8px;
+
+}
+
+.small-btn{
+
+  min-height:38px;
+
+  padding:
+    8px
+    12px;
+
+  border-radius:11px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.18);
+
+  background:
+    rgba(255,255,255,.10);
+
+  color:white;
+
+  font-family:
+    Tahoma,
+    Arial;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+}
+
+/* ==============================
+   GAME STAGE
+============================== */
+
+.game-stage{
+
+  position:relative;
+
+  min-height:620px;
+
+  overflow:hidden;
+
+  background:#0b1120;
+
+  user-select:none;
+
+  touch-action:manipulation;
+
+}
+
+/* ==============================
+   HUD
+============================== */
+
+.game-hud{
+
+  position:absolute;
+
+  top:18px;
+
+  left:50%;
+
+  transform:
+    translateX(-50%);
+
+  z-index:30;
+
+  display:flex;
+
+  gap:10px;
+
+  direction:ltr;
+
+}
+
+.hud-box{
+
+  min-width:110px;
+
+  padding:
+    10px
+    14px;
+
+  border-radius:16px;
+
+  color:white;
+
+  text-align:center;
+
+  background:
+    rgba(15,23,42,.70);
+
+  border:
+    1px solid
+    rgba(255,255,255,.18);
+
+  backdrop-filter:
+    blur(10px);
+
+}
+
+.hud-value{
+
+  font-size:21px;
+
+  font-weight:900;
+
+}
+
+.hud-label{
+
+  margin-top:2px;
+
+  font-size:9px;
+
+  color:#cbd5e1;
+
+}
+
+/* ==============================
+   GAME INTRO
+============================== */
+
+.game-intro{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:50;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    rgba(2,6,23,.62);
+
+  backdrop-filter:
+    blur(8px);
+
+}
+
+.game-intro.hidden{
+
+  display:none;
+
+}
+
+.intro-box{
+
+  width:100%;
+
+  max-width:440px;
+
+  padding:30px;
+
+  text-align:center;
+
+  border-radius:28px;
+
+  color:white;
+
+  background:
+    rgba(15,23,42,.94);
+
+  border:
+    1px solid
+    rgba(255,255,255,.15);
+
+  box-shadow:
+
+    0 30px 80px
+    rgba(0,0,0,.30);
+
+}
+
+.intro-icon{
+
+  font-size:60px;
+
+}
+
+.intro-box h2{
+
+  margin:
+    13px
+    0
+    8px;
+
+  font-size:25px;
+
+}
+
+.intro-box p{
+
+  margin:
+    0
+    auto
+    20px;
+
+  color:#cbd5e1;
+
+  line-height:1.8;
+
+  font-size:12px;
+
+}
+
+.start-game-btn{
+
+  width:100%;
+
+  min-height:50px;
+
+  border:none;
+
+  border-radius:15px;
+
+  color:white;
+
+  font-family:
+    Tahoma,
+    Arial;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #5b21b6,
+      #7c3aed
+    );
+
+}
+
+/* ==============================
+   GAME RESULT
+============================== */
+
+.game-result{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:60;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+    rgba(2,6,23,.70);
+
+  backdrop-filter:
+    blur(8px);
+
+}
+
+.game-result.show{
+
+  display:flex;
+
+}
+
+.result-card{
+
+  width:100%;
+
+  max-width:500px;
+
+  padding:30px;
+
+  border-radius:28px;
+
+  background:white;
+
+  text-align:center;
+
+  box-shadow:
+
+    0 30px 80px
+    rgba(0,0,0,.32);
+
+}
+
+.result-card h2{
+
+  margin:
+    10px
+    0
+    6px;
+
+  color:#14532d;
+
+}
+
+.result-card p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+.result-grid{
+
+  margin-top:20px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+}
+
+.result-stat{
+
+  padding:15px;
+
+  border-radius:16px;
+
+  background:#f8fafc;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+}
+
+.result-value{
+
+  font-size:22px;
+
+  font-weight:900;
+
+  color:#15803d;
+
+}
+
+.result-label{
+
+  margin-top:4px;
+
+  color:#64748b;
+
+  font-size:9px;
+
+}
+
+.result-actions{
+
+  margin-top:18px;
+
+  display:flex;
+
+  gap:9px;
+
+}
+
+.result-btn{
+
+  flex:1;
+
+  min-height:45px;
+
+  border:none;
+
+  border-radius:13px;
+
+  cursor:pointer;
+
+  font-family:
+    Tahoma,
+    Arial;
+
+  font-weight:900;
+
+}
+
+.replay-btn{
+
+  background:
+    #7c3aed;
+
+  color:white;
+
+}
+
+.close-result-btn{
+
+  background:
+    #e2e8f0;
+
+  color:#334155;
+
+}
+
+/* ==============================
+   APPLE GAME
+============================== */
+
+.apple-world{
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #38bdf8 0%,
+      #7dd3fc 45%,
+      #bbf7d0 46%,
+      #86efac 100%
+    );
+
+}
+
+.sun{
+
+  position:absolute;
+
+  width:110px;
+
+  height:110px;
+
+  top:90px;
+
+  right:90px;
+
+  border-radius:50%;
+
+  background:#fde047;
+
+  box-shadow:
+
+    0 0 80px
+    rgba(253,224,71,.65);
+
+}
+
+.cloud{
+
+  position:absolute;
+
+  width:150px;
+
+  height:50px;
+
+  border-radius:50px;
+
+  background:
+    rgba(255,255,255,.80);
+
+}
+
+.cloud::before,
+.cloud::after{
+
+  content:"";
+
+  position:absolute;
+
+  border-radius:50%;
+
+  background:white;
+
+}
+
+.cloud::before{
+
+  width:70px;
+
+  height:70px;
+
+  top:-30px;
+
+  left:25px;
+
+}
+
+.cloud::after{
+
+  width:90px;
+
+  height:90px;
+
+  top:-45px;
+
+  right:15px;
+
+}
+
+.cloud-one{
+
+  top:125px;
+
+  left:90px;
+
+}
+
+.cloud-two{
+
+  top:210px;
+
+  right:230px;
+
+  transform:
+    scale(.75);
+
+}
+
+.ground{
+
+  position:absolute;
+
+  left:0;
+
+  right:0;
+
+  bottom:0;
+
+  height:220px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #4ade80,
+      #15803d
+    );
+
+}
+
+.tree-trunk{
+
+  position:absolute;
+
+  bottom:90px;
+
+  left:50%;
+
+  transform:
+    translateX(-50%);
+
+  width:105px;
+
+  height:300px;
+
+  border-radius:
+    50px
+    50px
+    20px
+    20px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #78350f,
+      #a16207,
+      #78350f
+    );
+
+}
+
+.tree-top{
+
+  position:absolute;
+
+  left:50%;
+
+  bottom:290px;
+
+  transform:
+    translateX(-50%);
+
+  width:510px;
+
+  height:300px;
+
+}
+
+.leaf-ball{
+
+  position:absolute;
+
+  border-radius:50%;
+
+  background:
+
+    radial-gradient(
+      circle at 30% 25%,
+      #4ade80,
+      #15803d 65%
+    );
+
+  box-shadow:
+
+    inset
+    -15px
+    -18px
+    30px
+    rgba(0,0,0,.12);
+
+}
+
+.leaf1{
+
+  width:235px;
+
+  height:210px;
+
+  left:20px;
+
+  bottom:0;
+
+}
+
+.leaf2{
+
+  width:250px;
+
+  height:225px;
+
+  right:15px;
+
+  bottom:0;
+
+}
+
+.leaf3{
+
+  width:245px;
+
+  height:220px;
+
+  left:132px;
+
+  top:0;
+
+}
+
+.apple-target{
+
+  position:absolute;
+
+  z-index:20;
+
+  width:68px;
+
+  height:68px;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50% 50% 48% 48%;
+
+  cursor:pointer;
+
+  font-size:42px;
+
+  animation:
+    applePulse
+    1s
+    infinite alternate;
+
+  filter:
+
+    drop-shadow(
+      0 8px 8px
+      rgba(0,0,0,.25)
+    );
+
+}
+
+.apple-target.show{
+
+  display:flex;
+
+}
+
+@keyframes applePulse{
+
+  from{
+    transform:scale(.95);
+  }
+
+  to{
+    transform:scale(1.12);
+  }
+
+}
+
+/* ==============================
+   BALANCE GAME
+============================== */
+
+.balance-world{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #0f172a,
+      #172554
+    );
+
+}
+
+.balance-floor{
+
+  position:absolute;
+
+  left:-15%;
+
+  right:-15%;
+
+  bottom:-170px;
+
+  height:430px;
+
+  transform:
+    perspective(500px)
+    rotateX(55deg);
+
+  background:
+
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 49px,
+      rgba(56,189,248,.15) 50px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 49px,
+      rgba(56,189,248,.15) 50px
+    ),
+
+    #0f2546;
+
+}
+
+.balance-center{
+
+  position:absolute;
+
+  left:50%;
+
+  bottom:110px;
+
+  transform:
+    translateX(-50%);
+
+  width:145px;
+
+  height:145px;
+
+  border-radius:50%;
+
+  border:
+    5px solid
+    rgba(255,255,255,.25);
+
+  background:
+
+    radial-gradient(
+      circle,
+      #38bdf8,
+      #2563eb
+    );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:white;
+
+  font-size:42px;
+
+  box-shadow:
+
+    0 0 70px
+    rgba(56,189,248,.40);
+
+}
+
+.balance-target{
+
+  position:absolute;
+
+  width:120px;
+
+  height:120px;
+
+  border-radius:50%;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:white;
+
+  cursor:pointer;
+
+  font-size:44px;
+
+  background:
+
+    radial-gradient(
+      circle,
+      #22d3ee,
+      #2563eb
+    );
+
+  border:
+    5px solid
+    rgba(255,255,255,.45);
+
+  box-shadow:
+
+    0 0 45px
+    rgba(34,211,238,.45);
+
+  animation:
+    balancePulse
+    .8s
+    infinite alternate;
+
+}
+
+.balance-target.show{
+
+  display:flex;
+
+}
+
+@keyframes balancePulse{
+
+  from{
+    transform:scale(.90);
+  }
+
+  to{
+    transform:scale(1.08);
+  }
+
+}
+
+/* ==============================
+   STEP GAME
+============================== */
+
+.step-world{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #dbeafe,
+      #93c5fd 46%,
+      #334155 47%,
+      #0f172a 100%
+    );
+
+}
+
+.road{
+
+  position:absolute;
+
+  left:50%;
+
+  bottom:-100px;
+
+  width:500px;
+
+  height:650px;
+
+  transform:
+    translateX(-50%)
+    perspective(550px)
+    rotateX(48deg);
+
+  background:
+    #374151;
+
+  border-left:
+    7px solid
+    #f8fafc;
+
+  border-right:
+    7px solid
+    #f8fafc;
+
+}
+
+.road-line{
+
+  position:absolute;
+
+  left:50%;
+
+  top:0;
+
+  bottom:0;
+
+  width:7px;
+
+  transform:
+    translateX(-50%);
+
+  background:
+
+    repeating-linear-gradient(
+      180deg,
+      #f8fafc 0,
+      #f8fafc 40px,
+      transparent 40px,
+      transparent 85px
+    );
+
+}
+
+.step-target{
+
+  position:absolute;
+
+  z-index:20;
+
+  width:100px;
+
+  height:145px;
+
+  border-radius:
+    50%
+    50%
+    45%
+    45%;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  cursor:pointer;
+
+  font-size:52px;
+
+  background:
+
+    radial-gradient(
+      circle,
+      #fde68a,
+      #f59e0b
+    );
+
+  border:
+    5px solid
+    rgba(255,255,255,.65);
+
+  box-shadow:
+
+    0 0 50px
+    rgba(245,158,11,.55);
+
+  animation:
+    stepPulse
+    .9s
+    infinite alternate;
+
+}
+
+.step-target.show{
+
+  display:flex;
+
+}
+
+@keyframes stepPulse{
+
+  from{
+    transform:scale(.92);
+  }
+
+  to{
+    transform:scale(1.06);
+  }
+
+}
+
+/* ==============================
+   BUBBLE GAME
+============================== */
+
+.bubble-world{
+
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #075985,
+      #0e7490,
+      #155e75
+    );
+
+}
+
+.water-light{
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(255,255,255,.28),
+      transparent 50%
+    );
+
+}
+
+.sea-floor{
+
+  position:absolute;
+
+  left:0;
+
+  right:0;
+
+  bottom:0;
+
+  height:135px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #facc15,
+      #ca8a04
+    );
+
+  border-radius:
+    50%
+    50%
+    0
+    0;
+
+}
+
+.fish{
+
+  position:absolute;
+
+  font-size:52px;
+
+  animation:
+    swim
+    10s
+    linear
+    infinite;
+
+}
+
+.fish1{
+
+  top:210px;
+
+  left:-70px;
+
+}
+
+.fish2{
+
+  top:390px;
+
+  right:-80px;
+
+  animation-direction:
+    reverse;
+
+  animation-duration:
+    13s;
+
+}
+
+@keyframes swim{
+
+  from{
+    transform:
+      translateX(0);
+  }
+
+  to{
+    transform:
+      translateX(120vw);
+  }
+
+}
+
+.bubble-target{
+
+  position:absolute;
+
+  width:90px;
+
+  height:90px;
+
+  border-radius:50%;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  cursor:pointer;
+
+  font-size:31px;
+
+  color:white;
+
+  background:
+
+    radial-gradient(
+      circle at 30% 25%,
+      rgba(255,255,255,.82),
+      rgba(56,189,248,.30) 40%,
+      rgba(124,58,237,.38)
+    );
+
+  border:
+    3px solid
+    rgba(255,255,255,.60);
+
+  box-shadow:
+
+    inset
+    0 0 20px
+    rgba(255,255,255,.34),
+
+    0 0 30px
+    rgba(125,211,252,.45);
+
+  animation:
+    bubbleFloat
+    1s
+    ease-in-out
+    infinite alternate;
+
+}
+
+.bubble-target.show{
+
+  display:flex;
+
+}
+
+@keyframes bubbleFloat{
+
+  from{
+    transform:
+      translateY(6px)
+      scale(.96);
+  }
+
+  to{
+    transform:
+      translateY(-6px)
+      scale(1.06);
+  }
+
+}
+
+/* ==============================
+   DARK MODE
 ============================== */
 
 body.dark{
-  --card:#1e293b;
+
   --text:#e2e8f0;
+
   --muted:#94a3b8;
+
   --line:#334155;
 
   background:
+
     radial-gradient(
-      circle at 90% 5%,
+      circle at 90% 7%,
       rgba(91,33,182,.23),
-      transparent 27%
+      transparent 28%
     ),
+
     linear-gradient(
       180deg,
       #020617,
       #0f172a
     );
 
-  color:
-    var(--text);
 }
 
 body.dark
@@ -1487,111 +2128,84 @@ body.dark
 body.dark
 .section,
 body.dark
-.summary-card{
-  background:
-    #1e293b;
+.game-card{
 
-  border-color:
-    #334155;
+  background:#1e293b;
+
+  border-color:#334155;
+
 }
 
 body.dark
 .hero h2,
 body.dark
-.section-title h3{
+.section-title h3,
+body.dark
+.game-card h4{
+
   color:#bfdbfe;
+
 }
 
 body.dark
-.hero-tag{
-  background:
-    #312e81;
-
-  color:
-    #ddd6fe;
-}
-
+.game-icon,
 body.dark
-input,
-body.dark
-select,
-body.dark
-textarea,
-body.dark
-.range-wrap{
-  background:
-    #0f172a;
+.game-tag{
 
-  color:white;
+  background:#0f172a;
 
-  border-color:
-    #334155;
-}
+  border-color:#334155;
 
-body.dark
-label{
   color:#cbd5e1;
+
 }
 
 body.dark
-.program{
-  background:
-    #0f172a;
+.result-card{
 
-  border-color:
-    #334155;
+  background:#1e293b;
+
 }
 
 body.dark
-.program.active{
-  background:
-    #21143d;
+.result-card h2{
 
-  border-color:
-    #8b5cf6;
+  color:#86efac;
+
 }
 
-body.dark
-.program h4{
-  color:
-    #c4b5fd;
-}
-
-body.dark
-table,
 body.dark
 .result-stat{
-  background:
-    #0f172a;
 
-  color:
-    #e2e8f0;
+  background:#0f172a;
+
+  border-color:#334155;
+
 }
 
-body.dark
-th{
-  background:
-    #111827;
+/* ==============================
+   RTL
+============================== */
 
-  color:
-    #cbd5e1;
+html[dir="rtl"]
+body{
+
+  direction:rtl;
+
 }
 
-body.dark
-td,
-body.dark
-th{
-  border-color:
-    #1e293b;
+html[dir="rtl"]
+.brand{
+
+  direction:rtl;
+
 }
 
-body.dark
-.result-box{
-  background:
-    #13251b;
+html[dir="rtl"]
+.game-toolbar-title{
 
-  border-color:
-    #166534;
+  direction:rtl;
+
 }
 
 /* ==============================
@@ -1601,114 +2215,150 @@ body.dark
 @media(max-width:1050px){
 
   .hero{
+
     grid-template-columns:1fr;
+
   }
 
-  .hero-visual{
+  .vr-visual{
+
     display:none;
+
   }
 
-  .summary-grid{
+  .games{
+
     grid-template-columns:
       repeat(2,1fr);
+
   }
 
-  .form-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .programs{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .result-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
 }
 
 @media(max-width:650px){
 
   .topbar{
+
     padding:
-      12px
-      14px;
+      11px
+      13px;
+
   }
 
   .brand-logo{
-    width:48px;
-    height:48px;
+
+    width:47px;
+
+    height:47px;
+
   }
 
   .brand h1{
-    font-size:16px;
+
+    font-size:15px;
+
   }
 
   .brand p{
+
     display:none;
+
   }
 
   .top-btn{
+
     padding:
       8px
-      10px;
+      9px;
 
-    font-size:11px;
+    font-size:10px;
+
   }
 
   .page{
+
     width:95%;
+
   }
 
   .hero{
+
     padding:
       25px
       20px;
+
   }
 
   .hero h2{
-    font-size:24px;
+
+    font-size:25px;
+
   }
 
-  .summary-grid,
-  .form-grid,
-  .programs,
-  .result-grid{
-    grid-template-columns:
-      1fr;
+  .section{
+
+    padding:
+      20px
+      15px;
+
   }
 
-  .field.wide{
-    grid-column:auto;
+  .games{
+
+    grid-template-columns:1fr;
+
   }
 
-  .actions{
+  .game-stage{
+
+    min-height:570px;
+
+  }
+
+  .game-hud{
+
+    width:95%;
+
+    justify-content:center;
+
+  }
+
+  .hud-box{
+
+    min-width:0;
+
+    flex:1;
+
+    padding:
+      9px
+      6px;
+
+  }
+
+  .game-toolbar{
+
     flex-direction:column;
+
+    align-items:stretch;
+
   }
 
-  .btn{
-    width:100%;
+  .game-toolbar-actions{
+
+    justify-content:flex-end;
+
   }
 
-  .live-stats{
-    grid-template-columns:
-      repeat(3,1fr);
+  .result-grid{
 
-    width:100%;
+    grid-template-columns:1fr;
+
   }
 
-  .live-stat{
-    width:auto;
-  }
-
-  .target-zone{
-    width:260px;
-  }
 }
 
 </style>
+
 </head>
 
 <body>
@@ -1720,17 +2370,17 @@ body.dark
     <img
       src="logo.png"
       class="brand-logo"
-      alt="مركز عكاز"
+      alt="Akaz"
     >
 
     <div>
 
-      <h1>
-        التأهيل الافتراضي
+      <h1 data-i18n="brandTitle">
+        VR Rehabilitation Lab
       </h1>
 
-      <p>
-        Akaz Virtual Rehabilitation Lab
+      <p data-i18n="brandSub">
+        Akaz Physiotherapy Center
       </p>
 
     </div>
@@ -1738,6 +2388,14 @@ body.dark
   </div>
 
   <div class="top-actions">
+
+    <button
+      class="top-btn"
+      id="languageBtn"
+      onclick="toggleLanguage()"
+    >
+      العربية
+    </button>
 
     <button
       class="top-btn"
@@ -1750,8 +2408,9 @@ body.dark
     <button
       class="top-btn exit-btn"
       onclick="exitVR()"
+      data-i18n="exit"
     >
-      خروج
+      Exit
     </button>
 
   </div>
@@ -1760,31 +2419,30 @@ body.dark
 
 <main class="page">
 
-  <!-- ==========================
-       HERO
-  =========================== -->
+  <!-- HERO -->
 
   <section class="hero">
 
-    <div class="hero-copy">
+    <div class="hero-content">
 
-      <div class="hero-tag">
-        🧪 مرحلة تجريبية
+      <div
+        class="hero-tag"
+        data-i18n="experimental"
+      >
+        🧪 Experimental Lab
       </div>
 
-      <h2>
-        مختبر التأهيل الافتراضي
+      <h2 data-i18n="heroTitle">
+        Experience Rehabilitation Through Play
       </h2>
 
-      <p>
-        نموذج داخلي لتصميم وتجربة برامج التأهيل باستخدام الواقع الافتراضي.
-        يمكنك إعداد جلسة علاجية، تحديد الحركة المطلوبة ومستوى الصعوبة،
-        ثم تشغيل محاكاة للجلسة ومراجعة النتائج قبل اعتماد النظام وربطه بالنظارة مستقبلًا.
+      <p data-i18n="heroText">
+        Explore interactive rehabilitation game concepts before connecting them to a VR headset. Choose any game below and start playing immediately.
       </p>
 
     </div>
 
-    <div class="hero-visual">
+    <div class="vr-visual">
 
       <div class="vr-orb">
         🥽
@@ -1794,90 +2452,7 @@ body.dark
 
   </section>
 
-  <!-- ==========================
-       SUMMARY
-  =========================== -->
-
-  <section class="summary-grid">
-
-    <div class="summary-card">
-
-      <div class="summary-label">
-        إجمالي الجلسات التجريبية
-      </div>
-
-      <div
-        class="summary-value"
-        id="totalSessions"
-      >
-        0
-      </div>
-
-      <div class="summary-sub">
-        جميع الجلسات المحفوظة
-      </div>
-
-    </div>
-
-    <div class="summary-card">
-
-      <div class="summary-label">
-        متوسط الدقة
-      </div>
-
-      <div
-        class="summary-value"
-        id="averageAccuracy"
-      >
-        0%
-      </div>
-
-      <div class="summary-sub">
-        نتائج المحاكاة السابقة
-      </div>
-
-    </div>
-
-    <div class="summary-card">
-
-      <div class="summary-label">
-        المرضى المسجلون
-      </div>
-
-      <div
-        class="summary-value"
-        id="totalPatients"
-      >
-        0
-      </div>
-
-      <div class="summary-sub">
-        حسب أرقام الملفات
-      </div>
-
-    </div>
-
-    <div class="summary-card">
-
-      <div class="summary-label">
-        البرامج المتوفرة
-      </div>
-
-      <div class="summary-value">
-        4
-      </div>
-
-      <div class="summary-sub">
-        قابلة للتوسع مستقبلًا
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ==========================
-       PROGRAM
-  =========================== -->
+  <!-- GAME LIBRARY -->
 
   <section class="section">
 
@@ -1891,12 +2466,12 @@ body.dark
 
         <div>
 
-          <h3>
-            اختيار البرنامج العلاجي
+          <h3 data-i18n="libraryTitle">
+            VR Game Library
           </h3>
 
-          <p>
-            اختر نوع التجربة التي تريد تشغيلها.
+          <p data-i18n="librarySub">
+            Select a game to experience the concept.
           </p>
 
         </div>
@@ -1905,792 +2480,600 @@ body.dark
 
     </div>
 
-    <div class="programs">
+    <div class="games">
+
+      <!-- APPLE -->
 
       <div
-        class="program active"
-        data-program="upper"
-        onclick="selectProgram(this)"
+        class="game-card apple"
+        onclick="openGame('apple')"
       >
 
-        <div class="program-check">
-          ✓
+        <div class="game-icon">
+          🍎
         </div>
 
-        <div class="program-icon">
-          ✋
-        </div>
-
-        <h4>
-          الوصول للأهداف
+        <h4 data-i18n="appleTitle">
+          Apple Reach
         </h4>
 
-        <p>
-          تدريب الطرف العلوي ومدى حركة الكتف من خلال لمس أهداف افتراضية.
+        <p data-i18n="appleDesc">
+          Reach toward apples appearing at different heights and directions to train upper limb movement.
         </p>
+
+        <div class="game-tags">
+
+          <span
+            class="game-tag"
+            data-i18n="shoulder"
+          >
+            Shoulder
+          </span>
+
+          <span
+            class="game-tag"
+            data-i18n="upperLimb"
+          >
+            Upper Limb
+          </span>
+
+          <span
+            class="game-tag"
+            data-i18n="romTag"
+          >
+            ROM
+          </span>
+
+        </div>
+
+        <button
+          class="play-button"
+          data-i18n="play"
+        >
+          Play Game
+        </button>
 
       </div>
 
+      <!-- BALANCE -->
+
       <div
-        class="program"
-        data-program="balance"
-        onclick="selectProgram(this)"
+        class="game-card balance"
+        onclick="openGame('balance')"
       >
 
-        <div class="program-check">
-          ✓
-        </div>
-
-        <div class="program-icon">
+        <div class="game-icon">
           ⚖️
         </div>
 
-        <h4>
-          التوازن ونقل الوزن
+        <h4 data-i18n="balanceTitle">
+          Balance Shift
         </h4>
 
-        <p>
-          تدريب التحكم بالجسم ونقل الوزن بين الاتجاهات المختلفة.
+        <p data-i18n="balanceDesc">
+          Follow directional targets to simulate weight shifting and dynamic balance training.
         </p>
+
+        <div class="game-tags">
+
+          <span
+            class="game-tag"
+            data-i18n="balance"
+          >
+            Balance
+          </span>
+
+          <span
+            class="game-tag"
+            data-i18n="weightShift"
+          >
+            Weight Shift
+          </span>
+
+        </div>
+
+        <button
+          class="play-button"
+          data-i18n="play"
+        >
+          Play Game
+        </button>
 
       </div>
 
+      <!-- STEPS -->
+
       <div
-        class="program"
-        data-program="lower"
-        onclick="selectProgram(this)"
+        class="game-card steps"
+        onclick="openGame('steps')"
       >
 
-        <div class="program-check">
-          ✓
+        <div class="game-icon">
+          👣
         </div>
 
-        <div class="program-icon">
-          🦵
-        </div>
-
-        <h4>
-          الطرف السفلي
+        <h4 data-i18n="stepsTitle">
+          Step Targets
         </h4>
 
-        <p>
-          تمارين خطوات وتحكم حركي للطرف السفلي وتأهيل الركبة.
+        <p data-i18n="stepsDesc">
+          Follow visual foot targets to simulate controlled stepping and lower limb rehabilitation.
         </p>
+
+        <div class="game-tags">
+
+          <span
+            class="game-tag"
+            data-i18n="lowerLimb"
+          >
+            Lower Limb
+          </span>
+
+          <span
+            class="game-tag"
+            data-i18n="coordination"
+          >
+            Coordination
+          </span>
+
+        </div>
+
+        <button
+          class="play-button"
+          data-i18n="play"
+        >
+          Play Game
+        </button>
 
       </div>
 
+      <!-- BUBBLES -->
+
       <div
-        class="program"
-        data-program="kids"
-        onclick="selectProgram(this)"
+        class="game-card bubbles"
+        onclick="openGame('bubbles')"
       >
 
-        <div class="program-check">
-          ✓
-        </div>
-
-        <div class="program-icon">
+        <div class="game-icon">
           🫧
         </div>
 
-        <h4>
-          تأهيل الأطفال
+        <h4 data-i18n="bubbleTitle">
+          Bubble Pop
         </h4>
 
-        <p>
-          تجربة علاجية تفاعلية تعتمد على جمع النقاط والأهداف الممتعة.
+        <p data-i18n="bubbleDesc">
+          Pop colorful bubbles appearing around the underwater world to encourage reaching and engagement.
         </p>
 
+        <div class="game-tags">
+
+          <span
+            class="game-tag"
+            data-i18n="pediatric"
+          >
+            Pediatric
+          </span>
+
+          <span
+            class="game-tag"
+            data-i18n="reaching"
+          >
+            Reaching
+          </span>
+
+          <span
+            class="game-tag"
+            data-i18n="fun"
+          >
+            Fun
+          </span>
+
+        </div>
+
+        <button
+          class="play-button"
+          data-i18n="play"
+        >
+          Play Game
+        </button>
+
       </div>
 
     </div>
 
   </section>
 
-  <!-- ==========================
-       SESSION SETTINGS
-  =========================== -->
-
-  <section class="section">
-
-    <div class="section-head">
-
-      <div class="section-title">
-
-        <div class="section-icon">
-          🩺
-        </div>
-
-        <div>
-
-          <h3>
-            إعداد الجلسة
-          </h3>
-
-          <p>
-            أدخل بيانات الحالة وإعدادات المحاكاة.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="form-grid">
-
-      <div class="field">
-
-        <label>
-          رقم الملف
-        </label>
-
-        <input
-          type="text"
-          id="fileNumber"
-          placeholder="مثال: 10231"
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          اسم المريض
-        </label>
-
-        <input
-          type="text"
-          id="patientName"
-          placeholder="اسم المريض"
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          الأخصائي
-        </label>
-
-        <select id="therapist">
-
-          <option value="">
-            اختر الأخصائي
-          </option>
-
-          <option>
-            د. حاتم الاحمدي
-          </option>
-
-          <option>
-            د. عبدالرحمن السويداء
-          </option>
-
-          <option>
-            د. عبدالرحمن السليمي
-          </option>
-
-          <option>
-            د. عبدالعزيز الحمدان
-          </option>
-
-          <option>
-            د. ريناد حميد
-          </option>
-
-          <option>
-            د. ابتسام سويلم
-          </option>
-
-          <option>
-            د. سلمى فرحان
-          </option>
-
-          <option>
-            د. هند فهيد
-          </option>
-
-          <option>
-            د. أسماء فهيد
-          </option>
-
-          <option>
-            د. مها فريح
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          المنطقة العلاجية
-        </label>
-
-        <select id="bodyArea">
-
-          <option value="shoulder">
-            الكتف
-          </option>
-
-          <option value="elbow">
-            الكوع
-          </option>
-
-          <option value="wrist">
-            الرسغ واليد
-          </option>
-
-          <option value="balance">
-            التوازن
-          </option>
-
-          <option value="knee">
-            الركبة
-          </option>
-
-          <option value="ankle">
-            الكاحل
-          </option>
-
-          <option value="general">
-            تأهيل حركي عام
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          الجهة
-        </label>
-
-        <select id="side">
-
-          <option>
-            اليمنى
-          </option>
-
-          <option>
-            اليسرى
-          </option>
-
-          <option>
-            ثنائي
-          </option>
-
-          <option>
-            غير محدد
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          مستوى الصعوبة
-        </label>
-
-        <select id="difficulty">
-
-          <option value="easy">
-            سهل
-          </option>
-
-          <option
-            value="medium"
-            selected
-          >
-            متوسط
-          </option>
-
-          <option value="hard">
-            متقدم
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          مدة الجلسة
-        </label>
-
-        <select id="duration">
-
-          <option value="30">
-            30 ثانية - تجربة
-          </option>
-
-          <option value="60">
-            دقيقة
-          </option>
-
-          <option value="120">
-            دقيقتان
-          </option>
-
-          <option value="300">
-            5 دقائق
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          عدد الأهداف
-        </label>
-
-        <select id="targets">
-
-          <option value="10">
-            10 أهداف
-          </option>
-
-          <option
-            value="20"
-            selected
-          >
-            20 هدف
-          </option>
-
-          <option value="30">
-            30 هدف
-          </option>
-
-          <option value="40">
-            40 هدف
-          </option>
-
-        </select>
-
-      </div>
-
-      <div class="field wide">
-
-        <label>
-          مدى الحركة المسموح
-        </label>
-
-        <div class="range-wrap">
-
-          <div class="range-top">
-
-            <span>
-              ROM
-            </span>
-
-            <span
-              class="range-value"
-              id="romValue"
-            >
-              90°
-            </span>
-
-          </div>
-
-          <input
-            type="range"
-            id="rom"
-            min="20"
-            max="180"
-            value="90"
-            oninput="updateROM()"
-          >
-
-        </div>
-
-      </div>
-
-      <div class="field wide">
-
-        <label>
-          سرعة ظهور الأهداف
-        </label>
-
-        <div class="range-wrap">
-
-          <div class="range-top">
-
-            <span>
-              سرعة التفاعل
-            </span>
-
-            <span
-              class="range-value"
-              id="speedValue"
-            >
-              متوسطة
-            </span>
-
-          </div>
-
-          <input
-            type="range"
-            id="speed"
-            min="1"
-            max="3"
-            value="2"
-            oninput="updateSpeed()"
-          >
-
-        </div>
-
-      </div>
-
-      <div class="field full">
-
-        <label>
-          ملاحظات الأخصائي
-        </label>
-
-        <textarea
-          id="notes"
-          placeholder="مثال: عدم تجاوز 90 درجة، تجنب الألم، التركيز على التحكم بالحركة..."
-        ></textarea>
-
-      </div>
-
-    </div>
-
-    <div class="actions">
-
-      <button
-        class="btn btn-light"
-        onclick="fillDemo()"
-      >
-        تعبئة حالة تجريبية
-      </button>
-
-      <button
-        class="btn btn-primary"
-        onclick="startSession()"
-      >
-        ▶ بدء المحاكاة
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- ==========================
-       SIMULATION
-  =========================== -->
+  <!-- GAME WINDOW -->
 
   <section
-    class="session-panel"
-    id="sessionPanel"
+    class="game-wrapper"
+    id="gameWrapper"
   >
 
-    <div class="session-stage">
+    <div
+      class="game-shell"
+      id="gameShell"
+    >
 
-      <div class="session-grid"></div>
+      <div class="game-toolbar">
 
-      <div class="session-content">
-
-        <span class="session-label">
-          محاكاة بيئة VR
-        </span>
-
-        <h2
-          class="session-title"
-          id="liveProgram"
-        >
-          الوصول للأهداف
-        </h2>
-
-        <div
-          class="patient-live"
-          id="livePatient"
-        >
-          --
-        </div>
-
-        <div class="target-zone">
+        <div class="game-toolbar-title">
 
           <div
-            class="target target1"
-            id="target1"
+            class="game-toolbar-icon"
+            id="toolbarIcon"
           >
-            1
+            🎮
           </div>
 
-          <div
-            class="target target2"
-            id="target2"
-          >
-            2
-          </div>
+          <div>
 
-          <div
-            class="target target3"
-            id="target3"
-          >
-            3
-          </div>
+            <h3 id="toolbarTitle">
+              Game
+            </h3>
 
-          <div
-            class="target target4"
-            id="target4"
-          >
-            4
-          </div>
-
-        </div>
-
-        <div class="live-stats">
-
-          <div class="live-stat">
-
-            <div
-              class="live-stat-value"
-              id="liveTime"
-            >
-              0
-            </div>
-
-            <div class="live-stat-label">
-              ثانية
-            </div>
-
-          </div>
-
-          <div class="live-stat">
-
-            <div
-              class="live-stat-value"
-              id="liveHits"
-            >
-              0
-            </div>
-
-            <div class="live-stat-label">
-              أهداف ناجحة
-            </div>
-
-          </div>
-
-          <div class="live-stat">
-
-            <div
-              class="live-stat-value"
-              id="liveScore"
-            >
-              0%
-            </div>
-
-            <div class="live-stat-label">
-              الدقة الحالية
-            </div>
+            <p data-i18n="prototypeMode">
+              Browser prototype — VR headset not connected
+            </p>
 
           </div>
 
         </div>
 
-        <div class="actions" style="justify-content:center;">
+        <div class="game-toolbar-actions">
 
           <button
-            class="btn btn-danger"
-            onclick="finishSession(true)"
+            class="small-btn"
+            onclick="toggleFullscreen()"
+            data-i18n="fullscreen"
           >
-            إنهاء الجلسة
+            Fullscreen
+          </button>
+
+          <button
+            class="small-btn"
+            onclick="closeGame()"
+            data-i18n="close"
+          >
+            Close
           </button>
 
         </div>
 
       </div>
 
-    </div>
-
-  </section>
-
-  <!-- ==========================
-       RESULT
-  =========================== -->
-
-  <section
-    class="result-box"
-    id="resultBox"
-  >
-
-    <div class="result-header">
-
-      <div class="result-title">
-
-        <div class="result-title-icon">
-          ✓
-        </div>
-
-        <div>
-
-          <h3>
-            نتيجة الجلسة
-          </h3>
-
-          <p id="resultPatient">
-            --
-          </p>
-
-        </div>
-
-      </div>
-
-      <button
-        class="btn btn-blue"
-        onclick="newSession()"
+      <div
+        class="game-stage"
+        id="gameStage"
       >
-        جلسة جديدة
-      </button>
+
+        <!-- HUD -->
+
+        <div class="game-hud">
+
+          <div class="hud-box">
+
+            <div
+              class="hud-value"
+              id="scoreValue"
+            >
+              0
+            </div>
+
+            <div
+              class="hud-label"
+              data-i18n="score"
+            >
+              SCORE
+            </div>
+
+          </div>
+
+          <div class="hud-box">
+
+            <div
+              class="hud-value"
+              id="hitsValue"
+            >
+              0
+            </div>
+
+            <div
+              class="hud-label"
+              data-i18n="hits"
+            >
+              HITS
+            </div>
+
+          </div>
+
+          <div class="hud-box">
+
+            <div
+              class="hud-value"
+              id="timeValue"
+            >
+              30
+            </div>
+
+            <div
+              class="hud-label"
+              data-i18n="time"
+            >
+              TIME
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- APPLE WORLD -->
+
+        <div
+          class="apple-world game-world"
+          id="appleWorld"
+          style="display:none;"
+        >
+
+          <div class="sun"></div>
+
+          <div class="cloud cloud-one"></div>
+
+          <div class="cloud cloud-two"></div>
+
+          <div class="ground"></div>
+
+          <div class="tree-trunk"></div>
+
+          <div class="tree-top">
+
+            <div class="leaf-ball leaf1"></div>
+            <div class="leaf-ball leaf2"></div>
+            <div class="leaf-ball leaf3"></div>
+
+          </div>
+
+          <div
+            class="apple-target"
+            id="appleTarget"
+            onclick="hitTarget(event)"
+          >
+            🍎
+          </div>
+
+        </div>
+
+        <!-- BALANCE WORLD -->
+
+        <div
+          class="balance-world game-world"
+          id="balanceWorld"
+          style="display:none;"
+        >
+
+          <div class="balance-floor"></div>
+
+          <div class="balance-center">
+            🧍
+          </div>
+
+          <div
+            class="balance-target"
+            id="balanceTarget"
+            onclick="hitTarget(event)"
+          >
+            ➡️
+          </div>
+
+        </div>
+
+        <!-- STEP WORLD -->
+
+        <div
+          class="step-world game-world"
+          id="stepsWorld"
+          style="display:none;"
+        >
+
+          <div class="road">
+
+            <div class="road-line"></div>
+
+          </div>
+
+          <div
+            class="step-target"
+            id="stepTarget"
+            onclick="hitTarget(event)"
+          >
+            👣
+          </div>
+
+        </div>
+
+        <!-- BUBBLE WORLD -->
+
+        <div
+          class="bubble-world game-world"
+          id="bubblesWorld"
+          style="display:none;"
+        >
+
+          <div class="water-light"></div>
+
+          <div class="fish fish1">
+            🐠
+          </div>
+
+          <div class="fish fish2">
+            🐟
+          </div>
+
+          <div class="sea-floor"></div>
+
+          <div
+            class="bubble-target"
+            id="bubbleTarget"
+            onclick="hitTarget(event)"
+          >
+            ⭐
+          </div>
+
+        </div>
+
+        <!-- INTRO -->
+
+        <div
+          class="game-intro"
+          id="gameIntro"
+        >
+
+          <div class="intro-box">
+
+            <div
+              class="intro-icon"
+              id="introIcon"
+            >
+              🎮
+            </div>
+
+            <h2 id="introTitle">
+              Game
+            </h2>
+
+            <p id="introDescription">
+              Start the game and interact with the targets.
+            </p>
+
+            <button
+              class="start-game-btn"
+              onclick="startGame()"
+              data-i18n="startGame"
+            >
+              Start Game
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- RESULT -->
+
+        <div
+          class="game-result"
+          id="gameResult"
+        >
+
+          <div class="result-card">
+
+            <div style="font-size:55px;">
+              🏆
+            </div>
+
+            <h2 data-i18n="sessionComplete">
+              Session Complete
+            </h2>
+
+            <p data-i18n="sessionCompleteText">
+              This is a simulated result from the browser prototype.
+            </p>
+
+            <div class="result-grid">
+
+              <div class="result-stat">
+
+                <div
+                  class="result-value"
+                  id="finalScore"
+                >
+                  0
+                </div>
+
+                <div
+                  class="result-label"
+                  data-i18n="score"
+                >
+                  SCORE
+                </div>
+
+              </div>
+
+              <div class="result-stat">
+
+                <div
+                  class="result-value"
+                  id="finalHits"
+                >
+                  0
+                </div>
+
+                <div
+                  class="result-label"
+                  data-i18n="hits"
+                >
+                  HITS
+                </div>
+
+              </div>
+
+              <div class="result-stat">
+
+                <div
+                  class="result-value"
+                  id="finalReaction"
+                >
+                  0.0s
+                </div>
+
+                <div
+                  class="result-label"
+                  data-i18n="reaction"
+                >
+                  AVG. REACTION
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="result-actions">
+
+              <button
+                class="result-btn replay-btn"
+                onclick="restartGame()"
+                data-i18n="playAgain"
+              >
+                Play Again
+              </button>
+
+              <button
+                class="result-btn close-result-btn"
+                onclick="closeGame()"
+                data-i18n="backToGames"
+              >
+                Back to Games
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
-
-    <div class="result-grid">
-
-      <div class="result-stat">
-
-        <div
-          class="result-value"
-          id="resultAccuracy"
-        >
-          0%
-        </div>
-
-        <div class="result-label">
-          الدقة
-        </div>
-
-      </div>
-
-      <div class="result-stat">
-
-        <div
-          class="result-value"
-          id="resultHits"
-        >
-          0
-        </div>
-
-        <div class="result-label">
-          أهداف ناجحة
-        </div>
-
-      </div>
-
-      <div class="result-stat">
-
-        <div
-          class="result-value"
-          id="resultReaction"
-        >
-          0s
-        </div>
-
-        <div class="result-label">
-          متوسط الاستجابة
-        </div>
-
-      </div>
-
-      <div class="result-stat">
-
-        <div
-          class="result-value"
-          id="resultROM"
-        >
-          0°
-        </div>
-
-        <div class="result-label">
-          مدى الحركة
-        </div>
-
-      </div>
-
-      <div class="result-stat">
-
-        <div
-          class="result-value"
-          id="resultScore"
-        >
-          0
-        </div>
-
-        <div class="result-label">
-          النقاط
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ==========================
-       HISTORY
-  =========================== -->
-
-  <section class="section">
-
-    <div class="section-head">
-
-      <div class="section-title">
-
-        <div class="section-icon">
-          📊
-        </div>
-
-        <div>
-
-          <h3>
-            سجل الجلسات التجريبية
-          </h3>
-
-          <p>
-            يتم حفظها على هذا الجهاز حاليًا فقط.
-          </p>
-
-        </div>
-
-      </div>
-
-      <button
-        class="btn btn-light"
-        onclick="clearHistory()"
-      >
-        مسح السجل
-      </button>
-
-    </div>
-
-    <div id="historyArea"></div>
 
   </section>
 
 </main>
 
-<div
-  class="toast"
-  id="toast"
->
-  تم
-</div>
-
 <script>
 
-/* ===================================
-   SECURITY
-=================================== */
+/* ==============================
+   ACCESS
+============================== */
 
 function checkAccess(){
 
@@ -2699,7 +3082,10 @@ function checkAccess(){
       "akazVRAccess"
     );
 
-  if(access !== "granted"){
+  if(
+    access !==
+    "granted"
+  ){
 
     window.location.href =
       "index.html";
@@ -2710,59 +3096,380 @@ function checkAccess(){
 
 checkAccess();
 
-/* ===================================
-   VARIABLES
-=================================== */
+/* ==============================
+   LANGUAGE
+============================== */
 
-let selectedProgram =
-  "upper";
+let currentLanguage =
+  localStorage.getItem(
+    "akazVRLanguage"
+  ) || "en";
 
-let sessionTimer =
-  null;
+const translations = {
 
-let sessionDuration =
-  0;
+  en:{
 
-let elapsed =
-  0;
+    brandTitle:
+      "VR Rehabilitation Lab",
 
-let hits =
-  0;
+    brandSub:
+      "Akaz Physiotherapy Center",
 
-let totalAttempts =
-  0;
+    exit:
+      "Exit",
 
-let currentSession =
-  null;
+    experimental:
+      "🧪 Experimental Lab",
 
-const programNames = {
+    heroTitle:
+      "Experience Rehabilitation Through Play",
 
-  upper:
-    "الوصول للأهداف",
+    heroText:
+      "Explore interactive rehabilitation game concepts before connecting them to a VR headset. Choose any game below and start playing immediately.",
 
-  balance:
-    "التوازن ونقل الوزن",
+    libraryTitle:
+      "VR Game Library",
 
-  lower:
-    "تأهيل الطرف السفلي",
+    librarySub:
+      "Select a game to experience the concept.",
 
-  kids:
-    "تأهيل الأطفال"
+    appleTitle:
+      "Apple Reach",
+
+    appleDesc:
+      "Reach toward apples appearing at different heights and directions to train upper limb movement.",
+
+    balanceTitle:
+      "Balance Shift",
+
+    balanceDesc:
+      "Follow directional targets to simulate weight shifting and dynamic balance training.",
+
+    stepsTitle:
+      "Step Targets",
+
+    stepsDesc:
+      "Follow visual foot targets to simulate controlled stepping and lower limb rehabilitation.",
+
+    bubbleTitle:
+      "Bubble Pop",
+
+    bubbleDesc:
+      "Pop colorful bubbles appearing around the underwater world to encourage reaching and engagement.",
+
+    shoulder:
+      "Shoulder",
+
+    upperLimb:
+      "Upper Limb",
+
+    romTag:
+      "ROM",
+
+    balance:
+      "Balance",
+
+    weightShift:
+      "Weight Shift",
+
+    lowerLimb:
+      "Lower Limb",
+
+    coordination:
+      "Coordination",
+
+    pediatric:
+      "Pediatric",
+
+    reaching:
+      "Reaching",
+
+    fun:
+      "Fun",
+
+    play:
+      "Play Game",
+
+    prototypeMode:
+      "Browser prototype — VR headset not connected",
+
+    fullscreen:
+      "Fullscreen",
+
+    close:
+      "Close",
+
+    score:
+      "SCORE",
+
+    hits:
+      "HITS",
+
+    time:
+      "TIME",
+
+    startGame:
+      "Start Game",
+
+    sessionComplete:
+      "Session Complete",
+
+    sessionCompleteText:
+      "This is a simulated result from the browser prototype.",
+
+    reaction:
+      "AVG. REACTION",
+
+    playAgain:
+      "Play Again",
+
+    backToGames:
+      "Back to Games",
+
+    appleIntro:
+      "Touch each apple as quickly as possible. In VR, the patient would reach toward the apple using the real hand.",
+
+    balanceIntro:
+      "Follow the target direction. In VR, movement would be controlled by body weight shifting.",
+
+    stepsIntro:
+      "Touch the next footprint target. In VR, the patient would step toward the indicated location.",
+
+    bubblesIntro:
+      "Pop the bubbles as they appear around you. In VR, this would encourage reaching in different directions."
+
+  },
+
+  ar:{
+
+    brandTitle:
+      "مختبر التأهيل الافتراضي",
+
+    brandSub:
+      "مركز عكاز للعلاج الطبيعي",
+
+    exit:
+      "خروج",
+
+    experimental:
+      "🧪 مختبر تجريبي",
+
+    heroTitle:
+      "جرّب التأهيل من خلال اللعب",
+
+    heroText:
+      "استكشف أفكار الألعاب العلاجية التفاعلية قبل ربطها بنظارة الواقع الافتراضي. اختر أي لعبة وابدأ التجربة مباشرة.",
+
+    libraryTitle:
+      "مكتبة ألعاب الواقع الافتراضي",
+
+    librarySub:
+      "اختر لعبة لتجربة الفكرة.",
+
+    appleTitle:
+      "قطف التفاح",
+
+    appleDesc:
+      "الوصول إلى التفاح الذي يظهر على ارتفاعات واتجاهات مختلفة لتدريب حركة الطرف العلوي.",
+
+    balanceTitle:
+      "نقل الوزن والتوازن",
+
+    balanceDesc:
+      "متابعة الأهداف الاتجاهية لمحاكاة نقل الوزن وتدريب التوازن الديناميكي.",
+
+    stepsTitle:
+      "أهداف الخطوات",
+
+    stepsDesc:
+      "متابعة أماكن القدم الظاهرة لمحاكاة الخطوات الموجهة وتأهيل الطرف السفلي.",
+
+    bubbleTitle:
+      "فرقعة الفقاعات",
+
+    bubbleDesc:
+      "فرقعة الفقاعات التي تظهر داخل العالم البحري لتشجيع الوصول والحركة بطريقة ممتعة.",
+
+    shoulder:
+      "الكتف",
+
+    upperLimb:
+      "الطرف العلوي",
+
+    romTag:
+      "مدى الحركة",
+
+    balance:
+      "التوازن",
+
+    weightShift:
+      "نقل الوزن",
+
+    lowerLimb:
+      "الطرف السفلي",
+
+    coordination:
+      "التناسق",
+
+    pediatric:
+      "الأطفال",
+
+    reaching:
+      "الوصول",
+
+    fun:
+      "تفاعلي",
+
+    play:
+      "تشغيل اللعبة",
+
+    prototypeMode:
+      "نموذج متصفح تجريبي — النظارة غير متصلة",
+
+    fullscreen:
+      "ملء الشاشة",
+
+    close:
+      "إغلاق",
+
+    score:
+      "النقاط",
+
+    hits:
+      "الأهداف",
+
+    time:
+      "الوقت",
+
+    startGame:
+      "ابدأ اللعبة",
+
+    sessionComplete:
+      "انتهت التجربة",
+
+    sessionCompleteText:
+      "هذه نتيجة تجريبية ناتجة عن نموذج المتصفح الحالي.",
+
+    reaction:
+      "متوسط الاستجابة",
+
+    playAgain:
+      "إعادة اللعب",
+
+    backToGames:
+      "العودة للألعاب",
+
+    appleIntro:
+      "المس كل تفاحة بأسرع وقت. داخل النظارة سيصل المريض إلى التفاحة باستخدام يده الحقيقية.",
+
+    balanceIntro:
+      "اتبع اتجاه الهدف. داخل النظارة ستكون الاستجابة عن طريق نقل وزن الجسم.",
+
+    stepsIntro:
+      "المس مكان الخطوة التالية. داخل النظارة سيضع المريض قدمه في الموقع المطلوب.",
+
+    bubblesIntro:
+      "فرقع الفقاعات التي تظهر حولك. داخل النظارة يشجع ذلك الوصول باليد إلى اتجاهات مختلفة."
+
+  }
 
 };
 
-/* ===================================
+function applyLanguage(){
+
+  const language =
+    translations[
+      currentLanguage
+    ];
+
+  document
+    .querySelectorAll(
+      "[data-i18n]"
+    )
+    .forEach(
+      element =>{
+
+        const key =
+          element.dataset.i18n;
+
+        if(
+          language[key]
+        ){
+
+          element.innerText =
+            language[key];
+
+        }
+
+      }
+    );
+
+  if(
+    currentLanguage ===
+    "ar"
+  ){
+
+    document.documentElement.lang =
+      "ar";
+
+    document.documentElement.dir =
+      "rtl";
+
+    document.getElementById(
+      "languageBtn"
+    ).innerText =
+      "English";
+
+  }else{
+
+    document.documentElement.lang =
+      "en";
+
+    document.documentElement.dir =
+      "ltr";
+
+    document.getElementById(
+      "languageBtn"
+    ).innerText =
+      "العربية";
+
+  }
+
+  updateCurrentGameText();
+
+}
+
+function toggleLanguage(){
+
+  currentLanguage =
+    currentLanguage === "en"
+      ? "ar"
+      : "en";
+
+  localStorage.setItem(
+    "akazVRLanguage",
+    currentLanguage
+  );
+
+  applyLanguage();
+
+}
+
+/* ==============================
    THEME
-=================================== */
+============================== */
 
 function loadTheme(){
 
-  const saved =
+  const theme =
     localStorage.getItem(
       "akazTheme"
     );
 
-  if(saved === "dark"){
+  if(
+    theme ===
+    "dark"
+  ){
 
     document.body.classList.add(
       "dark"
@@ -2783,14 +3490,14 @@ function toggleTheme(){
     "dark"
   );
 
-  const isDark =
+  const dark =
     document.body.classList.contains(
       "dark"
     );
 
   localStorage.setItem(
     "akazTheme",
-    isDark
+    dark
       ? "dark"
       : "light"
   );
@@ -2798,15 +3505,15 @@ function toggleTheme(){
   document.getElementById(
     "themeBtn"
   ).innerText =
-    isDark
+    dark
       ? "☀️"
       : "🌙";
 
 }
 
-/* ===================================
+/* ==============================
    EXIT
-=================================== */
+============================== */
 
 function exitVR(){
 
@@ -2819,377 +3526,301 @@ function exitVR(){
 
 }
 
-/* ===================================
-   PROGRAM
-=================================== */
+/* ==============================
+   GAME DATA
+============================== */
 
-function selectProgram(el){
+const games = {
 
-  document
-    .querySelectorAll(
-      ".program"
-    )
-    .forEach(
-      item =>
-        item.classList.remove(
-          "active"
-        )
-    );
+  apple:{
 
-  el.classList.add(
-    "active"
-  );
+    icon:"🍎",
 
-  selectedProgram =
-    el.dataset.program;
+    titleKey:
+      "appleTitle",
 
-}
+    introKey:
+      "appleIntro",
 
-/* ===================================
-   ROM
-=================================== */
+    world:
+      "appleWorld",
 
-function updateROM(){
+    target:
+      "appleTarget"
 
-  const value =
-    document.getElementById(
-      "rom"
-    ).value;
+  },
 
-  document.getElementById(
-    "romValue"
-  ).innerText =
-    value + "°";
+  balance:{
 
-}
+    icon:"⚖️",
 
-/* ===================================
-   SPEED
-=================================== */
+    titleKey:
+      "balanceTitle",
 
-function updateSpeed(){
+    introKey:
+      "balanceIntro",
 
-  const value =
-    Number(
-      document.getElementById(
-        "speed"
-      ).value
-    );
+    world:
+      "balanceWorld",
 
-  const names = {
-    1:"بطيئة",
-    2:"متوسطة",
-    3:"سريعة"
-  };
+    target:
+      "balanceTarget"
 
-  document.getElementById(
-    "speedValue"
-  ).innerText =
-    names[value];
+  },
 
-}
+  steps:{
 
-/* ===================================
-   DEMO
-=================================== */
+    icon:"👣",
 
-function fillDemo(){
+    titleKey:
+      "stepsTitle",
 
-  document.getElementById(
-    "fileNumber"
-  ).value =
-    "10231";
+    introKey:
+      "stepsIntro",
 
-  document.getElementById(
-    "patientName"
-  ).value =
-    "حالة تجريبية";
+    world:
+      "stepsWorld",
 
-  document.getElementById(
-    "therapist"
-  ).selectedIndex =
-    1;
+    target:
+      "stepTarget"
 
-  document.getElementById(
-    "bodyArea"
-  ).value =
-    "shoulder";
+  },
 
-  document.getElementById(
-    "side"
-  ).value =
-    "اليمنى";
+  bubbles:{
 
-  document.getElementById(
-    "difficulty"
-  ).value =
-    "medium";
+    icon:"🫧",
 
-  document.getElementById(
-    "duration"
-  ).value =
-    "30";
+    titleKey:
+      "bubbleTitle",
 
-  document.getElementById(
-    "targets"
-  ).value =
-    "20";
+    introKey:
+      "bubblesIntro",
 
-  document.getElementById(
-    "rom"
-  ).value =
-    "90";
+    world:
+      "bubblesWorld",
 
-  document.getElementById(
-    "speed"
-  ).value =
-    "2";
-
-  document.getElementById(
-    "notes"
-  ).value =
-    "عدم تجاوز 90 درجة مع إيقاف التمرين عند ظهور الألم.";
-
-  updateROM();
-
-  updateSpeed();
-
-  showToast(
-    "تم تجهيز حالة تجريبية"
-  );
-
-}
-
-/* ===================================
-   VALIDATE
-=================================== */
-
-function validateSession(){
-
-  const fileNumber =
-    document.getElementById(
-      "fileNumber"
-    ).value.trim();
-
-  const patientName =
-    document.getElementById(
-      "patientName"
-    ).value.trim();
-
-  const therapist =
-    document.getElementById(
-      "therapist"
-    ).value;
-
-  if(!fileNumber){
-
-    showToast(
-      "أدخل رقم ملف المريض"
-    );
-
-    return false;
+    target:
+      "bubbleTarget"
 
   }
 
-  if(!patientName){
+};
 
-    showToast(
-      "أدخل اسم المريض"
-    );
+let currentGame =
+  null;
 
-    return false;
+let gameRunning =
+  false;
 
-  }
+let score =
+  0;
 
-  if(!therapist){
+let hits =
+  0;
 
-    showToast(
-      "اختر الأخصائي"
-    );
+let timeLeft =
+  30;
 
-    return false;
+let gameTimer =
+  null;
 
-  }
+let targetTimer =
+  null;
 
-  return true;
+let targetShownAt =
+  0;
 
-}
+let reactionTimes =
+  [];
 
-/* ===================================
-   START
-=================================== */
+/* ==============================
+   OPEN GAME
+============================== */
 
-function startSession(){
+function openGame(
+  game
+){
 
-  if(!validateSession()){
-    return;
-  }
+  stopGameTimers();
 
-  if(sessionTimer){
-    clearInterval(
-      sessionTimer
-    );
-  }
+  currentGame =
+    game;
 
-  sessionDuration =
-    Number(
-      document.getElementById(
-        "duration"
-      ).value
-    );
-
-  elapsed =
+  score =
     0;
 
   hits =
     0;
 
-  totalAttempts =
-    0;
+  timeLeft =
+    30;
 
-  const fileNumber =
-    document.getElementById(
-      "fileNumber"
-    ).value.trim();
+  reactionTimes =
+    [];
 
-  const patientName =
-    document.getElementById(
-      "patientName"
-    ).value.trim();
+  updateHUD();
 
-  const therapist =
-    document.getElementById(
-      "therapist"
-    ).value;
+  document
+    .querySelectorAll(
+      ".game-world"
+    )
+    .forEach(
+      world =>{
 
-  const bodyArea =
-    document.getElementById(
-      "bodyArea"
-    ).value;
+        world.style.display =
+          "none";
 
-  const side =
-    document.getElementById(
-      "side"
-    ).value;
-
-  const difficulty =
-    document.getElementById(
-      "difficulty"
-    ).value;
-
-  const targets =
-    Number(
-      document.getElementById(
-        "targets"
-      ).value
+      }
     );
 
-  const rom =
-    Number(
-      document.getElementById(
-        "rom"
-      ).value
-    );
-
-  const speed =
-    Number(
-      document.getElementById(
-        "speed"
-      ).value
-    );
-
-  const notes =
-    document.getElementById(
-      "notes"
-    ).value.trim();
-
-  currentSession = {
-
-    fileNumber,
-    patientName,
-    therapist,
-    bodyArea,
-    side,
-    difficulty,
-    targets,
-    rom,
-    speed,
-    notes,
-
-    program:
-      selectedProgram
-
-  };
-
-  document.getElementById(
-    "liveProgram"
-  ).innerText =
-    programNames[
-      selectedProgram
+  const data =
+    games[
+      game
     ];
 
   document.getElementById(
-    "livePatient"
-  ).innerText =
-    patientName +
-    " • ملف " +
-    fileNumber;
+    data.world
+  ).style.display =
+    "block";
 
   document.getElementById(
-    "sessionPanel"
-  ).classList.add(
-    "show"
+    "toolbarIcon"
+  ).innerText =
+    data.icon;
+
+  document.getElementById(
+    "introIcon"
+  ).innerText =
+    data.icon;
+
+  document.getElementById(
+    "gameIntro"
+  ).classList.remove(
+    "hidden"
   );
 
   document.getElementById(
-    "resultBox"
+    "gameResult"
   ).classList.remove(
     "show"
   );
 
-  updateLiveStats();
+  document.getElementById(
+    "gameWrapper"
+  ).classList.add(
+    "show"
+  );
 
-  resetTargets();
+  updateCurrentGameText();
 
   document.getElementById(
-    "sessionPanel"
+    "gameWrapper"
   ).scrollIntoView({
     behavior:"smooth",
-    block:"center"
+    block:"start"
   });
 
-  const hitInterval =
-    getHitInterval(
-      speed
-    );
+}
 
-  sessionTimer =
+/* ==============================
+   GAME TEXT
+============================== */
+
+function updateCurrentGameText(){
+
+  if(!currentGame){
+    return;
+  }
+
+  const language =
+    translations[
+      currentLanguage
+    ];
+
+  const data =
+    games[
+      currentGame
+    ];
+
+  document.getElementById(
+    "toolbarTitle"
+  ).innerText =
+    language[
+      data.titleKey
+    ];
+
+  document.getElementById(
+    "introTitle"
+  ).innerText =
+    language[
+      data.titleKey
+    ];
+
+  document.getElementById(
+    "introDescription"
+  ).innerText =
+    language[
+      data.introKey
+    ];
+
+}
+
+/* ==============================
+   START GAME
+============================== */
+
+function startGame(){
+
+  if(!currentGame){
+    return;
+  }
+
+  stopGameTimers();
+
+  score =
+    0;
+
+  hits =
+    0;
+
+  timeLeft =
+    30;
+
+  reactionTimes =
+    [];
+
+  gameRunning =
+    true;
+
+  updateHUD();
+
+  document.getElementById(
+    "gameIntro"
+  ).classList.add(
+    "hidden"
+  );
+
+  document.getElementById(
+    "gameResult"
+  ).classList.remove(
+    "show"
+  );
+
+  showNextTarget();
+
+  gameTimer =
     setInterval(
       ()=>{
 
-        elapsed++;
+        timeLeft--;
+
+        updateHUD();
 
         if(
-          elapsed %
-          hitInterval
-          ===
-          0
+          timeLeft <= 0
         ){
 
-          simulateTarget();
-
-        }
-
-        updateLiveStats();
-
-        if(
-          elapsed >=
-          sessionDuration
-        ){
-
-          finishSession(
-            false
-          );
+          finishGame();
 
         }
 
@@ -3199,848 +3830,546 @@ function startSession(){
 
 }
 
-/* ===================================
-   INTERVAL
-=================================== */
+/* ==============================
+   TARGET
+============================== */
 
-function getHitInterval(
-  speed
-){
+function getTarget(){
 
-  if(speed === 1){
-    return 4;
+  if(!currentGame){
+    return null;
   }
 
-  if(speed === 2){
-    return 3;
-  }
-
-  return 2;
-
-}
-
-/* ===================================
-   SIMULATE
-=================================== */
-
-function simulateTarget(){
-
-  totalAttempts++;
-
-  const difficulty =
-    currentSession
-      .difficulty;
-
-  let successRate =
-    .83;
-
-  if(
-    difficulty ===
-    "easy"
-  ){
-
-    successRate =
-      .92;
-
-  }
-
-  if(
-    difficulty ===
-    "hard"
-  ){
-
-    successRate =
-      .72;
-
-  }
-
-  const success =
-    Math.random()
-    <
-    successRate;
-
-  const targetId =
-    Math.floor(
-      Math.random() * 4
-    ) + 1;
-
-  const target =
-    document.getElementById(
-      "target" +
-      targetId
-    );
-
-  target.classList.add(
-    "hit"
+  return document.getElementById(
+    games[
+      currentGame
+    ].target
   );
 
-  setTimeout(
-    ()=>{
-
-      target
-        .classList
-        .remove(
-          "hit"
-        );
-
-    },
-    350
-  );
-
-  if(success){
-
-    hits++;
-
-  }
-
 }
 
-/* ===================================
-   TARGETS
-=================================== */
+function showNextTarget(){
 
-function resetTargets(){
-
-  for(
-    let i=1;
-    i<=4;
-    i++
-  ){
-
-    document
-      .getElementById(
-        "target" + i
-      )
-      .classList
-      .remove(
-        "hit"
-      );
-
-  }
-
-}
-
-/* ===================================
-   LIVE STATS
-=================================== */
-
-function updateLiveStats(){
-
-  document.getElementById(
-    "liveTime"
-  ).innerText =
-    elapsed;
-
-  document.getElementById(
-    "liveHits"
-  ).innerText =
-    hits;
-
-  let accuracy =
-    0;
-
-  if(
-    totalAttempts >
-    0
-  ){
-
-    accuracy =
-      Math.round(
-        (
-          hits /
-          totalAttempts
-        ) *
-        100
-      );
-
-  }
-
-  document.getElementById(
-    "liveScore"
-  ).innerText =
-    accuracy + "%";
-
-}
-
-/* ===================================
-   FINISH
-=================================== */
-
-function finishSession(
-  manual
-){
-
-  if(!currentSession){
+  if(!gameRunning){
     return;
   }
 
-  clearInterval(
-    sessionTimer
-  );
+  const target =
+    getTarget();
 
-  sessionTimer =
-    null;
+  if(!target){
+    return;
+  }
+
+  const stage =
+    document.getElementById(
+      "gameStage"
+    );
+
+  const stageWidth =
+    stage.clientWidth;
+
+  const stageHeight =
+    stage.clientHeight;
+
+  let x =
+    Math.random() *
+    Math.max(
+      100,
+      stageWidth - 180
+    )
+    +
+    45;
+
+  let y =
+    Math.random() *
+    Math.max(
+      100,
+      stageHeight - 270
+    )
+    +
+    100;
 
   if(
-    totalAttempts === 0
+    currentGame ===
+    "apple"
   ){
 
-    totalAttempts =
-      1;
+    x =
+      stageWidth *
+      (
+        .25 +
+        Math.random() *
+        .50
+      );
+
+    y =
+      stageHeight *
+      (
+        .25 +
+        Math.random() *
+        .34
+      );
 
   }
 
-  const accuracy =
-    Math.min(
-      100,
-      Math.round(
-        (
-          hits /
-          totalAttempts
-        ) *
-        100
-      )
-    );
+  if(
+    currentGame ===
+    "balance"
+  ){
 
-  const reaction =
-    (
-      0.7 +
-      Math.random() *
-      1.1
-    ).toFixed(
-      2
-    );
+    const positions = [
 
-  const romVariation =
-    Math.floor(
-      Math.random() *
-      8
-    );
+      {
+        x:stageWidth * .16,
+        y:stageHeight * .43,
+        icon:"⬅️"
+      },
 
-  const achievedROM =
-    Math.max(
-      10,
-      currentSession.rom -
-      romVariation
-    );
+      {
+        x:stageWidth * .70,
+        y:stageHeight * .43,
+        icon:"➡️"
+      },
 
-  const points =
-    Math.round(
-      accuracy *
-      10 +
-      hits *
-      6
-    );
+      {
+        x:stageWidth * .43,
+        y:stageHeight * .23,
+        icon:"⬆️"
+      }
 
-  const result = {
+    ];
 
-    ...currentSession,
+    const position =
+      positions[
+        Math.floor(
+          Math.random() *
+          positions.length
+        )
+      ];
 
-    date:
-      new Date()
-        .toISOString(),
+    x =
+      position.x;
 
-    elapsed,
+    y =
+      position.y;
 
-    manual,
+    target.innerText =
+      position.icon;
 
-    hits,
+  }
 
-    attempts:
-      totalAttempts,
+  if(
+    currentGame ===
+    "steps"
+  ){
 
-    accuracy,
+    const side =
+      Math.random() >
+      .5
+      ?
+      "left"
+      :
+      "right";
 
-    reaction,
+    x =
+      side === "left"
+      ?
+      stageWidth * .31
+      :
+      stageWidth * .57;
 
-    achievedROM,
+    y =
+      stageHeight *
+      (
+        .35 +
+        Math.random() *
+        .28
+      );
 
-    points
+    target.innerText =
+      side === "left"
+      ?
+      "🦶"
+      :
+      "🦶";
 
-  };
+  }
 
-  saveSession(
-    result
+  if(
+    currentGame ===
+    "bubbles"
+  ){
+
+    x =
+      stageWidth *
+      (
+        .10 +
+        Math.random() *
+        .75
+      );
+
+    y =
+      stageHeight *
+      (
+        .18 +
+        Math.random() *
+        .60
+      );
+
+    const icons = [
+      "⭐",
+      "🐚",
+      "💎",
+      "🌟"
+    ];
+
+    target.innerText =
+      icons[
+        Math.floor(
+          Math.random() *
+          icons.length
+        )
+      ];
+
+  }
+
+  target.style.left =
+    x + "px";
+
+  target.style.top =
+    y + "px";
+
+  target.classList.add(
+    "show"
   );
 
-  showResult(
-    result
+  targetShownAt =
+    performance.now();
+
+  clearTimeout(
+    targetTimer
   );
 
-  currentSession =
-    null;
+  targetTimer =
+    setTimeout(
+      ()=>{
 
-  updateDashboard();
+        if(
+          gameRunning
+        ){
 
-  renderHistory();
+          target.classList.remove(
+            "show"
+          );
+
+          showNextTarget();
+
+        }
+
+      },
+      2800
+    );
 
 }
 
-/* ===================================
-   RESULT
-=================================== */
+/* ==============================
+   HIT
+============================== */
 
-function showResult(
-  result
+function hitTarget(
+  event
 ){
 
-  document.getElementById(
-    "resultPatient"
-  ).innerText =
-    result.patientName +
-    " • ملف " +
-    result.fileNumber;
+  event.stopPropagation();
+
+  if(!gameRunning){
+    return;
+  }
+
+  const target =
+    getTarget();
+
+  const reaction =
+    performance.now()
+    -
+    targetShownAt;
+
+  reactionTimes.push(
+    reaction
+  );
+
+  hits++;
+
+  let bonus =
+    100;
+
+  if(
+    reaction < 800
+  ){
+
+    bonus =
+      180;
+
+  }else if(
+    reaction < 1400
+  ){
+
+    bonus =
+      140;
+
+  }else if(
+    reaction < 2200
+  ){
+
+    bonus =
+      110;
+
+  }
+
+  score +=
+    bonus;
+
+  target.classList.remove(
+    "show"
+  );
+
+  updateHUD();
+
+  clearTimeout(
+    targetTimer
+  );
+
+  setTimeout(
+    showNextTarget,
+    180
+  );
+
+}
+
+/* ==============================
+   HUD
+============================== */
+
+function updateHUD(){
 
   document.getElementById(
-    "resultAccuracy"
+    "scoreValue"
   ).innerText =
-    result.accuracy +
-    "%";
+    score;
 
   document.getElementById(
-    "resultHits"
+    "hitsValue"
   ).innerText =
-    result.hits;
+    hits;
 
   document.getElementById(
-    "resultReaction"
+    "timeValue"
   ).innerText =
-    result.reaction +
-    "s";
+    timeLeft;
+
+}
+
+/* ==============================
+   FINISH
+============================== */
+
+function finishGame(){
+
+  gameRunning =
+    false;
+
+  stopGameTimers();
+
+  const target =
+    getTarget();
+
+  if(target){
+
+    target.classList.remove(
+      "show"
+    );
+
+  }
+
+  let averageReaction =
+    0;
+
+  if(
+    reactionTimes.length
+  ){
+
+    averageReaction =
+      reactionTimes.reduce(
+        (
+          total,
+          value
+        ) =>
+          total + value,
+        0
+      )
+      /
+      reactionTimes.length;
+
+  }
 
   document.getElementById(
-    "resultROM"
+    "finalScore"
   ).innerText =
-    result.achievedROM +
-    "°";
+    score;
 
   document.getElementById(
-    "resultScore"
+    "finalHits"
   ).innerText =
-    result.points;
+    hits;
 
   document.getElementById(
-    "resultBox"
+    "finalReaction"
+  ).innerText =
+    averageReaction
+    ?
+    (
+      averageReaction /
+      1000
+    ).toFixed(2)
+    +
+    "s"
+    :
+    "—";
+
+  document.getElementById(
+    "gameResult"
   ).classList.add(
     "show"
   );
 
+}
+
+/* ==============================
+   RESTART
+============================== */
+
+function restartGame(){
+
   document.getElementById(
-    "resultBox"
+    "gameResult"
+  ).classList.remove(
+    "show"
+  );
+
+  startGame();
+
+}
+
+/* ==============================
+   CLOSE
+============================== */
+
+function closeGame(){
+
+  gameRunning =
+    false;
+
+  stopGameTimers();
+
+  const target =
+    getTarget();
+
+  if(target){
+
+    target.classList.remove(
+      "show"
+    );
+
+  }
+
+  document.getElementById(
+    "gameWrapper"
+  ).classList.remove(
+    "show"
+  );
+
+  currentGame =
+    null;
+
+  document.querySelector(
+    ".section"
   ).scrollIntoView({
     behavior:"smooth",
-    block:"center"
-  });
-
-  showToast(
-    "تم حفظ نتيجة الجلسة"
-  );
-
-}
-
-/* ===================================
-   NEW SESSION
-=================================== */
-
-function newSession(){
-
-  document.getElementById(
-    "sessionPanel"
-  ).classList.remove(
-    "show"
-  );
-
-  document.getElementById(
-    "resultBox"
-  ).classList.remove(
-    "show"
-  );
-
-  window.scrollTo({
-    top:400,
-    behavior:"smooth"
+    block:"start"
   });
 
 }
 
-/* ===================================
-   STORAGE
-=================================== */
+/* ==============================
+   TIMERS
+============================== */
 
-function getSessions(){
+function stopGameTimers(){
 
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        "akazVRSessions"
-      )
-    ) || [];
-
-  }catch{
-
-    return [];
-
-  }
-
-}
-
-function saveSession(
-  session
-){
-
-  const sessions =
-    getSessions();
-
-  sessions.unshift(
-    session
-  );
-
-  localStorage.setItem(
-    "akazVRSessions",
-    JSON.stringify(
-      sessions
-    )
-  );
-
-}
-
-/* ===================================
-   DASHBOARD
-=================================== */
-
-function updateDashboard(){
-
-  const sessions =
-    getSessions();
-
-  document.getElementById(
-    "totalSessions"
-  ).innerText =
-    sessions.length;
-
-  if(
-    sessions.length
-  ){
-
-    const total =
-      sessions.reduce(
-        (
-          sum,
-          item
-        ) =>
-          sum +
-          Number(
-            item.accuracy ||
-            0
-          ),
-        0
-      );
-
-    const avg =
-      Math.round(
-        total /
-        sessions.length
-      );
-
-    document.getElementById(
-      "averageAccuracy"
-    ).innerText =
-      avg + "%";
-
-  }else{
-
-    document.getElementById(
-      "averageAccuracy"
-    ).innerText =
-      "0%";
-
-  }
-
-  const files =
-    new Set(
-      sessions.map(
-        item =>
-          item.fileNumber
-      )
-    );
-
-  document.getElementById(
-    "totalPatients"
-  ).innerText =
-    files.size;
-
-}
-
-/* ===================================
-   HISTORY
-=================================== */
-
-function renderHistory(){
-
-  const sessions =
-    getSessions();
-
-  const area =
-    document.getElementById(
-      "historyArea"
-    );
-
-  if(
-    !sessions.length
-  ){
-
-    area.innerHTML = `
-      <div class="empty">
-
-        <div class="empty-icon">
-          🥽
-        </div>
-
-        لا توجد جلسات تجريبية حتى الآن.
-
-      </div>
-    `;
-
-    return;
-
-  }
-
-  let html = `
-
-    <div class="table-wrap">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>
-              التاريخ
-            </th>
-
-            <th>
-              رقم الملف
-            </th>
-
-            <th>
-              المريض
-            </th>
-
-            <th>
-              البرنامج
-            </th>
-
-            <th>
-              الأخصائي
-            </th>
-
-            <th>
-              ROM
-            </th>
-
-            <th>
-              الدقة
-            </th>
-
-            <th>
-              زمن الاستجابة
-            </th>
-
-            <th>
-              النقاط
-            </th>
-
-            <th>
-              التقييم
-            </th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-  `;
-
-  sessions
-    .slice(
-      0,
-      30
-    )
-    .forEach(
-      session =>{
-
-        const date =
-          new Date(
-            session.date
-          );
-
-        const formatted =
-          date.toLocaleString(
-            "ar-SA",
-            {
-              year:"numeric",
-              month:"numeric",
-              day:"numeric",
-              hour:"2-digit",
-              minute:"2-digit"
-            }
-          );
-
-        const good =
-          Number(
-            session.accuracy
-          ) >=
-          75;
-
-        html += `
-
-          <tr>
-
-            <td>
-              ${formatted}
-            </td>
-
-            <td>
-              ${escapeHTML(
-                session.fileNumber
-              )}
-            </td>
-
-            <td>
-              ${escapeHTML(
-                session.patientName
-              )}
-            </td>
-
-            <td>
-              ${
-                programNames[
-                  session.program
-                ] ||
-                "-"
-              }
-            </td>
-
-            <td>
-              ${escapeHTML(
-                session.therapist
-              )}
-            </td>
-
-            <td>
-              ${
-                session
-                  .achievedROM
-              }°
-            </td>
-
-            <td>
-              ${
-                session
-                  .accuracy
-              }%
-            </td>
-
-            <td>
-              ${
-                session
-                  .reaction
-              }s
-            </td>
-
-            <td>
-              ${
-                session
-                  .points
-              }
-            </td>
-
-            <td>
-
-              <span
-                class="
-                  status
-                  ${
-                    good
-                    ?
-                    "status-good"
-                    :
-                    "status-medium"
-                  }
-                "
-              >
-
-                ${
-                  good
-                  ?
-                  "جيد"
-                  :
-                  "يحتاج تطوير"
-                }
-
-              </span>
-
-            </td>
-
-          </tr>
-
-        `;
-
-      }
-    );
-
-  html += `
-
-        </tbody>
-
-      </table>
-
-    </div>
-
-  `;
-
-  area.innerHTML =
-    html;
-
-}
-
-/* ===================================
-   CLEAR
-=================================== */
-
-function clearHistory(){
-
-  const sessions =
-    getSessions();
-
-  if(
-    !sessions.length
-  ){
-
-    showToast(
-      "السجل فارغ"
-    );
-
-    return;
-
-  }
-
-  const ok =
-    confirm(
-      "هل أنت متأكد من مسح جميع جلسات VR التجريبية؟"
-    );
-
-  if(!ok){
-    return;
-  }
-
-  localStorage.removeItem(
-    "akazVRSessions"
-  );
-
-  updateDashboard();
-
-  renderHistory();
-
-  showToast(
-    "تم مسح السجل"
-  );
-
-}
-
-/* ===================================
-   ESCAPE
-=================================== */
-
-function escapeHTML(
-  value
-){
-
-  return String(
-    value || ""
-  )
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
-
-}
-
-/* ===================================
-   TOAST
-=================================== */
-
-let toastTimer =
-  null;
-
-function showToast(
-  message
-){
-
-  const toast =
-    document.getElementById(
-      "toast"
-    );
-
-  toast.innerText =
-    message;
-
-  toast.classList.add(
-    "show"
+  clearInterval(
+    gameTimer
   );
 
   clearTimeout(
-    toastTimer
+    targetTimer
   );
 
-  toastTimer =
-    setTimeout(
-      ()=>{
+  gameTimer =
+    null;
 
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-      2500
-    );
+  targetTimer =
+    null;
 
 }
 
-/* ===================================
-   LOAD
-=================================== */
+/* ==============================
+   FULLSCREEN
+============================== */
+
+function toggleFullscreen(){
+
+  const shell =
+    document.getElementById(
+      "gameShell"
+    );
+
+  if(
+    !document.fullscreenElement
+  ){
+
+    if(
+      shell.requestFullscreen
+    ){
+
+      shell.requestFullscreen();
+
+    }
+
+  }else{
+
+    if(
+      document.exitFullscreen
+    ){
+
+      document.exitFullscreen();
+
+    }
+
+  }
+
+}
+
+/* ==============================
+   INITIAL LOAD
+============================== */
 
 loadTheme();
 
-updateROM();
-
-updateSpeed();
-
-updateDashboard();
-
-renderHistory();
+applyLanguage();
 
 </script>
 
 </body>
+
 </html>
