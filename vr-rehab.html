@@ -1,3615 +1,974 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>
-  VR Rehabilitation Lab | Akaz
-</title>
-
-<link
-  rel="icon"
-  href="logo.png"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKAZ XR Rehabilitation</title>
+<link rel="icon" href="logo.png">
 
 <style>
+*{box-sizing:border-box}
 
-/* ==============================
-   ROOT
-============================== */
-
-:root{
-
-  --blue:#005b9f;
-  --blue2:#0077c8;
-
-  --purple:#6d28d9;
-  --purple2:#7c3aed;
-
-  --cyan:#06b6d4;
-
-  --green:#16a34a;
-  --green2:#22c55e;
-
-  --orange:#f59e0b;
-
-  --red:#dc2626;
-
-  --text:#0f172a;
-
-  --muted:#64748b;
-
-  --line:#e2e8f0;
-
-  --card:#ffffff;
-
-  --bg:#f4f8fc;
-
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-
+html,body{
   margin:0;
-
-  font-family:
-    Tahoma,
-    Arial,
-    sans-serif;
-
-  color:var(--text);
-
-  background:
-
-    radial-gradient(
-      circle at 90% 7%,
-      rgba(124,58,237,.10),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 8% 70%,
-      rgba(6,182,212,.09),
-      transparent 26%
-    ),
-
-    linear-gradient(
-      180deg,
-      #f8fbff,
-      #eef4f9
-    );
-
-  min-height:100vh;
-
-}
-
-/* ==============================
-   TOP BAR
-============================== */
-
-.topbar{
-
-  min-height:88px;
-
-  padding:
-    13px
-    30px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  position:sticky;
-
-  top:0;
-
-  z-index:1000;
-
-  color:white;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #061b35,
-      #154372,
-      #5b21b6
-    );
-
-  box-shadow:
-
-    0 18px 42px
-    rgba(15,23,42,.20);
-
-}
-
-.brand{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:14px;
-
-}
-
-.brand-logo{
-
-  width:58px;
-
-  height:58px;
-
-  padding:5px;
-
-  object-fit:contain;
-
-  border-radius:16px;
-
-  background:white;
-
-  box-shadow:
-
-    0 9px 24px
-    rgba(0,0,0,.20);
-
-}
-
-.brand h1{
-
-  margin:0;
-
-  font-size:21px;
-
-  font-weight:900;
-
-}
-
-.brand p{
-
-  margin:
-    5px
-    0
-    0;
-
-  font-size:11px;
-
-  color:#dbeafe;
-
-}
-
-.top-actions{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:9px;
-
-}
-
-.top-btn{
-
-  min-height:42px;
-
-  padding:
-    9px
-    14px;
-
-  border-radius:13px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.22);
-
-  background:
-    rgba(255,255,255,.12);
-
-  color:white;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-  transition:.2s;
-
-}
-
-.top-btn:hover{
-
-  background:
-    rgba(255,255,255,.22);
-
-}
-
-.exit-btn{
-
-  background:
-    rgba(220,38,38,.20);
-
-}
-
-/* ==============================
-   PAGE
-============================== */
-
-.page{
-
-  width:94%;
-
-  max-width:1400px;
-
-  margin:
-    30px
-    auto
-    70px;
-
-}
-
-/* ==============================
-   HERO
-============================== */
-
-.hero{
-
-  position:relative;
-
-  overflow:hidden;
-
-  display:grid;
-
-  grid-template-columns:
-    1.35fr
-    .65fr;
-
-  align-items:center;
-
-  gap:28px;
-
-  padding:
-    38px
-    40px;
-
-  border-radius:32px;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #f5f3ff
-    );
-
-  border:
-    1px solid
-    #e8e2ff;
-
-  box-shadow:
-
-    0 22px 50px
-    rgba(15,23,42,.10);
-
-}
-
-.hero::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:330px;
-
-  height:330px;
-
-  border-radius:50%;
-
-  right:-130px;
-
-  top:-140px;
-
-  background:
-    rgba(124,58,237,.09);
-
-}
-
-.hero-content{
-
-  position:relative;
-
-  z-index:2;
-
-}
-
-.hero-tag{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:7px;
-
-  padding:
-    7px
-    13px;
-
-  border-radius:999px;
-
-  background:#ede9fe;
-
-  color:#5b21b6;
-
-  font-size:11px;
-
-  font-weight:900;
-
-}
-
-.hero h2{
-
-  margin:
-    14px
-    0
-    9px;
-
-  font-size:35px;
-
-  line-height:1.4;
-
-  color:#172554;
-
-}
-
-.hero p{
-
-  margin:0;
-
-  max-width:760px;
-
-  color:var(--muted);
-
-  font-size:14px;
-
-  line-height:1.9;
-
-}
-
-.vr-visual{
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-}
-
-.vr-orb{
-
-  width:185px;
-
-  height:185px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:50%;
-
-  font-size:78px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #ddd6fe,
-      #cffafe
-    );
-
-  border:
-    8px solid
-    rgba(255,255,255,.80);
-
-  box-shadow:
-
-    0 22px 50px
-    rgba(91,33,182,.23),
-
-    inset
-    0 0 0 1px
-    #c4b5fd;
-
-}
-
-/* ==============================
-   SECTION
-============================== */
-
-.section{
-
-  margin-top:28px;
-
-  padding:27px;
-
-  border-radius:30px;
-
-  background:
-    rgba(255,255,255,.96);
-
-  border:
-    1px solid
-    var(--line);
-
-  box-shadow:
-
-    0 18px 42px
-    rgba(15,23,42,.07);
-
-}
-
-.section-head{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:15px;
-
-  margin-bottom:22px;
-
-}
-
-.section-title{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-}
-
-.section-icon{
-
-  width:48px;
-
-  height:48px;
-
-  border-radius:16px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  background:#eef6ff;
-
-  font-size:23px;
-
-}
-
-.section-title h3{
-
-  margin:0;
-
-  color:#0b4776;
-
-  font-size:23px;
-
-  font-weight:900;
-
-}
-
-.section-title p{
-
-  margin:
-    5px
-    0
-    0;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-}
-
-/* ==============================
-   GAME CARDS
-============================== */
-
-.games{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:20px;
-
-}
-
-.game-card{
-
-  position:relative;
-
-  min-height:285px;
-
-  padding:22px;
-
-  border-radius:26px;
-
-  overflow:hidden;
-
-  cursor:pointer;
-
-  border:
-    1px solid
-    #e2e8f0;
-
-  background:white;
-
-  transition:.25s;
-
-  box-shadow:
-
-    0 14px 34px
-    rgba(15,23,42,.07);
-
-}
-
-.game-card::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:
-    0
-    0
-    auto
-    0;
-
-  height:6px;
-
-}
-
-.game-card:hover{
-
-  transform:
-    translateY(-7px);
-
-  box-shadow:
-
-    0 23px 48px
-    rgba(15,23,42,.14);
-
-}
-
-.game-card.apple::before{
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #16a34a,
-      #84cc16
-    );
-
-}
-
-.game-card.balance::before{
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #2563eb,
-      #06b6d4
-    );
-
-}
-
-.game-card.steps::before{
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #f59e0b,
-      #f97316
-    );
-
-}
-
-.game-card.bubbles::before{
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #7c3aed,
-      #ec4899
-    );
-
-}
-
-.game-icon{
-
-  width:76px;
-
-  height:76px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:23px;
-
-  margin-bottom:17px;
-
-  font-size:39px;
-
-  background:#f8fafc;
-
-  border:
-    1px solid
-    #e2e8f0;
-
-}
-
-.game-card h4{
-
-  margin:0;
-
-  font-size:19px;
-
-  color:#172554;
-
-}
-
-.game-card p{
-
-  min-height:63px;
-
-  margin:
-    9px
-    0
-    16px;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  line-height:1.75;
-
-}
-
-.game-tags{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:6px;
-
-}
-
-.game-tag{
-
-  padding:
-    5px
-    9px;
-
-  border-radius:999px;
-
-  background:#f1f5f9;
-
-  color:#475569;
-
-  font-size:10px;
-
-  font-weight:900;
-
-}
-
-.play-button{
-
-  margin-top:18px;
-
   width:100%;
-
-  min-height:43px;
-
-  border:none;
-
-  border-radius:13px;
-
-  cursor:pointer;
-
-  color:white;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-size:12px;
-
-  font-weight:900;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #005b9f,
-      #0077c8
-    );
-
-}
-
-/* ==============================
-   GAME AREA
-============================== */
-
-.game-wrapper{
-
-  display:none;
-
-  margin-top:28px;
-
-}
-
-.game-wrapper.show{
-
-  display:block;
-
-}
-
-.game-shell{
-
+  height:100%;
   overflow:hidden;
-
-  border-radius:30px;
-
-  border:
-    1px solid
-    #dbe2f3;
-
-  box-shadow:
-
-    0 25px 60px
-    rgba(15,23,42,.15);
-
+  font-family:Tahoma,Arial,sans-serif;
+  background:#071827;
 }
 
-.game-toolbar{
-
-  min-height:68px;
-
-  padding:
-    12px
-    18px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  background:#0f172a;
-
-  color:white;
-
-}
-
-.game-toolbar-title{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-}
-
-.game-toolbar-icon{
-
-  font-size:27px;
-
-}
-
-.game-toolbar h3{
-
-  margin:0;
-
-  font-size:16px;
-
-}
-
-.game-toolbar p{
-
-  margin:
-    3px
-    0
-    0;
-
-  font-size:10px;
-
-  color:#cbd5e1;
-
-}
-
-.game-toolbar-actions{
-
-  display:flex;
-
-  gap:8px;
-
-}
-
-.small-btn{
-
-  min-height:38px;
-
-  padding:
-    8px
-    12px;
-
-  border-radius:11px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.18);
-
-  background:
-    rgba(255,255,255,.10);
-
-  color:white;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-}
-
-/* ==============================
-   GAME STAGE
-============================== */
-
-.game-stage{
-
+#app{
+  width:100%;
+  height:100%;
   position:relative;
-
-  min-height:620px;
-
-  overflow:hidden;
-
-  background:#0b1120;
-
-  user-select:none;
-
-  touch-action:manipulation;
-
 }
 
-/* ==============================
-   HUD
-============================== */
+canvas{
+  display:block;
+}
 
-.game-hud{
-
+#loading{
   position:absolute;
-
-  top:18px;
-
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  z-index:30;
-
+  inset:0;
+  z-index:100;
   display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#041525,#005b9f);
+  color:white;
+  text-align:center;
+}
 
-  gap:10px;
+.loading-card{
+  width:min(420px,90%);
+}
 
-  direction:ltr;
+.loading-card img{
+  width:110px;
+  height:110px;
+  object-fit:contain;
+  background:white;
+  padding:10px;
+  border-radius:25px;
+  margin-bottom:18px;
+}
 
+.loading-card h1{
+  margin:0 0 8px;
+  font-size:27px;
+}
+
+.loading-card p{
+  color:#dbeafe;
+  line-height:1.7;
+  margin:0;
+}
+
+#hud{
+  position:absolute;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:20;
+  display:flex;
+  gap:9px;
+  pointer-events:none;
 }
 
 .hud-box{
-
-  min-width:110px;
-
-  padding:
-    10px
-    14px;
-
-  border-radius:16px;
-
+  min-width:105px;
+  padding:10px 13px;
+  border-radius:15px;
+  background:rgba(3,19,33,.78);
   color:white;
-
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(10px);
   text-align:center;
-
-  background:
-    rgba(15,23,42,.70);
-
-  border:
-    1px solid
-    rgba(255,255,255,.18);
-
-  backdrop-filter:
-    blur(10px);
-
 }
 
 .hud-value{
-
   font-size:21px;
-
   font-weight:900;
-
 }
 
 .hud-label{
-
-  margin-top:2px;
-
   font-size:9px;
-
-  color:#cbd5e1;
-
+  color:#bae6fd;
+  margin-top:3px;
+  font-weight:700;
 }
 
-/* ==============================
-   GAME INTRO
-============================== */
-
-.game-intro{
-
+#menu{
   position:absolute;
-
-  inset:0;
-
-  z-index:50;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:20px;
-
-  background:
-    rgba(2,6,23,.62);
-
-  backdrop-filter:
-    blur(8px);
-
-}
-
-.game-intro.hidden{
-
-  display:none;
-
-}
-
-.intro-box{
-
-  width:100%;
-
-  max-width:440px;
-
-  padding:30px;
-
-  text-align:center;
-
-  border-radius:28px;
-
-  color:white;
-
-  background:
-    rgba(15,23,42,.94);
-
-  border:
-    1px solid
-    rgba(255,255,255,.15);
-
-  box-shadow:
-
-    0 30px 80px
-    rgba(0,0,0,.30);
-
-}
-
-.intro-icon{
-
-  font-size:60px;
-
-}
-
-.intro-box h2{
-
-  margin:
-    13px
-    0
-    8px;
-
-  font-size:25px;
-
-}
-
-.intro-box p{
-
-  margin:
-    0
-    auto
-    20px;
-
-  color:#cbd5e1;
-
-  line-height:1.8;
-
-  font-size:12px;
-
-}
-
-.start-game-btn{
-
-  width:100%;
-
-  min-height:50px;
-
-  border:none;
-
-  border-radius:15px;
-
-  color:white;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #5b21b6,
-      #7c3aed
-    );
-
-}
-
-/* ==============================
-   GAME RESULT
-============================== */
-
-.game-result{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:60;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:20px;
-
-  background:
-    rgba(2,6,23,.70);
-
-  backdrop-filter:
-    blur(8px);
-
-}
-
-.game-result.show{
-
-  display:flex;
-
-}
-
-.result-card{
-
-  width:100%;
-
-  max-width:500px;
-
-  padding:30px;
-
-  border-radius:28px;
-
-  background:white;
-
-  text-align:center;
-
-  box-shadow:
-
-    0 30px 80px
-    rgba(0,0,0,.32);
-
-}
-
-.result-card h2{
-
-  margin:
-    10px
-    0
-    6px;
-
-  color:#14532d;
-
-}
-
-.result-card p{
-
-  color:var(--muted);
-
-  font-size:12px;
-
-}
-
-.result-grid{
-
-  margin-top:20px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:10px;
-
-}
-
-.result-stat{
-
-  padding:15px;
-
-  border-radius:16px;
-
-  background:#f8fafc;
-
-  border:
-    1px solid
-    #e2e8f0;
-
-}
-
-.result-value{
-
-  font-size:22px;
-
-  font-weight:900;
-
-  color:#15803d;
-
-}
-
-.result-label{
-
-  margin-top:4px;
-
-  color:#64748b;
-
-  font-size:9px;
-
-}
-
-.result-actions{
-
-  margin-top:18px;
-
-  display:flex;
-
-  gap:9px;
-
-}
-
-.result-btn{
-
-  flex:1;
-
-  min-height:45px;
-
-  border:none;
-
-  border-radius:13px;
-
-  cursor:pointer;
-
-  font-family:
-    Tahoma,
-    Arial;
-
-  font-weight:900;
-
-}
-
-.replay-btn{
-
-  background:
-    #7c3aed;
-
-  color:white;
-
-}
-
-.close-result-btn{
-
-  background:
-    #e2e8f0;
-
-  color:#334155;
-
-}
-
-/* ==============================
-   APPLE GAME
-============================== */
-
-.apple-world{
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #38bdf8 0%,
-      #7dd3fc 45%,
-      #bbf7d0 46%,
-      #86efac 100%
-    );
-
-}
-
-.sun{
-
-  position:absolute;
-
-  width:110px;
-
-  height:110px;
-
-  top:90px;
-
-  right:90px;
-
-  border-radius:50%;
-
-  background:#fde047;
-
-  box-shadow:
-
-    0 0 80px
-    rgba(253,224,71,.65);
-
-}
-
-.cloud{
-
-  position:absolute;
-
-  width:150px;
-
-  height:50px;
-
-  border-radius:50px;
-
-  background:
-    rgba(255,255,255,.80);
-
-}
-
-.cloud::before,
-.cloud::after{
-
-  content:"";
-
-  position:absolute;
-
-  border-radius:50%;
-
-  background:white;
-
-}
-
-.cloud::before{
-
-  width:70px;
-
-  height:70px;
-
-  top:-30px;
-
-  left:25px;
-
-}
-
-.cloud::after{
-
-  width:90px;
-
-  height:90px;
-
-  top:-45px;
-
-  right:15px;
-
-}
-
-.cloud-one{
-
-  top:125px;
-
-  left:90px;
-
-}
-
-.cloud-two{
-
-  top:210px;
-
-  right:230px;
-
-  transform:
-    scale(.75);
-
-}
-
-.ground{
-
-  position:absolute;
-
-  left:0;
-
-  right:0;
-
-  bottom:0;
-
-  height:220px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #4ade80,
-      #15803d
-    );
-
-}
-
-.tree-trunk{
-
-  position:absolute;
-
-  bottom:90px;
-
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  width:105px;
-
-  height:300px;
-
-  border-radius:
-    50px
-    50px
-    20px
-    20px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      #78350f,
-      #a16207,
-      #78350f
-    );
-
-}
-
-.tree-top{
-
-  position:absolute;
-
-  left:50%;
-
-  bottom:290px;
-
-  transform:
-    translateX(-50%);
-
-  width:510px;
-
-  height:300px;
-
-}
-
-.leaf-ball{
-
-  position:absolute;
-
-  border-radius:50%;
-
-  background:
-
-    radial-gradient(
-      circle at 30% 25%,
-      #4ade80,
-      #15803d 65%
-    );
-
-  box-shadow:
-
-    inset
-    -15px
-    -18px
-    30px
-    rgba(0,0,0,.12);
-
-}
-
-.leaf1{
-
-  width:235px;
-
-  height:210px;
-
   left:20px;
-
-  bottom:0;
-
+  bottom:20px;
+  z-index:25;
+  width:285px;
+  background:rgba(255,255,255,.96);
+  border-radius:22px;
+  padding:17px;
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
 }
 
-.leaf2{
-
-  width:250px;
-
-  height:225px;
-
-  right:15px;
-
-  bottom:0;
-
-}
-
-.leaf3{
-
-  width:245px;
-
-  height:220px;
-
-  left:132px;
-
-  top:0;
-
-}
-
-.apple-target{
-
-  position:absolute;
-
-  z-index:20;
-
-  width:68px;
-
-  height:68px;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border-radius:50% 50% 48% 48%;
-
-  cursor:pointer;
-
-  font-size:42px;
-
-  animation:
-    applePulse
-    1s
-    infinite alternate;
-
-  filter:
-
-    drop-shadow(
-      0 8px 8px
-      rgba(0,0,0,.25)
-    );
-
-}
-
-.apple-target.show{
-
-  display:flex;
-
-}
-
-@keyframes applePulse{
-
-  from{
-    transform:scale(.95);
-  }
-
-  to{
-    transform:scale(1.12);
-  }
-
-}
-
-/* ==============================
-   BALANCE GAME
-============================== */
-
-.balance-world{
-
-  position:absolute;
-
-  inset:0;
-
-  overflow:hidden;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #0f172a,
-      #172554
-    );
-
-}
-
-.balance-floor{
-
-  position:absolute;
-
-  left:-15%;
-
-  right:-15%;
-
-  bottom:-170px;
-
-  height:430px;
-
-  transform:
-    perspective(500px)
-    rotateX(55deg);
-
-  background:
-
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 49px,
-      rgba(56,189,248,.15) 50px
-    ),
-
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 49px,
-      rgba(56,189,248,.15) 50px
-    ),
-
-    #0f2546;
-
-}
-
-.balance-center{
-
-  position:absolute;
-
-  left:50%;
-
-  bottom:110px;
-
-  transform:
-    translateX(-50%);
-
-  width:145px;
-
-  height:145px;
-
-  border-radius:50%;
-
-  border:
-    5px solid
-    rgba(255,255,255,.25);
-
-  background:
-
-    radial-gradient(
-      circle,
-      #38bdf8,
-      #2563eb
-    );
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:white;
-
-  font-size:42px;
-
-  box-shadow:
-
-    0 0 70px
-    rgba(56,189,248,.40);
-
-}
-
-.balance-target{
-
-  position:absolute;
-
-  width:120px;
-
-  height:120px;
-
-  border-radius:50%;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:white;
-
-  cursor:pointer;
-
-  font-size:44px;
-
-  background:
-
-    radial-gradient(
-      circle,
-      #22d3ee,
-      #2563eb
-    );
-
-  border:
-    5px solid
-    rgba(255,255,255,.45);
-
-  box-shadow:
-
-    0 0 45px
-    rgba(34,211,238,.45);
-
-  animation:
-    balancePulse
-    .8s
-    infinite alternate;
-
-}
-
-.balance-target.show{
-
-  display:flex;
-
-}
-
-@keyframes balancePulse{
-
-  from{
-    transform:scale(.90);
-  }
-
-  to{
-    transform:scale(1.08);
-  }
-
-}
-
-/* ==============================
-   STEP GAME
-============================== */
-
-.step-world{
-
-  position:absolute;
-
-  inset:0;
-
-  overflow:hidden;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #dbeafe,
-      #93c5fd 46%,
-      #334155 47%,
-      #0f172a 100%
-    );
-
-}
-
-.road{
-
-  position:absolute;
-
-  left:50%;
-
-  bottom:-100px;
-
-  width:500px;
-
-  height:650px;
-
-  transform:
-    translateX(-50%)
-    perspective(550px)
-    rotateX(48deg);
-
-  background:
-    #374151;
-
-  border-left:
-    7px solid
-    #f8fafc;
-
-  border-right:
-    7px solid
-    #f8fafc;
-
-}
-
-.road-line{
-
-  position:absolute;
-
-  left:50%;
-
-  top:0;
-
-  bottom:0;
-
-  width:7px;
-
-  transform:
-    translateX(-50%);
-
-  background:
-
-    repeating-linear-gradient(
-      180deg,
-      #f8fafc 0,
-      #f8fafc 40px,
-      transparent 40px,
-      transparent 85px
-    );
-
-}
-
-.step-target{
-
-  position:absolute;
-
-  z-index:20;
-
-  width:100px;
-
-  height:145px;
-
-  border-radius:
-    50%
-    50%
-    45%
-    45%;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  cursor:pointer;
-
-  font-size:52px;
-
-  background:
-
-    radial-gradient(
-      circle,
-      #fde68a,
-      #f59e0b
-    );
-
-  border:
-    5px solid
-    rgba(255,255,255,.65);
-
-  box-shadow:
-
-    0 0 50px
-    rgba(245,158,11,.55);
-
-  animation:
-    stepPulse
-    .9s
-    infinite alternate;
-
-}
-
-.step-target.show{
-
-  display:flex;
-
-}
-
-@keyframes stepPulse{
-
-  from{
-    transform:scale(.92);
-  }
-
-  to{
-    transform:scale(1.06);
-  }
-
-}
-
-/* ==============================
-   BUBBLE GAME
-============================== */
-
-.bubble-world{
-
-  position:absolute;
-
-  inset:0;
-
-  overflow:hidden;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #075985,
-      #0e7490,
-      #155e75
-    );
-
-}
-
-.water-light{
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-
-    radial-gradient(
-      ellipse at 50% 0%,
-      rgba(255,255,255,.28),
-      transparent 50%
-    );
-
-}
-
-.sea-floor{
-
-  position:absolute;
-
-  left:0;
-
-  right:0;
-
-  bottom:0;
-
-  height:135px;
-
-  background:
-
-    linear-gradient(
-      180deg,
-      #facc15,
-      #ca8a04
-    );
-
-  border-radius:
-    50%
-    50%
-    0
-    0;
-
-}
-
-.fish{
-
-  position:absolute;
-
-  font-size:52px;
-
-  animation:
-    swim
-    10s
-    linear
-    infinite;
-
-}
-
-.fish1{
-
-  top:210px;
-
-  left:-70px;
-
-}
-
-.fish2{
-
-  top:390px;
-
-  right:-80px;
-
-  animation-direction:
-    reverse;
-
-  animation-duration:
-    13s;
-
-}
-
-@keyframes swim{
-
-  from{
-    transform:
-      translateX(0);
-  }
-
-  to{
-    transform:
-      translateX(120vw);
-  }
-
-}
-
-.bubble-target{
-
-  position:absolute;
-
-  width:90px;
-
-  height:90px;
-
-  border-radius:50%;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  cursor:pointer;
-
-  font-size:31px;
-
-  color:white;
-
-  background:
-
-    radial-gradient(
-      circle at 30% 25%,
-      rgba(255,255,255,.82),
-      rgba(56,189,248,.30) 40%,
-      rgba(124,58,237,.38)
-    );
-
-  border:
-    3px solid
-    rgba(255,255,255,.60);
-
-  box-shadow:
-
-    inset
-    0 0 20px
-    rgba(255,255,255,.34),
-
-    0 0 30px
-    rgba(125,211,252,.45);
-
-  animation:
-    bubbleFloat
-    1s
-    ease-in-out
-    infinite alternate;
-
-}
-
-.bubble-target.show{
-
-  display:flex;
-
-}
-
-@keyframes bubbleFloat{
-
-  from{
-    transform:
-      translateY(6px)
-      scale(.96);
-  }
-
-  to{
-    transform:
-      translateY(-6px)
-      scale(1.06);
-  }
-
-}
-
-/* ==============================
-   DARK MODE
-============================== */
-
-body.dark{
-
-  --text:#e2e8f0;
-
-  --muted:#94a3b8;
-
-  --line:#334155;
-
-  background:
-
-    radial-gradient(
-      circle at 90% 7%,
-      rgba(91,33,182,.23),
-      transparent 28%
-    ),
-
-    linear-gradient(
-      180deg,
-      #020617,
-      #0f172a
-    );
-
-}
-
-body.dark
-.hero,
-body.dark
-.section,
-body.dark
-.game-card{
-
-  background:#1e293b;
-
-  border-color:#334155;
-
-}
-
-body.dark
-.hero h2,
-body.dark
-.section-title h3,
-body.dark
-.game-card h4{
-
-  color:#bfdbfe;
-
-}
-
-body.dark
-.game-icon,
-body.dark
-.game-tag{
-
-  background:#0f172a;
-
-  border-color:#334155;
-
-  color:#cbd5e1;
-
-}
-
-body.dark
-.result-card{
-
-  background:#1e293b;
-
-}
-
-body.dark
-.result-card h2{
-
-  color:#86efac;
-
-}
-
-body.dark
-.result-stat{
-
-  background:#0f172a;
-
-  border-color:#334155;
-
-}
-
-/* ==============================
-   RTL
-============================== */
-
-html[dir="rtl"]
-body{
-
-  direction:rtl;
-
-}
-
-html[dir="rtl"]
 .brand{
-
-  direction:rtl;
-
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:13px;
 }
 
-html[dir="rtl"]
-.game-toolbar-title{
-
-  direction:rtl;
-
+.brand img{
+  width:49px;
+  height:49px;
+  object-fit:contain;
 }
 
-/* ==============================
-   RESPONSIVE
-============================== */
+.brand strong{
+  display:block;
+  color:#005b9f;
+  font-size:14px;
+}
 
-@media(max-width:1050px){
+.brand span{
+  display:block;
+  color:#64748b;
+  font-size:10px;
+  margin-top:3px;
+}
 
-  .hero{
+.game-select{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
 
-    grid-template-columns:1fr;
+.game-btn,
+.action-btn{
+  border:none;
+  cursor:pointer;
+  font-family:Tahoma,Arial;
+  font-weight:900;
+  border-radius:12px;
+}
 
-  }
+.game-btn{
+  min-height:48px;
+  padding:7px;
+  background:#eef6ff;
+  color:#075985;
+  font-size:10px;
+}
 
-  .vr-visual{
+.game-btn.active{
+  background:#005b9f;
+  color:white;
+}
 
-    display:none;
+.action-btn{
+  width:100%;
+  min-height:45px;
+  margin-top:9px;
+  color:white;
+  background:linear-gradient(135deg,#005b9f,#7c3aed);
+}
 
-  }
+#message{
+  position:absolute;
+  top:105px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:20;
+  color:white;
+  font-size:18px;
+  font-weight:900;
+  text-align:center;
+  text-shadow:0 2px 10px rgba(0,0,0,.65);
+  pointer-events:none;
+}
 
-  .games{
+#result{
+  position:absolute;
+  inset:0;
+  z-index:60;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(2,6,23,.70);
+  backdrop-filter:blur(8px);
+}
 
-    grid-template-columns:
-      repeat(2,1fr);
+.result-card{
+  width:min(470px,90%);
+  background:white;
+  border-radius:27px;
+  padding:28px;
+  text-align:center;
+}
 
-  }
+.result-card img{
+  width:75px;
+  height:75px;
+  object-fit:contain;
+}
 
+.result-card h2{
+  color:#005b9f;
+  margin:12px 0 5px;
+}
+
+.results{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin:20px 0;
+}
+
+.result-stat{
+  background:#f1f5f9;
+  padding:13px 5px;
+  border-radius:14px;
+}
+
+.result-stat strong{
+  display:block;
+  font-size:20px;
+  color:#15803d;
+}
+
+.result-stat span{
+  font-size:9px;
+  color:#64748b;
+}
+
+#xrNote{
+  font-size:10px;
+  color:#64748b;
+  margin-top:10px;
+  line-height:1.6;
 }
 
 @media(max-width:650px){
-
-  .topbar{
-
-    padding:
-      11px
-      13px;
-
+  #menu{
+    width:calc(100% - 20px);
+    left:10px;
+    bottom:10px;
   }
 
-  .brand-logo{
-
-    width:47px;
-
-    height:47px;
-
-  }
-
-  .brand h1{
-
-    font-size:15px;
-
-  }
-
-  .brand p{
-
-    display:none;
-
-  }
-
-  .top-btn{
-
-    padding:
-      8px
-      9px;
-
-    font-size:10px;
-
-  }
-
-  .page{
-
-    width:95%;
-
-  }
-
-  .hero{
-
-    padding:
-      25px
-      20px;
-
-  }
-
-  .hero h2{
-
-    font-size:25px;
-
-  }
-
-  .section{
-
-    padding:
-      20px
-      15px;
-
-  }
-
-  .games{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .game-stage{
-
-    min-height:570px;
-
-  }
-
-  .game-hud{
-
-    width:95%;
-
+  #hud{
+    top:8px;
+    width:96%;
     justify-content:center;
-
   }
 
   .hud-box{
-
     min-width:0;
-
     flex:1;
-
-    padding:
-      9px
-      6px;
-
+    padding:7px;
   }
 
-  .game-toolbar{
-
-    flex-direction:column;
-
-    align-items:stretch;
-
+  #message{
+    top:82px;
+    font-size:14px;
   }
-
-  .game-toolbar-actions{
-
-    justify-content:flex-end;
-
-  }
-
-  .result-grid{
-
-    grid-template-columns:1fr;
-
-  }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
-<header class="topbar">
+<div id="app">
 
-  <div class="brand">
+  <div id="loading">
+    <div class="loading-card">
+      <img src="logo.png" alt="AKAZ">
+      <h1>AKAZ XR Rehabilitation</h1>
+      <p>Loading interactive rehabilitation environment...</p>
+    </div>
+  </div>
 
-    <img
-      src="logo.png"
-      class="brand-logo"
-      alt="Akaz"
-    >
+  <div id="hud">
+    <div class="hud-box">
+      <div class="hud-value" id="score">0</div>
+      <div class="hud-label">SCORE</div>
+    </div>
 
-    <div>
+    <div class="hud-box">
+      <div class="hud-value" id="hits">0</div>
+      <div class="hud-label">HITS</div>
+    </div>
 
-      <h1 data-i18n="brandTitle">
-        VR Rehabilitation Lab
-      </h1>
+    <div class="hud-box">
+      <div class="hud-value" id="timer">60</div>
+      <div class="hud-label">TIME</div>
+    </div>
+  </div>
 
-      <p data-i18n="brandSub">
-        Akaz Physiotherapy Center
-      </p>
+  <div id="message">
+    Choose a rehabilitation activity
+  </div>
+
+  <div id="menu">
+
+    <div class="brand">
+      <img src="logo.png" alt="AKAZ">
+
+      <div>
+        <strong>AKAZ Rehabilitation Games</strong>
+        <span>Physiotherapy Interactive Lab</span>
+      </div>
+    </div>
+
+    <div class="game-select">
+
+      <button class="game-btn active" data-game="reach">
+        🎯 Shoulder Reach
+      </button>
+
+      <button class="game-btn" data-game="fruit">
+        🍎 Fruit Reach
+      </button>
+
+      <button class="game-btn" data-game="reaction">
+        ⚡ Reaction
+      </button>
+
+      <button class="game-btn" data-game="cognitive">
+        🧠 Focus Game
+      </button>
+
+    </div>
+
+    <button class="action-btn" id="startBtn">
+      START SESSION
+    </button>
+
+    <div id="xrNote">
+      On Meta Quest, use Enter VR and interact using your hands when WebXR hand tracking is available.
+    </div>
+
+  </div>
+
+  <div id="result">
+
+    <div class="result-card">
+
+      <img src="logo.png" alt="AKAZ">
+
+      <h2>Session Complete</h2>
+
+      <p>AKAZ Physiotherapy Center</p>
+
+      <div class="results">
+
+        <div class="result-stat">
+          <strong id="finalScore">0</strong>
+          <span>SCORE</span>
+        </div>
+
+        <div class="result-stat">
+          <strong id="finalHits">0</strong>
+          <span>TARGETS</span>
+        </div>
+
+        <div class="result-stat">
+          <strong id="finalReaction">0s</strong>
+          <span>REACTION</span>
+        </div>
+
+      </div>
+
+      <button class="action-btn" id="againBtn">
+        PLAY AGAIN
+      </button>
 
     </div>
 
   </div>
 
-  <div class="top-actions">
-
-    <button
-      class="top-btn"
-      id="languageBtn"
-      onclick="toggleLanguage()"
-    >
-      العربية
-    </button>
-
-    <button
-      class="top-btn"
-      id="themeBtn"
-      onclick="toggleTheme()"
-    >
-      🌙
-    </button>
-
-    <button
-      class="top-btn exit-btn"
-      onclick="exitVR()"
-      data-i18n="exit"
-    >
-      Exit
-    </button>
-
-  </div>
-
-</header>
-
-<main class="page">
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <div
-        class="hero-tag"
-        data-i18n="experimental"
-      >
-        🧪 Experimental Lab
-      </div>
-
-      <h2 data-i18n="heroTitle">
-        Experience Rehabilitation Through Play
-      </h2>
-
-      <p data-i18n="heroText">
-        Explore interactive rehabilitation game concepts before connecting them to a VR headset. Choose any game below and start playing immediately.
-      </p>
-
-    </div>
-
-    <div class="vr-visual">
-
-      <div class="vr-orb">
-        🥽
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- GAME LIBRARY -->
-
-  <section class="section">
-
-    <div class="section-head">
-
-      <div class="section-title">
-
-        <div class="section-icon">
-          🎮
-        </div>
-
-        <div>
-
-          <h3 data-i18n="libraryTitle">
-            VR Game Library
-          </h3>
-
-          <p data-i18n="librarySub">
-            Select a game to experience the concept.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="games">
-
-      <!-- APPLE -->
-
-      <div
-        class="game-card apple"
-        onclick="openGame('apple')"
-      >
-
-        <div class="game-icon">
-          🍎
-        </div>
-
-        <h4 data-i18n="appleTitle">
-          Apple Reach
-        </h4>
-
-        <p data-i18n="appleDesc">
-          Reach toward apples appearing at different heights and directions to train upper limb movement.
-        </p>
-
-        <div class="game-tags">
-
-          <span
-            class="game-tag"
-            data-i18n="shoulder"
-          >
-            Shoulder
-          </span>
-
-          <span
-            class="game-tag"
-            data-i18n="upperLimb"
-          >
-            Upper Limb
-          </span>
-
-          <span
-            class="game-tag"
-            data-i18n="romTag"
-          >
-            ROM
-          </span>
-
-        </div>
-
-        <button
-          class="play-button"
-          data-i18n="play"
-        >
-          Play Game
-        </button>
-
-      </div>
-
-      <!-- BALANCE -->
-
-      <div
-        class="game-card balance"
-        onclick="openGame('balance')"
-      >
-
-        <div class="game-icon">
-          ⚖️
-        </div>
-
-        <h4 data-i18n="balanceTitle">
-          Balance Shift
-        </h4>
-
-        <p data-i18n="balanceDesc">
-          Follow directional targets to simulate weight shifting and dynamic balance training.
-        </p>
-
-        <div class="game-tags">
-
-          <span
-            class="game-tag"
-            data-i18n="balance"
-          >
-            Balance
-          </span>
-
-          <span
-            class="game-tag"
-            data-i18n="weightShift"
-          >
-            Weight Shift
-          </span>
-
-        </div>
-
-        <button
-          class="play-button"
-          data-i18n="play"
-        >
-          Play Game
-        </button>
-
-      </div>
-
-      <!-- STEPS -->
-
-      <div
-        class="game-card steps"
-        onclick="openGame('steps')"
-      >
-
-        <div class="game-icon">
-          👣
-        </div>
-
-        <h4 data-i18n="stepsTitle">
-          Step Targets
-        </h4>
-
-        <p data-i18n="stepsDesc">
-          Follow visual foot targets to simulate controlled stepping and lower limb rehabilitation.
-        </p>
-
-        <div class="game-tags">
-
-          <span
-            class="game-tag"
-            data-i18n="lowerLimb"
-          >
-            Lower Limb
-          </span>
-
-          <span
-            class="game-tag"
-            data-i18n="coordination"
-          >
-            Coordination
-          </span>
-
-        </div>
-
-        <button
-          class="play-button"
-          data-i18n="play"
-        >
-          Play Game
-        </button>
-
-      </div>
-
-      <!-- BUBBLES -->
-
-      <div
-        class="game-card bubbles"
-        onclick="openGame('bubbles')"
-      >
-
-        <div class="game-icon">
-          🫧
-        </div>
-
-        <h4 data-i18n="bubbleTitle">
-          Bubble Pop
-        </h4>
-
-        <p data-i18n="bubbleDesc">
-          Pop colorful bubbles appearing around the underwater world to encourage reaching and engagement.
-        </p>
-
-        <div class="game-tags">
-
-          <span
-            class="game-tag"
-            data-i18n="pediatric"
-          >
-            Pediatric
-          </span>
-
-          <span
-            class="game-tag"
-            data-i18n="reaching"
-          >
-            Reaching
-          </span>
-
-          <span
-            class="game-tag"
-            data-i18n="fun"
-          >
-            Fun
-          </span>
-
-        </div>
-
-        <button
-          class="play-button"
-          data-i18n="play"
-        >
-          Play Game
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- GAME WINDOW -->
-
-  <section
-    class="game-wrapper"
-    id="gameWrapper"
-  >
-
-    <div
-      class="game-shell"
-      id="gameShell"
-    >
-
-      <div class="game-toolbar">
-
-        <div class="game-toolbar-title">
-
-          <div
-            class="game-toolbar-icon"
-            id="toolbarIcon"
-          >
-            🎮
-          </div>
-
-          <div>
-
-            <h3 id="toolbarTitle">
-              Game
-            </h3>
-
-            <p data-i18n="prototypeMode">
-              Browser prototype — VR headset not connected
-            </p>
-
-          </div>
-
-        </div>
-
-        <div class="game-toolbar-actions">
-
-          <button
-            class="small-btn"
-            onclick="toggleFullscreen()"
-            data-i18n="fullscreen"
-          >
-            Fullscreen
-          </button>
-
-          <button
-            class="small-btn"
-            onclick="closeGame()"
-            data-i18n="close"
-          >
-            Close
-          </button>
-
-        </div>
-
-      </div>
-
-      <div
-        class="game-stage"
-        id="gameStage"
-      >
-
-        <!-- HUD -->
-
-        <div class="game-hud">
-
-          <div class="hud-box">
-
-            <div
-              class="hud-value"
-              id="scoreValue"
-            >
-              0
-            </div>
-
-            <div
-              class="hud-label"
-              data-i18n="score"
-            >
-              SCORE
-            </div>
-
-          </div>
-
-          <div class="hud-box">
-
-            <div
-              class="hud-value"
-              id="hitsValue"
-            >
-              0
-            </div>
-
-            <div
-              class="hud-label"
-              data-i18n="hits"
-            >
-              HITS
-            </div>
-
-          </div>
-
-          <div class="hud-box">
-
-            <div
-              class="hud-value"
-              id="timeValue"
-            >
-              30
-            </div>
-
-            <div
-              class="hud-label"
-              data-i18n="time"
-            >
-              TIME
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- APPLE WORLD -->
-
-        <div
-          class="apple-world game-world"
-          id="appleWorld"
-          style="display:none;"
-        >
-
-          <div class="sun"></div>
-
-          <div class="cloud cloud-one"></div>
-
-          <div class="cloud cloud-two"></div>
-
-          <div class="ground"></div>
-
-          <div class="tree-trunk"></div>
-
-          <div class="tree-top">
-
-            <div class="leaf-ball leaf1"></div>
-            <div class="leaf-ball leaf2"></div>
-            <div class="leaf-ball leaf3"></div>
-
-          </div>
-
-          <div
-            class="apple-target"
-            id="appleTarget"
-            onclick="hitTarget(event)"
-          >
-            🍎
-          </div>
-
-        </div>
-
-        <!-- BALANCE WORLD -->
-
-        <div
-          class="balance-world game-world"
-          id="balanceWorld"
-          style="display:none;"
-        >
-
-          <div class="balance-floor"></div>
-
-          <div class="balance-center">
-            🧍
-          </div>
-
-          <div
-            class="balance-target"
-            id="balanceTarget"
-            onclick="hitTarget(event)"
-          >
-            ➡️
-          </div>
-
-        </div>
-
-        <!-- STEP WORLD -->
-
-        <div
-          class="step-world game-world"
-          id="stepsWorld"
-          style="display:none;"
-        >
-
-          <div class="road">
-
-            <div class="road-line"></div>
-
-          </div>
-
-          <div
-            class="step-target"
-            id="stepTarget"
-            onclick="hitTarget(event)"
-          >
-            👣
-          </div>
-
-        </div>
-
-        <!-- BUBBLE WORLD -->
-
-        <div
-          class="bubble-world game-world"
-          id="bubblesWorld"
-          style="display:none;"
-        >
-
-          <div class="water-light"></div>
-
-          <div class="fish fish1">
-            🐠
-          </div>
-
-          <div class="fish fish2">
-            🐟
-          </div>
-
-          <div class="sea-floor"></div>
-
-          <div
-            class="bubble-target"
-            id="bubbleTarget"
-            onclick="hitTarget(event)"
-          >
-            ⭐
-          </div>
-
-        </div>
-
-        <!-- INTRO -->
-
-        <div
-          class="game-intro"
-          id="gameIntro"
-        >
-
-          <div class="intro-box">
-
-            <div
-              class="intro-icon"
-              id="introIcon"
-            >
-              🎮
-            </div>
-
-            <h2 id="introTitle">
-              Game
-            </h2>
-
-            <p id="introDescription">
-              Start the game and interact with the targets.
-            </p>
-
-            <button
-              class="start-game-btn"
-              onclick="startGame()"
-              data-i18n="startGame"
-            >
-              Start Game
-            </button>
-
-          </div>
-
-        </div>
-
-        <!-- RESULT -->
-
-        <div
-          class="game-result"
-          id="gameResult"
-        >
-
-          <div class="result-card">
-
-            <div style="font-size:55px;">
-              🏆
-            </div>
-
-            <h2 data-i18n="sessionComplete">
-              Session Complete
-            </h2>
-
-            <p data-i18n="sessionCompleteText">
-              This is a simulated result from the browser prototype.
-            </p>
-
-            <div class="result-grid">
-
-              <div class="result-stat">
-
-                <div
-                  class="result-value"
-                  id="finalScore"
-                >
-                  0
-                </div>
-
-                <div
-                  class="result-label"
-                  data-i18n="score"
-                >
-                  SCORE
-                </div>
-
-              </div>
-
-              <div class="result-stat">
-
-                <div
-                  class="result-value"
-                  id="finalHits"
-                >
-                  0
-                </div>
-
-                <div
-                  class="result-label"
-                  data-i18n="hits"
-                >
-                  HITS
-                </div>
-
-              </div>
-
-              <div class="result-stat">
-
-                <div
-                  class="result-value"
-                  id="finalReaction"
-                >
-                  0.0s
-                </div>
-
-                <div
-                  class="result-label"
-                  data-i18n="reaction"
-                >
-                  AVG. REACTION
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="result-actions">
-
-              <button
-                class="result-btn replay-btn"
-                onclick="restartGame()"
-                data-i18n="playAgain"
-              >
-                Play Again
-              </button>
-
-              <button
-                class="result-btn close-result-btn"
-                onclick="closeGame()"
-                data-i18n="backToGames"
-              >
-                Back to Games
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
-
-<script>
-
-/* ==============================
-   ACCESS
-============================== */
-
-function checkAccess(){
-
-  const access =
-    sessionStorage.getItem(
-      "akazVRAccess"
+</div>
+
+<script type="module">
+
+import * as THREE
+from "https://cdn.jsdelivr.net/npm/three@0.180.0/+esm";
+
+import { VRButton }
+from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/webxr/VRButton.js/+esm";
+
+import { XRHandModelFactory }
+from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/webxr/XRHandModelFactory.js/+esm";
+
+/* =================================
+   BASIC SETUP
+================================= */
+
+const app =
+  document.getElementById("app");
+
+const scene =
+  new THREE.Scene();
+
+scene.background =
+  new THREE.Color(0x8dd7ff);
+
+scene.fog =
+  new THREE.Fog(
+    0x8dd7ff,
+    8,
+    25
+  );
+
+const camera =
+  new THREE.PerspectiveCamera(
+    65,
+    innerWidth / innerHeight,
+    .01,
+    100
+  );
+
+camera.position.set(
+  0,
+  1.65,
+  3.6
+);
+
+const renderer =
+  new THREE.WebGLRenderer({
+    antialias:true
+  });
+
+renderer.setPixelRatio(
+  Math.min(
+    devicePixelRatio,
+    2
+  )
+);
+
+renderer.setSize(
+  innerWidth,
+  innerHeight
+);
+
+renderer.xr.enabled =
+  true;
+
+renderer.shadowMap.enabled =
+  true;
+
+renderer.shadowMap.type =
+  THREE.PCFSoftShadowMap;
+
+app.prepend(
+  renderer.domElement
+);
+
+/* =================================
+   VR BUTTON
+================================= */
+
+const vrButton =
+  VRButton.createButton(
+    renderer,
+    {
+      optionalFeatures:[
+        "hand-tracking",
+        "local-floor"
+      ]
+    }
+  );
+
+document.body.appendChild(
+  vrButton
+);
+
+/* =================================
+   LIGHT
+================================= */
+
+scene.add(
+  new THREE.HemisphereLight(
+    0xffffff,
+    0x49764a,
+    2
+  )
+);
+
+const sun =
+  new THREE.DirectionalLight(
+    0xffffff,
+    2.2
+  );
+
+sun.position.set(
+  5,
+  8,
+  4
+);
+
+sun.castShadow =
+  true;
+
+scene.add(
+  sun
+);
+
+/* =================================
+   GROUND
+================================= */
+
+const ground =
+  new THREE.Mesh(
+    new THREE.PlaneGeometry(
+      30,
+      30
+    ),
+    new THREE.MeshStandardMaterial({
+      color:0x4fae65,
+      roughness:.9
+    })
+  );
+
+ground.rotation.x =
+  -Math.PI / 2;
+
+ground.receiveShadow =
+  true;
+
+scene.add(
+  ground
+);
+
+/* =================================
+   ROOM / ENVIRONMENT
+================================= */
+
+function createBuilding(){
+
+  const wallMaterial =
+    new THREE.MeshStandardMaterial({
+      color:0xf8fafc
+    });
+
+  const floor =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        8,
+        .08,
+        6
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0xe2e8f0
+      })
     );
 
-  if(
-    access !==
-    "granted"
+  floor.position.set(
+    0,
+    .04,
+    -1
+  );
+
+  floor.receiveShadow =
+    true;
+
+  scene.add(
+    floor
+  );
+
+  const backWall =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        8,
+        3.8,
+        .12
+      ),
+      wallMaterial
+    );
+
+  backWall.position.set(
+    0,
+    1.9,
+    -4
+  );
+
+  backWall.receiveShadow =
+    true;
+
+  scene.add(
+    backWall
+  );
+
+  const side1 =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        .12,
+        3.8,
+        6
+      ),
+      wallMaterial
+    );
+
+  side1.position.set(
+    -4,
+    1.9,
+    -1
+  );
+
+  scene.add(
+    side1
+  );
+
+  const side2 =
+    side1.clone();
+
+  side2.position.x =
+    4;
+
+  scene.add(
+    side2
+  );
+
+}
+
+createBuilding();
+
+/* =================================
+   AKAZ LOGO INSIDE WORLD
+================================= */
+
+const textureLoader =
+  new THREE.TextureLoader();
+
+textureLoader.load(
+  "logo.png",
+  texture => {
+
+    texture.colorSpace =
+      THREE.SRGBColorSpace;
+
+    const logo =
+      new THREE.Mesh(
+        new THREE.PlaneGeometry(
+          1.65,
+          1.65
+        ),
+        new THREE.MeshBasicMaterial({
+          map:texture,
+          transparent:true
+        })
+      );
+
+    logo.position.set(
+      0,
+      2.25,
+      -3.91
+    );
+
+    scene.add(
+      logo
+    );
+
+  }
+);
+
+/* =================================
+   CENTER SIGN
+================================= */
+
+const signCanvas =
+  document.createElement(
+    "canvas"
+  );
+
+signCanvas.width =
+  1024;
+
+signCanvas.height =
+  256;
+
+const ctx =
+  signCanvas.getContext(
+    "2d"
+  );
+
+ctx.fillStyle =
+  "#005b9f";
+
+ctx.fillRect(
+  0,
+  0,
+  1024,
+  256
+);
+
+ctx.fillStyle =
+  "#ffffff";
+
+ctx.textAlign =
+  "center";
+
+ctx.font =
+  "bold 66px Arial";
+
+ctx.fillText(
+  "AKAZ PHYSIOTHERAPY CENTER",
+  512,
+  112
+);
+
+ctx.fillStyle =
+  "#fbbf24";
+
+ctx.font =
+  "bold 34px Arial";
+
+ctx.fillText(
+  "Interactive Rehabilitation Lab",
+  512,
+  176
+);
+
+const signTexture =
+  new THREE.CanvasTexture(
+    signCanvas
+  );
+
+const sign =
+  new THREE.Mesh(
+    new THREE.PlaneGeometry(
+      4,
+      1
+    ),
+    new THREE.MeshBasicMaterial({
+      map:signTexture
+    })
+  );
+
+sign.position.set(
+  0,
+  3.15,
+  -3.9
+);
+
+scene.add(
+  sign
+);
+
+/* =================================
+   DECORATION
+================================= */
+
+function addPlant(
+  x,
+  z
+){
+
+  const pot =
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        .22,
+        .28,
+        .45,
+        20
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x8b4513
+      })
+    );
+
+  pot.position.set(
+    x,
+    .22,
+    z
+  );
+
+  scene.add(
+    pot
+  );
+
+  for(
+    let i=0;
+    i<7;
+    i++
   ){
 
-    window.location.href =
-      "index.html";
+    const leaf =
+      new THREE.Mesh(
+        new THREE.SphereGeometry(
+          .18,
+          16,
+          16
+        ),
+        new THREE.MeshStandardMaterial({
+          color:0x15803d
+        })
+      );
+
+    leaf.scale.set(
+      .55,
+      1.5,
+      .45
+    );
+
+    leaf.position.set(
+      x +
+      (
+        Math.random()-.5
+      )*.35,
+      .65 +
+      Math.random()*.4,
+      z +
+      (
+        Math.random()-.5
+      )*.25
+    );
+
+    scene.add(
+      leaf
+    );
 
   }
 
 }
 
-checkAccess();
+addPlant(
+  -3.2,
+  -3.3
+);
 
-/* ==============================
-   LANGUAGE
-============================== */
+addPlant(
+  3.2,
+  -3.3
+);
 
-let currentLanguage =
-  localStorage.getItem(
-    "akazVRLanguage"
-  ) || "en";
+/* =================================
+   TARGETS
+================================= */
 
-const translations = {
+const targets =
+  [];
 
-  en:{
+const targetGroup =
+  new THREE.Group();
 
-    brandTitle:
-      "VR Rehabilitation Lab",
+scene.add(
+  targetGroup
+);
 
-    brandSub:
-      "Akaz Physiotherapy Center",
+function createTarget(){
 
-    exit:
-      "Exit",
-
-    experimental:
-      "🧪 Experimental Lab",
-
-    heroTitle:
-      "Experience Rehabilitation Through Play",
-
-    heroText:
-      "Explore interactive rehabilitation game concepts before connecting them to a VR headset. Choose any game below and start playing immediately.",
-
-    libraryTitle:
-      "VR Game Library",
-
-    librarySub:
-      "Select a game to experience the concept.",
-
-    appleTitle:
-      "Apple Reach",
-
-    appleDesc:
-      "Reach toward apples appearing at different heights and directions to train upper limb movement.",
-
-    balanceTitle:
-      "Balance Shift",
-
-    balanceDesc:
-      "Follow directional targets to simulate weight shifting and dynamic balance training.",
-
-    stepsTitle:
-      "Step Targets",
-
-    stepsDesc:
-      "Follow visual foot targets to simulate controlled stepping and lower limb rehabilitation.",
-
-    bubbleTitle:
-      "Bubble Pop",
-
-    bubbleDesc:
-      "Pop colorful bubbles appearing around the underwater world to encourage reaching and engagement.",
-
-    shoulder:
-      "Shoulder",
-
-    upperLimb:
-      "Upper Limb",
-
-    romTag:
-      "ROM",
-
-    balance:
-      "Balance",
-
-    weightShift:
-      "Weight Shift",
-
-    lowerLimb:
-      "Lower Limb",
-
-    coordination:
-      "Coordination",
-
-    pediatric:
-      "Pediatric",
-
-    reaching:
-      "Reaching",
-
-    fun:
-      "Fun",
-
-    play:
-      "Play Game",
-
-    prototypeMode:
-      "Browser prototype — VR headset not connected",
-
-    fullscreen:
-      "Fullscreen",
-
-    close:
-      "Close",
-
-    score:
-      "SCORE",
-
-    hits:
-      "HITS",
-
-    time:
-      "TIME",
-
-    startGame:
-      "Start Game",
-
-    sessionComplete:
-      "Session Complete",
-
-    sessionCompleteText:
-      "This is a simulated result from the browser prototype.",
-
-    reaction:
-      "AVG. REACTION",
-
-    playAgain:
-      "Play Again",
-
-    backToGames:
-      "Back to Games",
-
-    appleIntro:
-      "Touch each apple as quickly as possible. In VR, the patient would reach toward the apple using the real hand.",
-
-    balanceIntro:
-      "Follow the target direction. In VR, movement would be controlled by body weight shifting.",
-
-    stepsIntro:
-      "Touch the next footprint target. In VR, the patient would step toward the indicated location.",
-
-    bubblesIntro:
-      "Pop the bubbles as they appear around you. In VR, this would encourage reaching in different directions."
-
-  },
-
-  ar:{
-
-    brandTitle:
-      "مختبر التأهيل الافتراضي",
-
-    brandSub:
-      "مركز عكاز للعلاج الطبيعي",
-
-    exit:
-      "خروج",
-
-    experimental:
-      "🧪 مختبر تجريبي",
-
-    heroTitle:
-      "جرّب التأهيل من خلال اللعب",
-
-    heroText:
-      "استكشف أفكار الألعاب العلاجية التفاعلية قبل ربطها بنظارة الواقع الافتراضي. اختر أي لعبة وابدأ التجربة مباشرة.",
-
-    libraryTitle:
-      "مكتبة ألعاب الواقع الافتراضي",
-
-    librarySub:
-      "اختر لعبة لتجربة الفكرة.",
-
-    appleTitle:
-      "قطف التفاح",
-
-    appleDesc:
-      "الوصول إلى التفاح الذي يظهر على ارتفاعات واتجاهات مختلفة لتدريب حركة الطرف العلوي.",
-
-    balanceTitle:
-      "نقل الوزن والتوازن",
-
-    balanceDesc:
-      "متابعة الأهداف الاتجاهية لمحاكاة نقل الوزن وتدريب التوازن الديناميكي.",
-
-    stepsTitle:
-      "أهداف الخطوات",
-
-    stepsDesc:
-      "متابعة أماكن القدم الظاهرة لمحاكاة الخطوات الموجهة وتأهيل الطرف السفلي.",
-
-    bubbleTitle:
-      "فرقعة الفقاعات",
-
-    bubbleDesc:
-      "فرقعة الفقاعات التي تظهر داخل العالم البحري لتشجيع الوصول والحركة بطريقة ممتعة.",
-
-    shoulder:
-      "الكتف",
-
-    upperLimb:
-      "الطرف العلوي",
-
-    romTag:
-      "مدى الحركة",
-
-    balance:
-      "التوازن",
-
-    weightShift:
-      "نقل الوزن",
-
-    lowerLimb:
-      "الطرف السفلي",
-
-    coordination:
-      "التناسق",
-
-    pediatric:
-      "الأطفال",
-
-    reaching:
-      "الوصول",
-
-    fun:
-      "تفاعلي",
-
-    play:
-      "تشغيل اللعبة",
-
-    prototypeMode:
-      "نموذج متصفح تجريبي — النظارة غير متصلة",
-
-    fullscreen:
-      "ملء الشاشة",
-
-    close:
-      "إغلاق",
-
-    score:
-      "النقاط",
-
-    hits:
-      "الأهداف",
-
-    time:
-      "الوقت",
-
-    startGame:
-      "ابدأ اللعبة",
-
-    sessionComplete:
-      "انتهت التجربة",
-
-    sessionCompleteText:
-      "هذه نتيجة تجريبية ناتجة عن نموذج المتصفح الحالي.",
-
-    reaction:
-      "متوسط الاستجابة",
-
-    playAgain:
-      "إعادة اللعب",
-
-    backToGames:
-      "العودة للألعاب",
-
-    appleIntro:
-      "المس كل تفاحة بأسرع وقت. داخل النظارة سيصل المريض إلى التفاحة باستخدام يده الحقيقية.",
-
-    balanceIntro:
-      "اتبع اتجاه الهدف. داخل النظارة ستكون الاستجابة عن طريق نقل وزن الجسم.",
-
-    stepsIntro:
-      "المس مكان الخطوة التالية. داخل النظارة سيضع المريض قدمه في الموقع المطلوب.",
-
-    bubblesIntro:
-      "فرقع الفقاعات التي تظهر حولك. داخل النظارة يشجع ذلك الوصول باليد إلى اتجاهات مختلفة."
-
-  }
-
-};
-
-function applyLanguage(){
-
-  const language =
-    translations[
-      currentLanguage
-    ];
-
-  document
-    .querySelectorAll(
-      "[data-i18n]"
-    )
-    .forEach(
-      element =>{
-
-        const key =
-          element.dataset.i18n;
-
-        if(
-          language[key]
-        ){
-
-          element.innerText =
-            language[key];
-
-        }
-
-      }
-    );
+  let geometry;
+  let material;
 
   if(
-    currentLanguage ===
-    "ar"
+    currentGame ===
+    "fruit"
   ){
 
-    document.documentElement.lang =
-      "ar";
+    geometry =
+      new THREE.SphereGeometry(
+        .16,
+        28,
+        28
+      );
 
-    document.documentElement.dir =
-      "rtl";
-
-    document.getElementById(
-      "languageBtn"
-    ).innerText =
-      "English";
+    material =
+      new THREE.MeshStandardMaterial({
+        color:0xe11d48,
+        roughness:.35
+      });
 
   }else{
 
-    document.documentElement.lang =
-      "en";
+    geometry =
+      new THREE.SphereGeometry(
+        .15,
+        28,
+        28
+      );
 
-    document.documentElement.dir =
-      "ltr";
+    material =
+      new THREE.MeshStandardMaterial({
+        color:
+          currentGame ===
+          "reaction"
+          ?
+          0xfbbf24
+          :
+          0x22d3ee,
 
-    document.getElementById(
-      "languageBtn"
-    ).innerText =
-      "العربية";
+        emissive:
+          currentGame ===
+          "reaction"
+          ?
+          0x754b00
+          :
+          0x075985,
+
+        emissiveIntensity:.65
+      });
 
   }
 
-  updateCurrentGameText();
+  const target =
+    new THREE.Mesh(
+      geometry,
+      material
+    );
 
-}
+  target.castShadow =
+    true;
 
-function toggleLanguage(){
+  target.userData.isTarget =
+    true;
 
-  currentLanguage =
-    currentLanguage === "en"
-      ? "ar"
-      : "en";
-
-  localStorage.setItem(
-    "akazVRLanguage",
-    currentLanguage
+  targetGroup.add(
+    target
   );
 
-  applyLanguage();
-
-}
-
-/* ==============================
-   THEME
-============================== */
-
-function loadTheme(){
-
-  const theme =
-    localStorage.getItem(
-      "akazTheme"
-    );
+  targets.push(
+    target
+  );
 
   if(
-    theme ===
-    "dark"
+    currentGame ===
+    "fruit"
   ){
 
-    document.body.classList.add(
-      "dark"
-    );
+    const stem =
+      new THREE.Mesh(
+        new THREE.CylinderGeometry(
+          .018,
+          .018,
+          .12,
+          8
+        ),
+        new THREE.MeshStandardMaterial({
+          color:0x4d7c0f
+        })
+      );
 
-    document.getElementById(
-      "themeBtn"
-    ).innerText =
-      "☀️";
+    stem.position.y =
+      .18;
+
+    target.add(
+      stem
+    );
 
   }
 
-}
-
-function toggleTheme(){
-
-  document.body.classList.toggle(
-    "dark"
-  );
-
-  const dark =
-    document.body.classList.contains(
-      "dark"
-    );
-
-  localStorage.setItem(
-    "akazTheme",
-    dark
-      ? "dark"
-      : "light"
-  );
-
-  document.getElementById(
-    "themeBtn"
-  ).innerText =
-    dark
-      ? "☀️"
-      : "🌙";
+  return target;
 
 }
 
-/* ==============================
-   EXIT
-============================== */
-
-function exitVR(){
-
-  sessionStorage.removeItem(
-    "akazVRAccess"
-  );
-
-  window.location.href =
-    "index.html";
-
-}
-
-/* ==============================
-   GAME DATA
-============================== */
-
-const games = {
-
-  apple:{
-
-    icon:"🍎",
-
-    titleKey:
-      "appleTitle",
-
-    introKey:
-      "appleIntro",
-
-    world:
-      "appleWorld",
-
-    target:
-      "appleTarget"
-
-  },
-
-  balance:{
-
-    icon:"⚖️",
-
-    titleKey:
-      "balanceTitle",
-
-    introKey:
-      "balanceIntro",
-
-    world:
-      "balanceWorld",
-
-    target:
-      "balanceTarget"
-
-  },
-
-  steps:{
-
-    icon:"👣",
-
-    titleKey:
-      "stepsTitle",
-
-    introKey:
-      "stepsIntro",
-
-    world:
-      "stepsWorld",
-
-    target:
-      "stepTarget"
-
-  },
-
-  bubbles:{
-
-    icon:"🫧",
-
-    titleKey:
-      "bubbleTitle",
-
-    introKey:
-      "bubblesIntro",
-
-    world:
-      "bubblesWorld",
-
-    target:
-      "bubbleTarget"
-
-  }
-
-};
+/* =================================
+   GAME STATE
+================================= */
 
 let currentGame =
-  null;
+  "reach";
 
-let gameRunning =
+let playing =
   false;
 
 let score =
@@ -3619,163 +978,456 @@ let hits =
   0;
 
 let timeLeft =
-  30;
+  60;
+
+let startTime =
+  0;
+
+let targetSpawnTime =
+  0;
+
+let reactions =
+  [];
 
 let gameTimer =
   null;
 
-let targetTimer =
-  null;
+const messages = {
 
-let targetShownAt =
-  0;
+  reach:
+    "Reach and touch the targets",
 
-let reactionTimes =
-  [];
+  fruit:
+    "Reach and collect the fruit",
 
-/* ==============================
-   OPEN GAME
-============================== */
+  reaction:
+    "React as quickly as possible",
 
-function openGame(
-  game
+  cognitive:
+    "Touch only the BLUE target"
+
+};
+
+/* =================================
+   POSITION TARGET
+================================= */
+
+function positionTarget(
+  target
 ){
 
-  stopGameTimers();
+  let x;
+  let y;
+  let z;
 
-  currentGame =
-    game;
+  if(
+    currentGame ===
+    "reach" ||
+    currentGame ===
+    "fruit"
+  ){
 
-  score =
-    0;
+    x =
+      THREE.MathUtils.randFloat(
+        -1.25,
+        1.25
+      );
 
-  hits =
-    0;
+    y =
+      THREE.MathUtils.randFloat(
+        1.0,
+        2.35
+      );
 
-  timeLeft =
-    30;
+    z =
+      THREE.MathUtils.randFloat(
+        -.8,
+        .15
+      );
 
-  reactionTimes =
-    [];
+  }
 
-  updateHUD();
+  else if(
+    currentGame ===
+    "reaction"
+  ){
 
-  document
-    .querySelectorAll(
-      ".game-world"
-    )
-    .forEach(
-      world =>{
+    x =
+      THREE.MathUtils.randFloat(
+        -1.6,
+        1.6
+      );
 
-        world.style.display =
-          "none";
+    y =
+      THREE.MathUtils.randFloat(
+        .85,
+        2.25
+      );
 
-      }
-    );
+    z =
+      THREE.MathUtils.randFloat(
+        -1,
+        .3
+      );
 
-  const data =
-    games[
-      game
-    ];
+  }
 
-  document.getElementById(
-    data.world
-  ).style.display =
-    "block";
+  else{
 
-  document.getElementById(
-    "toolbarIcon"
-  ).innerText =
-    data.icon;
+    x =
+      THREE.MathUtils.randFloat(
+        -1.4,
+        1.4
+      );
 
-  document.getElementById(
-    "introIcon"
-  ).innerText =
-    data.icon;
+    y =
+      THREE.MathUtils.randFloat(
+        .9,
+        2.25
+      );
 
-  document.getElementById(
-    "gameIntro"
-  ).classList.remove(
-    "hidden"
+    z =
+      THREE.MathUtils.randFloat(
+        -.8,
+        .2
+      );
+
+  }
+
+  target.position.set(
+    x,
+    y,
+    z
   );
 
-  document.getElementById(
-    "gameResult"
-  ).classList.remove(
-    "show"
-  );
-
-  document.getElementById(
-    "gameWrapper"
-  ).classList.add(
-    "show"
-  );
-
-  updateCurrentGameText();
-
-  document.getElementById(
-    "gameWrapper"
-  ).scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+  targetSpawnTime =
+    performance.now();
 
 }
 
-/* ==============================
-   GAME TEXT
-============================== */
+/* =================================
+   SPAWN
+================================= */
 
-function updateCurrentGameText(){
+function spawnTargets(){
 
-  if(!currentGame){
+  clearTargets();
+
+  if(
+    currentGame ===
+    "cognitive"
+  ){
+
+    for(
+      let i=0;
+      i<5;
+      i++
+    ){
+
+      const target =
+        createTarget();
+
+      target.scale.setScalar(
+        1.05
+      );
+
+      target.position.set(
+        THREE.MathUtils.randFloat(
+          -1.5,
+          1.5
+        ),
+        THREE.MathUtils.randFloat(
+          .9,
+          2.2
+        ),
+        THREE.MathUtils.randFloat(
+          -.7,
+          .25
+        )
+      );
+
+      const correct =
+        i === 0;
+
+      target.userData.correct =
+        correct;
+
+      target.material.color.setHex(
+        correct
+        ?
+        0x2563eb
+        :
+        [
+          0xe11d48,
+          0x22c55e,
+          0xf59e0b,
+          0xa855f7
+        ][
+          Math.floor(
+            Math.random()*4
+          )
+        ]
+      );
+
+      target.material.emissive.setHex(
+        0x000000
+      );
+
+    }
+
+    shuffleTargetPositions();
+
+  }else{
+
+    const target =
+      createTarget();
+
+    positionTarget(
+      target
+    );
+
+  }
+
+}
+
+/* =================================
+   CLEAR
+================================= */
+
+function clearTargets(){
+
+  targets.splice(
+    0
+  );
+
+  while(
+    targetGroup.children.length
+  ){
+
+    const item =
+      targetGroup.children[0];
+
+    targetGroup.remove(
+      item
+    );
+
+    item.geometry?.dispose();
+
+    item.material?.dispose();
+
+  }
+
+}
+
+/* =================================
+   SHUFFLE
+================================= */
+
+function shuffleTargetPositions(){
+
+  targets.forEach(
+    target => {
+
+      target.position.set(
+        THREE.MathUtils.randFloat(
+          -1.5,
+          1.5
+        ),
+        THREE.MathUtils.randFloat(
+          .9,
+          2.2
+        ),
+        THREE.MathUtils.randFloat(
+          -.7,
+          .2
+        )
+      );
+
+    }
+  );
+
+  targetSpawnTime =
+    performance.now();
+
+}
+
+/* =================================
+   HIT TARGET
+================================= */
+
+function hitTarget(
+  target
+){
+
+  if(
+    !playing ||
+    !target
+  ){
     return;
   }
 
-  const language =
-    translations[
-      currentLanguage
-    ];
+  if(
+    currentGame ===
+    "cognitive" &&
+    !target.userData.correct
+  ){
 
-  const data =
-    games[
-      currentGame
-    ];
+    score =
+      Math.max(
+        0,
+        score - 50
+      );
 
-  document.getElementById(
-    "toolbarTitle"
-  ).innerText =
-    language[
-      data.titleKey
-    ];
+    target.scale.setScalar(
+      .7
+    );
 
-  document.getElementById(
-    "introTitle"
-  ).innerText =
-    language[
-      data.titleKey
-    ];
+    setTimeout(
+      ()=>{
+        target.scale.setScalar(
+          1
+        );
+      },
+      180
+    );
 
-  document.getElementById(
-    "introDescription"
-  ).innerText =
-    language[
-      data.introKey
-    ];
+    updateHUD();
+
+    return;
+  }
+
+  const reaction =
+    performance.now() -
+    targetSpawnTime;
+
+  reactions.push(
+    reaction
+  );
+
+  hits++;
+
+  if(
+    reaction < 700
+  ){
+
+    score +=
+      200;
+
+  }else if(
+    reaction < 1200
+  ){
+
+    score +=
+      150;
+
+  }else{
+
+    score +=
+      100;
+
+  }
+
+  createBurst(
+    target.position
+  );
+
+  updateHUD();
+
+  if(
+    currentGame ===
+    "cognitive"
+  ){
+
+    clearTargets();
+    spawnTargets();
+
+  }else{
+
+    positionTarget(
+      target
+    );
+
+  }
 
 }
 
-/* ==============================
+/* =================================
+   PARTICLE BURST
+================================= */
+
+const bursts =
+  [];
+
+function createBurst(
+  position
+){
+
+  for(
+    let i=0;
+    i<12;
+    i++
+  ){
+
+    const particle =
+      new THREE.Mesh(
+        new THREE.SphereGeometry(
+          .025,
+          8,
+          8
+        ),
+        new THREE.MeshBasicMaterial({
+          color:
+            0xfbbf24
+        })
+      );
+
+    particle.position.copy(
+      position
+    );
+
+    particle.userData.velocity =
+      new THREE.Vector3(
+        THREE.MathUtils.randFloat(
+          -.7,
+          .7
+        ),
+        THREE.MathUtils.randFloat(
+          .2,
+          1
+        ),
+        THREE.MathUtils.randFloat(
+          -.7,
+          .7
+        )
+      );
+
+    particle.userData.life =
+      1;
+
+    scene.add(
+      particle
+    );
+
+    bursts.push(
+      particle
+    );
+
+  }
+
+}
+
+/* =================================
    START GAME
-============================== */
+================================= */
 
 function startGame(){
 
-  if(!currentGame){
-    return;
-  }
+  clearInterval(
+    gameTimer
+  );
 
-  stopGameTimers();
+  playing =
+    true;
 
   score =
     0;
@@ -3784,29 +1436,29 @@ function startGame(){
     0;
 
   timeLeft =
-    30;
+    60;
 
-  reactionTimes =
+  reactions =
     [];
 
-  gameRunning =
-    true;
+  startTime =
+    performance.now();
+
+  document.getElementById(
+    "result"
+  ).style.display =
+    "none";
+
+  document.getElementById(
+    "message"
+  ).innerText =
+    messages[
+      currentGame
+    ];
 
   updateHUD();
 
-  document.getElementById(
-    "gameIntro"
-  ).classList.add(
-    "hidden"
-  );
-
-  document.getElementById(
-    "gameResult"
-  ).classList.remove(
-    "show"
-  );
-
-  showNextTarget();
+  spawnTargets();
 
   gameTimer =
     setInterval(
@@ -3830,386 +1482,35 @@ function startGame(){
 
 }
 
-/* ==============================
-   TARGET
-============================== */
-
-function getTarget(){
-
-  if(!currentGame){
-    return null;
-  }
-
-  return document.getElementById(
-    games[
-      currentGame
-    ].target
-  );
-
-}
-
-function showNextTarget(){
-
-  if(!gameRunning){
-    return;
-  }
-
-  const target =
-    getTarget();
-
-  if(!target){
-    return;
-  }
-
-  const stage =
-    document.getElementById(
-      "gameStage"
-    );
-
-  const stageWidth =
-    stage.clientWidth;
-
-  const stageHeight =
-    stage.clientHeight;
-
-  let x =
-    Math.random() *
-    Math.max(
-      100,
-      stageWidth - 180
-    )
-    +
-    45;
-
-  let y =
-    Math.random() *
-    Math.max(
-      100,
-      stageHeight - 270
-    )
-    +
-    100;
-
-  if(
-    currentGame ===
-    "apple"
-  ){
-
-    x =
-      stageWidth *
-      (
-        .25 +
-        Math.random() *
-        .50
-      );
-
-    y =
-      stageHeight *
-      (
-        .25 +
-        Math.random() *
-        .34
-      );
-
-  }
-
-  if(
-    currentGame ===
-    "balance"
-  ){
-
-    const positions = [
-
-      {
-        x:stageWidth * .16,
-        y:stageHeight * .43,
-        icon:"⬅️"
-      },
-
-      {
-        x:stageWidth * .70,
-        y:stageHeight * .43,
-        icon:"➡️"
-      },
-
-      {
-        x:stageWidth * .43,
-        y:stageHeight * .23,
-        icon:"⬆️"
-      }
-
-    ];
-
-    const position =
-      positions[
-        Math.floor(
-          Math.random() *
-          positions.length
-        )
-      ];
-
-    x =
-      position.x;
-
-    y =
-      position.y;
-
-    target.innerText =
-      position.icon;
-
-  }
-
-  if(
-    currentGame ===
-    "steps"
-  ){
-
-    const side =
-      Math.random() >
-      .5
-      ?
-      "left"
-      :
-      "right";
-
-    x =
-      side === "left"
-      ?
-      stageWidth * .31
-      :
-      stageWidth * .57;
-
-    y =
-      stageHeight *
-      (
-        .35 +
-        Math.random() *
-        .28
-      );
-
-    target.innerText =
-      side === "left"
-      ?
-      "🦶"
-      :
-      "🦶";
-
-  }
-
-  if(
-    currentGame ===
-    "bubbles"
-  ){
-
-    x =
-      stageWidth *
-      (
-        .10 +
-        Math.random() *
-        .75
-      );
-
-    y =
-      stageHeight *
-      (
-        .18 +
-        Math.random() *
-        .60
-      );
-
-    const icons = [
-      "⭐",
-      "🐚",
-      "💎",
-      "🌟"
-    ];
-
-    target.innerText =
-      icons[
-        Math.floor(
-          Math.random() *
-          icons.length
-        )
-      ];
-
-  }
-
-  target.style.left =
-    x + "px";
-
-  target.style.top =
-    y + "px";
-
-  target.classList.add(
-    "show"
-  );
-
-  targetShownAt =
-    performance.now();
-
-  clearTimeout(
-    targetTimer
-  );
-
-  targetTimer =
-    setTimeout(
-      ()=>{
-
-        if(
-          gameRunning
-        ){
-
-          target.classList.remove(
-            "show"
-          );
-
-          showNextTarget();
-
-        }
-
-      },
-      2800
-    );
-
-}
-
-/* ==============================
-   HIT
-============================== */
-
-function hitTarget(
-  event
-){
-
-  event.stopPropagation();
-
-  if(!gameRunning){
-    return;
-  }
-
-  const target =
-    getTarget();
-
-  const reaction =
-    performance.now()
-    -
-    targetShownAt;
-
-  reactionTimes.push(
-    reaction
-  );
-
-  hits++;
-
-  let bonus =
-    100;
-
-  if(
-    reaction < 800
-  ){
-
-    bonus =
-      180;
-
-  }else if(
-    reaction < 1400
-  ){
-
-    bonus =
-      140;
-
-  }else if(
-    reaction < 2200
-  ){
-
-    bonus =
-      110;
-
-  }
-
-  score +=
-    bonus;
-
-  target.classList.remove(
-    "show"
-  );
-
-  updateHUD();
-
-  clearTimeout(
-    targetTimer
-  );
-
-  setTimeout(
-    showNextTarget,
-    180
-  );
-
-}
-
-/* ==============================
-   HUD
-============================== */
-
-function updateHUD(){
-
-  document.getElementById(
-    "scoreValue"
-  ).innerText =
-    score;
-
-  document.getElementById(
-    "hitsValue"
-  ).innerText =
-    hits;
-
-  document.getElementById(
-    "timeValue"
-  ).innerText =
-    timeLeft;
-
-}
-
-/* ==============================
+/* =================================
    FINISH
-============================== */
+================================= */
 
 function finishGame(){
 
-  gameRunning =
+  playing =
     false;
 
-  stopGameTimers();
+  clearInterval(
+    gameTimer
+  );
 
-  const target =
-    getTarget();
+  clearTargets();
 
-  if(target){
-
-    target.classList.remove(
-      "show"
-    );
-
-  }
-
-  let averageReaction =
+  let average =
     0;
 
   if(
-    reactionTimes.length
+    reactions.length
   ){
 
-    averageReaction =
-      reactionTimes.reduce(
-        (
-          total,
-          value
-        ) =>
-          total + value,
+    average =
+      reactions.reduce(
+        (a,b)=>a+b,
         0
       )
       /
-      reactionTimes.length;
+      reactions.length;
 
   }
 
@@ -4226,133 +1527,411 @@ function finishGame(){
   document.getElementById(
     "finalReaction"
   ).innerText =
-    averageReaction
+    average
     ?
     (
-      averageReaction /
-      1000
+      average / 1000
     ).toFixed(2)
-    +
-    "s"
+    + "s"
     :
     "—";
 
   document.getElementById(
-    "gameResult"
-  ).classList.add(
-    "show"
-  );
-
-}
-
-/* ==============================
-   RESTART
-============================== */
-
-function restartGame(){
+    "result"
+  ).style.display =
+    "flex";
 
   document.getElementById(
-    "gameResult"
-  ).classList.remove(
-    "show"
-  );
-
-  startGame();
+    "message"
+  ).innerText =
+    "Session complete";
 
 }
 
-/* ==============================
-   CLOSE
-============================== */
+/* =================================
+   HUD
+================================= */
 
-function closeGame(){
+function updateHUD(){
 
-  gameRunning =
-    false;
+  document.getElementById(
+    "score"
+  ).innerText =
+    score;
 
-  stopGameTimers();
+  document.getElementById(
+    "hits"
+  ).innerText =
+    hits;
 
-  const target =
-    getTarget();
+  document.getElementById(
+    "timer"
+  ).innerText =
+    timeLeft;
 
-  if(target){
+}
 
-    target.classList.remove(
-      "show"
+/* =================================
+   BUTTONS
+================================= */
+
+document.querySelectorAll(
+  ".game-btn"
+).forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      ()=>{
+
+        if(
+          playing
+        ){
+          return;
+        }
+
+        document.querySelectorAll(
+          ".game-btn"
+        ).forEach(
+          item =>
+            item.classList.remove(
+              "active"
+            )
+        );
+
+        button.classList.add(
+          "active"
+        );
+
+        currentGame =
+          button.dataset.game;
+
+        document.getElementById(
+          "message"
+        ).innerText =
+          messages[
+            currentGame
+          ];
+
+      }
     );
 
   }
+);
 
-  document.getElementById(
-    "gameWrapper"
-  ).classList.remove(
-    "show"
-  );
+document.getElementById(
+  "startBtn"
+).addEventListener(
+  "click",
+  startGame
+);
 
-  currentGame =
-    null;
+document.getElementById(
+  "againBtn"
+).addEventListener(
+  "click",
+  startGame
+);
 
-  document.querySelector(
-    ".section"
-  ).scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+/* =================================
+   MOUSE INTERACTION
+================================= */
 
-}
+const raycaster =
+  new THREE.Raycaster();
 
-/* ==============================
-   TIMERS
-============================== */
+const mouse =
+  new THREE.Vector2();
 
-function stopGameTimers(){
+renderer.domElement.addEventListener(
+  "pointerdown",
+  event => {
 
-  clearInterval(
-    gameTimer
-  );
+    if(
+      renderer.xr.isPresenting
+    ){
+      return;
+    }
 
-  clearTimeout(
-    targetTimer
-  );
+    const rect =
+      renderer.domElement
+        .getBoundingClientRect();
 
-  gameTimer =
-    null;
+    mouse.x =
+      (
+        (
+          event.clientX -
+          rect.left
+        )
+        /
+        rect.width
+      ) * 2 - 1;
 
-  targetTimer =
-    null;
+    mouse.y =
+      -(
+        (
+          event.clientY -
+          rect.top
+        )
+        /
+        rect.height
+      ) * 2 + 1;
 
-}
-
-/* ==============================
-   FULLSCREEN
-============================== */
-
-function toggleFullscreen(){
-
-  const shell =
-    document.getElementById(
-      "gameShell"
+    raycaster.setFromCamera(
+      mouse,
+      camera
     );
 
+    const intersections =
+      raycaster.intersectObjects(
+        targets,
+        false
+      );
+
+    if(
+      intersections.length
+    ){
+
+      hitTarget(
+        intersections[0].object
+      );
+
+    }
+
+  }
+);
+
+/* =================================
+   CONTROLLERS FALLBACK
+================================= */
+
+for(
+  let i=0;
+  i<2;
+  i++
+){
+
+  const controller =
+    renderer.xr.getController(
+      i
+    );
+
+  controller.addEventListener(
+    "selectstart",
+    ()=>{
+
+      const tempMatrix =
+        new THREE.Matrix4();
+
+      tempMatrix
+        .identity()
+        .extractRotation(
+          controller.matrixWorld
+        );
+
+      raycaster.ray.origin
+        .setFromMatrixPosition(
+          controller.matrixWorld
+        );
+
+      raycaster.ray.direction
+        .set(
+          0,
+          0,
+          -1
+        )
+        .applyMatrix4(
+          tempMatrix
+        );
+
+      const intersections =
+        raycaster.intersectObjects(
+          targets,
+          false
+        );
+
+      if(
+        intersections.length
+      ){
+
+        hitTarget(
+          intersections[0].object
+        );
+
+      }
+
+    }
+  );
+
+  scene.add(
+    controller
+  );
+
+}
+
+/* =================================
+   HAND TRACKING
+================================= */
+
+const handFactory =
+  new XRHandModelFactory();
+
+const hands = [];
+
+for(
+  let i=0;
+  i<2;
+  i++
+){
+
+  const hand =
+    renderer.xr.getHand(
+      i
+    );
+
+  const model =
+    handFactory.createHandModel(
+      hand,
+      "mesh"
+    );
+
+  hand.add(
+    model
+  );
+
+  scene.add(
+    hand
+  );
+
+  hands.push(
+    hand
+  );
+
+}
+
+/* =================================
+   CHECK FINGERTIP COLLISION
+================================= */
+
+const fingerPosition =
+  new THREE.Vector3();
+
+const targetPosition =
+  new THREE.Vector3();
+
+let lastHandHit =
+  0;
+
+function checkHands(){
+
   if(
-    !document.fullscreenElement
+    !renderer.xr.isPresenting ||
+    !playing
+  ){
+    return;
+  }
+
+  const now =
+    performance.now();
+
+  if(
+    now -
+    lastHandHit
+    <
+    220
+  ){
+    return;
+  }
+
+  const frame =
+    renderer.xr.getFrame();
+
+  const referenceSpace =
+    renderer.xr.getReferenceSpace();
+
+  if(
+    !frame ||
+    !referenceSpace
+  ){
+    return;
+  }
+
+  const session =
+    renderer.xr.getSession();
+
+  if(
+    !session
+  ){
+    return;
+  }
+
+  for(
+    const source
+    of session.inputSources
   ){
 
     if(
-      shell.requestFullscreen
+      !source.hand
     ){
-
-      shell.requestFullscreen();
-
+      continue;
     }
 
-  }else{
+    const joint =
+      source.hand.get(
+        "index-finger-tip"
+      );
 
     if(
-      document.exitFullscreen
+      !joint
+    ){
+      continue;
+    }
+
+    const pose =
+      frame.getJointPose(
+        joint,
+        referenceSpace
+      );
+
+    if(
+      !pose
+    ){
+      continue;
+    }
+
+    fingerPosition.set(
+      pose.transform.position.x,
+      pose.transform.position.y,
+      pose.transform.position.z
+    );
+
+    for(
+      const target
+      of targets
     ){
 
-      document.exitFullscreen();
+      target.getWorldPosition(
+        targetPosition
+      );
+
+      const distance =
+        fingerPosition.distanceTo(
+          targetPosition
+        );
+
+      if(
+        distance < .20
+      ){
+
+        lastHandHit =
+          now;
+
+        hitTarget(
+          target
+        );
+
+        return;
+      }
 
     }
 
@@ -4360,16 +1939,147 @@ function toggleFullscreen(){
 
 }
 
-/* ==============================
-   INITIAL LOAD
-============================== */
+/* =================================
+   ANIMATION
+================================= */
 
-loadTheme();
+const clock =
+  new THREE.Clock();
 
-applyLanguage();
+function animate(){
+
+  const delta =
+    Math.min(
+      clock.getDelta(),
+      .05
+    );
+
+  checkHands();
+
+  if(
+    playing
+  ){
+
+    targets.forEach(
+      (
+        target,
+        index
+      ) => {
+
+        target.rotation.y +=
+          delta * 1.2;
+
+        target.position.y +=
+          Math.sin(
+            performance.now() *
+            .002 +
+            index
+          )
+          *
+          .0007;
+
+      }
+    );
+
+  }
+
+  for(
+    let i=
+      bursts.length - 1;
+    i>=0;
+    i--
+  ){
+
+    const particle =
+      bursts[i];
+
+    particle.position.addScaledVector(
+      particle.userData.velocity,
+      delta
+    );
+
+    particle.userData.velocity.y -=
+      delta * 1.2;
+
+    particle.userData.life -=
+      delta * 1.7;
+
+    particle.scale.setScalar(
+      Math.max(
+        0,
+        particle.userData.life
+      )
+    );
+
+    if(
+      particle.userData.life <= 0
+    ){
+
+      scene.remove(
+        particle
+      );
+
+      particle.geometry.dispose();
+
+      particle.material.dispose();
+
+      bursts.splice(
+        i,
+        1
+      );
+
+    }
+
+  }
+
+  renderer.render(
+    scene,
+    camera
+  );
+
+}
+
+renderer.setAnimationLoop(
+  animate
+);
+
+/* =================================
+   RESIZE
+================================= */
+
+window.addEventListener(
+  "resize",
+  ()=>{
+
+    camera.aspect =
+      innerWidth /
+      innerHeight;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+      innerWidth,
+      innerHeight
+    );
+
+  }
+);
+
+/* =================================
+   READY
+================================= */
+
+document.getElementById(
+  "loading"
+).style.display =
+  "none";
+
+document.getElementById(
+  "message"
+).innerText =
+  messages.reach;
 
 </script>
 
 </body>
-
 </html>
