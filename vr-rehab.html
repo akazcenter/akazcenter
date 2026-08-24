@@ -3,236 +3,832 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AKAZ XR Rehabilitation</title>
 <link rel="icon" href="logo.png">
 
 <style>
-*{box-sizing:border-box}
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --cyan:#65e6f1;
+  --dark:#071923;
+  --panel:rgba(8,34,45,.88);
+  --line:rgba(101,230,241,.72);
+  --white:#fff;
+}
 
-html,body{
-  margin:0;
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
   width:100%;
   height:100%;
+  margin:0;
   overflow:hidden;
   font-family:Tahoma,Arial,sans-serif;
-  background:#071827;
+  background:#081014;
+}
+
+button{
+  font-family:Tahoma,Arial,sans-serif;
 }
 
 #app{
   width:100%;
   height:100%;
   position:relative;
+  overflow:hidden;
 }
 
 canvas{
   display:block;
+  width:100%;
+  height:100%;
 }
+
+/* ================================
+   LOADING
+================================ */
 
 #loading{
   position:absolute;
   inset:0;
-  z-index:100;
+  z-index:999;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,#041525,#005b9f);
-  color:white;
+  background:
+    radial-gradient(circle at 50% 35%,rgba(0,119,200,.25),transparent 30%),
+    linear-gradient(135deg,#03121b,#06344f);
+  color:#fff;
+}
+
+.loading-box{
   text-align:center;
 }
 
-.loading-card{
-  width:min(420px,90%);
-}
-
-.loading-card img{
-  width:110px;
-  height:110px;
+.loading-box img{
+  width:115px;
+  height:115px;
   object-fit:contain;
   background:white;
-  padding:10px;
-  border-radius:25px;
-  margin-bottom:18px;
+  border-radius:24px;
+  padding:8px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
-.loading-card h1{
-  margin:0 0 8px;
-  font-size:27px;
+.loading-box h2{
+  margin:18px 0 5px;
 }
 
-.loading-card p{
-  color:#dbeafe;
-  line-height:1.7;
+.loading-box p{
   margin:0;
+  color:#bae6fd;
+  font-size:12px;
 }
 
-#hud{
+/* ================================
+   TOP
+================================ */
+
+#topLeft{
   position:absolute;
-  top:18px;
+  top:28px;
+  left:32px;
+  z-index:40;
+}
+
+#topRight{
+  position:absolute;
+  top:28px;
+  right:32px;
+  z-index:40;
+  display:flex;
+  gap:12px;
+}
+
+.glass-btn{
+  min-height:50px;
+  padding:0 18px;
+  border-radius:13px;
+  border:1px solid var(--line);
+  color:white;
+  background:rgba(5,35,46,.82);
+  backdrop-filter:blur(14px);
+  box-shadow:
+    0 0 18px rgba(54,218,233,.15),
+    inset 0 0 0 1px rgba(255,255,255,.04);
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.glass-btn:hover{
+  background:rgba(15,63,75,.94);
+}
+
+/* ================================
+   MAIN TITLE
+================================ */
+
+#brandPanel{
+  position:absolute;
+  top:34px;
   left:50%;
   transform:translateX(-50%);
-  z-index:20;
+  z-index:30;
+
+  width:min(440px,44vw);
+  min-height:150px;
+
   display:flex;
-  gap:9px;
-  pointer-events:none;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+
+  padding:18px 24px;
+
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:23px;
+
+  color:white;
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+    0 0 28px rgba(60,220,235,.25),
+    inset 0 0 22px rgba(255,255,255,.035);
 }
 
-.hud-box{
-  min-width:105px;
-  padding:10px 13px;
+#brandPanel img{
+  width:88px;
+  height:88px;
+  object-fit:contain;
+  background:white;
   border-radius:15px;
-  background:rgba(3,19,33,.78);
-  color:white;
-  border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(10px);
+  padding:5px;
+}
+
+.brand-text{
   text-align:center;
 }
 
-.hud-value{
-  font-size:21px;
+.brand-text h1{
+  margin:0;
+  color:#8cf1fb;
+  font-size:31px;
+  letter-spacing:1px;
+}
+
+.brand-text h2{
+  margin:4px 0;
+  font-size:13px;
+}
+
+.brand-text .ar{
+  font-size:16px;
+  direction:rtl;
+  margin-top:8px;
+}
+
+.brand-text p{
+  margin:7px 0 0;
+  font-size:12px;
+  color:#fff;
+}
+
+/* ================================
+   SELECT
+================================ */
+
+#selectTitle{
+  position:absolute;
+  top:206px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:31;
+
+  width:300px;
+  padding:12px;
+
+  text-align:center;
+  color:white;
+  font-weight:900;
+  font-size:13px;
+
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:13px;
+
+  backdrop-filter:blur(12px);
+}
+
+/* ================================
+   ACTIVITY CARDS
+================================ */
+
+#activities{
+  position:absolute;
+  top:270px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:32;
+
+  width:min(950px,76vw);
+
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+
+  background:rgba(5,31,40,.81);
+
+  border:1px solid var(--line);
+  border-radius:16px;
+
+  box-shadow:0 0 30px rgba(72,219,233,.22);
+  backdrop-filter:blur(15px);
+
+  overflow:hidden;
+}
+
+.activity{
+  min-width:0;
+  min-height:260px;
+
+  padding:11px 10px 15px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(18,60,72,.82),
+      rgba(7,34,44,.90)
+    );
+
+  border:0;
+  border-right:1px solid rgba(102,226,239,.45);
+
+  cursor:pointer;
+
+  position:relative;
+}
+
+.activity:last-child{
+  border-right:0;
+}
+
+.activity:hover{
+  background:
+    linear-gradient(
+      180deg,
+      rgba(29,86,100,.92),
+      rgba(10,48,61,.96)
+    );
+}
+
+.activity.active{
+  box-shadow:
+    inset 0 0 0 2px #66e2ef,
+    inset 0 0 30px rgba(85,220,235,.15);
+}
+
+.thumb{
+  height:105px;
+  border-radius:11px;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:10px;
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.thumb-room{
+  width:100%;
+  height:100%;
+  position:relative;
+  background:
+    linear-gradient(180deg,#e8eff2 0 63%,#c8c6bf 63%);
+}
+
+.thumb-room::before{
+  content:"";
+  position:absolute;
+  top:10px;
+  left:9%;
+  width:82%;
+  height:48px;
+  background:#f8fafc;
+  border-bottom:2px solid #d5d9dc;
+}
+
+.thumb-room::after{
+  content:"";
+  position:absolute;
+  left:8%;
+  right:8%;
+  bottom:15px;
+  height:3px;
+  background:rgba(0,0,0,.10);
+}
+
+.object{
+  position:absolute;
+  z-index:3;
+}
+
+.ball{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#34bdf0,#075985);
+  left:25px;
+  top:42px;
+  box-shadow:0 5px 8px rgba(0,0,0,.25);
+}
+
+.cube{
+  width:32px;
+  height:32px;
+  left:45px;
+  top:55px;
+  background:#1268a4;
+  transform:rotate(7deg);
+}
+
+.cups{
+  left:32px;
+  bottom:18px;
+  display:flex;
+  gap:15px;
+}
+
+.cup{
+  width:17px;
+  height:37px;
+  border-radius:3px;
+}
+
+.cup.red{
+  background:#dc2626;
+}
+
+.cup.blue{
+  background:#0077c8;
+}
+
+.lights{
+  left:15px;
+  right:15px;
+  top:42px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.light{
+  width:23px;
+  height:23px;
+  border-radius:50%;
+  border:4px solid rgba(0,0,0,.4);
+  box-shadow:0 0 9px currentColor;
+}
+
+.light.green{background:#22c55e;color:#22c55e}
+.light.red{background:#ef4444;color:#ef4444}
+.light.yellow{background:#fbbf24;color:#fbbf24}
+
+.person{
+  width:20px;
+  height:60px;
+  left:52px;
+  top:26px;
+}
+
+.person::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:6px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#0f4669;
+}
+
+.person::after{
+  content:"";
+  position:absolute;
+  top:11px;
+  left:3px;
+  width:15px;
+  height:42px;
+  background:#0e6795;
+  border-radius:6px;
+}
+
+.platform{
+  width:75px;
+  height:18px;
+  background:#17658f;
+  border-radius:50%;
+  bottom:15px;
+  left:25px;
+}
+
+.basket{
+  width:45px;
+  height:30px;
+  left:38px;
+  bottom:17px;
+  border:5px solid #dc4b20;
+  border-top-width:3px;
+}
+
+.activity-number{
+  position:absolute;
+  top:5px;
+  left:8px;
+  z-index:6;
+  font-size:13px;
   font-weight:900;
 }
 
-.hud-label{
-  font-size:9px;
-  color:#bae6fd;
-  margin-top:3px;
-  font-weight:700;
+.activity h3{
+  margin:5px 0 8px;
+  font-size:12px;
+  color:#9cf7ff;
 }
 
-#menu{
-  position:absolute;
-  left:20px;
-  bottom:20px;
-  z-index:25;
-  width:285px;
-  background:rgba(255,255,255,.96);
-  border-radius:22px;
-  padding:17px;
-  box-shadow:0 20px 50px rgba(0,0,0,.25);
+.activity p{
+  margin:0;
+  min-height:50px;
+  font-size:9.5px;
+  line-height:1.55;
+  color:#eefcff;
 }
 
-.brand{
+.play-circle{
+  margin:13px auto 0;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  border:1px solid #83f1f8;
   display:flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:13px;
+  justify-content:center;
+  color:#83f1f8;
+  font-size:11px;
 }
 
-.brand img{
-  width:49px;
-  height:49px;
+/* ================================
+   START
+================================ */
+
+#startSession{
+  position:absolute;
+  top:555px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:34;
+
+  width:310px;
+  min-height:64px;
+
+  border-radius:15px;
+  border:1px solid var(--line);
+
+  color:white;
+  background:rgba(8,43,53,.90);
+
+  font-size:19px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 0 25px rgba(83,229,240,.18);
+
+  backdrop-filter:blur(12px);
+}
+
+#startSession:hover{
+  background:rgba(12,67,80,.96);
+}
+
+/* ================================
+   PATIENT PANEL
+================================ */
+
+#patientPanel{
+  position:absolute;
+  left:45px;
+  bottom:42px;
+  z-index:35;
+
+  width:230px;
+
+  padding:16px;
+
+  color:white;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  backdrop-filter:blur(13px);
+}
+
+.patient-head{
+  display:flex;
+  gap:11px;
+  align-items:center;
+}
+
+.patient-avatar{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#0f5b6c;
+  color:#88f1f9;
+}
+
+.patient-head strong{
+  display:block;
+  font-size:13px;
+}
+
+.patient-head span{
+  display:block;
+  font-size:10px;
+  margin-top:3px;
+  color:#d8f8fb;
+}
+
+.patient-stats{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.patient-stat label{
+  display:block;
+  font-size:9px;
+  color:#c8edf1;
+}
+
+.patient-stat strong{
+  display:block;
+  margin-top:3px;
+  font-size:17px;
+}
+
+#progressBtn{
+  margin-top:13px;
+  width:100%;
+  min-height:38px;
+  border-radius:9px;
+  border:1px solid #6ee9f4;
+  background:rgba(10,77,89,.75);
+  color:white;
+  cursor:pointer;
+  font-size:10px;
+  font-weight:900;
+}
+
+/* ================================
+   TIPS
+================================ */
+
+#tipsPanel{
+  position:absolute;
+  right:45px;
+  bottom:55px;
+  z-index:35;
+
+  width:230px;
+  padding:16px 18px;
+
+  background:var(--panel);
+  color:white;
+
+  border:1px solid var(--line);
+  border-radius:17px;
+
+  backdrop-filter:blur(13px);
+}
+
+#tipsPanel h3{
+  margin:0 0 13px;
+  text-align:center;
+  font-size:12px;
+}
+
+.tip{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:9.5px;
+  margin:11px 0;
+  color:#eefcff;
+}
+
+.tip-icon{
+  width:19px;
+  height:19px;
+  flex:none;
+  border-radius:50%;
+  border:1px solid #6be7ef;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#6be7ef;
+}
+
+/* ================================
+   BOTTOM BRAND
+================================ */
+
+#bottomBrand{
+  position:absolute;
+  bottom:47px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:34;
+
+  width:195px;
+  height:55px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+
+  border-radius:12px;
+  border:1px solid rgba(108,230,239,.45);
+  background:rgba(17,52,61,.80);
+
+  color:#8ff1f7;
+  font-weight:900;
+}
+
+#bottomBrand img{
+  width:55px;
+  height:40px;
   object-fit:contain;
 }
 
-.brand strong{
-  display:block;
-  color:#005b9f;
-  font-size:14px;
-}
+/* ================================
+   HAND MESSAGE
+================================ */
 
-.brand span{
-  display:block;
-  color:#64748b;
-  font-size:10px;
-  margin-top:3px;
-}
-
-.game-select{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:7px;
-}
-
-.game-btn,
-.action-btn{
-  border:none;
-  cursor:pointer;
-  font-family:Tahoma,Arial;
-  font-weight:900;
-  border-radius:12px;
-}
-
-.game-btn{
-  min-height:48px;
-  padding:7px;
-  background:#eef6ff;
-  color:#075985;
-  font-size:10px;
-}
-
-.game-btn.active{
-  background:#005b9f;
-  color:white;
-}
-
-.action-btn{
-  width:100%;
-  min-height:45px;
-  margin-top:9px;
-  color:white;
-  background:linear-gradient(135deg,#005b9f,#7c3aed);
-}
-
-#message{
+#handMessage{
   position:absolute;
-  top:105px;
+  left:50%;
+  bottom:3px;
+  transform:translateX(-50%);
+  z-index:33;
+
+  width:min(650px,75vw);
+
+  padding:12px 20px;
+
+  text-align:center;
+
+  background:rgba(15,23,27,.76);
+
+  color:white;
+
+  border-radius:15px;
+
+  font-size:11px;
+  line-height:1.55;
+
+  backdrop-filter:blur(10px);
+}
+
+/* ================================
+   SESSION HUD
+================================ */
+
+#sessionHud{
+  display:none;
+
+  position:absolute;
+  top:30px;
   left:50%;
   transform:translateX(-50%);
-  z-index:20;
-  color:white;
-  font-size:18px;
-  font-weight:900;
-  text-align:center;
-  text-shadow:0 2px 10px rgba(0,0,0,.65);
-  pointer-events:none;
+  z-index:100;
+
+  gap:10px;
 }
 
-#result{
+.session-stat{
+  min-width:110px;
+  padding:10px 16px;
+  text-align:center;
+
+  background:rgba(5,30,40,.90);
+
+  border:1px solid #61e2ee;
+  border-radius:13px;
+
+  color:white;
+
+  backdrop-filter:blur(10px);
+}
+
+.session-stat strong{
+  display:block;
+  font-size:21px;
+}
+
+.session-stat span{
+  font-size:8px;
+  color:#9cebf1;
+}
+
+#sessionInstruction{
+  display:none;
+
+  position:absolute;
+  top:95px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:100;
+
+  padding:10px 25px;
+
+  color:white;
+  font-weight:900;
+
+  background:rgba(2,20,29,.78);
+  border-radius:999px;
+}
+
+/* ================================
+   RESULT
+================================ */
+
+#resultModal{
+  display:none;
+
   position:absolute;
   inset:0;
-  z-index:60;
-  display:none;
+  z-index:500;
+
   align-items:center;
   justify-content:center;
-  background:rgba(2,6,23,.70);
-  backdrop-filter:blur(8px);
+
+  background:rgba(0,8,12,.72);
+
+  backdrop-filter:blur(9px);
 }
 
 .result-card{
-  width:min(470px,90%);
-  background:white;
-  border-radius:27px;
+  width:min(490px,90%);
+  background:#fff;
+  border-radius:25px;
   padding:28px;
   text-align:center;
 }
 
 .result-card img{
-  width:75px;
-  height:75px;
+  width:80px;
+  height:80px;
   object-fit:contain;
 }
 
 .result-card h2{
+  margin:10px 0 5px;
   color:#005b9f;
-  margin:12px 0 5px;
 }
 
-.results{
+.result-card p{
+  margin:0;
+  color:#64748b;
+  font-size:12px;
+}
+
+.result-stats{
+  margin-top:20px;
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:9px;
-  margin:20px 0;
+  gap:10px;
 }
 
 .result-stat{
+  padding:14px;
   background:#f1f5f9;
-  padding:13px 5px;
   border-radius:14px;
 }
 
 .result-stat strong{
   display:block;
-  font-size:20px;
+  font-size:22px;
   color:#15803d;
 }
 
@@ -241,37 +837,139 @@ canvas{
   color:#64748b;
 }
 
-#xrNote{
-  font-size:10px;
-  color:#64748b;
-  margin-top:10px;
-  line-height:1.6;
+.result-actions{
+  display:flex;
+  gap:9px;
+  margin-top:18px;
 }
 
-@media(max-width:650px){
-  #menu{
-    width:calc(100% - 20px);
-    left:10px;
-    bottom:10px;
-  }
-
-  #hud{
-    top:8px;
-    width:96%;
-    justify-content:center;
-  }
-
-  .hud-box{
-    min-width:0;
-    flex:1;
-    padding:7px;
-  }
-
-  #message{
-    top:82px;
-    font-size:14px;
-  }
+.result-actions button{
+  flex:1;
+  min-height:45px;
+  border:0;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:900;
 }
+
+.again{
+  color:white;
+  background:#0077c8;
+}
+
+.home{
+  color:#334155;
+  background:#e2e8f0;
+}
+
+/* ================================
+   SETTINGS
+================================ */
+
+#settingsModal,
+#instructionsModal{
+  display:none;
+
+  position:absolute;
+  inset:0;
+  z-index:600;
+
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,5,9,.72);
+}
+
+.modal-box{
+  width:min(430px,90%);
+  padding:25px;
+
+  background:white;
+  border-radius:23px;
+
+  color:#0f172a;
+}
+
+.modal-box h2{
+  color:#005b9f;
+  margin-top:0;
+}
+
+.setting{
+  margin:16px 0;
+}
+
+.setting label{
+  display:block;
+  margin-bottom:7px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.setting select{
+  width:100%;
+  height:45px;
+  border-radius:10px;
+  padding:0 10px;
+  border:1px solid #cbd5e1;
+}
+
+.modal-close{
+  margin-top:15px;
+  width:100%;
+  min-height:45px;
+  border:0;
+  border-radius:12px;
+  background:#005b9f;
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:1000px){
+
+  #brandPanel{
+    width:390px;
+    top:20px;
+    min-height:120px;
+  }
+
+  #activities{
+    width:95%;
+    top:190px;
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .activity{
+    min-height:205px;
+  }
+
+  .thumb{
+    height:75px;
+  }
+
+  #selectTitle{
+    display:none;
+  }
+
+  #startSession{
+    top:auto;
+    bottom:25px;
+  }
+
+  #patientPanel,
+  #tipsPanel,
+  #bottomBrand,
+  #handMessage{
+    display:none;
+  }
+
+}
+
 </style>
 </head>
 
@@ -280,106 +978,690 @@ canvas{
 <div id="app">
 
   <div id="loading">
-    <div class="loading-card">
+    <div class="loading-box">
       <img src="logo.png" alt="AKAZ">
-      <h1>AKAZ XR Rehabilitation</h1>
-      <p>Loading interactive rehabilitation environment...</p>
+      <h2>AKAZ XR Rehabilitation</h2>
+      <p>Loading rehabilitation center...</p>
     </div>
   </div>
 
-  <div id="hud">
-    <div class="hud-box">
-      <div class="hud-value" id="score">0</div>
-      <div class="hud-label">SCORE</div>
-    </div>
-
-    <div class="hud-box">
-      <div class="hud-value" id="hits">0</div>
-      <div class="hud-label">HITS</div>
-    </div>
-
-    <div class="hud-box">
-      <div class="hud-value" id="timer">60</div>
-      <div class="hud-label">TIME</div>
-    </div>
+  <div id="topLeft">
+    <button class="glass-btn" id="vrDesktopBtn">
+      🥽 Enter VR
+    </button>
   </div>
 
-  <div id="message">
-    Choose a rehabilitation activity
-  </div>
+  <div id="topRight">
 
-  <div id="menu">
-
-    <div class="brand">
-      <img src="logo.png" alt="AKAZ">
-
-      <div>
-        <strong>AKAZ Rehabilitation Games</strong>
-        <span>Physiotherapy Interactive Lab</span>
-      </div>
-    </div>
-
-    <div class="game-select">
-
-      <button class="game-btn active" data-game="reach">
-        🎯 Shoulder Reach
-      </button>
-
-      <button class="game-btn" data-game="fruit">
-        🍎 Fruit Reach
-      </button>
-
-      <button class="game-btn" data-game="reaction">
-        ⚡ Reaction
-      </button>
-
-      <button class="game-btn" data-game="cognitive">
-        🧠 Focus Game
-      </button>
-
-    </div>
-
-    <button class="action-btn" id="startBtn">
-      START SESSION
+    <button
+      class="glass-btn"
+      id="instructionsBtn"
+    >
+      ⓘ Instructions
     </button>
 
-    <div id="xrNote">
-      On Meta Quest, use Enter VR and interact using your hands when WebXR hand tracking is available.
+    <button
+      class="glass-btn"
+      id="settingsBtn"
+    >
+      ⚙
+    </button>
+
+  </div>
+
+  <div id="brandPanel">
+
+    <img
+      src="logo.png"
+      alt="AKAZ"
+    >
+
+    <div class="brand-text">
+
+      <h1>AKAZ</h1>
+
+      <h2>
+        XR REHABILITATION
+      </h2>
+
+      <div class="ar">
+        إعادة تأهيل بتقنية الواقع الافتراضي
+      </div>
+
+      <p>
+        Interactive Rehabilitation Lab
+      </p>
+
     </div>
 
   </div>
 
-  <div id="result">
+  <div id="selectTitle">
+    SELECT ACTIVITY
+  </div>
+
+  <!-- =====================================
+       ACTIVITIES
+  ====================================== -->
+
+  <div id="activities">
+
+    <!-- 1 -->
+
+    <button
+      class="activity active"
+      data-game="shoulder"
+    >
+
+      <span class="activity-number">
+        1
+      </span>
+
+      <div class="thumb">
+
+        <div class="thumb-room">
+
+          <div class="object ball"></div>
+
+        </div>
+
+      </div>
+
+      <h3>
+        Shoulder Reach
+      </h3>
+
+      <p>
+        Improve shoulder mobility and range of motion.
+      </p>
+
+      <div class="play-circle">
+        ▶
+      </div>
+
+    </button>
+
+    <!-- 2 -->
+
+    <button
+      class="activity"
+      data-game="hand"
+    >
+
+      <span class="activity-number">
+        2
+      </span>
+
+      <div class="thumb">
+
+        <div class="thumb-room">
+
+          <div class="object cube"></div>
+
+        </div>
+
+      </div>
+
+      <h3>
+        Hand Grip
+      </h3>
+
+      <p>
+        Enhance hand strength, grip control and precision.
+      </p>
+
+      <div class="play-circle">
+        ▶
+      </div>
+
+    </button>
+
+    <!-- 3 -->
+
+    <button
+      class="activity"
+      data-game="transfer"
+    >
+
+      <span class="activity-number">
+        3
+      </span>
+
+      <div class="thumb">
+
+        <div class="thumb-room">
+
+          <div class="object cups">
+
+            <div class="cup red"></div>
+            <div class="cup blue"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <h3>
+        Object Transfer
+      </h3>
+
+      <p>
+        Practice hand-eye coordination and controlled movement.
+      </p>
+
+      <div class="play-circle">
+        ▶
+      </div>
+
+    </button>
+
+    <!-- 4 -->
+
+    <button
+      class="activity"
+      data-game="reaction"
+    >
+
+      <span class="activity-number">
+        4
+      </span>
+
+      <div class="thumb">
+
+        <div class="thumb-room" style="background:#15222b">
+
+          <div class="object lights">
+
+            <div class="light green"></div>
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <h3>
+        Reaction Lights
+      </h3>
+
+      <p>
+        Improve reaction time and visual processing.
+      </p>
+
+      <div class="play-circle">
+        ▶
+      </div>
+
+    </button>
+
+    <!-- 5 -->
+
+    <button
+      class="activity"
+      data-game="balance"
+    >
+
+      <span class="activity-number">
+        5
+      </span>
+
+      <div class="thumb">
+
+        <div class="thumb-room">
+
+          <div class="object platform"></div>
+
+          <div class="object person"></div>
+
+        </div>
+
+      </div>
+
+      <h3>
+        Balance Training
+      </h3>
+
+      <p>
+        Improve balance, control and postural stability.
+      </p>
+
+      <div class="play-circle">
+        ▶
+      </div>
+
+    </button>
+
+    <!-- 6 -->
+
+    <button
+      class="activity"
+      data-game="functional"
+    >
+
+      <span class="activity-number">
+        6
+      </span>
+
+      <div class="thumb">
+
+        <div class="thumb-room">
+
+          <div class="object basket"></div>
+
+        </div>
+
+      </div>
+
+      <h3>
+        Functional Tasks
+      </h3>
+
+      <p>
+        Simulate daily living tasks and functional activities.
+      </p>
+
+      <div class="play-circle">
+        ▶
+      </div>
+
+    </button>
+
+  </div>
+
+  <button id="startSession">
+    ▶ &nbsp; START SESSION
+  </button>
+
+  <!-- =====================================
+       PATIENT
+  ====================================== -->
+
+  <div id="patientPanel">
+
+    <div class="patient-head">
+
+      <div class="patient-avatar">
+        ♙
+      </div>
+
+      <div>
+
+        <strong>
+          مريض تجريبي
+        </strong>
+
+        <span>
+          Test Patient
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="patient-stats">
+
+      <div class="patient-stat">
+
+        <label>
+          Session
+        </label>
+
+        <strong id="sessionNumber">
+          01
+        </strong>
+
+      </div>
+
+      <div class="patient-stat">
+
+        <label>
+          Duration
+        </label>
+
+        <strong id="durationText">
+          00:00
+        </strong>
+
+      </div>
+
+      <div class="patient-stat">
+
+        <label>
+          Score
+        </label>
+
+        <strong id="smallScore">
+          0
+        </strong>
+
+      </div>
+
+      <div class="patient-stat">
+
+        <label>
+          Best Score
+        </label>
+
+        <strong id="bestScore">
+          0
+        </strong>
+
+      </div>
+
+    </div>
+
+    <button id="progressBtn">
+      ▥ &nbsp; VIEW PROGRESS
+    </button>
+
+  </div>
+
+  <!-- =====================================
+       TIPS
+  ====================================== -->
+
+  <div id="tipsPanel">
+
+    <h3>
+      TIPS
+    </h3>
+
+    <div class="tip">
+      <div class="tip-icon">☝</div>
+      Use your hands to interact
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">◎</div>
+      Touch objects to select
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">→</div>
+      Follow the instructions
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">✓</div>
+      Move slowly and safely
+    </div>
+
+    <div class="tip">
+      <div class="tip-icon">★</div>
+      Have a great session!
+    </div>
+
+  </div>
+
+  <div id="bottomBrand">
+
+    <img
+      src="logo.png"
+      alt="AKAZ"
+    >
+
+    AKAZ
+
+  </div>
+
+  <div id="handMessage">
+    🖐 &nbsp;
+    This experience supports hand tracking in VR.
+    Make sure your hands are visible to the headset cameras.
+  </div>
+
+  <!-- =====================================
+       SESSION HUD
+  ====================================== -->
+
+  <div id="sessionHud">
+
+    <div class="session-stat">
+
+      <strong id="scoreValue">
+        0
+      </strong>
+
+      <span>
+        SCORE
+      </span>
+
+    </div>
+
+    <div class="session-stat">
+
+      <strong id="hitsValue">
+        0
+      </strong>
+
+      <span>
+        HITS
+      </span>
+
+    </div>
+
+    <div class="session-stat">
+
+      <strong id="timeValue">
+        60
+      </strong>
+
+      <span>
+        TIME
+      </span>
+
+    </div>
+
+  </div>
+
+  <div id="sessionInstruction">
+    Reach and touch the target
+  </div>
+
+  <!-- =====================================
+       RESULT
+  ====================================== -->
+
+  <div id="resultModal">
 
     <div class="result-card">
 
-      <img src="logo.png" alt="AKAZ">
+      <img
+        src="logo.png"
+        alt="AKAZ"
+      >
 
-      <h2>Session Complete</h2>
+      <h2>
+        Session Complete
+      </h2>
 
-      <p>AKAZ Physiotherapy Center</p>
+      <p>
+        AKAZ Physiotherapy Center
+      </p>
 
-      <div class="results">
+      <div class="result-stats">
 
         <div class="result-stat">
-          <strong id="finalScore">0</strong>
-          <span>SCORE</span>
+
+          <strong id="finalScore">
+            0
+          </strong>
+
+          <span>
+            SCORE
+          </span>
+
         </div>
 
         <div class="result-stat">
-          <strong id="finalHits">0</strong>
-          <span>TARGETS</span>
+
+          <strong id="finalHits">
+            0
+          </strong>
+
+          <span>
+            HITS
+          </span>
+
         </div>
 
         <div class="result-stat">
-          <strong id="finalReaction">0s</strong>
-          <span>REACTION</span>
+
+          <strong id="finalReaction">
+            —
+          </strong>
+
+          <span>
+            AVG. REACTION
+          </span>
+
         </div>
 
       </div>
 
-      <button class="action-btn" id="againBtn">
-        PLAY AGAIN
+      <div class="result-actions">
+
+        <button
+          class="again"
+          id="againBtn"
+        >
+          PLAY AGAIN
+        </button>
+
+        <button
+          class="home"
+          id="homeBtn"
+        >
+          MAIN MENU
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =====================================
+       SETTINGS
+  ====================================== -->
+
+  <div id="settingsModal">
+
+    <div class="modal-box">
+
+      <h2>
+        Session Settings
+      </h2>
+
+      <div class="setting">
+
+        <label>
+          Session Duration
+        </label>
+
+        <select id="durationSelect">
+
+          <option value="30">
+            30 seconds
+          </option>
+
+          <option
+            value="60"
+            selected
+          >
+            60 seconds
+          </option>
+
+          <option value="90">
+            90 seconds
+          </option>
+
+          <option value="120">
+            2 minutes
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="setting">
+
+        <label>
+          Difficulty
+        </label>
+
+        <select id="difficultySelect">
+
+          <option value="easy">
+            Easy
+          </option>
+
+          <option
+            value="medium"
+            selected
+          >
+            Medium
+          </option>
+
+          <option value="hard">
+            Advanced
+          </option>
+
+        </select>
+
+      </div>
+
+      <button
+        class="modal-close"
+        id="settingsClose"
+      >
+        SAVE & CLOSE
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- =====================================
+       INSTRUCTIONS
+  ====================================== -->
+
+  <div id="instructionsModal">
+
+    <div class="modal-box">
+
+      <h2>
+        How to use
+      </h2>
+
+      <p>
+        1. Select a rehabilitation activity.
+      </p>
+
+      <p>
+        2. Press START SESSION.
+      </p>
+
+      <p>
+        3. On desktop, click the targets with the mouse.
+      </p>
+
+      <p>
+        4. On Meta Quest, enter VR and reach toward the targets using your hands.
+      </p>
+
+      <p>
+        5. Move within a safe treatment area and remain supervised by a therapist.
+      </p>
+
+      <button
+        class="modal-close"
+        id="instructionsClose"
+      >
+        CLOSE
       </button>
 
     </div>
@@ -399,59 +1681,57 @@ from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/webxr/VRButton.js/
 import { XRHandModelFactory }
 from "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/webxr/XRHandModelFactory.js/+esm";
 
-/* =================================
-   BASIC SETUP
-================================= */
-
-const app =
-  document.getElementById("app");
+/* ====================================================
+   THREE SETUP
+==================================================== */
 
 const scene =
   new THREE.Scene();
 
 scene.background =
-  new THREE.Color(0x8dd7ff);
+  new THREE.Color(
+    0xdde5e7
+  );
 
 scene.fog =
   new THREE.Fog(
-    0x8dd7ff,
-    8,
-    25
+    0xdde5e7,
+    14,
+    42
   );
 
 const camera =
   new THREE.PerspectiveCamera(
-    65,
-    innerWidth / innerHeight,
+    60,
+    window.innerWidth /
+    window.innerHeight,
     .01,
     100
   );
 
 camera.position.set(
   0,
-  1.65,
-  3.6
+  1.68,
+  7.8
 );
 
 const renderer =
   new THREE.WebGLRenderer({
-    antialias:true
+    antialias:true,
+    powerPreference:"high-performance"
   });
 
 renderer.setPixelRatio(
   Math.min(
-    devicePixelRatio,
+    window.devicePixelRatio,
     2
   )
 );
 
 renderer.setSize(
-  innerWidth,
-  innerHeight
+  window.innerWidth,
+  window.innerHeight
 );
-
-renderer.xr.enabled =
-  true;
 
 renderer.shadowMap.enabled =
   true;
@@ -459,15 +1739,31 @@ renderer.shadowMap.enabled =
 renderer.shadowMap.type =
   THREE.PCFSoftShadowMap;
 
-app.prepend(
-  renderer.domElement
-);
+renderer.xr.enabled =
+  true;
 
-/* =================================
-   VR BUTTON
-================================= */
+renderer.outputColorSpace =
+  THREE.SRGBColorSpace;
 
-const vrButton =
+renderer.toneMapping =
+  THREE.ACESFilmicToneMapping;
+
+renderer.toneMappingExposure =
+  1.05;
+
+document
+  .getElementById(
+    "app"
+  )
+  .prepend(
+    renderer.domElement
+  );
+
+/* ====================================================
+   VR
+==================================================== */
+
+const realVRButton =
   VRButton.createButton(
     renderer,
     {
@@ -478,163 +1774,659 @@ const vrButton =
     }
   );
 
+realVRButton.style.display =
+  "none";
+
 document.body.appendChild(
-  vrButton
+  realVRButton
 );
 
-/* =================================
-   LIGHT
-================================= */
-
-scene.add(
-  new THREE.HemisphereLight(
-    0xffffff,
-    0x49764a,
-    2
+document
+  .getElementById(
+    "vrDesktopBtn"
   )
-);
-
-const sun =
-  new THREE.DirectionalLight(
-    0xffffff,
-    2.2
+  .addEventListener(
+    "click",
+    ()=>{
+      realVRButton.click();
+    }
   );
 
-sun.position.set(
-  5,
-  8,
+/* ====================================================
+   LIGHTING
+==================================================== */
+
+const hemi =
+  new THREE.HemisphereLight(
+    0xffffff,
+    0xb1aaa0,
+    1.7
+  );
+
+scene.add(
+  hemi
+);
+
+const mainLight =
+  new THREE.DirectionalLight(
+    0xffffff,
+    2
+  );
+
+mainLight.position.set(
+  -3,
+  7,
   4
 );
 
-sun.castShadow =
+mainLight.castShadow =
   true;
 
-scene.add(
-  sun
+mainLight.shadow.mapSize.set(
+  2048,
+  2048
 );
 
-/* =================================
-   GROUND
-================================= */
+scene.add(
+  mainLight
+);
 
-const ground =
-  new THREE.Mesh(
-    new THREE.PlaneGeometry(
-      30,
-      30
-    ),
+/* ====================================================
+   MATERIALS
+==================================================== */
+
+const materials = {
+
+  wall:
     new THREE.MeshStandardMaterial({
-      color:0x4fae65,
-      roughness:.9
+      color:0xf0f1ee,
+      roughness:.72
+    }),
+
+  floor:
+    new THREE.MeshStandardMaterial({
+      color:0xdad8d1,
+      roughness:.32,
+      metalness:.08
+    }),
+
+  ceiling:
+    new THREE.MeshStandardMaterial({
+      color:0xf6f7f5,
+      roughness:.78
+    }),
+
+  wood:
+    new THREE.MeshStandardMaterial({
+      color:0xb9a28a,
+      roughness:.60
+    }),
+
+  dark:
+    new THREE.MeshStandardMaterial({
+      color:0x1a2730,
+      roughness:.45
+    }),
+
+  blue:
+    new THREE.MeshStandardMaterial({
+      color:0x006c9e,
+      roughness:.42
+    }),
+
+  chair:
+    new THREE.MeshStandardMaterial({
+      color:0x173b50,
+      roughness:.56
+    }),
+
+  metal:
+    new THREE.MeshStandardMaterial({
+      color:0x9aa4aa,
+      metalness:.62,
+      roughness:.30
     })
+
+};
+
+/* ====================================================
+   HELPERS
+==================================================== */
+
+function box(
+  w,
+  h,
+  d,
+  material,
+  x,
+  y,
+  z
+){
+
+  const mesh =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        w,
+        h,
+        d
+      ),
+      material
+    );
+
+  mesh.position.set(
+    x,
+    y,
+    z
   );
 
-ground.rotation.x =
-  -Math.PI / 2;
+  mesh.castShadow =
+    true;
 
-ground.receiveShadow =
-  true;
+  mesh.receiveShadow =
+    true;
 
-scene.add(
-  ground
+  scene.add(
+    mesh
+  );
+
+  return mesh;
+
+}
+
+/* ====================================================
+   FLOOR
+==================================================== */
+
+box(
+  17,
+  .12,
+  22,
+  materials.floor,
+  0,
+  -.06,
+  -1
 );
 
-/* =================================
-   ROOM / ENVIRONMENT
-================================= */
+/* ====================================================
+   CEILING
+==================================================== */
 
-function createBuilding(){
+box(
+  17,
+  .13,
+  22,
+  materials.ceiling,
+  0,
+  3.35,
+  -1
+);
 
-  const wallMaterial =
-    new THREE.MeshStandardMaterial({
-      color:0xf8fafc
-    });
+/* ====================================================
+   WALLS
+==================================================== */
 
-  const floor =
-    new THREE.Mesh(
-      new THREE.BoxGeometry(
-        8,
-        .08,
-        6
-      ),
-      new THREE.MeshStandardMaterial({
-        color:0xe2e8f0
-      })
-    );
+box(
+  .18,
+  3.4,
+  22,
+  materials.wall,
+  -8.4,
+  1.65,
+  -1
+);
 
-  floor.position.set(
-    0,
-    .04,
-    -1
+box(
+  .18,
+  3.4,
+  22,
+  materials.wall,
+  8.4,
+  1.65,
+  -1
+);
+
+/* back */
+
+box(
+  17,
+  3.4,
+  .18,
+  materials.wall,
+  0,
+  1.65,
+  -12
+);
+
+/* ====================================================
+   HALLWAY COLUMNS
+==================================================== */
+
+for(
+  const x
+  of
+  [-6.5,-4.3,4.3,6.5]
+){
+
+  box(
+    .55,
+    3.4,
+    .8,
+    materials.wood,
+    x,
+    1.7,
+    -3
   );
 
-  floor.receiveShadow =
-    true;
-
-  scene.add(
-    floor
-  );
-
-  const backWall =
-    new THREE.Mesh(
-      new THREE.BoxGeometry(
-        8,
-        3.8,
-        .12
-      ),
-      wallMaterial
-    );
-
-  backWall.position.set(
-    0,
-    1.9,
-    -4
-  );
-
-  backWall.receiveShadow =
-    true;
-
-  scene.add(
-    backWall
-  );
-
-  const side1 =
-    new THREE.Mesh(
-      new THREE.BoxGeometry(
-        .12,
-        3.8,
-        6
-      ),
-      wallMaterial
-    );
-
-  side1.position.set(
-    -4,
-    1.9,
-    -1
-  );
-
-  scene.add(
-    side1
-  );
-
-  const side2 =
-    side1.clone();
-
-  side2.position.x =
-    4;
-
-  scene.add(
-    side2
+  box(
+    .55,
+    3.4,
+    .8,
+    materials.wood,
+    x,
+    1.7,
+    -7
   );
 
 }
 
-createBuilding();
+/* ====================================================
+   LIGHT PANELS
+==================================================== */
 
-/* =================================
-   AKAZ LOGO INSIDE WORLD
-================================= */
+for(
+  let z=5;
+  z>-11;
+  z-=2.1
+){
+
+  for(
+    const x
+    of
+    [-5.5,-2.8,0,2.8,5.5]
+  ){
+
+    const light =
+      box(
+        .55,
+        .035,
+        .18,
+        new THREE.MeshBasicMaterial({
+          color:0xffffff
+        }),
+        x,
+        3.26,
+        z
+      );
+
+    const point =
+      new THREE.PointLight(
+        0xffffff,
+        .42,
+        3.7
+      );
+
+    point.position.set(
+      x,
+      3.0,
+      z
+    );
+
+    scene.add(
+      point
+    );
+
+  }
+
+}
+
+/* ====================================================
+   RECEPTION DESK
+==================================================== */
+
+const reception =
+  new THREE.Group();
+
+const deskFront =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      4.1,
+      1.0,
+      .55
+    ),
+    materials.blue
+  );
+
+deskFront.position.set(
+  -5.7,
+  .5,
+  2.3
+);
+
+deskFront.castShadow =
+  true;
+
+reception.add(
+  deskFront
+);
+
+const deskTop =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      4.3,
+      .10,
+      .85
+    ),
+    new THREE.MeshStandardMaterial({
+      color:0xdfe7e8,
+      roughness:.25
+    })
+  );
+
+deskTop.position.set(
+  -5.7,
+  1.02,
+  2.25
+);
+
+reception.add(
+  deskTop
+);
+
+const deskGlow =
+  new THREE.Mesh(
+    new THREE.BoxGeometry(
+      4.0,
+      .035,
+      .04
+    ),
+    new THREE.MeshBasicMaterial({
+      color:0x72ebf3
+    })
+  );
+
+deskGlow.position.set(
+  -5.7,
+  .28,
+  2.59
+);
+
+reception.add(
+  deskGlow
+);
+
+scene.add(
+  reception
+);
+
+/* ====================================================
+   MONITORS
+==================================================== */
+
+function monitor(
+  x,
+  y,
+  z
+){
+
+  const screen =
+    box(
+      .60,
+      .38,
+      .05,
+      materials.dark,
+      x,
+      y,
+      z
+    );
+
+  box(
+    .05,
+    .30,
+    .05,
+    materials.metal,
+    x,
+    y-.30,
+    z
+  );
+
+  return screen;
+
+}
+
+monitor(
+  -6.3,
+  1.45,
+  2.0
+);
+
+monitor(
+  -5.0,
+  1.45,
+  2.0
+);
+
+/* ====================================================
+   CHAIRS
+==================================================== */
+
+function makeChair(
+  x,
+  z
+){
+
+  box(
+    .78,
+    .12,
+    .67,
+    materials.chair,
+    x,
+    .50,
+    z
+  );
+
+  box(
+    .78,
+    .73,
+    .10,
+    materials.chair,
+    x,
+    .91,
+    z+.28
+  );
+
+  for(
+    const dx
+    of
+    [-.31,.31]
+  ){
+
+    box(
+      .05,
+      .48,
+      .05,
+      materials.metal,
+      x+dx,
+      .23,
+      z
+    );
+
+  }
+
+}
+
+for(
+  let i=0;
+  i<3;
+  i++
+){
+
+  makeChair(
+    5.6+i*.95,
+    2.7
+  );
+
+}
+
+/* ====================================================
+   DOORS
+==================================================== */
+
+function makeDoor(
+  x,
+  z,
+  rotation=0
+){
+
+  const door =
+    box(
+      1.05,
+      2.35,
+      .08,
+      materials.wood,
+      x,
+      1.18,
+      z
+    );
+
+  door.rotation.y =
+    rotation;
+
+  return door;
+
+}
+
+makeDoor(
+  -8.28,
+  -2.2,
+  Math.PI/2
+);
+
+makeDoor(
+  -8.28,
+  -6.5,
+  Math.PI/2
+);
+
+makeDoor(
+  8.28,
+  -2.2,
+  Math.PI/2
+);
+
+makeDoor(
+  8.28,
+  -6.5,
+  Math.PI/2
+);
+
+/* ====================================================
+   PLANTS
+==================================================== */
+
+function plant(
+  x,
+  z
+){
+
+  const potMaterial =
+    new THREE.MeshStandardMaterial({
+      color:0x79634f,
+      roughness:.75
+    });
+
+  const pot =
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        .25,
+        .34,
+        .55,
+        24
+      ),
+      potMaterial
+    );
+
+  pot.position.set(
+    x,
+    .27,
+    z
+  );
+
+  scene.add(
+    pot
+  );
+
+  for(
+    let i=0;
+    i<9;
+    i++
+  ){
+
+    const leaf =
+      new THREE.Mesh(
+        new THREE.SphereGeometry(
+          .20,
+          14,
+          14
+        ),
+        new THREE.MeshStandardMaterial({
+          color:
+            i%2
+            ?
+            0x225d35
+            :
+            0x2d7742,
+          roughness:.78
+        })
+      );
+
+    leaf.scale.set(
+      .45,
+      1.8,
+      .30
+    );
+
+    leaf.rotation.z =
+      THREE.MathUtils.randFloat(
+        -.65,
+        .65
+      );
+
+    leaf.position.set(
+      x +
+      THREE.MathUtils.randFloat(
+        -.25,
+        .25
+      ),
+      .75 +
+      Math.random()*.65,
+      z +
+      THREE.MathUtils.randFloat(
+        -.15,
+        .15
+      )
+    );
+
+    scene.add(
+      leaf
+    );
+
+  }
+
+}
+
+plant(
+  -7.6,
+  2.5
+);
+
+plant(
+  7.4,
+  2.4
+);
+
+/* ====================================================
+   AKAZ LOGO ON WALL
+==================================================== */
 
 const textureLoader =
   new THREE.TextureLoader();
@@ -649,8 +2441,8 @@ textureLoader.load(
     const logo =
       new THREE.Mesh(
         new THREE.PlaneGeometry(
-          1.65,
-          1.65
+          2.4,
+          1.6
         ),
         new THREE.MeshBasicMaterial({
           map:texture,
@@ -659,10 +2451,13 @@ textureLoader.load(
       );
 
     logo.position.set(
-      0,
-      2.25,
-      -3.91
+      -7.98,
+      2.12,
+      1.0
     );
+
+    logo.rotation.y =
+      Math.PI/2;
 
     scene.add(
       logo
@@ -671,302 +2466,161 @@ textureLoader.load(
   }
 );
 
-/* =================================
-   CENTER SIGN
-================================= */
+/* ====================================================
+   WALL POSTER
+==================================================== */
 
-const signCanvas =
-  document.createElement(
-    "canvas"
+function canvasTexture(
+  lines,
+  background,
+  color
+){
+
+  const canvas =
+    document.createElement(
+      "canvas"
+    );
+
+  canvas.width =
+    1024;
+
+  canvas.height =
+    1500;
+
+  const ctx =
+    canvas.getContext(
+      "2d"
+    );
+
+  ctx.fillStyle =
+    background;
+
+  ctx.fillRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
   );
 
-signCanvas.width =
-  1024;
+  ctx.fillStyle =
+    color;
 
-signCanvas.height =
-  256;
+  ctx.textAlign =
+    "center";
 
-const ctx =
-  signCanvas.getContext(
-    "2d"
+  ctx.font =
+    "bold 70px Arial";
+
+  let y =
+    180;
+
+  lines.forEach(
+    line=>{
+
+      ctx.fillText(
+        line,
+        512,
+        y
+      );
+
+      y+=105;
+
+    }
   );
 
-ctx.fillStyle =
-  "#005b9f";
-
-ctx.fillRect(
-  0,
-  0,
-  1024,
-  256
-);
-
-ctx.fillStyle =
-  "#ffffff";
-
-ctx.textAlign =
-  "center";
-
-ctx.font =
-  "bold 66px Arial";
-
-ctx.fillText(
-  "AKAZ PHYSIOTHERAPY CENTER",
-  512,
-  112
-);
-
-ctx.fillStyle =
-  "#fbbf24";
-
-ctx.font =
-  "bold 34px Arial";
-
-ctx.fillText(
-  "Interactive Rehabilitation Lab",
-  512,
-  176
-);
-
-const signTexture =
-  new THREE.CanvasTexture(
-    signCanvas
+  return new THREE.CanvasTexture(
+    canvas
   );
 
-const sign =
+}
+
+const posterTexture =
+  canvasTexture(
+    [
+      "WE HELP YOU",
+      "MOVE BETTER",
+      "",
+      "AKAZ"
+    ],
+    "#163443",
+    "#ffffff"
+  );
+
+const poster =
   new THREE.Mesh(
     new THREE.PlaneGeometry(
-      4,
-      1
+      1.45,
+      2.15
+    ),
+    new THREE.MeshBasicMaterial({
+      map:posterTexture
+    })
+  );
+
+poster.position.set(
+  7.98,
+  1.75,
+  -.2
+);
+
+poster.rotation.y =
+  -Math.PI/2;
+
+scene.add(
+  poster
+);
+
+/* ====================================================
+   HALL SIGNS
+==================================================== */
+
+const signTexture =
+  canvasTexture(
+    [
+      "THERAPY ROOMS",
+      "1 - 4  →"
+    ],
+    "#e8eef0",
+    "#153c52"
+  );
+
+const roomSign =
+  new THREE.Mesh(
+    new THREE.PlaneGeometry(
+      1.25,
+      .75
     ),
     new THREE.MeshBasicMaterial({
       map:signTexture
     })
   );
 
-sign.position.set(
-  0,
-  3.15,
-  -3.9
+roomSign.position.set(
+  4.5,
+  2.1,
+  -3.1
 );
 
 scene.add(
-  sign
+  roomSign
 );
 
-/* =================================
-   DECORATION
-================================= */
+/* ====================================================
+   GAME OBJECTS
+==================================================== */
 
-function addPlant(
-  x,
-  z
-){
-
-  const pot =
-    new THREE.Mesh(
-      new THREE.CylinderGeometry(
-        .22,
-        .28,
-        .45,
-        20
-      ),
-      new THREE.MeshStandardMaterial({
-        color:0x8b4513
-      })
-    );
-
-  pot.position.set(
-    x,
-    .22,
-    z
-  );
-
-  scene.add(
-    pot
-  );
-
-  for(
-    let i=0;
-    i<7;
-    i++
-  ){
-
-    const leaf =
-      new THREE.Mesh(
-        new THREE.SphereGeometry(
-          .18,
-          16,
-          16
-        ),
-        new THREE.MeshStandardMaterial({
-          color:0x15803d
-        })
-      );
-
-    leaf.scale.set(
-      .55,
-      1.5,
-      .45
-    );
-
-    leaf.position.set(
-      x +
-      (
-        Math.random()-.5
-      )*.35,
-      .65 +
-      Math.random()*.4,
-      z +
-      (
-        Math.random()-.5
-      )*.25
-    );
-
-    scene.add(
-      leaf
-    );
-
-  }
-
-}
-
-addPlant(
-  -3.2,
-  -3.3
-);
-
-addPlant(
-  3.2,
-  -3.3
-);
-
-/* =================================
-   TARGETS
-================================= */
-
-const targets =
-  [];
-
-const targetGroup =
+const therapyObjects =
   new THREE.Group();
 
 scene.add(
-  targetGroup
+  therapyObjects
 );
 
-function createTarget(){
+const interactables =
+  [];
 
-  let geometry;
-  let material;
-
-  if(
-    currentGame ===
-    "fruit"
-  ){
-
-    geometry =
-      new THREE.SphereGeometry(
-        .16,
-        28,
-        28
-      );
-
-    material =
-      new THREE.MeshStandardMaterial({
-        color:0xe11d48,
-        roughness:.35
-      });
-
-  }else{
-
-    geometry =
-      new THREE.SphereGeometry(
-        .15,
-        28,
-        28
-      );
-
-    material =
-      new THREE.MeshStandardMaterial({
-        color:
-          currentGame ===
-          "reaction"
-          ?
-          0xfbbf24
-          :
-          0x22d3ee,
-
-        emissive:
-          currentGame ===
-          "reaction"
-          ?
-          0x754b00
-          :
-          0x075985,
-
-        emissiveIntensity:.65
-      });
-
-  }
-
-  const target =
-    new THREE.Mesh(
-      geometry,
-      material
-    );
-
-  target.castShadow =
-    true;
-
-  target.userData.isTarget =
-    true;
-
-  targetGroup.add(
-    target
-  );
-
-  targets.push(
-    target
-  );
-
-  if(
-    currentGame ===
-    "fruit"
-  ){
-
-    const stem =
-      new THREE.Mesh(
-        new THREE.CylinderGeometry(
-          .018,
-          .018,
-          .12,
-          8
-        ),
-        new THREE.MeshStandardMaterial({
-          color:0x4d7c0f
-        })
-      );
-
-    stem.position.y =
-      .18;
-
-    target.add(
-      stem
-    );
-
-  }
-
-  return target;
-
-}
-
-/* =================================
-   GAME STATE
-================================= */
-
-let currentGame =
-  "reach";
+let selectedGame =
+  "shoulder";
 
 let playing =
   false;
@@ -980,325 +2634,518 @@ let hits =
 let timeLeft =
   60;
 
-let startTime =
-  0;
+let sessionTimer =
+  null;
 
-let targetSpawnTime =
+let targetStarted =
   0;
 
 let reactions =
   [];
 
-let gameTimer =
-  null;
+let difficulty =
+  "medium";
 
-const messages = {
+/* ====================================================
+   CLEAR
+==================================================== */
 
-  reach:
-    "Reach and touch the targets",
+function clearTherapyObjects(){
 
-  fruit:
-    "Reach and collect the fruit",
+  interactables.length =
+    0;
 
-  reaction:
-    "React as quickly as possible",
+  while(
+    therapyObjects.children.length
+  ){
 
-  cognitive:
-    "Touch only the BLUE target"
+    const object =
+      therapyObjects.children[0];
 
-};
+    therapyObjects.remove(
+      object
+    );
 
-/* =================================
-   POSITION TARGET
-================================= */
+    object.traverse(
+      child=>{
 
-function positionTarget(
+        if(child.geometry){
+          child.geometry.dispose();
+        }
+
+      }
+    );
+
+  }
+
+}
+
+/* ====================================================
+   TARGET MATERIAL
+==================================================== */
+
+function targetMaterial(
+  color
+){
+
+  return new THREE.MeshStandardMaterial({
+    color,
+    emissive:color,
+    emissiveIntensity:.22,
+    roughness:.30,
+    metalness:.04
+  });
+
+}
+
+/* ====================================================
+   SHOULDER REACH
+==================================================== */
+
+function shoulderTarget(){
+
+  const target =
+    new THREE.Mesh(
+      new THREE.SphereGeometry(
+        .17,
+        32,
+        32
+      ),
+      targetMaterial(
+        0x197eb4
+      )
+    );
+
+  target.userData.target =
+    true;
+
+  therapyObjects.add(
+    target
+  );
+
+  interactables.push(
+    target
+  );
+
+  moveReachTarget(
+    target
+  );
+
+}
+
+function moveReachTarget(
   target
 ){
 
-  let x;
-  let y;
-  let z;
+  let range =
+    1.1;
 
   if(
-    currentGame ===
-    "reach" ||
-    currentGame ===
-    "fruit"
+    difficulty==="easy"
   ){
-
-    x =
-      THREE.MathUtils.randFloat(
-        -1.25,
-        1.25
-      );
-
-    y =
-      THREE.MathUtils.randFloat(
-        1.0,
-        2.35
-      );
-
-    z =
-      THREE.MathUtils.randFloat(
-        -.8,
-        .15
-      );
-
+    range=.75;
   }
 
-  else if(
-    currentGame ===
-    "reaction"
+  if(
+    difficulty==="hard"
   ){
-
-    x =
-      THREE.MathUtils.randFloat(
-        -1.6,
-        1.6
-      );
-
-    y =
-      THREE.MathUtils.randFloat(
-        .85,
-        2.25
-      );
-
-    z =
-      THREE.MathUtils.randFloat(
-        -1,
-        .3
-      );
-
-  }
-
-  else{
-
-    x =
-      THREE.MathUtils.randFloat(
-        -1.4,
-        1.4
-      );
-
-    y =
-      THREE.MathUtils.randFloat(
-        .9,
-        2.25
-      );
-
-    z =
-      THREE.MathUtils.randFloat(
-        -.8,
-        .2
-      );
-
+    range=1.45;
   }
 
   target.position.set(
-    x,
-    y,
-    z
+    THREE.MathUtils.randFloat(
+      -range,
+      range
+    ),
+    THREE.MathUtils.randFloat(
+      1.05,
+      difficulty==="hard"
+      ?
+      2.50
+      :
+      2.15
+    ),
+    THREE.MathUtils.randFloat(
+      1.0,
+      2.1
+    )
   );
 
-  targetSpawnTime =
+  targetStarted =
     performance.now();
 
 }
 
-/* =================================
-   SPAWN
-================================= */
+/* ====================================================
+   HAND GRIP
+==================================================== */
 
-function spawnTargets(){
+function handGripGame(){
 
-  clearTargets();
+  for(
+    let i=0;
+    i<4;
+    i++
+  ){
+
+    const cube =
+      new THREE.Mesh(
+        new THREE.BoxGeometry(
+          .25,
+          .25,
+          .25
+        ),
+        targetMaterial(
+          [
+            0x0077c8,
+            0x22c55e,
+            0xf59e0b,
+            0x8b5cf6
+          ][i]
+        )
+      );
+
+    cube.position.set(
+      -0.75 +
+      i*.50,
+      1.05 +
+      (i%2)*.35,
+      1.35
+    );
+
+    cube.userData.target =
+      true;
+
+    therapyObjects.add(
+      cube
+    );
+
+    interactables.push(
+      cube
+    );
+
+  }
+
+  targetStarted =
+    performance.now();
+
+}
+
+/* ====================================================
+   TRANSFER
+==================================================== */
+
+function transferGame(){
+
+  for(
+    let i=0;
+    i<3;
+    i++
+  ){
+
+    const cylinder =
+      new THREE.Mesh(
+        new THREE.CylinderGeometry(
+          .12,
+          .12,
+          .35,
+          20
+        ),
+        targetMaterial(
+          [
+            0xef4444,
+            0x0077c8,
+            0xfbbf24
+          ][i]
+        )
+      );
+
+    cylinder.position.set(
+      -.55+i*.55,
+      1.15,
+      1.35
+    );
+
+    cylinder.userData.target =
+      true;
+
+    therapyObjects.add(
+      cylinder
+    );
+
+    interactables.push(
+      cylinder
+    );
+
+  }
+
+  targetStarted =
+    performance.now();
+
+}
+
+/* ====================================================
+   REACTION
+==================================================== */
+
+function reactionGame(){
+
+  const colors = [
+    0x22c55e,
+    0xef4444,
+    0xfbbf24
+  ];
+
+  for(
+    let i=0;
+    i<3;
+    i++
+  ){
+
+    const light =
+      new THREE.Mesh(
+        new THREE.SphereGeometry(
+          .15,
+          26,
+          26
+        ),
+        targetMaterial(
+          colors[i]
+        )
+      );
+
+    light.position.set(
+      -.55+i*.55,
+      1.6,
+      1.25
+    );
+
+    light.userData.target =
+      true;
+
+    therapyObjects.add(
+      light
+    );
+
+    interactables.push(
+      light
+    );
+
+  }
+
+  targetStarted =
+    performance.now();
+
+}
+
+/* ====================================================
+   BALANCE
+==================================================== */
+
+function balanceGame(){
+
+  const platform =
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        .75,
+        .75,
+        .08,
+        48
+      ),
+      targetMaterial(
+        0x0077c8
+      )
+    );
+
+  platform.position.set(
+    0,
+    .08,
+    1.5
+  );
+
+  therapyObjects.add(
+    platform
+  );
+
+  const target =
+    new THREE.Mesh(
+      new THREE.RingGeometry(
+        .20,
+        .30,
+        32
+      ),
+      new THREE.MeshBasicMaterial({
+        color:0x22d3ee,
+        side:THREE.DoubleSide
+      })
+    );
+
+  target.rotation.x =
+    -Math.PI/2;
+
+  target.position.set(
+    .55,
+    .12,
+    1.4
+  );
+
+  target.userData.target =
+    true;
+
+  therapyObjects.add(
+    target
+  );
+
+  interactables.push(
+    target
+  );
+
+  targetStarted =
+    performance.now();
+
+}
+
+/* ====================================================
+   FUNCTIONAL
+==================================================== */
+
+function functionalGame(){
+
+  const basket =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        .75,
+        .40,
+        .50
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0xef572c,
+        wireframe:true
+      })
+    );
+
+  basket.position.set(
+    .75,
+    .85,
+    1.45
+  );
+
+  therapyObjects.add(
+    basket
+  );
+
+  for(
+    let i=0;
+    i<4;
+    i++
+  ){
+
+    const ball =
+      new THREE.Mesh(
+        new THREE.SphereGeometry(
+          .13,
+          24,
+          24
+        ),
+        targetMaterial(
+          [
+            0x0077c8,
+            0xfbbf24,
+            0x22c55e,
+            0xe11d48
+          ][i]
+        )
+      );
+
+    ball.position.set(
+      -1.0+i*.35,
+      .95,
+      1.45
+    );
+
+    ball.userData.target =
+      true;
+
+    therapyObjects.add(
+      ball
+    );
+
+    interactables.push(
+      ball
+    );
+
+  }
+
+  targetStarted =
+    performance.now();
+
+}
+
+/* ====================================================
+   CREATE SELECTED ACTIVITY
+==================================================== */
+
+function createSelectedActivity(){
+
+  clearTherapyObjects();
 
   if(
-    currentGame ===
-    "cognitive"
+    selectedGame==="shoulder"
   ){
+    shoulderTarget();
+  }
 
-    for(
-      let i=0;
-      i<5;
-      i++
-    ){
+  if(
+    selectedGame==="hand"
+  ){
+    handGripGame();
+  }
 
-      const target =
-        createTarget();
+  if(
+    selectedGame==="transfer"
+  ){
+    transferGame();
+  }
 
-      target.scale.setScalar(
-        1.05
-      );
+  if(
+    selectedGame==="reaction"
+  ){
+    reactionGame();
+  }
 
-      target.position.set(
-        THREE.MathUtils.randFloat(
-          -1.5,
-          1.5
-        ),
-        THREE.MathUtils.randFloat(
-          .9,
-          2.2
-        ),
-        THREE.MathUtils.randFloat(
-          -.7,
-          .25
-        )
-      );
+  if(
+    selectedGame==="balance"
+  ){
+    balanceGame();
+  }
 
-      const correct =
-        i === 0;
-
-      target.userData.correct =
-        correct;
-
-      target.material.color.setHex(
-        correct
-        ?
-        0x2563eb
-        :
-        [
-          0xe11d48,
-          0x22c55e,
-          0xf59e0b,
-          0xa855f7
-        ][
-          Math.floor(
-            Math.random()*4
-          )
-        ]
-      );
-
-      target.material.emissive.setHex(
-        0x000000
-      );
-
-    }
-
-    shuffleTargetPositions();
-
-  }else{
-
-    const target =
-      createTarget();
-
-    positionTarget(
-      target
-    );
-
+  if(
+    selectedGame==="functional"
+  ){
+    functionalGame();
   }
 
 }
 
-/* =================================
-   CLEAR
-================================= */
-
-function clearTargets(){
-
-  targets.splice(
-    0
-  );
-
-  while(
-    targetGroup.children.length
-  ){
-
-    const item =
-      targetGroup.children[0];
-
-    targetGroup.remove(
-      item
-    );
-
-    item.geometry?.dispose();
-
-    item.material?.dispose();
-
-  }
-
-}
-
-/* =================================
-   SHUFFLE
-================================= */
-
-function shuffleTargetPositions(){
-
-  targets.forEach(
-    target => {
-
-      target.position.set(
-        THREE.MathUtils.randFloat(
-          -1.5,
-          1.5
-        ),
-        THREE.MathUtils.randFloat(
-          .9,
-          2.2
-        ),
-        THREE.MathUtils.randFloat(
-          -.7,
-          .2
-        )
-      );
-
-    }
-  );
-
-  targetSpawnTime =
-    performance.now();
-
-}
-
-/* =================================
-   HIT TARGET
-================================= */
+/* ====================================================
+   HIT
+==================================================== */
 
 function hitTarget(
-  target
+  object
 ){
 
   if(
     !playing ||
-    !target
+    !object ||
+    !object.userData.target
   ){
-    return;
-  }
-
-  if(
-    currentGame ===
-    "cognitive" &&
-    !target.userData.correct
-  ){
-
-    score =
-      Math.max(
-        0,
-        score - 50
-      );
-
-    target.scale.setScalar(
-      .7
-    );
-
-    setTimeout(
-      ()=>{
-        target.scale.setScalar(
-          1
-        );
-      },
-      180
-    );
-
-    updateHUD();
-
     return;
   }
 
   const reaction =
     performance.now() -
-    targetSpawnTime;
+    targetStarted;
 
   reactions.push(
     reaction
@@ -1307,55 +3154,66 @@ function hitTarget(
   hits++;
 
   if(
-    reaction < 700
+    reaction<800
   ){
+    score+=200;
+  }
 
-    score +=
-      200;
-
-  }else if(
-    reaction < 1200
+  else if(
+    reaction<1500
   ){
+    score+=150;
+  }
 
-    score +=
-      150;
-
-  }else{
-
-    score +=
-      100;
-
+  else{
+    score+=100;
   }
 
   createBurst(
-    target.position
+    object.position
   );
 
-  updateHUD();
-
   if(
-    currentGame ===
-    "cognitive"
+    selectedGame==="shoulder"
   ){
 
-    clearTargets();
-    spawnTargets();
-
-  }else{
-
-    positionTarget(
-      target
+    moveReachTarget(
+      object
     );
 
   }
 
+  else{
+
+    object.scale.setScalar(
+      .25
+    );
+
+    setTimeout(
+      ()=>{
+
+        object.scale.setScalar(
+          1
+        );
+
+        targetStarted =
+          performance.now();
+
+      },
+      240
+    );
+
+  }
+
+  updateStats();
+
 }
 
-/* =================================
-   PARTICLE BURST
-================================= */
+/* ====================================================
+   PARTICLES
+==================================================== */
 
-const bursts =
+const particles =
   [];
 
 function createBurst(
@@ -1376,8 +3234,7 @@ function createBurst(
           8
         ),
         new THREE.MeshBasicMaterial({
-          color:
-            0xfbbf24
+          color:0x6ee7f2
         })
       );
 
@@ -1388,16 +3245,16 @@ function createBurst(
     particle.userData.velocity =
       new THREE.Vector3(
         THREE.MathUtils.randFloat(
-          -.7,
-          .7
+          -.8,
+          .8
         ),
         THREE.MathUtils.randFloat(
           .2,
           1
         ),
         THREE.MathUtils.randFloat(
-          -.7,
-          .7
+          -.5,
+          .5
         )
       );
 
@@ -1408,7 +3265,7 @@ function createBurst(
       particle
     );
 
-    bursts.push(
+    particles.push(
       particle
     );
 
@@ -1416,63 +3273,130 @@ function createBurst(
 
 }
 
-/* =================================
-   START GAME
-================================= */
+/* ====================================================
+   START SESSION
+==================================================== */
 
-function startGame(){
+function startSession(){
 
-  clearInterval(
-    gameTimer
-  );
-
-  playing =
-    true;
-
-  score =
-    0;
-
-  hits =
-    0;
+  score=0;
+  hits=0;
+  reactions=[];
 
   timeLeft =
-    60;
+    Number(
+      document.getElementById(
+        "durationSelect"
+      ).value
+    );
 
-  reactions =
-    [];
+  difficulty =
+    document.getElementById(
+      "difficultySelect"
+    ).value;
 
-  startTime =
-    performance.now();
+  playing=true;
 
   document.getElementById(
-    "result"
-  ).style.display =
+    "activities"
+  ).style.display=
     "none";
 
   document.getElementById(
-    "message"
+    "selectTitle"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "brandPanel"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "startSession"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "patientPanel"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "tipsPanel"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "bottomBrand"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "handMessage"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "sessionHud"
+  ).style.display=
+    "flex";
+
+  document.getElementById(
+    "sessionInstruction"
+  ).style.display=
+    "block";
+
+  const instructions = {
+
+    shoulder:
+      "Reach and touch the target",
+
+    hand:
+      "Touch the cubes using your hand",
+
+    transfer:
+      "Reach toward each object",
+
+    reaction:
+      "React as quickly as possible",
+
+    balance:
+      "Shift toward the highlighted target",
+
+    functional:
+      "Reach and interact with the objects"
+
+  };
+
+  document.getElementById(
+    "sessionInstruction"
   ).innerText =
-    messages[
-      currentGame
+    instructions[
+      selectedGame
     ];
 
-  updateHUD();
+  createSelectedActivity();
 
-  spawnTargets();
+  updateStats();
 
-  gameTimer =
+  clearInterval(
+    sessionTimer
+  );
+
+  sessionTimer =
     setInterval(
       ()=>{
 
         timeLeft--;
 
-        updateHUD();
+        updateStats();
 
         if(
-          timeLeft <= 0
+          timeLeft<=0
         ){
 
-          finishGame();
+          finishSession();
 
         }
 
@@ -1482,34 +3406,34 @@ function startGame(){
 
 }
 
-/* =================================
+/* ====================================================
    FINISH
-================================= */
+==================================================== */
 
-function finishGame(){
+function finishSession(){
 
-  playing =
-    false;
+  if(!playing){
+    return;
+  }
+
+  playing=false;
 
   clearInterval(
-    gameTimer
+    sessionTimer
   );
 
-  clearTargets();
-
-  let average =
+  let avg =
     0;
 
   if(
     reactions.length
   ){
 
-    average =
+    avg =
       reactions.reduce(
         (a,b)=>a+b,
         0
-      )
-      /
+      ) /
       reactions.length;
 
   }
@@ -1527,115 +3451,326 @@ function finishGame(){
   document.getElementById(
     "finalReaction"
   ).innerText =
-    average
+    avg
     ?
     (
-      average / 1000
-    ).toFixed(2)
-    + "s"
+      avg/1000
+    ).toFixed(2)+"s"
     :
     "—";
 
-  document.getElementById(
-    "result"
-  ).style.display =
-    "flex";
+  const storedBest =
+    Number(
+      localStorage.getItem(
+        "akazXRBest"
+      ) || 0
+    );
+
+  if(
+    score>storedBest
+  ){
+
+    localStorage.setItem(
+      "akazXRBest",
+      score
+    );
+
+  }
 
   document.getElementById(
-    "message"
-  ).innerText =
-    "Session complete";
+    "resultModal"
+  ).style.display=
+    "flex";
+
+  clearTherapyObjects();
 
 }
 
-/* =================================
-   HUD
-================================= */
+/* ====================================================
+   RETURN MENU
+==================================================== */
 
-function updateHUD(){
+function returnMenu(){
+
+  playing=false;
+
+  clearInterval(
+    sessionTimer
+  );
+
+  clearTherapyObjects();
 
   document.getElementById(
-    "score"
+    "resultModal"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "activities"
+  ).style.display=
+    "grid";
+
+  document.getElementById(
+    "selectTitle"
+  ).style.display=
+    "block";
+
+  document.getElementById(
+    "brandPanel"
+  ).style.display=
+    "flex";
+
+  document.getElementById(
+    "startSession"
+  ).style.display=
+    "block";
+
+  document.getElementById(
+    "patientPanel"
+  ).style.display=
+    "block";
+
+  document.getElementById(
+    "tipsPanel"
+  ).style.display=
+    "block";
+
+  document.getElementById(
+    "bottomBrand"
+  ).style.display=
+    "flex";
+
+  document.getElementById(
+    "handMessage"
+  ).style.display=
+    "block";
+
+  document.getElementById(
+    "sessionHud"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "sessionInstruction"
+  ).style.display=
+    "none";
+
+  document.getElementById(
+    "smallScore"
   ).innerText =
     score;
 
   document.getElementById(
-    "hits"
+    "bestScore"
   ).innerText =
+    localStorage.getItem(
+      "akazXRBest"
+    ) || 0;
+
+}
+
+/* ====================================================
+   STATS
+==================================================== */
+
+function updateStats(){
+
+  document.getElementById(
+    "scoreValue"
+  ).innerText=
+    score;
+
+  document.getElementById(
+    "hitsValue"
+  ).innerText=
     hits;
 
   document.getElementById(
-    "timer"
-  ).innerText =
+    "timeValue"
+  ).innerText=
     timeLeft;
 
 }
 
-/* =================================
-   BUTTONS
-================================= */
+/* ====================================================
+   ACTIVITY BUTTONS
+==================================================== */
 
-document.querySelectorAll(
-  ".game-btn"
-).forEach(
-  button => {
+document
+  .querySelectorAll(
+    ".activity"
+  )
+  .forEach(
+    button=>{
 
-    button.addEventListener(
-      "click",
-      ()=>{
+      button.addEventListener(
+        "click",
+        ()=>{
 
-        if(
-          playing
-        ){
-          return;
-        }
-
-        document.querySelectorAll(
-          ".game-btn"
-        ).forEach(
-          item =>
-            item.classList.remove(
-              "active"
+          document
+            .querySelectorAll(
+              ".activity"
             )
-        );
+            .forEach(
+              item=>
+                item.classList.remove(
+                  "active"
+                )
+            );
 
-        button.classList.add(
-          "active"
-        );
+          button.classList.add(
+            "active"
+          );
 
-        currentGame =
-          button.dataset.game;
+          selectedGame =
+            button.dataset.game;
 
-        document.getElementById(
-          "message"
-        ).innerText =
-          messages[
-            currentGame
-          ];
+        }
+      );
 
-      }
-    );
+    }
+  );
 
-  }
-);
+/* ====================================================
+   UI BUTTONS
+==================================================== */
 
-document.getElementById(
-  "startBtn"
-).addEventListener(
-  "click",
-  startGame
-);
+document
+  .getElementById(
+    "startSession"
+  )
+  .addEventListener(
+    "click",
+    startSession
+  );
 
-document.getElementById(
-  "againBtn"
-).addEventListener(
-  "click",
-  startGame
-);
+document
+  .getElementById(
+    "againBtn"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
 
-/* =================================
-   MOUSE INTERACTION
-================================= */
+      document.getElementById(
+        "resultModal"
+      ).style.display=
+        "none";
+
+      startSession();
+
+    }
+  );
+
+document
+  .getElementById(
+    "homeBtn"
+  )
+  .addEventListener(
+    "click",
+    returnMenu
+  );
+
+/* ====================================================
+   SETTINGS
+==================================================== */
+
+document
+  .getElementById(
+    "settingsBtn"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      document.getElementById(
+        "settingsModal"
+      ).style.display=
+        "flex";
+
+    }
+  );
+
+document
+  .getElementById(
+    "settingsClose"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      document.getElementById(
+        "settingsModal"
+      ).style.display=
+        "none";
+
+    }
+  );
+
+/* ====================================================
+   INSTRUCTIONS
+==================================================== */
+
+document
+  .getElementById(
+    "instructionsBtn"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      document.getElementById(
+        "instructionsModal"
+      ).style.display=
+        "flex";
+
+    }
+  );
+
+document
+  .getElementById(
+    "instructionsClose"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      document.getElementById(
+        "instructionsModal"
+      ).style.display=
+        "none";
+
+    }
+  );
+
+/* ====================================================
+   PROGRESS
+==================================================== */
+
+document
+  .getElementById(
+    "progressBtn"
+  )
+  .addEventListener(
+    "click",
+    ()=>{
+
+      const best =
+        localStorage.getItem(
+          "akazXRBest"
+        ) || 0;
+
+      alert(
+        "Best score: "+
+        best
+      );
+
+    }
+  );
+
+/* ====================================================
+   DESKTOP POINTER
+==================================================== */
 
 const raycaster =
   new THREE.Raycaster();
@@ -1645,9 +3780,10 @@ const mouse =
 
 renderer.domElement.addEventListener(
   "pointerdown",
-  event => {
+  event=>{
 
     if(
+      !playing ||
       renderer.xr.isPresenting
     ){
       return;
@@ -1660,40 +3796,51 @@ renderer.domElement.addEventListener(
     mouse.x =
       (
         (
-          event.clientX -
+          event.clientX-
           rect.left
-        )
-        /
+        )/
         rect.width
-      ) * 2 - 1;
+      )*2-1;
 
     mouse.y =
       -(
         (
-          event.clientY -
+          event.clientY-
           rect.top
-        )
-        /
+        )/
         rect.height
-      ) * 2 + 1;
+      )*2+1;
 
     raycaster.setFromCamera(
       mouse,
       camera
     );
 
-    const intersections =
+    const hits =
       raycaster.intersectObjects(
-        targets,
-        false
+        interactables,
+        true
       );
 
     if(
-      intersections.length
+      hits.length
     ){
 
+      let object =
+        hits[0].object;
+
+      while(
+        object.parent &&
+        !object.userData.target
+      ){
+
+        object =
+          object.parent;
+
+      }
+
       hitTarget(
-        intersections[0].object
+        object
       );
 
     }
@@ -1701,9 +3848,9 @@ renderer.domElement.addEventListener(
   }
 );
 
-/* =================================
-   CONTROLLERS FALLBACK
-================================= */
+/* ====================================================
+   VR CONTROLLERS FALLBACK
+==================================================== */
 
 for(
   let i=0;
@@ -1720,10 +3867,10 @@ for(
     "selectstart",
     ()=>{
 
-      const tempMatrix =
+      const matrix =
         new THREE.Matrix4();
 
-      tempMatrix
+      matrix
         .identity()
         .extractRotation(
           controller.matrixWorld
@@ -1741,13 +3888,14 @@ for(
           -1
         )
         .applyMatrix4(
-          tempMatrix
+          matrix
         );
 
       const intersections =
-        raycaster.intersectObjects(
-          targets,
-          false
+        raycaster
+        .intersectObjects(
+          interactables,
+          true
         );
 
       if(
@@ -1769,14 +3917,12 @@ for(
 
 }
 
-/* =================================
+/* ====================================================
    HAND TRACKING
-================================= */
+==================================================== */
 
 const handFactory =
   new XRHandModelFactory();
-
-const hands = [];
 
 for(
   let i=0;
@@ -1789,56 +3935,40 @@ for(
       i
     );
 
-  const model =
+  const handModel =
     handFactory.createHandModel(
       hand,
       "mesh"
     );
 
   hand.add(
-    model
+    handModel
   );
 
   scene.add(
     hand
   );
 
-  hands.push(
-    hand
-  );
-
 }
 
-/* =================================
-   CHECK FINGERTIP COLLISION
-================================= */
+/* ====================================================
+   XR HAND COLLISION
+==================================================== */
 
-const fingerPosition =
+const finger =
   new THREE.Vector3();
 
-const targetPosition =
+const objectPosition =
   new THREE.Vector3();
 
 let lastHandHit =
   0;
 
-function checkHands(){
+function checkXRHands(){
 
   if(
-    !renderer.xr.isPresenting ||
-    !playing
-  ){
-    return;
-  }
-
-  const now =
-    performance.now();
-
-  if(
-    now -
-    lastHandHit
-    <
-    220
+    !playing ||
+    !renderer.xr.isPresenting
   ){
     return;
   }
@@ -1849,25 +3979,30 @@ function checkHands(){
   const referenceSpace =
     renderer.xr.getReferenceSpace();
 
-  if(
-    !frame ||
-    !referenceSpace
-  ){
-    return;
-  }
-
   const session =
     renderer.xr.getSession();
 
   if(
+    !frame ||
+    !referenceSpace ||
     !session
+  ){
+    return;
+  }
+
+  const now =
+    performance.now();
+
+  if(
+    now-lastHandHit<180
   ){
     return;
   }
 
   for(
     const source
-    of session.inputSources
+    of
+    session.inputSources
   ){
 
     if(
@@ -1881,9 +4016,7 @@ function checkHands(){
         "index-finger-tip"
       );
 
-    if(
-      !joint
-    ){
+    if(!joint){
       continue;
     }
 
@@ -1893,44 +4026,44 @@ function checkHands(){
         referenceSpace
       );
 
-    if(
-      !pose
-    ){
+    if(!pose){
       continue;
     }
 
-    fingerPosition.set(
+    finger.set(
       pose.transform.position.x,
       pose.transform.position.y,
       pose.transform.position.z
     );
 
     for(
-      const target
-      of targets
+      const object
+      of
+      interactables
     ){
 
-      target.getWorldPosition(
-        targetPosition
+      object.getWorldPosition(
+        objectPosition
       );
 
       const distance =
-        fingerPosition.distanceTo(
-          targetPosition
+        finger.distanceTo(
+          objectPosition
         );
 
       if(
-        distance < .20
+        distance<.22
       ){
 
         lastHandHit =
           now;
 
         hitTarget(
-          target
+          object
         );
 
         return;
+
       }
 
     }
@@ -1939,9 +4072,9 @@ function checkHands(){
 
 }
 
-/* =================================
+/* ====================================================
    ANIMATION
-================================= */
+==================================================== */
 
 const clock =
   new THREE.Clock();
@@ -1954,29 +4087,26 @@ function animate(){
       .05
     );
 
-  checkHands();
+  checkXRHands();
 
   if(
     playing
   ){
 
-    targets.forEach(
+    interactables.forEach(
       (
-        target,
+        object,
         index
-      ) => {
+      )=>{
 
-        target.rotation.y +=
-          delta * 1.2;
+        object.rotation.y +=
+          delta*.65;
 
-        target.position.y +=
+        object.position.y +=
           Math.sin(
-            performance.now() *
-            .002 +
+            performance.now()*.0018+
             index
-          )
-          *
-          .0007;
+          )*.0005;
 
       }
     );
@@ -1985,13 +4115,13 @@ function animate(){
 
   for(
     let i=
-      bursts.length - 1;
+      particles.length-1;
     i>=0;
     i--
   ){
 
     const particle =
-      bursts[i];
+      particles[i];
 
     particle.position.addScaledVector(
       particle.userData.velocity,
@@ -1999,10 +4129,10 @@ function animate(){
     );
 
     particle.userData.velocity.y -=
-      delta * 1.2;
+      delta*.8;
 
     particle.userData.life -=
-      delta * 1.7;
+      delta*1.6;
 
     particle.scale.setScalar(
       Math.max(
@@ -2012,7 +4142,7 @@ function animate(){
     );
 
     if(
-      particle.userData.life <= 0
+      particle.userData.life<=0
     ){
 
       scene.remove(
@@ -2023,7 +4153,7 @@ function animate(){
 
       particle.material.dispose();
 
-      bursts.splice(
+      particles.splice(
         i,
         1
       );
@@ -2043,41 +4173,50 @@ renderer.setAnimationLoop(
   animate
 );
 
-/* =================================
+/* ====================================================
    RESIZE
-================================= */
+==================================================== */
 
 window.addEventListener(
   "resize",
   ()=>{
 
     camera.aspect =
-      innerWidth /
-      innerHeight;
+      window.innerWidth/
+      window.innerHeight;
 
     camera.updateProjectionMatrix();
 
     renderer.setSize(
-      innerWidth,
-      innerHeight
+      window.innerWidth,
+      window.innerHeight
     );
 
   }
 );
 
-/* =================================
-   READY
-================================= */
+/* ====================================================
+   LOAD
+==================================================== */
 
 document.getElementById(
-  "loading"
-).style.display =
-  "none";
-
-document.getElementById(
-  "message"
+  "bestScore"
 ).innerText =
-  messages.reach;
+  localStorage.getItem(
+    "akazXRBest"
+  ) || 0;
+
+setTimeout(
+  ()=>{
+
+    document.getElementById(
+      "loading"
+    ).style.display=
+      "none";
+
+  },
+  650
+);
 
 </script>
 
