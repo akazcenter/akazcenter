@@ -1,0 +1,4046 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>التأهيل الافتراضي | مركز عكاز</title>
+
+<link rel="icon" href="logo.png">
+
+<style>
+
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+
+  --purple:#6d28d9;
+  --purple2:#7c3aed;
+  --cyan:#06b6d4;
+
+  --green:#16a34a;
+  --red:#dc2626;
+
+  --text:#0f172a;
+  --muted:#64748b;
+
+  --line:#e2e8f0;
+
+  --card:#ffffff;
+  --bg:#f4f8fc;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  direction:rtl;
+
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(124,58,237,.10),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 5% 60%,
+      rgba(6,182,212,.08),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #f8fbff,
+      #eef4f9
+    );
+
+  min-height:100vh;
+}
+
+/* ==============================
+   TOP BAR
+============================== */
+
+.topbar{
+  min-height:92px;
+
+  padding:
+    14px
+    32px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #061b35,
+      #173f77,
+      #5b21b6
+    );
+
+  color:white;
+
+  box-shadow:
+    0 18px 42px
+    rgba(15,23,42,.18);
+
+  position:sticky;
+
+  top:0;
+
+  z-index:1000;
+}
+
+.brand{
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+}
+
+.brand-logo{
+  width:60px;
+
+  height:60px;
+
+  object-fit:contain;
+
+  padding:5px;
+
+  border-radius:16px;
+
+  background:white;
+
+  box-shadow:
+    0 9px 24px
+    rgba(0,0,0,.20);
+}
+
+.brand h1{
+  margin:0;
+
+  font-size:22px;
+
+  font-weight:900;
+}
+
+.brand p{
+  margin:
+    5px
+    0
+    0;
+
+  color:#dbeafe;
+
+  font-size:12px;
+}
+
+.top-actions{
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.top-btn{
+  min-height:42px;
+
+  border:none;
+
+  border-radius:13px;
+
+  padding:
+    9px
+    14px;
+
+  cursor:pointer;
+
+  font-family:
+    Tahoma,
+    Arial;
+
+  font-weight:900;
+
+  background:
+    rgba(255,255,255,.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.22);
+
+  color:white;
+
+  transition:.2s;
+}
+
+.top-btn:hover{
+  background:
+    rgba(255,255,255,.20);
+}
+
+.exit-btn{
+  background:
+    rgba(220,38,38,.20);
+}
+
+/* ==============================
+   PAGE
+============================== */
+
+.page{
+  width:94%;
+
+  max-width:1450px;
+
+  margin:
+    30px
+    auto
+    70px;
+}
+
+/* ==============================
+   HERO
+============================== */
+
+.hero{
+  position:relative;
+
+  overflow:hidden;
+
+  display:grid;
+
+  grid-template-columns:
+    1.35fr
+    .65fr;
+
+  gap:25px;
+
+  align-items:center;
+
+  padding:
+    34px
+    38px;
+
+  border-radius:32px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #f4f1ff
+    );
+
+  border:
+    1px solid
+    #e9e2ff;
+
+  box-shadow:
+    0 22px 50px
+    rgba(15,23,42,.10);
+}
+
+.hero::before{
+  content:"";
+
+  position:absolute;
+
+  width:280px;
+
+  height:280px;
+
+  border-radius:50%;
+
+  left:-100px;
+
+  top:-120px;
+
+  background:
+    rgba(124,58,237,.10);
+}
+
+.hero-copy{
+  position:relative;
+
+  z-index:2;
+}
+
+.hero-tag{
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:
+    7px
+    13px;
+
+  border-radius:999px;
+
+  background:
+    #ede9fe;
+
+  color:
+    #5b21b6;
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.hero h2{
+  margin:
+    13px
+    0
+    8px;
+
+  font-size:32px;
+
+  color:#172554;
+
+  line-height:1.5;
+}
+
+.hero p{
+  max-width:760px;
+
+  margin:0;
+
+  color:
+    var(--muted);
+
+  line-height:1.9;
+
+  font-size:14px;
+}
+
+.hero-visual{
+  min-height:180px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+}
+
+.vr-orb{
+  width:180px;
+
+  height:180px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:76px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ddd6fe,
+      #ecfeff
+    );
+
+  border:
+    8px solid
+    rgba(255,255,255,.75);
+
+  box-shadow:
+    0 22px 50px
+    rgba(91,33,182,.22),
+    inset
+    0
+    0
+    0
+    1px
+    #c4b5fd;
+}
+
+/* ==============================
+   SUMMARY
+============================== */
+
+.summary-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:18px;
+
+  margin-top:24px;
+}
+
+.summary-card{
+  background:white;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:22px;
+
+  padding:20px;
+
+  box-shadow:
+    0 14px 34px
+    rgba(15,23,42,.07);
+}
+
+.summary-label{
+  color:
+    var(--muted);
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.summary-value{
+  margin-top:8px;
+
+  font-size:28px;
+
+  font-weight:900;
+
+  color:
+    var(--blue);
+}
+
+.summary-sub{
+  margin-top:5px;
+
+  color:
+    #94a3b8;
+
+  font-size:11px;
+}
+
+/* ==============================
+   SECTION
+============================== */
+
+.section{
+  margin-top:28px;
+
+  background:
+    rgba(255,255,255,.96);
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:30px;
+
+  padding:
+    26px;
+
+  box-shadow:
+    0 18px 42px
+    rgba(15,23,42,.07);
+}
+
+.section-head{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  margin-bottom:22px;
+}
+
+.section-title{
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+}
+
+.section-icon{
+  width:46px;
+
+  height:46px;
+
+  border-radius:15px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:22px;
+
+  background:
+    #eef6ff;
+}
+
+.section-title h3{
+  margin:0;
+
+  color:
+    #0b4776;
+
+  font-size:22px;
+
+  font-weight:900;
+}
+
+.section-title p{
+  margin:
+    5px
+    0
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:12px;
+}
+
+/* ==============================
+   FORM
+============================== */
+
+.form-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:17px;
+}
+
+.field{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:7px;
+}
+
+.field.wide{
+  grid-column:
+    span 2;
+}
+
+.field.full{
+  grid-column:
+    1 / -1;
+}
+
+label{
+  font-size:12px;
+
+  font-weight:900;
+
+  color:
+    #334155;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+
+  min-height:47px;
+
+  border:
+    1.5px solid
+    #dce4ee;
+
+  border-radius:14px;
+
+  padding:
+    10px
+    12px;
+
+  font-family:
+    Tahoma,
+    Arial;
+
+  font-size:13px;
+
+  outline:none;
+
+  color:
+    #0f172a;
+
+  background:
+    #fbfdff;
+
+  transition:.18s;
+}
+
+textarea{
+  min-height:95px;
+
+  resize:vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:
+    #7c3aed;
+
+  box-shadow:
+    0
+    0
+    0
+    4px
+    rgba(124,58,237,.08);
+
+  background:white;
+}
+
+.range-wrap{
+  padding:
+    11px
+    12px;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius:14px;
+
+  background:#f8fafc;
+}
+
+.range-top{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:8px;
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.range-value{
+  color:
+    #6d28d9;
+}
+
+input[type="range"]{
+  min-height:auto;
+
+  padding:0;
+
+  accent-color:
+    #7c3aed;
+}
+
+/* ==============================
+   PROGRAM CARDS
+============================== */
+
+.programs{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:16px;
+}
+
+.program{
+  border:
+    2px solid
+    #e2e8f0;
+
+  border-radius:20px;
+
+  padding:
+    18px;
+
+  cursor:pointer;
+
+  background:white;
+
+  transition:.2s;
+
+  position:relative;
+}
+
+.program:hover{
+  transform:
+    translateY(-3px);
+
+  border-color:
+    #c4b5fd;
+}
+
+.program.active{
+  border-color:
+    #7c3aed;
+
+  background:
+    #faf8ff;
+
+  box-shadow:
+    0
+    12px
+    30px
+    rgba(124,58,237,.11);
+}
+
+.program-icon{
+  font-size:31px;
+}
+
+.program h4{
+  margin:
+    10px
+    0
+    6px;
+
+  color:
+    #312e81;
+
+  font-size:16px;
+}
+
+.program p{
+  margin:0;
+
+  font-size:11.5px;
+
+  line-height:1.7;
+
+  color:
+    var(--muted);
+}
+
+.program-check{
+  display:none;
+
+  position:absolute;
+
+  top:12px;
+
+  left:12px;
+
+  width:24px;
+
+  height:24px;
+
+  border-radius:50%;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:white;
+
+  background:
+    #7c3aed;
+
+  font-size:13px;
+}
+
+.program.active
+.program-check{
+  display:flex;
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.actions{
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.btn{
+  border:none;
+
+  border-radius:14px;
+
+  min-height:46px;
+
+  padding:
+    10px
+    18px;
+
+  cursor:pointer;
+
+  font-family:
+    Tahoma,
+    Arial;
+
+  font-size:13px;
+
+  font-weight:900;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:
+    translateY(-1px);
+}
+
+.btn-primary{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5b21b6,
+      #7c3aed
+    );
+
+  box-shadow:
+    0 11px 25px
+    rgba(91,33,182,.20);
+}
+
+.btn-blue{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #005b9f,
+      #0077c8
+    );
+}
+
+.btn-green{
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #15803d,
+      #22c55e
+    );
+}
+
+.btn-light{
+  color:#334155;
+
+  background:
+    #f1f5f9;
+
+  border:
+    1px solid
+    #e2e8f0;
+}
+
+.btn-danger{
+  color:#b91c1c;
+
+  background:
+    #fee2e2;
+}
+
+/* ==============================
+   SESSION SCREEN
+============================== */
+
+.session-panel{
+  display:none;
+
+  margin-top:27px;
+
+  border-radius:30px;
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    #d8d4ff;
+
+  box-shadow:
+    0 20px 48px
+    rgba(49,46,129,.10);
+}
+
+.session-panel.show{
+  display:block;
+}
+
+.session-stage{
+  min-height:500px;
+
+  position:relative;
+
+  overflow:hidden;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  color:white;
+
+  padding:35px;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(76,201,240,.25),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 20% 70%,
+      rgba(124,58,237,.25),
+      transparent 30%
+    ),
+    linear-gradient(
+      160deg,
+      #06152a,
+      #103c66,
+      #2e1065
+    );
+}
+
+.session-grid{
+  position:absolute;
+
+  inset:0;
+
+  opacity:.13;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.30)
+      1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.30)
+      1px,
+      transparent 1px
+    );
+
+  background-size:
+    45px
+    45px;
+
+  transform:
+    perspective(500px)
+    rotateX(50deg)
+    scale(1.4);
+
+  transform-origin:
+    center bottom;
+}
+
+.session-content{
+  position:relative;
+
+  z-index:3;
+
+  width:100%;
+}
+
+.session-label{
+  display:inline-block;
+
+  padding:
+    7px
+    13px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.20);
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.session-title{
+  margin:
+    15px
+    0
+    4px;
+
+  font-size:28px;
+}
+
+.patient-live{
+  color:
+    #bae6fd;
+
+  margin-bottom:22px;
+
+  font-size:13px;
+}
+
+.target-zone{
+  position:relative;
+
+  width:300px;
+
+  height:230px;
+
+  margin:
+    0
+    auto
+    22px;
+}
+
+.target{
+  position:absolute;
+
+  width:67px;
+
+  height:67px;
+
+  border-radius:50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fef08a,
+      #f59e0b
+    );
+
+  color:
+    #713f12;
+
+  font-weight:900;
+
+  font-size:18px;
+
+  border:
+    5px solid
+    rgba(255,255,255,.55);
+
+  box-shadow:
+    0 0 35px
+    rgba(245,158,11,.50);
+
+  transition:
+    .3s ease;
+}
+
+.target.hit{
+  transform:
+    scale(.75);
+
+  opacity:.30;
+}
+
+.target1{
+  top:12px;
+  right:15px;
+}
+
+.target2{
+  top:20px;
+  left:25px;
+}
+
+.target3{
+  bottom:12px;
+  right:65px;
+}
+
+.target4{
+  bottom:20px;
+  left:40px;
+}
+
+.live-stats{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      150px
+    );
+
+  justify-content:center;
+
+  gap:12px;
+}
+
+.live-stat{
+  padding:
+    12px
+    10px;
+
+  background:
+    rgba(255,255,255,.10);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  border-radius:17px;
+
+  backdrop-filter:
+    blur(9px);
+}
+
+.live-stat-value{
+  font-size:22px;
+
+  font-weight:900;
+}
+
+.live-stat-label{
+  margin-top:3px;
+
+  font-size:10px;
+
+  color:#dbeafe;
+}
+
+/* ==============================
+   RESULTS
+============================== */
+
+.result-box{
+  display:none;
+
+  margin-top:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f0fdf4,
+      #ffffff
+    );
+
+  border:
+    1px solid
+    #bbf7d0;
+
+  border-radius:27px;
+
+  padding:
+    25px;
+}
+
+.result-box.show{
+  display:block;
+}
+
+.result-header{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  margin-bottom:20px;
+}
+
+.result-title{
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+}
+
+.result-title-icon{
+  width:50px;
+
+  height:50px;
+
+  border-radius:16px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:
+    #dcfce7;
+
+  color:
+    #15803d;
+
+  font-size:25px;
+}
+
+.result-title h3{
+  margin:0;
+
+  color:#166534;
+}
+
+.result-title p{
+  margin:
+    4px
+    0
+    0;
+
+  color:
+    var(--muted);
+
+  font-size:11px;
+}
+
+.result-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      5,
+      1fr
+    );
+
+  gap:13px;
+}
+
+.result-stat{
+  background:white;
+
+  border:
+    1px solid
+    #dcfce7;
+
+  border-radius:17px;
+
+  padding:16px;
+
+  text-align:center;
+}
+
+.result-value{
+  font-size:23px;
+
+  font-weight:900;
+
+  color:
+    #15803d;
+}
+
+.result-label{
+  margin-top:5px;
+
+  color:
+    var(--muted);
+
+  font-size:10.5px;
+}
+
+/* ==============================
+   TABLE
+============================== */
+
+.table-wrap{
+  width:100%;
+
+  overflow:auto;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius:19px;
+}
+
+table{
+  width:100%;
+
+  border-collapse:collapse;
+
+  min-width:900px;
+
+  background:white;
+}
+
+th,
+td{
+  padding:
+    14px
+    13px;
+
+  border-bottom:
+    1px solid
+    #edf2f7;
+
+  text-align:right;
+
+  font-size:12px;
+}
+
+th{
+  background:
+    #f8fafc;
+
+  color:
+    #334155;
+
+  font-weight:900;
+}
+
+tbody tr:hover{
+  background:
+    #fafcff;
+}
+
+.status{
+  display:inline-flex;
+
+  padding:
+    5px
+    9px;
+
+  border-radius:999px;
+
+  font-size:10px;
+
+  font-weight:900;
+}
+
+.status-good{
+  background:
+    #dcfce7;
+
+  color:
+    #166534;
+}
+
+.status-medium{
+  background:
+    #fef3c7;
+
+  color:
+    #92400e;
+}
+
+/* ==============================
+   EMPTY
+============================== */
+
+.empty{
+  text-align:center;
+
+  padding:
+    40px
+    15px;
+
+  color:
+    #94a3b8;
+}
+
+.empty-icon{
+  font-size:43px;
+
+  margin-bottom:10px;
+}
+
+/* ==============================
+   TOAST
+============================== */
+
+.toast{
+  position:fixed;
+
+  bottom:25px;
+
+  left:25px;
+
+  min-width:250px;
+
+  max-width:380px;
+
+  padding:
+    14px
+    17px;
+
+  border-radius:14px;
+
+  color:white;
+
+  background:
+    #0f172a;
+
+  box-shadow:
+    0 18px 40px
+    rgba(0,0,0,.25);
+
+  font-size:12px;
+
+  font-weight:900;
+
+  z-index:99999;
+
+  opacity:0;
+
+  visibility:hidden;
+
+  transform:
+    translateY(10px);
+
+  transition:.25s;
+}
+
+.toast.show{
+  opacity:1;
+
+  visibility:visible;
+
+  transform:
+    translateY(0);
+}
+
+/* ==============================
+   DARK
+============================== */
+
+body.dark{
+  --card:#1e293b;
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+  --line:#334155;
+
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(91,33,182,.23),
+      transparent 27%
+    ),
+    linear-gradient(
+      180deg,
+      #020617,
+      #0f172a
+    );
+
+  color:
+    var(--text);
+}
+
+body.dark
+.hero,
+body.dark
+.section,
+body.dark
+.summary-card{
+  background:
+    #1e293b;
+
+  border-color:
+    #334155;
+}
+
+body.dark
+.hero h2,
+body.dark
+.section-title h3{
+  color:#bfdbfe;
+}
+
+body.dark
+.hero-tag{
+  background:
+    #312e81;
+
+  color:
+    #ddd6fe;
+}
+
+body.dark
+input,
+body.dark
+select,
+body.dark
+textarea,
+body.dark
+.range-wrap{
+  background:
+    #0f172a;
+
+  color:white;
+
+  border-color:
+    #334155;
+}
+
+body.dark
+label{
+  color:#cbd5e1;
+}
+
+body.dark
+.program{
+  background:
+    #0f172a;
+
+  border-color:
+    #334155;
+}
+
+body.dark
+.program.active{
+  background:
+    #21143d;
+
+  border-color:
+    #8b5cf6;
+}
+
+body.dark
+.program h4{
+  color:
+    #c4b5fd;
+}
+
+body.dark
+table,
+body.dark
+.result-stat{
+  background:
+    #0f172a;
+
+  color:
+    #e2e8f0;
+}
+
+body.dark
+th{
+  background:
+    #111827;
+
+  color:
+    #cbd5e1;
+}
+
+body.dark
+td,
+body.dark
+th{
+  border-color:
+    #1e293b;
+}
+
+body.dark
+.result-box{
+  background:
+    #13251b;
+
+  border-color:
+    #166534;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:1050px){
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .hero-visual{
+    display:none;
+  }
+
+  .summary-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .form-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .programs{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .result-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+
+  .topbar{
+    padding:
+      12px
+      14px;
+  }
+
+  .brand-logo{
+    width:48px;
+    height:48px;
+  }
+
+  .brand h1{
+    font-size:16px;
+  }
+
+  .brand p{
+    display:none;
+  }
+
+  .top-btn{
+    padding:
+      8px
+      10px;
+
+    font-size:11px;
+  }
+
+  .page{
+    width:95%;
+  }
+
+  .hero{
+    padding:
+      25px
+      20px;
+  }
+
+  .hero h2{
+    font-size:24px;
+  }
+
+  .summary-grid,
+  .form-grid,
+  .programs,
+  .result-grid{
+    grid-template-columns:
+      1fr;
+  }
+
+  .field.wide{
+    grid-column:auto;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  .live-stats{
+    grid-template-columns:
+      repeat(3,1fr);
+
+    width:100%;
+  }
+
+  .live-stat{
+    width:auto;
+  }
+
+  .target-zone{
+    width:260px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+  <div class="brand">
+
+    <img
+      src="logo.png"
+      class="brand-logo"
+      alt="مركز عكاز"
+    >
+
+    <div>
+
+      <h1>
+        التأهيل الافتراضي
+      </h1>
+
+      <p>
+        Akaz Virtual Rehabilitation Lab
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="top-actions">
+
+    <button
+      class="top-btn"
+      id="themeBtn"
+      onclick="toggleTheme()"
+    >
+      🌙
+    </button>
+
+    <button
+      class="top-btn exit-btn"
+      onclick="exitVR()"
+    >
+      خروج
+    </button>
+
+  </div>
+
+</header>
+
+<main class="page">
+
+  <!-- ==========================
+       HERO
+  =========================== -->
+
+  <section class="hero">
+
+    <div class="hero-copy">
+
+      <div class="hero-tag">
+        🧪 مرحلة تجريبية
+      </div>
+
+      <h2>
+        مختبر التأهيل الافتراضي
+      </h2>
+
+      <p>
+        نموذج داخلي لتصميم وتجربة برامج التأهيل باستخدام الواقع الافتراضي.
+        يمكنك إعداد جلسة علاجية، تحديد الحركة المطلوبة ومستوى الصعوبة،
+        ثم تشغيل محاكاة للجلسة ومراجعة النتائج قبل اعتماد النظام وربطه بالنظارة مستقبلًا.
+      </p>
+
+    </div>
+
+    <div class="hero-visual">
+
+      <div class="vr-orb">
+        🥽
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       SUMMARY
+  =========================== -->
+
+  <section class="summary-grid">
+
+    <div class="summary-card">
+
+      <div class="summary-label">
+        إجمالي الجلسات التجريبية
+      </div>
+
+      <div
+        class="summary-value"
+        id="totalSessions"
+      >
+        0
+      </div>
+
+      <div class="summary-sub">
+        جميع الجلسات المحفوظة
+      </div>
+
+    </div>
+
+    <div class="summary-card">
+
+      <div class="summary-label">
+        متوسط الدقة
+      </div>
+
+      <div
+        class="summary-value"
+        id="averageAccuracy"
+      >
+        0%
+      </div>
+
+      <div class="summary-sub">
+        نتائج المحاكاة السابقة
+      </div>
+
+    </div>
+
+    <div class="summary-card">
+
+      <div class="summary-label">
+        المرضى المسجلون
+      </div>
+
+      <div
+        class="summary-value"
+        id="totalPatients"
+      >
+        0
+      </div>
+
+      <div class="summary-sub">
+        حسب أرقام الملفات
+      </div>
+
+    </div>
+
+    <div class="summary-card">
+
+      <div class="summary-label">
+        البرامج المتوفرة
+      </div>
+
+      <div class="summary-value">
+        4
+      </div>
+
+      <div class="summary-sub">
+        قابلة للتوسع مستقبلًا
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       PROGRAM
+  =========================== -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+
+        <div class="section-icon">
+          🎮
+        </div>
+
+        <div>
+
+          <h3>
+            اختيار البرنامج العلاجي
+          </h3>
+
+          <p>
+            اختر نوع التجربة التي تريد تشغيلها.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="programs">
+
+      <div
+        class="program active"
+        data-program="upper"
+        onclick="selectProgram(this)"
+      >
+
+        <div class="program-check">
+          ✓
+        </div>
+
+        <div class="program-icon">
+          ✋
+        </div>
+
+        <h4>
+          الوصول للأهداف
+        </h4>
+
+        <p>
+          تدريب الطرف العلوي ومدى حركة الكتف من خلال لمس أهداف افتراضية.
+        </p>
+
+      </div>
+
+      <div
+        class="program"
+        data-program="balance"
+        onclick="selectProgram(this)"
+      >
+
+        <div class="program-check">
+          ✓
+        </div>
+
+        <div class="program-icon">
+          ⚖️
+        </div>
+
+        <h4>
+          التوازن ونقل الوزن
+        </h4>
+
+        <p>
+          تدريب التحكم بالجسم ونقل الوزن بين الاتجاهات المختلفة.
+        </p>
+
+      </div>
+
+      <div
+        class="program"
+        data-program="lower"
+        onclick="selectProgram(this)"
+      >
+
+        <div class="program-check">
+          ✓
+        </div>
+
+        <div class="program-icon">
+          🦵
+        </div>
+
+        <h4>
+          الطرف السفلي
+        </h4>
+
+        <p>
+          تمارين خطوات وتحكم حركي للطرف السفلي وتأهيل الركبة.
+        </p>
+
+      </div>
+
+      <div
+        class="program"
+        data-program="kids"
+        onclick="selectProgram(this)"
+      >
+
+        <div class="program-check">
+          ✓
+        </div>
+
+        <div class="program-icon">
+          🫧
+        </div>
+
+        <h4>
+          تأهيل الأطفال
+        </h4>
+
+        <p>
+          تجربة علاجية تفاعلية تعتمد على جمع النقاط والأهداف الممتعة.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       SESSION SETTINGS
+  =========================== -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+
+        <div class="section-icon">
+          🩺
+        </div>
+
+        <div>
+
+          <h3>
+            إعداد الجلسة
+          </h3>
+
+          <p>
+            أدخل بيانات الحالة وإعدادات المحاكاة.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="form-grid">
+
+      <div class="field">
+
+        <label>
+          رقم الملف
+        </label>
+
+        <input
+          type="text"
+          id="fileNumber"
+          placeholder="مثال: 10231"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          اسم المريض
+        </label>
+
+        <input
+          type="text"
+          id="patientName"
+          placeholder="اسم المريض"
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          الأخصائي
+        </label>
+
+        <select id="therapist">
+
+          <option value="">
+            اختر الأخصائي
+          </option>
+
+          <option>
+            د. حاتم الاحمدي
+          </option>
+
+          <option>
+            د. عبدالرحمن السويداء
+          </option>
+
+          <option>
+            د. عبدالرحمن السليمي
+          </option>
+
+          <option>
+            د. عبدالعزيز الحمدان
+          </option>
+
+          <option>
+            د. ريناد حميد
+          </option>
+
+          <option>
+            د. ابتسام سويلم
+          </option>
+
+          <option>
+            د. سلمى فرحان
+          </option>
+
+          <option>
+            د. هند فهيد
+          </option>
+
+          <option>
+            د. أسماء فهيد
+          </option>
+
+          <option>
+            د. مها فريح
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          المنطقة العلاجية
+        </label>
+
+        <select id="bodyArea">
+
+          <option value="shoulder">
+            الكتف
+          </option>
+
+          <option value="elbow">
+            الكوع
+          </option>
+
+          <option value="wrist">
+            الرسغ واليد
+          </option>
+
+          <option value="balance">
+            التوازن
+          </option>
+
+          <option value="knee">
+            الركبة
+          </option>
+
+          <option value="ankle">
+            الكاحل
+          </option>
+
+          <option value="general">
+            تأهيل حركي عام
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          الجهة
+        </label>
+
+        <select id="side">
+
+          <option>
+            اليمنى
+          </option>
+
+          <option>
+            اليسرى
+          </option>
+
+          <option>
+            ثنائي
+          </option>
+
+          <option>
+            غير محدد
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          مستوى الصعوبة
+        </label>
+
+        <select id="difficulty">
+
+          <option value="easy">
+            سهل
+          </option>
+
+          <option
+            value="medium"
+            selected
+          >
+            متوسط
+          </option>
+
+          <option value="hard">
+            متقدم
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          مدة الجلسة
+        </label>
+
+        <select id="duration">
+
+          <option value="30">
+            30 ثانية - تجربة
+          </option>
+
+          <option value="60">
+            دقيقة
+          </option>
+
+          <option value="120">
+            دقيقتان
+          </option>
+
+          <option value="300">
+            5 دقائق
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          عدد الأهداف
+        </label>
+
+        <select id="targets">
+
+          <option value="10">
+            10 أهداف
+          </option>
+
+          <option
+            value="20"
+            selected
+          >
+            20 هدف
+          </option>
+
+          <option value="30">
+            30 هدف
+          </option>
+
+          <option value="40">
+            40 هدف
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="field wide">
+
+        <label>
+          مدى الحركة المسموح
+        </label>
+
+        <div class="range-wrap">
+
+          <div class="range-top">
+
+            <span>
+              ROM
+            </span>
+
+            <span
+              class="range-value"
+              id="romValue"
+            >
+              90°
+            </span>
+
+          </div>
+
+          <input
+            type="range"
+            id="rom"
+            min="20"
+            max="180"
+            value="90"
+            oninput="updateROM()"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="field wide">
+
+        <label>
+          سرعة ظهور الأهداف
+        </label>
+
+        <div class="range-wrap">
+
+          <div class="range-top">
+
+            <span>
+              سرعة التفاعل
+            </span>
+
+            <span
+              class="range-value"
+              id="speedValue"
+            >
+              متوسطة
+            </span>
+
+          </div>
+
+          <input
+            type="range"
+            id="speed"
+            min="1"
+            max="3"
+            value="2"
+            oninput="updateSpeed()"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="field full">
+
+        <label>
+          ملاحظات الأخصائي
+        </label>
+
+        <textarea
+          id="notes"
+          placeholder="مثال: عدم تجاوز 90 درجة، تجنب الألم، التركيز على التحكم بالحركة..."
+        ></textarea>
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn btn-light"
+        onclick="fillDemo()"
+      >
+        تعبئة حالة تجريبية
+      </button>
+
+      <button
+        class="btn btn-primary"
+        onclick="startSession()"
+      >
+        ▶ بدء المحاكاة
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       SIMULATION
+  =========================== -->
+
+  <section
+    class="session-panel"
+    id="sessionPanel"
+  >
+
+    <div class="session-stage">
+
+      <div class="session-grid"></div>
+
+      <div class="session-content">
+
+        <span class="session-label">
+          محاكاة بيئة VR
+        </span>
+
+        <h2
+          class="session-title"
+          id="liveProgram"
+        >
+          الوصول للأهداف
+        </h2>
+
+        <div
+          class="patient-live"
+          id="livePatient"
+        >
+          --
+        </div>
+
+        <div class="target-zone">
+
+          <div
+            class="target target1"
+            id="target1"
+          >
+            1
+          </div>
+
+          <div
+            class="target target2"
+            id="target2"
+          >
+            2
+          </div>
+
+          <div
+            class="target target3"
+            id="target3"
+          >
+            3
+          </div>
+
+          <div
+            class="target target4"
+            id="target4"
+          >
+            4
+          </div>
+
+        </div>
+
+        <div class="live-stats">
+
+          <div class="live-stat">
+
+            <div
+              class="live-stat-value"
+              id="liveTime"
+            >
+              0
+            </div>
+
+            <div class="live-stat-label">
+              ثانية
+            </div>
+
+          </div>
+
+          <div class="live-stat">
+
+            <div
+              class="live-stat-value"
+              id="liveHits"
+            >
+              0
+            </div>
+
+            <div class="live-stat-label">
+              أهداف ناجحة
+            </div>
+
+          </div>
+
+          <div class="live-stat">
+
+            <div
+              class="live-stat-value"
+              id="liveScore"
+            >
+              0%
+            </div>
+
+            <div class="live-stat-label">
+              الدقة الحالية
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="actions" style="justify-content:center;">
+
+          <button
+            class="btn btn-danger"
+            onclick="finishSession(true)"
+          >
+            إنهاء الجلسة
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       RESULT
+  =========================== -->
+
+  <section
+    class="result-box"
+    id="resultBox"
+  >
+
+    <div class="result-header">
+
+      <div class="result-title">
+
+        <div class="result-title-icon">
+          ✓
+        </div>
+
+        <div>
+
+          <h3>
+            نتيجة الجلسة
+          </h3>
+
+          <p id="resultPatient">
+            --
+          </p>
+
+        </div>
+
+      </div>
+
+      <button
+        class="btn btn-blue"
+        onclick="newSession()"
+      >
+        جلسة جديدة
+      </button>
+
+    </div>
+
+    <div class="result-grid">
+
+      <div class="result-stat">
+
+        <div
+          class="result-value"
+          id="resultAccuracy"
+        >
+          0%
+        </div>
+
+        <div class="result-label">
+          الدقة
+        </div>
+
+      </div>
+
+      <div class="result-stat">
+
+        <div
+          class="result-value"
+          id="resultHits"
+        >
+          0
+        </div>
+
+        <div class="result-label">
+          أهداف ناجحة
+        </div>
+
+      </div>
+
+      <div class="result-stat">
+
+        <div
+          class="result-value"
+          id="resultReaction"
+        >
+          0s
+        </div>
+
+        <div class="result-label">
+          متوسط الاستجابة
+        </div>
+
+      </div>
+
+      <div class="result-stat">
+
+        <div
+          class="result-value"
+          id="resultROM"
+        >
+          0°
+        </div>
+
+        <div class="result-label">
+          مدى الحركة
+        </div>
+
+      </div>
+
+      <div class="result-stat">
+
+        <div
+          class="result-value"
+          id="resultScore"
+        >
+          0
+        </div>
+
+        <div class="result-label">
+          النقاط
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==========================
+       HISTORY
+  =========================== -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <div class="section-title">
+
+        <div class="section-icon">
+          📊
+        </div>
+
+        <div>
+
+          <h3>
+            سجل الجلسات التجريبية
+          </h3>
+
+          <p>
+            يتم حفظها على هذا الجهاز حاليًا فقط.
+          </p>
+
+        </div>
+
+      </div>
+
+      <button
+        class="btn btn-light"
+        onclick="clearHistory()"
+      >
+        مسح السجل
+      </button>
+
+    </div>
+
+    <div id="historyArea"></div>
+
+  </section>
+
+</main>
+
+<div
+  class="toast"
+  id="toast"
+>
+  تم
+</div>
+
+<script>
+
+/* ===================================
+   SECURITY
+=================================== */
+
+function checkAccess(){
+
+  const access =
+    sessionStorage.getItem(
+      "akazVRAccess"
+    );
+
+  if(access !== "granted"){
+
+    window.location.href =
+      "index.html";
+
+  }
+
+}
+
+checkAccess();
+
+/* ===================================
+   VARIABLES
+=================================== */
+
+let selectedProgram =
+  "upper";
+
+let sessionTimer =
+  null;
+
+let sessionDuration =
+  0;
+
+let elapsed =
+  0;
+
+let hits =
+  0;
+
+let totalAttempts =
+  0;
+
+let currentSession =
+  null;
+
+const programNames = {
+
+  upper:
+    "الوصول للأهداف",
+
+  balance:
+    "التوازن ونقل الوزن",
+
+  lower:
+    "تأهيل الطرف السفلي",
+
+  kids:
+    "تأهيل الأطفال"
+
+};
+
+/* ===================================
+   THEME
+=================================== */
+
+function loadTheme(){
+
+  const saved =
+    localStorage.getItem(
+      "akazTheme"
+    );
+
+  if(saved === "dark"){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    document.getElementById(
+      "themeBtn"
+    ).innerText =
+      "☀️";
+
+  }
+
+}
+
+function toggleTheme(){
+
+  document.body.classList.toggle(
+    "dark"
+  );
+
+  const isDark =
+    document.body.classList.contains(
+      "dark"
+    );
+
+  localStorage.setItem(
+    "akazTheme",
+    isDark
+      ? "dark"
+      : "light"
+  );
+
+  document.getElementById(
+    "themeBtn"
+  ).innerText =
+    isDark
+      ? "☀️"
+      : "🌙";
+
+}
+
+/* ===================================
+   EXIT
+=================================== */
+
+function exitVR(){
+
+  sessionStorage.removeItem(
+    "akazVRAccess"
+  );
+
+  window.location.href =
+    "index.html";
+
+}
+
+/* ===================================
+   PROGRAM
+=================================== */
+
+function selectProgram(el){
+
+  document
+    .querySelectorAll(
+      ".program"
+    )
+    .forEach(
+      item =>
+        item.classList.remove(
+          "active"
+        )
+    );
+
+  el.classList.add(
+    "active"
+  );
+
+  selectedProgram =
+    el.dataset.program;
+
+}
+
+/* ===================================
+   ROM
+=================================== */
+
+function updateROM(){
+
+  const value =
+    document.getElementById(
+      "rom"
+    ).value;
+
+  document.getElementById(
+    "romValue"
+  ).innerText =
+    value + "°";
+
+}
+
+/* ===================================
+   SPEED
+=================================== */
+
+function updateSpeed(){
+
+  const value =
+    Number(
+      document.getElementById(
+        "speed"
+      ).value
+    );
+
+  const names = {
+    1:"بطيئة",
+    2:"متوسطة",
+    3:"سريعة"
+  };
+
+  document.getElementById(
+    "speedValue"
+  ).innerText =
+    names[value];
+
+}
+
+/* ===================================
+   DEMO
+=================================== */
+
+function fillDemo(){
+
+  document.getElementById(
+    "fileNumber"
+  ).value =
+    "10231";
+
+  document.getElementById(
+    "patientName"
+  ).value =
+    "حالة تجريبية";
+
+  document.getElementById(
+    "therapist"
+  ).selectedIndex =
+    1;
+
+  document.getElementById(
+    "bodyArea"
+  ).value =
+    "shoulder";
+
+  document.getElementById(
+    "side"
+  ).value =
+    "اليمنى";
+
+  document.getElementById(
+    "difficulty"
+  ).value =
+    "medium";
+
+  document.getElementById(
+    "duration"
+  ).value =
+    "30";
+
+  document.getElementById(
+    "targets"
+  ).value =
+    "20";
+
+  document.getElementById(
+    "rom"
+  ).value =
+    "90";
+
+  document.getElementById(
+    "speed"
+  ).value =
+    "2";
+
+  document.getElementById(
+    "notes"
+  ).value =
+    "عدم تجاوز 90 درجة مع إيقاف التمرين عند ظهور الألم.";
+
+  updateROM();
+
+  updateSpeed();
+
+  showToast(
+    "تم تجهيز حالة تجريبية"
+  );
+
+}
+
+/* ===================================
+   VALIDATE
+=================================== */
+
+function validateSession(){
+
+  const fileNumber =
+    document.getElementById(
+      "fileNumber"
+    ).value.trim();
+
+  const patientName =
+    document.getElementById(
+      "patientName"
+    ).value.trim();
+
+  const therapist =
+    document.getElementById(
+      "therapist"
+    ).value;
+
+  if(!fileNumber){
+
+    showToast(
+      "أدخل رقم ملف المريض"
+    );
+
+    return false;
+
+  }
+
+  if(!patientName){
+
+    showToast(
+      "أدخل اسم المريض"
+    );
+
+    return false;
+
+  }
+
+  if(!therapist){
+
+    showToast(
+      "اختر الأخصائي"
+    );
+
+    return false;
+
+  }
+
+  return true;
+
+}
+
+/* ===================================
+   START
+=================================== */
+
+function startSession(){
+
+  if(!validateSession()){
+    return;
+  }
+
+  if(sessionTimer){
+    clearInterval(
+      sessionTimer
+    );
+  }
+
+  sessionDuration =
+    Number(
+      document.getElementById(
+        "duration"
+      ).value
+    );
+
+  elapsed =
+    0;
+
+  hits =
+    0;
+
+  totalAttempts =
+    0;
+
+  const fileNumber =
+    document.getElementById(
+      "fileNumber"
+    ).value.trim();
+
+  const patientName =
+    document.getElementById(
+      "patientName"
+    ).value.trim();
+
+  const therapist =
+    document.getElementById(
+      "therapist"
+    ).value;
+
+  const bodyArea =
+    document.getElementById(
+      "bodyArea"
+    ).value;
+
+  const side =
+    document.getElementById(
+      "side"
+    ).value;
+
+  const difficulty =
+    document.getElementById(
+      "difficulty"
+    ).value;
+
+  const targets =
+    Number(
+      document.getElementById(
+        "targets"
+      ).value
+    );
+
+  const rom =
+    Number(
+      document.getElementById(
+        "rom"
+      ).value
+    );
+
+  const speed =
+    Number(
+      document.getElementById(
+        "speed"
+      ).value
+    );
+
+  const notes =
+    document.getElementById(
+      "notes"
+    ).value.trim();
+
+  currentSession = {
+
+    fileNumber,
+    patientName,
+    therapist,
+    bodyArea,
+    side,
+    difficulty,
+    targets,
+    rom,
+    speed,
+    notes,
+
+    program:
+      selectedProgram
+
+  };
+
+  document.getElementById(
+    "liveProgram"
+  ).innerText =
+    programNames[
+      selectedProgram
+    ];
+
+  document.getElementById(
+    "livePatient"
+  ).innerText =
+    patientName +
+    " • ملف " +
+    fileNumber;
+
+  document.getElementById(
+    "sessionPanel"
+  ).classList.add(
+    "show"
+  );
+
+  document.getElementById(
+    "resultBox"
+  ).classList.remove(
+    "show"
+  );
+
+  updateLiveStats();
+
+  resetTargets();
+
+  document.getElementById(
+    "sessionPanel"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+  const hitInterval =
+    getHitInterval(
+      speed
+    );
+
+  sessionTimer =
+    setInterval(
+      ()=>{
+
+        elapsed++;
+
+        if(
+          elapsed %
+          hitInterval
+          ===
+          0
+        ){
+
+          simulateTarget();
+
+        }
+
+        updateLiveStats();
+
+        if(
+          elapsed >=
+          sessionDuration
+        ){
+
+          finishSession(
+            false
+          );
+
+        }
+
+      },
+      1000
+    );
+
+}
+
+/* ===================================
+   INTERVAL
+=================================== */
+
+function getHitInterval(
+  speed
+){
+
+  if(speed === 1){
+    return 4;
+  }
+
+  if(speed === 2){
+    return 3;
+  }
+
+  return 2;
+
+}
+
+/* ===================================
+   SIMULATE
+=================================== */
+
+function simulateTarget(){
+
+  totalAttempts++;
+
+  const difficulty =
+    currentSession
+      .difficulty;
+
+  let successRate =
+    .83;
+
+  if(
+    difficulty ===
+    "easy"
+  ){
+
+    successRate =
+      .92;
+
+  }
+
+  if(
+    difficulty ===
+    "hard"
+  ){
+
+    successRate =
+      .72;
+
+  }
+
+  const success =
+    Math.random()
+    <
+    successRate;
+
+  const targetId =
+    Math.floor(
+      Math.random() * 4
+    ) + 1;
+
+  const target =
+    document.getElementById(
+      "target" +
+      targetId
+    );
+
+  target.classList.add(
+    "hit"
+  );
+
+  setTimeout(
+    ()=>{
+
+      target
+        .classList
+        .remove(
+          "hit"
+        );
+
+    },
+    350
+  );
+
+  if(success){
+
+    hits++;
+
+  }
+
+}
+
+/* ===================================
+   TARGETS
+=================================== */
+
+function resetTargets(){
+
+  for(
+    let i=1;
+    i<=4;
+    i++
+  ){
+
+    document
+      .getElementById(
+        "target" + i
+      )
+      .classList
+      .remove(
+        "hit"
+      );
+
+  }
+
+}
+
+/* ===================================
+   LIVE STATS
+=================================== */
+
+function updateLiveStats(){
+
+  document.getElementById(
+    "liveTime"
+  ).innerText =
+    elapsed;
+
+  document.getElementById(
+    "liveHits"
+  ).innerText =
+    hits;
+
+  let accuracy =
+    0;
+
+  if(
+    totalAttempts >
+    0
+  ){
+
+    accuracy =
+      Math.round(
+        (
+          hits /
+          totalAttempts
+        ) *
+        100
+      );
+
+  }
+
+  document.getElementById(
+    "liveScore"
+  ).innerText =
+    accuracy + "%";
+
+}
+
+/* ===================================
+   FINISH
+=================================== */
+
+function finishSession(
+  manual
+){
+
+  if(!currentSession){
+    return;
+  }
+
+  clearInterval(
+    sessionTimer
+  );
+
+  sessionTimer =
+    null;
+
+  if(
+    totalAttempts === 0
+  ){
+
+    totalAttempts =
+      1;
+
+  }
+
+  const accuracy =
+    Math.min(
+      100,
+      Math.round(
+        (
+          hits /
+          totalAttempts
+        ) *
+        100
+      )
+    );
+
+  const reaction =
+    (
+      0.7 +
+      Math.random() *
+      1.1
+    ).toFixed(
+      2
+    );
+
+  const romVariation =
+    Math.floor(
+      Math.random() *
+      8
+    );
+
+  const achievedROM =
+    Math.max(
+      10,
+      currentSession.rom -
+      romVariation
+    );
+
+  const points =
+    Math.round(
+      accuracy *
+      10 +
+      hits *
+      6
+    );
+
+  const result = {
+
+    ...currentSession,
+
+    date:
+      new Date()
+        .toISOString(),
+
+    elapsed,
+
+    manual,
+
+    hits,
+
+    attempts:
+      totalAttempts,
+
+    accuracy,
+
+    reaction,
+
+    achievedROM,
+
+    points
+
+  };
+
+  saveSession(
+    result
+  );
+
+  showResult(
+    result
+  );
+
+  currentSession =
+    null;
+
+  updateDashboard();
+
+  renderHistory();
+
+}
+
+/* ===================================
+   RESULT
+=================================== */
+
+function showResult(
+  result
+){
+
+  document.getElementById(
+    "resultPatient"
+  ).innerText =
+    result.patientName +
+    " • ملف " +
+    result.fileNumber;
+
+  document.getElementById(
+    "resultAccuracy"
+  ).innerText =
+    result.accuracy +
+    "%";
+
+  document.getElementById(
+    "resultHits"
+  ).innerText =
+    result.hits;
+
+  document.getElementById(
+    "resultReaction"
+  ).innerText =
+    result.reaction +
+    "s";
+
+  document.getElementById(
+    "resultROM"
+  ).innerText =
+    result.achievedROM +
+    "°";
+
+  document.getElementById(
+    "resultScore"
+  ).innerText =
+    result.points;
+
+  document.getElementById(
+    "resultBox"
+  ).classList.add(
+    "show"
+  );
+
+  document.getElementById(
+    "resultBox"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+  showToast(
+    "تم حفظ نتيجة الجلسة"
+  );
+
+}
+
+/* ===================================
+   NEW SESSION
+=================================== */
+
+function newSession(){
+
+  document.getElementById(
+    "sessionPanel"
+  ).classList.remove(
+    "show"
+  );
+
+  document.getElementById(
+    "resultBox"
+  ).classList.remove(
+    "show"
+  );
+
+  window.scrollTo({
+    top:400,
+    behavior:"smooth"
+  });
+
+}
+
+/* ===================================
+   STORAGE
+=================================== */
+
+function getSessions(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "akazVRSessions"
+      )
+    ) || [];
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+function saveSession(
+  session
+){
+
+  const sessions =
+    getSessions();
+
+  sessions.unshift(
+    session
+  );
+
+  localStorage.setItem(
+    "akazVRSessions",
+    JSON.stringify(
+      sessions
+    )
+  );
+
+}
+
+/* ===================================
+   DASHBOARD
+=================================== */
+
+function updateDashboard(){
+
+  const sessions =
+    getSessions();
+
+  document.getElementById(
+    "totalSessions"
+  ).innerText =
+    sessions.length;
+
+  if(
+    sessions.length
+  ){
+
+    const total =
+      sessions.reduce(
+        (
+          sum,
+          item
+        ) =>
+          sum +
+          Number(
+            item.accuracy ||
+            0
+          ),
+        0
+      );
+
+    const avg =
+      Math.round(
+        total /
+        sessions.length
+      );
+
+    document.getElementById(
+      "averageAccuracy"
+    ).innerText =
+      avg + "%";
+
+  }else{
+
+    document.getElementById(
+      "averageAccuracy"
+    ).innerText =
+      "0%";
+
+  }
+
+  const files =
+    new Set(
+      sessions.map(
+        item =>
+          item.fileNumber
+      )
+    );
+
+  document.getElementById(
+    "totalPatients"
+  ).innerText =
+    files.size;
+
+}
+
+/* ===================================
+   HISTORY
+=================================== */
+
+function renderHistory(){
+
+  const sessions =
+    getSessions();
+
+  const area =
+    document.getElementById(
+      "historyArea"
+    );
+
+  if(
+    !sessions.length
+  ){
+
+    area.innerHTML = `
+      <div class="empty">
+
+        <div class="empty-icon">
+          🥽
+        </div>
+
+        لا توجد جلسات تجريبية حتى الآن.
+
+      </div>
+    `;
+
+    return;
+
+  }
+
+  let html = `
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              التاريخ
+            </th>
+
+            <th>
+              رقم الملف
+            </th>
+
+            <th>
+              المريض
+            </th>
+
+            <th>
+              البرنامج
+            </th>
+
+            <th>
+              الأخصائي
+            </th>
+
+            <th>
+              ROM
+            </th>
+
+            <th>
+              الدقة
+            </th>
+
+            <th>
+              زمن الاستجابة
+            </th>
+
+            <th>
+              النقاط
+            </th>
+
+            <th>
+              التقييم
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+  `;
+
+  sessions
+    .slice(
+      0,
+      30
+    )
+    .forEach(
+      session =>{
+
+        const date =
+          new Date(
+            session.date
+          );
+
+        const formatted =
+          date.toLocaleString(
+            "ar-SA",
+            {
+              year:"numeric",
+              month:"numeric",
+              day:"numeric",
+              hour:"2-digit",
+              minute:"2-digit"
+            }
+          );
+
+        const good =
+          Number(
+            session.accuracy
+          ) >=
+          75;
+
+        html += `
+
+          <tr>
+
+            <td>
+              ${formatted}
+            </td>
+
+            <td>
+              ${escapeHTML(
+                session.fileNumber
+              )}
+            </td>
+
+            <td>
+              ${escapeHTML(
+                session.patientName
+              )}
+            </td>
+
+            <td>
+              ${
+                programNames[
+                  session.program
+                ] ||
+                "-"
+              }
+            </td>
+
+            <td>
+              ${escapeHTML(
+                session.therapist
+              )}
+            </td>
+
+            <td>
+              ${
+                session
+                  .achievedROM
+              }°
+            </td>
+
+            <td>
+              ${
+                session
+                  .accuracy
+              }%
+            </td>
+
+            <td>
+              ${
+                session
+                  .reaction
+              }s
+            </td>
+
+            <td>
+              ${
+                session
+                  .points
+              }
+            </td>
+
+            <td>
+
+              <span
+                class="
+                  status
+                  ${
+                    good
+                    ?
+                    "status-good"
+                    :
+                    "status-medium"
+                  }
+                "
+              >
+
+                ${
+                  good
+                  ?
+                  "جيد"
+                  :
+                  "يحتاج تطوير"
+                }
+
+              </span>
+
+            </td>
+
+          </tr>
+
+        `;
+
+      }
+    );
+
+  html += `
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+  area.innerHTML =
+    html;
+
+}
+
+/* ===================================
+   CLEAR
+=================================== */
+
+function clearHistory(){
+
+  const sessions =
+    getSessions();
+
+  if(
+    !sessions.length
+  ){
+
+    showToast(
+      "السجل فارغ"
+    );
+
+    return;
+
+  }
+
+  const ok =
+    confirm(
+      "هل أنت متأكد من مسح جميع جلسات VR التجريبية؟"
+    );
+
+  if(!ok){
+    return;
+  }
+
+  localStorage.removeItem(
+    "akazVRSessions"
+  );
+
+  updateDashboard();
+
+  renderHistory();
+
+  showToast(
+    "تم مسح السجل"
+  );
+
+}
+
+/* ===================================
+   ESCAPE
+=================================== */
+
+function escapeHTML(
+  value
+){
+
+  return String(
+    value || ""
+  )
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+/* ===================================
+   TOAST
+=================================== */
+
+let toastTimer =
+  null;
+
+function showToast(
+  message
+){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.innerText =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    toastTimer
+  );
+
+  toastTimer =
+    setTimeout(
+      ()=>{
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2500
+    );
+
+}
+
+/* ===================================
+   LOAD
+=================================== */
+
+loadTheme();
+
+updateROM();
+
+updateSpeed();
+
+updateDashboard();
+
+renderHistory();
+
+</script>
+
+</body>
+</html>
