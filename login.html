@@ -12,14 +12,9 @@
 :root{
   --blue:#005b9f;
   --blue2:#0077c8;
-  --orange:#f59e0b;
   --text:#0f172a;
   --muted:#64748b;
   --line:#e2e8f0;
-  --danger:#b91c1c;
-  --dangerBg:#fef2f2;
-  --success:#166534;
-  --successBg:#f0fdf4;
 }
 
 *{
@@ -33,12 +28,12 @@ html,body{
 }
 
 body{
-  direction:rtl;
   min-height:100vh;
+  direction:rtl;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:22px;
+  padding:20px;
   background:
     radial-gradient(circle at 90% 10%, rgba(0,119,200,.14), transparent 30%),
     radial-gradient(circle at 8% 75%, rgba(245,158,11,.10), transparent 27%),
@@ -49,12 +44,12 @@ body{
 .loading-screen{
   position:fixed;
   inset:0;
-  z-index:9999;
+  background:linear-gradient(135deg,#00467d,#0077c8);
   display:flex;
   align-items:center;
   justify-content:center;
+  z-index:9999;
   color:white;
-  background:linear-gradient(135deg,#00467d,#0077c8);
 }
 
 .loading-box{
@@ -83,7 +78,7 @@ body{
 }
 
 @keyframes spin{
-  to{ transform:rotate(360deg); }
+  to{transform:rotate(360deg)}
 }
 
 .login-shell{
@@ -93,7 +88,7 @@ body{
 }
 
 .login-card{
-  background:rgba(255,255,255,.97);
+  background:white;
   border:1px solid var(--line);
   border-radius:30px;
   padding:32px 28px 28px;
@@ -180,7 +175,6 @@ input{
   font-size:15px;
   outline:none;
   background:white;
-  transition:.2s;
 }
 
 input:focus{
@@ -192,7 +186,6 @@ input:focus{
   direction:ltr;
   text-align:left;
   font-weight:800;
-  letter-spacing:.5px;
 }
 
 #password{
@@ -226,18 +219,11 @@ input:focus{
   cursor:pointer;
   margin-top:6px;
   box-shadow:0 12px 28px rgba(0,91,159,.25);
-  transition:.2s;
-}
-
-.login-btn:hover{
-  transform:translateY(-1px);
-  box-shadow:0 16px 32px rgba(0,91,159,.30);
 }
 
 .login-btn:disabled{
   opacity:.6;
   cursor:not-allowed;
-  transform:none;
 }
 
 .message{
@@ -252,16 +238,16 @@ input:focus{
 
 .message.error{
   display:block;
-  background:var(--dangerBg);
+  background:#fef2f2;
   border:1px solid #fecaca;
-  color:var(--danger);
+  color:#b91c1c;
 }
 
 .message.success{
   display:block;
-  background:var(--successBg);
+  background:#f0fdf4;
   border:1px solid #bbf7d0;
-  color:var(--success);
+  color:#166534;
 }
 
 .security-note{
@@ -283,10 +269,6 @@ input:focus{
 }
 
 @media(max-width:500px){
-  body{
-    padding:15px;
-  }
-
   .login-card{
     padding:27px 20px 24px;
     border-radius:25px;
@@ -338,7 +320,7 @@ input:focus{
     </div>
 
     <div class="notice">
-      استخدم الرقم الوظيفي والرمز السري المخصصين لك للدخول إلى بوابة المركز.
+      استخدم الرقم الوظيفي والرمز السري المخصصين لك للدخول إلى البوابة.
     </div>
 
     <form id="loginForm">
@@ -373,7 +355,6 @@ input:focus{
             type="button"
             class="eye-btn"
             id="eyeBtn"
-            aria-label="إظهار أو إخفاء الرمز السري"
           >
             👁️
           </button>
@@ -409,7 +390,9 @@ input:focus{
 <script type="module">
 
 import {
-  initializeApp
+  initializeApp,
+  getApps,
+  getApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
@@ -422,17 +405,20 @@ import {
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyArYShiKgAnb1A4aDEIr7zAM2q7ohbATJQ",
+  apiKey: "AIzaSyArYShiKgAnb1A4aDEIr7zAm2q7ohBafJR",
   authDomain: "akazcenter-89c17.firebaseapp.com",
   projectId: "akazcenter-89c17",
   storageBucket: "akazcenter-89c17.firebasestorage.app",
   messagingSenderId: "576111794528",
   appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605",
-  measurementId: "G-VYXM40GDCG"
+  measurementId: "G-VYXM46GDC0"
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
 
@@ -488,7 +474,7 @@ employeeIdInput.addEventListener(
 
     employeeIdInput.value =
       employeeIdInput.value
-        .replace(/\D/g, "")
+        .replace(/\D/g,"")
         .slice(0,10);
   }
 );
@@ -560,7 +546,7 @@ form.addEventListener(
     }catch(error){
 
       console.error(
-        "Login error:",
+        "Firebase login error:",
         error.code
       );
 
@@ -569,7 +555,9 @@ form.addEventListener(
       );
 
     }finally{
+
       setLoading(false);
+
     }
   }
 );
@@ -577,8 +565,7 @@ form.addEventListener(
 
 function setLoading(loading){
 
-  loginBtn.disabled =
-    loading;
+  loginBtn.disabled = loading;
 
   loginBtn.textContent =
     loading
