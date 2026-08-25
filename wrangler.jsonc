@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "akazcenter",
+  "compatibility_date": "2026-08-25",
+
+  "assets": {
+    "directory": "."
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "akaz-auth",
+      "database_id": "PUT_DATABASE_ID_HERE"
+    }
+  ]
+}
