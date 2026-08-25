@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تسجيل الدخول | مركز عكاز للعلاج الطبيعي</title>
+
+<link rel="icon" href="logo.png">
+
+<style>
+
+:root{
+  --blue:#005b9f;
+  --blue2:#0077c8;
+  --orange:#f59e0b;
+  --text:#0f172a;
+  --muted:#64748b;
+  --line:#e2e8f0;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+  direction:rtl;
+  min-height:100vh;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(0,119,200,.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 8% 75%,
+      rgba(245,158,11,.11),
+      transparent 27%
+    ),
+    linear-gradient(
+      180deg,
+      #f8fbff,
+      #edf4f9
+    );
+
+  color:var(--text);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:22px;
+}
+
+/* =========================
+   شاشة التحقق الأولية
+========================= */
+
+.loading-screen{
+  position:fixed;
+  inset:0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00467d,
+      #0077c8
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:9999;
+
+  color:white;
+}
+
+.loading-box{
+  text-align:center;
+}
+
+.loading-logo{
+  width:100px;
+  height:100px;
+
+  object-fit:contain;
+
+  background:white;
+
+  border-radius:26px;
+
+  padding:10px;
+
+  margin-bottom:18px;
+
+  box-shadow:
+    0 20px 45px
+    rgba(0,0,0,.25);
+}
+
+.spinner{
+  width:36px;
+  height:36px;
+
+  margin:0 auto 15px;
+
+  border-radius:50%;
+
+  border:4px solid
+    rgba(255,255,255,.25);
+
+  border-top-color:white;
+
+  animation:
+    spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* =========================
+   تسجيل الدخول
+========================= */
+
+.login-shell{
+  width:100%;
+  max-width:440px;
+
+  display:none;
+}
+
+.login-card{
+  background:
+    rgba(255,255,255,.97);
+
+  border:
+    1px solid var(--line);
+
+  border-radius:30px;
+
+  padding:
+    32px 28px 28px;
+
+  box-shadow:
+    0 28px 70px
+    rgba(15,23,42,.16);
+}
+
+.logo-box{
+  width:112px;
+  height:112px;
+
+  margin:
+    0 auto 18px;
+
+  border-radius:28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:white;
+
+  box-shadow:
+    0 14px 32px
+    rgba(15,23,42,.12);
+}
+
+.logo{
+  width:88px;
+  height:88px;
+
+  object-fit:contain;
+}
+
+h1{
+  margin:0;
+
+  color:var(--blue);
+
+  text-align:center;
+
+  font-size:27px;
+
+  font-weight:900;
+}
+
+.subtitle{
+  margin:
+    9px 0 5px;
+
+  text-align:center;
+
+  color:#334155;
+
+  font-size:14px;
+
+  font-weight:700;
+}
+
+.english{
+  direction:ltr;
+
+  text-align:center;
+
+  color:#94a3b8;
+
+  font-size:11px;
+
+  margin-bottom:22px;
+}
+
+.notice{
+  background:#eff8ff;
+
+  border:
+    1px solid #cfe9fb;
+
+  color:#0c4a6e;
+
+  padding:
+    13px 14px;
+
+  border-radius:14px;
+
+  margin-bottom:20px;
+
+  font-size:13px;
+
+  line-height:1.8;
+
+  text-align:center;
+}
+
+.field{
+  margin-bottom:16px;
+}
+
+label{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#0f172a;
+
+  font-size:14px;
+
+  font-weight:900;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+input{
+  width:100%;
+
+  height:52px;
+
+  border:
+    1px solid #cbd5e1;
+
+  border-radius:14px;
+
+  padding:
+    0 14px;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:15px;
+
+  outline:none;
+
+  background:white;
+
+  transition:.2s;
+}
+
+input:focus{
+  border-color:
+    var(--blue2);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(0,119,200,.10);
+}
+
+#username{
+  direction:ltr;
+  text-align:left;
+}
+
+#password{
+  padding-left:54px;
+}
+
+.eye-btn{
+  position:absolute;
+
+  left:8px;
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  border:none;
+
+  width:38px;
+  height:38px;
+
+  border-radius:10px;
+
+  background:#eef6ff;
+
+  cursor:pointer;
+
+  font-size:17px;
+}
+
+.login-btn{
+  width:100%;
+
+  height:52px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blue),
+      var(--blue2)
+    );
+
+  color:white;
+
+  font-family:
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size:16px;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  margin-top:6px;
+
+  box-shadow:
+    0 12px 28px
+    rgba(0,91,159,.25);
+
+  transition:.2s;
+}
+
+.login-btn:hover{
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 16px 32px
+    rgba(0,91,159,.30);
+}
+
+.login-btn:disabled{
+  opacity:.60;
+
+  cursor:not-allowed;
+
+  transform:none;
+}
+
+.message{
+  display:none;
+
+  margin-top:16px;
+
+  padding:
+    12px 13px;
+
+  border-radius:12px;
+
+  font-size:13px;
+
+  line-height:1.7;
+
+  text-align:center;
+}
+
+.message.error{
+  display:block;
+
+  background:#fef2f2;
+
+  border:
+    1px solid #fecaca;
+
+  color:#b91c1c;
+}
+
+.message.success{
+  display:block;
+
+  background:#f0fdf4;
+
+  border:
+    1px solid #bbf7d0;
+
+  color:#166534;
+}
+
+.security-note{
+  margin-top:20px;
+
+  padding-top:17px;
+
+  border-top:
+    1px solid #e2e8f0;
+
+  text-align:center;
+
+  color:#64748b;
+
+  font-size:11.5px;
+
+  line-height:1.8;
+}
+
+.lock{
+  margin-left:4px;
+}
+
+.footer{
+  margin-top:18px;
+
+  text-align:center;
+
+  color:#64748b;
+
+  font-size:12px;
+
+  line-height:1.8;
+}
+
+@media(max-width:500px){
+
+  body{
+    padding:15px;
+  }
+
+  .login-card{
+    padding:
+      27px 20px 24px;
+
+    border-radius:25px;
+  }
+
+  .logo-box{
+    width:100px;
+    height:100px;
+  }
+
+  .logo{
+    width:78px;
+    height:78px;
+  }
+
+  h1{
+    font-size:24px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- شاشة فحص الجلسة -->
+
+<div
+  class="loading-screen"
+  id="loadingScreen"
+>
+
+  <div class="loading-box">
+
+    <img
+      src="logo.png"
+      class="loading-logo"
+      alt="مركز عكاز"
+    >
+
+    <div class="spinner"></div>
+
+    <div>
+      جاري التحقق...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- تسجيل الدخول -->
+
+<div
+  class="login-shell"
+  id="loginShell"
+>
+
+  <div class="login-card">
+
+    <div class="logo-box">
+
+      <img
+        src="logo.png"
+        class="logo"
+        alt="شعار مركز عكاز"
+      >
+
+    </div>
+
+    <h1>
+      تسجيل الدخول
+    </h1>
+
+    <div class="subtitle">
+      بوابة مركز عكاز للعلاج الطبيعي
+    </div>
+
+    <div class="english">
+      AKAZ PHYSIOTHERAPY CENTER
+    </div>
+
+    <div class="notice">
+      استخدم اسم المستخدم والرمز السري المخصصين لك للدخول إلى بوابة المركز.
+    </div>
+
+    <form id="loginForm">
+
+      <div class="field">
+
+        <label for="username">
+          اسم المستخدم
+        </label>
+
+        <input
+          type="text"
+          id="username"
+          autocomplete="username"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="اسم المستخدم"
+          required
+        >
+
+      </div>
+
+      <div class="field">
+
+        <label for="password">
+          الرمز السري
+        </label>
+
+        <div class="input-wrap">
+
+          <input
+            type="password"
+            id="password"
+            autocomplete="current-password"
+            placeholder="أدخل الرمز السري"
+            required
+          >
+
+          <button
+            type="button"
+            class="eye-btn"
+            id="eyeBtn"
+            aria-label="إظهار أو إخفاء الرمز السري"
+          >
+            👁️
+          </button>
+
+        </div>
+
+      </div>
+
+      <button
+        type="submit"
+        class="login-btn"
+        id="loginBtn"
+      >
+        تسجيل الدخول
+      </button>
+
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+    </form>
+
+    <div class="security-note">
+      <span class="lock">🔒</span>
+      هذه البوابة مخصصة لمنسوبي مركز عكاز للعلاج الطبيعي فقط.
+    </div>
+
+  </div>
+
+  <div class="footer">
+    مركز عكاز للعلاج الطبيعي
+    <br>
+    © Akaz Physiotherapy Center
+  </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from
+  "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+} from
+  "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+/* =========================
+   إعدادات Firebase
+========================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyArYShiKgAnb1A4aDEIr7zAm2q7ohBafJR",
+
+  authDomain:
+    "akazcenter-89c17.firebaseapp.com",
+
+  projectId:
+    "akazcenter-89c17",
+
+  storageBucket:
+    "akazcenter-89c17.firebasestorage.app",
+
+  messagingSenderId:
+    "576111794528",
+
+  appId:
+    "1:576111794528:web:b7ee436f5bd0b60c4a6605",
+
+  measurementId:
+    "G-VYXM46GDC0"
+
+};
+
+
+/* =========================
+   تشغيل Firebase
+========================= */
+
+const app =
+  initializeApp(
+    firebaseConfig
+  );
+
+const auth =
+  getAuth(app);
+
+
+/* =========================
+   العناصر
+========================= */
+
+const loadingScreen =
+  document.getElementById(
+    "loadingScreen"
+  );
+
+const loginShell =
+  document.getElementById(
+    "loginShell"
+  );
+
+const form =
+  document.getElementById(
+    "loginForm"
+  );
+
+const usernameInput =
+  document.getElementById(
+    "username"
+  );
+
+const passwordInput =
+  document.getElementById(
+    "password"
+  );
+
+const loginBtn =
+  document.getElementById(
+    "loginBtn"
+  );
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+const eyeBtn =
+  document.getElementById(
+    "eyeBtn"
+  );
+
+
+/* =========================
+   فحص جلسة موجودة
+========================= */
+
+onAuthStateChanged(
+  auth,
+  user => {
+
+    if(user){
+
+      window.location.replace(
+        "index.html"
+      );
+
+      return;
+    }
+
+    loadingScreen.style.display =
+      "none";
+
+    loginShell.style.display =
+      "block";
+
+  }
+);
+
+
+/* =========================
+   إظهار الرمز
+========================= */
+
+eyeBtn.addEventListener(
+  "click",
+  () => {
+
+    const hidden =
+      passwordInput.type ===
+      "password";
+
+    passwordInput.type =
+      hidden
+        ? "text"
+        : "password";
+
+    eyeBtn.textContent =
+      hidden
+        ? "🙈"
+        : "👁️";
+
+  }
+);
+
+
+/* =========================
+   تسجيل الدخول
+========================= */
+
+form.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    clearMessage();
+
+    let username =
+      usernameInput.value
+        .trim()
+        .toLowerCase();
+
+    const password =
+      passwordInput.value;
+
+
+    if(
+      !username ||
+      !password
+    ){
+
+      showError(
+        "أدخل اسم المستخدم والرمز السري."
+      );
+
+      return;
+    }
+
+
+    /*
+      يسمح فقط بأسماء مستخدمين
+      بالشكل المعتاد
+    */
+
+    if(
+      !/^[a-z0-9._-]+$/.test(
+        username
+      )
+    ){
+
+      showError(
+        "اسم المستخدم غير صحيح."
+      );
+
+      return;
+    }
+
+
+    setLoading(true);
+
+
+    /*
+      المستخدم يكتب:
+      ptsaleh95
+
+      Firebase يستقبل داخلياً:
+      ptsaleh95@gmail.com
+    */
+
+    const internalEmail =
+      username +
+      "@gmail.com";
+
+
+    try{
+
+      await signInWithEmailAndPassword(
+        auth,
+        internalEmail,
+        password
+      );
+
+
+      message.className =
+        "message success";
+
+      message.textContent =
+        "تم تسجيل الدخول بنجاح، جاري فتح البوابة...";
+
+
+      /*
+        onAuthStateChanged
+        سيقوم بالتحويل تلقائياً
+      */
+
+
+    }catch(error){
+
+      console.error(
+        "Login error:",
+        error.code
+      );
+
+
+      showError(
+        "اسم المستخدم أو الرمز السري غير صحيح."
+      );
+
+    }finally{
+
+      setLoading(false);
+
+    }
+
+  }
+);
+
+
+/* =========================
+   الوظائف المساعدة
+========================= */
+
+function setLoading(
+  loading
+){
+
+  loginBtn.disabled =
+    loading;
+
+  loginBtn.textContent =
+    loading
+      ? "جاري التحقق..."
+      : "تسجيل الدخول";
+
+}
+
+
+function clearMessage(){
+
+  message.className =
+    "message";
+
+  message.textContent =
+    "";
+
+}
+
+
+function showError(
+  text
+){
+
+  message.className =
+    "message error";
+
+  message.textContent =
+    text;
+
+}
+
+</script>
+
+</body>
+</html>
