@@ -1,5 +1,7 @@
 import {
-  initializeApp
+  initializeApp,
+  getApps,
+  getApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
@@ -8,21 +10,24 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyArYShiKgAnb1A4aDEIr7zAM2q7ohbATJQ",
+  apiKey: "AIzaSyArYShiKgAnb1A4aDEIr7zAm2q7ohBafJR",
   authDomain: "akazcenter-89c17.firebaseapp.com",
   projectId: "akazcenter-89c17",
   storageBucket: "akazcenter-89c17.firebasestorage.app",
   messagingSenderId: "576111794528",
   appId: "1:576111794528:web:b7ee436f5bd0b60c4a6605",
-  measurementId: "G-VYXM40GDCG"
+  measurementId: "G-VYXM46GDC0"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length
+  ? getApp()
+  : initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 
 document.documentElement.style.visibility = "hidden";
 
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(auth, (user) => {
   if (!user) {
     window.location.replace("login.html");
     return;
